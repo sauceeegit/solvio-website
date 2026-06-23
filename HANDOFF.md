@@ -1,6 +1,45 @@
 # Solvio — Project handoff / continuation notes
 
-_Last updated: 2026-06-21. Read this first to continue the project on another computer._
+_Last updated: 2026-06-24. Read this first to continue the project on another computer._
+
+## ⭐ Continue on another computer (start here)
+The project now lives on **GitHub**, so a second machine just clones it:
+- **Repo (public):** https://github.com/sauceeegit/solvio-website  (account `sauceeegit`)
+- **Live site (GitHub Pages):** https://sauceeegit.github.io/solvio-website/
+
+```bash
+git clone https://github.com/sauceeegit/solvio-website.git
+cd solvio-website
+npm install        # needs Node.js 18+ (https://nodejs.org)
+npm run dev        # local preview at http://localhost:5173
+```
+Then open a fresh Claude Code session in the folder and tell it to read this HANDOFF.md.
+Commit + `git push origin main` and the site **auto-deploys** (see below). The Claude Code
+chat transcript itself does NOT sync between machines — this file is the handoff.
+
+## Deployment — GitHub Pages (automatic on push)
+- `.github/workflows/deploy.yml` builds the site in CI and deploys to GitHub Pages on every
+  push to `main` (~3–4 min). Watch runs at https://github.com/sauceeegit/solvio-website/actions
+  (or `gh run watch`). No Node needed locally just to deploy — CI builds it.
+- **Pages serves from a subpath** (`/solvio-website/`), which required three things (already done):
+  1. `vite.config.js` reads `base` from `process.env.VITE_BASE` (CI sets it to `/<repo>/`);
+     defaults to `/` for local dev and root hosts (Netlify).
+  2. `src/main.jsx` sets `<BrowserRouter basename={import.meta.env.BASE_URL …}>`.
+  3. The workflow copies `dist/index.html` → `dist/404.html` so deep links / refresh on
+     `/balcony-system` work (Pages serves 404.html, the SPA boots and routes correctly — a
+     404 HTTP status on that path is normal and harmless).
+- ⚠️ **Asset path rule:** any file in `/public` (images, video, logo) MUST be referenced via the
+  `asset()` helper in `src/lib/format.js`, e.g. `asset('/hero-loop.mp4')` — NOT a root-absolute
+  string like `'/hero-loop.mp4'`. Root-absolute strings 404 under the Pages subpath. (External
+  URLs like Unsplash/YouTube are fine as-is.)
+- **This machine has no Node installed** and the GitHub CLI (`gh`) was installed here; the build
+  is done entirely by GitHub Actions. On a machine with Node you can also `npm run build` locally.
+
+## Other deploy copy — Netlify (manual, now stale)
+A prebuilt copy is still at `C:\Users\…\Desktop\to G\solvio-website\` for Netlify Drop
+(https://app.netlify.com/drop). It uses `base: './'` + `_redirects` and does **not** include the
+`asset()` subpath fix (it doesn't need it — Netlify serves at the root domain). It is older than
+the current source; re-export it (`npm run build` → mirror `dist/`) before re-dropping if you use it.
 
 ## What this is
 The marketing site for **Solvio** (solvio.solar), a Thailand-based plug-and-play solar
@@ -122,7 +161,8 @@ kept at `C:\Users\USER\OneDrive\Desktop\to G\` (`solvio-website/` + `.zip`) — 
 refreshed 2026-06-21** (Venus battery line, module photos, white photo backgrounds, Hanken
 Grotesk font, bento highlights, email capture). Refresh it by running `npm run build`, then
 mirror `dist/` → `to G\solvio-website` (e.g. `robocopy dist "..\..\to G\solvio-website" /MIR`)
-and re-zip. `vite.config.js` has `base: './'`.
+and re-zip. (`vite.config.js` `base` now defaults to `/` for root hosts; see the GitHub Pages
+section above for how the subpath build works.)
 **SPA routing:** `public/_redirects` (`/*  /index.html  200`) is already in place, so
 `/balcony-system` works on direct links / refresh on Netlify.
 
