@@ -1,3 +1,8 @@
+// Resolve a /public asset path against the app's base URL so it works both at
+// the site root (Netlify) and under a subpath (GitHub Pages, e.g. /solvio-website/).
+// import.meta.env.BASE_URL is '/' locally and '/solvio-website/' on Pages.
+export const asset = (p) => `${import.meta.env.BASE_URL}${String(p).replace(/^\//, '')}`;
+
 export const euro = (n) =>
   new Intl.NumberFormat('en-IE', {
     style: 'currency',

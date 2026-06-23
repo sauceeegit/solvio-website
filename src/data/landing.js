@@ -1,4 +1,5 @@
 // Content for the Solvio main landing page (modeled on the supplied concept layout).
+import { asset } from '../lib/format';
 
 export const topBar = {
   phone: '+66 84 348 8428',
@@ -13,7 +14,7 @@ export const landingNav = [
 
 export const hero = {
   // Looping hero video (served from /public).
-  videoSrc: '/hero-loop.mp4',
+  videoSrc: asset('/hero-loop.mp4'),
   poster:
     'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=1600&q=80',
   caption: 'Clean energy for every Thai home',
@@ -24,7 +25,7 @@ export const categories = [
     id: 'rooftop',
     title: 'Rooftop Solar',
     blurb: 'Power your whole home with a rooftop array — get a free estimate now.',
-    img: '/rooftop-solar.jpg',
+    img: asset('/rooftop-solar.jpg'),
     imgClass: 'brightness-110',
     to: '#bestsellers',
   },
@@ -32,7 +33,7 @@ export const categories = [
     id: 'balcony',
     title: 'Balcony Solar',
     blurb: 'Configure your complete plug-and-play balcony solar set in minutes.',
-    img: '/balcony-power-plants.jpg',
+    img: asset('/balcony-power-plants.jpg'),
     imgClass: 'object-[28%_center]',
     to: '/balcony-system',
   },
@@ -40,7 +41,7 @@ export const categories = [
     id: 'portable',
     title: 'Portable Solar',
     blurb: 'Take solar with you anywhere — camping, markets, off-grid weekends.',
-    img: '/portable-systems.jpg',
+    img: asset('/portable-systems.jpg'),
     imgClass: 'brightness-[.82] saturate-[.82]',
     to: '#bestsellers',
   },
@@ -53,7 +54,7 @@ export const bestsellers = [
     name: 'White Feather 900W',
     subtitle: 'Duo set with inverter and smart meter',
     price: 12990,
-    img: '/white-feather-900.jpg',
+    img: asset('/white-feather-900.jpg'),
     fit: 'contain',
     bg: '#F84F01',
     specs: [
@@ -68,7 +69,7 @@ export const bestsellers = [
     subtitle: 'Duo set with inverter and smart meter',
     price: 14990,
     featured: true,
-    img: '/dark-feather-900.jpg',
+    img: asset('/dark-feather-900.jpg'),
     fit: 'contain',
     bg: '#FB5804',
     specs: [
@@ -82,7 +83,7 @@ export const bestsellers = [
     name: 'Dark Feather 1800W',
     subtitle: 'Quattro set with battery, inverter and smart meter',
     price: 27990,
-    img: '/dark-feather-1800.jpg',
+    img: asset('/dark-feather-1800.jpg'),
     fit: 'contain',
     bg: '#FA4700',
     specs: [
@@ -130,7 +131,7 @@ export const landingFaqs = [
 // "Why shop at the Solvio official store" — bento grid: index 0 is the tall
 // (row-span-2) feature cell, index 5 is the wide (col-span-2) feature cell.
 export const whyShop = [
-  { icon: 'Coins', title: 'Earn Solvio rewards', img: '/earn-rewards.jpg' },
+  { icon: 'Coins', title: 'Earn Solvio rewards', img: asset('/earn-rewards.jpg') },
   { icon: 'CreditCard', title: 'Convenient installment plans' },
   { icon: 'Headphones', title: 'Lifetime customer support' },
   { icon: 'RotateCcw', title: '30-day returns' },

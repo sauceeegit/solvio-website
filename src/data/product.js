@@ -1,5 +1,6 @@
 // Single source of truth for the Solvio Balcony System product page.
 // The configurator, price box and sticky cart bar all read from here.
+import { asset } from '../lib/format';
 
 export const MODULE_WP = 450;
 
@@ -57,7 +58,7 @@ export const panelOptions = [
     label: 'White Feather',
     sub: 'Silver-frame bifacial',
     usd: 200,
-    img: '/module-white.jpg',
+    img: asset('/module-white.jpg'),
     wp: 450,
     dims: '1762 × 1134 × 30 mm',
     weight: '22 kg',
@@ -67,7 +68,7 @@ export const panelOptions = [
     label: 'Dark Feather',
     sub: 'All-black bifacial',
     usd: 220,
-    img: '/module-dark.jpg',
+    img: asset('/module-dark.jpg'),
     wp: 450,
     dims: '1762 × 1134 × 30 mm',
     weight: '22 kg',
@@ -86,7 +87,7 @@ export const storageOptions = [
     label: 'No storage',
     brand: '',
     name: 'No storage',
-    img: '/storage-none.jpg',
+    img: asset('/storage-none.jpg'),
     specs: ['Feeds solar straight to the grid', 'Standard 800 W micro-inverter', 'Add a battery any time later'],
     wh: 0,
     expandable: false,
@@ -97,7 +98,7 @@ export const storageOptions = [
     label: 'Solvio Venus A 2.12 kWh Battery',
     brand: 'Solvio',
     name: 'Venus A 2.12 kWh Battery',
-    img: '/storage-venus2.jpg',
+    img: asset('/storage-venus2.jpg'),
     specs: ['4 MPPT inputs up to 2.4 kW', 'Integrated 1500 W inverter', 'Anti Feed-in Control'],
     wh: 2120,
     expandable: true,
@@ -108,7 +109,7 @@ export const storageOptions = [
     label: 'Solvio Venus A 4.24 kWh Battery',
     brand: 'Solvio',
     name: 'Venus A 4.24 kWh Battery',
-    img: '/storage-venus4.jpg',
+    img: asset('/storage-venus4.jpg'),
     specs: ['4 MPPT inputs up to 2.4 kW', 'Integrated 1500 W inverter', 'Anti Feed-in Control'],
     wh: 4240,
     expandable: true,
@@ -119,7 +120,7 @@ export const storageOptions = [
     label: 'Solvio Venus A 6.36 kWh Battery',
     brand: 'Solvio',
     name: 'Venus A 6.36 kWh Battery',
-    img: '/storage-venus6.jpg',
+    img: asset('/storage-venus6.jpg'),
     specs: ['4 MPPT inputs up to 2.4 kW', 'Integrated 1500 W inverter', 'Anti Feed-in Control'],
     wh: 6360,
     expandable: true,
