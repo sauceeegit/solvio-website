@@ -1,5 +1,6 @@
 import { Image as ImageIcon } from 'lucide-react';
 import Reveal from './Reveal';
+import { asset } from '../lib/format';
 
 /* Empty image placeholder — swap in a real photo later */
 function Placeholder({ className = '' }) {
@@ -84,15 +85,18 @@ export default function Highlights() {
               </div>
             </div>
 
-            {/* C — tall feature photo (placeholder) + cream overlay */}
-            <div className="relative h-full min-h-[340px] overflow-hidden rounded-xl2 lg:col-span-2 lg:col-start-3 lg:row-span-2 lg:row-start-1">
-              <Placeholder className="absolute inset-0 h-full w-full" />
-              <div className="absolute left-4 right-4 top-4 rounded-xl2 bg-[#FCF6EC] p-5">
-                <p className="font-display text-sm font-bold text-lime-dark">Plug &amp; Play:</p>
-                <p className="font-display text-lg font-extrabold leading-snug text-ink">
-                  Easy installation without an electrician
-                </p>
-              </div>
+            {/* C — Plug & Play: the orange word panel slides up on hover to reveal the photo */}
+            <div className="group relative h-full min-h-[340px] overflow-hidden rounded-xl2 lg:col-span-2 lg:col-start-3 lg:row-span-2 lg:row-start-1">
+              <img
+                src={asset('/plugplay-photo.jpg')}
+                alt="Easy installation — connecting a panel by hand in the garden"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+              <img
+                src={asset('/plugplay-words.jpg')}
+                alt="Plug & Play: easy installation without an electrician"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:-translate-y-full"
+              />
             </div>
 
             {/* D — brand block (dark) */}
