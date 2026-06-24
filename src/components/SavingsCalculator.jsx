@@ -1,13 +1,18 @@
 import { useMemo, useState } from 'react';
 import { Sun, Euro, Leaf, Clock } from 'lucide-react';
-import { orientations, calculatorDefaults } from '../data/product';
+import { orientations, calculatorDefaults, computeConfig, defaultConfig } from '../data/product';
 import { euro, num } from '../lib/format';
 import Reveal from './Reveal';
 
 const YIELD_PER_WP = 0.95; // kWh per Wp per year, south-facing, central Europe
 const CO2_PER_KWH = 0.38; // kg avoided per kWh
 
-export default function SavingsCalculator({ derived }) {
+// Fallback system when no live configurator is supplied (e.g. on the landing page).
+const DEFAULT_DERIVED = computeConfig(defaultConfig);
+
+// Card-only "Basic" calculator. The surrounding section, heading and Basic/Advanced
+// toggle are provided by CalculatorSection.
+export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
   const [orientation, setOrientation] = useState('south');
   const [household, setHousehold] = useState(calculatorDefaults.household);
   const [rate, setRate] = useState(calculatorDefaults.rate);
@@ -34,24 +39,14 @@ export default function SavingsCalculator({ derived }) {
   ];
 
   return (
-    <section id="calculator" className="scroll-mt-20 bg-surface py-20">
-      <div className="container-x">
-        <Reveal>
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="eyebrow">Run the numbers</p>
-            <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-              See what your balcony could earn
-            </h2>
-            <p className="mt-3 text-slatey-500">
-              Based on your current configuration of {derived.modules} module
-              {derived.modules > 1 ? 's' : ''} ({num(derived.wp)} Wp). Adjust the sliders to match
-              your home.
-            </p>
-          </div>
-        </Reveal>
+    <>
+      <p className="mx-auto mb-5 max-w-4xl text-sm text-slatey-500">
+        Sized for {derived.modules} module{derived.modules > 1 ? 's' : ''} ({num(derived.wp)} Wp). Adjust
+        the sliders to match your home.
+      </p>
 
-        <Reveal delay={0.1}>
-          <div className="mx-auto mt-10 grid max-w-4xl gap-6 rounded-xl2 border border-ink/[0.07] bg-white p-6 shadow-soft md:grid-cols-2 md:p-8">
+      <Reveal delay={0.1}>
+        <div className="mx-auto grid max-w-4xl gap-6 rounded-xl2 border border-ink/[0.07] bg-white p-6 shadow-soft md:grid-cols-2 md:p-8">
             {/* controls */}
             <div className="space-y-6">
               <div>
@@ -134,11 +129,10 @@ export default function SavingsCalculator({ derived }) {
           </div>
         </Reveal>
 
-        <p className="mx-auto mt-4 max-w-2xl text-center text-xs text-slatey-400">
-          Estimates only. Actual yield depends on location, shading, tilt and weather. Calculation
-          assumes self-consumption of generated power up to your household demand.
-        </p>
-      </div>
-    </section>
+      <p className="mx-auto mt-4 max-w-2xl text-center text-xs text-slatey-400">
+        Estimates only. Actual yield depends on location, shading, tilt and weather. Calculation
+        assumes self-consumption of generated power up to your household demand.
+      </p>
+    </>
   );
 }

@@ -183,23 +183,9 @@ export default function EarningsCalculator() {
   };
 
   return (
-    <section id="earnings" className="scroll-mt-20 bg-white py-16">
-      <div className="container-x">
-        <Reveal>
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="eyebrow">Run the numbers</p>
-            <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-              See what you&apos;d save with solar
-            </h2>
-            <p className="mt-3 text-slatey-500">
-              Set your bill and how much of it you want solar to cover — we&apos;ll size the system and show the
-              savings.
-            </p>
-          </div>
-        </Reveal>
-
-        <Reveal delay={0.1}>
-          <div className="mx-auto mt-9 max-w-4xl rounded-xl2 border border-ink/[0.07] bg-surface p-5 shadow-soft sm:p-7">
+    <>
+      <Reveal delay={0.1}>
+        <div className="mx-auto max-w-4xl rounded-xl2 border border-ink/[0.07] bg-surface p-5 shadow-soft sm:p-7">
             {/* bill */}
             <div>
               <div className="flex items-baseline justify-between">
@@ -420,8 +406,7 @@ export default function EarningsCalculator() {
           (exported surplus earns nothing), system cost ฿{COST_PER_KW.toLocaleString()}/kW + ฿
           {COST_FIXED.toLocaleString()} (฿{COST_PER_KW_BAT.toLocaleString()}/kW + ฿{COST_FIXED_BAT.toLocaleString()}{' '}
           with battery), flat tariff and {((1 - DEGRADATION) * 100).toFixed(1)}%/yr degradation.
-        </p>
-      </div>
-    </section>
+      </p>
+    </>
   );
 }

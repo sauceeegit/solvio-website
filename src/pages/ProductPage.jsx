@@ -8,7 +8,7 @@ import PaymentRow from '../components/PaymentRow';
 import Highlights from '../components/Highlights';
 import SpecCard from '../components/SpecCard';
 import IncludedItems from '../components/IncludedItems';
-import SavingsCalculator from '../components/SavingsCalculator';
+import CalculatorSection from '../components/CalculatorSection';
 import Testimonials from '../components/Testimonials';
 import Comparison from '../components/Comparison';
 import RelatedProducts from '../components/RelatedProducts';
@@ -40,7 +40,7 @@ export default function ProductPage() {
         <Highlights />
         <SpecCard />
         <IncludedItems />
-        <SavingsCalculator derived={cfg} />
+        <CalculatorSection derived={cfg} />
         <Testimonials />
         <Comparison />
         <RelatedProducts />
