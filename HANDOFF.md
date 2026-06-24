@@ -141,8 +141,12 @@ priwatt's, which keep a big fixed base). Formatters `baht` / `bahtDelta` / `whFm
 `RelatedProducts`, `BenefitsStrip`) still carry some € strings — convert if needed.
 
 **Other product-page sections:** a **bento highlights** grid (`Highlights.jsx`, just after the
-hero — yield gauge, savings, Plug & Play, Solvio block, 30% donut, optional support; the photo
-cells are empty placeholders). `IncludedItems.jsx` is the priwatt-style **"What is included in
+hero — yield gauge, savings, Plug & Play, Solvio block, 30% donut, optional support). The
+**savings** tile shows `/savings-bg.jpg` behind the orange ฿7,700 box. The **Plug & Play** tile
+shows `/plugplay-photo.jpg` with a corner caption (live text) that **expands to fill the cell on
+hover** — center-aligned, glides via a `group-hover` width/height transition, with the heading's
+2-line wrap locked by `<br>` so it doesn't reflow. The optional-support tile is still a
+placeholder. (All these images use the `asset()` helper.) `IncludedItems.jsx` is the priwatt-style **"What is included in
 the delivery?"** grid (image placeholders, data in `included`). `PriceBox.jsx` ends with an
 **email-capture** form ("save this configuration & talk to a sales agent") — UI-only, see the
 `TODO` in `submitQuote`, not wired. The old **How it works** section was removed from the page
