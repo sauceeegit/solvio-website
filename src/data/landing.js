@@ -9,7 +9,7 @@ export const topBar = {
 export const landingNav = [
   { label: 'Rooftop System', href: '#categories' },
   { label: 'Balcony System', to: '/balcony-system' },
-  { label: 'Portable System', href: '#bestsellers' },
+  { label: 'Portable System', to: '/portable-system' },
 ];
 
 export const hero = {
@@ -43,7 +43,7 @@ export const categories = [
     blurb: 'Take solar with you anywhere — camping, markets, off-grid weekends.',
     img: asset('/portable-systems.jpg'),
     imgClass: 'brightness-[.82] saturate-[.82]',
-    to: '#bestsellers',
+    to: '/portable-system',
   },
 ];
 
@@ -161,4 +161,20 @@ export const community = [
     sub: 'Installers and resellers: join the Solvio partner network and grow with solar.',
     cta: 'Become a partner',
   },
+];
+
+// Portable System page — looping header banners + portable battery products.
+export const portableHeaderSlides = [
+  asset('/portable-header-1.jpg'),
+  asset('/portable-header-2.jpg'),
+  asset('/portable-header-3.jpg'),
+];
+
+// Capacities/prices are placeholders — adjust to the real specs.
+export const portableBatteries = [
+  { id: 'd100', name: 'Solvio D100', capacity: '100 Wh', price: 3990, img: asset('/portable-100.jpg') },
+  { id: 'd200', name: 'Solvio D200', capacity: '200 Wh', price: 5990, img: asset('/portable-200.jpg') },
+  { id: 'd400', name: 'Solvio D400', capacity: '400 Wh', price: 9990, img: asset('/portable-400.jpg') },
+  { id: 'd600', name: 'Solvio D600', capacity: '600 Wh', price: 14990, img: asset('/portable-600.jpg') },
+  { id: 'd1200', name: 'Solvio D1200', capacity: '1200 Wh', price: 26990, img: asset('/portable-1200.jpg') },
 ];
