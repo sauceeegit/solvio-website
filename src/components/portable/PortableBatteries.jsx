@@ -1,22 +1,58 @@
-import { ArrowRight } from 'lucide-react';
+import { useRef } from 'react';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { portableBatteries } from '../../data/landing';
 import { baht } from '../../lib/format';
 import Reveal from '../Reveal';
 
 // "Portable Battery" — horizontal snap-scroller showing 3 products at a time.
+// Arrow buttons drive it on desktop (where a mouse wheel only scrolls vertically);
+// touch swipe works on mobile.
 export default function PortableBatteries() {
+  const trackRef = useRef(null);
+
+  const scrollByCard = (dir) => {
+    const el = trackRef.current;
+    if (!el) return;
+    const card = el.querySelector('article');
+    const gap = 20; // gap-5
+    const step = card ? card.offsetWidth + gap : el.clientWidth * 0.7;
+    el.scrollBy({ left: dir * step, behavior: 'smooth' });
+  };
+
   return (
     <section id="portable-battery" className="container-x scroll-mt-20 py-16">
-      <Reveal>
-        <h2 className="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-          Portable Battery<span className="text-lime-dark">.</span>
-        </h2>
-        <p className="mt-2 max-w-xl text-[15px] text-slatey-500">
-          Grab-and-go power stations — from a pocket backup to a weekend off-grid.
-        </p>
-      </Reveal>
+      <div className="flex items-end justify-between gap-4">
+        <Reveal>
+          <h2 className="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+            Portable Battery<span className="text-lime-dark">.</span>
+          </h2>
+          <p className="mt-2 max-w-xl text-[15px] text-slatey-500">
+            Grab-and-go power stations — from a pocket backup to a weekend off-grid.
+          </p>
+        </Reveal>
 
-      <div className="no-scrollbar mt-8 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-3">
+        <div className="hidden shrink-0 gap-2 sm:flex">
+          <button
+            onClick={() => scrollByCard(-1)}
+            aria-label="Previous products"
+            className="grid h-11 w-11 place-items-center rounded-full border border-ink/15 text-ink transition hover:border-ink/40 hover:bg-ink/[0.04] active:scale-95"
+          >
+            <ChevronLeft size={20} />
+          </button>
+          <button
+            onClick={() => scrollByCard(1)}
+            aria-label="Next products"
+            className="grid h-11 w-11 place-items-center rounded-full border border-ink/15 text-ink transition hover:border-ink/40 hover:bg-ink/[0.04] active:scale-95"
+          >
+            <ChevronRight size={20} />
+          </button>
+        </div>
+      </div>
+
+      <div
+        ref={trackRef}
+        className="no-scrollbar mt-8 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-3"
+      >
         {portableBatteries.map((p) => (
           <article
             key={p.id}
