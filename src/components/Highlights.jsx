@@ -1,12 +1,35 @@
-import { Image as ImageIcon } from 'lucide-react';
 import Reveal from './Reveal';
 import { asset } from '../lib/format';
 
-/* Empty image placeholder — swap in a real photo later */
-function Placeholder({ className = '' }) {
+/* Support agent on a headset — infographic for the "Lifetime support" tile */
+function SupportAgent({ className = '' }) {
   return (
-    <div className={`flex items-center justify-center bg-surface ${className}`}>
-      <ImageIcon size={34} className="text-ink/15" />
+    <div className={`flex items-center justify-center bg-white ${className}`}>
+      <svg
+        viewBox="0 0 100 100"
+        className="h-full w-full p-2"
+        role="img"
+        aria-label="Support agent wearing a headset"
+      >
+        {/* figure silhouette */}
+        <circle cx="50" cy="40" r="13" fill="#12281F" />
+        <path d="M30 82c0-13 9-21 20-21s20 8 20 21v3H30z" fill="#12281F" />
+        {/* headset band + ear cups (brand orange) */}
+        <path d="M34 40a16 16 0 0 1 32 0" fill="none" stroke="#FC4302" strokeWidth="4" strokeLinecap="round" />
+        <rect x="30" y="36" width="7" height="13" rx="3.5" fill="#FC4302" />
+        <rect x="63" y="36" width="7" height="13" rx="3.5" fill="#FC4302" />
+        {/* boom mic */}
+        <path d="M34 49q-1 8 10 7" fill="none" stroke="#FC4302" strokeWidth="3" strokeLinecap="round" />
+        <circle cx="45" cy="56" r="2.6" fill="#FC4302" />
+        {/* speech bubble — "talking" */}
+        <g>
+          <rect x="68" y="16" width="22" height="15" rx="5" fill="#FC4302" />
+          <path d="M74 31l-2 5 6-4z" fill="#FC4302" />
+          <circle cx="74" cy="23.5" r="1.6" fill="#fff" />
+          <circle cx="79" cy="23.5" r="1.6" fill="#fff" />
+          <circle cx="84" cy="23.5" r="1.6" fill="#fff" />
+        </g>
+      </svg>
     </div>
   );
 }
@@ -82,10 +105,10 @@ export default function Highlights() {
                 alt="A couple on a balcony at sunset with Solvio panels on the railing"
                 className="absolute inset-0 h-full w-full object-cover"
               />
-              <div className="absolute bottom-0 left-0 max-w-[85%] rounded-tr-xl2 bg-lime p-5 text-white">
-                <p className="text-[11px] font-medium uppercase tracking-wide text-white/85">Up to</p>
-                <p className="font-display text-3xl font-extrabold leading-none">฿7,700</p>
-                <p className="mt-1.5 text-xs font-semibold">saved per year</p>
+              <div className="absolute bottom-0 left-0 max-w-[90%] rounded-tr-xl2 bg-lime p-5 text-white">
+                <p className="text-[11px] font-medium uppercase tracking-wide text-white/85">More than</p>
+                <p className="font-display text-3xl font-extrabold leading-none">฿65k</p>
+                <p className="mt-1.5 text-xs font-semibold">saved in 10 years, per module</p>
               </div>
             </div>
 
@@ -110,9 +133,11 @@ export default function Highlights() {
 
             {/* D — brand block (dark) */}
             <div className="flex h-full min-h-[160px] items-center justify-center rounded-xl2 bg-ink p-6 lg:col-span-2 lg:col-start-5 lg:row-start-1">
-              <span className="font-display text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
-                Solvio
-              </span>
+              <img
+                src={asset('/solvio-logo-full.png')}
+                alt="Solvio"
+                className="h-20 w-auto object-contain sm:h-24 lg:h-32"
+              />
             </div>
 
             {/* E1 — bifacial donut (orange) */}
@@ -133,7 +158,7 @@ export default function Highlights() {
             {/* E2 — optional support (cream + placeholder) */}
             <div className="flex h-full min-h-[160px] flex-col rounded-xl2 bg-[#FCF6EC] p-4 lg:col-span-1 lg:col-start-6 lg:row-start-2">
               <p className="text-[10px] font-semibold uppercase tracking-wide text-slatey-400">Optional</p>
-              <Placeholder className="mt-2 flex-1 rounded-lg" />
+              <SupportAgent className="mt-2 flex-1 rounded-lg" />
               <p className="mt-2 font-display text-sm font-bold leading-snug text-ink">Lifetime support</p>
             </div>
           </div>
