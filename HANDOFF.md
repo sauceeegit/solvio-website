@@ -35,11 +35,12 @@ chat transcript itself does NOT sync between machines — this file is the hando
 - **This machine has no Node installed** and the GitHub CLI (`gh`) was installed here; the build
   is done entirely by GitHub Actions. On a machine with Node you can also `npm run build` locally.
 
-## Other deploy copy — Netlify (manual, now stale)
-A prebuilt copy is still at `C:\Users\…\Desktop\to G\solvio-website\` for Netlify Drop
-(https://app.netlify.com/drop). It uses `base: './'` + `_redirects` and does **not** include the
-`asset()` subpath fix (it doesn't need it — Netlify serves at the root domain). It is older than
-the current source; re-export it (`npm run build` → mirror `dist/`) before re-dropping if you use it.
+## Optional alternative deploy — Netlify Drop
+GitHub Pages (above) is the primary, auto-deploying host. If you ever also want a Netlify copy,
+just `npm run build` and drag the resulting `dist/` folder onto https://app.netlify.com/drop.
+Netlify serves at the root domain, so the `asset()` subpath fix and `base` don't matter there,
+and `public/_redirects` handles SPA routing. (The old prebuilt `…\Desktop\to G\` copy was
+deleted on 2026-06-24 — it was just generated output; rebuild from source when needed.)
 
 ## What this is
 The marketing site for **Solvio** (solvio.solar), a Thailand-based plug-and-play solar
@@ -159,16 +160,13 @@ Product photos: `white-feather-900.jpg`, `dark-feather-900.jpg`, `dark-feather-1
 `earn-rewards.jpg` (gold coins, used in the WhyShop "Earn Solvio rewards" cell).
 To swap any image: drop a file in `public/` and update the path in `src/data/landing.js`.
 
-## Deploy / share (Netlify)
-Build, then drag `dist/` (or the zip) onto https://app.netlify.com/drop. A ready copy is
-kept at `C:\Users\USER\OneDrive\Desktop\to G\` (`solvio-website/` + `.zip`) — **last
-refreshed 2026-06-21** (Venus battery line, module photos, white photo backgrounds, Hanken
-Grotesk font, bento highlights, email capture). Refresh it by running `npm run build`, then
-mirror `dist/` → `to G\solvio-website` (e.g. `robocopy dist "..\..\to G\solvio-website" /MIR`)
-and re-zip. (`vite.config.js` `base` now defaults to `/` for root hosts; see the GitHub Pages
-section above for how the subpath build works.)
-**SPA routing:** `public/_redirects` (`/*  /index.html  200`) is already in place, so
-`/balcony-system` works on direct links / refresh on Netlify.
+## Deploy / share
+Primary host is **GitHub Pages**, which rebuilds automatically on every push to `main` — see the
+"Deployment — GitHub Pages" section near the top. Live at https://sauceeegit.github.io/solvio-website/.
+For a one-off Netlify copy instead, `npm run build` and drag `dist/` onto https://app.netlify.com/drop.
+(The old prebuilt `…\Desktop\to G\` copy was deleted 2026-06-24; rebuild from source if needed.)
+**SPA routing:** `public/_redirects` (`/*  /index.html  200`) covers Netlify; the GitHub Pages
+build uses a `404.html` fallback instead (created by the deploy workflow).
 
 ## Open items
 1. **Wire up the quote email** (currently a placeholder) — e.g. Netlify Forms / Formspree.
