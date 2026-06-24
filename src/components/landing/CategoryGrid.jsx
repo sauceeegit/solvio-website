@@ -13,20 +13,20 @@ function CardInner({ c }) {
           c.fit === 'contain' ? 'object-contain' : 'object-cover'
         } ${c.imgClass || ''}`}
       />
-      <div
-        className={`absolute inset-0 ${
-          c.fit === 'contain'
-            ? 'bg-gradient-to-t from-ink/80 via-transparent to-transparent'
-            : 'bg-gradient-to-t from-ink/85 via-ink/40 to-ink/10'
-        }`}
-      />
+      {/* darken the top (title) and the bottom (CTA) for legibility */}
+      <div className="absolute inset-x-0 top-0 h-[55%] bg-gradient-to-b from-ink/85 via-ink/45 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-ink/70 to-transparent" />
       <span className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full bg-lime text-ink transition group-hover:rotate-90">
         <Plus size={18} />
       </span>
+      {/* title + blurb moved to the top */}
+      <div className="absolute inset-x-0 top-0 p-5 pr-16">
+        <h3 className="font-display text-[31px] font-extrabold leading-tight text-white">{c.title}</h3>
+        <p className="mt-1.5 text-sm text-white/80">{c.blurb}</p>
+      </div>
+      {/* Explore stays at the bottom */}
       <div className="absolute inset-x-0 bottom-0 p-5">
-        <h3 className="font-display text-lg font-extrabold text-white">{c.title}</h3>
-        <p className="mt-1 text-sm text-white/75">{c.blurb}</p>
-        <span className="mt-3 inline-flex items-center gap-1.5 font-display text-sm font-bold text-lime">
+        <span className="inline-flex items-center gap-1.5 font-display text-sm font-bold text-lime">
           Explore <ArrowRight size={15} />
         </span>
       </div>
