@@ -177,4 +177,5 @@ export const portableBatteries = [
   { id: 'd400', name: 'Solvio D400', capacity: '400 Wh', price: 9990, img: asset('/portable-400.jpg') },
   { id: 'd600', name: 'Solvio D600', capacity: '600 Wh', price: 14990, img: asset('/portable-600.jpg') },
   { id: 'd1200', name: 'Solvio D1200', capacity: '1200 Wh', price: 26990, img: asset('/portable-1200.jpg') },
+  { id: 'd2400', name: 'Solvio D2400', capacity: '2400 Wh', price: 44990, img: asset('/portable-2400.jpg') },
 ];

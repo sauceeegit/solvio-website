@@ -58,7 +58,7 @@ export default function PortableBatteries() {
             key={p.id}
             className="group flex w-[82%] shrink-0 snap-start flex-col overflow-hidden rounded-xl2 border border-ink/[0.07] bg-white shadow-soft transition hover:shadow-lift sm:w-[47%] lg:w-[calc((100%-2.5rem)/3)]"
           >
-            <div className="aspect-[16/9] overflow-hidden bg-surface">
+            <div className="aspect-[16/9] overflow-hidden bg-white">
               <img
                 src={p.img}
                 alt={p.name}
