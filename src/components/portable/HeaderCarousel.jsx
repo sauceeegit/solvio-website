@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 // Auto-advancing, infinitely looping crossfade of the header banners.
 // Portrait mobile banners on phones (< 640px), wide banners on desktop.
-export default function HeaderCarousel({ slides, interval = 4500 }) {
+export default function HeaderCarousel({ slides, interval = 3375 }) {
   const [i, setI] = useState(0);
 
   useEffect(() => {
