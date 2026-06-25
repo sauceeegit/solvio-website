@@ -1,5 +1,5 @@
-// Solvio brand logo (the real artwork lives at /public/solvio-logo.jpg).
-// The cream-on-orange lockup reads well on both light and dark backgrounds.
+// Solvio brand logo — orange "Solvio" wordmark on a transparent background
+// (/public/solvio-logo.png), so it sits cleanly on light or dark headers.
 import { Link } from 'react-router-dom';
 import { asset } from '../lib/format';
 
@@ -7,9 +7,9 @@ export default function Logo({ className = '', href = '#top', size = 'h-9' }) {
   const classes = `inline-flex items-center ${className}`;
   const img = (
     <img
-      src={asset('/solvio-logo.jpg')}
+      src={asset('/solvio-logo.png')}
       alt="Solvio"
-      className={`${size} w-auto rounded-md`}
+      className={`${size} w-auto`}
     />
   );
 
