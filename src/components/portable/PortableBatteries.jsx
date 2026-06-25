@@ -58,11 +58,16 @@ export default function PortableBatteries() {
             key={p.id}
             className="group flex w-[82%] shrink-0 snap-start flex-col overflow-hidden rounded-xl2 border border-ink/[0.07] bg-white shadow-soft transition hover:shadow-lift sm:w-[47%] lg:w-[calc((100%-2.5rem)/3)]"
           >
-            <div className="aspect-[16/9] overflow-hidden bg-white">
+            <div className="relative aspect-[16/9] overflow-hidden bg-white">
               <img
                 src={p.img}
                 alt={p.name}
-                className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-in-out group-hover:opacity-0"
+              />
+              <img
+                src={p.sideImg}
+                alt={`${p.name} — side view`}
+                className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100"
               />
             </div>
             <div className="flex flex-1 flex-col p-5">
