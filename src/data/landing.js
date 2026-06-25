@@ -165,9 +165,9 @@ export const community = [
 
 // Portable System page — looping header banners + portable battery products.
 export const portableHeaderSlides = [
-  asset('/portable-header-1.jpg'),
-  asset('/portable-header-2.jpg'),
-  asset('/portable-header-3.jpg'),
+  { desktop: asset('/portable-header-1.jpg'), mobile: asset('/portable-header-m1.jpg') },
+  { desktop: asset('/portable-header-2.jpg'), mobile: asset('/portable-header-m2.jpg') },
+  { desktop: asset('/portable-header-3.jpg'), mobile: asset('/portable-header-m3.jpg') },
 ];
 
 // Capacities/prices are placeholders — adjust to the real specs.
