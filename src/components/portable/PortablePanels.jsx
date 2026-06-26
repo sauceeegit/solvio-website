@@ -61,7 +61,7 @@ export default function PortablePanels() {
               <img
                 src={p.img}
                 alt={`Solvio ${p.name} foldable solar panel`}
-                className="absolute inset-0 h-full w-full object-contain p-4 transition-transform duration-500 ease-out group-hover:scale-105"
+                className={`absolute inset-0 h-full w-full object-contain p-4 transition-transform duration-500 ease-out ${p.imgClass ?? 'group-hover:scale-105'}`}
               />
             </div>
             <div className="flex flex-1 flex-col p-5">
