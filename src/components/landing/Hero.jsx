@@ -1,9 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { hero } from '../../data/landing';
 import PhuketClock from './PhuketClock';
 
 export default function Hero() {
   const videoRef = useRef(null);
+  const [ready, setReady] = useState(false);
 
   // Ensure the loop autoplays muted (React can drop the muted attribute).
   useEffect(() => {
@@ -11,6 +12,8 @@ export default function Hero() {
     if (v) {
       v.muted = true;
       v.play?.().catch(() => {});
+      // If it's already buffered (e.g. cached), reveal it immediately.
+      if (v.readyState >= 2) setReady(true);
     }
   }, []);
 
@@ -18,17 +21,24 @@ export default function Hero() {
     // Full-bleed: no container, no frame — the video spans the entire width.
     <section className="relative w-full">
       {hero.videoSrc ? (
-        <video
-          ref={videoRef}
-          className="block h-auto w-full"
-          src={hero.videoSrc}
-          poster={hero.poster}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
-        />
+        // Aspect-locked, brand-dark backdrop: reserves the space (no layout jump)
+        // and shows a clean dark fill — not a stock photo — while the loop loads.
+        <div className="relative aspect-video w-full overflow-hidden bg-ink">
+          <video
+            ref={videoRef}
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+              ready ? 'opacity-100' : 'opacity-0'
+            }`}
+            src={hero.videoSrc}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            onLoadedData={() => setReady(true)}
+            onCanPlay={() => setReady(true)}
+          />
+        </div>
       ) : (
         <img src={hero.poster} alt={hero.caption} className="block h-auto w-full object-cover" />
       )}
