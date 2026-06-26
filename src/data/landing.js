@@ -183,7 +183,7 @@ export const portableBatteries = [
 
 // Portable foldable solar panels. Prices in Thai Baht (฿).
 export const portablePanels = [
-  { id: 'p50', name: '50W', watt: '50 W', price: 1000, img: asset('/w1.png'), imgClass: 'scale-75 group-hover:scale-[0.79]' },
+  { id: 'p50', name: '50W', watt: '50 W', price: 1000, img: asset('/w1.png'), imgClass: 'scale-[0.6375] group-hover:scale-[0.67]' },
   { id: 'p100', name: '100W', watt: '100 W', price: 1800, img: asset('/w1.png'), imgClass: 'scale-75 group-hover:scale-[0.79]' },
   { id: 'p200', name: '200W', watt: '200 W', price: 3500, img: asset('/w2.png') },
   { id: 'p400', name: '400W', watt: '400 W', price: 6000, img: asset('/w3.png') },
