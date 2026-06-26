@@ -180,3 +180,11 @@ export const portableBatteries = [
   { id: 'd1200', name: 'Solvio D1200', capacity: '1200 Wh', price: 26990, img: asset('/portable-1200.jpg'), sideImg: asset('/portable-1200-side.jpg') },
   { id: 'd2400', name: 'Solvio D2400', capacity: '2400 Wh', price: 44990, img: asset('/portable-2400.jpg'), sideImg: asset('/portable-2400-side.jpg') },
 ];
+
+// Portable foldable solar panels. Prices in Thai Baht (฿).
+export const portablePanels = [
+  { id: 'p50', name: '50W', watt: '50 W', price: 1000, img: asset('/w1.png') },
+  { id: 'p100', name: '100W', watt: '100 W', price: 1800, img: asset('/w1.png') },
+  { id: 'p200', name: '200W', watt: '200 W', price: 3500, img: asset('/w2.png') },
+  { id: 'p400', name: '400W', watt: '400 W', price: 6000, img: asset('/w3.png') },
+];
