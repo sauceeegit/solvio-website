@@ -15,7 +15,7 @@ const features = [
     id: 'lightweight',
     img: asset('/sp-feature-2.png'),
     imgAlt: 'Close-up of the thin, lightweight Solvio Dark Feather panel',
-    aspect: 'aspect-[4/5]',
+    aspect: 'aspect-[4/3]',
     imageSide: 'right',
     title: "So light, your roof won't feel it.",
     body: 'Weight only 6kg/m² and 4.5mm thick.',
@@ -26,9 +26,13 @@ export default function SolarPanelFeatures() {
   return (
     <section className="bg-white">
       <div className="container-x">
-        {features.map((f) => (
+        {features.map((f, i) => (
           <Reveal key={f.id}>
-            <div className="grid items-center gap-8 py-14 sm:py-20 lg:grid-cols-2 lg:gap-14">
+            <div
+              className={`grid items-center gap-8 lg:grid-cols-2 lg:gap-14 ${
+                i === 0 ? 'pt-12 pb-6 sm:pt-16 sm:pb-8' : 'pt-6 pb-12 sm:pt-8 sm:pb-16'
+              }`}
+            >
               {/* image */}
               <div
                 className={`overflow-hidden rounded-xl2 shadow-soft ${f.aspect} ${
