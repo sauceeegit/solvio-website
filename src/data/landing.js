@@ -10,7 +10,11 @@ export const landingNav = [
   { label: 'Rooftop System', href: '#categories' },
   { label: 'Balcony System', to: '/balcony-system' },
   { label: 'Portable System', to: '/portable-system' },
+  { label: 'Solar Panel', to: '/solar-panel' },
 ];
+
+// Full-bleed looping video for the Solar Panel page (served from /public).
+export const solarPanelVideo = asset('/solar-panel-loop.mp4');
 
 export const hero = {
   // Looping hero video (served from /public).
