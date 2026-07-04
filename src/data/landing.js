@@ -7,14 +7,15 @@ export const topBar = {
 };
 
 export const landingNav = [
-  { label: 'Rooftop System', href: '#categories' },
+  { label: 'Rooftop System', to: '/rooftop-system' },
   { label: 'Balcony System', to: '/balcony-system' },
   { label: 'Portable System', to: '/portable-system' },
   { label: 'Solar Panel', to: '/solar-panel' },
 ];
 
-// Full-bleed looping video for the Solar Panel page (served from /public).
+// Full-bleed looping videos (served from /public).
 export const solarPanelVideo = asset('/solar-panel-loop.mp4');
+export const rooftopVideo = asset('/rooftop-loop.mp4');
 
 export const hero = {
   // Looping hero video (served from /public).
