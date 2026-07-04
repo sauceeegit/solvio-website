@@ -32,7 +32,7 @@ export const categories = [
     blurb: 'Power your whole home with a rooftop array — get a free estimate now.',
     img: asset('/rooftop-solar.jpg'),
     imgClass: 'brightness-110',
-    to: '#bestsellers',
+    to: '/rooftop-system',
   },
   {
     id: 'balcony',
