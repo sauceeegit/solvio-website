@@ -27,18 +27,16 @@ const features = [
 export default function SolarPanelFeatures() {
   return (
     <section className="bg-white">
-      <div className="container-x">
-        {/* Intro banner (full composed artwork) above the first feature row. */}
-        <Reveal>
-          <div className="pt-12 sm:pt-16">
-            <img
-              src={asset('/sp-feature-top.png')}
-              alt="Solvio Dark Feather — Ultra Black, Ultra Thin, Ultra Light"
-              className="w-full rounded-xl2 shadow-soft"
-            />
-          </div>
-        </Reveal>
+      {/* Full-bleed intro banner (full composed artwork) above the first row. */}
+      <Reveal>
+        <img
+          src={asset('/sp-feature-top.png')}
+          alt="Solvio Dark Feather — Ultra Black, Ultra Thin, Ultra Light"
+          className="block w-full"
+        />
+      </Reveal>
 
+      <div className="container-x">
         {features.map((f, i) => (
           <Reveal key={f.id}>
             <div
@@ -56,7 +54,11 @@ export default function SolarPanelFeatures() {
               </div>
 
               {/* text */}
-              <div className={f.imageSide === 'right' ? 'lg:order-1' : ''}>
+              <div
+                className={`${f.imageSide === 'right' ? 'lg:order-1' : ''} ${
+                  f.valign === 'start' ? 'lg:pt-8' : ''
+                }`}
+              >
                 <h2 className="font-display text-3xl font-extrabold leading-[1.1] tracking-tight text-ink sm:text-4xl lg:text-5xl">
                   {f.title}
                 </h2>
