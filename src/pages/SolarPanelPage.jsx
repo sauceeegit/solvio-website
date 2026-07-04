@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import TopBar from '../components/landing/TopBar';
 import LandingNav from '../components/landing/LandingNav';
+import SolarPanelFeatures from '../components/SolarPanelFeatures';
 import Footer from '../components/Footer';
 import { solarPanelVideo } from '../data/landing';
 
@@ -44,6 +45,8 @@ export default function SolarPanelPage() {
             />
           </div>
         </section>
+
+        <SolarPanelFeatures />
       </main>
       <Footer />
     </div>
