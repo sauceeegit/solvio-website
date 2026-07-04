@@ -8,6 +8,7 @@ const features = [
     imgAlt: 'Solvio Dark Feather solar roof on a modern Thai villa at sunset',
     aspect: 'aspect-[3/2]',
     imageSide: 'left',
+    valign: 'center',
     title: 'The Perfect Fusion of Aesthetics and Technology',
     body: 'Efficiency meets elegance. The Solvio Dark Feather turns clean energy into a design statement.',
   },
@@ -17,6 +18,7 @@ const features = [
     imgAlt: 'Close-up of the thin, lightweight Solvio Dark Feather panel',
     aspect: 'aspect-[4/3]',
     imageSide: 'right',
+    valign: 'start',
     title: "So light, your roof won't feel it.",
     body: 'Weight only 6kg/m² and 4.5mm thick.',
   },
@@ -26,12 +28,23 @@ export default function SolarPanelFeatures() {
   return (
     <section className="bg-white">
       <div className="container-x">
+        {/* Intro banner (full composed artwork) above the first feature row. */}
+        <Reveal>
+          <div className="pt-12 sm:pt-16">
+            <img
+              src={asset('/sp-feature-top.png')}
+              alt="Solvio Dark Feather — Ultra Black, Ultra Thin, Ultra Light"
+              className="w-full rounded-xl2 shadow-soft"
+            />
+          </div>
+        </Reveal>
+
         {features.map((f, i) => (
           <Reveal key={f.id}>
             <div
-              className={`grid items-center gap-8 lg:grid-cols-2 lg:gap-14 ${
-                i === 0 ? 'pt-12 pb-6 sm:pt-16 sm:pb-8' : 'pt-6 pb-12 sm:pt-8 sm:pb-16'
-              }`}
+              className={`grid gap-8 lg:grid-cols-2 lg:gap-14 ${
+                f.valign === 'start' ? 'items-center lg:items-start' : 'items-center'
+              } ${i === 0 ? 'pt-8 pb-2 sm:pt-10 sm:pb-3' : 'pt-2 pb-12 sm:pt-3 sm:pb-16'}`}
             >
               {/* image */}
               <div
