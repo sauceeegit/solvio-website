@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Check, ShieldCheck, Truck, RotateCcw } from 'lucide-react';
 import { baht } from '../lib/format';
+import { product } from '../data/product';
 
 const guarantees = [
   { icon: ShieldCheck, text: '2-year product warranty' },
@@ -8,8 +9,9 @@ const guarantees = [
   { icon: RotateCcw, text: '30-day hassle-free returns' },
 ];
 
-export default function PriceBox({ product, onAddToCart }) {
+export default function PriceBox({ derived, onAddToCart, added: addedProp }) {
   const [added, setAdded] = useState(false);
+  const isAdded = addedProp ?? added;
 
   function handleAdd() {
     setAdded(true);
@@ -18,45 +20,27 @@ export default function PriceBox({ product, onAddToCart }) {
   }
 
   return (
-    <div className="card sticky top-24 p-6">
+    <div className="rounded-xl2 border border-ink/[0.07] bg-white p-6 shadow-soft">
       <div className="flex items-start justify-between gap-4">
         <div>
           <h2 className="font-display text-xl font-extrabold text-ink">{product.name}</h2>
           <p className="mt-0.5 text-sm text-ink/60">{product.tagline}</p>
         </div>
-        {product.badge && (
-          <span className="shrink-0 rounded-full bg-lime/10 px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-wider text-lime-dark">
-            {product.badge}
-          </span>
-        )}
       </div>
 
       <div className="mt-4">
-        <p className="font-mono text-xs uppercase tracking-wider text-slatey-400">From</p>
-        <p className="mt-0.5 font-display text-3xl font-extrabold text-ink">{baht(product.price)}</p>
+        <p className="font-mono text-xs uppercase tracking-wider text-slatey-400">Total</p>
+        <p className="mt-0.5 font-display text-3xl font-extrabold text-ink">{baht(derived?.total ?? 0)}</p>
       </div>
-
-      {product.specs && (
-        <ul className="mt-4 flex flex-col gap-2">
-          {product.specs.map((s) => (
-            <li key={s} className="flex items-start gap-2 text-sm text-ink/75">
-              <Check size={15} className="mt-0.5 shrink-0 text-lime" strokeWidth={3} />
-              {s}
-            </li>
-          ))}
-        </ul>
-      )}
 
       <button
         onClick={handleAdd}
         className={`mt-4 flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 font-display text-base font-bold transition active:scale-[0.99] ${
-          added ? 'bg-ink text-lime' : 'bg-lime text-white hover:bg-lime-dark'
+          isAdded ? 'bg-ink text-lime' : 'bg-lime text-white hover:bg-lime-dark'
         }`}
       >
-        {added ? (
-          <>
-            <Check size={20} strokeWidth={3} /> Added to cart
-          </>
+        {isAdded ? (
+          <><Check size={20} strokeWidth={3} /> Added to cart</>
         ) : (
           'Add to cart'
         )}
