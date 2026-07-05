@@ -60,7 +60,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
                       onClick={() => setOrientation(o.id)}
                       className={`rounded-lg border px-2 py-2.5 text-xs font-semibold transition ${
                         orientation === o.id
-                          ? 'border-lime-dark bg-lime/10 text-ink'
+                          ? 'border-lime bg-lime text-white'
                           : 'border-ink/10 text-slatey-500 hover:border-ink/25'
                       }`}
                     >
