@@ -10,12 +10,12 @@ export default {
           700: '#143329',
           600: '#1C4537',
         },
-        surface: '#F6F8F4',
-        // Solvio brand orange, sampled from the logo (#FC4302). Token kept as
-        // `lime` so all existing bg-lime / text-lime-dark classes pick it up.
+        surface: '#dae5ef',
+        light: '#f0f3f7',
+        // Solvio brand orange. Token kept as `lime` so all existing bg-lime / text-lime-dark classes pick it up.
         lime: {
-          DEFAULT: '#FC4302',
-          dark: '#D63A02',
+          DEFAULT: '#FF6700',
+          dark: '#D95800',
         },
         amber: {
           DEFAULT: '#F4B740',
@@ -27,8 +27,8 @@ export default {
         },
       },
       fontFamily: {
-        display: ['"Hanken Grotesk"', 'system-ui', 'sans-serif'],
-        body: ['"Hanken Grotesk"', 'system-ui', 'sans-serif'],
+        display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+        body: ['"DM Sans"', 'system-ui', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
       boxShadow: {

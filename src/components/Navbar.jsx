@@ -37,7 +37,7 @@ export default function Navbar({ cartCount = 0 }) {
             <li key={l.label}>
               <a
                 href={l.href}
-                className="font-display text-sm font-medium text-ink/70 transition hover:text-ink"
+                className="font-display text-lg font-semibold text-ink/70 transition hover:text-ink"
               >
                 {l.label}
               </a>
@@ -52,7 +52,7 @@ export default function Navbar({ cartCount = 0 }) {
           <button className="relative grid h-10 w-10 place-items-center rounded-full text-ink/70 transition hover:bg-ink/[0.05] hover:text-ink">
             <ShoppingCart size={19} />
             {cartCount > 0 && (
-              <span className="absolute -right-0.5 -top-0.5 grid h-5 min-w-5 place-items-center rounded-full bg-lime px-1 font-mono text-[10px] font-bold text-ink">
+              <span className="absolute -right-0.5 -top-0.5 grid h-5 min-w-5 place-items-center rounded-full bg-lime px-1 font-mono text-[10px] font-bold text-white">
                 {cartCount}
               </span>
             )}
