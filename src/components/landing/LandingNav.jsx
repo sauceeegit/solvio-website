@@ -1,53 +1,47 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, X, ShoppingCart } from 'lucide-react';
+import { ShoppingCart, Menu, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import Logo from '../Logo';
-import { landingNav } from '../../data/landing';
 
-function NavItem({ item, onClick, className }) {
-  if (item.to) {
-    return (
-      <Link to={item.to} onClick={onClick} className={className}>
-        {item.label}
-      </Link>
-    );
-  }
-  return (
-    <a href={item.href} onClick={onClick} className={className}>
-      {item.label}
-    </a>
-  );
-}
+const links = [
+  { label: 'How it works', href: '#how' },
+  { label: 'Products', href: '#product' },
+  { label: 'Storage', href: '#related' },
+  { label: 'Savings', href: '#calculator' },
+  { label: 'Reviews', href: '#reviews' },
+  { label: 'FAQ', href: '#faq' },
+];
 
-export default function LandingNav() {
+export default function LandingNav({ cartCount = 0 }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
-    // Red-box instruction: this row freezes to the top while scrolling.
     <header
-      className={`sticky top-0 z-50 border-b transition-all duration-300 ${
-        scrolled ? 'border-ink/10 bg-white/90 shadow-soft backdrop-blur-md' : 'border-transparent bg-white'
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        scrolled ? 'bg-white/85 shadow-soft backdrop-blur-md' : 'bg-white'
       }`}
     >
       <nav className="container-x flex h-16 items-center justify-between">
         <Logo href="/" />
 
-        <ul className="hidden items-center gap-8 md:flex">
-          {landingNav.map((item) => (
-            <li key={item.label}>
-              <NavItem
-                item={item}
-                className="font-display text-sm font-semibold text-ink/75 transition hover:text-lime-dark"
-              />
+        <ul className="hidden items-center gap-7 lg:flex">
+          {links.map((l) => (
+            <li key={l.label}>
+              <a
+                href={l.href}
+                className="font-display text-sm font-medium text-ink/70 transition hover:text-ink"
+              >
+                {l.label}
+              </a>
             </li>
           ))}
         </ul>
@@ -55,13 +49,21 @@ export default function LandingNav() {
         <div className="flex items-center gap-2">
           <Link
             to="/balcony-system"
-            className="hidden items-center gap-2 rounded-full bg-lime px-4 py-2.5 font-display text-sm font-bold text-ink transition hover:bg-lime-dark sm:inline-flex"
+            className="hidden items-center gap-2 rounded-full bg-lime px-4 py-2.5 font-display text-sm font-bold text-white transition hover:bg-lime-dark sm:inline-flex"
           >
-            <ShoppingCart size={16} /> Shop now
+            Shop now
           </Link>
+          <button className="relative grid h-10 w-10 place-items-center rounded-full text-ink/70 transition hover:bg-ink/[0.05] hover:text-ink">
+            <ShoppingCart size={19} />
+            {cartCount > 0 && (
+              <span className="absolute -right-0.5 -top-0.5 grid h-5 min-w-5 place-items-center rounded-full bg-lime px-1 font-mono text-[10px] font-bold text-white">
+                {cartCount}
+              </span>
+            )}
+          </button>
           <button
             onClick={() => setOpen(true)}
-            className="grid h-10 w-10 place-items-center rounded-full text-ink/70 transition hover:bg-ink/[0.05] md:hidden"
+            className="grid h-10 w-10 place-items-center rounded-full text-ink/70 transition hover:bg-ink/[0.05] lg:hidden"
             aria-label="Open menu"
           >
             <Menu size={20} />
@@ -72,13 +74,13 @@ export default function LandingNav() {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-50 bg-ink/95 backdrop-blur-md md:hidden"
+            className="fixed inset-0 z-50 bg-ink/95 backdrop-blur-md lg:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <div className="container-x flex h-16 items-center justify-between">
-              <Logo dark href="/" />
+              <Logo dark />
               <button
                 onClick={() => setOpen(false)}
                 className="grid h-10 w-10 place-items-center rounded-full text-white/80 hover:bg-white/10"
@@ -88,18 +90,20 @@ export default function LandingNav() {
               </button>
             </div>
             <ul className="container-x mt-6 flex flex-col gap-1">
-              {landingNav.map((item, i) => (
+              {links.map((l, i) => (
                 <motion.li
-                  key={item.label}
+                  key={l.label}
                   initial={{ opacity: 0, x: -16 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.05 * i }}
                 >
-                  <NavItem
-                    item={item}
+                  <a
+                    href={l.href}
                     onClick={() => setOpen(false)}
                     className="block border-b border-white/10 py-4 font-display text-2xl font-semibold text-white"
-                  />
+                  >
+                    {l.label}
+                  </a>
                 </motion.li>
               ))}
             </ul>
