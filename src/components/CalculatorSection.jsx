@@ -47,7 +47,7 @@ export default function CalculatorSection({ derived }) {
                   onClick={() => setMode(t.id)}
                   className={`rounded-full px-4 py-1.5 font-display text-sm font-semibold transition ${
                     mode === t.id
-                      ? 'bg-lime text-ink shadow-sm'
+                      ? 'bg-lime text-white shadow-sm'
                       : 'text-slatey-500 hover:text-ink'
                   }`}
                 >
