@@ -98,8 +98,6 @@ function BreakEvenChart({ series, cost, payback }) {
   const yCost = y(cost);
   const broke = payback <= 25;
 
-  // Split the area under the savings curve at the break-even point:
-  // red while still paying off, green once in profit.
   let redPts = null;
   let greenPts = null;
   if (!broke) {
@@ -177,8 +175,6 @@ export default function EarningsCalculator() {
   const submitQuote = (e) => {
     e.preventDefault();
     if (!email) return;
-    // TODO: not wired up yet — hook this to an email/lead service to send the
-    // quote and capture the address for follow-up.
     setSent(true);
   };
 
@@ -238,7 +234,7 @@ export default function EarningsCalculator() {
                     onClick={() => setBattery(o.v)}
                     className={`flex items-center justify-center gap-2 rounded-xl border px-2 py-3 font-display text-sm font-semibold transition ${
                       battery === o.v
-                        ? 'border-lime-dark bg-lime/10 text-lime-dark'
+                        ? 'border-lime bg-lime text-white'
                         : 'border-ink/10 bg-white text-slatey-500 hover:border-ink/25'
                     }`}
                   >
@@ -300,7 +296,7 @@ export default function EarningsCalculator() {
                     onClick={() => setMonths(m)}
                     className={`rounded-lg border px-1 py-2 font-display text-sm font-semibold transition ${
                       months === m
-                        ? 'border-lime-dark bg-lime/10 text-lime-dark'
+                        ? 'border-lime bg-lime text-white'
                         : 'border-ink/10 bg-white text-slatey-500 hover:border-ink/25'
                     }`}
                   >
@@ -387,7 +383,7 @@ export default function EarningsCalculator() {
                   />
                   <button
                     type="submit"
-                    className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-lime px-6 py-3 font-display text-sm font-bold text-ink transition hover:bg-lime-dark"
+                    className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-lime px-6 py-3 font-display text-sm font-bold text-white transition hover:bg-lime-dark"
                   >
                     Email me my quote <ArrowRight size={16} />
                   </button>
