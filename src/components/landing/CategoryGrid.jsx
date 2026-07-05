@@ -16,7 +16,7 @@ function CardInner({ c }) {
       {/* darken the top (title) and the bottom (CTA) for legibility */}
       <div className="absolute inset-x-0 top-0 h-[55%] bg-gradient-to-b from-ink/85 via-ink/45 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-ink/70 to-transparent" />
-      <span className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full bg-lime text-ink transition group-hover:rotate-90">
+      <span className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full bg-lime text-white transition group-hover:rotate-90">
         <Plus size={18} />
       </span>
       {/* title + blurb moved to the top */}
@@ -26,8 +26,8 @@ function CardInner({ c }) {
       </div>
       {/* Explore stays at the bottom */}
       <div className="absolute inset-x-0 bottom-0 p-5">
-        <span className="inline-flex items-center gap-1.5 font-display text-sm font-bold text-lime">
-          Explore <ArrowRight size={15} />
+        <span className="inline-flex items-center gap-2 font-display text-lg font-bold text-white">
+          Explore <ArrowRight size={18} className="text-lime" />
         </span>
       </div>
     </>
