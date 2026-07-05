@@ -29,7 +29,7 @@ export default function LandingFAQ() {
               </p>
               <a
                 href="#calculator"
-                className="mt-5 inline-flex rounded-full bg-lime px-4 py-2.5 font-display text-sm font-bold text-ink transition hover:bg-lime-dark"
+                className="mt-5 inline-flex rounded-full bg-lime px-4 py-2.5 font-display text-sm font-bold text-white transition hover:bg-lime-dark"
               >
                 Explore Solvio
               </a>

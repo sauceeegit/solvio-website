@@ -16,7 +16,6 @@ export default function Footer() {
   return (
     <footer className="bg-ink text-white">
       <div className="container-x py-16">
-        {/* newsletter */}
         <div className="grid gap-8 border-b border-white/10 pb-12 lg:grid-cols-2 lg:items-center">
           <div>
             <h3 className="font-display text-2xl font-extrabold tracking-tight">
@@ -43,14 +42,13 @@ export default function Footer() {
             />
             <button
               type="submit"
-              className="flex shrink-0 items-center gap-2 rounded-full bg-lime px-5 py-3.5 font-display text-sm font-bold text-ink transition hover:bg-lime-dark"
+              className="flex shrink-0 items-center gap-2 rounded-full bg-lime px-5 py-3.5 font-display text-sm font-bold text-white transition hover:bg-lime-dark"
             >
               {sent ? 'Subscribed' : 'Join'} <ArrowRight size={16} />
             </button>
           </form>
         </div>
 
-        {/* link columns */}
         <div className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-6">
           <div className="lg:col-span-2">
             <Logo dark />

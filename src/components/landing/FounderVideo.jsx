@@ -8,7 +8,6 @@ export default function FounderVideo() {
   const [open, setOpen] = useState(false);
   const hasVideo = !!founder.youtubeEmbed;
 
-  // Lock scroll + close on Escape while the lightbox is open.
   useEffect(() => {
     if (!open) return;
     const onKey = (e) => e.key === 'Escape' && setOpen(false);
@@ -25,7 +24,6 @@ export default function FounderVideo() {
   return (
     <section className="bg-surface py-16">
       <div className="container-x grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-        {/* poster — click to pop out the video */}
         <Reveal>
           <button
             type="button"
@@ -48,7 +46,6 @@ export default function FounderVideo() {
           </button>
         </Reveal>
 
-        {/* copy */}
         <Reveal delay={0.1}>
           <p className="eyebrow">Solar in Thailand</p>
           <h2 className="mt-2 font-display text-3xl font-extrabold leading-tight tracking-tight text-ink sm:text-4xl">
@@ -58,14 +55,13 @@ export default function FounderVideo() {
           <button
             type="button"
             onClick={openVideo}
-            className="mt-6 inline-flex items-center gap-2 rounded-full bg-lime px-6 py-3.5 font-display text-sm font-bold text-ink transition hover:bg-lime-dark"
+            className="mt-6 inline-flex items-center gap-2 rounded-full bg-lime px-6 py-3.5 font-display text-sm font-bold text-white transition hover:bg-lime-dark"
           >
             {founder.cta} <ArrowRight size={16} />
           </button>
         </Reveal>
       </div>
 
-      {/* pop-out lightbox */}
       <AnimatePresence>
         {open && (
           <motion.div
