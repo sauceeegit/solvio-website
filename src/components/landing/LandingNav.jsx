@@ -1,24 +1,21 @@
 import { useEffect, useState } from 'react';
-import { ShoppingCart, Menu, X } from 'lucide-react';
-import { AnimatePresence, motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { Menu, X, ShoppingCart } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
 import Logo from '../Logo';
 
 const links = [
-  { label: 'How it works', href: '#how' },
-  { label: 'Products', href: '#product' },
-  { label: 'Storage', href: '#related' },
-  { label: 'Savings', href: '#calculator' },
-  { label: 'Reviews', href: '#reviews' },
-  { label: 'FAQ', href: '#faq' },
+  { label: 'Balcony System', to: '/balcony-system' },
+  { label: 'Portable System', to: '/portable-system' },
+  { label: 'Solar Panel', to: '/solar-panel' },
 ];
 
-export default function LandingNav({ cartCount = 0 }) {
+export default function LandingNav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -26,22 +23,22 @@ export default function LandingNav({ cartCount = 0 }) {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white/85 shadow-soft backdrop-blur-md' : 'bg-white'
+      className={`sticky top-0 z-50 border-b transition-all duration-300 ${
+        scrolled ? 'border-ink/10 bg-white/90 shadow-soft backdrop-blur-md' : 'border-transparent bg-white'
       }`}
     >
       <nav className="container-x flex h-16 items-center justify-between">
         <Logo href="/" />
 
-        <ul className="hidden items-center gap-7 lg:flex">
+        <ul className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
             <li key={l.label}>
-              <a
-                href={l.href}
-                className="font-display text-sm font-medium text-ink/70 transition hover:text-ink"
+              <Link
+                to={l.to}
+                className="font-display text-sm font-semibold text-ink/75 transition hover:text-lime-dark"
               >
                 {l.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -51,19 +48,11 @@ export default function LandingNav({ cartCount = 0 }) {
             to="/balcony-system"
             className="hidden items-center gap-2 rounded-full bg-lime px-4 py-2.5 font-display text-sm font-bold text-white transition hover:bg-lime-dark sm:inline-flex"
           >
-            Shop now
+            <ShoppingCart size={16} /> Shop now
           </Link>
-          <button className="relative grid h-10 w-10 place-items-center rounded-full text-ink/70 transition hover:bg-ink/[0.05] hover:text-ink">
-            <ShoppingCart size={19} />
-            {cartCount > 0 && (
-              <span className="absolute -right-0.5 -top-0.5 grid h-5 min-w-5 place-items-center rounded-full bg-lime px-1 font-mono text-[10px] font-bold text-white">
-                {cartCount}
-              </span>
-            )}
-          </button>
           <button
             onClick={() => setOpen(true)}
-            className="grid h-10 w-10 place-items-center rounded-full text-ink/70 transition hover:bg-ink/[0.05] lg:hidden"
+            className="grid h-10 w-10 place-items-center rounded-full text-ink/70 transition hover:bg-ink/[0.05] md:hidden"
             aria-label="Open menu"
           >
             <Menu size={20} />
@@ -74,13 +63,13 @@ export default function LandingNav({ cartCount = 0 }) {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-50 bg-ink/95 backdrop-blur-md lg:hidden"
+            className="fixed inset-0 z-50 bg-ink/95 backdrop-blur-md md:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <div className="container-x flex h-16 items-center justify-between">
-              <Logo dark />
+              <Logo dark href="/" />
               <button
                 onClick={() => setOpen(false)}
                 className="grid h-10 w-10 place-items-center rounded-full text-white/80 hover:bg-white/10"
@@ -97,13 +86,13 @@ export default function LandingNav({ cartCount = 0 }) {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.05 * i }}
                 >
-                  <a
-                    href={l.href}
+                  <Link
+                    to={l.to}
                     onClick={() => setOpen(false)}
                     className="block border-b border-white/10 py-4 font-display text-2xl font-semibold text-white"
                   >
                     {l.label}
-                  </a>
+                  </Link>
                 </motion.li>
               ))}
             </ul>
