@@ -7,7 +7,6 @@ export const topBar = {
 };
 
 export const landingNav = [
-  { label: 'Rooftop System', to: '/rooftop-system' },
   { label: 'Balcony System', to: '/balcony-system' },
   { label: 'Portable System', to: '/portable-system' },
   { label: 'Solar Panel', to: '/solar-panel' },
