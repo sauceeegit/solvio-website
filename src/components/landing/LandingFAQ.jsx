@@ -20,7 +20,7 @@ export default function LandingFAQ() {
           {/* side tab */}
           <Reveal>
             <div className="rounded-xl2 bg-ink p-6 text-white">
-              <span className="grid h-11 w-11 place-items-center rounded-xl bg-lime text-ink">
+              <span className="grid h-11 w-11 place-items-center rounded-xl bg-lime text-white">
                 <HelpCircle size={22} />
               </span>
               <h3 className="mt-4 font-display text-xl font-extrabold">About Solvio</h3>
@@ -40,15 +40,28 @@ export default function LandingFAQ() {
           <Reveal delay={0.1}>
             <div className="rounded-xl2 border border-ink/[0.07] bg-surface px-6 shadow-soft">
               {landingFaqs.map((f, i) => (
-                <div key={f.q} className="border-b border-ink/[0.08] last:border-0">
+                <div
+                  key={f.q}
+                  className={`border-b border-ink/[0.08] last:border-0 transition-colors duration-200 ${
+                    open === i ? 'bg-white/70 -mx-6 px-6 rounded-xl' : ''
+                  }`}
+                >
                   <button
                     onClick={() => setOpen(open === i ? -1 : i)}
                     className="flex w-full items-center justify-between gap-4 py-5 text-left"
                   >
-                    <span className="font-display text-base font-semibold text-ink">{f.q}</span>
                     <span
-                      className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border border-ink/15 transition ${
-                        open === i ? 'rotate-45 bg-ink text-lime' : 'text-ink'
+                      className={`font-display font-semibold transition-colors ${
+                        open === i ? 'text-lg text-lime-dark' : 'text-base text-ink'
+                      }`}
+                    >
+                      {f.q}
+                    </span>
+                    <span
+                      className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border transition ${
+                        open === i
+                          ? 'rotate-45 border-lime bg-lime text-white'
+                          : 'border-ink/15 text-ink'
                       }`}
                     >
                       <Plus size={16} />
