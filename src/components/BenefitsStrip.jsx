@@ -9,8 +9,8 @@ export default function BenefitsStrip() {
           const Icon = Icons[b.icon] ?? Icons.Check;
           return (
             <div key={b.title} className="flex flex-col items-center gap-2 text-center">
-              <span className="grid h-11 w-11 place-items-center rounded-full bg-ink text-lime">
-                <Icon size={20} />
+              <span className="grid h-14 w-14 place-items-center rounded-full border-2 border-lime bg-white text-lime">
+                <Icon size={26} />
               </span>
               <p className="font-display text-sm font-bold text-ink">{b.title}</p>
               <p className="text-xs leading-snug text-slatey-500">{b.sub}</p>
