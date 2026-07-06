@@ -4,7 +4,7 @@ import { asset } from '../lib/format';
 const features = [
   {
     id: 'aesthetics',
-    img: asset('/sp-feature-1.png'),
+    img: asset('/sp-feature-1.webp'),
     imgAlt: 'Solvio Dark Feather solar roof on a modern Thai villa at sunset',
     aspect: 'aspect-[3/2]',
     imageSide: 'left',
@@ -14,7 +14,7 @@ const features = [
   },
   {
     id: 'lightweight',
-    img: asset('/sp-feature-2.png'),
+    img: asset('/sp-feature-2.webp'),
     imgAlt: 'Close-up of the thin, lightweight Solvio Dark Feather panel',
     aspect: 'aspect-[4/3]',
     objectPos: 'object-[50%_72%]',
@@ -31,7 +31,7 @@ export default function SolarPanelFeatures() {
       {/* Full-bleed intro banner (full composed artwork) above the first row. */}
       <Reveal>
         <img
-          src={asset('/sp-feature-top.png')}
+          src={asset('/sp-feature-top.webp')}
           alt="Solvio Dark Feather — Ultra Black, Ultra Thin, Ultra Light"
           className="block w-full"
         />

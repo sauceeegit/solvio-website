@@ -1,4 +1,4 @@
-import * as Icons from 'lucide-react';
+import { icons } from '../../lib/icons';
 import { whyShop } from '../../data/landing';
 import Reveal from '../Reveal';
 
@@ -29,7 +29,7 @@ export default function WhyShop() {
 
         <div className="mt-10 grid grid-cols-2 gap-3 lg:grid-cols-5 lg:grid-rows-2">
           {whyShop.map((item, i) => {
-            const Icon = Icons[item.icon] ?? Icons.Check;
+            const Icon = icons[item.icon] ?? icons.Check;
             const big = i === 0 || i === 5;
             return (
               <Reveal key={item.title} delay={(i % 5) * 0.05} className={`h-full ${cellClass[i]}`}>

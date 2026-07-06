@@ -1,5 +1,5 @@
-import * as Icons from 'lucide-react';
 import { ArrowRight } from 'lucide-react';
+import { icons } from '../../lib/icons';
 import { community } from '../../data/landing';
 import Reveal from '../Reveal';
 
@@ -22,7 +22,7 @@ export default function Community() {
 
         <div className="mt-10 grid gap-5 md:grid-cols-3">
           {community.map((c, i) => {
-            const Icon = Icons[c.icon] ?? Icons.Users;
+            const Icon = icons[c.icon] ?? icons.Users;
             return (
               <Reveal key={c.title} delay={i * 0.08}>
                 <div className="group flex h-full flex-col rounded-xl2 border border-white/10 bg-white/[0.04] p-6 transition hover:border-lime/50 hover:bg-white/[0.07]">

@@ -134,7 +134,7 @@ export default function Highlights() {
             {/* D — brand block (dark) */}
             <div className="flex h-full min-h-[160px] items-center justify-center rounded-xl2 bg-ink p-6 lg:col-span-2 lg:col-start-5 lg:row-start-1">
               <img
-                src={asset('/solvio-logo-full.png')}
+                src={asset('/solvio-logo-full.webp')}
                 alt="Solvio"
                 className="h-20 w-auto object-contain sm:h-24 lg:h-32"
               />
