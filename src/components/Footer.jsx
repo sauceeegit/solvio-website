@@ -14,7 +14,7 @@ export default function Footer() {
   const [sent, setSent] = useState(false);
 
   return (
-    <footer className="bg-[#0f1e16] text-white">
+    <footer className="bg-[#213c2f] text-white">
       <div className="container-x py-16">
         <div className="grid gap-8 border-b border-white/10 pb-12 lg:grid-cols-2 lg:items-center">
           <div>
