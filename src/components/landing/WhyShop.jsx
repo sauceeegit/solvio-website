@@ -45,13 +45,13 @@ export default function WhyShop() {
                     </h3>
                   </div>
                 ) : (
-                  <div className="group flex h-full min-h-[150px] flex-col items-center justify-center gap-4 rounded-xl2 bg-lime p-5 text-center transition hover:bg-lime-dark">
+                  <div className="group flex h-full min-h-[150px] flex-col items-center justify-center gap-4 rounded-xl2 bg-[#acb7f9] p-5 text-center transition hover:bg-[#96a4f7]">
                     <Icon
                       size={big ? 58 : 38}
                       strokeWidth={1.6}
-                      className="text-[#FCF6EC] transition group-hover:scale-105"
+                      className="text-[#213c2f] transition group-hover:scale-105"
                     />
-                    <h3 className="font-display text-sm font-bold leading-snug text-[#FCF6EC] sm:text-[15px]">
+                    <h3 className="font-display text-sm font-bold leading-snug text-[#213c2f] sm:text-[15px]">
                       {item.title}
                     </h3>
                   </div>
