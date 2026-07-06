@@ -5,16 +5,15 @@ import { baht, bahtDelta, whFmt } from '../lib/format';
 function SectionHead({ step, title, hint }) {
   return (
     <div className="mb-3">
-      <p className="mb-1 font-mono text-[11px] uppercase tracking-wider text-lime-dark">{step}</p>
+      <p className="mb-1 font-display text-sm font-bold uppercase tracking-wider text-lime">{step}</p>
       <div className="flex items-baseline justify-between gap-3">
         <h3 className="font-display text-base font-bold leading-snug text-ink">{title}</h3>
-        {hint && <span className="shrink-0 font-mono text-[11px] text-slatey-400">{hint}</span>}
+        {hint && <span className="shrink-0 font-body text-xs font-medium text-slatey-400">{hint}</span>}
       </div>
     </div>
   );
 }
 
-/* Solid-fill button with a corner check — used for the AC cable step */
 function CableButton({ selected, onClick, opt }) {
   return (
     <button
@@ -28,7 +27,7 @@ function CableButton({ selected, onClick, opt }) {
       <span className="font-display text-[15px] font-bold leading-tight">{opt.short}</span>
       {opt.price !== 0 && (
         <span
-          className={`mt-0.5 font-mono text-[11px] leading-none ${
+          className={`mt-0.5 font-body text-xs font-medium leading-none ${
             selected ? 'text-white/85' : 'text-slatey-400'
           }`}
         >
@@ -44,7 +43,6 @@ function CableButton({ selected, onClick, opt }) {
   );
 }
 
-/* Large image card — used for the module/performance step */
 function ModuleCard({ selected, onClick, panel }) {
   return (
     <button
@@ -55,13 +53,13 @@ function ModuleCard({ selected, onClick, panel }) {
     >
       <div className="relative aspect-[3/4] w-full overflow-hidden bg-surface">
         <img src={panel.img} alt={panel.label} className="h-full w-full object-cover" />
-        <span className="absolute left-2 top-2 rounded-full bg-ink/85 px-2 py-0.5 font-mono text-[10px] font-medium text-lime backdrop-blur">
+        <span className="absolute left-2 top-2 rounded-full bg-ink/85 px-2 py-0.5 font-body text-[10px] font-semibold text-lime backdrop-blur">
           {panel.wp} Wp · bifacial
         </span>
         <span
           className={`absolute right-2 top-2 grid h-5 w-5 place-items-center rounded-full border ${
             selected
-              ? 'border-lime-dark bg-lime-dark text-ink'
+              ? 'border-lime-dark bg-lime-dark text-white'
               : 'border-white/70 bg-white/80 text-transparent'
           }`}
         >
@@ -71,20 +69,17 @@ function ModuleCard({ selected, onClick, panel }) {
       <div className="flex flex-1 flex-col p-3">
         <div className="flex items-baseline justify-between gap-2">
           <span className="font-display text-sm font-bold text-ink">{panel.label}</span>
-          <span className="font-mono text-xs font-semibold text-ink">{baht(panelThb(panel.id))}</span>
+          <span className="font-body text-xs font-semibold text-ink">{baht(panelThb(panel.id))}</span>
         </div>
-        <span className="text-xs text-slatey-500">{panel.sub}</span>
-        <span className="mt-2 border-t border-ink/[0.06] pt-2 font-mono text-[11px] leading-relaxed text-slatey-400">
-          {panel.dims}
-          <br />
-          {panel.weight} · per panel
+        <span className="font-body text-xs text-slatey-500">{panel.sub}</span>
+        <span className="mt-2 border-t border-ink/[0.06] pt-2 font-body text-xs font-medium leading-relaxed text-slatey-500">
+          {panel.dims}<br />{panel.weight} · per panel
         </span>
       </div>
     </button>
   );
 }
 
-/* Product card with image placeholder — used for the storage step */
 function StorageCard({ selected, onClick, opt }) {
   const hasBattery = opt.wh > 0;
   return (
@@ -96,13 +91,11 @@ function StorageCard({ selected, onClick, opt }) {
           : 'border-ink/12 bg-white text-ink hover:border-ink/30'
       }`}
     >
-      {/* framed product image — placeholder until a real photo is set */}
       <div
         className={`relative aspect-[16/10] overflow-hidden rounded-lg border ${
           selected ? 'border-white/20 bg-white/[0.08]' : 'border-ink/[0.07] bg-surface'
         }`}
       >
-        {/* selection badge */}
         <span
           className={`absolute right-2 top-2 z-10 grid h-5 w-5 place-items-center rounded-full border ${
             selected
@@ -121,11 +114,10 @@ function StorageCard({ selected, onClick, opt }) {
         )}
       </div>
 
-      {/* content */}
       <div className="flex flex-1 flex-col px-1 pt-3">
         {opt.brand && (
           <span
-            className={`font-mono text-[11px] uppercase tracking-wide ${
+            className={`font-body text-[11px] font-semibold uppercase tracking-wide ${
               selected ? 'text-white/55' : 'text-slatey-400'
             }`}
           >
@@ -134,9 +126,9 @@ function StorageCard({ selected, onClick, opt }) {
         )}
         <span className="font-display text-[15px] font-bold leading-tight">{opt.name}</span>
 
-        <ul
-          className={`mt-2 space-y-1 text-xs ${selected ? 'text-white/75' : 'text-slatey-500'}`}
-        >
+        <ul className={`mt-2 space-y-1 font-body text-xs font-medium ${
+          selected ? 'text-white/75' : 'text-slatey-500'
+        }`}>
           {opt.specs.map((s) => (
             <li key={s} className="flex gap-1.5">
               <span className={selected ? 'text-white/80' : 'text-lime-dark'}>·</span>
@@ -145,14 +137,13 @@ function StorageCard({ selected, onClick, opt }) {
           ))}
         </ul>
 
-        {/* footer — capacity + price */}
         <div
           className={`mt-3 flex items-center justify-between border-t pt-2.5 ${
             selected ? 'border-white/15' : 'border-ink/[0.07]'
           }`}
         >
           {hasBattery ? (
-            <span className="inline-flex items-center gap-1.5 font-mono text-[13px] font-bold">
+            <span className="inline-flex items-center gap-1.5 font-body text-sm font-bold">
               <span
                 className={`grid h-4 w-4 place-items-center rounded-full ${
                   selected ? 'bg-white text-lime-dark' : 'bg-ink text-white'
@@ -163,13 +154,13 @@ function StorageCard({ selected, onClick, opt }) {
               {whFmt(opt.wh)}
             </span>
           ) : (
-            <span
-              className={`font-mono text-[13px] ${selected ? 'text-white/55' : 'text-slatey-400'}`}
-            >
+            <span className={`font-body text-sm font-medium ${
+              selected ? 'text-white/70' : 'text-slatey-400'
+            }`}>
               No battery
             </span>
           )}
-          <span className="font-mono text-[13px] font-semibold">
+          <span className="font-body text-sm font-semibold">
             {opt.price === 0 ? 'Included' : bahtDelta(opt.price)}
           </span>
         </div>
@@ -178,7 +169,6 @@ function StorageCard({ selected, onClick, opt }) {
   );
 }
 
-/* Solid-fill button with a corner check badge — used for the location step */
 function LocationButton({ selected, onClick, label }) {
   return (
     <button
@@ -204,7 +194,6 @@ export default function Configurator({ config, set }) {
 
   return (
     <div className="space-y-7">
-      {/* Step 1 — Location */}
       <div>
         <SectionHead
           step="Step 1 — Location"
@@ -223,7 +212,6 @@ export default function Configurator({ config, set }) {
         </div>
       </div>
 
-      {/* Step 2 — Module size & performance */}
       <div>
         <SectionHead
           step="Step 2 — Module"
@@ -240,7 +228,6 @@ export default function Configurator({ config, set }) {
             />
           ))}
         </div>
-        {/* quantity — priwatt-style buttons showing the price change from the 4-module base */}
         <div className="mt-2.5 grid grid-cols-4 gap-2.5">
           {[1, 2, 3, 4].map((n) => {
             const selected = config.modules === n;
@@ -259,7 +246,7 @@ export default function Configurator({ config, set }) {
                 <span className="font-display text-base font-bold leading-none">{n}</span>
                 {delta !== 0 && (
                   <span
-                    className={`mt-1.5 font-mono text-[11px] leading-none ${
+                    className={`mt-1.5 font-body text-xs font-medium leading-none ${
                       selected ? 'text-white/85' : 'text-slatey-400'
                     }`}
                   >
@@ -272,7 +259,6 @@ export default function Configurator({ config, set }) {
         </div>
       </div>
 
-      {/* Step 3 — Storage */}
       <div>
         <SectionHead
           step="Step 3 — Storage"
@@ -291,7 +277,6 @@ export default function Configurator({ config, set }) {
         </div>
       </div>
 
-      {/* Step 4 — AC cable */}
       <div>
         <SectionHead
           step="Step 4 — AC cable"

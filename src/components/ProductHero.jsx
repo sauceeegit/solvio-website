@@ -18,21 +18,21 @@ export default function ProductHero({ cfg, onAddToCart, added }) {
           <h1 className="font-display text-3xl font-extrabold leading-tight tracking-tight text-ink sm:text-4xl">
             {product.name}
           </h1>
-          <p className="mt-2 max-w-md text-[15px] text-slatey-500">{product.tagline}</p>
+          <p className="mt-2 max-w-md font-body text-[15px] font-medium text-slatey-500">{product.tagline}</p>
 
           <div className="mt-3 flex items-center gap-2.5">
             <Stars value={product.rating} />
             <span className="font-display text-sm font-semibold text-ink">{product.rating}</span>
-            <a href="#reviews" className="text-sm text-slatey-500 underline-offset-2 hover:underline">
+            <a href="#reviews" className="font-body text-sm font-medium text-slatey-500 underline-offset-2 hover:underline">
               {product.reviewCount.toLocaleString()} reviews
             </a>
           </div>
 
           <ul className="mt-5 grid gap-2">
             {product.highlights.map((h) => (
-              <li key={h} className="flex items-center gap-2.5 text-[15px] text-ink/80">
-                <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-lime/25">
-                  <Check size={13} strokeWidth={3} className="text-lime-dark" />
+              <li key={h} className="flex items-center gap-2.5 font-body text-[15px] font-medium text-ink/80">
+                <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-lime">
+                  <Check size={13} strokeWidth={3} className="text-white" />
                 </span>
                 {h}
               </li>
