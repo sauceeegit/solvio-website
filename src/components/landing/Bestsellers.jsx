@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Check, ArrowRight } from 'lucide-react';
 import { bestsellers } from '../../data/landing';
@@ -5,6 +6,8 @@ import { baht } from '../../lib/format';
 import Reveal from '../Reveal';
 
 export default function Bestsellers() {
+  const [hoveredIdx, setHoveredIdx] = useState(null);
+
   return (
     <section id="bestsellers" className="scroll-mt-20 bg-white py-16">
       <div className="container-x">
@@ -20,13 +23,15 @@ export default function Bestsellers() {
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {bestsellers.map((p, i) => (
             <Reveal key={p.id} delay={i * 0.06}>
-              <div className="card flex h-full flex-col overflow-hidden">
+              <div
+                className={`card flex h-full flex-col overflow-hidden transition-opacity duration-300 ${
+                  hoveredIdx !== null && hoveredIdx !== i ? 'opacity-40' : 'opacity-100'
+                }`}
+                onMouseEnter={() => setHoveredIdx(i)}
+                onMouseLeave={() => setHoveredIdx(null)}
+              >
                 <div className="relative aspect-[4/3] bg-lime">
-                  <img
-                    src={p.img}
-                    alt={p.name}
-                    className="h-full w-full object-cover"
-                  />
+                  <img src={p.img} alt={p.name} className="h-full w-full object-cover" />
                   {p.badge && (
                     <span className="absolute left-3 top-3 rounded-full bg-lime px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-wider text-white">
                       {p.badge}
@@ -51,9 +56,7 @@ export default function Bestsellers() {
 
                   <div className="mt-auto flex items-end justify-between gap-3">
                     <div>
-                      <p className="font-mono text-[11px] uppercase tracking-wider text-slatey-400">
-                        From
-                      </p>
+                      <p className="font-mono text-[11px] uppercase tracking-wider text-slatey-400">From</p>
                       <p className="font-display text-2xl font-extrabold text-ink">{baht(p.price)}</p>
                     </div>
                     <Link
