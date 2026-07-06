@@ -8,11 +8,6 @@ const MODES = [
   { id: 'advanced', label: 'Advanced' },
 ];
 
-// Savings calculator section with a Basic / Advanced toggle (Basic by default).
-// - Basic    → SavingsCalculator (system-size + usage estimate; uses the live
-//              configurator on the product page, a default system on the landing page)
-// - Advanced → EarningsCalculator (bill-first, instalments, 25-yr break-even chart)
-// Pass `derived` (the configurator result) on the product page to keep Basic in sync.
 export default function CalculatorSection({ derived }) {
   const [mode, setMode] = useState('basic');
 
@@ -58,7 +53,7 @@ export default function CalculatorSection({ derived }) {
           </div>
         </Reveal>
 
-        <div className="mt-9">
+        <div className="mt-4">
           {mode === 'basic' ? <SavingsCalculator derived={derived} /> : <EarningsCalculator />}
         </div>
       </div>

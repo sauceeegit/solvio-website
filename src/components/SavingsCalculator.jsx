@@ -10,8 +10,6 @@ const CO2_PER_KWH = 0.38; // kg avoided per kWh
 // Fallback system when no live configurator is supplied (e.g. on the landing page).
 const DEFAULT_DERIVED = computeConfig(defaultConfig);
 
-// Card-only "Basic" calculator. The surrounding section, heading and Basic/Advanced
-// toggle are provided by CalculatorSection.
 export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
   const [orientation, setOrientation] = useState('south');
   const [household, setHousehold] = useState(calculatorDefaults.household);
@@ -21,7 +19,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
 
   const { annualYield, savings, payback, co2 } = useMemo(() => {
     const y = derived.wp * YIELD_PER_WP * factor;
-    const usable = Math.min(y, household); // can't save more than you use
+    const usable = Math.min(y, household);
     const s = (usable * rate) / 100;
     return {
       annualYield: y,
@@ -40,7 +38,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
 
   return (
     <>
-      <p className="mx-auto mb-5 max-w-4xl text-sm text-slatey-500">
+      <p className="mx-auto mb-2 max-w-4xl text-sm text-slatey-500">
         Sized for {derived.modules} module{derived.modules > 1 ? 's' : ''} ({num(derived.wp)} Wp). Adjust
         the sliders to match your home.
       </p>
