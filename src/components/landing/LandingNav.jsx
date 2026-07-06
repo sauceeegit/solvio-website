@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { Menu, X, ShoppingCart } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Logo from '../Logo';
@@ -33,12 +33,16 @@ export default function LandingNav() {
         <ul className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
             <li key={l.label}>
-              <Link
+              <NavLink
                 to={l.to}
-                className="font-display text-sm font-semibold text-ink/75 transition hover:text-lime-dark"
+                className={({ isActive }) =>
+                  `font-display text-sm font-semibold transition ${
+                    isActive ? 'text-lime' : 'text-ink/75 hover:text-lime-dark'
+                  }`
+                }
               >
                 {l.label}
-              </Link>
+              </NavLink>
             </li>
           ))}
         </ul>
@@ -86,13 +90,17 @@ export default function LandingNav() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.05 * i }}
                 >
-                  <Link
+                  <NavLink
                     to={l.to}
                     onClick={() => setOpen(false)}
-                    className="block border-b border-white/10 py-4 font-display text-2xl font-semibold text-white"
+                    className={({ isActive }) =>
+                      `block border-b border-white/10 py-4 font-display text-2xl font-semibold ${
+                        isActive ? 'text-lime' : 'text-white'
+                      }`
+                    }
                   >
                     {l.label}
-                  </Link>
+                  </NavLink>
                 </motion.li>
               ))}
             </ul>
