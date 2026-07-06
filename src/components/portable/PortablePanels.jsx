@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { portablePanels } from '../../data/landing';
+import { baht } from '../../lib/format';
 import Reveal from '../Reveal';
 
 export default function PortablePanels() {
@@ -72,13 +73,13 @@ export default function PortablePanels() {
                 <div className="flex flex-1 flex-col gap-3 p-5">
                   <div>
                     <h3 className="font-display text-lg font-extrabold text-ink">{p.name}</h3>
-                    <p className="mt-0.5 text-sm text-ink/60">{p.tagline}</p>
+                    <p className="mt-0.5 text-sm text-ink/60">{p.tagline ?? `${p.watt} foldable solar panel`}</p>
                   </div>
 
                   <div className="mt-auto flex items-end justify-between gap-3">
                     <div>
                       <p className="font-mono text-[11px] uppercase tracking-wider text-slatey-400">From</p>
-                      <p className="font-display text-2xl font-extrabold text-ink">{p.price}</p>
+                      <p className="font-display text-2xl font-extrabold text-ink tabular-nums">{baht(p.price)}</p>
                     </div>
                     <Link to={p.href ?? '/portable'}>
                       <span className="inline-flex items-center gap-1.5 rounded-full bg-lime px-4 py-2 font-display text-sm font-bold text-white transition group-hover:bg-lime-dark">
