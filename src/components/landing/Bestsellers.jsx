@@ -30,8 +30,8 @@ export default function Bestsellers() {
               >
                 {/* dark overlay for non-hovered cards */}
                 <div
-                  className="pointer-events-none absolute inset-0 z-10 bg-ink transition-opacity duration-300"
-                  style={{ opacity: hoveredIdx !== null && hoveredIdx !== i ? 0.6 : 0 }}
+                  className="pointer-events-none absolute inset-0 z-10 rounded-[inherit] bg-ink/75 transition-opacity duration-300"
+                  style={{ opacity: hoveredIdx !== null && hoveredIdx !== i ? 1 : 0 }}
                 />
 
                 <div className="relative aspect-[4/3] bg-lime">
@@ -45,14 +45,14 @@ export default function Bestsellers() {
 
                 <div className="flex flex-1 flex-col gap-4 p-5">
                   <div>
-                    <h3 className="font-display text-lg font-extrabold text-ink">{p.name}</h3>
-                    <p className="mt-0.5 text-sm text-ink/60">{p.tagline}</p>
+                    <h3 className="font-display text-xl font-extrabold text-ink">{p.name}</h3>
+                    <p className="mt-0.5 text-[15px] text-ink/60">{p.tagline}</p>
                   </div>
 
                   <ul className="flex flex-col gap-1.5">
                     {p.specs.map((s) => (
-                      <li key={s} className="flex items-start gap-2 text-[13px] text-ink/75">
-                        <Check size={14} className="mt-0.5 shrink-0 text-lime" strokeWidth={3} />
+                      <li key={s} className="flex items-start gap-2 text-[15px] text-ink/75">
+                        <Check size={15} className="mt-0.5 shrink-0 text-lime" strokeWidth={3} />
                         {s}
                       </li>
                     ))}
