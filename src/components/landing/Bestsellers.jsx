@@ -24,12 +24,16 @@ export default function Bestsellers() {
           {bestsellers.map((p, i) => (
             <Reveal key={p.id} delay={i * 0.06}>
               <div
-                className={`card flex h-full flex-col overflow-hidden transition-opacity duration-300 ${
-                  hoveredIdx !== null && hoveredIdx !== i ? 'opacity-40' : 'opacity-100'
-                }`}
+                className="card relative flex h-full flex-col overflow-hidden"
                 onMouseEnter={() => setHoveredIdx(i)}
                 onMouseLeave={() => setHoveredIdx(null)}
               >
+                {/* dark overlay for non-hovered cards */}
+                <div
+                  className="pointer-events-none absolute inset-0 z-10 bg-ink transition-opacity duration-300"
+                  style={{ opacity: hoveredIdx !== null && hoveredIdx !== i ? 0.6 : 0 }}
+                />
+
                 <div className="relative aspect-[4/3] bg-lime">
                   <img src={p.img} alt={p.name} className="h-full w-full object-cover" />
                   {p.badge && (
