@@ -148,7 +148,7 @@ function BreakEvenChart({ series, cost, payback }) {
 
 function Metric({ label, value, valueClass = 'text-ink' }) {
   return (
-    <div className="rounded-xl bg-surface p-3.5">
+    <div className="rounded-xl bg-white p-3.5">
       <p className="text-[13px] text-slatey-500">{label}</p>
       <p className={`mt-1 font-display text-2xl font-extrabold tabular-nums ${valueClass}`}>{value}</p>
     </div>
@@ -181,7 +181,7 @@ export default function EarningsCalculator() {
   return (
     <>
       <Reveal delay={0.1}>
-        <div className="mx-auto max-w-4xl rounded-xl2 border border-ink/[0.07] bg-surface p-5 shadow-soft sm:p-7">
+        <div className="mx-auto max-w-4xl rounded-xl2 border border-ink/[0.07] bg-[#f0f8ff] p-5 shadow-soft sm:p-7">
             {/* bill */}
             <div>
               <div className="flex items-baseline justify-between">
@@ -197,7 +197,7 @@ export default function EarningsCalculator() {
                 step="100"
                 value={bill}
                 onChange={(e) => setBill(Number(e.target.value))}
-                className="mt-2 w-full accent-lime-dark"
+                className="mt-2 w-full accent-lime"
               />
             </div>
 
@@ -216,9 +216,9 @@ export default function EarningsCalculator() {
                 step="5"
                 value={coverage}
                 onChange={(e) => setCoverage(Number(e.target.value))}
-                className="mt-2 w-full accent-lime-dark"
+                className="mt-2 w-full accent-lime"
               />
-              <p className="mt-1.5 text-xs text-slatey-400">≈ {num(r.monthlyKwh)} kWh/month of usage</p>
+              <p className="mt-1.5 text-sm font-medium text-slatey-500">≈ {num(r.monthlyKwh)} kWh/month of usage</p>
             </div>
 
             {/* battery */}
