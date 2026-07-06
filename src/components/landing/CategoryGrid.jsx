@@ -17,11 +17,10 @@ function CardInner({ c, dimmed }) {
       <div className="absolute inset-x-0 top-0 h-[55%] bg-gradient-to-b from-ink/85 via-ink/45 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-ink/70 to-transparent" />
 
-      {/* dim overlay for non-hovered cards */}
+      {/* dim overlay — visible on non-hovered cards */}
       <div
-        className={`absolute inset-0 bg-ink transition-opacity duration-300 ${
-          dimmed ? 'opacity-60' : 'opacity-0'
-        }`}
+        className="absolute inset-0 bg-ink/60 transition-opacity duration-300"
+        style={{ opacity: dimmed ? 1 : 0 }}
       />
 
       <span className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full bg-lime text-white transition group-hover:rotate-90">
@@ -41,7 +40,7 @@ function CardInner({ c, dimmed }) {
 }
 
 export default function CategoryGrid() {
-  const [hoveredId, setHoveredId] = useState(null);
+  const [hoveredIdx, setHoveredIdx] = useState(null);
 
   return (
     <section id="categories" className="container-x scroll-mt-20 py-14">
@@ -56,13 +55,13 @@ export default function CategoryGrid() {
           const internal = c.to?.startsWith('/');
           const cls =
             'group relative block aspect-[5/4] overflow-hidden rounded-xl2 shadow-soft sm:aspect-[16/10] md:aspect-[3/4]';
-          const dimmed = hoveredId !== null && hoveredId !== c.id;
+          const dimmed = hoveredIdx !== null && hoveredIdx !== i;
           const handlers = {
-            onMouseEnter: () => setHoveredId(c.id),
-            onMouseLeave: () => setHoveredId(null),
+            onMouseEnter: () => setHoveredIdx(i),
+            onMouseLeave: () => setHoveredIdx(null),
           };
           return (
-            <Reveal key={c.id} delay={i * 0.08}>
+            <Reveal key={c.title} delay={i * 0.08}>
               {internal ? (
                 <Link
                   to={c.to}
