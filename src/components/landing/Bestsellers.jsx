@@ -21,59 +21,57 @@ export default function Bestsellers() {
         </Reveal>
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {bestsellers.map((p, i) => (
-            <Reveal key={p.id} delay={i * 0.06}>
-              <div
-                className="card relative flex h-full flex-col overflow-hidden"
-                onMouseEnter={() => setHoveredIdx(i)}
-                onMouseLeave={() => setHoveredIdx(null)}
-              >
-                {/* dark overlay for non-hovered cards */}
+          {bestsellers.map((p, i) => {
+            const dimmed = hoveredIdx !== null && hoveredIdx !== i;
+            return (
+              <Reveal key={p.id} delay={i * 0.06}>
                 <div
-                  className="pointer-events-none absolute inset-0 z-10 rounded-[inherit] bg-ink/75 transition-opacity duration-300"
-                  style={{ opacity: hoveredIdx !== null && hoveredIdx !== i ? 1 : 0 }}
-                />
-
-                <div className="relative aspect-[4/3] bg-lime">
-                  <img src={p.img} alt={p.name} className="h-full w-full object-cover" />
-                  {p.badge && (
-                    <span className="absolute left-3 top-3 rounded-full bg-lime px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-wider text-white">
-                      {p.badge}
-                    </span>
-                  )}
-                </div>
-
-                <div className="flex flex-1 flex-col gap-4 p-5">
-                  <div>
-                    <h3 className="font-display text-xl font-extrabold text-ink">{p.name}</h3>
-                    <p className="mt-0.5 text-[15px] text-ink/60">{p.tagline}</p>
+                  className="card flex h-full flex-col overflow-hidden transition-[filter] duration-300"
+                  style={{ filter: dimmed ? 'brightness(0.35)' : 'brightness(1)' }}
+                  onMouseEnter={() => setHoveredIdx(i)}
+                  onMouseLeave={() => setHoveredIdx(null)}
+                >
+                  <div className="relative aspect-[4/3] bg-lime">
+                    <img src={p.img} alt={p.name} className="h-full w-full object-cover" />
+                    {p.badge && (
+                      <span className="absolute left-3 top-3 rounded-full bg-lime px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-wider text-white">
+                        {p.badge}
+                      </span>
+                    )}
                   </div>
 
-                  <ul className="flex flex-col gap-1.5">
-                    {p.specs.map((s) => (
-                      <li key={s} className="flex items-start gap-2 text-[15px] text-ink/75">
-                        <Check size={15} className="mt-0.5 shrink-0 text-lime" strokeWidth={3} />
-                        {s}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="mt-auto flex items-end justify-between gap-3">
+                  <div className="flex flex-1 flex-col gap-4 p-5">
                     <div>
-                      <p className="font-mono text-[11px] uppercase tracking-wider text-slatey-400">From</p>
-                      <p className="font-display text-2xl font-extrabold text-ink">{baht(p.price)}</p>
+                      <h3 className="font-display text-xl font-extrabold text-ink">{p.name}</h3>
+                      <p className="mt-0.5 text-[15px] text-ink/60">{p.tagline}</p>
                     </div>
-                    <Link
-                      to="/balcony-system"
-                      className="inline-flex items-center gap-1.5 rounded-full bg-lime px-4 py-2.5 font-display text-sm font-bold text-white transition hover:bg-lime-dark"
-                    >
-                      See details <ArrowRight size={15} />
-                    </Link>
+
+                    <ul className="flex flex-col gap-1.5">
+                      {p.specs.map((s) => (
+                        <li key={s} className="flex items-start gap-2 text-[15px] text-ink/75">
+                          <Check size={15} className="mt-0.5 shrink-0 text-lime" strokeWidth={3} />
+                          {s}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="mt-auto flex items-end justify-between gap-3">
+                      <div>
+                        <p className="font-mono text-[11px] uppercase tracking-wider text-slatey-400">From</p>
+                        <p className="font-display text-2xl font-extrabold text-ink">{baht(p.price)}</p>
+                      </div>
+                      <Link
+                        to="/balcony-system"
+                        className="inline-flex items-center gap-1.5 rounded-full bg-lime px-4 py-2.5 font-display text-sm font-bold text-white transition hover:bg-lime-dark"
+                      >
+                        See details <ArrowRight size={15} />
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>
