@@ -242,7 +242,7 @@ export default function EarningsCalculator() {
                   </button>
                 ))}
               </div>
-              <p className="mt-1.5 text-xs text-slatey-400">
+              <p className="mt-1.5 text-sm text-slatey-500">
                 {battery
                   ? '100% of your solar is used — surplus is stored for the evening.'
                   : '~50% is used live — the daytime surplus is exported/wasted.'}
@@ -338,7 +338,7 @@ export default function EarningsCalculator() {
             <div className="mt-6">
               <p className="mb-1 text-sm text-slatey-500">Cumulative savings vs system cost</p>
               <BreakEvenChart series={r.series} cost={r.cost} payback={r.payback} />
-              <p className="mt-1 text-xs text-slatey-400">
+              <p className="mt-1 text-sm text-slatey-500">
                 {r.payback <= 25
                   ? `Break-even at year ${r.payback.toFixed(1)} — then ${Math.max(0, 25 - Math.round(r.payback))}+ years of near-free electricity.`
                   : 'Break-even falls beyond 25 years at this coverage — try a higher coverage %.'}
@@ -389,7 +389,7 @@ export default function EarningsCalculator() {
                   </button>
                 </form>
               )}
-              <p className="mt-2 text-xs text-slatey-400">
+              <p className="mt-2 text-sm text-slatey-500">
                 We&apos;ll send your estimate and follow up with a tailored quote.
               </p>
             </div>
