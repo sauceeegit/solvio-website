@@ -38,7 +38,7 @@ export default function CalculatorSection({ derived }) {
             <div
               role="tablist"
               aria-label="Calculator detail level"
-              className="inline-flex shrink-0 rounded-full border border-ink/10 bg-surface p-1"
+              className="inline-flex shrink-0 rounded-full border border-ink/10 bg-white p-1"
             >
               {MODES.map((t) => (
                 <button
