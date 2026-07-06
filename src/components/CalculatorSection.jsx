@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Reveal from './Reveal';
 import SavingsCalculator from './SavingsCalculator';
 import EarningsCalculator from './landing/EarningsCalculator';
+import { num } from '../lib/format';
 
 const MODES = [
   { id: 'basic', label: 'Basic' },
@@ -26,6 +27,11 @@ export default function CalculatorSection({ derived }) {
                   ? 'A quick estimate from your system size and electricity use.'
                   : 'Set your bill and coverage — we size the system and chart your payback.'}
               </p>
+              {mode === 'basic' && derived && (
+                <p className="mt-1 max-w-xl text-sm text-slatey-400">
+                  Sized for {derived.modules} module{derived.modules > 1 ? 's' : ''} ({num(derived.wp)} Wp). Adjust the sliders to match your home.
+                </p>
+              )}
             </div>
 
             {/* Basic / Advanced toggle */}
@@ -53,7 +59,7 @@ export default function CalculatorSection({ derived }) {
           </div>
         </Reveal>
 
-        <div className="mt-4">
+        <div className="mt-6">
           {mode === 'basic' ? <SavingsCalculator derived={derived} /> : <EarningsCalculator />}
         </div>
       </div>
