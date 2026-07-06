@@ -2,7 +2,6 @@ import { icons } from '../../lib/icons';
 import { whyShop } from '../../data/landing';
 import Reveal from '../Reveal';
 
-// Bento layout: cell 0 spans 2 rows (tall), cell 5 spans 2 columns (wide).
 const cellClass = [
   'lg:row-span-2',
   '',
@@ -48,7 +47,7 @@ export default function WhyShop() {
                 ) : (
                   <div className="group flex h-full min-h-[150px] flex-col items-center justify-center gap-4 rounded-xl2 bg-lime p-5 text-center transition hover:bg-lime-dark">
                     <Icon
-                      size={big ? 48 : 32}
+                      size={big ? 58 : 38}
                       strokeWidth={1.6}
                       className="text-[#FCF6EC] transition group-hover:scale-105"
                     />
