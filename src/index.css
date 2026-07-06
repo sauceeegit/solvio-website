@@ -21,7 +21,7 @@ body {
   }
 
   .eyebrow {
-    @apply font-mono text-xs font-medium uppercase tracking-[0.18em] text-lime-dark;
+    @apply font-mono text-xs font-medium uppercase tracking-[0.18em] text-lime;
   }
 
   .btn-primary {
