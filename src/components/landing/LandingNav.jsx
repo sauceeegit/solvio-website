@@ -38,7 +38,7 @@ export default function LandingNav() {
                 to={l.to}
                 className={({ isActive }) =>
                   `font-display text-sm font-semibold transition ${
-                    isActive ? 'text-lime' : 'text-ink/75 hover:text-lime-dark'
+                    isActive ? 'text-lime' : 'text-ink/75 hover:text-lime'
                   }`
                 }
               >
