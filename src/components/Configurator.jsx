@@ -26,11 +26,7 @@ function CableButton({ selected, onClick, opt }) {
     >
       <span className="font-display text-[15px] font-bold leading-tight">{opt.short}</span>
       {opt.price !== 0 && (
-        <span
-          className={`mt-0.5 font-body text-xs font-medium leading-none ${
-            selected ? 'text-white/85' : 'text-slatey-400'
-          }`}
-        >
+        <span className={`mt-0.5 font-body text-xs font-medium leading-none ${selected ? 'text-white/85' : 'text-slatey-400'}`}>
           {bahtDelta(opt.price)}
         </span>
       )}
@@ -56,13 +52,7 @@ function ModuleCard({ selected, onClick, panel }) {
         <span className="absolute left-2 top-2 rounded-full bg-ink/85 px-2 py-0.5 font-body text-[10px] font-semibold text-lime backdrop-blur">
           {panel.wp} Wp · bifacial
         </span>
-        <span
-          className={`absolute right-2 top-2 grid h-5 w-5 place-items-center rounded-full border ${
-            selected
-              ? 'border-lime-dark bg-lime-dark text-white'
-              : 'border-white/70 bg-white/80 text-transparent'
-          }`}
-        >
+        <span className={`absolute right-2 top-2 grid h-5 w-5 place-items-center rounded-full border ${selected ? 'border-lime-dark bg-lime-dark text-white' : 'border-white/70 bg-white/80 text-transparent'}`}>
           {selected && <Check size={12} strokeWidth={3} />}
         </span>
       </div>
@@ -91,18 +81,8 @@ function StorageCard({ selected, onClick, opt }) {
           : 'border-ink/12 bg-white text-ink hover:border-ink/30'
       }`}
     >
-      <div
-        className={`relative aspect-[16/10] overflow-hidden rounded-lg border ${
-          selected ? 'border-white/20 bg-white/[0.08]' : 'border-ink/[0.07] bg-surface'
-        }`}
-      >
-        <span
-          className={`absolute right-2 top-2 z-10 grid h-5 w-5 place-items-center rounded-full border ${
-            selected
-              ? 'border-white bg-white text-lime-dark'
-              : 'border-ink/20 bg-white/80 text-transparent'
-          }`}
-        >
+      <div className={`relative aspect-[16/10] overflow-hidden rounded-lg border ${selected ? 'border-white/20 bg-white/[0.08]' : 'border-ink/[0.07] bg-surface'}`}>
+        <span className={`absolute right-2 top-2 z-10 grid h-5 w-5 place-items-center rounded-full border ${selected ? 'border-white bg-white text-lime-dark' : 'border-ink/20 bg-white/80 text-transparent'}`}>
           <Check size={12} strokeWidth={3} />
         </span>
         {opt.img ? (
@@ -116,19 +96,13 @@ function StorageCard({ selected, onClick, opt }) {
 
       <div className="flex flex-1 flex-col px-1 pt-3">
         {opt.brand && (
-          <span
-            className={`font-body text-[11px] font-semibold uppercase tracking-wide ${
-              selected ? 'text-white/55' : 'text-slatey-400'
-            }`}
-          >
+          <span className={`font-body text-[11px] font-semibold uppercase tracking-wide ${selected ? 'text-white/55' : 'text-slatey-400'}`}>
             {opt.brand}
           </span>
         )}
         <span className="font-display text-[15px] font-bold leading-tight">{opt.name}</span>
 
-        <ul className={`mt-2 space-y-1 font-body text-xs font-medium ${
-          selected ? 'text-white/75' : 'text-slatey-500'
-        }`}>
+        <ul className={`mt-2 space-y-1 font-body text-sm font-semibold ${selected ? 'text-white/85' : 'text-slatey-500'}`}>
           {opt.specs.map((s) => (
             <li key={s} className="flex gap-1.5">
               <span className={selected ? 'text-white/80' : 'text-lime-dark'}>·</span>
@@ -137,26 +111,16 @@ function StorageCard({ selected, onClick, opt }) {
           ))}
         </ul>
 
-        <div
-          className={`mt-3 flex items-center justify-between border-t pt-2.5 ${
-            selected ? 'border-white/15' : 'border-ink/[0.07]'
-          }`}
-        >
+        <div className={`mt-3 flex items-center justify-between border-t pt-2.5 ${selected ? 'border-white/15' : 'border-ink/[0.07]'}`}>
           {hasBattery ? (
             <span className="inline-flex items-center gap-1.5 font-body text-sm font-bold">
-              <span
-                className={`grid h-4 w-4 place-items-center rounded-full ${
-                  selected ? 'bg-white text-lime-dark' : 'bg-ink text-white'
-                }`}
-              >
+              <span className={`grid h-4 w-4 place-items-center rounded-full ${selected ? 'bg-white text-lime-dark' : 'bg-ink text-white'}`}>
                 <Plus size={11} strokeWidth={3} />
               </span>
               {whFmt(opt.wh)}
             </span>
           ) : (
-            <span className={`font-body text-sm font-medium ${
-              selected ? 'text-white/70' : 'text-slatey-400'
-            }`}>
+            <span className={`font-body text-sm font-medium ${selected ? 'text-white/70' : 'text-slatey-400'}`}>
               No battery
             </span>
           )}
@@ -195,37 +159,19 @@ export default function Configurator({ config, set }) {
   return (
     <div className="space-y-7">
       <div>
-        <SectionHead
-          step="Step 1 — Location"
-          title="Where do you want to install your system?"
-          hint="Mount included"
-        />
+        <SectionHead step="Step 1 — Location" title="Where do you want to install your system?" hint="Mount included" />
         <div className="grid grid-cols-2 gap-2.5">
           {locations.map((l) => (
-            <LocationButton
-              key={l.id}
-              selected={config.location === l.id}
-              onClick={() => set('location', l.id)}
-              label={l.label}
-            />
+            <LocationButton key={l.id} selected={config.location === l.id} onClick={() => set('location', l.id)} label={l.label} />
           ))}
         </div>
       </div>
 
       <div>
-        <SectionHead
-          step="Step 2 — Module"
-          title="What module size and performance do you want to install?"
-          hint={`${panel.wp} Wp each`}
-        />
+        <SectionHead step="Step 2 — Module" title="What module size and performance do you want to install?" hint={`${panel.wp} Wp each`} />
         <div className="grid grid-cols-2 gap-2.5">
           {panelOptions.map((p) => (
-            <ModuleCard
-              key={p.id}
-              selected={config.panel === p.id}
-              onClick={() => set('panel', p.id)}
-              panel={p}
-            />
+            <ModuleCard key={p.id} selected={config.panel === p.id} onClick={() => set('panel', p.id)} panel={p} />
           ))}
         </div>
         <div className="mt-2.5 grid grid-cols-4 gap-2.5">
@@ -238,18 +184,12 @@ export default function Configurator({ config, set }) {
                 onClick={() => set('modules', n)}
                 aria-label={`${n} module${n > 1 ? 's' : ''}`}
                 className={`flex min-h-[60px] flex-col items-center justify-center rounded-xl border px-2 py-3 transition ${
-                  selected
-                    ? 'border-lime bg-lime text-white shadow-sm'
-                    : 'border-ink/12 bg-white text-ink hover:border-ink/30'
+                  selected ? 'border-lime bg-lime text-white shadow-sm' : 'border-ink/12 bg-white text-ink hover:border-ink/30'
                 }`}
               >
                 <span className="font-display text-base font-bold leading-none">{n}</span>
                 {delta !== 0 && (
-                  <span
-                    className={`mt-1.5 font-body text-xs font-medium leading-none ${
-                      selected ? 'text-white/85' : 'text-slatey-400'
-                    }`}
-                  >
+                  <span className={`mt-1.5 font-body text-xs font-medium leading-none ${selected ? 'text-white/85' : 'text-slatey-400'}`}>
                     −{baht(Math.abs(delta))}
                   </span>
                 )}
@@ -260,52 +200,25 @@ export default function Configurator({ config, set }) {
       </div>
 
       <div>
-        <SectionHead
-          step="Step 3 — Storage"
-          title="What storage option do you want to add?"
-          hint="Optional"
-        />
+        <SectionHead step="Step 3 — Storage" title="What storage option do you want to add?" hint="Optional" />
         <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
           {storageOptions.map((s) => (
-            <StorageCard
-              key={s.id}
-              selected={config.storage === s.id}
-              onClick={() => set('storage', s.id)}
-              opt={s}
-            />
+            <StorageCard key={s.id} selected={config.storage === s.id} onClick={() => set('storage', s.id)} opt={s} />
           ))}
         </div>
       </div>
 
       <div>
-        <SectionHead
-          step="Step 4 — AC cable"
-          title="Which AC connection cable do you need?"
-          hint="To reach your socket"
-        />
+        <SectionHead step="Step 4 — AC cable" title="Which AC connection cable do you need?" hint="To reach your socket" />
         <div className="space-y-2.5">
           <div className="grid grid-cols-2 gap-2.5">
-            {cableOptions
-              .filter((c) => c.id !== 'none')
-              .map((c) => (
-                <CableButton
-                  key={c.id}
-                  selected={config.cable === c.id}
-                  onClick={() => set('cable', c.id)}
-                  opt={c}
-                />
-              ))}
-          </div>
-          {cableOptions
-            .filter((c) => c.id === 'none')
-            .map((c) => (
-              <CableButton
-                key={c.id}
-                selected={config.cable === c.id}
-                onClick={() => set('cable', c.id)}
-                opt={c}
-              />
+            {cableOptions.filter((c) => c.id !== 'none').map((c) => (
+              <CableButton key={c.id} selected={config.cable === c.id} onClick={() => set('cable', c.id)} opt={c} />
             ))}
+          </div>
+          {cableOptions.filter((c) => c.id === 'none').map((c) => (
+            <CableButton key={c.id} selected={config.cable === c.id} onClick={() => set('cable', c.id)} opt={c} />
+          ))}
         </div>
       </div>
     </div>
