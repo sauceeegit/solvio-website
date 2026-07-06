@@ -5,7 +5,7 @@ import Reveal from '../Reveal';
 
 export default function Community() {
   return (
-    <section className="bg-ink py-16 text-white">
+    <section className="bg-[#213c2f] py-16 text-white">
       <div className="container-x">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
@@ -14,7 +14,7 @@ export default function Community() {
               Become part of Solvio
             </h2>
             <p className="mt-3 text-white/60">
-              More than a store — a community powering Thailand’s switch to clean energy. There’s a
+              More than a store — a community powering Thailand's switch to clean energy. There's a
               place for everyone.
             </p>
           </div>
