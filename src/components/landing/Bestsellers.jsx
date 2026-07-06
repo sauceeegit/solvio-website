@@ -27,7 +27,7 @@ export default function Bestsellers() {
               <Reveal key={p.id} delay={i * 0.06}>
                 <div
                   className="card flex h-full flex-col overflow-hidden transition-[filter] duration-300"
-                  style={{ filter: dimmed ? 'brightness(0.35)' : 'brightness(1)' }}
+                  style={{ filter: dimmed ? 'brightness(0.55)' : 'brightness(1)' }}
                   onMouseEnter={() => setHoveredIdx(i)}
                   onMouseLeave={() => setHoveredIdx(null)}
                 >
