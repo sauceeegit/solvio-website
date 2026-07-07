@@ -7,6 +7,7 @@ import { solarPanelVideo } from '../data/landing';
 export default function SolarPanelPage() {
   const videoRef = useRef(null);
   const [ready, setReady] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   // Ensure the loop autoplays muted (React can drop the muted attribute).
   useEffect(() => {
@@ -40,7 +41,19 @@ export default function SolarPanelPage() {
               preload="auto"
               onLoadedData={() => setReady(true)}
               onCanPlay={() => setReady(true)}
+              onTimeUpdate={(e) => {
+                const v = e.currentTarget;
+                if (v.duration) setProgress((v.currentTime / v.duration) * 100);
+              }}
             />
+
+            {/* Orange playback progress bar tracking the loop's duration */}
+            <div className="absolute inset-x-0 bottom-0 z-10 h-1.5 bg-white/15">
+              <div
+                className="h-full bg-lime transition-[width] duration-150 ease-linear"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
           </div>
         </section>
 
