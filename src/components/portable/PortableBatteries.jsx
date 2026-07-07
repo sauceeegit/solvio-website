@@ -66,8 +66,17 @@ export default function PortableBatteries() {
                   <img
                     src={p.img}
                     alt={p.name}
-                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
+                      p.sideImg ? 'group-hover:opacity-0' : ''
+                    }`}
                   />
+                  {p.sideImg && (
+                    <img
+                      src={p.sideImg}
+                      alt={`${p.name} — side view`}
+                      className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                    />
+                  )}
                 </div>
 
                 <div className="flex flex-1 flex-col gap-3 p-5">
