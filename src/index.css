@@ -54,3 +54,74 @@ body {
   background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
   background-size: 22px 22px;
 }
+
+/* Scoped media loader — the branded lightning-bolt shown inside a looping video
+   or the 3D-model iframe until that element is ready. Mirrors the full-page
+   splash (see index.html) at a smaller, in-box scale. */
+.solvio-media-loader__mark {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: clamp(46px, 14%, 82px);
+  aspect-ratio: 1;
+}
+.solvio-media-loader__mark::before {
+  content: '';
+  position: absolute;
+  inset: -26%;
+  border: 1px solid rgba(255, 103, 0, 0.32);
+  border-radius: 999px;
+  animation: solvio-media-ring 1.8s ease-out infinite;
+}
+.solvio-media-loader__mark::after {
+  content: '';
+  position: absolute;
+  inset: -14%;
+  z-index: -1;
+  border-radius: 999px;
+  background: conic-gradient(from 120deg, transparent 0 62%, rgba(255, 103, 0, 0.35), transparent 82%);
+  filter: blur(6px);
+  opacity: 0.7;
+  animation: solvio-media-spin 4.5s linear infinite;
+}
+.solvio-media-loader__badge {
+  width: 100%;
+  filter: drop-shadow(0 10px 22px rgba(252, 67, 2, 0.35));
+  animation: solvio-media-float 2.2s ease-in-out infinite;
+}
+.solvio-media-loader__trace {
+  fill: none;
+  stroke: #f4f0e4;
+  stroke-width: 0.9;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0;
+  animation: solvio-media-draw 1.7s ease-in-out infinite;
+}
+@keyframes solvio-media-ring {
+  0% { transform: scale(0.85); opacity: 0.6; }
+  100% { transform: scale(1.2); opacity: 0; }
+}
+@keyframes solvio-media-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes solvio-media-float {
+  50% { transform: translateY(-3px); }
+}
+@keyframes solvio-media-draw {
+  0% { stroke-dashoffset: 1; opacity: 0; }
+  20%, 58% { opacity: 0.9; }
+  58%, 100% { stroke-dashoffset: 0; }
+  100% { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .solvio-media-loader__mark::before,
+  .solvio-media-loader__mark::after {
+    display: none;
+  }
+  .solvio-media-loader__badge,
+  .solvio-media-loader__trace {
+    animation: none;
+  }
+}

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Header from '../components/landing/Header';
 import Footer from '../components/Footer';
+import MediaLoader from '../components/MediaLoader';
 import { rooftopVideo } from '../data/landing';
 
 export default function RooftopSystemPage() {
@@ -40,6 +41,7 @@ export default function RooftopSystemPage() {
               onLoadedData={() => setReady(true)}
               onCanPlay={() => setReady(true)}
             />
+            <MediaLoader show={!ready} label="Loading video" />
           </div>
         </section>
       </main>

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import Header from '../components/landing/Header';
 import SolarPanelFeatures from '../components/SolarPanelFeatures';
 import Footer from '../components/Footer';
+import MediaLoader from '../components/MediaLoader';
 import { solarPanelVideo } from '../data/landing';
 
 export default function SolarPanelPage() {
@@ -58,6 +59,8 @@ export default function SolarPanelPage() {
             <div className="absolute inset-x-0 bottom-0 z-10 h-1.5 bg-white/15">
               <div ref={barRef} className="h-full bg-lime" style={{ width: '0%' }} />
             </div>
+
+            <MediaLoader show={!ready} label="Loading video" />
           </div>
         </section>
 

@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import MediaLoader from './MediaLoader';
 
 const MODEL_URL = 'https://sauceeegit.github.io/solvio-panel-3d/';
 const MODEL_ORIGIN = 'https://sauceeegit.github.io';
@@ -8,6 +9,7 @@ const MODEL_ORIGIN = 'https://sauceeegit.github.io';
 // number of panels (see the postMessage API in the solvio-panel-3d project).
 export default function Gallery({ derived }) {
   const frameRef = useRef(null);
+  const [loaded, setLoaded] = useState(false);
   const cfg = derived?.config;
   const wp = derived?.wp ?? 0;
 
@@ -29,14 +31,26 @@ export default function Gallery({ derived }) {
     send();
   }, [cfg?.location, cfg?.panel, cfg?.modules, send]);
 
-  // The model pings 'solvio-ready' once loaded — push the current config then too.
+  // The model pings 'solvio-ready' once the WebGL scene is fully up — that's the
+  // real "loaded" signal (the iframe's onLoad only means the HTML arrived). Push
+  // the current config then, and reveal the model (hide the loader).
   useEffect(() => {
     const onMsg = (e) => {
-      if (e.origin === MODEL_ORIGIN && e.data?.type === 'solvio-ready') send();
+      if (e.origin === MODEL_ORIGIN && e.data?.type === 'solvio-ready') {
+        send();
+        setLoaded(true);
+      }
     };
     window.addEventListener('message', onMsg);
     return () => window.removeEventListener('message', onMsg);
   }, [send]);
+
+  // Safety cap: if 'solvio-ready' is ever missed, reveal anyway so the loader
+  // can't spin forever.
+  useEffect(() => {
+    const t = setTimeout(() => setLoaded(true), 8000);
+    return () => clearTimeout(t);
+  }, []);
 
   return (
     <div className="lg:sticky lg:top-24 lg:self-start">
@@ -53,6 +67,7 @@ export default function Gallery({ derived }) {
         <span className="pointer-events-none absolute left-4 top-4 rounded-full bg-ink/85 px-3 py-1 font-mono text-[11px] font-medium uppercase tracking-wider text-lime backdrop-blur">
           {wp.toLocaleString()} Wp · Plug &amp; Play
         </span>
+        <MediaLoader show={!loaded} label="Loading 3D model" />
       </div>
     </div>
   );

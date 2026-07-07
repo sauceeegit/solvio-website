@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { hero } from '../../data/landing';
+import MediaLoader from '../MediaLoader';
 import PhuketClock from './PhuketClock';
 
 export default function Hero() {
@@ -33,6 +34,7 @@ export default function Hero() {
             onLoadedData={() => setReady(true)}
             onCanPlay={() => setReady(true)}
           />
+          <MediaLoader show={!ready} label="Loading video" />
         </div>
       ) : (
         <img src={hero.poster} alt={hero.caption} className="block h-auto w-full object-cover" />
