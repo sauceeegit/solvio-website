@@ -116,7 +116,7 @@ export const landingFaqs = [
   },
   {
     q: 'How fast does it pay for itself?',
-    a: 'Most systems pay back in 2–3 years. After that, the electricity is essentially free for decades — panels carry a 30-year performance warranty.',
+    a: 'Balcony kits typically pay back in 3–4 years; full rooftop installations in about 4–6. After that, the electricity is essentially free for decades — panels carry a 30-year performance warranty.',
   },
   {
     q: 'Rooftop or balcony — which is right for me?',
