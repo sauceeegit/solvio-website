@@ -33,7 +33,9 @@ const extraJsonLd = {
 };
 
 function renderRoute(route, meta) {
-  const url = route === '/' ? `${SITE}/` : `${SITE}${route}`;
+  // Trailing slash matches the URL GitHub Pages actually serves (it 301s
+  // /route -> /route/), so canonicals point at the final URL, no redirect hop.
+  const url = route === '/' ? `${SITE}/` : `${SITE}${route}/`;
   let html = template
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(meta.title)}</title>`)
     .replace(/(<meta name="description" content=")[^"]*(")/, `$1${esc(meta.description)}$2`)

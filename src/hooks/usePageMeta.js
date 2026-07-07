@@ -14,7 +14,7 @@ export function usePageMeta(route) {
   useEffect(() => {
     const meta = routeMeta[route];
     if (!meta) return;
-    const url = route === '/' ? `${SITE}/` : `${SITE}${route}`;
+    const url = route === '/' ? `${SITE}/` : `${SITE}${route}/`;
     document.title = meta.title;
     set('meta[name="description"]', 'content', meta.description);
     set('link[rel="canonical"]', 'href', url);
