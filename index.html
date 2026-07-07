@@ -8,9 +8,55 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      :root{color-scheme:dark}
+      html,body,#root{min-height:100%}
+      body{margin:0;background:#0C1E1A}
+      #solvio-splash{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;overflow:hidden;color:#F4F0E4;background:radial-gradient(circle at 50% 43%,rgba(255,103,0,.24),rgba(255,103,0,.08) 18rem,transparent 34rem),linear-gradient(180deg,#0C1E1A,#0F2620);transition:opacity 480ms cubic-bezier(.4,0,.2,1),visibility 480ms cubic-bezier(.4,0,.2,1)}
+      #solvio-splash::before{content:"";position:absolute;width:min(36rem,86vw);aspect-ratio:1;border:1px solid rgba(255,103,0,.18);border-radius:999px;box-shadow:inset 0 0 4rem rgba(255,103,0,.06),0 0 5rem rgba(255,103,0,.1);animation:solvio-breathe 2.8s ease-in-out infinite}
+      #solvio-splash::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 42%,rgba(244,240,228,.055) 49%,transparent 57%);animation:solvio-sheen 3s ease-in-out infinite}
+      .solvio-splash--dismissed{pointer-events:none;visibility:hidden;opacity:0}
+      .solvio-splash__inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:1.35rem;transform:translateY(-2vh)}
+      .solvio-splash__mark{position:relative;isolation:isolate;display:grid;width:clamp(5.5rem,14vw,8.25rem);aspect-ratio:1;place-items:center}
+      .solvio-splash__mark::before{content:"";position:absolute;inset:-22%;border:1px solid rgba(255,103,0,.3);border-radius:999px;animation:solvio-ring 2s ease-out infinite}
+      .solvio-splash__mark::after{content:"";position:absolute;inset:-13%;z-index:-1;border-radius:999px;background:conic-gradient(from 120deg,transparent 0 62%,rgba(255,103,0,.32),transparent 82%);filter:blur(.4rem);opacity:.68;animation:solvio-spin 5s linear infinite}
+      .solvio-splash__badge{width:100%;filter:drop-shadow(0 1.25rem 2.5rem rgba(252,67,2,.32));animation:solvio-float 2.4s ease-in-out infinite}
+      .solvio-splash__bolt-trace{fill:none;stroke:#F4F0E4;stroke-dasharray:1;stroke-dashoffset:1;stroke-linejoin:round;stroke-width:.9;opacity:0;animation:solvio-draw 1.7s ease-in-out infinite}
+      .solvio-splash__wordmark{display:flex;align-items:center;color:#FF6700;font-family:"Space Grotesk",system-ui,sans-serif;font-size:clamp(2rem,5vw,3rem);font-weight:700;letter-spacing:0;line-height:1;text-shadow:0 0 1.5rem rgba(255,103,0,.24)}
+      .solvio-splash__wordmark svg{width:.58em;height:.9em;margin:0 .03em;transform:translateY(.03em)}
+      .solvio-splash__charge{width:min(11.5rem,46vw);height:2px;overflow:hidden;border-radius:999px;background:rgba(244,240,228,.16);box-shadow:0 0 1.35rem rgba(255,103,0,.16)}
+      .solvio-splash__charge::after{content:"";display:block;width:100%;height:100%;border-radius:inherit;background:linear-gradient(90deg,rgba(255,103,0,.1),#FF6700 42%,#F4F0E4 58%,rgba(252,67,2,.28));transform:scaleX(.08);transform-origin:left center;animation:solvio-charge 1.45s cubic-bezier(.76,0,.24,1) infinite}
+      @keyframes solvio-breathe{50%{transform:scale(1.02);opacity:.88}0%,100%{transform:scale(.96);opacity:.55}}
+      @keyframes solvio-sheen{0%,32%{transform:translateX(-46%);opacity:0}48%{opacity:1}72%,100%{transform:translateX(46%);opacity:0}}
+      @keyframes solvio-ring{0%{transform:scale(.82);opacity:.62}100%{transform:scale(1.18);opacity:0}}
+      @keyframes solvio-spin{to{transform:rotate(360deg)}}
+      @keyframes solvio-float{50%{transform:translateY(-.28rem)}}
+      @keyframes solvio-draw{0%{stroke-dashoffset:1;opacity:0}20%,58%{opacity:.9}58%,100%{stroke-dashoffset:0}100%{opacity:0}}
+      @keyframes solvio-charge{0%{transform:scaleX(.08);opacity:.45}62%{transform:scaleX(.86);opacity:1}100%{transform:scaleX(1);opacity:0}}
+      @media (prefers-reduced-motion:reduce){#solvio-splash,#solvio-splash::before,#solvio-splash::after,#solvio-splash *,#solvio-splash *::before,#solvio-splash *::after{animation:none!important;transition:none!important}#solvio-splash::after,.solvio-splash__mark::before,.solvio-splash__mark::after,.solvio-splash__bolt-trace{display:none}.solvio-splash__charge::after{opacity:.85;transform:scaleX(1)}}
+    </style>
     <title>Solvio Balcony System — Plug-and-play balcony solar</title>
   </head>
   <body>
+    <div id="solvio-splash" aria-hidden="true">
+      <div class="solvio-splash__inner">
+        <div class="solvio-splash__mark">
+          <svg class="solvio-splash__badge" viewBox="0 0 32 32" focusable="false">
+            <rect x="1" y="1" width="30" height="30" rx="7.5" fill="#FC4302" />
+            <path d="M14 4 L8 18 H14 L12 28 L24 13 H17 L20 4 Z" fill="#F4F0E4" />
+            <path class="solvio-splash__bolt-trace" pathLength="1" d="M14 4 L8 18 H14 L12 28 L24 13 H17 L20 4 Z" />
+          </svg>
+        </div>
+        <div class="solvio-splash__wordmark">
+          <span>Sol</span>
+          <svg viewBox="0 0 32 32" focusable="false">
+            <path d="M14 4 L8 18 H14 L12 28 L24 13 H17 L20 4 Z" fill="currentColor" />
+          </svg>
+          <span>io</span>
+        </div>
+        <div class="solvio-splash__charge"></div>
+      </div>
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
