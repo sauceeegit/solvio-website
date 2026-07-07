@@ -46,7 +46,7 @@ export default function TopBar() {
             to="/balcony-system"
             className="inline-flex items-center rounded-full bg-lime px-3.5 py-1 font-display text-sm font-bold text-white"
           >
-            Shop now
+            Claim now
           </Link>
         </span>
 

@@ -1,10 +1,10 @@
 import { useMemo, useState } from 'react';
-import { Sun, Euro, Leaf, Clock } from 'lucide-react';
+import { Sun, Wallet, Leaf, Clock } from 'lucide-react';
 import { orientations, calculatorDefaults, computeConfig, defaultConfig } from '../data/product';
-import { euro, num } from '../lib/format';
+import { baht, num } from '../lib/format';
 import Reveal from './Reveal';
 
-const YIELD_PER_WP = 0.95; // kWh per Wp per year, south-facing, central Europe
+const YIELD_PER_WP = 1.5; // kWh per Wp per year, south-facing (Thailand, ~5 peak sun-hours)
 const CO2_PER_KWH = 0.38; // kg avoided per kWh
 
 // Fallback system when no live configurator is supplied (e.g. on the landing page).
@@ -22,7 +22,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
   const { annualYield, savings, payback, co2 } = useMemo(() => {
     const y = derived.wp * YIELD_PER_WP * factor;
     const usable = Math.min(y, household); // can't save more than you use
-    const s = (usable * rate) / 100;
+    const s = usable * rate; // ฿ / kWh × kWh = ฿
     return {
       annualYield: y,
       savings: s,
@@ -33,7 +33,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
 
   const stats = [
     { icon: Sun, label: 'Annual yield', value: `${num(annualYield)} kWh`, tint: 'text-amber-dark' },
-    { icon: Euro, label: 'You save / year', value: euro(savings), tint: 'text-lime-dark' },
+    { icon: Wallet, label: 'You save / year', value: baht(savings), tint: 'text-lime-dark' },
     { icon: Clock, label: 'Pays back in', value: `${payback.toFixed(1)} yrs`, tint: 'text-ink' },
     { icon: Leaf, label: 'CO₂ avoided / yr', value: `${num(co2)} kg`, tint: 'text-lime-dark' },
   ];
@@ -95,13 +95,13 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
                   <label className="font-display text-sm font-semibold text-ink">
                     Electricity price
                   </label>
-                  <span className="font-mono text-sm font-semibold text-ink">{rate} ct/kWh</span>
+                  <span className="font-mono text-sm font-semibold text-ink">฿{rate}/kWh</span>
                 </div>
                 <input
                   type="range"
-                  min="15"
-                  max="60"
-                  step="1"
+                  min="2"
+                  max="10"
+                  step="0.5"
                   value={rate}
                   onChange={(e) => setRate(Number(e.target.value))}
                   className="w-full accent-lime"
