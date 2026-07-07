@@ -111,24 +111,32 @@ export const founder = {
 
 export const landingFaqs = [
   {
-    q: 'About Solvio',
-    a: 'Solvio makes clean solar power simple for everyone in Thailand — from a single balcony panel to a full rooftop array. We design, supply and support every kit so you can switch to solar without the usual hassle.',
+    q: 'How much does solar cost in Thailand?',
+    a: 'Balcony kits start at ฿12,990 plug-and-play; full rooftop systems are sized to your home and priced transparently in Baht after a free assessment. No hidden fees.',
   },
   {
-    q: 'Our promise: everything from one source',
-    a: 'Panels, inverters, batteries, mounting and support all come from Solvio. One partner, one warranty, one point of contact — no juggling suppliers or mismatched parts.',
+    q: 'How fast does it pay for itself?',
+    a: 'Most systems pay back in 2–3 years. After that, the electricity is essentially free for decades — panels carry a 30-year performance warranty.',
   },
   {
-    q: 'What we offer you for your energy transition',
-    a: 'Free system sizing, transparent Baht pricing, plug-and-play installation, app-based monitoring and flexible financing. We make the path from quote to clean power short and clear.',
+    q: 'Do I need permission to install solar?',
+    a: 'Balcony and portable kits plug straight in — no permits needed. For rooftop systems that feed the grid, MEA/PEA registration is required, and we handle the paperwork for you.',
   },
   {
-    q: 'Our services',
-    a: 'Consultation and site assessment, supply of certified equipment, installation guidance, grid-registration help, and ongoing performance support for the life of your system.',
+    q: 'I rent / live in a condo. Can I still use solar?',
+    a: 'Yes — that is exactly what the balcony kit is for. It clamps on without drilling, nothing touches the building, and it moves with you when you relocate.',
   },
   {
-    q: 'What subsidies can I use at Solvio?',
-    a: 'Our advisors keep up to date with the latest Thai net-metering schemes and local incentives, and will tell you exactly which apply to your address during your free consultation.',
+    q: 'What happens during rainy season?',
+    a: 'Panels still generate on overcast days, just less. Over a full Thai year the sunshine more than compensates — and a battery stores daytime surplus for evenings.',
+  },
+  {
+    q: 'Will the panels survive Thai heat and storms?',
+    a: 'The glass-glass modules are IP68 weatherproof and rated for high heat, heavy rain and coastal air.',
+  },
+  {
+    q: 'What maintenance is needed?',
+    a: 'Almost none. An occasional rinse to clear dust, and the app flags anything unusual. Panels have no moving parts.',
   },
 ];
 
