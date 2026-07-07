@@ -44,10 +44,10 @@ export const product = {
 // ---- Configurator options ---------------------------------------------------
 
 export const locations = [
+  { id: 'balcony', label: 'Balcony', sub: 'Railing & grid mount', icon: 'Building2' },
   { id: 'garden', label: 'Garden', sub: 'Steel ground frame', icon: 'Trees' },
   { id: 'flatroof', label: 'Flat roof', sub: 'Ballasted A-frame', icon: 'Home' },
   { id: 'facade', label: 'Facade', sub: 'Wall bracket set', icon: 'PanelTop' },
-  { id: 'balcony', label: 'Balcony', sub: 'Railing & grid mount', icon: 'Building2' },
 ];
 
 // Panels are priced per unit in USD and converted to THB.
@@ -56,22 +56,22 @@ export const panelOptions = [
   {
     id: 'white',
     label: 'White Feather',
-    sub: 'Silver-frame bifacial',
+    sub: 'Silver-frame',
     usd: 200,
     img: asset('/module-white.jpg'),
     wp: 450,
-    dims: '1762 × 1134 × 30 mm',
-    weight: '22 kg',
+    dims: '1760 × 1130 × 4.75 mm',
+    weight: '12.5 kg',
   },
   {
     id: 'dark',
     label: 'Dark Feather',
-    sub: 'All-black bifacial',
+    sub: 'All-black',
     usd: 220,
     img: asset('/module-dark.jpg'),
     wp: 450,
-    dims: '1762 × 1134 × 30 mm',
-    weight: '22 kg',
+    dims: '1760 × 1130 × 4.75 mm',
+    weight: '12.5 kg',
   },
 ];
 export const panelThb = (id) => {

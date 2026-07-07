@@ -50,7 +50,7 @@ function ModuleCard({ selected, onClick, panel }) {
       <div className="relative aspect-[3/4] w-full overflow-hidden bg-surface">
         <img src={panel.img} alt={panel.label} className="h-full w-full object-cover" />
         <span className="absolute left-2 top-2 rounded-full bg-ink/85 px-2 py-0.5 font-body text-[10px] font-semibold text-lime backdrop-blur">
-          {panel.wp} Wp · bifacial
+          {panel.wp} Wp
         </span>
         <span className={`absolute right-2 top-2 grid h-5 w-5 place-items-center rounded-full border ${selected ? 'border-lime-dark bg-lime-dark text-white' : 'border-white/70 bg-white/80 text-transparent'}`}>
           {selected && <Check size={12} strokeWidth={3} />}
@@ -174,28 +174,42 @@ export default function Configurator({ config, set }) {
             <ModuleCard key={p.id} selected={config.panel === p.id} onClick={() => set('panel', p.id)} panel={p} />
           ))}
         </div>
-        <div className="mt-2.5 grid grid-cols-4 gap-2.5">
-          {[1, 2, 3, 4].map((n) => {
-            const selected = config.modules === n;
-            const delta = (n - 4) * panelThb(panel.id);
-            return (
-              <button
-                key={n}
-                onClick={() => set('modules', n)}
-                aria-label={`${n} module${n > 1 ? 's' : ''}`}
-                className={`flex min-h-[60px] flex-col items-center justify-center rounded-xl border px-2 py-3 transition ${
-                  selected ? 'border-lime bg-lime text-white shadow-sm' : 'border-ink/12 bg-white text-ink hover:border-ink/30'
-                }`}
-              >
-                <span className="font-display text-base font-bold leading-none">{n}</span>
-                {delta !== 0 && (
-                  <span className={`mt-1.5 font-body text-xs font-medium leading-none ${selected ? 'text-white/85' : 'text-slatey-400'}`}>
-                    −{baht(Math.abs(delta))}
-                  </span>
-                )}
-              </button>
-            );
-          })}
+        <div className="mt-2.5 flex items-center justify-between gap-3 rounded-xl border border-ink/12 bg-white px-4 py-3">
+          <div>
+            <p className="font-display text-sm font-bold text-ink">Number of modules</p>
+            <p className="font-body text-xs text-slatey-400">{baht(panelThb(panel.id))} each</p>
+          </div>
+          <div className="flex items-center gap-1">
+            <button
+              type="button"
+              onClick={() => set('modules', Math.max(1, config.modules - 1))}
+              aria-label="Remove a module"
+              className="grid h-9 w-9 place-items-center rounded-lg border border-ink/12 text-ink transition hover:border-ink/30 disabled:opacity-40"
+              disabled={config.modules <= 1}
+            >
+              −
+            </button>
+            <input
+              type="number"
+              min="1"
+              inputMode="numeric"
+              value={config.modules}
+              onChange={(e) => {
+                const v = parseInt(e.target.value, 10);
+                set('modules', Number.isFinite(v) && v >= 1 ? v : 1);
+              }}
+              aria-label="Number of modules"
+              className="h-9 w-16 rounded-lg border border-ink/12 bg-white text-center font-display text-base font-bold text-ink focus:border-lime focus:outline-none focus:ring-1 focus:ring-lime/40"
+            />
+            <button
+              type="button"
+              onClick={() => set('modules', config.modules + 1)}
+              aria-label="Add a module"
+              className="grid h-9 w-9 place-items-center rounded-lg border border-ink/12 text-ink transition hover:border-ink/30"
+            >
+              +
+            </button>
+          </div>
         </div>
       </div>
 
