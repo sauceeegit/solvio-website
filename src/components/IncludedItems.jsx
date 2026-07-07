@@ -124,28 +124,28 @@ const topRow = [
   },
   {
     badge: '1x',
-    img: null, // add /kit-inverter.jpg to public
+    img: asset('/kit-inverter.png'),
     imgAlt: '1x Micro Inverter 800 W',
     title: '1x Micro Inverter 800 W',
     bullets: ['Max. Output Power: 800 W', 'Wi-Fi Enabled', 'IP67 Waterproof'],
   },
   {
     badge: '2x',
-    img: null, // add /kit-ycable.jpg to public
+    img: asset('/kit-ycable.png'),
     imgAlt: '2x Y-Cable Set',
     title: '2x Y-Cable Set',
     bullets: ['Parallel Connection', 'Connects two modules to one DC input'],
   },
   {
     badge: '4x',
-    img: null, // add /kit-bracket.jpg to public
+    img: asset('/kit-bracket.png'),
     imgAlt: '4x Mounting Bracket',
     title: '4x Mounting Bracket',
     bullets: ['Adjustable tilt frame', 'Corrosion-resistant', 'Built for outdoor use'],
   },
   {
     badge: '1x',
-    img: null, // add /kit-manual.jpg to public
+    img: asset('/kit-manual.png'),
     imgAlt: '1x Installation Manual',
     title: '1x Installation Manual',
     bullets: ['Step-by-step guide', 'Illustrated instructions', 'Easy installation'],
@@ -155,21 +155,21 @@ const topRow = [
 const bottomRow = [
   {
     badge: '2x',
-    img: null, // add /kit-cable-1m.jpg to public
+    img: asset('/kit-cable-1m.png'),
     imgAlt: '2x DC Extension Cable – 1 m',
     title: '2x DC Extension Cable – 1 m',
     bullets: ['Connects modules to inverter / storage', 'UV-resistant, outdoor grade'],
   },
   {
     badge: '4x',
-    img: null, // add /kit-cable-2m.jpg to public
+    img: asset('/kit-cable-2m.png'),
     imgAlt: '4x DC Extension Cable – 2 m',
     title: '4x DC Extension Cable – 2 m',
     bullets: ['Connects modules to inverter / storage', 'UV-resistant, outdoor grade'],
   },
   {
     badge: '1x',
-    img: null, // add /kit-hardware.jpg to public
+    img: asset('/kit-hardware.png'),
     imgAlt: '1x Inverter Bracket & Hardware Kit',
     title: '1x Inverter Bracket & Hardware Kit',
     bullets: ['Fixes the inverter to the module frame', 'All tools & fasteners included'],
