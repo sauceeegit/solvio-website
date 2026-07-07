@@ -5,7 +5,7 @@ import Reveal from '../Reveal';
 
 export default function Community() {
   return (
-    <section className="bg-[#213c2f] py-16 text-white">
+    <section className="bg-ink py-16 text-white">
       <div className="container-x">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
