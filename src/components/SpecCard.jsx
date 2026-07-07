@@ -19,7 +19,7 @@ export default function SpecCard() {
               </span>
               <div>
                 <p className="font-display text-sm font-bold text-ink">{spec.model}</p>
-                <p className="text-xs text-slatey-500">N-type bifacial · 22.4% efficiency</p>
+                <p className="text-xs text-slatey-500">N-type · 22.4% efficiency</p>
               </div>
             </div>
           </div>
@@ -31,8 +31,8 @@ export default function SpecCard() {
             Built to outlast your mortgage
           </h2>
           <p className="mt-3 text-slatey-500">
-            Frameless glass-glass construction and N-type bifacial cells squeeze power from both
-            sides of the panel — and keep doing it for three decades.
+            Frameless glass-glass construction and high-efficiency N-type cells squeeze maximum
+            power from every panel — and keep doing it for three decades.
           </p>
 
           <dl className="mt-7 divide-y divide-ink/[0.07] overflow-hidden rounded-xl2 border border-ink/[0.07] bg-white">

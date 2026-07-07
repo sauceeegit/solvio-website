@@ -140,7 +140,7 @@ export default function Highlights() {
               />
             </div>
 
-            {/* E1 — bifacial donut (orange) */}
+            {/* E1 — yield donut (orange) */}
             <div className="flex h-full min-h-[160px] flex-col items-center justify-center rounded-xl2 bg-lime p-5 text-center text-white lg:col-span-1 lg:col-start-5 lg:row-start-2">
               <div className="relative">
                 <Donut />
@@ -149,9 +149,9 @@ export default function Highlights() {
                 </span>
               </div>
               <p className="mt-2 text-[11px] font-semibold leading-snug">
-                Bifacial modules
+                More yield
                 <br />
-                more yield
+                per module
               </p>
             </div>
 

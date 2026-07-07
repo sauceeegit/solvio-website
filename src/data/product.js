@@ -205,15 +205,14 @@ export const howItWorks = [
 ];
 
 export const spec = {
-  model: 'Solvio QD-450 Bifacial',
+  model: 'Solvio QD-450',
   rows: [
     { label: 'Cell type', value: 'Monocrystalline N-type' },
     { label: 'Rated power', value: '450 Wp per module' },
     { label: 'Module efficiency', value: '22.4%' },
     { label: 'Construction', value: 'Glass-glass, frameless' },
-    { label: 'Bifacial gain', value: 'Up to +30% rear yield' },
-    { label: 'Dimensions', value: '1762 × 1134 × 30 mm' },
-    { label: 'Weight', value: '22 kg per module' },
+    { label: 'Dimensions', value: '1760 × 1130 × 4.75 mm' },
+    { label: 'Weight', value: '12.5 kg per module' },
     { label: 'Protection', value: 'IP68 junction box' },
     { label: 'Performance warranty', value: '30 years (87.4% output)' },
     { label: 'Temperature range', value: '−40 °C to +85 °C' },
@@ -221,7 +220,7 @@ export const spec = {
 };
 
 export const included = [
-  { name: '4 × 450 Wp solar module', sub: '1762 × 1134 mm bifacial glass' },
+  { name: '4 × 450 Wp solar module', sub: '1760 × 1130 mm glass-glass' },
   { name: '1 × M-800 micro-inverter', sub: '800 W, Wi-Fi enabled' },
   { name: '2 × Y-cable set', sub: 'Links two modules in parallel to one DC input' },
   { name: '4 × steel mounting bracket', sub: 'Adjustable tilt frame' },
