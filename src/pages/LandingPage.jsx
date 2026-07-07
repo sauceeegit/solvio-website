@@ -7,6 +7,7 @@ import LandingFAQ from '../components/landing/LandingFAQ';
 import FounderVideo from '../components/landing/FounderVideo';
 import WhyShop from '../components/landing/WhyShop';
 import Community from '../components/landing/Community';
+import GuidePopup from '../components/GuidePopup';
 import Footer from '../components/Footer';
 
 export default function LandingPage() {
@@ -24,6 +25,7 @@ export default function LandingPage() {
         <Community />
       </main>
       <Footer />
+      <GuidePopup />
     </div>
   );
 }
