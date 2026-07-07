@@ -5,6 +5,7 @@ import ProductHero from '../components/ProductHero';
 import BenefitsStrip from '../components/BenefitsStrip';
 import PaymentRow from '../components/PaymentRow';
 import Highlights from '../components/Highlights';
+import PlugPlayVideo from '../components/PlugPlayVideo';
 import ModuleBanner from '../components/ModuleBanner';
 import IncludedItems from '../components/IncludedItems';
 import CalculatorSection from '../components/CalculatorSection';
@@ -36,6 +37,7 @@ export default function ProductPage() {
         <BenefitsStrip />
         <PaymentRow />
         <Highlights />
+        <PlugPlayVideo />
         <ModuleBanner />
         <IncludedItems />
         <CalculatorSection derived={cfg} />
