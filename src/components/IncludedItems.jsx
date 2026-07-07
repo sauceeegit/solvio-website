@@ -116,7 +116,7 @@ function KitCard({ badge, img, imgAlt, imgStyle, title, bullets }) {
 const topRow = [
   {
     badge: '4x',
-    img: asset('/module-dark.jpg'),
+    img: asset('/4xPanels.png'),
     imgAlt: '4x 450 Wp Solar Module',
     imgStyle: { objectPosition: 'center' },
     title: '4x 450 Wp Solar Module',
