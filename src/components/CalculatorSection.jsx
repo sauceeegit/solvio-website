@@ -2,7 +2,6 @@ import { useState } from 'react';
 import Reveal from './Reveal';
 import SavingsCalculator from './SavingsCalculator';
 import EarningsCalculator from './landing/EarningsCalculator';
-import { num } from '../lib/format';
 
 const MODES = [
   { id: 'basic', label: 'Basic' },
@@ -27,9 +26,9 @@ export default function CalculatorSection({ derived }) {
                   ? 'A quick estimate from your system size and electricity use.'
                   : 'Set your bill and coverage — we size the system and chart your payback.'}
               </p>
-              {mode === 'basic' && derived && (
+              {mode === 'advanced' && (
                 <p className="mt-1 max-w-xl text-sm text-slatey-400">
-                  Sized for {derived.modules} module{derived.modules > 1 ? 's' : ''} ({num(derived.wp)} Wp). Adjust the sliders to match your home.
+                  Priced as a professionally installed rooftop system{derived ? ' — kit prices are in the configurator above' : ''}.
                 </p>
               )}
             </div>
@@ -60,7 +59,13 @@ export default function CalculatorSection({ derived }) {
         </Reveal>
 
         <div className="mt-6">
-          {mode === 'basic' ? <SavingsCalculator derived={derived} /> : <EarningsCalculator />}
+          {/* Export credit defaults ON for rooftop-scale (landing) and OFF where the
+              calculator sits next to the plug-in kit configurator (balcony page). */}
+          {mode === 'basic' ? (
+            <SavingsCalculator derived={derived} />
+          ) : (
+            <EarningsCalculator exportDefault={!derived} />
+          )}
         </div>
       </div>
     </section>

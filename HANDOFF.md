@@ -182,12 +182,17 @@ payback, monthly instalment, system size (kW) + ~450 W panel count, plus an
 **email-capture** field (UI only — submit shows a local confirmation; NOT wired to any
 service yet; see the `TODO` in `submitQuote`).
 
-Locked assumptions (constants at top of the file):
+Assumptions (constants at top of the file; updated 2026-07-07 after a market cross-check):
 - 5 sun-hours/day, **85% performance ratio**.
-- Self-consumption: **50% without battery, 100% with battery** (savings =
-  coverage × self-consumption × bill; surplus exported earns nothing).
-- System cost: **18,500/kW + 79,000** (no battery) / **28,500/kW + 85,000** (battery).
+- Self-consumption: **65% without battery, 90% with** (Thai daytime AC load; batteries
+  lose a little to conversion/full days).
+- **Surplus export credit toggle**: PEA net-billing **฿2.20/kWh** — defaults ON on the landing
+  page (rooftop-scale), OFF on the balcony page (plug-in kits usually can't register).
+- System cost: **18,500/kW + 79,000** (no battery) / **28,500/kW + 85,000** (battery) —
+  labeled as *professionally installed rooftop* pricing; cost uses whole-panel (450 W) capacity.
 - 25-yr: **flat tariff** (0% inflation), **0.5%/yr** panel degradation.
+- The **Basic** calculator mirrors these: 1.5 kWh/Wp/yr, 65% SC (+battery-size-aware boost from
+  the configured Venus battery, cap 95%), CO₂ 0.5 kg/kWh (Thai grid), kit price for payback.
 - Panels = 450 W each. Break-even runs against the **cash price** (interest deliberately
   does NOT shift break-even — that was a chosen behavior).
 - Payback intentionally varies with coverage (the fixed cost amortizes over bigger

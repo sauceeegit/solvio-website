@@ -5,7 +5,10 @@ import { baht, num } from '../lib/format';
 import Reveal from './Reveal';
 
 const YIELD_PER_WP = 1.5; // kWh per Wp per year, south-facing (Thailand, ~5 peak sun-hours)
-const CO2_PER_KWH = 0.38; // kg avoided per kWh
+const CO2_PER_KWH = 0.5; // kg avoided per kWh (Thai grid emission factor)
+const SC_BASE = 0.65; // share of solar used at home without a battery (daytime AC/fridge load)
+const SC_MAX = 0.95; // even a big battery loses a little to conversion & full days
+const BATT_KWH_CYCLES = 330; // useful battery cycles/yr (~365 days × ~90% usable)
 
 // Fallback system when no live configurator is supplied (e.g. on the landing page).
 const DEFAULT_DERIVED = computeConfig(defaultConfig);
@@ -19,17 +22,21 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
 
   const factor = orientations.find((o) => o.id === orientation)?.factor ?? 1;
 
-  const { annualYield, savings, payback, co2 } = useMemo(() => {
+  const { annualYield, savings, payback, co2, selfUse } = useMemo(() => {
     const y = derived.wp * YIELD_PER_WP * factor;
-    const usable = Math.min(y, household); // can't save more than you use
+    // self-consumption: ~65% base; a configured battery shifts surplus to the evening
+    const battKwh = (derived.storage?.wh ?? 0) / 1000;
+    const sc = Math.min(SC_MAX, SC_BASE + (y > 0 ? (battKwh * BATT_KWH_CYCLES) / y : 0));
+    const usable = Math.min(y * sc, household); // can't save more than you use
     const s = usable * rate; // ฿ / kWh × kWh = ฿
     return {
       annualYield: y,
       savings: s,
       payback: s > 0 ? derived.total / s : 0,
       co2: y * CO2_PER_KWH,
+      selfUse: sc,
     };
-  }, [derived.wp, derived.total, factor, household, rate]);
+  }, [derived.wp, derived.total, derived.storage?.wh, factor, household, rate]);
 
   const stats = [
     { icon: Sun, label: 'Annual yield', value: `${num(annualYield)} kWh`, tint: 'text-amber-dark' },
@@ -82,7 +89,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
                 <input
                   type="range"
                   min="1000"
-                  max="8000"
+                  max="15000"
                   step="100"
                   value={household}
                   onChange={(e) => setHousehold(Number(e.target.value))}
@@ -130,8 +137,10 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
         </Reveal>
 
       <p className="mx-auto mt-4 max-w-2xl text-center text-xs text-slatey-400">
-        Estimates only. Actual yield depends on location, shading, tilt and weather. Calculation
-        assumes self-consumption of generated power up to your household demand.
+        Estimates only. Payback uses your <strong>kit price (self-installed)</strong>. Assumes ~
+        {Math.round(selfUse * 100)}% of generation is used at home
+        {(derived.storage?.wh ?? 0) > 0 ? ' (raised by your configured battery)' : ' (a battery raises this)'},
+        Thai grid CO₂ {CO2_PER_KWH} kg/kWh. Actual yield depends on location, shading, tilt and weather.
       </p>
     </>
   );

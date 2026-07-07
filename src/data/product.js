@@ -169,8 +169,8 @@ export function computeConfig(config) {
 export const benefits = [
   { icon: 'RotateCcw', title: '30-day returns', sub: 'Changed your mind? Send it back, free.' },
   { icon: 'Truck', title: 'Ships in 5–7 days', sub: 'Tracked carbon-neutral delivery.' },
-  { icon: 'PiggyBank', title: 'Save up to ฿12,000 / yr', sub: 'Based on a south-facing 1.8 kWp kit.' },
-  { icon: 'TrendingUp', title: '2–3 year payback', sub: 'Then it is pure free electricity.' },
+  { icon: 'PiggyBank', title: 'Save up to ฿8,000 / yr', sub: 'South-facing 1.8 kWp kit, power used at home.' },
+  { icon: 'TrendingUp', title: '3–4 year payback', sub: 'Then it is pure free electricity.' },
   { icon: 'CreditCard', title: '0% financing', sub: 'Split into 24 interest-free payments.' },
   { icon: 'ShieldCheck', title: '30-year warranty', sub: 'On module performance & build.' },
 ];
@@ -286,7 +286,7 @@ export const faqs = [
   },
   {
     q: 'How much can I actually save?',
-    a: 'A south-facing 1.8 kWp kit generates roughly 2,700 kWh per year in Thailand. At typical tariffs that is around ฿11,000–฿12,000 of avoided electricity, paying the kit back in 2–3 years.',
+    a: 'A south-facing 1.8 kWp kit generates roughly 2,700 kWh per year in Thailand. With about two-thirds of that used at home (more with a battery), that is around ฿7,000–฿8,000 of avoided electricity a year, paying the kit back in 3–4 years.',
   },
   {
     q: 'What happens on cloudy days or at night?',

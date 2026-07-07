@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Wallet, ArrowRight, BatteryCharging, Plug, Check } from 'lucide-react';
+import { Wallet, ArrowRight, BatteryCharging, Plug, Check, Zap, Ban } from 'lucide-react';
 import { baht, num } from '../../lib/format';
 import Reveal from '../Reveal';
 
@@ -13,8 +13,9 @@ const COST_PER_KW = 18500; // ฿ / kW (no battery)
 const COST_FIXED = 79000; // ฿ base (no battery)
 const COST_PER_KW_BAT = 28500; // ฿ / kW (with battery)
 const COST_FIXED_BAT = 85000; // ฿ base (with battery)
-const SC_NONE = 0.5; // self-consumption without battery
-const SC_BAT = 1.0; // self-consumption with battery
+const SC_NONE = 0.65; // self-consumption without battery (Thai homes: daytime AC/fridge load)
+const SC_BAT = 0.9; // with a right-sized battery (losses & full-battery days prevent 100%)
+const EXPORT_RATE = 2.2; // ฿/kWh — PEA net-billing credit for exported surplus (2026 scheme)
 const PANEL_W = 450; // watts per panel
 const PANEL_KW = PANEL_W / 1000;
 const PLANS = [6, 12, 18, 24, 48]; // instalment plan lengths (months)
@@ -22,7 +23,7 @@ const PLANS = [6, 12, 18, 24, 48]; // instalment plan lengths (months)
 const shortBaht = (n) =>
   n >= 1_000_000 ? `฿${(n / 1_000_000).toFixed(2)}m` : n >= 1000 ? `฿${Math.round(n / 1000)}k` : baht(n);
 
-function compute({ bill, coverage, rate, months, interest, battery }) {
+function compute({ bill, coverage, rate, months, interest, battery, exportOn }) {
   const cov = coverage / 100;
   const sc = battery ? SC_BAT : SC_NONE;
   const costPerKw = battery ? COST_PER_KW_BAT : COST_PER_KW;
@@ -32,11 +33,15 @@ function compute({ bill, coverage, rate, months, interest, battery }) {
   const requiredGen = annualKwh * cov;
   const systemKw = requiredGen / GEN_PER_KW;
   const panels = Math.ceil(systemKw / PANEL_KW);
-  const cost = costPerKw * systemKw + costFixed;
+  // price the capacity you actually install (whole panels), so panel count and cost agree
+  const kwCapacity = panels * PANEL_KW;
+  const cost = costPerKw * kwCapacity + costFixed;
 
-  // only the self-consumed share of solar reduces the bill; surplus is exported (no value here)
-  const monthlySave = cov * sc * bill;
-  const annualSave = monthlySave * 12;
+  // the self-consumed share of solar offsets the bill at the retail rate;
+  // the exported surplus earns the PEA net-billing credit (when enabled)
+  const exportRevenue = exportOn ? requiredGen * (1 - sc) * EXPORT_RATE : 0;
+  const annualSave = cov * sc * bill * 12 + exportRevenue;
+  const monthlySave = annualSave / 12;
 
   // 25-year cumulative savings (flat tariff, 0.5%/yr degradation)
   const series = [0];
@@ -66,9 +71,11 @@ function compute({ bill, coverage, rate, months, interest, battery }) {
 
   return {
     systemKw,
+    kwCapacity,
     panels,
     sc,
     cost,
+    exportRevenue,
     monthlySave,
     annualSave,
     series,
@@ -155,19 +162,22 @@ function Metric({ label, value, valueClass = 'text-ink' }) {
   );
 }
 
-export default function EarningsCalculator() {
+// `exportDefault`: rooftop-scale systems can register for PEA net-billing (on by
+// default on the landing page); plug-in balcony kits usually can't (off there).
+export default function EarningsCalculator({ exportDefault = true }) {
   const [bill, setBill] = useState(5000);
   const [coverage, setCoverage] = useState(80);
   const [rate, setRate] = useState(4.5);
   const [months, setMonths] = useState(24);
   const [interest, setInterest] = useState(0);
   const [battery, setBattery] = useState(false);
+  const [exportOn, setExportOn] = useState(exportDefault);
   const [email, setEmail] = useState('');
   const [sent, setSent] = useState(false);
 
   const r = useMemo(
-    () => compute({ bill, coverage, rate, months, interest, battery }),
-    [bill, coverage, rate, months, interest, battery],
+    () => compute({ bill, coverage, rate, months, interest, battery, exportOn }),
+    [bill, coverage, rate, months, interest, battery, exportOn],
   );
   const paybackLabel = r.payback > 40 ? '40+ yrs' : `${r.payback.toFixed(1)} yrs`;
   const net = Math.round(r.monthlySave - r.monthlyInstalment);
@@ -244,8 +254,36 @@ export default function EarningsCalculator() {
               </div>
               <p className="mt-1.5 text-sm text-slatey-500">
                 {battery
-                  ? '100% of your solar is used — surplus is stored for the evening.'
-                  : '~50% is used live — the daytime surplus is exported/wasted.'}
+                  ? '~90% of your solar is used — the battery shifts daytime surplus to the evening.'
+                  : '~65% is used live (daytime AC, fridge, appliances) — the rest is surplus.'}
+              </p>
+            </div>
+
+            {/* surplus export credit */}
+            <div className="mt-6">
+              <label className="mb-1.5 block font-display text-sm font-semibold text-ink">Surplus export credit</label>
+              <div className="grid grid-cols-2 gap-2.5">
+                {[
+                  { v: true, label: `PEA ฿${EXPORT_RATE.toFixed(2)}/unit`, Icon: Zap },
+                  { v: false, label: 'No export credit', Icon: Ban },
+                ].map((o) => (
+                  <button
+                    key={o.label}
+                    onClick={() => setExportOn(o.v)}
+                    className={`flex items-center justify-center gap-2 rounded-xl border px-2 py-3 font-display text-sm font-semibold transition ${
+                      exportOn === o.v
+                        ? 'border-lime bg-lime text-white'
+                        : 'border-ink/10 bg-white text-slatey-500 hover:border-ink/25'
+                    }`}
+                  >
+                    <o.Icon size={17} /> {o.label}
+                  </button>
+                ))}
+              </div>
+              <p className="mt-1.5 text-sm text-slatey-500">
+                {exportOn
+                  ? `Surplus sells to the grid at ฿${EXPORT_RATE.toFixed(2)}/kWh (PEA net-billing — requires MEA/PEA registration, rooftop systems).`
+                  : 'Surplus is exported unpaid — typical for unregistered plug-in kits.'}
               </p>
             </div>
 
@@ -310,7 +348,7 @@ export default function EarningsCalculator() {
             <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 rounded-xl bg-ink px-5 py-4">
               <div>
                 <p className="font-mono text-[11px] uppercase tracking-wider text-white/55">System size</p>
-                <p className="font-display text-2xl font-extrabold text-lime">{r.systemKw.toFixed(2)} kW</p>
+                <p className="font-display text-2xl font-extrabold text-lime">{r.kwCapacity.toFixed(2)} kW</p>
               </div>
               <div className="hidden h-9 w-px bg-white/15 sm:block" />
               <div>
@@ -397,11 +435,14 @@ export default function EarningsCalculator() {
         </Reveal>
 
         <p className="mx-auto mt-4 max-w-2xl text-center text-xs text-slatey-400">
-          Estimates only. Assumes {SUN_HOURS} sun-hours/day, {Math.round(PR * 100)}% performance ratio, {PANEL_W} W
-          panels, {Math.round(SC_NONE * 100)}% self-consumption without a battery / {Math.round(SC_BAT * 100)}% with
-          (exported surplus earns nothing), system cost ฿{COST_PER_KW.toLocaleString()}/kW + ฿
-          {COST_FIXED.toLocaleString()} (฿{COST_PER_KW_BAT.toLocaleString()}/kW + ฿{COST_FIXED_BAT.toLocaleString()}{' '}
-          with battery), flat tariff and {((1 - DEGRADATION) * 100).toFixed(1)}%/yr degradation.
+          Estimates only. Priced as a <strong>professionally installed rooftop system</strong>: ฿
+          {COST_PER_KW.toLocaleString()}/kW + ฿{COST_FIXED.toLocaleString()} install base (฿
+          {COST_PER_KW_BAT.toLocaleString()}/kW + ฿{COST_FIXED_BAT.toLocaleString()} with battery) — for the
+          plug-and-play kit price, use the configurator. Assumes {SUN_HOURS} sun-hours/day,{' '}
+          {Math.round(PR * 100)}% performance ratio, {PANEL_W} W panels, {Math.round(SC_NONE * 100)}%
+          self-consumption without a battery / {Math.round(SC_BAT * 100)}% with, surplus export at ฿
+          {EXPORT_RATE.toFixed(2)}/kWh when enabled (PEA net-billing), flat tariff and{' '}
+          {((1 - DEGRADATION) * 100).toFixed(1)}%/yr degradation.
       </p>
     </>
   );
