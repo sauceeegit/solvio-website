@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { icons } from '../../lib/icons';
 import { whyShop } from '../../data/landing';
+import { asset } from '../../lib/format';
 import Reveal from '../Reveal';
 
 function SolvioCoin({ size = 82 }) {
@@ -333,16 +334,21 @@ export default function WhyShop() {
                       </a>
                     </div>
 
-                    {/* RIGHT: coin — absolutely positioned, slightly overflowing right edge */}
+                    {/* RIGHT: coin image — absolutely positioned, slightly overflowing right edge */}
                     <div
                       className="pointer-events-none absolute"
                       style={{
-                        right: '-10px',
+                        right: '-12px',
                         top: '50%',
                         transform: 'translateY(-50%)',
+                        width: '52%',
                       }}
                     >
-                      <SolvioCoin size={104} />
+                      <img
+                        src={asset('/solvio-coin.png')}
+                        alt="Solvio Rewards coin"
+                        style={{ width: '100%', height: 'auto', display: 'block' }}
+                      />
                     </div>
                   </div>
                 ) : (
