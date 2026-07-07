@@ -1,21 +1,105 @@
 # Solvio — Project handoff / continuation notes
 
-_Last updated: 2026-06-24. Read this first to continue the project on another computer._
+_Last updated: 2026-07-07._ **Read `CLAUDE.md` (repo root) first — it has the team working rules.**
+The `## CURRENT STATE` block below is authoritative; the older sections further down still
+describe individual components accurately but predate the multi-page/3D/perf work — trust this
+block where they disagree.
 
-## ⭐ Continue on another computer (start here)
-The project now lives on **GitHub**, so a second machine just clones it:
-- **Repo (public):** https://github.com/sauceeegit/solvio-website  (account `sauceeegit`)
-- **Live site (GitHub Pages):** https://sauceeegit.github.io/solvio-website/
+---
 
+## ⭐ CURRENT STATE (2026-07-07) — read this first
+
+**Repo (public):** https://github.com/sauceeegit/solvio-website (account `sauceeegit`)
+**Live:** https://sauceeegit.github.io/solvio-website/ — auto-deploys on every push to `main` (~3 min, GitHub Actions).
+**Collaborator:** `GG2026chad` (hansk09@gmail.com) has write access + the Claude GitHub App is granted, so two people/Claudes push in parallel.
+
+### Working setup (per machine)
+- **Work from `C:\dev\solvio-website`** — a clean clone OUTSIDE OneDrive. The old
+  `…\OneDrive\Desktop\websites\solvio` copy is retired (OneDrive + git double-sync caused conflicts).
+- **Node.js v24** and **ffmpeg** (winget `Gyan.FFmpeg`, user-local path) are installed on this machine.
+  In PowerShell prepend Node: `$env:Path = "$env:ProgramFiles\nodejs;$env:Path"`.
+- **Always `git pull --rebase` before editing and `npm run build` before pushing.** Both people push often.
+- `gh` (GitHub CLI) is installed but its login drops between sessions — re-auth via device flow when
+  an API call needs it (`gh auth login`). Plain `git push` keeps working via Git Credential Manager.
+- Deploy status without gh: poll `https://api.github.com/repos/sauceeegit/solvio-website/actions/runs?per_page=1`.
+
+### Routing — now **HashRouter** (changed from BrowserRouter)
+- `src/main.jsx` uses `<HashRouter>`. In-app URLs look like `…/solvio-website/#/balcony-system`.
+- ⚠️ **Known bug (unfixed):** in-page `#anchor` links break under HashRouter — they change the route
+  hash and **blank the page**. Affected: FAQ "Explore Solvio" (`#calculator`), balcony "reviews"
+  (`#reviews`), FAQ back-to-top (`#top`), and the **footer logo** (defaults to `#top`) on every page.
+  Also the portable **"See details"** buttons point to `#/portable` (nonexistent route → blank).
+  Fix path: switch back to BrowserRouter (+ the 404.html fallback we already ship) before launch,
+  which also restores clean/indexable URLs.
+
+### Pages & nav (5 routes, in `src/App.jsx`)
+`/` landing · `/balcony-system` · `/portable-system` · `/solar-panel` · `/rooftop-system`.
+Each page = `<Header/>` (sticky TopBar+nav) → `<main>` → `<Footer/>`.
+**Nav links are HARDCODED** in `src/components/landing/LandingNav.jsx` (the `links` array), NOT the
+`landingNav` data (which is now dead). Edit menu items there.
+
+### Key components added/changed this session
+- `components/landing/Header.jsx` — sticky wrapper freezing **TopBar + nav** together (all pages).
+- `components/landing/TopBar.jsx` — single row: phone + Book-consultation + "Summer deal / **Claim now**"
+  + WhatsApp/Facebook. Mobile collapses to phone + socials only. (Facebook link is a placeholder.)
+- `components/CalculatorSection.jsx` — **Basic / Advanced toggle** (Basic default) shown on landing
+  AND balcony. Basic = `SavingsCalculator` (now **THB**, ฿/kWh, Thailand ~1.5 kWh/Wp yield);
+  Advanced = `EarningsCalculator` (bill-first, break-even chart). Shared `#calculator` anchor.
+- `components/Configurator.jsx` — **Balcony is now the 1st location**; module **quantity is a number
+  input** (−/+ steppers, any value) instead of 1–4 buttons; "bifacial" removed everywhere;
+  panel spec is **1760 × 1130 × 4.75 mm, 12.5 kg**.
+- `components/Gallery.jsx` + `solvio-panel-3d` — the balcony hero is the **embedded 3D model** that the
+  configurator **drives** (see next section). Badge shows live `modules × 450 Wp`.
+- `components/ModuleBanner.jsx` (balcony) — full-bleed Dark Feather banner w/ "Explore now" → /solar-panel
+  (replaced the old SpecCard "The Module" section).
+- `components/PlugPlayVideo.jsx` (balcony) — YouTube demo (left) + text + "See more videos" btn, light-blue bg.
+- `components/SolarPanelFeatures.jsx` (solar page) — Dark Feather banner + two image/text feature rows.
+- `components/GuidePopup.jsx` (landing) — email-capture popup with `guide-popup.webp`, shows once after
+  5s (localStorage `solvio_guide_popup_seen`). **Email UI-only — not wired to a backend.**
+- `components/MediaLoader.jsx` (teammate) — spinner overlay while videos / the 3D model load.
+- `components/lib/icons.js` — named-import icon registry (see perf below).
+- SolarPanel page: full-bleed video with an **orange rAF-driven progress bar**. Rooftop page: full-bleed
+  video + two feature rows ("Big Roof? Build Big." / "Designed and installed…").
+
+### The 3D model (SEPARATE repo)
+- `https://github.com/sauceeegit/solvio-panel-3d` — a single `index.html` Three.js app, deploys via
+  **legacy GitHub Pages from `main`** (push → ~1–2 min). Cloned at `C:\dev\solvio-panel-3d`.
+- It has a **postMessage control API** (`window.solvioSetConfig` + `message` listener + `solvio-ready` ping).
+  The balcony configurator sends `{type:'solvio-config', location, panel, modules}`:
+  location→scene (**flatroof→rooftop**), panel (white→classic / dark→black), modules→panel count.
+  To change what the model does per config, edit that repo's `setScene`/`setPanelType`/`setPanelCount`.
+
+### Performance done this session
+- Heavy PNGs → **WebP** (feature images, logo, panels, popup, rooftop pics). Convert new Drive images with
+  ffmpeg (`-vf scale=WIDTH:-1 -quality 82`); reference via `asset('/name.webp')`.
+- **Videos compressed** with ffmpeg (720p CRF 25). Rooftop video is still ~14 MB (not yet compressed).
+- **lucide tree-shaking fixed**: no more `import * as Icons`; string-keyed icons come from
+  `src/lib/icons.js`. JS bundle ~1 MB → ~465 kB (add any new dynamic icon name to that registry).
+- Drive download URL that works: `https://drive.usercontent.google.com/download?id=<ID>&export=download&confirm=t`.
+
+### Open items / not-yet-wired
+1. **All email forms are UI-only** (GuidePopup, Advanced calculator, PriceBox, footer newsletter) — show a
+   confirmation but send nothing. Wire to Formspree/Mailchimp before launch.
+2. **HashRouter anchor bug** + portable "See details" dead links (above).
+3. **SEO**: single site-wide title/description, no OG/Twitter tags, no robots.txt/sitemap, no `<h1>` on
+   landing, hash URLs aren't indexable. Do before launch.
+4. Leftover **€ euros** in some balcony sections (product.js benefits/comparison/related, one FAQ answer).
+5. Facebook icon → placeholder URL. Rooftop 14 MB video could be compressed.
+6. `lazy` loading not used on below-fold images/videos; `preload="auto"` on all videos.
+
+---
+
+## Continue on another computer
 ```bash
-git clone https://github.com/sauceeegit/solvio-website.git
-cd solvio-website
+git clone https://github.com/sauceeegit/solvio-website.git C:\dev\solvio-website
+cd C:\dev\solvio-website
 npm install        # needs Node.js 18+ (https://nodejs.org)
 npm run dev        # local preview at http://localhost:5173
 ```
-Then open a fresh Claude Code session in the folder and tell it to read this HANDOFF.md.
-Commit + `git push origin main` and the site **auto-deploys** (see below). The Claude Code
-chat transcript itself does NOT sync between machines — this file is the handoff.
+Open a fresh Claude Code session in the folder; it auto-reads `CLAUDE.md`, then tell it to read this HANDOFF.md.
+Also clone the 3D repo if touching the model: `git clone https://github.com/sauceeegit/solvio-panel-3d.git`.
+Commit + `git push origin main` and the site **auto-deploys**. The Claude Code chat transcript does NOT
+sync between machines — these files are the handoff.
 
 ## Deployment — GitHub Pages (automatic on push)
 - `.github/workflows/deploy.yml` builds the site in CI and deploys to GitHub Pages on every
