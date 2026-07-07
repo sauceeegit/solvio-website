@@ -26,8 +26,12 @@ export default function Bestsellers() {
             return (
               <Reveal key={p.id} delay={i * 0.06}>
                 <div
-                  className="card flex h-full flex-col overflow-hidden transition-[filter] duration-300"
-                  style={{ filter: dimmed ? 'brightness(0.55)' : 'brightness(1)' }}
+                  className="card flex h-full flex-col overflow-hidden transition-all duration-500 ease-out"
+                  style={{
+                    filter: dimmed ? 'brightness(0.82)' : hoveredIdx === i ? 'brightness(1.04)' : 'brightness(1)',
+                    transform: hoveredIdx === i ? 'scale(1.025) translateY(-4px)' : 'scale(1) translateY(0)',
+                    boxShadow: hoveredIdx === i ? '0 20px 50px -12px rgba(12,30,26,0.25)' : undefined,
+                  }}
                   onMouseEnter={() => setHoveredIdx(i)}
                   onMouseLeave={() => setHoveredIdx(null)}
                 >
