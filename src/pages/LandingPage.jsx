@@ -18,8 +18,8 @@ export default function LandingPage() {
         <CategoryGrid />
         <Bestsellers />
         <CalculatorSection />
-        <LandingFAQ />
         <FounderVideo />
+        <LandingFAQ />
         <WhyShop />
         <Community />
       </main>
