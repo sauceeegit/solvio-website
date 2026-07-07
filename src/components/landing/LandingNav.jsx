@@ -24,7 +24,7 @@ export default function LandingNav() {
 
   return (
     <header
-      className={`sticky top-0 z-50 border-b transition-all duration-300 ${
+      className={`border-b transition-all duration-300 ${
         scrolled ? 'border-ink/10 bg-white/90 shadow-soft backdrop-blur-md' : 'border-transparent bg-white'
       }`}
     >

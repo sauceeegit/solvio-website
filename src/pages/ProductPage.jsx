@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import TopBar from '../components/landing/TopBar';
-import LandingNav from '../components/landing/LandingNav';
+import Header from '../components/landing/Header';
 import Breadcrumb from '../components/Breadcrumb';
 import ProductHero from '../components/ProductHero';
 import BenefitsStrip from '../components/BenefitsStrip';
@@ -30,8 +29,7 @@ export default function ProductPage() {
 
   return (
     <div id="top" className="min-h-screen bg-surface">
-      <TopBar />
-      <LandingNav />
+      <Header />
       <Breadcrumb />
       <main>
         <ProductHero cfg={cfg} onAddToCart={addToCart} added={added} />

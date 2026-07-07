@@ -1,5 +1,4 @@
-import TopBar from '../components/landing/TopBar';
-import LandingNav from '../components/landing/LandingNav';
+import Header from '../components/landing/Header';
 import Hero from '../components/landing/Hero';
 import CategoryGrid from '../components/landing/CategoryGrid';
 import Bestsellers from '../components/landing/Bestsellers';
@@ -13,8 +12,7 @@ import Footer from '../components/Footer';
 export default function LandingPage() {
   return (
     <div id="top" className="min-h-screen bg-surface">
-      <TopBar />
-      <LandingNav />
+      <Header />
       <main>
         <Hero />
         <CategoryGrid />

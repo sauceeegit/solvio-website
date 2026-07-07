@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import TopBar from '../components/landing/TopBar';
-import LandingNav from '../components/landing/LandingNav';
+import Header from '../components/landing/Header';
 import Footer from '../components/Footer';
 import { rooftopVideo } from '../data/landing';
 
@@ -20,8 +19,7 @@ export default function RooftopSystemPage() {
 
   return (
     <div id="top" className="min-h-screen bg-surface">
-      <TopBar />
-      <LandingNav />
+      <Header />
       <main>
         {/* Full-bleed looping video — spans the entire viewport width. */}
         <section className="relative w-full">
