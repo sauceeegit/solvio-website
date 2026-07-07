@@ -73,6 +73,33 @@ export default function RooftopSystemPage() {
                 </div>
               </div>
             </Reveal>
+
+            <Reveal>
+              <div className="grid items-center gap-8 pb-14 sm:pb-20 lg:grid-cols-2 lg:gap-14">
+                {/* image (right on desktop) */}
+                <div className="overflow-hidden rounded-xl2 shadow-soft lg:order-2">
+                  <img
+                    src={asset('/rooftop-team.webp')}
+                    alt="Solvio crew installing rooftop solar on a resort at sunset"
+                    className="block w-full"
+                  />
+                </div>
+
+                {/* text (left on desktop) */}
+                <div className="lg:order-1">
+                  <h2 className="font-display text-3xl font-extrabold leading-[1.1] tracking-tight text-ink sm:text-4xl lg:text-5xl">
+                    Designed and installed by people who&apos;ve done it before
+                  </h2>
+                  <p className="mt-5 max-w-md text-lg text-slatey-500">
+                    Solar isn&apos;t guesswork. Our team brings years of hands-on experience and
+                    state-of-the-art design to every rooftop we take on — engineering each system for
+                    maximum yield, safe structural loading, and clean integration with your existing
+                    power setup. Whether it&apos;s a resort, a hotel, or a commercial block, we build
+                    it to perform.
+                  </p>
+                </div>
+              </div>
+            </Reveal>
           </div>
         </section>
       </main>
