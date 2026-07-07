@@ -136,7 +136,7 @@ export const landingFaqs = [
 // (row-span-2) feature cell, index 5 is the wide (col-span-2) feature cell.
 export const whyShop = [
   { icon: 'Coins', title: 'Earn Solvio rewards', img: asset('/earn-rewards.jpg') },
-  { icon: 'CreditCard', title: 'Convenient installment plans', sub: '0% interest, up to 12 months' },
+  { icon: 'PiggyBank', title: 'Convenient installment plans', sub: '0% interest, up to 12 months' },
   { icon: 'Headphones', title: 'Lifetime customer support', sub: 'Real experts, always available' },
   { icon: 'RotateCcw', title: '30-day returns', sub: 'Hassle-free, no questions asked' },
   { icon: 'ShieldCheck', title: 'Warranty protection', sub: '5-year comprehensive coverage' },

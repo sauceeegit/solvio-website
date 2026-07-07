@@ -226,15 +226,8 @@ function BenefitCard({ item, big }) {
       onMouseLeave={() => setHovered(false)}
     >
       <div className={big ? 'flex items-center gap-5 flex-1' : 'flex flex-col gap-3 flex-1'}>
-        <span
-          className="inline-flex shrink-0 items-center justify-center rounded-xl"
-          style={{
-            width: big ? 52 : 40,
-            height: big ? 52 : 40,
-            background: 'rgba(15,43,36,0.06)',
-          }}
-        >
-          <Icon size={big ? 26 : 20} strokeWidth={1.6} style={{ color: '#0F2B24' }} />
+        <span className="inline-flex shrink-0 items-center justify-center">
+          <Icon size={big ? 26 : 22} strokeWidth={1.5} style={{ color: '#0F2B24' }} />
         </span>
         <div>
           <h3
