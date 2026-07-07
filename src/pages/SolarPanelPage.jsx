@@ -7,10 +7,7 @@ import { solarPanelVideo } from '../data/landing';
 import { usePageMeta } from '../hooks/usePageMeta';
 
 export default function SolarPanelPage() {
-  usePageMeta(
-    'Dark Feather 450 Wp Solar Panel — Glass-Glass, IP68 | Solvio',
-    'Meet the Solvio Dark Feather solar module: 450 Wp, weatherproof glass-glass build and sleek all-black design for balconies and rooftops.'
-  );
+  usePageMeta('/solar-panel');
   const videoRef = useRef(null);
   const barRef = useRef(null);
   const [ready, setReady] = useState(false);

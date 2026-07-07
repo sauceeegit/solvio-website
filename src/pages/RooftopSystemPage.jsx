@@ -8,10 +8,7 @@ import { rooftopVideo } from '../data/landing';
 import { usePageMeta } from '../hooks/usePageMeta';
 
 export default function RooftopSystemPage() {
-  usePageMeta(
-    'Rooftop Solar for Thai Homes — Free Estimate | Solvio',
-    'Power your whole home with a Solvio rooftop solar array. Free system sizing, transparent Baht pricing and app-based monitoring — get your estimate today.'
-  );
+  usePageMeta('/rooftop-system');
   const videoRef = useRef(null);
   const [ready, setReady] = useState(false);
 

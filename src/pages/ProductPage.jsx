@@ -19,10 +19,7 @@ import { useConfigurator } from '../hooks/useConfigurator';
 import { usePageMeta } from '../hooks/usePageMeta';
 
 export default function ProductPage() {
-  usePageMeta(
-    'Balcony Solar System — Plug-and-Play Kit, No Electrician | Solvio',
-    'Configure your Solvio balcony solar kit in minutes: up to 1800 Wp, optional battery storage, tool-light setup in under 30 minutes. Live pricing in Thai Baht.'
-  );
+  usePageMeta('/balcony-system');
   const cfg = useConfigurator();
   const [cartCount, setCartCount] = useState(0);
   const [added, setAdded] = useState(false);

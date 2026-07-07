@@ -8,10 +8,7 @@ import { portableHeaderSlides } from '../data/landing';
 import { usePageMeta } from '../hooks/usePageMeta';
 
 export default function PortablePage() {
-  usePageMeta(
-    'Portable Power Stations & Foldable Solar Panels | Solvio',
-    'Solvio portable power stations from 100 Wh to 2400 Wh plus foldable solar panels — clean power for camping, markets and off-grid weekends in Thailand.'
-  );
+  usePageMeta('/portable-system');
   return (
     <div id="top" className="min-h-screen bg-surface">
       <Header />
