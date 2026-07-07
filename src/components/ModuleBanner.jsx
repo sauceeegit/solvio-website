@@ -7,7 +7,7 @@ import { asset } from '../lib/format';
 export default function ModuleBanner() {
   return (
     <section className="relative w-full">
-      <img
+      <img loading="lazy"
         src={asset('/sp-feature-top.webp')}
         alt="Solvio Dark Feather — Ultra Black, Ultra Thin, Ultra Light"
         className="block w-full"

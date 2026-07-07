@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sauceeegit.github.io/solvio-website/sitemap.xml

@@ -40,7 +40,7 @@ function ProductImg({ src, alt, style = {} }) {
       style={{ height: 160, background: '#F4F4F2', borderRadius: 16, overflow: 'hidden', ...style }}
     >
       {src ? (
-        <img
+        <img loading="lazy"
           src={src}
           alt={alt}
           style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}

@@ -9,8 +9,13 @@ import WhyShop from '../components/landing/WhyShop';
 import Community from '../components/landing/Community';
 import GuidePopup from '../components/GuidePopup';
 import Footer from '../components/Footer';
+import { usePageMeta } from '../hooks/usePageMeta';
 
 export default function LandingPage() {
+  usePageMeta(
+    'Solvio — Sun. Sorted. | Rooftop, Balcony & Portable Solar in Thailand',
+    'Solvio makes solar simple for every Thai home — plug-and-play balcony kits, rooftop systems and portable power stations. Transparent Baht pricing, free sizing advice.'
+  );
   return (
     <div id="top" className="min-h-screen bg-surface">
       <Header />

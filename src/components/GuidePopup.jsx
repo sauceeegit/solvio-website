@@ -84,7 +84,7 @@ export default function GuidePopup() {
               <X size={18} />
             </button>
 
-            <img
+            <img loading="lazy"
               src={asset('/guide-popup.webp')}
               alt="The ultimate Solvio balcony solar guide"
               className="block w-full"

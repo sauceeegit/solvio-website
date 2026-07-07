@@ -30,7 +30,7 @@ export default function SolarPanelFeatures() {
     <section className="bg-white">
       {/* Full-bleed intro banner (full composed artwork) above the first row. */}
       <Reveal>
-        <img
+        <img loading="lazy"
           src={asset('/sp-feature-top.webp')}
           alt="Solvio Dark Feather — Ultra Black, Ultra Thin, Ultra Light"
           className="block w-full"
@@ -51,7 +51,7 @@ export default function SolarPanelFeatures() {
                   f.imageSide === 'right' ? 'lg:order-2' : ''
                 }`}
               >
-                <img
+                <img loading="lazy"
                   src={f.img}
                   alt={f.imgAlt}
                   className={`h-full w-full object-cover ${f.objectPos || ''}`}

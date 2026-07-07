@@ -1,6 +1,6 @@
 import { Plus } from 'lucide-react';
 import { related } from '../data/product';
-import { euro } from '../lib/format';
+import { baht } from '../lib/format';
 import Reveal from './Reveal';
 
 export default function RelatedProducts() {
@@ -19,7 +19,7 @@ export default function RelatedProducts() {
             <Reveal key={r.name} delay={i * 0.05}>
               <div className="group flex h-full flex-col overflow-hidden rounded-xl2 border border-ink/[0.07] bg-surface transition hover:shadow-soft">
                 <div className="aspect-square overflow-hidden bg-white">
-                  <img
+                  <img loading="lazy"
                     src={r.img}
                     alt={r.name}
                     className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
@@ -29,7 +29,7 @@ export default function RelatedProducts() {
                   <p className="flex-1 font-display text-sm font-semibold text-ink">{r.name}</p>
                   <div className="mt-3 flex items-center justify-between">
                     <span className="font-display text-base font-extrabold text-ink">
-                      {euro(r.price)}
+                      {baht(r.price)}
                     </span>
                     <button
                       className="grid h-9 w-9 place-items-center rounded-full bg-ink text-lime transition hover:bg-ink-700"

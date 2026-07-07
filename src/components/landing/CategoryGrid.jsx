@@ -7,7 +7,7 @@ import Reveal from '../Reveal';
 function CardInner({ c, dimmed }) {
   return (
     <>
-      <img
+      <img loading="lazy"
         src={c.img}
         alt={c.title}
         className={`absolute inset-0 h-full w-full transition duration-700 group-hover:scale-105 ${

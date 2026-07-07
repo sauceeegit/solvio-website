@@ -31,7 +31,7 @@ export default function FounderVideo() {
             className="group relative block aspect-video w-full overflow-hidden rounded-xl2 bg-ink shadow-lift"
             aria-label="Play founder interview"
           >
-            <img
+            <img loading="lazy"
               src={founder.poster}
               alt="Founder interview"
               className="absolute inset-0 h-full w-full object-cover opacity-80 transition duration-700 group-hover:scale-105"

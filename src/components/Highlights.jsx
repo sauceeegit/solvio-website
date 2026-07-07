@@ -100,7 +100,7 @@ export default function Highlights() {
 
             {/* B — savings (orange overlay on placeholder) */}
             <div className="relative h-full min-h-[260px] overflow-hidden rounded-xl2 lg:col-span-2 lg:col-start-1 lg:row-start-2">
-              <img
+              <img loading="lazy"
                 src={asset('/savings-bg.jpg')}
                 alt="A couple on a balcony at sunset with Solvio panels on the railing"
                 className="absolute inset-0 h-full w-full object-cover"
@@ -114,7 +114,7 @@ export default function Highlights() {
 
             {/* C — Plug & Play: photo with a corner caption that expands to fill on hover */}
             <div className="group relative h-full min-h-[340px] overflow-hidden rounded-xl2 lg:col-span-2 lg:col-start-3 lg:row-span-2 lg:row-start-1">
-              <img
+              <img loading="lazy"
                 src={asset('/plugplay-photo.jpg')}
                 alt="Easy installation — connecting a panel by hand in the garden"
                 className="absolute inset-0 h-full w-full object-cover"
@@ -133,7 +133,7 @@ export default function Highlights() {
 
             {/* D — brand block (dark) */}
             <div className="flex h-full min-h-[160px] items-center justify-center rounded-xl2 bg-ink p-6 lg:col-span-2 lg:col-start-5 lg:row-start-1">
-              <img
+              <img loading="lazy"
                 src={asset('/solvio-logo-full.webp')}
                 alt="Solvio"
                 className="h-20 w-auto object-contain sm:h-24 lg:h-32"

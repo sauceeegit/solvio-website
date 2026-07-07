@@ -23,14 +23,12 @@ block where they disagree.
   an API call needs it (`gh auth login`). Plain `git push` keeps working via Git Credential Manager.
 - Deploy status without gh: poll `https://api.github.com/repos/sauceeegit/solvio-website/actions/runs?per_page=1`.
 
-### Routing — now **HashRouter** (changed from BrowserRouter)
-- `src/main.jsx` uses `<HashRouter>`. In-app URLs look like `…/solvio-website/#/balcony-system`.
-- ⚠️ **Known bug (unfixed):** in-page `#anchor` links break under HashRouter — they change the route
-  hash and **blank the page**. Affected: FAQ "Explore Solvio" (`#calculator`), balcony "reviews"
-  (`#reviews`), FAQ back-to-top (`#top`), and the **footer logo** (defaults to `#top`) on every page.
-  Also the portable **"See details"** buttons point to `#/portable` (nonexistent route → blank).
-  Fix path: switch back to BrowserRouter (+ the 404.html fallback we already ship) before launch,
-  which also restores clean/indexable URLs.
+### Routing — **BrowserRouter** (switched back 2026-07-08, fixes the anchor bug)
+- `src/main.jsx` uses `<BrowserRouter basename={import.meta.env.BASE_URL…}>`. Clean URLs
+  (`…/solvio-website/balcony-system`); deep links / refresh work via the CI-generated `dist/404.html`.
+- The HashRouter anchor bug is FIXED by this: `#calculator`, `#reviews`, `#top` and the footer logo
+  scroll correctly again. Portable "See details" fallback now points to `/portable-system`
+  (was `/portable`, a nonexistent route). ⚠️ Don't switch back to HashRouter.
 
 ### Pages & nav (5 routes, in `src/App.jsx`)
 `/` landing · `/balcony-system` · `/portable-system` · `/solar-panel` · `/rooftop-system`.
@@ -72,20 +70,28 @@ Each page = `<Header/>` (sticky TopBar+nav) → `<main>` → `<Footer/>`.
 ### Performance done this session
 - Heavy PNGs → **WebP** (feature images, logo, panels, popup, rooftop pics). Convert new Drive images with
   ffmpeg (`-vf scale=WIDTH:-1 -quality 82`); reference via `asset('/name.webp')`.
-- **Videos compressed** with ffmpeg (720p CRF 25). Rooftop video is still ~14 MB (not yet compressed).
+- **Videos compressed** with ffmpeg. Rooftop + solar-panel loops re-encoded 2026-07-08 at 720p CRF 28
+  (14.4→5.4 MB and 7.4→4.6 MB).
 - **lucide tree-shaking fixed**: no more `import * as Icons`; string-keyed icons come from
   `src/lib/icons.js`. JS bundle ~1 MB → ~465 kB (add any new dynamic icon name to that registry).
 - Drive download URL that works: `https://drive.usercontent.google.com/download?id=<ID>&export=download&confirm=t`.
 
+### SEO baseline done 2026-07-08
+- `public/robots.txt` + `public/sitemap.xml` (URLs point at the github.io address — **update both,
+  plus the canonical/OG URLs in `index.html`, when the custom domain `solvio.solar` is attached**).
+- `index.html`: canonical link, OpenGraph + Twitter card tags, `public/og-image.jpg` (1200×630).
+- Per-route titles/descriptions via `src/hooks/usePageMeta.js` (called at the top of each page).
+- Landing hero slogan is now the page `<h1>`; all imgs have alt text; 23 below-fold imgs `loading="lazy"`.
+- All € euros converted to ฿ (product.js benefits/comparison/related/FAQ; `euro()` removed from format.js).
+
 ### Open items / not-yet-wired
 1. **All email forms are UI-only** (GuidePopup, Advanced calculator, PriceBox, footer newsletter) — show a
    confirmation but send nothing. Wire to Formspree/Mailchimp before launch.
-2. **HashRouter anchor bug** + portable "See details" dead links (above).
-3. **SEO**: single site-wide title/description, no OG/Twitter tags, no robots.txt/sitemap, no `<h1>` on
-   landing, hash URLs aren't indexable. Do before launch.
-4. Leftover **€ euros** in some balcony sections (product.js benefits/comparison/related, one FAQ answer).
-5. Facebook icon → placeholder URL. Rooftop 14 MB video could be compressed.
-6. `lazy` loading not used on below-fold images/videos; `preload="auto"` on all videos.
+2. **Custom domain**: attach `solvio.solar` to Pages, then update canonical/OG/robots/sitemap URLs (above).
+3. Facebook icon → placeholder URL; footer Imprint/Privacy/Terms + community CTAs are `href="#"`.
+4. Testimonials still use German cities (Leipzig/Hamburg/…) and review count (4.8★ · 1,294) is invented —
+   replace with real content before launch.
+5. Nice-to-have: JSON-LD structured data (Product + Organization), prerendering routes for crawlers.
 
 ---
 
@@ -151,9 +157,10 @@ npm run build    # production build into /dist
 - Accent = **Solvio orange `#FC4302`** (hover/text `#D63A02`), sampled from the real logo.
   It's ONE token in `tailwind.config.js` named `lime` (historical) — change those two
   hex values to re-skin everything.
-- Real logo at `public/solvio-logo.jpg` (+ `solvio-logo-square.jpg`), used by
-  `src/components/Logo.jsx`. Fonts: **Hanken Grotesk** (display + body — a free Google-Fonts
-  stand-in for priwatt's commercial *Roobert*; loaded in `index.html`) + **JetBrains Mono** (mono).
+- Nav logo is the orange-on-transparent `public/solvio-logo.png` (recolored from `solvio-logo.jpg`),
+  used by `src/components/Logo.jsx`. Fonts (loaded in `index.html`, tokens in `tailwind.config.js`):
+  **Space Grotesk** (display) + **DM Sans** (body) + **JetBrains Mono** (mono).
+  (`public/fonts/Aeonik-*.otf` were unreferenced and deleted 2026-07-08.)
 
 ## Landing page structure (`src/pages/LandingPage.jsx`)
 TopBar (phone +66 84 348 8428, WhatsApp link, book-a-call) → sticky LandingNav →

@@ -11,7 +11,7 @@ export const product = {
   rating: 4.8,
   reviewCount: 1294,
   // base price reflects the default config: 4 modules, balcony mount, no storage, no extra cable
-  currency: '€',
+  currency: '฿',
   images: [
     {
       src: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1200&q=80',
@@ -169,7 +169,7 @@ export function computeConfig(config) {
 export const benefits = [
   { icon: 'RotateCcw', title: '30-day returns', sub: 'Changed your mind? Send it back, free.' },
   { icon: 'Truck', title: 'Ships in 5–7 days', sub: 'Tracked carbon-neutral delivery.' },
-  { icon: 'PiggyBank', title: 'Save up to €758 / yr', sub: 'Based on a south-facing 1.8 kWp kit.' },
+  { icon: 'PiggyBank', title: 'Save up to ฿12,000 / yr', sub: 'Based on a south-facing 1.8 kWp kit.' },
   { icon: 'TrendingUp', title: '2–3 year payback', sub: 'Then it is pure free electricity.' },
   { icon: 'CreditCard', title: '0% financing', sub: 'Split into 24 interest-free payments.' },
   { icon: 'ShieldCheck', title: '30-year warranty', sub: 'On module performance & build.' },
@@ -239,29 +239,29 @@ export const comparison = {
     { label: 'Yearly yield*', values: ['~860 kWh', '~1720 kWh', '~2580 kWh'] },
     { label: 'Best for', values: ['Singles & couples', 'Small families', 'High usage'] },
     { label: 'Plug & play', values: [true, true, true] },
-    { label: 'From', values: ['€449', '€699', '€999'] },
+    { label: 'From', values: ['฿12,990', '฿27,990', '฿39,990'] },
   ],
 };
 
 export const related = [
   {
     name: '4 mm² DC extension — 3 m',
-    price: 13,
+    price: 490,
     img: 'https://images.unsplash.com/photo-1558449028-b53a39d100fc?auto=format&fit=crop&w=600&q=80',
   },
   {
     name: '6 mm² DC extension — 5 m',
-    price: 19,
+    price: 690,
     img: 'https://images.unsplash.com/photo-1601275276836-3e8d9b6f3a0e?auto=format&fit=crop&w=600&q=80',
   },
   {
     name: 'Solvio Core 800 battery',
-    price: 590,
+    price: 21900,
     img: 'https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?auto=format&fit=crop&w=600&q=80',
   },
   {
     name: 'Tilt frame — 15° set',
-    price: 39,
+    price: 1490,
     img: 'https://images.unsplash.com/photo-1566093097221-ac2335b09e70?auto=format&fit=crop&w=600&q=80',
   },
 ];
@@ -286,7 +286,7 @@ export const faqs = [
   },
   {
     q: 'How much can I actually save?',
-    a: 'A south-facing 1.8 kWp kit generates roughly 1,700 kWh per year in central Europe. At typical tariffs that is around €600–€760 of avoided electricity, paying the kit back in 2–3 years.',
+    a: 'A south-facing 1.8 kWp kit generates roughly 2,700 kWh per year in Thailand. At typical tariffs that is around ฿11,000–฿12,000 of avoided electricity, paying the kit back in 2–3 years.',
   },
   {
     q: 'What happens on cloudy days or at night?',

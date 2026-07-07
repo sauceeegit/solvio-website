@@ -8,7 +8,7 @@ export default function SpecCard() {
       <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
         <Reveal>
           <div className="relative overflow-hidden rounded-xl2 border border-ink/[0.07] shadow-soft">
-            <img
+            <img loading="lazy"
               src="https://images.unsplash.com/photo-1611365892117-00ac5ef43c90?auto=format&fit=crop&w=1000&q=80"
               alt="Detail of a high-efficiency monocrystalline solar module"
               className="aspect-[4/5] w-full object-cover sm:aspect-[16/11]"

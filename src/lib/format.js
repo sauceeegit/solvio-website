@@ -3,13 +3,6 @@
 // import.meta.env.BASE_URL is '/' locally and '/solvio-website/' on Pages.
 export const asset = (p) => `${import.meta.env.BASE_URL}${String(p).replace(/^\//, '')}`;
 
-export const euro = (n) =>
-  new Intl.NumberFormat('en-IE', {
-    style: 'currency',
-    currency: 'EUR',
-    maximumFractionDigits: 0,
-  }).format(n);
-
 export const baht = (n) =>
   new Intl.NumberFormat('en-US', {
     style: 'currency',

@@ -63,7 +63,7 @@ export default function PortableBatteries() {
             >
               <div data-card className="group card flex h-full flex-col overflow-hidden">
                 <div className="relative aspect-[4/3] overflow-hidden bg-surface">
-                  <img
+                  <img loading="lazy"
                     src={p.img}
                     alt={p.name}
                     className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
@@ -71,7 +71,7 @@ export default function PortableBatteries() {
                     }`}
                   />
                   {p.sideImg && (
-                    <img
+                    <img loading="lazy"
                       src={p.sideImg}
                       alt={`${p.name} — side view`}
                       className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
@@ -90,7 +90,7 @@ export default function PortableBatteries() {
                       <p className="font-mono text-[11px] uppercase tracking-wider text-slatey-400">From</p>
                       <p className="font-display text-2xl font-extrabold text-ink tabular-nums">{baht(p.price)}</p>
                     </div>
-                    <Link to={p.href ?? '/portable'}>
+                    <Link to={p.href ?? '/portable-system'}>
                       <span className="inline-flex items-center gap-1.5 rounded-full bg-lime px-4 py-2 font-display text-sm font-bold text-white transition group-hover:bg-lime-dark">
                         See details <ArrowRight size={15} />
                       </span>

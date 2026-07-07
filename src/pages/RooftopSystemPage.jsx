@@ -5,8 +5,13 @@ import MediaLoader from '../components/MediaLoader';
 import Reveal from '../components/Reveal';
 import { asset } from '../lib/format';
 import { rooftopVideo } from '../data/landing';
+import { usePageMeta } from '../hooks/usePageMeta';
 
 export default function RooftopSystemPage() {
+  usePageMeta(
+    'Rooftop Solar for Thai Homes — Free Estimate | Solvio',
+    'Power your whole home with a Solvio rooftop solar array. Free system sizing, transparent Baht pricing and app-based monitoring — get your estimate today.'
+  );
   const videoRef = useRef(null);
   const [ready, setReady] = useState(false);
 
@@ -53,7 +58,7 @@ export default function RooftopSystemPage() {
               <div className="grid items-center gap-8 py-14 sm:py-20 lg:grid-cols-2 lg:gap-14">
                 {/* image */}
                 <div className="overflow-hidden rounded-xl2 shadow-soft">
-                  <img
+                  <img loading="lazy"
                     src={asset('/rooftop-feature.webp')}
                     alt="Aerial before and after — a villa roof fitted with a full Solvio solar array"
                     className="block w-full"
@@ -78,7 +83,7 @@ export default function RooftopSystemPage() {
               <div className="grid items-center gap-8 pb-14 sm:pb-20 lg:grid-cols-2 lg:gap-14">
                 {/* image (right on desktop) */}
                 <div className="overflow-hidden rounded-xl2 shadow-soft lg:order-2">
-                  <img
+                  <img loading="lazy"
                     src={asset('/rooftop-team.webp')}
                     alt="Solvio crew installing rooftop solar on a resort at sunset"
                     className="block w-full"

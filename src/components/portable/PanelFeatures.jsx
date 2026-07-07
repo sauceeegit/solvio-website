@@ -13,18 +13,18 @@ export default function PanelFeatures() {
           <div className="grid gap-3 lg:grid-cols-3">
             {/* Left — expandable (wide) + two squares */}
             <div className="flex flex-col gap-3">
-              <img
+              <img loading="lazy"
                 src={asset('/feat-expandable.jpg')}
                 alt="Expandable without limits — add more panels for more power"
                 className={`aspect-[2/1] w-full ${R} object-cover`}
               />
               <div className="grid grid-cols-2 gap-3">
-                <img
+                <img loading="lazy"
                   src={asset('/feat-multidevice.jpg')}
                   alt="Multi-device charging — USB-A, USB-C and DC5525 ports"
                   className={`aspect-square w-full ${R} object-cover`}
                 />
-                <img
+                <img loading="lazy"
                   src={asset('/feat-outdoor.jpg')}
                   alt="Outdoor ready — IP65 dust-proof and water-resistant"
                   className={`aspect-square w-full ${R} object-cover`}
@@ -33,14 +33,14 @@ export default function PanelFeatures() {
             </div>
 
             {/* Center — high-efficient energy conversion */}
-            <img
+            <img loading="lazy"
               src={asset('/feat-efficiency.jpg')}
               alt="High-efficient energy conversion — premium panels up to 22%"
               className={`aspect-square w-full ${R} object-cover`}
             />
 
             {/* Right — portable */}
-            <img
+            <img loading="lazy"
               src={asset('/feat-portable.jpg')}
               alt="Portable — integrated carrying handle and magnetic closure"
               className={`aspect-square w-full ${R} object-cover`}
