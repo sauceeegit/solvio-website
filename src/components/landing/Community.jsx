@@ -32,7 +32,9 @@ export default function Community() {
                   <h3 className="mt-5 font-display text-xl font-bold">{c.title}</h3>
                   <p className="mt-2 flex-1 text-sm leading-relaxed text-white/60">{c.sub}</p>
                   <a
-                    href="#"
+                    href={`https://wa.me/66843488428?text=${encodeURIComponent(`Hi Solvio — I'd like to: ${c.title}`)}`}
+                    target="_blank"
+                    rel="noreferrer"
                     className="mt-5 inline-flex items-center gap-1.5 font-display text-sm font-bold text-lime transition group-hover:gap-2.5"
                   >
                     {c.cta} <ArrowRight size={16} />

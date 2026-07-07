@@ -1,12 +1,47 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight, Mail, Phone, MapPin } from 'lucide-react';
 import Logo from './Logo';
 
+// Links with `to` route internally; `href` goes external (mailto/WhatsApp).
+// Entries without either are placeholders for pages that don't exist yet.
 const cols = [
-  { title: 'Products', links: ['Balcony Duo', 'Balcony System', 'Balcony Max', 'Core batteries', 'Accessories'] },
-  { title: 'Learn', links: ['How it works', 'Savings calculator', 'Installation guide', 'Solar blog', 'Reviews'] },
-  { title: 'Company', links: ['About Solvio', 'Sustainability', 'Careers', 'Press', 'Partners'] },
-  { title: 'Support', links: ['Help centre', 'Track order', 'Returns', 'Warranty', 'Contact'] },
+  {
+    title: 'Products',
+    links: [
+      { label: 'Balcony System', to: '/balcony-system' },
+      { label: 'Rooftop System', to: '/rooftop-system' },
+      { label: 'Portable power', to: '/portable-system' },
+      { label: 'Solar panels', to: '/solar-panel' },
+    ],
+  },
+  {
+    title: 'Learn',
+    links: [
+      { label: 'How it works', to: '/balcony-system' },
+      { label: 'Savings calculator', to: '/' },
+      { label: 'Installation guide' },
+      { label: 'Solar blog' },
+    ],
+  },
+  {
+    title: 'Company',
+    links: [
+      { label: 'About Solvio' },
+      { label: 'Sustainability' },
+      { label: 'Careers' },
+      { label: 'Partners', href: 'https://wa.me/66843488428?text=Hi%20Solvio%20%E2%80%94%20I%27m%20interested%20in%20becoming%20a%20partner' },
+    ],
+  },
+  {
+    title: 'Support',
+    links: [
+      { label: 'Help centre' },
+      { label: 'Returns' },
+      { label: 'Warranty' },
+      { label: 'Contact', href: 'mailto:hello@solvio.solar' },
+    ],
+  },
 ];
 
 export default function Footer() {
@@ -71,13 +106,24 @@ export default function Footer() {
                 {c.title}
               </p>
               <ul className="mt-4 space-y-2.5">
-                {c.links.map((l) => (
-                  <li key={l}>
-                    <a href="#" className="text-sm text-white/65 transition hover:text-lime">
-                      {l}
-                    </a>
-                  </li>
-                ))}
+                {c.links.map((l) => {
+                  const cls = 'text-sm text-white/65 transition hover:text-lime';
+                  return (
+                    <li key={l.label}>
+                      {l.to ? (
+                        <Link to={l.to} className={cls}>{l.label}</Link>
+                      ) : (
+                        <a
+                          href={l.href ?? '#'}
+                          className={cls}
+                          {...(l.href?.startsWith('http') ? { target: '_blank', rel: 'noreferrer' } : {})}
+                        >
+                          {l.label}
+                        </a>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}
@@ -85,7 +131,7 @@ export default function Footer() {
 
         <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
           <p className="font-mono text-xs text-white/40">
-            © {new Date().getFullYear()} Solvio Solar GmbH. All rights reserved.
+            © {new Date().getFullYear()} Solvio Solar. All rights reserved.
           </p>
           <div className="flex gap-5 font-mono text-xs text-white/40">
             <a href="#" className="hover:text-white">Imprint</a>

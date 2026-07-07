@@ -319,7 +319,9 @@ export default function WhyShop() {
 
                       {/* CTA */}
                       <a
-                        href="#"
+                        href="https://wa.me/66843488428?text=Hi%20Solvio%20%E2%80%94%20tell%20me%20about%20the%20rewards%20program"
+                        target="_blank"
+                        rel="noreferrer"
                         className="inline-flex items-center gap-1.5 font-display text-[13px] font-bold transition-all duration-300 group-hover:gap-2.5"
                         style={{ color: '#FC4302' }}
                       >

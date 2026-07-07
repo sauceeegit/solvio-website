@@ -6,7 +6,8 @@ import { asset } from '../lib/format';
 const SEEN_KEY = 'solvio_guide_popup_seen';
 
 // Email-capture popup offering "The ultimate Solvio guide". Appears once per
-// browser a few seconds after landing; dismissal / signup is remembered.
+// browser after the visitor shows interest — ~45% scroll depth, or a 30s
+// fallback — instead of interrupting them right after landing.
 export default function GuidePopup() {
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState('');
@@ -20,8 +21,23 @@ export default function GuidePopup() {
       seen = false;
     }
     if (seen) return undefined;
-    const t = setTimeout(() => setOpen(true), 5000);
-    return () => clearTimeout(t);
+
+    let t;
+    const onScroll = () => {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      if (scrollable > 0 && window.scrollY / scrollable >= 0.45) show();
+    };
+    const cleanup = () => {
+      clearTimeout(t);
+      window.removeEventListener('scroll', onScroll);
+    };
+    function show() {
+      cleanup(); // fire once — never re-open after dismissal
+      setOpen(true);
+    }
+    t = setTimeout(show, 30000);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return cleanup;
   }, []);
 
   const markSeen = () => {

@@ -267,12 +267,12 @@ export const related = [
 ];
 
 export const testimonials = [
-  { name: 'Lena M.', city: 'Leipzig', rating: 5, text: 'Mounted it on my third-floor railing in 25 minutes by myself. The app showed power flowing before I’d even put the ladder away.' },
-  { name: 'Tobias K.', city: 'Hamburg', rating: 5, text: 'First full month logged 168 kWh. My electricity bill dropped noticeably and the glass-glass panels look genuinely premium.' },
-  { name: 'Priya S.', city: 'Munich', rating: 5, text: 'I rent, so no-drill was essential. The hooks clamp tight and nothing touches the building. Landlord had zero objections.' },
-  { name: 'Marco B.', city: 'Cologne', rating: 4, text: 'Setup was painless. Took off one star only because I wish the longer AC cable came in the box by default.' },
-  { name: 'Sofia R.', city: 'Berlin', rating: 5, text: 'Pairing the Core 1600 battery means we run the fridge and router straight through the evening on yesterday’s sun.' },
-  { name: 'Jonas W.', city: 'Stuttgart', rating: 5, text: 'Support walked me through registration on a Sunday. 920 kWh in my first summer — paying for itself faster than promised.' },
+  { name: 'Nok S.', city: 'Bangkok', rating: 5, text: 'Mounted it on my third-floor railing in 25 minutes by myself. The app showed power flowing before I’d even put the ladder away.' },
+  { name: 'Tobias K.', city: 'Phuket', rating: 5, text: 'First full month logged 168 kWh. My electricity bill dropped noticeably and the glass-glass panels look genuinely premium.' },
+  { name: 'Priya S.', city: 'Chiang Mai', rating: 5, text: 'I rent, so no-drill was essential. The hooks clamp tight and nothing touches the building. Landlord had zero objections.' },
+  { name: 'Marco B.', city: 'Pattaya', rating: 4, text: 'Setup was painless. Took off one star only because I wish the longer AC cable came in the box by default.' },
+  { name: 'Ploy T.', city: 'Hua Hin', rating: 5, text: 'Pairing the Core 1600 battery means we run the fridge and router straight through the evening on yesterday’s sun.' },
+  { name: 'Somchai P.', city: 'Krabi', rating: 5, text: 'Support walked me through registration on a Sunday. 920 kWh in my first year — paying for itself faster than promised.' },
 ];
 
 export const faqs = [
