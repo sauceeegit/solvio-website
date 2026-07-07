@@ -29,15 +29,15 @@ export default function TopBar() {
           >
             <Phone size={14} /> {topBar.phone}
           </a>
-          <button className="inline-flex items-center gap-2 rounded-full border border-white/20 px-3.5 py-1.5 font-display text-[0.7rem] font-semibold text-white transition hover:bg-white/10">
+          <button className="hidden items-center gap-2 rounded-full border border-white/20 px-3.5 py-1.5 font-display text-[0.7rem] font-semibold text-white transition hover:bg-white/10 sm:inline-flex">
             <CalendarCheck size={14} className="text-lime" />
             <span className="hidden sm:inline">{topBar.cta}</span>
             <span className="sm:hidden">Book a call</span>
           </button>
         </div>
 
-        {/* Summer deal */}
-        <span className="inline-flex flex-wrap items-center justify-center gap-2 text-sm">
+        {/* Summer deal — hidden on mobile to keep the frozen header compact */}
+        <span className="hidden flex-wrap items-center justify-center gap-2 text-sm md:inline-flex">
           <Zap size={14} className="text-lime" />
           <span>
             Summer deal: get <strong>free installation support</strong> on all orders over ฿10,000
