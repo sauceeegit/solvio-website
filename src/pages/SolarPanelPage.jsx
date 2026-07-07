@@ -6,17 +6,28 @@ import { solarPanelVideo } from '../data/landing';
 
 export default function SolarPanelPage() {
   const videoRef = useRef(null);
+  const barRef = useRef(null);
   const [ready, setReady] = useState(false);
-  const [progress, setProgress] = useState(0);
 
-  // Ensure the loop autoplays muted (React can drop the muted attribute).
+  // Ensure the loop autoplays muted (React can drop the muted attribute), and
+  // drive the progress bar every animation frame for smooth (non-laggy) motion —
+  // the video's `timeupdate` event only fires ~4×/sec, which looks choppy.
   useEffect(() => {
     const v = videoRef.current;
-    if (v) {
-      v.muted = true;
-      v.play?.().catch(() => {});
-      if (v.readyState >= 2) setReady(true);
-    }
+    if (!v) return;
+    v.muted = true;
+    v.play?.().catch(() => {});
+    if (v.readyState >= 2) setReady(true);
+
+    let raf;
+    const tick = () => {
+      if (v.duration && barRef.current) {
+        barRef.current.style.width = `${(v.currentTime / v.duration) * 100}%`;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
   }, []);
 
   return (
@@ -41,18 +52,11 @@ export default function SolarPanelPage() {
               preload="auto"
               onLoadedData={() => setReady(true)}
               onCanPlay={() => setReady(true)}
-              onTimeUpdate={(e) => {
-                const v = e.currentTarget;
-                if (v.duration) setProgress((v.currentTime / v.duration) * 100);
-              }}
             />
 
             {/* Orange playback progress bar tracking the loop's duration */}
             <div className="absolute inset-x-0 bottom-0 z-10 h-1.5 bg-white/15">
-              <div
-                className="h-full bg-lime transition-[width] duration-150 ease-linear"
-                style={{ width: `${progress}%` }}
-              />
+              <div ref={barRef} className="h-full bg-lime" style={{ width: '0%' }} />
             </div>
           </div>
         </section>
