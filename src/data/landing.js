@@ -136,13 +136,13 @@ export const landingFaqs = [
 // (row-span-2) feature cell, index 5 is the wide (col-span-2) feature cell.
 export const whyShop = [
   { icon: 'Coins', title: 'Earn Solvio rewards', img: asset('/earn-rewards.jpg') },
-  { icon: 'CreditCard', title: 'Convenient installment plans' },
-  { icon: 'Headphones', title: 'Lifetime customer support' },
-  { icon: 'RotateCcw', title: '30-day returns' },
-  { icon: 'ShieldCheck', title: 'Warranty protection' },
-  { icon: 'Package', title: 'Comprehensive balcony solar solutions' },
-  { icon: 'Truck', title: 'Fast shipping' },
-  { icon: 'CreditCard', title: 'Secure multiple payments' },
+  { icon: 'CreditCard', title: 'Convenient installment plans', sub: '0% interest, up to 12 months' },
+  { icon: 'Headphones', title: 'Lifetime customer support', sub: 'Real experts, always available' },
+  { icon: 'RotateCcw', title: '30-day returns', sub: 'Hassle-free, no questions asked' },
+  { icon: 'ShieldCheck', title: 'Warranty protection', sub: '5-year comprehensive coverage' },
+  { icon: 'Package', title: 'Comprehensive balcony solar solutions', sub: 'Complete systems, fully matched components' },
+  { icon: 'Truck', title: 'Fast shipping', sub: 'Delivered in 3–5 business days' },
+  { icon: 'CreditCard', title: 'Secure multiple payments', sub: 'Card, bank transfer or PromptPay' },
 ];
 
 // "Become part of Solvio" — 3 membership / community cards.
