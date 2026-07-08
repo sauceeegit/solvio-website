@@ -17,21 +17,30 @@ export default function LandingFAQ() {
         </Reveal>
 
         <div className="mt-8 grid gap-6 lg:grid-cols-[280px_1fr] lg:gap-10">
-          {/* side tab */}
+          {/* side tab — fills the column height (content centred) so it doesn't leave a gap */}
           <Reveal>
-            <div className="rounded-xl2 bg-ink p-6 text-white">
+            <div className="flex h-full flex-col justify-center rounded-xl2 bg-ink p-6 text-white sm:p-8">
               <span className="grid h-11 w-11 place-items-center rounded-xl bg-lime text-white">
                 <HelpCircle size={22} />
               </span>
               <h3 className="mt-4 font-display text-xl font-extrabold">About Solvio</h3>
-              <p className="mt-2 text-sm text-white/60">
+              <p className="mt-2 text-sm leading-relaxed text-white/60">
                 Everything from one source — from a single balcony panel to a full rooftop array.
+                Got a question that isn&apos;t here? Our team is one message away.
               </p>
               <a
                 href="#calculator"
-                className="mt-5 inline-flex rounded-full bg-lime px-4 py-2.5 font-display text-sm font-bold text-white transition hover:bg-lime-dark"
+                className="mt-6 inline-flex rounded-full bg-lime px-4 py-2.5 font-display text-sm font-bold text-white transition hover:bg-lime-dark"
               >
                 Explore Solvio
+              </a>
+              <a
+                href="https://wa.me/66843488428"
+                target="_blank"
+                rel="noreferrer"
+                className="mt-3 block text-sm font-semibold text-white/70 transition hover:text-white"
+              >
+                Chat on WhatsApp →
               </a>
             </div>
           </Reveal>
