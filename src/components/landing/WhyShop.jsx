@@ -227,12 +227,12 @@ function BenefitCard({ item, big }) {
     >
       <div className={big ? 'flex items-center gap-5 flex-1' : 'flex flex-col gap-3 flex-1'}>
         <span className="inline-flex shrink-0 items-center justify-center">
-          <Icon size={big ? 26 : 22} strokeWidth={1.5} style={{ color: '#0F2B24' }} />
+          <Icon size={big ? 26 : 22} strokeWidth={1.5} style={{ color: '#09321B' }} />
         </span>
         <div>
           <h3
             className="font-display font-bold leading-snug"
-            style={{ fontSize: big ? 15 : 13, color: '#0F2B24' }}
+            style={{ fontSize: big ? 15 : 13, color: '#09321B' }}
           >
             {item.title}
           </h3>
@@ -261,7 +261,7 @@ export default function WhyShop() {
             <p className="eyebrow">The Solvio difference</p>
             <h2
               className="mt-2 font-display text-3xl font-extrabold tracking-tight sm:text-4xl"
-              style={{ color: '#0F2B24' }}
+              style={{ color: '#09321B' }}
             >
               Why choose Solvio?
             </h2>
@@ -303,7 +303,7 @@ export default function WhyShop() {
                         {/* Headline */}
                         <h3
                           className="font-display font-extrabold leading-tight"
-                          style={{ fontSize: 'clamp(16px,2.2cqw,22px)', color: '#0F2B24' }}
+                          style={{ fontSize: 'clamp(16px,2.2cqw,22px)', color: '#09321B' }}
                         >
                           Earn Solvio<br />Rewards
                         </h3>

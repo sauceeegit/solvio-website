@@ -125,7 +125,7 @@ function BreakEvenChart({ series, cost, payback }) {
     <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img" aria-label="Cumulative savings versus system cost over 25 years">
       {[0, maxY / 2, maxY].map((v, i) => (
         <g key={i}>
-          <line x1={padL} y1={y(v)} x2={W - padR} y2={y(v)} stroke="#0C1E1A" strokeOpacity="0.08" />
+          <line x1={padL} y1={y(v)} x2={W - padR} y2={y(v)} stroke="#09321B" strokeOpacity="0.08" />
           <text x={padL - 8} y={y(v) + 4} textAnchor="end" fontSize="11" fill="#7E8C84" fontFamily="monospace">
             {shortBaht(v)}
           </text>
