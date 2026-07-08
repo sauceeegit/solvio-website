@@ -53,8 +53,8 @@ export default function RooftopSystemPage() {
         <section className="bg-white">
           <div className="container-x">
             <Reveal>
-              <div className="grid items-center gap-8 py-14 sm:py-20 lg:grid-cols-2 lg:gap-14">
-                {/* image */}
+              <div className="grid items-center gap-8 py-14 sm:py-20 lg:grid-cols-[1.6fr_1fr] lg:gap-14">
+                {/* image (enlarged) */}
                 <div className="overflow-hidden rounded-xl2 shadow-soft">
                   <img loading="lazy"
                     src={asset('/rooftop-feature.webp')}
@@ -82,8 +82,8 @@ export default function RooftopSystemPage() {
                 {/* image (right on desktop) */}
                 <div className="overflow-hidden rounded-xl2 shadow-soft lg:order-2">
                   <img loading="lazy"
-                    src={asset('/rooftop-team.webp')}
-                    alt="Solvio crew installing rooftop solar on a resort at sunset"
+                    src={asset('/rooftop-cta.webp')}
+                    alt="Solvio technicians installing a rooftop solar array on a resort at sunset"
                     className="block w-full"
                   />
                 </div>
@@ -104,16 +104,6 @@ export default function RooftopSystemPage() {
               </div>
             </Reveal>
           </div>
-        </section>
-
-        {/* Full-bleed process image */}
-        <section className="relative w-full">
-          <img
-            loading="lazy"
-            src={asset('/rooftop-cta.webp')}
-            alt="Solvio technicians installing a rooftop solar array at sunset"
-            className="block max-h-[70vh] w-full object-cover"
-          />
         </section>
 
         {/* 7-step plan (horizontal) */}
