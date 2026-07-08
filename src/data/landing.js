@@ -160,7 +160,7 @@ export const panelFaqs = [
   },
   {
     q: 'Are the panels durable enough for outdoor balcony use?',
-    a: 'Yes. The dual-glass construction sandwiches the cells between two layers of tempered, anti-reflective glass, which resists micro-cracks, scratches, and moisture far better than plastic-backed panels. The panels are rated for wind and snow loads of 2,400 Pa and operate from -40°C to +85°C (-40°F to +185°F).',
+    a: 'Yes. The dual-glass construction sandwiches the cells between two layers of tempered, anti-reflective glass, which resists micro-cracks, scratches, and moisture far better than plastic-backed panels. The panels are rated for wind loads of 2,400 Pa and operate reliably from -40°C to +85°C (-40°F to +185°F).',
   },
   {
     q: 'What happens to output on hot summer days?',
