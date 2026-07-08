@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { NavLink, Link } from 'react-router-dom';
 import { Menu, X, ShoppingCart } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -65,10 +66,11 @@ export default function LandingNav() {
         </div>
       </nav>
 
-      <AnimatePresence>
+      {createPortal(
+        <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-50 bg-ink md:hidden"
+            className="fixed inset-0 z-[70] bg-ink md:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -107,7 +109,9 @@ export default function LandingNav() {
             </ul>
           </motion.div>
         )}
-      </AnimatePresence>
+        </AnimatePresence>,
+        document.body,
+      )}
     </header>
   );
 }
