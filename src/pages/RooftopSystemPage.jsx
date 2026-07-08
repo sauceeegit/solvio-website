@@ -64,8 +64,8 @@ export default function RooftopSystemPage() {
                   />
                 </div>
 
-                {/* text — nudged up a little relative to the image */}
-                <div className="-mt-3 lg:-mt-10 lg:self-start">
+                {/* text — nudged up just slightly relative to the image */}
+                <div className="lg:-mt-3 lg:self-start">
                   <h2 className="font-display text-3xl font-extrabold leading-[1.1] tracking-tight text-ink sm:text-4xl lg:text-5xl">
                     Big Roof? Build Big.
                   </h2>
