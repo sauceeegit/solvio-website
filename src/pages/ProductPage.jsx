@@ -44,7 +44,7 @@ export default function ProductPage() {
         <CalculatorSection derived={cfg} />
         <Testimonials />
         <Comparison />
-        <FAQ />
+        <FAQ bg="#FFF7E9" />
       </main>
       <Footer />
       <StickyCartBar derived={cfg} onAddToCart={addToCart} added={added} />

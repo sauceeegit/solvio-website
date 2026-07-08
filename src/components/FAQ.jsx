@@ -42,11 +42,12 @@ export default function FAQ({
   eyebrow = 'Questions',
   heading = 'Everything you wanted to ask',
   subtitle = 'Still unsure? Our solar advisors answer in plain language, Monday to Friday.',
+  bg,
 }) {
   const [open, setOpen] = useState(0);
 
   return (
-    <section id="faq" className="scroll-mt-20 bg-surface py-20">
+    <section id="faq" className={`scroll-mt-20 py-20 ${bg ? '' : 'bg-surface'}`} style={bg ? { background: bg } : undefined}>
       <div className="container-x grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <Reveal>
           <p className="eyebrow">{eyebrow}</p>

@@ -15,7 +15,7 @@ const ROWS = [
   { label: 'Max module efficiency', values: ['23.1%', '22.02%', '22%', '22.0%'], lead: true },
   { label: 'Power density (W/m²)', values: ['230.6', '220.2', '220.2', '220.2'], lead: true },
   { label: 'Temp coefficient (Pmax)', values: ['-0.29%/°C', '-0.29%/°C', '-0.29%/°C', '-0.30%/°C'] },
-  { label: 'Annual degradation', values: ['-0.40%', '-0.40%', '-0.4%', '-0.40%'] },
+  { label: 'Annual degradation', values: ['-0.40%', '-0.40%', '-0.40%', '-0.40%'] },
   { label: 'Laminate thickness', values: ['4.75 mm', '30 mm framed', '30 mm framed', '30 mm framed'], lead: true },
   {
     label: 'Weight',

@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Sun, Wallet, Leaf, Clock } from 'lucide-react';
+import { Sun, Wallet, Leaf, Clock, ArrowRight, Check } from 'lucide-react';
 import { orientations, calculatorDefaults, computeConfig, defaultConfig } from '../data/product';
 import { baht, num } from '../lib/format';
 import Reveal from './Reveal';
@@ -22,6 +22,13 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
   const [rate, setRate] = useState(calculatorDefaults.rate);
   // Off by default: plug-in kits usually can't register for PEA net-billing.
   const [exportOn, setExportOn] = useState(false);
+  const [email, setEmail] = useState('');
+  const [sent, setSent] = useState(false);
+
+  const submitQuote = (e) => {
+    e.preventDefault();
+    if (email) setSent(true);
+  };
 
   const factor = orientations.find((o) => o.id === orientation)?.factor ?? 1;
 
@@ -166,6 +173,35 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
                   </div>
                 </div>
               ))}
+            </div>
+
+            {/* quote by email */}
+            <div className="border-t border-ink/[0.07] pt-5 md:col-span-2">
+              {sent ? (
+                <p className="flex items-center gap-2 font-display text-sm font-semibold text-[#1A8F66]">
+                  <Check size={18} strokeWidth={3} /> Thanks! Your quote is on its way to {email}.
+                </p>
+              ) : (
+                <form onSubmit={submitQuote} className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                  <input
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="you@email.com"
+                    className="w-full flex-1 rounded-full border border-ink/15 bg-white px-5 py-3 font-display text-sm text-ink placeholder:text-slatey-400 focus:border-lime-dark focus:outline-none"
+                  />
+                  <button
+                    type="submit"
+                    className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-lime px-6 py-3 font-display text-sm font-bold text-white transition hover:bg-lime-dark"
+                  >
+                    Email me my quote <ArrowRight size={16} />
+                  </button>
+                </form>
+              )}
+              <p className="mt-2 text-sm text-slatey-500">
+                We&apos;ll send your estimate and follow up with a tailored quote.
+              </p>
             </div>
           </div>
         </Reveal>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ArrowRight, Check, MapPin, CalendarClock, X, ChevronRight } from 'lucide-react';
+import { ArrowRight, Check, MapPin, CalendarClock, X, ChevronRight, ChevronDown } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { asset } from '../lib/format';
 import Reveal from './Reveal';
@@ -115,7 +115,7 @@ export default function RooftopSteps() {
   }, [mapOpen]);
 
   return (
-    <section className="bg-white py-16 sm:py-20">
+    <section className="bg-[#EEF5FC] py-16 sm:py-20">
       <div className="container-x">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
@@ -158,7 +158,7 @@ export default function RooftopSteps() {
                   </p>
                 )}
 
-                {/* progression arrow to the next step (single-row layout) */}
+                {/* progression arrow to the next step — right on the xl single row */}
                 {s.n !== 7 && (
                   <span
                     className="absolute -right-3 top-6 z-10 hidden h-6 w-6 place-items-center rounded-full border bg-white shadow-sm xl:grid"
@@ -166,6 +166,16 @@ export default function RooftopSteps() {
                     aria-hidden="true"
                   >
                     <ChevronRight size={14} strokeWidth={3} />
+                  </span>
+                )}
+                {/* progression arrow pointing down between stacked steps on mobile */}
+                {s.n !== 7 && (
+                  <span
+                    className="absolute -bottom-3.5 left-1/2 z-10 grid h-7 w-7 -translate-x-1/2 place-items-center rounded-full border bg-white shadow-sm sm:hidden"
+                    style={{ borderColor: `${s.color}59`, color: s.color }}
+                    aria-hidden="true"
+                  >
+                    <ChevronDown size={16} strokeWidth={3} />
                   </span>
                 )}
               </li>
