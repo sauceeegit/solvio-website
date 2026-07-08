@@ -15,7 +15,7 @@ const ROWS = [
   { label: 'Max module efficiency', values: ['23.1%', '22.02%', '~22%', '22.0%'], lead: true },
   { label: 'Power density (W/m²)', values: ['230.6', '220.2', '220.2', '220.2'], lead: true },
   { label: 'Temp coefficient (Pmax)', values: ['-0.29%/°C', '-0.29%/°C', '-0.29%/°C', '-0.30%/°C'] },
-  { label: 'Annual degradation', values: ['-0.40%', '-0.40%', '~-0.4%', '0.4%'] },
+  { label: 'Annual degradation', values: ['-0.40%', '-0.40%', '~-0.4%', '-0.40%'] },
   { label: 'Laminate thickness', values: ['4.75 mm', '30 mm framed', '30 mm framed', '30 mm framed'], lead: true },
   {
     label: 'Weight',
@@ -37,7 +37,7 @@ export default function PanelComparison() {
 
         <Reveal delay={0.1}>
           <div className="mt-8 overflow-x-auto rounded-xl2 border border-ink/[0.08] shadow-soft">
-            <table className="w-full min-w-[760px] border-collapse text-center">
+            <table className="w-full min-w-[560px] border-collapse text-center sm:min-w-[780px]">
               <thead>
                 <tr>
                   {/* top-left corner */}
@@ -45,14 +45,14 @@ export default function PanelComparison() {
                   {COLUMNS.map((col) => (
                     <th
                       key={col.name}
-                      className={`p-4 align-top ${
+                      className={`p-2.5 align-top sm:p-4 ${
                         col.solvio
                           ? 'border-x-2 border-lime bg-lime text-white'
                           : 'bg-ink text-white/90'
                       }`}
                     >
-                      <span className="block font-display text-sm font-bold leading-snug">{col.name}</span>
-                      <span className={`mt-0.5 block font-mono text-[11px] ${col.solvio ? 'text-white/85' : 'text-white/55'}`}>
+                      <span className="block font-display text-[13px] font-bold leading-snug sm:text-base">{col.name}</span>
+                      <span className={`mt-0.5 block font-mono text-[10px] sm:text-xs ${col.solvio ? 'text-white/85' : 'text-white/55'}`}>
                         {col.sub}
                       </span>
                     </th>
@@ -63,7 +63,7 @@ export default function PanelComparison() {
                 {ROWS.map((row, ri) => (
                   <tr key={row.label} className={ri % 2 ? 'bg-[#FFF6F1]' : 'bg-white'}>
                     <td
-                      className={`sticky left-0 z-10 border-t border-ink/[0.07] p-4 text-left font-display text-sm font-semibold text-ink ${
+                      className={`sticky left-0 z-10 border-t border-ink/[0.07] p-2.5 text-left font-display text-[13px] font-semibold text-ink sm:p-4 sm:text-[15px] ${
                         ri % 2 ? 'bg-[#FFF6F1]' : 'bg-white'
                       }`}
                     >
@@ -74,7 +74,7 @@ export default function PanelComparison() {
                       return (
                         <td
                           key={ci}
-                          className={`border-t p-4 text-sm ${
+                          className={`border-t p-2.5 text-[13px] sm:p-4 sm:text-[15px] ${
                             isSolvio
                               ? 'border-x-2 border-lime/30 border-t-lime/20 bg-lime/[0.07] font-bold text-ink'
                               : 'border-ink/[0.07] text-ink/70'
@@ -83,7 +83,7 @@ export default function PanelComparison() {
                           <span className="inline-flex items-center justify-center gap-1.5">
                             {v}
                             {isSolvio && row.lead && (
-                              <Star size={13} className="shrink-0 fill-lime-dark text-lime-dark" aria-label="category-leading" />
+                              <Star size={14} className="shrink-0 fill-lime text-lime" aria-label="category-leading" />
                             )}
                           </span>
                         </td>
@@ -97,7 +97,7 @@ export default function PanelComparison() {
 
           <p className="mt-3 text-xs text-slatey-400 sm:hidden">Swipe the table sideways to compare →</p>
           <p className="mt-4 max-w-3xl text-xs leading-relaxed text-slatey-400">
-            <Star size={11} className="mb-0.5 mr-1 inline fill-lime-dark text-lime-dark" /> = category-leading in
+            <Star size={11} className="mb-0.5 mr-1 inline fill-lime text-lime" /> = category-leading in
             this set. Efficiency and power-density figures reflect the 460 W top bin. Temp coefficient shown is
             parity with the best n-type modules.
           </p>

@@ -69,13 +69,13 @@ export default function SolarPanelPage() {
         </section>
 
         <SolarPanelFeatures />
+        <PanelComparison />
         <FAQ
           items={panelFaqs}
           eyebrow="Panel tech"
           heading="Frequently asked questions"
           subtitle="The engineering behind Solvio panels — cells, build, and how they hold up in Thai heat."
         />
-        <PanelComparison />
       </main>
       <Footer />
     </div>
