@@ -92,6 +92,17 @@ Each page = `<Header/>` (sticky TopBar+nav) → `<main>` → `<Footer/>`.
 4. Testimonials still use German cities (Leipzig/Hamburg/…) and review count (4.8★ · 1,294) is invented —
    replace with real content before launch.
 5. Nice-to-have: JSON-LD structured data (Product + Organization), prerendering routes for crawlers.
+6. **Calculators (audited + overhauled 2026-07-07)** — Basic & Advanced now share the same energy
+   assumptions (1.5 kWh/Wp/yr, 65% self-consumption, 90-95% with battery, ฿4.5/kWh, CO₂ 0.5).
+   Advanced has a PEA ฿2.20/kWh export-credit toggle (ON landing / OFF balcony) and prices a
+   *professionally installed rooftop* (18,500/kW + 79,000); Basic prices the *self-installed kit*
+   (configurator total). **Remaining intentional difference:** same-size payback reads ~3.7y (kit)
+   vs ~6.9y (installed) — both footnoted on-screen. Optional next step if full agreement is wanted:
+   make Advanced switch to kit pricing when rendered on the balcony page (~30 min; it already
+   receives page context via the `exportDefault`/`derived` plumbing in `CalculatorSection.jsx`).
+   Also: the balcony bento tile "฿65k saved in 10 years per module" is user-specified copy that no
+   longer matches the model (~฿20k/module at 65% SC) — awaiting user decision.
+   Market refs used: 5 kW installed ฿130-250k, payback 4-6y typical; PEA net-billing ฿2.20/unit.
 
 ---
 
