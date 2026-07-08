@@ -53,7 +53,7 @@ export default function RooftopSystemPage() {
         <section className="bg-white">
           <div className="container-x">
             <Reveal>
-              <div className="grid items-center gap-8 py-14 sm:py-20 lg:grid-cols-[1.3fr_1fr] lg:gap-14">
+              <div className="grid items-center gap-8 py-14 sm:py-20 lg:grid-cols-2 lg:gap-14">
                 {/* image */}
                 <div className="overflow-hidden rounded-xl2 shadow-soft">
                   <img loading="lazy"
@@ -68,19 +68,17 @@ export default function RooftopSystemPage() {
                   <h2 className="font-display text-3xl font-extrabold leading-[1.1] tracking-tight text-ink sm:text-4xl lg:text-5xl">
                     Big Roof? Build Big.
                   </h2>
-                  <div className="mt-5 max-w-md space-y-4 text-lg leading-relaxed text-slatey-500">
-                    <p>Every square metre of unused roof is money left on the table.</p>
-                    <p>
-                      If you&apos;ve got the space, we&apos;ve got the system to fill it — sized to
-                      your building, your load, and your ambitions.
-                    </p>
-                  </div>
+                  <p className="mt-5 max-w-md text-lg leading-relaxed text-slatey-500">
+                    Every square metre of unused roof is money left on the table. If you&apos;ve got
+                    the space, we&apos;ve got the system to fill it — sized to your building, your
+                    load, and your ambitions.
+                  </p>
                 </div>
               </div>
             </Reveal>
 
             <Reveal>
-              <div className="grid items-center gap-8 pb-14 sm:pb-20 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
+              <div className="grid items-center gap-8 pb-14 sm:pb-20 lg:grid-cols-2 lg:gap-14">
                 {/* image (right on desktop) */}
                 <div className="overflow-hidden rounded-xl2 shadow-soft lg:order-2">
                   <img loading="lazy"
@@ -95,15 +93,13 @@ export default function RooftopSystemPage() {
                   <h2 className="font-display text-3xl font-extrabold leading-[1.1] tracking-tight text-ink sm:text-4xl lg:text-5xl">
                     Designed and installed by people who&apos;ve done it before
                   </h2>
-                  <div className="mt-5 max-w-md space-y-4 text-lg leading-relaxed text-slatey-500">
-                    <p>Solar isn&apos;t guesswork.</p>
-                    <p>
-                      Our team brings years of hands-on experience and state-of-the-art design to
-                      every rooftop we take on — engineering each system for maximum yield, safe
-                      structural loading, and clean integration with your existing power setup.
-                    </p>
-                    <p>Whether it&apos;s a resort, a hotel, or a commercial block, we build it to perform.</p>
-                  </div>
+                  <p className="mt-5 max-w-md text-lg leading-relaxed text-slatey-500">
+                    Solar isn&apos;t guesswork. Our team brings years of hands-on experience and
+                    state-of-the-art design to every rooftop we take on — engineering each system for
+                    maximum yield, safe structural loading, and clean integration with your existing
+                    power setup. Whether it&apos;s a resort, a hotel, or a commercial block, we build
+                    it to perform.
+                  </p>
                 </div>
               </div>
             </Reveal>

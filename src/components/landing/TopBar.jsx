@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom';
-import { Phone, CalendarCheck, Zap } from 'lucide-react';
+import { Phone, CalendarCheck } from 'lucide-react';
 import { topBar } from '../../data/landing';
 
 function Social({ label, href = '#', children }) {
@@ -35,20 +34,6 @@ export default function TopBar() {
             <span className="sm:hidden">Book a call</span>
           </button>
         </div>
-
-        {/* Summer deal — hidden on mobile to keep the frozen header compact */}
-        <span className="hidden flex-wrap items-center justify-center gap-2 text-sm md:inline-flex">
-          <Zap size={14} className="text-lime" />
-          <span>
-            Summer deal: get <strong>free installation support</strong> on all orders over ฿10,000
-          </span>
-          <Link
-            to="/balcony-system"
-            className="inline-flex items-center rounded-full bg-lime px-3.5 py-1 font-display text-sm font-bold text-white"
-          >
-            Claim now
-          </Link>
-        </span>
 
         {/* Socials */}
         <div className="flex items-center gap-2">

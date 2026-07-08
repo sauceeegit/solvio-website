@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ArrowRight, Check, MapPin, CalendarClock, X } from 'lucide-react';
+import { ArrowRight, Check, MapPin, CalendarClock, X, ChevronRight } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { asset } from '../lib/format';
 import Reveal from './Reveal';
@@ -10,14 +10,15 @@ const WA_BOOK = `https://wa.me/66843488428?text=${encodeURIComponent(
   "Hi Solvio — I'd like to book a 15-minute consultation call.",
 )}`;
 
+// Boxes flow from light green (step 1) → brand orange (step 7).
 const STEPS = [
-  { n: 1, title: 'Request a free consultation', color: '#FF6700', type: 'contact' },
-  { n: 2, title: 'Site survey & custom design', color: '#FF6700', desc: 'We inspect your roof and design a custom system.', img: '/rooftop-step2.webp' },
-  { n: 3, title: 'Choose payment or financing', color: '#FF6700', type: 'payment' },
-  { n: 4, title: 'Permits & grid application', color: '#1C4537', desc: 'We handle ERC and PEA/MEA permits and paperwork.', img: '/rooftop-step4.webp' },
-  { n: 5, title: 'Professional installation', color: '#1C4537', desc: 'Certified techs install panels, inverter & wiring.', img: '/rooftop-step5.webp', note: 'Depends on size — most installs finish in 1–2 days on average.' },
-  { n: 6, title: 'Connection, testing & handover', color: '#1C4537', desc: 'Meter change, testing, app setup, and full handover.', img: '/rooftop-step6.webp' },
-  { n: 7, title: 'Warranty & maintenance', color: '#F4B740', dark: true, desc: 'Monitoring, cleaning, and responsive warranty care.', img: '/rooftop-step7.webp' },
+  { n: 1, title: 'Request a free consultation', color: '#7AC74F', dark: true, type: 'contact' },
+  { n: 2, title: 'Site survey & custom design', color: '#96C63E', dark: true, desc: 'We inspect your roof and design a custom system.', img: '/rooftop-step2.webp' },
+  { n: 3, title: 'Choose payment or financing', color: '#B8C22C', dark: true, type: 'payment' },
+  { n: 4, title: 'Permits & grid application', color: '#DBB021', dark: true, desc: 'We handle ERC and PEA/MEA permits and paperwork.', img: '/rooftop-step4.webp' },
+  { n: 5, title: 'Professional installation', color: '#EE9518', desc: 'Certified techs install panels, inverter & wiring.', img: '/rooftop-step5.webp', note: 'Depends on size — most installs finish in 1–2 days on average.' },
+  { n: 6, title: 'Connection, testing & handover', color: '#F87F0C', desc: 'Meter change, testing, app setup, and full handover.', img: '/rooftop-step6.webp' },
+  { n: 7, title: 'Warranty & maintenance', color: '#FF6700', desc: 'Monitoring, cleaning, and responsive warranty care.', img: '/rooftop-step7.webp' },
 ];
 
 // Thai bank brand colours (text chips — real logos can be dropped in later).
@@ -31,7 +32,7 @@ const BANKS = [
 function StepImage({ src, alt }) {
   return (
     <div className="mt-3 overflow-hidden rounded-lg">
-      <img loading="lazy" src={asset(src)} alt={alt} className="aspect-[3/4] w-full object-cover" />
+      <img loading="lazy" src={asset(src)} alt={alt} className="aspect-[4/3] w-full object-cover" />
     </div>
   );
 }
@@ -126,9 +127,13 @@ export default function RooftopSteps() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <ol className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-7">
+          <ol className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 xl:gap-3">
             {STEPS.map((s) => (
-              <li key={s.n} className="flex flex-col rounded-xl2 border border-ink/[0.1] bg-white p-4 shadow-sm">
+              <li
+                key={s.n}
+                className="relative flex flex-col rounded-xl2 border p-4 shadow-sm"
+                style={{ borderColor: `${s.color}59`, backgroundColor: `${s.color}12` }}
+              >
                 <span
                   className="grid h-10 w-10 place-items-center rounded-full font-display text-base font-bold"
                   style={{ backgroundColor: s.color, color: s.dark ? '#0C1E1A' : '#FFFFFF' }}
@@ -145,6 +150,17 @@ export default function RooftopSteps() {
                   <p className="mt-3 rounded-lg bg-[#FFF1E8] px-3 py-2 text-xs font-medium text-[#B84D00]">
                     {s.note}
                   </p>
+                )}
+
+                {/* progression arrow to the next step (single-row layout) */}
+                {s.n !== 7 && (
+                  <span
+                    className="absolute -right-3 top-6 z-10 hidden h-6 w-6 place-items-center rounded-full border bg-white shadow-sm xl:grid"
+                    style={{ borderColor: `${s.color}59`, color: s.color }}
+                    aria-hidden="true"
+                  >
+                    <ChevronRight size={14} strokeWidth={3} />
+                  </span>
                 )}
               </li>
             ))}
