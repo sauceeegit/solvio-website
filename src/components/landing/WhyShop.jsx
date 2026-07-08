@@ -215,7 +215,7 @@ function BenefitCard({ item, big }) {
 
   return (
     <div
-      className={`flex h-full min-h-[150px] flex-col justify-between rounded-xl2 bg-white p-5 transition-all duration-300 ${big ? 'flex-row items-center gap-6 sm:flex-row' : ''}`}
+      className="flex h-full min-h-[160px] flex-col rounded-xl2 bg-white p-5 transition-all duration-300"
       style={{
         boxShadow: hovered
           ? '0 12px 40px rgba(15,43,36,0.13)'
@@ -225,15 +225,18 @@ function BenefitCard({ item, big }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <div className={big ? 'flex items-center gap-5 flex-1' : 'flex flex-col flex-1'}>
-        <span className={`inline-flex shrink-0 items-center justify-center ${big ? '' : 'mb-4'}`}>
-          <Icon size={big ? 40 : 36} strokeWidth={1.3} style={{ color: '#09321B' }} />
-        </span>
+      {/* Icon — top */}
+      <span className="inline-flex shrink-0 items-center justify-center">
+        <Icon size={40} strokeWidth={1.3} style={{ color: '#09321B' }} />
+      </span>
+
+      {/* Spacer */}
+      <div className="flex-1" />
+
+      {/* Text + arrow — locked to bottom */}
+      <div className="flex items-end justify-between gap-3">
         <div>
-          <h3
-            className="font-display font-bold leading-snug"
-            style={{ fontSize: big ? 15 : 14, color: '#09321B' }}
-          >
+          <h3 className="font-display font-bold leading-snug" style={{ fontSize: 14, color: '#09321B' }}>
             {item.title}
           </h3>
           {item.sub && (
@@ -242,12 +245,12 @@ function BenefitCard({ item, big }) {
             </p>
           )}
         </div>
+        <ArrowRight
+          size={15}
+          className={`shrink-0 transition-all duration-300 ${hovered ? 'translate-x-1' : ''}`}
+          style={{ color: hovered ? '#FC4302' : '#ccc' }}
+        />
       </div>
-      <ArrowRight
-        size={15}
-        className={`shrink-0 transition-all duration-300 ${big ? '' : 'mt-3 self-end'} ${hovered ? 'translate-x-1' : ''}`}
-        style={{ color: hovered ? '#FC4302' : '#ccc' }}
-      />
     </div>
   );
 }
