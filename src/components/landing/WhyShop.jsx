@@ -229,8 +229,8 @@ function BenefitCard({ item, big }) {
       <div className="flex-1" />
 
       {/* Icon in circle — just above text */}
-      <span className="inline-flex shrink-0 items-center justify-center mb-4 rounded-full border-2 border-ink/15" style={{ width: 72, height: 72 }}>
-        <Icon size={34} strokeWidth={1.3} style={{ color: '#09321B' }} />
+      <span className="inline-flex shrink-0 items-center justify-center mb-4 rounded-full" style={{ width: 72, height: 72, background: '#f3aa5e' }}>
+        <Icon size={34} strokeWidth={1.3} style={{ color: '#fff' }} />
       </span>
 
       {/* Text + arrow — locked to bottom */}
