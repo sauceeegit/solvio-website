@@ -56,7 +56,7 @@ function ModuleCard({ selected, onClick, panel }) {
           {selected && <Check size={12} strokeWidth={3} />}
         </span>
       </div>
-      <div className="flex flex-1 flex-col p-3">
+      <div className="flex flex-1 flex-col p-3 bg-white">
         <div className="flex items-baseline justify-between gap-2">
           <span className="font-display text-sm font-bold text-ink">{panel.label}</span>
           <span className="font-body text-xs font-semibold text-ink">{baht(panelThb(panel.id))}</span>
@@ -94,7 +94,7 @@ function StorageCard({ selected, onClick, opt }) {
         )}
       </div>
 
-      <div className="flex flex-1 flex-col px-1 pt-3">
+      <div className={`flex flex-1 flex-col px-1 pt-3 ${selected ? '' : 'bg-[#FFF7E9]'}`}>
         {opt.brand && (
           <span className={`font-body text-[11px] font-semibold uppercase tracking-wide ${selected ? 'text-white/55' : 'text-slatey-400'}`}>
             {opt.brand}
