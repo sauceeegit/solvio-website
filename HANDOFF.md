@@ -1,13 +1,13 @@
 # Solvio — Project handoff / continuation notes
 
-_Last updated: 2026-07-07._ **Read `CLAUDE.md` (repo root) first — it has the team working rules.**
+_Last updated: 2026-07-08._ **Read `CLAUDE.md` (repo root) first — it has the team working rules.**
 The `## CURRENT STATE` block below is authoritative; the older sections further down still
 describe individual components accurately but predate the multi-page/3D/perf work — trust this
 block where they disagree.
 
 ---
 
-## ⭐ CURRENT STATE (2026-07-07) — read this first
+## ⭐ CURRENT STATE (2026-07-08) — read this first
 
 **Repo (public):** https://github.com/sauceeegit/solvio-website (account `sauceeegit`)
 **Live:** https://sauceeegit.github.io/solvio-website/ — auto-deploys on every push to `main` (~3 min, GitHub Actions).
@@ -41,8 +41,9 @@ Each page = `<Header/>` (sticky TopBar+nav) → `<main>` → `<Footer/>`.
 - `components/landing/TopBar.jsx` — single row: phone + Book-consultation + "Summer deal / **Claim now**"
   + WhatsApp/Facebook. Mobile collapses to phone + socials only. (Facebook link is a placeholder.)
 - `components/CalculatorSection.jsx` — **Basic / Advanced toggle** (Basic default) shown on landing
-  AND balcony. Basic = `SavingsCalculator` (now **THB**, ฿/kWh, Thailand ~1.5 kWh/Wp yield);
-  Advanced = `EarningsCalculator` (bill-first, break-even chart). Shared `#calculator` anchor.
+  AND balcony. Basic = `SavingsCalculator` (THB, kit price, self-consumption + PEA export toggle);
+  Advanced = `EarningsCalculator` (bill-first, break-even chart, professional-install price). Shared
+  `#calculator` anchor. **See Open item #6 for the full audited assumptions/labels.**
 - `components/Configurator.jsx` — **Balcony is now the 1st location**; module **quantity is a number
   input** (−/+ steppers, any value) instead of 1–4 buttons; "bifacial" removed everywhere;
   panel spec is **1760 × 1130 × 4.75 mm, 12.5 kg**.
@@ -52,8 +53,9 @@ Each page = `<Header/>` (sticky TopBar+nav) → `<main>` → `<Footer/>`.
   (replaced the old SpecCard "The Module" section).
 - `components/PlugPlayVideo.jsx` (balcony) — YouTube demo (left) + text + "See more videos" btn, light-blue bg.
 - `components/SolarPanelFeatures.jsx` (solar page) — Dark Feather banner + two image/text feature rows.
-- `components/GuidePopup.jsx` (landing) — email-capture popup with `guide-popup.webp`, shows once after
-  5s (localStorage `solvio_guide_popup_seen`). **Email UI-only — not wired to a backend.**
+- `components/GuidePopup.jsx` (landing) — email-capture popup with `guide-popup.webp`; opens once on
+  intent (~45% scroll depth, or 30s fallback), remembered via localStorage `solvio_guide_popup_seen`.
+  **Email UI-only — not wired to a backend.**
 - `components/MediaLoader.jsx` (teammate) — spinner overlay while videos / the 3D model load.
 - `components/lib/icons.js` — named-import icon registry (see perf below).
 - SolarPanel page: full-bleed video with an **orange rAF-driven progress bar**. Rooftop page: full-bleed
