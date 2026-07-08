@@ -7,7 +7,7 @@ export default function Stars({ value = 5, size = 16, className = '' }) {
         <Star
           key={i}
           size={size}
-          style={i <= Math.round(value) ? { fill: '#FFD700', color: '#FFD700' } : { fill: 'rgba(9,50,27,0.1)', color: 'rgba(9,50,27,0.1)' }}
+          style={i <= Math.round(value) ? { fill: '#FFB330', color: '#FFB330' } : { fill: 'rgba(9,50,27,0.1)', color: 'rgba(9,50,27,0.1)' }}
         />
       ))}
     </div>

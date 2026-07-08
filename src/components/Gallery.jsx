@@ -64,7 +64,7 @@ export default function Gallery({ derived }) {
           allow="fullscreen; xr-spatial-tracking; accelerometer; gyroscope"
           allowFullScreen
         />
-        <span className="pointer-events-none absolute left-4 top-4 rounded-full px-3 py-1 font-mono text-[11px] font-medium uppercase tracking-wider backdrop-blur" style={{ background: '#FFD700', color: '#111' }}>
+        <span className="pointer-events-none absolute left-4 top-4 rounded-full px-3 py-1 font-mono text-[11px] font-medium uppercase tracking-wider backdrop-blur" style={{ background: '#FFB330', color: '#111' }}>
           {wp.toLocaleString()} Wp · Plug &amp; Play
         </span>
         <MediaLoader show={!loaded} label="Loading 3D model" />

@@ -18,7 +18,7 @@ export default {
           dark: '#213c2f',
         },
         amber: {
-          DEFAULT: '#F4B740',
+          DEFAULT: '#FFB330',
           dark: '#E09A14',
         },
         slatey: {
