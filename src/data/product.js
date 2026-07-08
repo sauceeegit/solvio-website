@@ -68,7 +68,7 @@ export const panelOptions = [
     label: 'Dark Feather',
     sub: 'All-black',
     usd: 220,
-    img: asset('/module-dark.jpg'),
+    img: asset('/dark-feather-1800.jpg'),
     wp: 450,
     dims: '1760 × 1130 × 4.75 mm',
     weight: '12.5 kg',
