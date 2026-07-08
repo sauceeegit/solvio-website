@@ -131,8 +131,7 @@ export default function RooftopSteps() {
             {STEPS.map((s) => (
               <li
                 key={s.n}
-                className="relative flex flex-col rounded-xl2 border p-4 shadow-sm"
-                style={{ borderColor: `${s.color}59`, backgroundColor: `${s.color}12` }}
+                className="relative flex flex-col rounded-xl2 border border-black/8 bg-white p-4 shadow-sm"
               >
                 {/* Mobile: number + title on one row. Desktop (sm+): number on
                     top, then a fixed two-line title height so the images below
@@ -184,8 +183,8 @@ export default function RooftopSteps() {
         </Reveal>
 
         <Reveal delay={0.15}>
-          <div className="mx-auto mt-12 flex max-w-3xl flex-col items-center justify-between gap-4 rounded-xl2 bg-[#FFF1E8] px-6 py-5 text-center sm:flex-row sm:text-left">
-            <p className="font-display font-semibold text-[#B84D00]">
+          <div className="mx-auto mt-12 flex max-w-3xl flex-col items-center justify-between gap-4 rounded-xl2 border border-black/10 bg-white px-6 py-5 text-center sm:flex-row sm:text-left">
+            <p className="font-display font-semibold text-ink">
               Ready to go solar? Get your free consultation from Solvio today.
             </p>
             <a href="tel:+66843488428" className="inline-flex shrink-0 items-center gap-2 rounded-full bg-lime px-6 py-3 font-display text-sm font-bold text-white transition hover:bg-lime-dark">
