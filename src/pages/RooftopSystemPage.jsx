@@ -53,8 +53,8 @@ export default function RooftopSystemPage() {
         <section className="bg-white">
           <div className="container-x">
             <Reveal>
-              <div className="grid items-center gap-8 py-14 sm:py-20 lg:grid-cols-[1.6fr_1fr] lg:gap-14">
-                {/* image (enlarged) */}
+              <div className="grid items-center gap-8 py-14 sm:py-20 lg:grid-cols-[1.3fr_1fr] lg:gap-14">
+                {/* image */}
                 <div className="overflow-hidden rounded-xl2 shadow-soft">
                   <img loading="lazy"
                     src={asset('/rooftop-feature.webp')}
@@ -78,7 +78,7 @@ export default function RooftopSystemPage() {
             </Reveal>
 
             <Reveal>
-              <div className="grid items-center gap-8 pb-14 sm:pb-20 lg:grid-cols-2 lg:gap-14">
+              <div className="grid items-center gap-8 pb-14 sm:pb-20 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
                 {/* image (right on desktop) */}
                 <div className="overflow-hidden rounded-xl2 shadow-soft lg:order-2">
                   <img loading="lazy"
