@@ -1,4 +1,4 @@
-import { Star } from 'lucide-react';
+import { Check } from 'lucide-react';
 import Reveal from './Reveal';
 
 // Panel technology comparison — Solvio's module vs. top-tier residential modules.
@@ -12,14 +12,14 @@ const COLUMNS = [
 
 const ROWS = [
   { label: 'Cell technology', values: ['N-type, SMBB', 'N-type TOPCon', 'HPBC', 'N-type i-TOPCon'] },
-  { label: 'Max module efficiency', values: ['23.1%', '22.02%', '~22%', '22.0%'], lead: true },
+  { label: 'Max module efficiency', values: ['23.1%', '22.02%', '22%', '22.0%'], lead: true },
   { label: 'Power density (W/m²)', values: ['230.6', '220.2', '220.2', '220.2'], lead: true },
   { label: 'Temp coefficient (Pmax)', values: ['-0.29%/°C', '-0.29%/°C', '-0.29%/°C', '-0.30%/°C'] },
-  { label: 'Annual degradation', values: ['-0.40%', '-0.40%', '~-0.4%', '-0.40%'] },
+  { label: 'Annual degradation', values: ['-0.40%', '-0.40%', '-0.4%', '-0.40%'] },
   { label: 'Laminate thickness', values: ['4.75 mm', '30 mm framed', '30 mm framed', '30 mm framed'], lead: true },
   {
     label: 'Weight',
-    values: ['~4.8–5.9 kg/m² (≈9.5–11.8 kg/panel)', '~22 kg', '20.8 kg', '21.0 kg'],
+    values: ['12kg', '22kg', '20.8 kg', '21.0 kg'],
     lead: true,
   },
 ];
@@ -83,7 +83,7 @@ export default function PanelComparison() {
                           <span className="inline-flex items-center justify-center gap-1.5">
                             {v}
                             {isSolvio && row.lead && (
-                              <Star size={14} className="shrink-0 fill-lime text-lime" aria-label="category-leading" />
+                              <Check size={16} strokeWidth={3} className="shrink-0 text-lime" aria-label="category-leading" />
                             )}
                           </span>
                         </td>
@@ -97,7 +97,7 @@ export default function PanelComparison() {
 
           <p className="mt-3 text-xs text-slatey-400 sm:hidden">Swipe the table sideways to compare →</p>
           <p className="mt-4 max-w-3xl text-xs leading-relaxed text-slatey-400">
-            <Star size={11} className="mb-0.5 mr-1 inline fill-lime text-lime" /> = category-leading in
+            <Check size={13} strokeWidth={3} className="mb-0.5 mr-1 inline text-lime" /> = category-leading in
             this set. Efficiency and power-density figures reflect the 460 W top bin. Temp coefficient shown is
             parity with the best n-type modules.
           </p>
