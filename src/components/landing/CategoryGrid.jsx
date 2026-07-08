@@ -19,7 +19,7 @@ function CardInner({ c, dimmed }) {
 
       {/* dim overlay — visible on non-hovered cards */}
       <div
-        className="absolute inset-0 bg-ink/60 transition-opacity duration-300"
+        className="absolute inset-0 bg-black/55 transition-opacity duration-300"
         style={{ opacity: dimmed ? 1 : 0 }}
       />
 
