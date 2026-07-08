@@ -133,8 +133,8 @@ export default function RooftopSteps() {
                 key={s.n}
                 className="relative flex flex-col rounded-xl2 border p-4 shadow-sm"
                 style={{
-                  borderColor: `${s.color}30`,
-                  backgroundColor: `color-mix(in srgb, ${s.color} ${Math.round((s.n - 1) / 6 * 14)}%, white)`,
+                  borderColor: `rgba(156,163,175,${0.15 + (s.n - 1) / 6 * 0.25})`,
+                  backgroundColor: `color-mix(in srgb, #9ca3af ${Math.round((s.n - 1) / 6 * 18)}%, white)`,
                 }}
               >
                 {/* Mobile: number + title on one row. Desktop (sm+): number on
