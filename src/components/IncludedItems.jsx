@@ -185,7 +185,7 @@ const features = [
 
 export default function IncludedItems() {
   return (
-    <section style={{ background: '#FAFAF8' }} className="py-20">
+    <section style={{ background: '#FFF7E9' }} className="py-20">
       <div className="container-x">
         {/* Header */}
         <Reveal>
