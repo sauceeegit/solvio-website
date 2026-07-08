@@ -140,12 +140,15 @@ export default function RooftopSteps() {
                 >
                   {s.n}
                 </span>
-                <h3 className="mt-3 font-display text-sm font-bold leading-snug text-ink">{s.title}</h3>
-                {s.desc && <p className="mt-1.5 text-xs leading-relaxed text-slatey-500">{s.desc}</p>}
+                {/* Fixed two-line title height so the image below starts at the
+                    same Y across every card (aligned picture row). */}
+                <h3 className="mt-3 min-h-[2.5rem] font-display text-sm font-bold leading-snug text-ink">{s.title}</h3>
 
+                {/* Order per card: title → picture (or form/payment) → gray copy. */}
                 {s.type === 'contact' && <ContactOptions onVisit={() => setMapOpen(true)} />}
                 {s.type === 'payment' && <PaymentOptions />}
                 {s.img && <StepImage src={s.img} alt={s.title} />}
+                {s.desc && <p className="mt-2.5 text-xs leading-relaxed text-slatey-500">{s.desc}</p>}
                 {s.note && (
                   <p className="mt-3 rounded-lg bg-[#FFF1E8] px-3 py-2 text-xs font-medium text-[#B84D00]">
                     {s.note}
