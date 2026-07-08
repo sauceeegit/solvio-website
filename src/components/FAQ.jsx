@@ -37,20 +37,23 @@ function Item({ q, a, open, onToggle }) {
   );
 }
 
-export default function FAQ() {
+export default function FAQ({
+  items = faqs,
+  eyebrow = 'Questions',
+  heading = 'Everything you wanted to ask',
+  subtitle = 'Still unsure? Our solar advisors answer in plain language, Monday to Friday.',
+}) {
   const [open, setOpen] = useState(0);
 
   return (
     <section id="faq" className="scroll-mt-20 bg-surface py-20">
       <div className="container-x grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <Reveal>
-          <p className="eyebrow">Questions</p>
+          <p className="eyebrow">{eyebrow}</p>
           <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-            Everything you wanted to ask
+            {heading}
           </h2>
-          <p className="mt-3 text-slatey-500">
-            Still unsure? Our solar advisors answer in plain language, Monday to Friday.
-          </p>
+          <p className="mt-3 text-slatey-500">{subtitle}</p>
           <a href="#top" className="btn-ghost mt-5">
             Talk to an advisor
           </a>
@@ -58,7 +61,7 @@ export default function FAQ() {
 
         <Reveal delay={0.1}>
           <div className="rounded-xl2 border border-ink/[0.07] bg-white px-6 shadow-soft">
-            {faqs.map((f, i) => (
+            {items.map((f, i) => (
               <Item
                 key={f.q}
                 q={f.q}

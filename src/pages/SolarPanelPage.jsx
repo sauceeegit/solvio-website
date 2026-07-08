@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import Header from '../components/landing/Header';
 import SolarPanelFeatures from '../components/SolarPanelFeatures';
+import FAQ from '../components/FAQ';
 import Footer from '../components/Footer';
 import MediaLoader from '../components/MediaLoader';
-import { solarPanelVideo } from '../data/landing';
+import { solarPanelVideo, panelFaqs } from '../data/landing';
 import { usePageMeta } from '../hooks/usePageMeta';
 
 export default function SolarPanelPage() {
@@ -67,6 +68,12 @@ export default function SolarPanelPage() {
         </section>
 
         <SolarPanelFeatures />
+        <FAQ
+          items={panelFaqs}
+          eyebrow="Panel tech"
+          heading="Frequently asked questions"
+          subtitle="The engineering behind Solvio panels — cells, build, and how they hold up in Thai heat."
+        />
       </main>
       <Footer />
     </div>

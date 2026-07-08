@@ -144,6 +144,30 @@ export const landingFaqs = [
   },
 ];
 
+// Solar Panel page FAQ — panel/cell technology questions.
+export const panelFaqs = [
+  {
+    q: 'What kind of solar cells do Solvio panels use?',
+    a: 'Solvio panels are built with N-type monocrystalline cells — the newest generation of silicon cell technology. Compared to the older P-type panels still common in budget systems, N-type cells degrade more slowly, perform better in heat, and produce more power in low light like mornings, evenings, and cloudy days.',
+  },
+  {
+    q: 'Why do the panels look completely black with no visible grid lines?',
+    a: 'The all-black cells, black encapsulation, and ultra-fine wiring create a clean, uniform surface that blends into modern balconies and facades instead of shouting "solar panel." Your neighbors — and your landlord — will appreciate it.',
+  },
+  {
+    q: 'How thin and light are the panels?',
+    a: 'The glass-glass laminate is just 4.75 mm thin — a conventional framed rooftop panel is around 30 mm. At roughly half the weight of a standard 21 kg rooftop module, a Solvio panel is easy for two people to lift, hang, and reposition. That is what makes balcony mounting practical and safe.',
+  },
+  {
+    q: 'Are the panels durable enough for outdoor balcony use?',
+    a: 'Yes. The dual-glass construction sandwiches the cells between two layers of tempered, anti-reflective glass, which resists micro-cracks, scratches, and moisture far better than plastic-backed panels. The panels are rated for wind and snow loads of 2,400 Pa and operate from -40°C to +85°C (-40°F to +185°F).',
+  },
+  {
+    q: 'What happens to output on hot summer days?',
+    a: 'All solar panels lose some output as they heat up. Solvio panels have a temperature coefficient of -0.29%/°C — matching the best N-type modules on the market — so they hold onto more of their rated power during heat waves, exactly when your air conditioning needs it.',
+  },
+];
+
 // "Why shop at the Solvio official store" — bento grid: index 0 is the tall
 // (row-span-2) feature cell, index 5 is the wide (col-span-2) feature cell.
 export const whyShop = [
