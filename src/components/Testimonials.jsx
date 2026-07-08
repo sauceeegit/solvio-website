@@ -58,7 +58,7 @@ export default function Testimonials() {
           {testimonials.map((t) => (
             <figure
               key={t.name}
-              className="flex w-[300px] shrink-0 snap-start flex-col rounded-xl2 border border-ink/[0.07] bg-surface p-6 sm:w-[360px]"
+              className="flex w-[300px] shrink-0 snap-start flex-col rounded-xl2 border border-ink/[0.07] bg-[#F5F5F5] p-6 sm:w-[360px]"
             >
               <Quote size={26} className="text-lime-dark" />
               <blockquote className="mt-3 flex-1 text-[15px] leading-relaxed text-ink/80">
