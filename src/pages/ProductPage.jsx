@@ -11,7 +11,6 @@ import IncludedItems from '../components/IncludedItems';
 import CalculatorSection from '../components/CalculatorSection';
 import Testimonials from '../components/Testimonials';
 import Comparison from '../components/Comparison';
-import RelatedProducts from '../components/RelatedProducts';
 import FAQ from '../components/FAQ';
 import Footer from '../components/Footer';
 import StickyCartBar from '../components/StickyCartBar';
@@ -45,7 +44,6 @@ export default function ProductPage() {
         <CalculatorSection derived={cfg} />
         <Testimonials />
         <Comparison />
-        <RelatedProducts />
         <FAQ />
       </main>
       <Footer />
