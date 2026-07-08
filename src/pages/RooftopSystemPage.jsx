@@ -3,6 +3,7 @@ import Header from '../components/landing/Header';
 import Footer from '../components/Footer';
 import MediaLoader from '../components/MediaLoader';
 import Reveal from '../components/Reveal';
+import RooftopSteps from '../components/RooftopSteps';
 import { asset } from '../lib/format';
 import { rooftopVideo } from '../data/landing';
 import { usePageMeta } from '../hooks/usePageMeta';
@@ -104,6 +105,19 @@ export default function RooftopSystemPage() {
             </Reveal>
           </div>
         </section>
+
+        {/* Full-bleed process image */}
+        <section className="relative w-full">
+          <img
+            loading="lazy"
+            src={asset('/rooftop-cta.webp')}
+            alt="Solvio technicians installing a rooftop solar array at sunset"
+            className="block max-h-[70vh] w-full object-cover"
+          />
+        </section>
+
+        {/* 7-step plan (horizontal) */}
+        <RooftopSteps />
       </main>
       <Footer />
     </div>
