@@ -225,19 +225,19 @@ function BenefitCard({ item, big }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <div className={big ? 'flex items-center gap-5 flex-1' : 'flex flex-col gap-3 flex-1'}>
-        <span className="inline-flex shrink-0 items-center justify-center">
-          <Icon size={big ? 26 : 22} strokeWidth={1.5} style={{ color: '#09321B' }} />
+      <div className={big ? 'flex items-center gap-5 flex-1' : 'flex flex-col flex-1'}>
+        <span className={`inline-flex shrink-0 items-center justify-center ${big ? '' : 'mb-4'}`}>
+          <Icon size={big ? 40 : 36} strokeWidth={1.3} style={{ color: '#09321B' }} />
         </span>
         <div>
           <h3
             className="font-display font-bold leading-snug"
-            style={{ fontSize: big ? 15 : 13, color: '#09321B' }}
+            style={{ fontSize: big ? 15 : 14, color: '#09321B' }}
           >
             {item.title}
           </h3>
           {item.sub && (
-            <p className="mt-0.5 text-[12px] leading-relaxed" style={{ color: '#888' }}>
+            <p className="mt-1 text-[12px] leading-relaxed" style={{ color: '#888' }}>
               {item.sub}
             </p>
           )}
