@@ -225,13 +225,13 @@ function BenefitCard({ item, big }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* Icon — top */}
-      <span className="inline-flex shrink-0 items-center justify-center">
-        <Icon size={40} strokeWidth={1.3} style={{ color: '#09321B' }} />
-      </span>
-
       {/* Spacer */}
       <div className="flex-1" />
+
+      {/* Icon — just above text */}
+      <span className="inline-flex shrink-0 items-center justify-center mb-4">
+        <Icon size={46} strokeWidth={1.2} style={{ color: '#09321B' }} />
+      </span>
 
       {/* Text + arrow — locked to bottom */}
       <div className="flex items-end justify-between gap-3">
