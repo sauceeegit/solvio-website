@@ -131,7 +131,11 @@ export default function RooftopSteps() {
             {STEPS.map((s) => (
               <li
                 key={s.n}
-                className="relative flex flex-col rounded-xl2 border border-black/8 bg-white p-4 shadow-sm"
+                className="relative flex flex-col rounded-xl2 border p-4 shadow-sm"
+                style={{
+                  borderColor: `${s.color}30`,
+                  backgroundColor: `color-mix(in srgb, ${s.color} ${Math.round((s.n - 1) / 6 * 14)}%, white)`,
+                }}
               >
                 {/* Mobile: number + title on one row. Desktop (sm+): number on
                     top, then a fixed two-line title height so the images below
