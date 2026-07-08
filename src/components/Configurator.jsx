@@ -78,10 +78,10 @@ function StorageCard({ selected, onClick, opt }) {
       className={`flex flex-col rounded-xl border p-2 text-left transition ${
         selected
           ? 'border-lime bg-lime text-white shadow-sm'
-          : 'border-ink/12 bg-white text-ink hover:border-ink/30'
+          : 'border-ink/12 bg-[#fffbf5] text-ink hover:border-ink/30'
       }`}
     >
-      <div className={`relative aspect-[16/10] overflow-hidden rounded-lg border ${selected ? 'border-white/20 bg-white/[0.08]' : 'border-ink/[0.07] bg-[#F8F8F6]'}`}>
+      <div className={`relative aspect-[16/10] overflow-hidden rounded-lg border ${selected ? 'border-white/20 bg-white/[0.08]' : 'border-ink/[0.07] bg-[#fffbf5]'}`}>
         <span className={`absolute right-2 top-2 z-10 grid h-5 w-5 place-items-center rounded-full border ${selected ? 'border-white bg-white text-lime-dark' : 'border-ink/20 bg-white/80 text-transparent'}`}>
           <Check size={12} strokeWidth={3} />
         </span>
@@ -94,7 +94,7 @@ function StorageCard({ selected, onClick, opt }) {
         )}
       </div>
 
-      <div className={`flex flex-1 flex-col px-1 pt-3 ${selected ? '' : 'bg-white'}`}>
+      <div className={`flex flex-1 flex-col px-1 pt-3 ${selected ? '' : 'bg-[#fffbf5]'}`}>
         {opt.brand && (
           <span className={`font-body text-[11px] font-semibold uppercase tracking-wide ${selected ? 'text-white/55' : 'text-slatey-400'}`}>
             {opt.brand}
