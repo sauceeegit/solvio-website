@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Check } from 'lucide-react';
 import Gallery from './Gallery';
 import Configurator from './Configurator';
@@ -6,11 +7,35 @@ import Stars from './Stars';
 import { product } from '../data/product';
 
 export default function ProductHero({ cfg, onAddToCart, added }) {
+  // Mobile only: keep the 3D model pinned while the shopper scrolls through
+  // Steps 1–2, releasing it once Step 3 (Storage) reaches the top.
+  const [modelFrozen, setModelFrozen] = useState(true);
+  useEffect(() => {
+    if (!window.matchMedia('(max-width: 1023px)').matches) return undefined;
+    const el = document.getElementById('cfg-step-3');
+    if (!el) return undefined;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      // frozen while Step 3 is still below the pinned model; release once it reaches the top
+      setModelFrozen(el.getBoundingClientRect().top > 140);
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
+
   return (
     <section id="product" className="container-x scroll-mt-20 pb-16 pt-2">
-      <div className="grid gap-8 lg:ml-[calc(50%-50vw+1.5rem)] lg:grid-cols-[1.55fr_1fr] lg:gap-10">
+      <div className="grid grid-cols-1 gap-8 lg:ml-[calc(50%-50vw+1.5rem)] lg:grid-cols-[1.55fr_1fr] lg:gap-10">
         {/* Left — gallery */}
-        <Gallery derived={cfg} />
+        <Gallery derived={cfg} mobileFreeze={modelFrozen} />
 
         {/* Right — details */}
         <div>

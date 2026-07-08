@@ -134,15 +134,18 @@ export default function RooftopSteps() {
                 className="relative flex flex-col rounded-xl2 border p-4 shadow-sm"
                 style={{ borderColor: `${s.color}59`, backgroundColor: `${s.color}12` }}
               >
-                <span
-                  className="grid h-10 w-10 place-items-center rounded-full font-display text-base font-bold"
-                  style={{ backgroundColor: s.color, color: s.dark ? '#0C1E1A' : '#FFFFFF' }}
-                >
-                  {s.n}
-                </span>
-                {/* Fixed two-line title height so the image below starts at the
-                    same Y across every card (aligned picture row). */}
-                <h3 className="mt-3 min-h-[2.5rem] font-display text-sm font-bold leading-snug text-ink">{s.title}</h3>
+                {/* Mobile: number + title on one row. Desktop (sm+): number on
+                    top, then a fixed two-line title height so the images below
+                    all start at the same Y (aligned picture row). */}
+                <div className="flex items-center gap-3 sm:block">
+                  <span
+                    className="grid h-10 w-10 shrink-0 place-items-center rounded-full font-display text-base font-bold"
+                    style={{ backgroundColor: s.color, color: s.dark ? '#0C1E1A' : '#FFFFFF' }}
+                  >
+                    {s.n}
+                  </span>
+                  <h3 className="font-display text-sm font-bold leading-snug text-ink sm:mt-3 sm:min-h-[2.5rem]">{s.title}</h3>
+                </div>
 
                 {/* Order per card: title → picture (or form/payment) → gray copy. */}
                 {s.type === 'contact' && <ContactOptions onVisit={() => setMapOpen(true)} />}

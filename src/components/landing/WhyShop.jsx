@@ -279,7 +279,7 @@ export default function WhyShop() {
                 {item.img ? (
                   /* Rewards hero card — premium coin layout */
                   <div
-                    className="group relative h-full min-h-[150px] rounded-xl2 bg-white p-6"
+                    className="group relative h-full min-h-[150px] rounded-xl2 bg-white p-6 max-sm:min-h-0 max-sm:p-4"
                     style={{
                       boxShadow: '0 2px 16px rgba(15,43,36,0.06)',
                       overflow: 'visible',
@@ -310,7 +310,7 @@ export default function WhyShop() {
 
                         {/* Description */}
                         <p
-                          className="text-[12px] leading-relaxed"
+                          className="text-[12px] leading-relaxed max-sm:hidden"
                           style={{ color: '#888' }}
                         >
                           Collect points with every purchase. Redeem for discounts, exclusive products and member-only benefits.

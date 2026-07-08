@@ -48,7 +48,7 @@ export default function FounderVideo() {
 
         <Reveal delay={0.1}>
           <p className="eyebrow">Solar in Thailand</p>
-          <h2 className="mt-2 font-display text-3xl font-extrabold leading-tight tracking-tight text-ink sm:text-4xl">
+          <h2 className="mt-2 font-display text-3xl font-extrabold leading-tight tracking-tight text-ink sm:text-4xl max-sm:text-[22px]">
             {founder.heading}
           </h2>
           <p className="mt-4 text-[15px] leading-relaxed text-slatey-500">{founder.body}</p>

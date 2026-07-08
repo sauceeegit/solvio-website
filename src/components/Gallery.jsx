@@ -12,7 +12,7 @@ const MODEL_URL = `${MODEL_ORIGIN}/solvio-panel-3d/?v=${MODEL_VERSION}`;
 // Interactive 3D model of the panel, embedded in the hero slot. The live
 // configurator drives it: location -> scene, module -> panel style, count ->
 // number of panels (see the postMessage API in the solvio-panel-3d project).
-export default function Gallery({ derived }) {
+export default function Gallery({ derived, mobileFreeze = false }) {
   const frameRef = useRef(null);
   const [loaded, setLoaded] = useState(false);
   const cfg = derived?.config;
@@ -58,7 +58,13 @@ export default function Gallery({ derived }) {
   }, []);
 
   return (
-    <div className="lg:sticky lg:top-24 lg:self-start">
+    <div
+      className={`lg:sticky lg:top-24 lg:self-start ${
+        mobileFreeze
+          ? 'max-lg:sticky max-lg:top-[84px] max-lg:z-20 max-lg:max-h-[44vh] max-lg:overflow-hidden max-lg:rounded-xl2 max-lg:shadow-lift'
+          : ''
+      }`}
+    >
       <div className="relative overflow-hidden rounded-xl2 border border-ink/[0.07] bg-white shadow-soft">
         <iframe
           ref={frameRef}

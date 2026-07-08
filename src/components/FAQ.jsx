@@ -29,7 +29,7 @@ function Item({ q, a, open, onToggle }) {
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden"
           >
-            <p className="pb-5 pr-12 text-[15px] leading-relaxed text-slatey-500">{a}</p>
+            <p className="pb-5 pr-12 text-[15px] leading-relaxed text-slatey-500 max-sm:pr-0 max-sm:text-sm">{a}</p>
           </motion.div>
         )}
       </AnimatePresence>

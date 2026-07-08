@@ -28,8 +28,8 @@ function CardInner({ c, dimmed }) {
       </span>
 
       <div className="absolute inset-x-0 top-0 p-5 pr-16">
-        <h3 className="font-display text-[31px] font-extrabold leading-tight text-white">{c.title}</h3>
-        <p className="mt-1.5 text-sm text-white/80">{c.blurb}</p>
+        <h3 className="font-display text-[31px] font-extrabold leading-tight text-white max-sm:text-2xl">{c.title}</h3>
+        <p className="mt-1.5 text-sm text-white/80 max-sm:hidden">{c.blurb}</p>
       </div>
 
       {/* Explore pill button */}

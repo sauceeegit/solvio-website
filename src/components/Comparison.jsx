@@ -7,7 +7,7 @@ function Cell({ value, highlight }) {
     return <Check size={18} className="mx-auto text-lime-dark" strokeWidth={3} />;
   if (value === false) return <X size={18} className="mx-auto text-ink/25" />;
   return (
-    <span className={`text-sm ${highlight ? 'font-semibold text-ink' : 'text-ink/75'}`}>
+    <span className={`text-sm max-sm:text-xs ${highlight ? 'font-semibold text-ink' : 'text-ink/75'}`}>
       {value}
     </span>
   );
@@ -30,16 +30,16 @@ export default function Comparison() {
 
         <Reveal delay={0.1}>
           <div className="mx-auto mt-10 max-w-3xl overflow-hidden rounded-xl2 border border-ink/[0.07] bg-white shadow-soft">
-            <table className="w-full border-collapse text-center">
+            <table className="w-full border-collapse text-center max-sm:table-fixed">
               <thead>
                 <tr className="border-b border-ink/[0.07]">
-                  <th className="p-4 text-left font-mono text-[11px] uppercase tracking-wider text-slatey-400">
+                  <th className="p-4 text-left font-mono text-[11px] uppercase tracking-wider text-slatey-400 max-sm:p-2">
                     Feature
                   </th>
                   {columns.map((c, i) => (
                     <th
                       key={c}
-                      className={`p-4 font-display text-sm font-bold ${
+                      className={`p-4 font-display text-sm font-bold max-sm:p-2 max-sm:text-xs ${
                         i === highlightIndex ? 'bg-lime/10 text-ink' : 'text-ink/70'
                       }`}
                     >
@@ -56,11 +56,11 @@ export default function Comparison() {
               <tbody>
                 {rows.map((row, ri) => (
                   <tr key={row.label} className={ri % 2 ? 'bg-surface/60' : ''}>
-                    <td className="p-4 text-left text-sm text-slatey-500">{row.label}</td>
+                    <td className="p-4 text-left text-sm text-slatey-500 max-sm:p-2 max-sm:text-xs">{row.label}</td>
                     {row.values.map((v, ci) => (
                       <td
                         key={ci}
-                        className={`p-4 ${ci === highlightIndex ? 'bg-lime/[0.07]' : ''}`}
+                        className={`p-4 max-sm:p-2 ${ci === highlightIndex ? 'bg-lime/[0.07]' : ''}`}
                       >
                         <Cell value={v} highlight={ci === highlightIndex} />
                       </td>

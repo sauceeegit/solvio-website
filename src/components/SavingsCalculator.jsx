@@ -155,11 +155,11 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
               {stats.map((s) => (
                 <div
                   key={s.label}
-                  className="flex flex-col justify-between rounded-xl border border-ink/[0.07] bg-[#f0f8ff] p-4"
+                  className="flex flex-col justify-between rounded-xl border border-ink/[0.07] bg-[#f0f8ff] p-4 max-sm:p-3"
                 >
                   <s.icon size={18} className={s.tint} />
-                  <div className="mt-6">
-                    <p className="font-display text-2xl font-extrabold tracking-tight text-ink tabular-nums">
+                  <div className="mt-6 max-sm:mt-2">
+                    <p className="font-display text-2xl font-extrabold tracking-tight text-ink tabular-nums max-sm:text-xl">
                       {s.value}
                     </p>
                     <p className="text-xs text-slatey-500">{s.label}</p>

@@ -25,7 +25,9 @@ export default function LandingFAQ() {
               </span>
               <h3 className="mt-4 font-display text-xl font-extrabold">About Solvio</h3>
               <p className="mt-2 text-sm leading-relaxed text-white/60">
-                Everything from one source — from a single balcony panel to a full rooftop array.
+                <span className="max-sm:hidden">
+                  Everything from one source — from a single balcony panel to a full rooftop array.{' '}
+                </span>
                 Got a question that isn&apos;t here? Our team is one message away.
               </p>
               <a
@@ -85,7 +87,7 @@ export default function LandingFAQ() {
                         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                         className="overflow-hidden"
                       >
-                        <p className="pb-5 pr-10 text-[15px] leading-relaxed text-slatey-500">
+                        <p className="pb-5 pr-10 text-[15px] leading-relaxed text-slatey-500 max-sm:pr-0 max-sm:text-sm">
                           {f.a}
                         </p>
                       </motion.div>

@@ -36,8 +36,8 @@ function IconHeadset() {
 function ProductImg({ src, alt, style = {} }) {
   return (
     <div
-      className="relative w-full flex items-center justify-center"
-      style={{ height: 160, background: '#F4F4F2', borderRadius: 16, overflow: 'hidden', ...style }}
+      className="relative flex w-full items-center justify-center h-[116px] sm:h-40"
+      style={{ background: '#F4F4F2', borderRadius: 16, overflow: 'hidden', ...style }}
     >
       {src ? (
         <img loading="lazy"
@@ -196,9 +196,8 @@ export default function IncludedItems() {
             Solvio
           </p>
           <h2
-            className="font-display"
+            className="font-display text-[26px] sm:text-[clamp(36px,4vw,50px)]"
             style={{
-              fontSize: 'clamp(36px, 4vw, 50px)',
               fontWeight: 500,
               color: '#09321B',
               lineHeight: 1.1,
@@ -216,8 +215,8 @@ export default function IncludedItems() {
           </p>
         </Reveal>
 
-        {/* Top row — 5 equal cards */}
-        <div className="mt-10 grid gap-4" style={{ gridTemplateColumns: 'repeat(5, 1fr)' }}>
+        {/* Top row — 5 equal cards (2-up on mobile) */}
+        <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
           {topRow.map((item, i) => (
             <Reveal key={item.title} delay={i * 0.05}>
               <KitCard {...item} />
@@ -225,8 +224,8 @@ export default function IncludedItems() {
           ))}
         </div>
 
-        {/* Bottom row — 3 cards, last one slightly wider on large screens */}
-        <div className="mt-4 grid gap-4" style={{ gridTemplateColumns: '1fr 1fr 1fr' }}>
+        {/* Bottom row — 3 cards (2-up on mobile) */}
+        <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3">
           {bottomRow.map((item, i) => (
             <Reveal key={item.title} delay={i * 0.05}>
               <KitCard {...item} />
@@ -237,7 +236,7 @@ export default function IncludedItems() {
         {/* Feature bar */}
         <Reveal>
           <div
-            className="mt-8 grid grid-cols-4 gap-6"
+            className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-4"
             style={{
               background: '#fff',
               borderRadius: 20,

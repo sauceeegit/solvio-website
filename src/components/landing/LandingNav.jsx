@@ -68,7 +68,7 @@ export default function LandingNav() {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-50 bg-ink/95 backdrop-blur-md md:hidden"
+            className="fixed inset-0 z-50 bg-ink md:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

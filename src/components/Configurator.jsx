@@ -2,13 +2,17 @@ import { Check, Plus, Image as ImageIcon } from 'lucide-react';
 import { locations, panelOptions, panelThb, storageOptions, cableOptions } from '../data/product';
 import { baht, bahtDelta, whFmt } from '../lib/format';
 
-function SectionHead({ step, title, hint }) {
+function SectionHead({ step, title, hint, hintMobileHide }) {
   return (
     <div className="mb-3">
       <p className="mb-1 font-display text-sm font-bold uppercase tracking-wider text-lime">{step}</p>
       <div className="flex items-baseline justify-between gap-3">
         <h3 className="font-display text-base font-bold leading-snug text-ink">{title}</h3>
-        {hint && <span className="shrink-0 font-body text-xs font-medium text-slatey-400">{hint}</span>}
+        {hint && (
+          <span className={`shrink-0 font-body text-xs font-medium text-slatey-400 ${hintMobileHide ? 'max-sm:hidden' : ''}`}>
+            {hint}
+          </span>
+        )}
       </div>
     </div>
   );
@@ -62,7 +66,7 @@ function ModuleCard({ selected, onClick, panel }) {
           <span className="font-body text-xs font-semibold text-ink">{baht(panelThb(panel.id))}</span>
         </div>
         <span className="font-body text-xs text-slatey-500">{panel.sub}</span>
-        <span className="mt-2 border-t border-ink/[0.06] pt-2 font-body text-xs font-medium leading-relaxed text-slatey-500">
+        <span className="mt-2 border-t border-ink/[0.06] pt-2 font-body text-xs font-medium leading-relaxed text-slatey-500 max-sm:text-[10px]">
           {panel.dims}<br />{panel.weight} · per panel
         </span>
       </div>
@@ -75,7 +79,7 @@ function StorageCard({ selected, onClick, opt }) {
   return (
     <button
       onClick={onClick}
-      className={`flex flex-col rounded-xl border p-2 text-left transition ${
+      className={`flex flex-col rounded-xl border p-2 text-left transition max-sm:w-[78%] max-sm:shrink-0 max-sm:snap-start ${
         selected
           ? 'border-lime bg-lime text-white shadow-sm'
           : 'border-ink/12 bg-[#fffbf5] text-ink hover:border-ink/30'
@@ -168,7 +172,7 @@ export default function Configurator({ config, set }) {
       </div>
 
       <div>
-        <SectionHead step="Step 2 — Module" title="What module size and performance do you want to install?" hint={`${panel.wp} Wp each`} />
+        <SectionHead step="Step 2 — Module" title="What module size and performance do you want to install?" hint={`${panel.wp} Wp each`} hintMobileHide />
         <div className="grid grid-cols-2 gap-2.5">
           {panelOptions.map((p) => (
             <ModuleCard key={p.id} selected={config.panel === p.id} onClick={() => set('panel', p.id)} panel={p} />
@@ -213,9 +217,9 @@ export default function Configurator({ config, set }) {
         </div>
       </div>
 
-      <div>
+      <div id="cfg-step-3" style={{ scrollMarginTop: 88 }}>
         <SectionHead step="Step 3 — Storage" title="What storage option do you want to add?" hint="Optional" />
-        <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+        <div className="flex snap-x gap-2.5 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:grid sm:grid-cols-2 sm:overflow-visible sm:pb-0">
           {storageOptions.map((s) => (
             <StorageCard key={s.id} selected={config.storage === s.id} onClick={() => set('storage', s.id)} opt={s} />
           ))}

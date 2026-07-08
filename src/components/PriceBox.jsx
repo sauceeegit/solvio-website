@@ -48,7 +48,7 @@ export default function PriceBox({ derived, onAddToCart, added: addedProp }) {
 
       <div className="mt-4 flex items-start gap-2 rounded-xl bg-lime/10 p-3.5 text-sm text-ink">
         <ShieldCheck size={16} className="mt-0.5 shrink-0 text-lime-dark" />
-        <p>Order today and get free installation support via video call.</p>
+        <p className="max-sm:text-[13px] max-sm:leading-snug">Order today and get free installation support via video call.</p>
       </div>
 
       <ul className="mt-5 flex flex-col gap-3">

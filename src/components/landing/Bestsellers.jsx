@@ -20,11 +20,11 @@ export default function Bestsellers() {
           </div>
         </Reveal>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 flex snap-x gap-4 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:grid sm:gap-6 sm:overflow-visible sm:pb-0 sm:grid-cols-2 lg:grid-cols-3">
           {bestsellers.map((p, i) => {
             const dimmed = hoveredIdx !== null && hoveredIdx !== i;
             return (
-              <Reveal key={p.id} delay={i * 0.06}>
+              <Reveal key={p.id} delay={i * 0.06} className="max-sm:w-[78%] max-sm:shrink-0 max-sm:snap-start">
                 <div
                   className="card flex h-full flex-col overflow-hidden transition-all duration-500 ease-out"
                   style={{

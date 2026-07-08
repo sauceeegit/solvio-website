@@ -287,8 +287,8 @@ export default function EarningsCalculator({ exportDefault = true }) {
               </p>
             </div>
 
-            {/* rate + interest */}
-            <div className="mt-6 grid gap-5 sm:grid-cols-2 sm:gap-8">
+            {/* rate + interest — one row on all sizes */}
+            <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-8">
               <div>
                 <label className="mb-1.5 block font-display text-sm font-semibold text-ink">Electricity rate</label>
                 <div className="flex items-center gap-2">
@@ -300,7 +300,7 @@ export default function EarningsCalculator({ exportDefault = true }) {
                     step="0.1"
                     value={rate}
                     onChange={(e) => setRate(Number(e.target.value) || 0)}
-                    className="w-24 rounded-lg border border-ink/15 bg-white px-3 py-2 font-display text-sm font-semibold text-ink focus:border-lime-dark focus:outline-none"
+                    className="w-full min-w-0 rounded-lg border border-ink/15 bg-white px-3 py-2 font-display text-sm font-semibold text-ink focus:border-lime-dark focus:outline-none sm:w-24"
                   />
                   <span className="font-display text-sm text-slatey-500">/ kWh</span>
                 </div>
@@ -315,7 +315,7 @@ export default function EarningsCalculator({ exportDefault = true }) {
                     step="0.5"
                     value={interest}
                     onChange={(e) => setInterest(Number(e.target.value) || 0)}
-                    className="w-24 rounded-lg border border-ink/15 bg-white px-3 py-2 font-display text-sm font-semibold text-ink focus:border-lime-dark focus:outline-none"
+                    className="w-full min-w-0 rounded-lg border border-ink/15 bg-white px-3 py-2 font-display text-sm font-semibold text-ink focus:border-lime-dark focus:outline-none sm:w-24"
                   />
                   <span className="font-display text-sm text-slatey-500">% / yr</span>
                 </div>
@@ -344,8 +344,8 @@ export default function EarningsCalculator({ exportDefault = true }) {
               </div>
             </div>
 
-            {/* system spec */}
-            <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 rounded-xl bg-ink px-5 py-4">
+            {/* system spec — mobile: size + panels on one row, cost below; desktop: single flex row */}
+            <div className="mt-6 grid grid-cols-2 items-center gap-x-4 gap-y-3 rounded-xl bg-ink px-5 py-4 sm:flex sm:flex-wrap sm:gap-x-6">
               <div>
                 <p className="font-mono text-[11px] uppercase tracking-wider text-white/55">System size</p>
                 <p className="font-display text-2xl font-extrabold text-lime">{r.kwCapacity.toFixed(2)} kW</p>
@@ -358,7 +358,7 @@ export default function EarningsCalculator({ exportDefault = true }) {
                 </p>
               </div>
               <div className="hidden h-9 w-px bg-white/15 sm:block" />
-              <div>
+              <div className="max-sm:col-span-2">
                 <p className="font-mono text-[11px] uppercase tracking-wider text-white/55">System cost</p>
                 <p className="font-display text-2xl font-extrabold text-white">{baht(r.cost)}</p>
               </div>
