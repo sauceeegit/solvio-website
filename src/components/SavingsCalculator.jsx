@@ -9,6 +9,7 @@ const CO2_PER_KWH = 0.5; // kg avoided per kWh (Thai grid emission factor)
 const SC_BASE = 0.65; // share of solar used at home without a battery (daytime AC/fridge load)
 const SC_MAX = 0.95; // even a big battery loses a little to conversion & full days
 const BATT_KWH_CYCLES = 330; // useful battery cycles/yr (~365 days × ~90% usable)
+const EXPORT_RATE = 2.2; // ฿/kWh — PEA net-billing credit (requires MEA/PEA registration)
 
 // Fallback system when no live configurator is supplied (e.g. on the landing page).
 const DEFAULT_DERIVED = computeConfig(defaultConfig);
@@ -19,6 +20,8 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
   const [orientation, setOrientation] = useState('south');
   const [household, setHousehold] = useState(calculatorDefaults.household);
   const [rate, setRate] = useState(calculatorDefaults.rate);
+  // Off by default: plug-in kits usually can't register for PEA net-billing.
+  const [exportOn, setExportOn] = useState(false);
 
   const factor = orientations.find((o) => o.id === orientation)?.factor ?? 1;
 
@@ -28,7 +31,9 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
     const battKwh = (derived.storage?.wh ?? 0) / 1000;
     const sc = Math.min(SC_MAX, SC_BASE + (y > 0 ? (battKwh * BATT_KWH_CYCLES) / y : 0));
     const usable = Math.min(y * sc, household); // can't save more than you use
-    const s = usable * rate; // ฿ / kWh × kWh = ฿
+    // surplus (not offset at the retail rate) earns the PEA credit when enabled
+    const exportRev = exportOn ? Math.max(0, y - usable) * EXPORT_RATE : 0;
+    const s = usable * rate + exportRev; // ฿
     return {
       annualYield: y,
       savings: s,
@@ -36,7 +41,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
       co2: y * CO2_PER_KWH,
       selfUse: sc,
     };
-  }, [derived.wp, derived.total, derived.storage?.wh, factor, household, rate]);
+  }, [derived.wp, derived.total, derived.storage?.wh, factor, household, rate, exportOn]);
 
   const stats = [
     { icon: Sun, label: 'Annual yield', value: `${num(annualYield)} kWh`, tint: 'text-amber-dark' },
@@ -114,6 +119,35 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
                   className="w-full accent-lime"
                 />
               </div>
+
+              <div>
+                <label className="mb-2 block font-display text-sm font-semibold text-ink">
+                  Surplus export credit
+                </label>
+                <div className="grid grid-cols-2 gap-2">
+                  {[
+                    { v: false, label: 'None (plug-in kit)' },
+                    { v: true, label: `PEA ฿${EXPORT_RATE.toFixed(2)}/unit` },
+                  ].map((o) => (
+                    <button
+                      key={o.label}
+                      onClick={() => setExportOn(o.v)}
+                      className={`rounded-lg border px-2 py-2.5 text-xs font-semibold transition ${
+                        exportOn === o.v
+                          ? 'border-lime bg-lime text-white'
+                          : 'border-ink/10 text-slatey-500 hover:border-ink/25'
+                      }`}
+                    >
+                      {o.label}
+                    </button>
+                  ))}
+                </div>
+                <p className="mt-1.5 text-xs text-slatey-400">
+                  {exportOn
+                    ? 'Surplus sells to the grid at PEA net-billing rates — requires MEA/PEA registration.'
+                    : 'Surplus earns nothing — typical for unregistered plug-in kits.'}
+                </p>
+              </div>
             </div>
 
             {/* results */}
@@ -140,6 +174,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
         Estimates only. Payback uses your <strong>kit price (self-installed)</strong>. Assumes ~
         {Math.round(selfUse * 100)}% of generation is used at home
         {(derived.storage?.wh ?? 0) > 0 ? ' (raised by your configured battery)' : ' (a battery raises this)'},
+        surplus {exportOn ? `exported at ฿${EXPORT_RATE.toFixed(2)}/kWh (PEA net-billing)` : 'unpaid'},
         Thai grid CO₂ {CO2_PER_KWH} kg/kWh. Actual yield depends on location, shading, tilt and weather.
       </p>
     </>
