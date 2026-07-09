@@ -93,7 +93,21 @@ Each page = `<Header/>` (sticky TopBar+nav) → `<main>` → `<Footer/>`.
 3. Facebook icon → placeholder URL; footer Imprint/Privacy/Terms + community CTAs are `href="#"`.
 4. Testimonials still use German cities (Leipzig/Hamburg/…) and review count (4.8★ · 1,294) is invented —
    replace with real content before launch.
-5. Nice-to-have: JSON-LD structured data (Product + Organization), prerendering routes for crawlers.
+5. **Prerender page content for crawlers (SSG)** — the site is client-side rendered, so a non-JS fetch of
+   any route shows only the splash wordmark "Sol io" in `<body>` (verified live 2026-07-09). Google runs
+   JS and indexes fine, but Bing / AI crawlers (GPTBot etc.) / social scrapers / no-JS get no body content,
+   and first paint waits on JS. NOTE what's ALREADY done: `scripts/prerender-meta.mjs` (runs in
+   `npm run build`) injects correct per-route HEAD meta (title/description/canonical/OG/Twitter) + JSON-LD
+   (Organization site-wide, Product on /balcony-system) into each `dist/<route>/index.html`, so search
+   snippets + social cards are already correct — only the visible BODY is missing. FIX: add build-time SSG
+   (must run inside `npm run build`; GitHub Pages is static — no SSR runtime) so each route ships the real
+   headings/copy in HTML. WRINKLE: framer-motion `Reveal` (src/components/Reveal.jsx) + Hero use
+   `initial={opacity:0}`, so a naive prerender captures content as present-but-invisible and no-JS users
+   see blank — the static output must render VISIBLE by default (progressive enhancement). Options:
+   `vite-react-ssg` (renderToString) or a headless snapshot (react-snap / puppeteer — needs chromium in
+   CI). Watch: the 3D-model `<iframe>` (Gallery.jsx), `<video>` loops, `window.matchMedia` in ProductHero.
+   Verify: `curl` each of the 5 routes and confirm `<body>` has real text (not "Sol io") and the app still
+   hydrates with no console errors. Medium risk, reversible.
 6. **Calculators (audited + overhauled 2026-07-07)** — Basic & Advanced now share the same energy
    assumptions (1.5 kWh/Wp/yr, 65% self-consumption, 90-95% with battery, ฿4.5/kWh, CO₂ 0.5).
    Both have a PEA ฿2.20/kWh export-credit toggle (Advanced: default ON landing / OFF balcony;
