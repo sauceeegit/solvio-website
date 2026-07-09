@@ -1,6 +1,6 @@
 # Solvio — Project handoff / continuation notes
 
-_Last updated: 2026-07-08._ **Read `CLAUDE.md` (repo root) first — it has the team working rules.**
+_Last updated: 2026-07-09._ **Read `CLAUDE.md` (repo root) first — it has the team working rules.**
 The `## CURRENT STATE` block below is authoritative; the older sections further down still
 describe individual components accurately but predate the multi-page/3D/perf work — trust this
 block where they disagree.
@@ -12,6 +12,34 @@ block where they disagree.
 **Repo (public):** https://github.com/sauceeegit/solvio-website (account `sauceeegit`)
 **Live:** https://sauceeegit.github.io/solvio-website/ — auto-deploys on every push to `main` (~3 min, GitHub Actions).
 **Collaborator:** `GG2026chad` (hansk09@gmail.com) has write access + the Claude GitHub App is granted, so two people/Claudes push in parallel.
+
+### 2026-07-09 session — what changed (newest first)
+- **Rooftop page: `FinancingOptions.jsx`** added at the end (after `RooftopSteps`, before Footer). "3 ways
+  to pay" + a Homeowners/Business toggle listing Thai green-loan cards + a bank-ready-pack callout +
+  disclaimer. Loan data (`payWays`, `loans`, `bankReadyPack`) lives IN the component — lift into
+  `src/data/product.js` later if desired. **All CTAs are informational only** (no apply buttons yet).
+- **Solar Panel page: `PanelComparison.jsx`** — orange-themed spec table (Solvio Firm-Light PLUS vs Jinko/
+  LONGi/Trina). Horizontally scrollable on mobile (`min-w-[560px] sm:min-w-[780px]`) with the feature
+  column `sticky left-0`; Solvio column highlighted; ✓ (tick) marks category-leading rows. Sits ABOVE the FAQ.
+- **`FAQ.jsx` now takes props** — `items`, `eyebrow`, `heading`, `subtitle`, `bg`. Used on solar-panel
+  (panel-tech Q&A from `panelFaqs` in landing.js) and balcony (`<FAQ bg="#FFF7E9" />` to match IncludedItems).
+- **Mobile-view overhaul** (DOCX-driven, all `max-sm:`/`sm:`-scoped so desktop is untouched): mobile nav
+  dropdown is now **portaled to `document.body`** (`createPortal` in `LandingNav.jsx`) — the scrolled nav's
+  `backdrop-blur` was a containing block that clipped the fixed menu, making it look transparent. Plus:
+  category cards (blurb hidden, 1-line titles), Bestsellers horizontal-scroll, calculators compacted,
+  rooftop copy trimmed + Resort/Hotel/Commercial-Block/Condo checklist, 7-steps title-beside-number,
+  balcony sticky 3D model until Step 3 (`ProductHero` scroll listener + `cfg-step-3` id + `Gallery mobileFreeze`),
+  Configurator step-3 storage horizontal-scroll, IncludedItems 2-up cards, Comparison table fit, etc.
+- **Basic calculator (`SavingsCalculator.jsx`)** now has the same "Email me my quote" form as Advanced (UI-only).
+- **Section colors:** balcony FAQ = cream `#FFF7E9` (matches "What's included"); rooftop 7-steps = light blue `#EEF5FC`.
+- **Responsive banner swaps:** `SolarPanelFeatures.jsx` + `ModuleBanner.jsx` use `<picture>` — portrait
+  `sp-feature-top-mobile.webp` on mobile, wide banner (`sp-feature-top.webp` / `Solvio_Feather_image.png`) on desktop.
+- **Rooftop "Big Roof? Build Big." image** → new before/after aerial (overwrote `public/rooftop-feature.webp`).
+- **SEO content prerender is still an open item** — see Open items #5. Meta/OG/JSON-LD are prerendered
+  (`scripts/prerender-meta.mjs` in `npm run build`); the visible BODY is still client-rendered (non-JS
+  crawlers see only the "Sol io" splash).
+- **3D model (separate repo) changed a lot** — see "The 3D model" section for the MODEL_VERSION cache-bust
+  gotcha and the zoom/glare/spacing/shadow edits.
 
 ### Working setup (per machine)
 - **Work from `C:\dev\solvio-website`** — a clean clone OUTSIDE OneDrive. The old
@@ -62,12 +90,24 @@ Each page = `<Header/>` (sticky TopBar+nav) → `<main>` → `<Footer/>`.
   video + two feature rows ("Big Roof? Build Big." / "Designed and installed…").
 
 ### The 3D model (SEPARATE repo)
-- `https://github.com/sauceeegit/solvio-panel-3d` — a single `index.html` Three.js app, deploys via
-  **legacy GitHub Pages from `main`** (push → ~1–2 min). Cloned at `C:\dev\solvio-panel-3d`.
-- It has a **postMessage control API** (`window.solvioSetConfig` + `message` listener + `solvio-ready` ping).
-  The balcony configurator sends `{type:'solvio-config', location, panel, modules}`:
-  location→scene (**flatroof→rooftop**), panel (white→classic / dark→black), modules→panel count.
-  To change what the model does per config, edit that repo's `setScene`/`setPanelType`/`setPanelCount`.
+- `https://github.com/sauceeegit/solvio-panel-3d` — a single `index.html` Three.js app (r160 via CDN
+  importmap), deploys via **legacy GitHub Pages from `main`** (push → ~1–2 min). Cloned at `C:\dev\solvio-panel-3d`.
+  Embedded on the balcony page via an `<iframe>` in `src/components/Gallery.jsx`.
+- **⚠️ CACHE-BUST when you change the model.** GitHub Pages serves the model HTML with a 10-min cache, so
+  the iframe would keep loading a stale build. `Gallery.jsx` has `const MODEL_VERSION = '…'` and loads
+  `…/solvio-panel-3d/?v=${MODEL_VERSION}`. **After any model change, bump MODEL_VERSION** (and push the
+  website) so browsers fetch fresh. The version query does NOT affect the postMessage origin check.
+- It has a **postMessage control API** (`message` listener + `solvio-ready` ping). The balcony configurator
+  sends `{type:'solvio-config', location, panel, modules}`: location→scene (**flatroof→rooftop**),
+  panel (white→classic / dark→black), modules→panel count. Edit `setScene`/`setPanelType`/`setPanelCount`.
+- **Recent model edits (2026-07-08/09):** smooth device-independent zoom (built-in wheel zoom disabled;
+  clamped step + eased target distance — fixes trackpad lurch); sun glare on the glass halved
+  (glassMat clearcoat/reflectivity/specular); garden & flat-roof row spacing 10cm→20cm (`GARDEN_ROW_GAP`);
+  **all shadows removed** (`renderer.shadowMap.enabled = false`).
+- **Workflow to edit the model here:** it's not cloned on this machine; clone the repo to the scratchpad,
+  edit `index.html`, test via a static server (`.claude/launch.json` "panel3d-clone" points node at a tiny
+  server), then commit/push with `-c user.name=sauceeegit -c user.email=chadyu246@gmail.com`, mirror the
+  file into `…\OneDrive\Desktop\panel 3d model\index.html`, and bump MODEL_VERSION in the website.
 
 ### Performance done this session
 - Heavy PNGs → **WebP** (feature images, logo, panels, popup, rooftop pics). Convert new Drive images with
