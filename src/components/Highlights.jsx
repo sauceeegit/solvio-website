@@ -4,7 +4,7 @@ import { asset } from '../lib/format';
 /* Support agent on a headset — infographic for the "Lifetime support" tile */
 function SupportAgent({ className = '' }) {
   return (
-    <div className={`flex items-center justify-center bg-white ${className}`}>
+    <div className={`flex items-center justify-center bg-[#e3e3f4] ${className}`}>
       <svg
         viewBox="0 0 100 100"
         className="h-full w-full p-2"
@@ -38,7 +38,7 @@ function SupportAgent({ className = '' }) {
 function Gauge() {
   const N = 22;
   return (
-    <svg viewBox="0 0 200 104" className="w-44 text-lime">
+    <svg viewBox="0 0 200 104" className="w-44" style={{ color: '#FC4302' }}>
       {Array.from({ length: N }).map((_, i) => {
         const a = Math.PI * (i / (N - 1));
         const cos = Math.cos(a);
@@ -67,13 +67,13 @@ function Donut() {
   const pct = 30;
   return (
     <svg viewBox="0 0 80 80" className="h-[86px] w-[86px] -rotate-90">
-      <circle cx="40" cy="40" r={r} fill="none" stroke="rgba(255,255,255,.35)" strokeWidth="9" />
+      <circle cx="40" cy="40" r={r} fill="none" stroke="rgba(60,60,120,.18)" strokeWidth="9" />
       <circle
         cx="40"
         cy="40"
         r={r}
         fill="none"
-        stroke="#fff"
+        stroke="#FC4302"
         strokeWidth="9"
         strokeDasharray={`${((pct / 100) * c).toFixed(1)} ${c.toFixed(1)}`}
         strokeLinecap="round"
@@ -89,13 +89,13 @@ export default function Highlights() {
         <Reveal>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6 lg:grid-rows-2 lg:h-[600px]">
             {/* A — annual yield gauge (dark) */}
-            <div className="flex h-full min-h-[260px] flex-col items-center justify-center rounded-xl2 bg-ink p-6 text-center text-white lg:col-span-2 lg:col-start-1 lg:row-start-1">
+            <div className="flex h-full min-h-[260px] flex-col items-center justify-center rounded-xl2 p-6 text-center text-white lg:col-span-2 lg:col-start-1 lg:row-start-1" style={{ backgroundColor: '#afb6f3' }}>
               <Gauge />
-              <p className="mt-3 text-[11px] font-medium uppercase tracking-wide text-white/55">Up to</p>
+              <p className="mt-3 text-[11px] font-medium uppercase tracking-wide text-ink/60">Up to</p>
               <p className="font-display text-3xl font-extrabold text-lime">
                 1,720 kWh<span className="align-super text-base">*</span>
               </p>
-              <p className="text-xs text-white/70">generated per year</p>
+              <p className="text-xs text-ink/70">generated per year</p>
             </div>
 
             {/* B — savings (orange overlay on placeholder) */}
@@ -119,8 +119,8 @@ export default function Highlights() {
                 alt="Easy installation — connecting a panel by hand in the garden"
                 className="absolute inset-0 h-full w-full object-cover"
               />
-              <div className="absolute bottom-0 right-0 flex h-[40%] w-[74%] flex-col justify-center rounded-tl-xl2 bg-lime p-6 transition-all duration-500 ease-out group-hover:h-full group-hover:w-full">
-                <p className="text-center font-display text-[18px] font-bold text-white">
+              <div className="absolute bottom-0 right-0 flex h-[40%] w-[74%] flex-col justify-center rounded-tl-xl2 p-6 transition-all duration-500 ease-out group-hover:h-full group-hover:w-full" style={{ backgroundColor: '#ffb64d' }}>
+                <p className="text-center font-display text-[18px] font-bold text-ink/70">
                   Plug &amp; Play:
                 </p>
                 <p className="mt-1 text-center font-display text-[23px] font-extrabold leading-snug text-ink">
@@ -141,14 +141,14 @@ export default function Highlights() {
             </div>
 
             {/* E1 — yield donut (orange) */}
-            <div className="flex h-full min-h-[160px] flex-col items-center justify-center rounded-xl2 bg-lime p-5 text-center text-white lg:col-span-1 lg:col-start-5 lg:row-start-2">
+            <div className="flex h-full min-h-[160px] flex-col items-center justify-center rounded-xl2 p-5 text-center lg:col-span-1 lg:col-start-5 lg:row-start-2" style={{ backgroundColor: '#e3e3f4' }}>
               <div className="relative">
                 <Donut />
-                <span className="absolute inset-0 flex items-center justify-center font-display text-xl font-extrabold">
+                <span className="absolute inset-0 flex items-center justify-center font-display text-xl font-extrabold text-ink">
                   30%
                 </span>
               </div>
-              <p className="mt-2 text-[11px] font-semibold leading-snug">
+              <p className="mt-2 text-[11px] font-semibold leading-snug text-ink/70">
                 More yield
                 <br />
                 per module
@@ -156,7 +156,7 @@ export default function Highlights() {
             </div>
 
             {/* E2 — optional support (cream + placeholder) */}
-            <div className="flex h-full min-h-[160px] flex-col rounded-xl2 bg-[#FCF6EC] p-4 lg:col-span-1 lg:col-start-6 lg:row-start-2">
+            <div className="flex h-full min-h-[160px] flex-col rounded-xl2 p-4 lg:col-span-1 lg:col-start-6 lg:row-start-2" style={{ backgroundColor: '#e3e3f4' }}>
               <p className="text-[10px] font-semibold uppercase tracking-wide text-slatey-400">Optional</p>
               <SupportAgent className="mt-2 flex-1 rounded-lg" />
               <p className="mt-2 font-display text-sm font-bold leading-snug text-ink">Lifetime support</p>
