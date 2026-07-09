@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import MediaLoader from '../components/MediaLoader';
 import Reveal from '../components/Reveal';
 import RooftopSteps from '../components/RooftopSteps';
+import FinancingOptions from '../components/FinancingOptions';
 import { asset } from '../lib/format';
 import { rooftopVideo } from '../data/landing';
 import { usePageMeta } from '../hooks/usePageMeta';
@@ -124,6 +125,7 @@ export default function RooftopSystemPage() {
 
         {/* 7-step plan (horizontal) */}
         <RooftopSteps />
+        <FinancingOptions />
       </main>
       <Footer />
     </div>
