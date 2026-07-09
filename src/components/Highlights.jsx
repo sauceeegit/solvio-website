@@ -4,7 +4,7 @@ import { asset } from '../lib/format';
 /* Support agent on a headset — infographic for the "Lifetime support" tile */
 function SupportAgent({ className = '' }) {
   return (
-    <div className={`flex items-center justify-center bg-[rgba(255,103,0,0.10)] ${className}`}>
+    <div className={`flex items-center justify-center bg-[#ce6249] ${className}`}>
       <svg
         viewBox="0 0 100 100"
         className="h-full w-full p-2"
@@ -12,8 +12,8 @@ function SupportAgent({ className = '' }) {
         aria-label="Support agent wearing a headset"
       >
         {/* figure silhouette */}
-        <circle cx="50" cy="40" r="13" fill="#12281F" />
-        <path d="M30 82c0-13 9-21 20-21s20 8 20 21v3H30z" fill="#12281F" />
+        <circle cx="50" cy="40" r="13" fill="rgba(255,255,255,0.9)" />
+        <path d="M30 82c0-13 9-21 20-21s20 8 20 21v3H30z" fill="rgba(255,255,255,0.9)" />
         {/* headset band + ear cups (brand orange) */}
         <path d="M34 40a16 16 0 0 1 32 0" fill="none" stroke="#FC4302" strokeWidth="4" strokeLinecap="round" />
         <rect x="30" y="36" width="7" height="13" rx="3.5" fill="#FC4302" />
@@ -156,10 +156,10 @@ export default function Highlights() {
             </div>
 
             {/* E2 — optional support (cream + placeholder) */}
-            <div className="flex h-full min-h-[160px] flex-col rounded-xl2 p-4 lg:col-span-1 lg:col-start-6 lg:row-start-2" style={{ backgroundColor: 'rgba(255,103,0,0.10)' }}>
-              <p className="text-[10px] font-semibold uppercase tracking-wide text-slatey-400">Optional</p>
+            <div className="flex h-full min-h-[160px] flex-col rounded-xl2 p-4 lg:col-span-1 lg:col-start-6 lg:row-start-2" style={{ backgroundColor: '#ce6249' }}>
+              <p className="text-[10px] font-semibold uppercase tracking-wide text-white/60">Optional</p>
               <SupportAgent className="mt-2 flex-1 rounded-lg" />
-              <p className="mt-2 font-display text-sm font-bold leading-snug text-ink">Lifetime support</p>
+              <p className="mt-2 font-display text-sm font-bold leading-snug text-white">Lifetime support</p>
             </div>
           </div>
         </Reveal>
