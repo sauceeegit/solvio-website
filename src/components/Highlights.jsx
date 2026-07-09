@@ -89,13 +89,13 @@ export default function Highlights() {
         <Reveal>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6 lg:grid-rows-2 lg:h-[600px]">
             {/* A — annual yield gauge (dark) */}
-            <div className="flex h-full min-h-[260px] flex-col items-center justify-center rounded-xl2 p-6 text-center text-white lg:col-span-2 lg:col-start-1 lg:row-start-1" style={{ backgroundColor: '#afb6f3' }}>
+            <div className="flex h-full min-h-[260px] flex-col items-center justify-center rounded-xl2 p-6 text-center text-white lg:col-span-2 lg:col-start-1 lg:row-start-1" style={{ backgroundColor: '#2e5b44' }}>
               <Gauge />
-              <p className="mt-3 text-[11px] font-medium uppercase tracking-wide text-ink/60">Up to</p>
+              <p className="mt-3 text-[11px] font-medium uppercase tracking-wide text-white/55">Up to</p>
               <p className="font-display text-3xl font-extrabold text-lime">
                 1,720 kWh<span className="align-super text-base">*</span>
               </p>
-              <p className="text-xs text-ink/70">generated per year</p>
+              <p className="text-xs text-white/70">generated per year</p>
             </div>
 
             {/* B — savings (orange overlay on placeholder) */}
@@ -132,7 +132,7 @@ export default function Highlights() {
             </div>
 
             {/* D — brand block (dark) */}
-            <div className="flex h-full min-h-[160px] items-center justify-center rounded-xl2 bg-ink p-6 lg:col-span-2 lg:col-start-5 lg:row-start-1">
+            <div className="flex h-full min-h-[160px] items-center justify-center rounded-xl2 bg-black p-6 lg:col-span-2 lg:col-start-5 lg:row-start-1">
               <img loading="lazy"
                 src={asset('/solvio-logo-full.webp')}
                 alt="Solvio"
