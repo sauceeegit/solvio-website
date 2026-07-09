@@ -4,7 +4,7 @@ import { asset } from '../lib/format';
 /* Support agent on a headset — infographic for the "Lifetime support" tile */
 function SupportAgent({ className = '' }) {
   return (
-    <div className={`flex items-center justify-center bg-[#e3e3f4] ${className}`}>
+    <div className={`flex items-center justify-center bg-[rgba(255,103,0,0.10)] ${className}`}>
       <svg
         viewBox="0 0 100 100"
         className="h-full w-full p-2"
@@ -67,7 +67,7 @@ function Donut() {
   const pct = 30;
   return (
     <svg viewBox="0 0 80 80" className="h-[86px] w-[86px] -rotate-90">
-      <circle cx="40" cy="40" r={r} fill="none" stroke="rgba(60,60,120,.18)" strokeWidth="9" />
+      <circle cx="40" cy="40" r={r} fill="none" stroke="rgba(255,103,0,.18)" strokeWidth="9" />
       <circle
         cx="40"
         cy="40"
@@ -141,7 +141,7 @@ export default function Highlights() {
             </div>
 
             {/* E1 — yield donut (orange) */}
-            <div className="flex h-full min-h-[160px] flex-col items-center justify-center rounded-xl2 p-5 text-center lg:col-span-1 lg:col-start-5 lg:row-start-2" style={{ backgroundColor: '#e3e3f4' }}>
+            <div className="flex h-full min-h-[160px] flex-col items-center justify-center rounded-xl2 p-5 text-center lg:col-span-1 lg:col-start-5 lg:row-start-2" style={{ backgroundColor: 'rgba(255,103,0,0.10)' }}>
               <div className="relative">
                 <Donut />
                 <span className="absolute inset-0 flex items-center justify-center font-display text-xl font-extrabold text-ink">
@@ -156,7 +156,7 @@ export default function Highlights() {
             </div>
 
             {/* E2 — optional support (cream + placeholder) */}
-            <div className="flex h-full min-h-[160px] flex-col rounded-xl2 p-4 lg:col-span-1 lg:col-start-6 lg:row-start-2" style={{ backgroundColor: '#e3e3f4' }}>
+            <div className="flex h-full min-h-[160px] flex-col rounded-xl2 p-4 lg:col-span-1 lg:col-start-6 lg:row-start-2" style={{ backgroundColor: 'rgba(255,103,0,0.10)' }}>
               <p className="text-[10px] font-semibold uppercase tracking-wide text-slatey-400">Optional</p>
               <SupportAgent className="mt-2 flex-1 rounded-lg" />
               <p className="mt-2 font-display text-sm font-bold leading-snug text-ink">Lifetime support</p>
