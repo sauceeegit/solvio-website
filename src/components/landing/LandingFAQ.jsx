@@ -19,7 +19,7 @@ export default function LandingFAQ() {
         <div className="mt-8 grid gap-6 lg:grid-cols-[280px_1fr] lg:gap-10">
           {/* side tab — fills the column height (content centred) so it doesn't leave a gap */}
           <Reveal>
-            <div className="flex h-full flex-col justify-center rounded-xl2 bg-ink p-6 text-white sm:p-8 lg:min-h-0">
+            <div className="flex flex-col justify-center rounded-xl2 bg-ink p-6 text-white sm:p-8 lg:self-start">
               <span className="grid h-11 w-11 place-items-center rounded-xl bg-lime text-white">
                 <HelpCircle size={22} />
               </span>
@@ -54,7 +54,7 @@ export default function LandingFAQ() {
                 <div
                   key={f.q}
                   className={`border-b border-ink/[0.08] last:border-0 transition-colors duration-200 ${
-                    open === i ? 'bg-white/70 -mx-6 px-6 rounded-xl' : ''
+                    open === i ? 'bg-white -mx-6 px-6 rounded-xl' : ''
                   }`}
                 >
                   <button
