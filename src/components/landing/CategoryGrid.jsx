@@ -49,7 +49,9 @@ export default function CategoryGrid() {
   const [hoveredIdx, setHoveredIdx] = useState(null);
 
   return (
-    <section id="categories" className="container-x scroll-mt-20 py-14">
+    // Mobile top padding lives in LandingPage's spacer (the hero's sticky
+    // freeze distance) so the heading meets the frozen video exactly.
+    <section id="categories" className="container-x scroll-mt-20 py-14 max-lg:pt-0">
       <Reveal>
         <h2 className="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
           From Rooftop to Backpack<span className="text-lime-dark">.</span>

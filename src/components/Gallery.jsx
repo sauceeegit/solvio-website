@@ -16,10 +16,8 @@ export const MODEL_URL = `${MODEL_ORIGIN}/solvio-panel-3d/?v=${MODEL_VERSION}&em
 // number of panels (see the postMessage API in the solvio-panel-3d project).
 export default function Gallery({ derived, mobileFreeze = false }) {
   const frameRef = useRef(null);
+  const rootRef = useRef(null);
   const [loaded, setLoaded] = useState(false);
-  // Freeze the model just below the sticky header so its top (the "Wp" badge)
-  // stays visible instead of hiding behind the header on mobile.
-  const [headerH, setHeaderH] = useState(96);
   const cfg = derived?.config;
   const wp = derived?.wp ?? 0;
 
@@ -62,27 +60,43 @@ export default function Gallery({ derived, mobileFreeze = false }) {
     return () => clearTimeout(t);
   }, []);
 
-  // Track the sticky header height so the frozen model docks right beneath it.
+  // Mobile freeze with a natural release: the model docks just below the sticky
+  // header while the shopper scrolls Steps 1–2. The moment "Step 3 — Storage"
+  // (#cfg-step-3) touches the model's bottom edge, the sticky `top` starts
+  // tracking step 3, so the model is pushed up WITH the scroll (no snap-away).
   useEffect(() => {
-    const el = document.getElementById('site-header');
-    if (!el) return undefined;
-    const measure = () => setHeaderH(el.offsetHeight);
-    measure();
-    const ro = new ResizeObserver(measure);
-    ro.observe(el);
-    window.addEventListener('resize', measure);
-    return () => {
-      ro.disconnect();
-      window.removeEventListener('resize', measure);
+    const el = rootRef.current;
+    if (!el || !mobileFreeze) return undefined;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const headerH = document.getElementById('site-header')?.offsetHeight ?? 96;
+      const pin = headerH + 8;
+      const step3 = document.getElementById('cfg-step-3');
+      const top = step3
+        ? Math.min(pin, step3.getBoundingClientRect().top - el.offsetHeight - 12)
+        : pin;
+      el.style.setProperty('--frozen-top', `${top}px`);
     };
-  }, []);
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [mobileFreeze]);
 
   return (
     <div
-      style={{ '--frozen-top': `${headerH + 8}px` }}
+      ref={rootRef}
       className={`lg:sticky lg:top-24 lg:self-start ${
         mobileFreeze
-          ? 'max-lg:sticky max-lg:top-[var(--frozen-top)] max-lg:z-20 max-lg:max-h-[52vh] max-lg:overflow-hidden max-lg:rounded-xl2 max-lg:shadow-lift'
+          ? 'max-lg:sticky max-lg:top-[var(--frozen-top,104px)] max-lg:z-20 max-lg:max-h-[52vh] max-lg:overflow-hidden max-lg:rounded-xl2 max-lg:shadow-lift'
           : ''
       }`}
     >

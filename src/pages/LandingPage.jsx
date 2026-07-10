@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import Header from '../components/landing/Header';
 import Hero from '../components/landing/Hero';
 import CategoryGrid from '../components/landing/CategoryGrid';
@@ -14,11 +15,37 @@ import { usePageMeta } from '../hooks/usePageMeta';
 
 export default function LandingPage() {
   usePageMeta('/');
+  // Sticky-header height, so the frozen hero video docks right beneath it.
+  const [headerH, setHeaderH] = useState(0);
+  useEffect(() => {
+    const el = document.getElementById('site-header');
+    if (!el) return undefined;
+    const measure = () => setHeaderH(el.offsetHeight);
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    window.addEventListener('resize', measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener('resize', measure);
+    };
+  }, []);
+
   return (
     <div id="top" className="min-h-screen bg-surface">
       <Header />
       <main>
-        <Hero />
+        {/* Mobile: the looping video freezes below the header while the page
+            scrolls; the spacer below (= CategoryGrid's removed top padding)
+            is the freeze distance. Once "From Rooftop to Backpack" touches the
+            video's bottom edge, the sticky boundary ends and the video is
+            pushed up naturally with the scroll (no snap/disappear). */}
+        <div className="relative">
+          <div className="max-lg:sticky" style={{ top: headerH }}>
+            <Hero />
+          </div>
+          <div aria-hidden="true" className="h-14 lg:hidden" />
+        </div>
         <CategoryGrid />
         <Bestsellers />
         <CalculatorSection />
