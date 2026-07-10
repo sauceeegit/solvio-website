@@ -11,7 +11,6 @@ import Community from '../components/landing/Community';
 import GuidePopup from '../components/GuidePopup';
 import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
-import MobileCollapse from '../components/MobileCollapse';
 import { usePageMeta } from '../hooks/usePageMeta';
 
 export default function LandingPage() {
@@ -43,21 +42,11 @@ export default function LandingPage() {
         </div>
         <CategoryGrid />
         <Bestsellers />
-        <MobileCollapse title="See what you save with solar">
-          <CalculatorSection />
-        </MobileCollapse>
-        <MobileCollapse title="Watch our founder's story">
-          <FounderVideo />
-        </MobileCollapse>
-        <MobileCollapse title="Frequently asked questions">
-          <LandingFAQ />
-        </MobileCollapse>
-        <MobileCollapse title="Why choose Solvio?">
-          <WhyShop />
-        </MobileCollapse>
-        <MobileCollapse title="Become part of Solvio">
-          <Community />
-        </MobileCollapse>
+        <CalculatorSection />
+        <FounderVideo />
+        <LandingFAQ />
+        <WhyShop />
+        <Community />
         <ContactSection />
       </main>
       <Footer />

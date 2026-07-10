@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronDown } from 'lucide-react';
 import { icons } from '../../lib/icons';
 import { whyShop } from '../../data/landing';
 import { asset } from '../../lib/format';
@@ -258,6 +258,7 @@ function BenefitCard({ item, big }) {
 
 export default function WhyShop() {
   const openBgreenie = useBgreenie();
+  const [showAll, setShowAll] = useState(false);
   return (
     <section style={{ background: '#FFFDF9' }} className="py-16">
       <div className="container-x">
@@ -280,7 +281,7 @@ export default function WhyShop() {
           {whyShop.map((item, i) => {
             const big = i === 0 || i === 5;
             return (
-              <Reveal key={item.title} delay={(i % 5) * 0.05} className={`h-full ${cellClass[i]}`}>
+              <Reveal key={item.title} delay={(i % 5) * 0.05} className={`h-full ${cellClass[i]} ${i >= 4 && !showAll ? 'hidden sm:block' : ''}`}>
                 {item.img ? (
                   /* Rewards hero card — premium coin layout */
                   <div
@@ -357,6 +358,17 @@ export default function WhyShop() {
             );
           })}
         </div>
+
+        {/* Mobile-only "Show all" button */}
+        {!showAll && (
+          <button
+            type="button"
+            onClick={() => setShowAll(true)}
+            className="mx-auto mt-4 flex items-center gap-2 rounded-full border border-ink/15 px-5 py-2.5 font-display text-sm font-semibold text-ink/70 transition hover:border-ink/30 sm:hidden"
+          >
+            Show all benefits <ChevronDown size={16} />
+          </button>
+        )}
       </div>
     </section>
   );
