@@ -178,6 +178,7 @@ export default function ContactSection() {
                 title="Solvio Solar location"
                 src={MAP_EMBED}
                 className="block aspect-[16/10] w-full border-0"
+                style={{ filter: 'grayscale(100%) contrast(0.9) brightness(1.05)' }}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />
