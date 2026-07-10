@@ -10,7 +10,8 @@ block where they disagree.
 ## ⭐ CURRENT STATE (2026-07-08) — read this first
 
 **Repo (public):** https://github.com/sauceeegit/solvio-website (account `sauceeegit`)
-**Live:** https://sauceeegit.github.io/solvio-website/ — auto-deploys on every push to `main` (~3 min, GitHub Actions).
+**Live:** https://solvio.solar — custom domain (Pages), auto-deploys on every push to `main` (~3 min, GitHub Actions).
+The old `sauceeegit.github.io/solvio-website/` subpath is superseded; base is now `/` (see `deploy.yml` `VITE_BASE: /` + `public/CNAME`).
 **Collaborator:** `GG2026chad` (hansk09@gmail.com) has write access + the Claude GitHub App is granted, so two people/Claudes push in parallel.
 
 ### 2026-07-09 session — what changed (newest first)
@@ -119,8 +120,8 @@ Each page = `<Header/>` (sticky TopBar+nav) → `<main>` → `<Footer/>`.
 - Drive download URL that works: `https://drive.usercontent.google.com/download?id=<ID>&export=download&confirm=t`.
 
 ### SEO baseline done 2026-07-08
-- `public/robots.txt` + `public/sitemap.xml` (URLs point at the github.io address — **update both,
-  plus the canonical/OG URLs in `index.html`, when the custom domain `solvio.solar` is attached**).
+- `public/robots.txt` + `public/sitemap.xml` + `index.html` head all point at `https://solvio.solar`
+  (custom domain live since 2026-07-10 — see Open items #2).
 - `index.html`: canonical link, OpenGraph + Twitter card tags, `public/og-image.jpg` (1200×630).
 - Per-route titles/descriptions via `src/hooks/usePageMeta.js` (called at the top of each page).
 - Landing hero slogan is now the page `<h1>`; all imgs have alt text; 23 below-fold imgs `loading="lazy"`.
@@ -129,7 +130,11 @@ Each page = `<Header/>` (sticky TopBar+nav) → `<main>` → `<Footer/>`.
 ### Open items / not-yet-wired
 1. **All email forms are UI-only** (GuidePopup, Advanced calculator, PriceBox, footer newsletter) — show a
    confirmation but send nothing. Wire to Formspree/Mailchimp before launch.
-2. **Custom domain**: attach `solvio.solar` to Pages, then update canonical/OG/robots/sitemap URLs (above).
+2. ~~**Custom domain**: attach `solvio.solar` to Pages, then update canonical/OG/robots/sitemap URLs.~~
+   **DONE (2026-07-10):** `public/CNAME` = `solvio.solar`, `deploy.yml` `VITE_BASE: /` (root base), `robots.txt`/
+   `sitemap.xml`/`src/data/seo.js` (`SITE`) and `index.html` head (canonical/OG/Twitter/JSON-LD, incl. og:image
+   + logo) all point at `https://solvio.solar`. NOTE: `Gallery.jsx` `MODEL_ORIGIN` stays `sauceeegit.github.io`
+   on purpose — the 3D model is a separate repo still hosted there.
 3. Facebook icon → placeholder URL; footer Imprint/Privacy/Terms + community CTAs are `href="#"`.
 4. Testimonials still use German cities (Leipzig/Hamburg/…) and review count (4.8★ · 1,294) is invented —
    replace with real content before launch.
@@ -326,7 +331,7 @@ To swap any image: drop a file in `public/` and update the path in `src/data/lan
 
 ## Deploy / share
 Primary host is **GitHub Pages**, which rebuilds automatically on every push to `main` — see the
-"Deployment — GitHub Pages" section near the top. Live at https://sauceeegit.github.io/solvio-website/.
+"Deployment — GitHub Pages" section near the top. Live at https://solvio.solar.
 For a one-off Netlify copy instead, `npm run build` and drag `dist/` onto https://app.netlify.com/drop.
 (The old prebuilt `…\Desktop\to G\` copy was deleted 2026-06-24; rebuild from source if needed.)
 **SPA routing:** `public/_redirects` (`/*  /index.html  200`) covers Netlify; the GitHub Pages

@@ -1,7 +1,7 @@
 # Solvio website — rules for Claude sessions
 
 Two people (+ their Claudes) work on this repo in parallel. Every push to `main`
-auto-deploys to production (https://sauceeegit.github.io/solvio-website/) in ~3–4 min.
+auto-deploys to production (https://solvio.solar) in ~3–4 min.
 These rules exist because features have been accidentally destroyed during redesigns.
 
 ## Golden rules — never break these
