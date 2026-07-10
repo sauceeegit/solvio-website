@@ -6,7 +6,7 @@ export const MODEL_ORIGIN = 'https://sauceeegit.github.io';
 // serving a stale build after the solvio-panel-3d repo updates. Bump this
 // version tag whenever the model changes to force a fresh fetch. (Query strings
 // don't affect the postMessage origin, which stays MODEL_ORIGIN.)
-const MODEL_VERSION = '20260710-bottombar';
+const MODEL_VERSION = '20260710-bottombar2';
 export const MODEL_URL = `${MODEL_ORIGIN}/solvio-panel-3d/?v=${MODEL_VERSION}`;
 
 // Interactive 3D model of the panel, embedded in the hero slot. The live
