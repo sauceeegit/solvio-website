@@ -13,12 +13,12 @@ export default function MobileCollapse({ title, children }) {
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
-        className="flex w-full items-center justify-between border-b border-ink/10 bg-white px-5 py-4 md:hidden"
+        className={`flex w-full items-center justify-between border-b border-ink/[0.08] bg-white px-5 py-5 transition-colors duration-200 md:hidden ${open ? 'border-b-0' : ''}`}
       >
-        <span className="font-display text-base font-bold text-ink">{title}</span>
+        <span className={`font-display font-semibold transition-colors ${open ? 'text-lg text-lime-dark' : 'text-base text-ink'}`}>{title}</span>
         <ChevronDown
           size={20}
-          className={`shrink-0 text-ink/50 transition-transform duration-300 ${open ? 'rotate-180' : ''}`}
+          className={`shrink-0 transition-all duration-300 ${open ? 'rotate-180 text-lime' : 'text-ink/40'}`}
         />
       </button>
 
