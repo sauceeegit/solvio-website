@@ -37,7 +37,7 @@ const cols = [
 
 export default function Footer() {
   return (
-    <footer className="bg-ink text-white">
+    <footer className="text-white" style={{ backgroundColor: '#122316' }}>
       <div className="container-x py-16">
         <div className="grid gap-10 py-12 lg:grid-cols-5">
           <div className="lg:col-span-2">
