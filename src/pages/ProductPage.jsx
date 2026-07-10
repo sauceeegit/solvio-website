@@ -45,7 +45,7 @@ export default function ProductPage() {
         <CalculatorSection derived={cfg} />
         <Testimonials />
         <Comparison />
-        <FAQ bg="#FFF7E9" />
+        <FAQ bg="#ffffff" />
         <ContactSection />
       </main>
       <Footer />

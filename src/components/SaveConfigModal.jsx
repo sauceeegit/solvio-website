@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { X, Check, Mail, Battery, Zap, MapPin, Layers } from 'lucide-react';
 import { baht, whFmt } from '../lib/format';
+import { MODEL_ORIGIN, MODEL_URL } from './Gallery';
+import MediaLoader from './MediaLoader';
 
 // "Save Configuration" popup for the balcony configurator. Shows a snapshot-style
 // preview of the configured array (built from the live config), the chosen
@@ -10,6 +12,21 @@ import { baht, whFmt } from '../lib/format';
 export default function SaveConfigModal({ open, onClose, derived }) {
   const [email, setEmail] = useState('');
   const [sent, setSent] = useState(false);
+  const frameRef = useRef(null);
+  const [frameReady, setFrameReady] = useState(false);
+
+  // Keep the latest config in a ref so the (stable) sender reads current values.
+  const cfg = derived
+    ? { location: derived.location?.id, panel: derived.panel?.id, modules: derived.modules }
+    : null;
+  const cfgRef = useRef(cfg);
+  cfgRef.current = cfg;
+
+  const send = useCallback(() => {
+    const c = cfgRef.current;
+    if (!c || !frameRef.current?.contentWindow) return;
+    frameRef.current.contentWindow.postMessage({ type: 'solvio-config', ...c }, MODEL_ORIGIN);
+  }, []);
 
   useEffect(() => {
     if (!open) return undefined;
@@ -22,12 +39,31 @@ export default function SaveConfigModal({ open, onClose, derived }) {
     };
   }, [open, onClose]);
 
+  // The model pings 'solvio-ready' once its WebGL scene is up — push the config
+  // then and reveal it. Reset the loader each time the modal reopens.
+  useEffect(() => {
+    if (!open) {
+      setFrameReady(false);
+      return undefined;
+    }
+    const onMsg = (e) => {
+      if (e.origin === MODEL_ORIGIN && e.data?.type === 'solvio-ready') {
+        send();
+        setFrameReady(true);
+      }
+    };
+    window.addEventListener('message', onMsg);
+    const t = setTimeout(() => setFrameReady(true), 8000); // safety reveal
+    return () => {
+      window.removeEventListener('message', onMsg);
+      clearTimeout(t);
+    };
+  }, [open, send]);
+
   if (!derived) return null;
 
   const { location, modules, panel, wp, storage, cable, total } = derived;
   const hasBattery = (storage?.wh ?? 0) > 0;
-  // Snapshot: a row of panel thumbnails mirroring the configured array size.
-  const shown = Math.min(modules, 8);
 
   const submit = (e) => {
     e.preventDefault();
@@ -66,25 +102,23 @@ export default function SaveConfigModal({ open, onClose, derived }) {
               </button>
             </div>
 
-            {/* Snapshot preview */}
-            <div className="relative overflow-hidden bg-gradient-to-b from-[#0C1E1A] to-[#123528] px-5 py-6">
-              <span className="absolute left-4 top-4 rounded-full px-3 py-1 font-mono text-[11px] font-medium uppercase tracking-wider text-[#111]" style={{ background: '#FFB330' }}>
+            {/* Snapshot preview — the live, configured 3D model */}
+            <div className="relative overflow-hidden bg-white">
+              {open && (
+                <iframe
+                  ref={frameRef}
+                  src={MODEL_URL}
+                  title="Solvio balcony panel — configured 3D model"
+                  className="block aspect-[16/10] w-full border-0"
+                  onLoad={send}
+                  allow="fullscreen; xr-spatial-tracking; accelerometer; gyroscope"
+                  allowFullScreen
+                />
+              )}
+              <span className="pointer-events-none absolute left-4 top-4 rounded-full px-3 py-1 font-mono text-[11px] font-medium uppercase tracking-wider text-[#111]" style={{ background: '#FFB330' }}>
                 {wp.toLocaleString()} Wp · {location?.label}
               </span>
-              <div className="mt-8 flex flex-wrap items-end justify-center gap-1.5">
-                {Array.from({ length: shown }).map((_, i) => (
-                  <img
-                    key={i}
-                    src={panel?.img}
-                    alt={panel?.label}
-                    className="h-24 w-[46px] rounded-sm object-cover shadow-md ring-1 ring-white/10 sm:h-28 sm:w-[54px]"
-                    loading="lazy"
-                  />
-                ))}
-                {modules > shown && (
-                  <span className="ml-1 font-display text-sm font-bold text-white/80">+{modules - shown}</span>
-                )}
-              </div>
+              <MediaLoader show={!frameReady} label="Loading 3D model" />
             </div>
 
             {/* Summary */}
