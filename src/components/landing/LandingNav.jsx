@@ -7,8 +7,8 @@ import Logo from '../Logo';
 import { useBgreenie } from '../../context/BgreenieModal';
 
 const links = [
-  { label: 'Rooftop Solar', to: '/rooftop-system' },
-  { label: 'Balcony Solar', to: '/balcony-system' },
+  { label: 'Rooftop Solar', to: '/rooftop-system', sub: 'For Homeowner' },
+  { label: 'Balcony Solar', to: '/balcony-system', sub: 'For Tenant' },
   { label: 'Portable Solar', to: '/portable-system' },
   { label: 'Solar Panel', to: '/solar-panel' },
   { label: 'FAQs', to: '/faqs' },
@@ -62,7 +62,7 @@ export default function LandingNav() {
               >
                 <span className="font-display text-[17px] font-semibold">{l.label}</span>
                 {l.sub && (
-                  <span className="font-display text-[11px] font-medium text-lime">
+                  <span className="font-display text-[11px] font-medium text-lime opacity-0 group-hover:opacity-100 transition-opacity duration-150">
                     {l.sub}
                   </span>
                 )}
