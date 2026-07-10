@@ -38,8 +38,8 @@ const cols = [
 export default function Footer() {
   return (
     <footer className="text-white" style={{ backgroundColor: '#122316' }}>
-      <div className="container-x py-16">
-        <div className="grid gap-10 py-12 lg:grid-cols-5">
+      <div className="container-x pb-16 pt-16 max-lg:pt-5">
+        <div className="grid gap-10 py-12 max-lg:pt-0 lg:grid-cols-5">
           <div className="lg:col-span-2">
             <Logo dark />
             <ul className="mt-5 space-y-2 text-sm text-white/60">

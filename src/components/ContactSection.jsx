@@ -4,7 +4,16 @@ import Reveal from './Reveal';
 
 // Where every enquiry is sent.
 const SALES_EMAIL = 'sales@solvio.solar';
+// The form delivers here (the inbox that owns the Web3Forms access key below).
+const FORM_INBOX = 'info@solvio.solar';
 const WHATSAPP = 'https://wa.me/66843488428';
+
+// Web3Forms delivers the contact form straight to FORM_INBOX with no backend
+// (static site). Get a free access key at https://web3forms.com by verifying
+// info@solvio.solar, then set VITE_WEB3FORMS_KEY (or paste it below). Until a
+// real key is set, submit shows a "email us directly" fallback (never opens the
+// visitor's mail client).
+const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY || 'YOUR_WEB3FORMS_ACCESS_KEY';
 // Our Phuket location (place "Solvio Solar").
 const MAP_LINK = 'https://maps.app.goo.gl/ffZ6JUvEEBZjsb3g9';
 const MAP_EMBED = 'https://maps.google.com/maps?q=7.8894748,98.3009435&z=16&output=embed';
@@ -56,12 +65,13 @@ export default function ContactSection() {
   const [interests, setInterests] = useState([]);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
+  const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
 
   const toggleInterest = (v) =>
     setInterests((prev) => (prev.includes(v) ? prev.filter((x) => x !== v) : [...prev, v]));
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
     // At least one reachable contact is required: a valid email OR a messaging ID.
     if (!email.trim() && !imId.trim()) {
@@ -69,21 +79,41 @@ export default function ContactSection() {
       return;
     }
     setError('');
-    const body = [
-      `Name: ${name}`,
-      `Email: ${email || '—'}`,
-      `${imApp} ID: ${imId || '—'}`,
-      `Phone: ${phone ? `${dialCode} ${phone}${whatsapp ? ' (WhatsApp)' : ''}` : '—'}`,
-      `Property type: ${propertyType}`,
-      `Interested in: ${interests.length ? interests.join(', ') : '—'}`,
-      '',
-      message,
-    ].join('\n');
-    const subject = `Website enquiry${name ? ` — ${name}` : ''}`;
-    window.location.href = `mailto:${SALES_EMAIL}?subject=${encodeURIComponent(
-      subject,
-    )}&body=${encodeURIComponent(body)}`;
-    setSent(true);
+    setSending(true);
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `Website enquiry${name ? ` — ${name}` : ''}`,
+          from_name: name || 'Solvio website visitor',
+          // Web3Forms uses `email` as reply-to; fall back so it always validates.
+          email: email || FORM_INBOX,
+          Name: name,
+          Email: email || '—',
+          [`${imApp} ID`]: imId || '—',
+          Phone: phone ? `${dialCode} ${phone}${whatsapp ? ' (WhatsApp)' : ''}` : '—',
+          'Property type': propertyType,
+          'Interested in': interests.length ? interests.join(', ') : '—',
+          Message: message || '—',
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSent(true);
+      } else {
+        setError(
+          `Sorry — the message didn't go through. Please email us directly at ${FORM_INBOX}.`,
+        );
+      }
+    } catch {
+      setError(
+        `Sorry — the message didn't go through. Please email us directly at ${FORM_INBOX}.`,
+      );
+    } finally {
+      setSending(false);
+    }
   };
 
   const fieldCls =
@@ -162,17 +192,16 @@ export default function ContactSection() {
                   <span className="grid h-14 w-14 place-items-center rounded-full bg-lime/15 text-lime-dark">
                     <Check size={28} strokeWidth={3} />
                   </span>
-                  <h3 className="mt-4 font-display text-xl font-bold text-ink">Thanks — message ready to send</h3>
+                  <h3 className="mt-4 font-display text-xl font-bold text-ink">Thanks — message sent</h3>
                   <p className="mt-2 max-w-sm text-sm text-slatey-500">
-                    We&apos;ve opened your email app with everything filled in. Just hit send and
-                    our team will be in touch shortly.
+                    Your enquiry is on its way to our team. We&apos;ll get back to you within an hour.
                   </p>
                   <button
                     type="button"
                     onClick={() => setSent(false)}
                     className="mt-5 font-display text-sm font-semibold text-lime-dark hover:underline"
                   >
-                    ← Edit your details
+                    ← Send another message
                   </button>
                 </div>
               ) : (
@@ -303,15 +332,16 @@ export default function ContactSection() {
                   )}
                   <button
                     type="submit"
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-lime px-6 py-3.5 font-display text-base font-bold text-white transition hover:bg-lime-dark"
+                    disabled={sending}
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-lime px-6 py-3.5 font-display text-base font-bold text-white transition hover:bg-lime-dark disabled:opacity-70"
                   >
-                    Send message <Send size={16} />
+                    {sending ? 'Sending…' : 'Send message'} <Send size={16} />
                   </button>
                   <p className="text-center font-display text-sm font-semibold text-lime-dark">
                     We will get in touch within 1 hour
                   </p>
                   <p className="text-center text-xs text-slatey-400">
-                    Your details are sent straight to {SALES_EMAIL}. We never share them.
+                    Your details are sent straight to {FORM_INBOX}. We never share them.
                   </p>
                 </form>
               )}
