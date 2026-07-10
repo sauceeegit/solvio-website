@@ -8,6 +8,7 @@ import FounderVideo from '../components/landing/FounderVideo';
 import WhyShop from '../components/landing/WhyShop';
 import Community from '../components/landing/Community';
 import GuidePopup from '../components/GuidePopup';
+import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
 import { usePageMeta } from '../hooks/usePageMeta';
 
@@ -25,6 +26,7 @@ export default function LandingPage() {
         <LandingFAQ />
         <WhyShop />
         <Community />
+        <ContactSection />
       </main>
       <Footer />
       <GuidePopup />

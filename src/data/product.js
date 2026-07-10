@@ -1,4 +1,4 @@
-// Single source of truth for the Solvio Balcony System product page.
+// Single source of truth for the Solvio Balcony Solar product page.
 // The configurator, price box and sticky cart bar all read from here.
 import { asset } from '../lib/format';
 
@@ -6,7 +6,7 @@ export const MODULE_WP = 450;
 
 export const product = {
   brand: 'Solvio',
-  name: 'Balcony System',
+  name: 'Balcony Solar',
   tagline: 'Plug-and-play balcony solar — turn your railing into a power plant.',
   rating: 4.8,
   reviewCount: 1294,
@@ -231,7 +231,7 @@ export const included = [
 ];
 
 export const comparison = {
-  columns: ['Balcony Duo', 'Balcony System', 'Balcony Max'],
+  columns: ['Balcony Duo', 'Balcony Solar', 'Balcony Max'],
   highlightIndex: 1,
   rows: [
     { label: 'Modules', values: ['2 × 450 Wp', '4 × 450 Wp', '6 × 450 Wp'] },
@@ -278,7 +278,7 @@ export const testimonials = [
 export const faqs = [
   {
     q: 'Do I need an electrician to install it?',
-    a: 'No. The Balcony System is a plug-and-play kit. You mount the rails by hand and plug the inverter into a standard outdoor socket. Registration with your grid operator is a simple online form we walk you through.',
+    a: 'No. Balcony Solar is a plug-and-play kit. You mount the rails by hand and plug the inverter into a standard outdoor socket. Registration with your grid operator is a simple online form we walk you through.',
   },
   {
     q: 'Will it fit my balcony?',

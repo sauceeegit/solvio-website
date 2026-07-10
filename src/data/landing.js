@@ -7,8 +7,8 @@ export const topBar = {
 };
 
 export const landingNav = [
-  { label: 'Balcony System', to: '/balcony-system' },
-  { label: 'Portable System', to: '/portable-system' },
+  { label: 'Balcony Solar', to: '/balcony-system' },
+  { label: 'Portable Solar', to: '/portable-system' },
   { label: 'Solar Panel', to: '/solar-panel' },
 ];
 
@@ -28,6 +28,7 @@ export const categories = [
   {
     id: 'rooftop',
     title: 'Rooftop Solar',
+    sub: 'For Homeowner',
     blurb: 'Power your whole home with a rooftop array — get a free estimate now.',
     img: asset('/rooftop-solar.jpg'),
     imgClass: 'brightness-110',
@@ -36,6 +37,7 @@ export const categories = [
   {
     id: 'balcony',
     title: 'Balcony Solar',
+    sub: 'For Renter',
     blurb: 'Configure your complete plug-and-play balcony solar set in minutes.',
     img: asset('/balcony-power-plants.jpg'),
     imgClass: 'object-[28%_center]',
@@ -77,7 +79,7 @@ export const bestsellers = [
     fit: 'contain',
     bg: '#FB5804',
     specs: [
-      '4 solar modules of 450 W each, 1800 Wp',
+      '2 solar modules of 450 W each, 900 Wp',
       'Determine the assembly location yourself',
       'Flexibly expandable storage 2.4–9.6 kWh',
     ],
@@ -165,6 +167,41 @@ export const panelFaqs = [
   {
     q: 'What happens to output on hot summer days?',
     a: 'All solar panels lose some output as they heat up. Solvio panels have a temperature coefficient of -0.29%/°C — matching the best N-type modules on the market — so they hold onto more of their rated power during heat waves, exactly when your air conditioning needs it.',
+  },
+];
+
+// Rooftop System page FAQ — residential/commercial rooftop questions.
+// NOTE: the "[X]" figures in the source copy were filled with sensible defaults
+// (process 2–4 weeks; panels 25-yr, inverter 10-yr, workmanship 2-yr). Adjust
+// these to Solvio's actual terms.
+export const rooftopFaqs = [
+  {
+    q: 'Is my roof suitable for solar panels?',
+    a: 'Most roofs in Thailand are. The main factors are orientation (south, east, or west-facing roofs all work well here), shading from trees or neighboring buildings, and the structural condition of the roof. During our free site survey, we assess all three and tell you honestly whether solar makes sense for your home — and if it doesn’t, we’ll tell you that too.',
+  },
+  {
+    q: 'How long does the whole process take?',
+    a: 'From signed contract to switch-on, usually 2–4 weeks. The physical installation takes only 1–3 days for most homes — the rest is permitting and the PEA/MEA meter and connection process, which we handle for you.',
+  },
+  {
+    q: 'Do I have to pay everything upfront?',
+    a: 'No. You can pay in full, split the cost into installments with us, or finance the system through one of our partner banks. Many customers find their monthly loan payment is close to what they’re already saving on electricity.',
+  },
+  {
+    q: 'Do I need permission to install solar on my roof?',
+    a: 'Yes — residential rooftop systems in Thailand require registration with the ERC and an interconnection application with PEA (or MEA in Bangkok). The good news: Solvio handles all of this paperwork for you as part of every installation.',
+  },
+  {
+    q: 'Can I sell excess electricity back to the grid?',
+    a: 'If you join the government’s rooftop solar buyback program, PEA/MEA will purchase your surplus at the official rate. We’ll advise whether it’s worthwhile for your usage pattern and handle the sign-up if you choose it. Note that program terms are set by the ERC and can change from year to year.',
+  },
+  {
+    q: 'Will the installation damage my roof?',
+    a: 'No — our certified technicians use mounting systems designed for Thai roof types (concrete tile, CPAC, metal sheet) with proper waterproofing at every anchor point. Roof penetrations are sealed and covered by our workmanship warranty.',
+  },
+  {
+    q: 'What warranties do I get?',
+    a: 'Panels typically carry a 25-year performance warranty, inverters 10 years, and our own workmanship is covered for 2 years. You receive all warranty documents at handover, and warranty claims go through us — you never have to chase a manufacturer yourself.',
   },
 ];
 

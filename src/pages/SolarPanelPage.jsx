@@ -3,6 +3,7 @@ import Header from '../components/landing/Header';
 import SolarPanelFeatures from '../components/SolarPanelFeatures';
 import PanelComparison from '../components/PanelComparison';
 import FAQ from '../components/FAQ';
+import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
 import MediaLoader from '../components/MediaLoader';
 import { solarPanelVideo, panelFaqs } from '../data/landing';
@@ -76,6 +77,7 @@ export default function SolarPanelPage() {
           heading="Frequently asked questions"
           subtitle="The engineering behind Solvio panels — cells, build, and how they hold up in Thai heat."
         />
+        <ContactSection />
       </main>
       <Footer />
     </div>

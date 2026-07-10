@@ -31,4 +31,14 @@ export const routeMeta = {
     description:
       'Power your whole home with a Solvio rooftop solar array. Free system sizing, transparent Baht pricing and app-based monitoring — get your estimate today.',
   },
+  '/about': {
+    title: 'About Solvio — Clean Energy for Every Thai Home',
+    description:
+      'Solvio makes solar simple in Thailand: rooftop systems for homeowners, plug-and-play balcony kits for renters, and portable power for the road. Meet the team behind the sun.',
+  },
+  '/faqs': {
+    title: 'Solar FAQs — Rooftop, Balcony & Panel Questions | Solvio',
+    description:
+      'Answers to the most common questions about rooftop, balcony and portable solar in Thailand — costs, permits, warranties, installation and more.',
+  },
 };

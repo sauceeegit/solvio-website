@@ -113,6 +113,9 @@ function KitCard({ badge, img, imgAlt, imgStyle, title, bullets }) {
   );
 }
 
+// `cls` sets a mobile-only display order (desktop keeps the source order in a
+// single 5-up row). On mobile the panel card leads full-width, then the inverter
+// sits right beside the installation manual on the last row.
 const topRow = [
   {
     badge: '4x',
@@ -121,6 +124,7 @@ const topRow = [
     imgStyle: { objectPosition: 'center' },
     title: '4x 450 Wp Solar Module',
     bullets: ['1760 x 1130 mm', 'Full Black – Glas-Glas', '25-Year Performance Warranty'],
+    cls: 'max-sm:order-1 max-sm:col-span-2',
   },
   {
     badge: '1x',
@@ -128,6 +132,7 @@ const topRow = [
     imgAlt: '1x Micro Inverter 800 W',
     title: '1x Micro Inverter 800 W',
     bullets: ['Max. Output Power: 800 W', 'Wi-Fi Enabled', 'IP67 Waterproof'],
+    cls: 'max-sm:order-4',
   },
   {
     badge: '2x',
@@ -135,6 +140,7 @@ const topRow = [
     imgAlt: '2x Y-Cable Set',
     title: '2x Y-Cable Set',
     bullets: ['Parallel Connection', 'Connects two modules to one DC input'],
+    cls: 'max-sm:order-2',
   },
   {
     badge: '4x',
@@ -142,6 +148,7 @@ const topRow = [
     imgAlt: '4x Mounting Bracket',
     title: '4x Mounting Bracket',
     bullets: ['Adjustable tilt frame', 'Corrosion-resistant', 'Built for outdoor use'],
+    cls: 'max-sm:order-3',
   },
   {
     badge: '1x',
@@ -149,6 +156,7 @@ const topRow = [
     imgAlt: '1x Installation Manual',
     title: '1x Installation Manual',
     bullets: ['Step-by-step guide', 'Illustrated instructions', 'Easy installation'],
+    cls: 'max-sm:order-5',
   },
 ];
 
@@ -218,7 +226,7 @@ export default function IncludedItems() {
         {/* Top row — 5 equal cards (2-up on mobile) */}
         <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
           {topRow.map((item, i) => (
-            <Reveal key={item.title} delay={i * 0.05}>
+            <Reveal key={item.title} delay={i * 0.05} className={item.cls}>
               <KitCard {...item} />
             </Reveal>
           ))}

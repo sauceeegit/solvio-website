@@ -43,10 +43,14 @@ const payWays = [
   },
 ];
 
+// Each bank carries a brand-coloured monogram chip next to its name. Swap these
+// for real logo images by dropping PNGs in /public and setting `logo: asset(...)`.
 const loans = {
   home: [
     {
       bank: 'Bangkok Bank',
+      mark: 'BBL',
+      color: '#1E4598',
       product: 'Bualuang Poonphol Green',
       rate: 'from MRR − 1%',
       amount: 'Up to ฿10M',
@@ -55,6 +59,8 @@ const loans = {
     },
     {
       bank: 'GSB (Government Savings Bank)',
+      mark: 'GSB',
+      color: '#EB1F8E',
       product: 'GSB Go Green',
       rate: 'promo rates from 1.99%',
       amount: 'Up to ฿5M secured · ฿500K unsecured',
@@ -63,6 +69,8 @@ const loans = {
     },
     {
       bank: 'GH Bank (ธอส.)',
+      mark: 'GHB',
+      color: '#F58220',
       product: 'Solar Roof Loan',
       rate: 'fixed intro rates',
       amount: 'Per quotation',
@@ -73,6 +81,8 @@ const loans = {
   business: [
     {
       bank: 'Kasikornbank',
+      mark: 'KBank',
+      color: '#138F2D',
       product: 'K-Solar Rooftop Financing',
       rate: 'from MLR − 1%',
       amount: '100% of project value',
@@ -81,6 +91,8 @@ const loans = {
     },
     {
       bank: 'Krungsri',
+      mark: 'KS',
+      color: '#7A5CA0',
       product: 'SME Solar Rooftop',
       rate: 'special SME rates',
       amount: '100% of project value',
@@ -89,6 +101,8 @@ const loans = {
     },
     {
       bank: 'SME D Bank',
+      mark: 'SME',
+      color: '#00539B',
       product: 'Green business loans',
       rate: 'from 3% fixed (first 3 yrs)',
       amount: 'Up to ฿10M+',
@@ -192,10 +206,19 @@ export default function FinancingOptions() {
           {loans[segment].map((l, i) => (
             <Reveal key={`${segment}-${l.bank}`} delay={i * 0.06}>
               <div className="card flex h-full flex-col p-6">
-                <p className="font-mono text-[11px] uppercase tracking-wider text-slatey-400">
-                  {l.bank}
-                </p>
-                <h4 className="mt-1 font-display text-lg font-bold text-ink">{l.product}</h4>
+                <div className="flex items-center gap-2.5">
+                  <span
+                    className="grid h-8 shrink-0 place-items-center rounded-md px-2 font-display text-[11px] font-extrabold uppercase tracking-wide text-white"
+                    style={{ backgroundColor: l.color }}
+                    aria-hidden="true"
+                  >
+                    {l.mark}
+                  </span>
+                  <p className="font-mono text-[11px] uppercase tracking-wider text-slatey-400">
+                    {l.bank}
+                  </p>
+                </div>
+                <h4 className="mt-2 font-display text-lg font-bold text-ink">{l.product}</h4>
 
                 <dl className="mt-4 space-y-2 border-t border-ink/[0.07] pt-4 text-sm">
                   <div className="flex items-center gap-2 text-ink/80">

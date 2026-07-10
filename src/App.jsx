@@ -5,6 +5,8 @@ import ProductPage from './pages/ProductPage';
 import PortablePage from './pages/PortablePage';
 import SolarPanelPage from './pages/SolarPanelPage';
 import RooftopSystemPage from './pages/RooftopSystemPage';
+import AboutPage from './pages/AboutPage';
+import FaqsPage from './pages/FaqsPage';
 
 export default function App() {
   return (
@@ -16,6 +18,8 @@ export default function App() {
         <Route path="/portable-system" element={<PortablePage />} />
         <Route path="/solar-panel" element={<SolarPanelPage />} />
         <Route path="/rooftop-system" element={<RooftopSystemPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/faqs" element={<FaqsPage />} />
       </Routes>
     </>
   );

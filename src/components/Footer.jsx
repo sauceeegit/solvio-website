@@ -9,9 +9,9 @@ const cols = [
   {
     title: 'Products',
     links: [
-      { label: 'Balcony System', to: '/balcony-system' },
-      { label: 'Rooftop System', to: '/rooftop-system' },
-      { label: 'Portable power', to: '/portable-system' },
+      { label: 'Balcony Solar', to: '/balcony-system' },
+      { label: 'Rooftop Solar', to: '/rooftop-system' },
+      { label: 'Portable Solar', to: '/portable-system' },
       { label: 'Solar panels', to: '/solar-panel' },
     ],
   },
@@ -19,27 +19,19 @@ const cols = [
     title: 'Learn',
     links: [
       { label: 'How it works', to: '/balcony-system' },
-      { label: 'Savings calculator', to: '/' },
-      { label: 'Installation guide' },
-      { label: 'Solar blog' },
+      { label: 'Savings calculator', to: '/#calculator' },
+      { label: 'FAQs', to: '/faqs' },
+      { label: 'Solvio YouTube channel', href: 'https://www.youtube.com/channel/UC2Xmmij3QMf3beO2pf7Jf1g' },
     ],
   },
   {
     title: 'Company',
     links: [
-      { label: 'About Solvio' },
-      { label: 'Sustainability' },
+      { label: 'About Solvio', to: '/about' },
       { label: 'Careers' },
       { label: 'Partners', href: 'https://wa.me/66843488428?text=Hi%20Solvio%20%E2%80%94%20I%27m%20interested%20in%20becoming%20a%20partner' },
-    ],
-  },
-  {
-    title: 'Support',
-    links: [
-      { label: 'Help centre' },
-      { label: 'Returns' },
-      { label: 'Warranty' },
-      { label: 'Contact', href: 'mailto:hello@solvio.solar' },
+      // Anchors to the Contact section rendered at the foot of every page.
+      { label: 'Contact', href: '#contact' },
     ],
   },
 ];
@@ -84,7 +76,7 @@ export default function Footer() {
           </form>
         </div>
 
-        <div className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-6">
+        <div className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
             <Logo dark />
             <ul className="mt-5 space-y-2 text-sm text-white/60">
@@ -92,10 +84,10 @@ export default function Footer() {
                 <Phone size={15} className="text-lime" /> +66 84 348 8428
               </li>
               <li className="flex items-center gap-2">
-                <Mail size={15} className="text-lime" /> hello@solvio.solar
+                <Mail size={15} className="text-lime" /> sales@solvio.solar
               </li>
               <li className="flex items-center gap-2">
-                <MapPin size={15} className="text-lime" /> Patongo, Pa Tong, Phuket, Thailand, 83150
+                <MapPin size={15} className="text-lime" /> Patongo, Pa Tong, Kathu District, Phuket 83150
               </li>
             </ul>
           </div>

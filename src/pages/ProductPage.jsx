@@ -12,6 +12,7 @@ import CalculatorSection from '../components/CalculatorSection';
 import Testimonials from '../components/Testimonials';
 import Comparison from '../components/Comparison';
 import FAQ from '../components/FAQ';
+import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
 import StickyCartBar from '../components/StickyCartBar';
 import { useConfigurator } from '../hooks/useConfigurator';
@@ -45,6 +46,7 @@ export default function ProductPage() {
         <Testimonials />
         <Comparison />
         <FAQ bg="#FFF7E9" />
+        <ContactSection />
       </main>
       <Footer />
       <StickyCartBar derived={cfg} onAddToCart={addToCart} added={added} />

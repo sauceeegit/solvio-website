@@ -1,6 +1,6 @@
 import { ChevronRight } from 'lucide-react';
 
-const crumbs = ['Home', 'Balcony solar', 'Balcony System'];
+const crumbs = ['Home', 'Balcony solar', 'Balcony Solar'];
 
 export default function Breadcrumb() {
   return (

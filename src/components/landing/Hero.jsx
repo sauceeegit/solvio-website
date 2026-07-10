@@ -42,10 +42,16 @@ export default function Hero() {
 
       {/* Slogan across the top of the looping video */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-10">
-        <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-ink/45 to-transparent sm:h-40" />
-        <h1 className="relative px-4 pt-[clamp(0.75rem,3.4vw,2.5rem)] text-center font-display text-[clamp(1.25rem,4.5vw,3rem)] font-extrabold tracking-tight text-white">
-          Solvio <span className="text-lime">—</span> Sun. Sorted.
-        </h1>
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-ink/50 to-transparent sm:h-48" />
+        <div className="relative px-4 pt-[clamp(0.6rem,3vw,2.25rem)] text-center">
+          <h1 className="font-display text-[clamp(1.25rem,4.4vw,3rem)] font-extrabold leading-[1.05] tracking-tight text-white">
+            Everyone deserves the sun<span className="text-lime">.</span>
+          </h1>
+          <p className="mx-auto mt-1.5 max-w-2xl font-display text-[clamp(0.7rem,2vw,1.15rem)] font-semibold text-white/90">
+            Rooftop systems for homeowners. Balcony solar for renters.
+            <br className="hidden sm:block" /> Clean energy for every Thai home.
+          </p>
+        </div>
       </div>
 
       <PhuketClock />

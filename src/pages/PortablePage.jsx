@@ -3,6 +3,7 @@ import HeaderCarousel from '../components/portable/HeaderCarousel';
 import PortableBatteries from '../components/portable/PortableBatteries';
 import PortablePanels from '../components/portable/PortablePanels';
 import PanelFeatures from '../components/portable/PanelFeatures';
+import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
 import { portableHeaderSlides } from '../data/landing';
 import { usePageMeta } from '../hooks/usePageMeta';
@@ -17,6 +18,7 @@ export default function PortablePage() {
         <PortableBatteries />
         <PortablePanels />
         <PanelFeatures />
+        <ContactSection />
       </main>
       <Footer />
     </div>

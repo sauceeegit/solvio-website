@@ -38,35 +38,52 @@ function StepImage({ src, alt }) {
 }
 
 function ContactOptions({ onVisit }) {
-  const [email, setEmail] = useState('');
+  const [address, setAddress] = useState('');
+  const [cost, setCost] = useState('');
   const [sent, setSent] = useState(false);
   return (
     <div className="mt-3 space-y-2">
       {sent ? (
         <p className="flex items-center gap-1.5 rounded-lg border border-lime/40 bg-lime/10 px-3 py-2 text-xs font-semibold text-lime-dark">
-          <Check size={13} strokeWidth={3} /> Thanks — we&apos;ll be in touch.
+          <Check size={13} strokeWidth={3} /> Thanks — we&apos;ll send your preliminary design.
         </p>
       ) : (
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            if (email) setSent(true);
+            if (address) setSent(true);
           }}
-          className="flex items-center gap-1.5 rounded-lg border border-ink/15 bg-white p-1 pl-3"
+          className="space-y-1.5"
         >
           <input
-            type="email"
+            type="text"
             required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Your email"
-            className="w-full min-w-0 bg-transparent text-xs text-ink placeholder:text-slatey-400 focus:outline-none"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            placeholder="Your Google address"
+            className="w-full min-w-0 rounded-lg border border-ink/15 bg-white px-3 py-2 text-xs text-ink placeholder:text-slatey-400 focus:border-lime focus:outline-none"
           />
-          <button type="submit" aria-label="Send email" className="grid h-7 w-7 shrink-0 place-items-center rounded-md bg-lime text-white transition hover:bg-lime-dark">
-            <ArrowRight size={14} />
+          <input
+            type="text"
+            inputMode="numeric"
+            value={cost}
+            onChange={(e) => setCost(e.target.value)}
+            placeholder="Monthly electricity cost (optional)"
+            className="w-full min-w-0 rounded-lg border border-ink/15 bg-white px-3 py-2 text-xs text-ink placeholder:text-slatey-400 focus:border-lime focus:outline-none"
+          />
+          <button type="submit" className="flex w-full items-center justify-center gap-1.5 rounded-lg bg-lime px-3 py-2 text-xs font-bold text-white transition hover:bg-lime-dark">
+            Send me a preliminary design <ArrowRight size={13} strokeWidth={2.5} />
           </button>
+          <p className="text-[10px] leading-snug text-slatey-400">
+            Drop your address and we&apos;ll send a preliminary design of your system.
+          </p>
         </form>
       )}
+
+      <div className="flex items-center gap-2 py-0.5 text-[10px] font-semibold text-slatey-400">
+        <span className="h-px flex-1 bg-ink/10" /> OR <span className="h-px flex-1 bg-ink/10" />
+      </div>
+
       <a href={WA_BOOK} target="_blank" rel="noreferrer" className="flex items-center gap-2 rounded-lg border border-ink/12 px-3 py-2 text-xs font-semibold text-ink transition hover:border-lime hover:text-lime-dark">
         <CalendarClock size={14} className="shrink-0 text-lime-dark" /> Book a 15-min call
       </a>

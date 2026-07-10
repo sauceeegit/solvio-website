@@ -6,8 +6,10 @@ import MediaLoader from '../components/MediaLoader';
 import Reveal from '../components/Reveal';
 import RooftopSteps from '../components/RooftopSteps';
 import FinancingOptions from '../components/FinancingOptions';
+import FAQ from '../components/FAQ';
+import ContactSection from '../components/ContactSection';
 import { asset } from '../lib/format';
-import { rooftopVideo } from '../data/landing';
+import { rooftopVideo, rooftopFaqs } from '../data/landing';
 import { usePageMeta } from '../hooks/usePageMeta';
 
 export default function RooftopSystemPage() {
@@ -29,6 +31,15 @@ export default function RooftopSystemPage() {
     <div id="top" className="min-h-screen bg-surface">
       <Header />
       <main>
+        {/* Tagline bar above the looping video */}
+        <section className="bg-white">
+          <div className="container-x py-6 text-center sm:py-8">
+            <h1 className="font-display text-xl font-extrabold tracking-tight text-ink sm:text-3xl">
+              Thailand&apos;s complete residential and commercial solar solution.
+            </h1>
+          </div>
+        </section>
+
         {/* Full-bleed looping video — spans the entire viewport width. */}
         <section className="relative w-full">
           {/* Aspect-locked, brand-dark backdrop so there's no layout jump and a
@@ -126,6 +137,13 @@ export default function RooftopSystemPage() {
         {/* 7-step plan (horizontal) */}
         <RooftopSteps />
         <FinancingOptions />
+        <FAQ
+          items={rooftopFaqs}
+          eyebrow="Rooftop FAQs"
+          heading="Frequently asked questions"
+          subtitle="Roof suitability, timelines, permits and warranties — the questions Thai homeowners ask us most."
+        />
+        <ContactSection />
       </main>
       <Footer />
     </div>

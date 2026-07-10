@@ -87,9 +87,9 @@ export default function Highlights() {
     <section className="bg-white py-20">
       <div className="container-x">
         <Reveal>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6 lg:grid-rows-2 lg:h-[600px]">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-6 lg:grid-rows-2 lg:h-[600px]">
             {/* A — annual yield gauge (dark) */}
-            <div className="flex h-full min-h-[260px] flex-col items-center justify-center rounded-xl2 p-6 text-center text-white lg:col-span-2 lg:col-start-1 lg:row-start-1" style={{ backgroundColor: '#2e5b44' }}>
+            <div className="flex h-full min-h-[260px] flex-col items-center justify-center rounded-xl2 p-6 text-center text-white max-sm:col-span-2 lg:col-span-2 lg:col-start-1 lg:row-start-1" style={{ backgroundColor: '#2e5b44' }}>
               <Gauge />
               <p className="mt-3 text-[11px] font-medium uppercase tracking-wide text-white/55">Up to</p>
               <p className="font-display text-3xl font-extrabold text-lime">
@@ -99,7 +99,7 @@ export default function Highlights() {
             </div>
 
             {/* B — savings (orange overlay on placeholder) */}
-            <div className="relative h-full min-h-[260px] overflow-hidden rounded-xl2 lg:col-span-2 lg:col-start-1 lg:row-start-2">
+            <div className="relative h-full min-h-[260px] overflow-hidden rounded-xl2 max-sm:col-span-2 lg:col-span-2 lg:col-start-1 lg:row-start-2">
               <img loading="lazy"
                 src={asset('/savings-bg.jpg')}
                 alt="A couple on a balcony at sunset with Solvio panels on the railing"
@@ -113,7 +113,7 @@ export default function Highlights() {
             </div>
 
             {/* C — Plug & Play: photo with a corner caption that expands to fill on hover */}
-            <div className="group relative h-full min-h-[340px] overflow-hidden rounded-xl2 lg:col-span-2 lg:col-start-3 lg:row-span-2 lg:row-start-1">
+            <div className="group relative h-full min-h-[340px] overflow-hidden rounded-xl2 max-sm:col-span-2 lg:col-span-2 lg:col-start-3 lg:row-span-2 lg:row-start-1">
               <img loading="lazy"
                 src={asset('/plugplay-photo.jpg')}
                 alt="Easy installation — connecting a panel by hand in the garden"
@@ -132,7 +132,7 @@ export default function Highlights() {
             </div>
 
             {/* D — brand block (dark) */}
-            <div className="flex h-full min-h-[160px] items-center justify-center rounded-xl2 bg-black p-6 lg:col-span-2 lg:col-start-5 lg:row-start-1">
+            <div className="flex h-full min-h-[160px] items-center justify-center rounded-xl2 bg-black p-6 max-sm:col-span-2 lg:col-span-2 lg:col-start-5 lg:row-start-1">
               <img loading="lazy"
                 src={asset('/solvio-logo-full.webp')}
                 alt="Solvio"

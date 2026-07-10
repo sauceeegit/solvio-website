@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Check, ShieldCheck, Truck, RotateCcw } from 'lucide-react';
+import { Check, ShieldCheck, Truck, RotateCcw, Bookmark } from 'lucide-react';
 import { baht } from '../lib/format';
 import { product } from '../data/product';
+import SaveConfigModal from './SaveConfigModal';
 
 const guarantees = [
   { icon: ShieldCheck, text: '2-year product warranty' },
@@ -11,6 +12,7 @@ const guarantees = [
 
 export default function PriceBox({ derived, onAddToCart, added: addedProp }) {
   const [added, setAdded] = useState(false);
+  const [saveOpen, setSaveOpen] = useState(false);
   const isAdded = addedProp ?? added;
 
   function handleAdd() {
@@ -45,6 +47,15 @@ export default function PriceBox({ derived, onAddToCart, added: addedProp }) {
           'Add to cart'
         )}
       </button>
+
+      <button
+        onClick={() => setSaveOpen(true)}
+        className="mt-2.5 flex w-full items-center justify-center gap-2 rounded-full border border-ink/15 px-6 py-3.5 font-display text-base font-bold text-ink transition hover:border-ink/30 hover:bg-ink/[0.03] active:scale-[0.99]"
+      >
+        <Bookmark size={18} /> Save Configuration
+      </button>
+
+      <SaveConfigModal open={saveOpen} onClose={() => setSaveOpen(false)} derived={derived} />
 
       <div className="mt-4 flex items-start gap-2 rounded-xl bg-lime/10 p-3.5 text-sm text-ink">
         <ShieldCheck size={16} className="mt-0.5 shrink-0 text-lime-dark" />

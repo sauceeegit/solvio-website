@@ -11,7 +11,7 @@ export default function RelatedProducts() {
           <h2 className="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
             Complete your setup
           </h2>
-          <p className="mt-2 text-slatey-500">Accessories that pair perfectly with the Balcony System.</p>
+          <p className="mt-2 text-slatey-500">Accessories that pair perfectly with Balcony Solar.</p>
         </Reveal>
 
         <div className="mt-10 grid grid-cols-2 gap-4 lg:grid-cols-4">

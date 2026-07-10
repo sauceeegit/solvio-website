@@ -6,9 +6,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Logo from '../Logo';
 
 const links = [
-  { label: 'Rooftop System', to: '/rooftop-system' },
-  { label: 'Balcony System', to: '/balcony-system' },
-  { label: 'Portable System', to: '/portable-system' },
+  { label: 'Rooftop Solar', to: '/rooftop-system', sub: 'For Homeowner' },
+  { label: 'Balcony Solar', to: '/balcony-system', sub: 'For Renter' },
+  { label: 'Portable Solar', to: '/portable-system' },
   { label: 'Solar Panel', to: '/solar-panel' },
 ];
 
@@ -38,12 +38,17 @@ export default function LandingNav() {
               <NavLink
                 to={l.to}
                 className={({ isActive }) =>
-                  `font-display text-sm font-semibold transition ${
+                  `group flex flex-col leading-tight transition ${
                     isActive ? 'text-lime' : 'text-ink/75 hover:text-lime'
                   }`
                 }
               >
-                {l.label}
+                <span className="font-display text-[17px] font-semibold">{l.label}</span>
+                {l.sub && (
+                  <span className="font-display text-[11px] font-medium text-ink/40 group-hover:text-lime/70">
+                    {l.sub}
+                  </span>
+                )}
               </NavLink>
             </li>
           ))}
@@ -97,12 +102,17 @@ export default function LandingNav() {
                     to={l.to}
                     onClick={() => setOpen(false)}
                     className={({ isActive }) =>
-                      `block border-b border-white/10 py-4 font-display text-2xl font-semibold ${
+                      `block border-b border-white/10 py-4 font-display ${
                         isActive ? 'text-lime' : 'text-white'
                       }`
                     }
                   >
-                    {l.label}
+                    <span className="text-2xl font-semibold">{l.label}</span>
+                    {l.sub && (
+                      <span className="ml-2 align-middle text-sm font-medium text-white/45">
+                        {l.sub}
+                      </span>
+                    )}
                   </NavLink>
                 </motion.li>
               ))}
