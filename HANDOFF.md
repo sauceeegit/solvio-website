@@ -1,18 +1,58 @@
 # Solvio — Project handoff / continuation notes
 
-_Last updated: 2026-07-09._ **Read `CLAUDE.md` (repo root) first — it has the team working rules.**
+_Last updated: 2026-07-10._ **Read `CLAUDE.md` (repo root) first — it has the team working rules.**
 The `## CURRENT STATE` block below is authoritative; the older sections further down still
 describe individual components accurately but predate the multi-page/3D/perf work — trust this
 block where they disagree.
 
 ---
 
-## ⭐ CURRENT STATE (2026-07-08) — read this first
+## ⭐ CURRENT STATE (2026-07-10) — read this first
 
 **Repo (public):** https://github.com/sauceeegit/solvio-website (account `sauceeegit`)
 **Live:** https://solvio.solar — custom domain (Pages), auto-deploys on every push to `main` (~3 min, GitHub Actions).
 The old `sauceeegit.github.io/solvio-website/` subpath is superseded; base is now `/` (see `deploy.yml` `VITE_BASE: /` + `public/CNAME`).
 **Collaborator:** `GG2026chad` (hansk09@gmail.com) has write access + the Claude GitHub App is granted, so two people/Claudes push in parallel.
+
+### 2026-07-10 session — what changed (newest first)
+- **Shared Bgreenie popup** — `src/context/BgreenieModal.jsx` exports `BgreenieProvider` (wraps everything
+  in `App.jsx`) + `useBgreenie()` returning an `open()` fn. The nav "Bgreenie Membership" tab AND the landing
+  **WhyShop "Earn Solvio rewards → Learn more"** both call it → one shared modal (intro copy + "Continue to
+  Bgreenie" → https://bgreenie.me/ + "Stay"). Don't re-add a local popup to `LandingNav`.
+- **Top nav** — added a **Bgreenie Membership** button in the right cluster (left of "Shop now", green ★
+  badge); "Balcony Solar" sub is now **For Tenant** (was Renter); the "For Homeowner"/"For Tenant" subs are
+  **orange** (`text-lime`). Mobile menu is the plain stacked list (a 3-in-a-row experiment was reverted —
+  that 3-up layout now lives in the ContactSection "Interested in" instead). **Summer-deal promo removed** from
+  `TopBar.jsx`.
+- **FAQ question backgrounds** (all accordions — `FAQ.jsx`, `FaqsPage.jsx`, `LandingFAQ.jsx`): each question
+  is a rounded pill — **opened `#FF6700` (orange), closed `#FFA05C` (light orange)**, dark ink font, white +/−
+  chip. `FAQ.jsx` "Talk to an advisor" now links to **WhatsApp** (wa.me/66843488428), so it does on every page.
+- **`ContactSection.jsx`** (site-wide, still mailto-only): country-code `<select>` on phone (TH default) +
+  "WhatsApp is enabled on this number" checkbox; **Email + LINE/Telegram ID share a row, at least one required**
+  (labels prefixed with a muted "or"); the three "Interested in" options are a `grid-cols-3` row; embedded
+  Google map of the Phuket address (coords **7.8894748, 98.3009435**); "We will get in touch within 1 hour".
+- **Rooftop page** (`RooftopSystemPage.jsx`): the "Thailand's complete residential…" **tagline freezes**
+  (sticky, docked below the header) until the video scrolls past — wrapper div + `id="site-header"` measured
+  for the offset; title +20%; Big Roof section has a **roof-type checklist** (Standing Seam Metal / Asphalt
+  Shingle / Clay Tile / Flat Concrete) + an **orange rounded box** ("Engineered for 99% of rooftops…").
+- **`FinancingOptions.jsx`** — real **bank logos** now (`public/bank-{bbl,gsb,ghb,kbank,krungsri,sme}.webp`,
+  squared to the bank's own bg colour) on the right of each card, enlarged; "Instalments with Solvio
+  (100% approval rate)".
+- **Images**: `public/module-dark.webp` (correct Dark Feather shot, used by `product.js` `panelOptions`);
+  `sp-feature-top.webp` / `sp-feature-top-mobile.webp` overwritten with ref12-tuv (desktop) /
+  dark-feather-2x3-thin-tuv (mobile) — the banner under the solar-panel video. Landing hero sub-slogan +15%.
+  Source PNGs live in `C:\Users\chady\OneDrive\Desktop\Solvio AI folder\images`.
+- **3D model embed** — `Gallery.jsx` loads the model with **`?embed=1`** (`MODEL_VERSION` now
+  `20260710-embed3`). In embed mode the model hides its own scene (Location) + panel-type (Module) toggles +
+  title/angle (the on-page configurator drives those); the bar keeps Tilted / railing / dimension sliders /
+  panel count. **On mobile (≤1023px) embed** it further hides the tilt/railing buttons + panel counter and
+  shows only the balcony-length + railing-height sliders on one row. Gallery's frozen mobile model is **+15%
+  taller** (`max-lg:aspect-[29/30]`) and docks at `--frozen-top` = header height + 8 so the "… Wp · Plug &
+  Play" badge clears the header. See "The 3D model" section — **bump MODEL_VERSION on every model change**.
+- **Rooftop 7-step section** (`RooftopSteps.jsx`) — framed step cards; step 1 = contact options (address +
+  monthly-cost + email form, "Book a 15-min call" WhatsApp, "Or visit us" → map modal); step 3 = 3 payment
+  options with bank chips; steps 2/4/5/6/7 photos (`public/rooftop-step*.webp`); a teammate later restyled the
+  step boxes to a grey `color-mix` tint. Bank/booking are placeholders (styled text, WhatsApp link).
 
 ### 2026-07-09 session — what changed (newest first)
 - **Rooftop page: `FinancingOptions.jsx`** added at the end (after `RooftopSteps`, before Footer). "3 ways
@@ -105,6 +145,11 @@ Each page = `<Header/>` (sticky TopBar+nav) → `<main>` → `<Footer/>`.
   clamped step + eased target distance — fixes trackpad lurch); sun glare on the glass halved
   (glassMat clearcoat/reflectivity/specular); garden & flat-roof row spacing 10cm→20cm (`GARDEN_ROW_GAP`);
   **all shadows removed** (`renderer.shadowMap.enabled = false`).
+- **2026-07-10 model edits:** the floating right-side toggle stack moved into a **bottom control bar** under
+  the canvas (`#bctrl`); Auto-rotate/Frame/Labels/Building hidden; canvas sized to fill above the bar
+  (`syncBarOffset` + `ResizeObserver`). New **`?embed=1` mode** (`body.embed`, set from the URL param): hides
+  `#sceneBtn`/`#typeBtn`/`#title`/`#angle` at all sizes and, on **≤1023px**, also `#modeRow`/`#panelsCtrl` so
+  only the two dimension sliders show on one row. `MODEL_VERSION` in `Gallery.jsx` = **`20260710-embed3`**.
 - **Workflow to edit the model here:** it's not cloned on this machine; clone the repo to the scratchpad,
   edit `index.html`, test via a static server (`.claude/launch.json` "panel3d-clone" points node at a tiny
   server), then commit/push with `-c user.name=sauceeegit -c user.email=chadyu246@gmail.com`, mirror the
