@@ -120,7 +120,7 @@ export default function ContactSection() {
     'w-full rounded-xl border border-ink/12 bg-white px-4 py-3 font-body text-sm text-ink placeholder:text-slatey-400 focus:border-lime focus:outline-none focus:ring-1 focus:ring-lime/40';
 
   return (
-    <section id="contact" className="scroll-mt-20 bg-[#FFF7E9] py-20">
+    <section id="contact" className="scroll-mt-20 py-20" style={{ backgroundColor: '#fffbf5' }}>
       <div className="container-x">
         <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
           {/* Left — heading + direct contact details */}
@@ -136,7 +136,7 @@ export default function ContactSection() {
 
             <ul className="mt-8 space-y-4 text-sm">
               <li className="flex items-center gap-3 text-ink/80">
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-lime/10 text-lime-dark">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl text-white" style={{ backgroundColor: '#4a251a' }}>
                   <Mail size={18} />
                 </span>
                 <a href={`mailto:${SALES_EMAIL}`} className="font-semibold hover:text-lime-dark">
@@ -144,7 +144,7 @@ export default function ContactSection() {
                 </a>
               </li>
               <li className="flex items-center gap-3 text-ink/80">
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-lime/10 text-lime-dark">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl text-white" style={{ backgroundColor: '#4a251a' }}>
                   <Phone size={18} />
                 </span>
                 <a href="tel:+66843488428" className="font-semibold hover:text-lime-dark">
@@ -152,7 +152,7 @@ export default function ContactSection() {
                 </a>
               </li>
               <li className="flex items-center gap-3 text-ink/80">
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-lime/10 text-lime-dark">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl text-white" style={{ backgroundColor: '#4a251a' }}>
                   <MessageCircle size={18} />
                 </span>
                 <a href={WHATSAPP} target="_blank" rel="noreferrer" className="font-semibold hover:text-lime-dark">
@@ -160,7 +160,7 @@ export default function ContactSection() {
                 </a>
               </li>
               <li className="flex items-center gap-3 text-ink/80">
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-lime/10 text-lime-dark">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl text-white" style={{ backgroundColor: '#4a251a' }}>
                   <MapPin size={18} />
                 </span>
                 Patongo, Pa Tong, Kathu District, Phuket 83150
