@@ -17,7 +17,7 @@ const links = [
 // Small green star pinned to the top-right of the Bgreenie label.
 function StarBadge() {
   return (
-    <span aria-hidden="true" className="absolute -right-3 -top-1.5 text-[10px] leading-none text-[#16A34A]">
+    <span aria-hidden="true" className="absolute -right-1.5 -top-1.5 text-[10px] leading-none text-[#16A34A]">
       ★
     </span>
   );

@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
 import Logo from './Logo';
 
 // Links with `to` route internally; `href` goes external (mailto/WhatsApp).
@@ -37,46 +36,10 @@ const cols = [
 ];
 
 export default function Footer() {
-  const [email, setEmail] = useState('');
-  const [sent, setSent] = useState(false);
-
   return (
     <footer className="bg-ink text-white">
       <div className="container-x py-16">
-        <div className="grid gap-8 border-b border-white/10 pb-12 lg:grid-cols-2 lg:items-center">
-          <div>
-            <h3 className="font-display text-2xl font-extrabold tracking-tight">
-              Get sunnier inbox energy
-            </h3>
-            <p className="mt-2 max-w-md text-white/60">
-              Solar tips, product drops and the occasional discount. No spam, unsubscribe anytime.
-            </p>
-          </div>
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              if (email) setSent(true);
-            }}
-            className="flex w-full max-w-md gap-2 lg:ml-auto"
-          >
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@email.com"
-              className="w-full rounded-full border border-white/15 bg-white/5 px-5 py-3.5 text-sm text-white placeholder:text-white/40 focus:border-lime focus:outline-none"
-            />
-            <button
-              type="submit"
-              className="flex shrink-0 items-center gap-2 rounded-full bg-lime px-5 py-3.5 font-display text-sm font-bold text-white transition hover:bg-lime-dark"
-            >
-              {sent ? 'Subscribed' : 'Join'} <ArrowRight size={16} />
-            </button>
-          </form>
-        </div>
-
-        <div className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-10 py-12 lg:grid-cols-5">
           <div className="lg:col-span-2">
             <Logo dark />
             <ul className="mt-5 space-y-2 text-sm text-white/60">
@@ -92,33 +55,36 @@ export default function Footer() {
             </ul>
           </div>
 
-          {cols.map((c) => (
-            <div key={c.title}>
-              <p className="font-mono text-[11px] uppercase tracking-wider text-white/40">
-                {c.title}
-              </p>
-              <ul className="mt-4 space-y-2.5">
-                {c.links.map((l) => {
-                  const cls = 'text-sm text-white/65 transition hover:text-lime';
-                  return (
-                    <li key={l.label}>
-                      {l.to ? (
-                        <Link to={l.to} className={cls}>{l.label}</Link>
-                      ) : (
-                        <a
-                          href={l.href ?? '#'}
-                          className={cls}
-                          {...(l.href?.startsWith('http') ? { target: '_blank', rel: 'noreferrer' } : {})}
-                        >
-                          {l.label}
-                        </a>
-                      )}
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          ))}
+          {/* Products / Learn / Company — one row on mobile to save vertical space */}
+          <div className="grid grid-cols-3 gap-x-4 gap-y-8 lg:col-span-3 lg:gap-10">
+            {cols.map((c) => (
+              <div key={c.title}>
+                <p className="font-mono text-[11px] uppercase tracking-wider text-white/40">
+                  {c.title}
+                </p>
+                <ul className="mt-4 space-y-2.5">
+                  {c.links.map((l) => {
+                    const cls = 'text-sm text-white/65 transition hover:text-lime';
+                    return (
+                      <li key={l.label}>
+                        {l.to ? (
+                          <Link to={l.to} className={cls}>{l.label}</Link>
+                        ) : (
+                          <a
+                            href={l.href ?? '#'}
+                            className={cls}
+                            {...(l.href?.startsWith('http') ? { target: '_blank', rel: 'noreferrer' } : {})}
+                          >
+                            {l.label}
+                          </a>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">

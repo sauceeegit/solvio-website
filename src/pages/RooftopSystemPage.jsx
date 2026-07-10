@@ -143,22 +143,14 @@ export default function RooftopSystemPage() {
                   <h2 className="font-display text-3xl font-extrabold leading-[1.1] tracking-tight text-ink sm:text-4xl lg:text-5xl">
                     Designed and installed by people who&apos;ve done it before
                   </h2>
-                  {/* desktop copy */}
-                  <p className="mt-5 max-w-md text-lg leading-relaxed text-slatey-500 max-sm:hidden">
-                    Solar isn&apos;t guesswork. Our team brings years of hands-on experience and
-                    state-of-the-art design to every rooftop we take on — engineering each system for
-                    maximum yield, safe structural loading, and clean integration with your existing
-                    power setup. Whether it&apos;s a resort, a hotel, or a commercial block, we build
-                    it to perform.
-                  </p>
-                  {/* mobile: trimmed copy + segment checklist */}
-                  <div className="mt-5 sm:hidden">
+                  {/* trimmed copy + segment checklist (same on mobile + desktop) */}
+                  <div className="mt-5 max-w-md">
                     <p className="text-lg leading-relaxed text-slatey-500">
                       Our team brings years of hands-on experience and state-of-the-art design to
                       every rooftop we take on.
                     </p>
                     <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2.5">
-                      {['Resort', 'Hotel', 'Commercial Block', 'Condo'].map((x) => (
+                      {['Resort', 'Hotel', 'Commercial Block', 'Condo', 'House', 'Mobile unit'].map((x) => (
                         <li key={x} className="flex items-center gap-2 font-display text-sm font-semibold text-ink">
                           <Check size={16} strokeWidth={3} className="shrink-0 text-lime-dark" /> {x}
                         </li>
