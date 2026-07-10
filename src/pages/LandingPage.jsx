@@ -11,11 +11,11 @@ import Community from '../components/landing/Community';
 import GuidePopup from '../components/GuidePopup';
 import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
+import MobileCollapse from '../components/MobileCollapse';
 import { usePageMeta } from '../hooks/usePageMeta';
 
 export default function LandingPage() {
   usePageMeta('/');
-  // Sticky-header height, so the frozen hero video docks right beneath it.
   const [headerH, setHeaderH] = useState(0);
   useEffect(() => {
     const el = document.getElementById('site-header');
@@ -35,11 +35,6 @@ export default function LandingPage() {
     <div id="top" className="min-h-screen bg-surface">
       <Header />
       <main>
-        {/* Mobile: the looping video freezes below the header while the page
-            scrolls; the spacer below (= CategoryGrid's removed top padding)
-            is the freeze distance. Once "From Rooftop to Backpack" touches the
-            video's bottom edge, the sticky boundary ends and the video is
-            pushed up naturally with the scroll (no snap/disappear). */}
         <div className="relative">
           <div className="max-lg:sticky" style={{ top: headerH }}>
             <Hero />
@@ -48,11 +43,21 @@ export default function LandingPage() {
         </div>
         <CategoryGrid />
         <Bestsellers />
-        <CalculatorSection />
-        <FounderVideo />
-        <LandingFAQ />
-        <WhyShop />
-        <Community />
+        <MobileCollapse title="See what you save with solar">
+          <CalculatorSection />
+        </MobileCollapse>
+        <MobileCollapse title="Watch our founder's story">
+          <FounderVideo />
+        </MobileCollapse>
+        <MobileCollapse title="Frequently asked questions">
+          <LandingFAQ />
+        </MobileCollapse>
+        <MobileCollapse title="Why choose Solvio?">
+          <WhyShop />
+        </MobileCollapse>
+        <MobileCollapse title="Become part of Solvio">
+          <Community />
+        </MobileCollapse>
         <ContactSection />
       </main>
       <Footer />
