@@ -55,14 +55,14 @@ export default function LandingNav() {
               <NavLink
                 to={l.to}
                 className={({ isActive }) =>
-                  `group flex flex-col leading-tight transition ${
+                  `group relative transition ${
                     isActive ? 'text-lime' : 'text-ink/75 hover:text-lime'
                   }`
                 }
               >
                 <span className="font-display text-[17px] font-semibold">{l.label}</span>
                 {l.sub && (
-                  <span className="font-display text-[11px] font-medium text-lime opacity-0 group-hover:opacity-100 transition-opacity duration-150">
+                  <span className="absolute left-0 top-full pt-0.5 font-display text-[11px] font-medium text-lime opacity-0 transition-opacity duration-150 group-hover:opacity-100 whitespace-nowrap">
                     {l.sub}
                   </span>
                 )}
