@@ -128,49 +128,74 @@ export default function LandingNav() {
                 <X size={22} />
               </button>
             </div>
-            <ul className="container-x mt-6 flex flex-col gap-1">
-              {links.map((l, i) => (
+            <div className="container-x mt-6">
+              {/* Product categories — compact, all on one row */}
+              <div className="grid grid-cols-3 gap-2">
+                {links.slice(0, 3).map((l, i) => (
+                  <motion.div
+                    key={l.label}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.05 * i }}
+                  >
+                    <NavLink
+                      to={l.to}
+                      onClick={() => setOpen(false)}
+                      className={({ isActive }) =>
+                        `flex h-full flex-col rounded-xl border px-2.5 py-3 text-center font-display transition ${
+                          isActive ? 'border-lime bg-lime text-white' : 'border-white/15 text-white'
+                        }`
+                      }
+                    >
+                      <span className="text-sm font-semibold leading-tight">{l.label}</span>
+                      {l.sub && (
+                        <span className="mt-1 text-[11px] font-medium text-white/50">{l.sub}</span>
+                      )}
+                    </NavLink>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Remaining links + Bgreenie */}
+              <ul className="mt-2 flex flex-col">
+                {links.slice(3).map((l, i) => (
+                  <motion.li
+                    key={l.label}
+                    initial={{ opacity: 0, x: -16 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.05 * (i + 3) }}
+                  >
+                    <NavLink
+                      to={l.to}
+                      onClick={() => setOpen(false)}
+                      className={({ isActive }) =>
+                        `block border-b border-white/10 py-4 font-display ${
+                          isActive ? 'text-lime' : 'text-white'
+                        }`
+                      }
+                    >
+                      <span className="text-2xl font-semibold">{l.label}</span>
+                    </NavLink>
+                  </motion.li>
+                ))}
                 <motion.li
-                  key={l.label}
                   initial={{ opacity: 0, x: -16 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.05 * i }}
+                  transition={{ delay: 0.05 * links.length }}
                 >
-                  <NavLink
-                    to={l.to}
-                    onClick={() => setOpen(false)}
-                    className={({ isActive }) =>
-                      `block border-b border-white/10 py-4 font-display ${
-                        isActive ? 'text-lime' : 'text-white'
-                      }`
-                    }
+                  <button
+                    type="button"
+                    onClick={openBgreenie}
+                    className="block w-full border-b border-white/10 py-4 text-left font-display text-white"
                   >
-                    <span className="text-2xl font-semibold">{l.label}</span>
-                    {l.sub && (
-                      <span className="ml-2 align-middle text-sm font-medium text-white/45">
-                        {l.sub}
-                      </span>
-                    )}
-                  </NavLink>
+                    <span className="relative text-2xl font-semibold">
+                      Bgreenie Membership
+                      <StarBadge />
+                    </span>
+                  </button>
                 </motion.li>
-              ))}
-              <motion.li
-                initial={{ opacity: 0, x: -16 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.05 * links.length }}
-              >
-                <button
-                  type="button"
-                  onClick={openBgreenie}
-                  className="block w-full border-b border-white/10 py-4 text-left font-display text-white"
-                >
-                  <span className="relative text-2xl font-semibold">
-                    Bgreenie Membership
-                    <StarBadge />
-                  </span>
-                </button>
-              </motion.li>
-            </ul>
+              </ul>
+            </div>
           </motion.div>
         )}
         </AnimatePresence>,

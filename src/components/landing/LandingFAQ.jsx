@@ -55,7 +55,7 @@ export default function LandingFAQ() {
                   <button
                     onClick={() => setOpen(open === i ? -1 : i)}
                     className="flex w-full items-center justify-between gap-4 rounded-xl px-5 py-4 text-left transition-colors"
-                    style={{ backgroundColor: open === i ? '#FFA05C' : '#FF6700' }}
+                    style={{ backgroundColor: open === i ? '#FF6700' : '#FFA05C' }}
                   >
                     <span
                       className={`font-display font-semibold ${

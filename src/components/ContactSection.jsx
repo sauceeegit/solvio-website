@@ -214,12 +214,14 @@ export default function ContactSection() {
                   {/* Email + a messaging ID share a row; at least one is required. */}
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
-                      <label className="mb-1.5 block font-display text-sm font-semibold text-ink">Email</label>
+                      <label className="mb-1.5 block font-display text-sm font-semibold text-ink">
+                        <span className="font-normal text-slatey-400">or </span>Email
+                      </label>
                       <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@email.com" className={fieldCls} />
                     </div>
                     <div>
                       <label className="mb-1.5 block font-display text-sm font-semibold text-ink">
-                        LINE / Telegram ID
+                        <span className="font-normal text-slatey-400">or </span>LINE / Telegram ID
                       </label>
                       <div className="flex gap-2">
                         <select
