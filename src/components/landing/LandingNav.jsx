@@ -76,10 +76,9 @@ export default function LandingNav() {
           <button
             type="button"
             onClick={openBgreenie}
-            className="relative hidden font-display text-[17px] font-semibold text-ink/75 transition hover:text-lime md:inline-flex"
+            className="hidden items-center rounded-full border border-ink/40 px-4 py-2 font-display text-[15px] font-semibold text-ink/75 transition hover:border-lime hover:text-lime md:inline-flex"
           >
             Bgreenie Membership
-            <StarBadge />
           </button>
           <Link
             to="/balcony-system"
