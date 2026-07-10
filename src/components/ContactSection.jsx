@@ -5,6 +5,9 @@ import Reveal from './Reveal';
 // Where every enquiry is sent.
 const SALES_EMAIL = 'sales@solvio.solar';
 const WHATSAPP = 'https://wa.me/66843488428';
+// Our Phuket location (place "Solvio Solar").
+const MAP_LINK = 'https://maps.app.goo.gl/ffZ6JUvEEBZjsb3g9';
+const MAP_EMBED = 'https://maps.google.com/maps?q=7.8894748,98.3009435&z=16&output=embed';
 
 const PROPERTY_TYPES = ['Residential', 'Commercial'];
 const INTERESTS = ['Rooftop', 'Balcony', 'Portable'];
@@ -44,11 +47,15 @@ const DIAL_CODES = [
 export default function ContactSection() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [imApp, setImApp] = useState('LINE'); // messaging app: LINE or Telegram
+  const [imId, setImId] = useState('');
   const [dialCode, setDialCode] = useState('+66');
   const [phone, setPhone] = useState('');
+  const [whatsapp, setWhatsapp] = useState(false);
   const [propertyType, setPropertyType] = useState('Residential');
   const [interests, setInterests] = useState([]);
   const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
   const [sent, setSent] = useState(false);
 
   const toggleInterest = (v) =>
@@ -56,10 +63,17 @@ export default function ContactSection() {
 
   const submit = (e) => {
     e.preventDefault();
+    // At least one reachable contact is required: a valid email OR a messaging ID.
+    if (!email.trim() && !imId.trim()) {
+      setError('Please add your email or a LINE/Telegram ID so we can reply.');
+      return;
+    }
+    setError('');
     const body = [
       `Name: ${name}`,
-      `Email: ${email}`,
-      `Phone: ${phone ? `${dialCode} ${phone}` : '—'}`,
+      `Email: ${email || '—'}`,
+      `${imApp} ID: ${imId || '—'}`,
+      `Phone: ${phone ? `${dialCode} ${phone}${whatsapp ? ' (WhatsApp)' : ''}` : '—'}`,
       `Property type: ${propertyType}`,
       `Interested in: ${interests.length ? interests.join(', ') : '—'}`,
       '',
@@ -122,6 +136,22 @@ export default function ContactSection() {
                 Patongo, Pa Tong, Kathu District, Phuket 83150
               </li>
             </ul>
+
+            {/* Map to our address */}
+            <a
+              href={MAP_LINK}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-6 block overflow-hidden rounded-xl2 border border-ink/[0.07] shadow-soft"
+            >
+              <iframe
+                title="Solvio Solar location"
+                src={MAP_EMBED}
+                className="block aspect-[16/10] w-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </a>
           </Reveal>
 
           {/* Right — form */}
@@ -169,13 +199,45 @@ export default function ContactSection() {
                         </select>
                         <input value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="81 234 5678" className={fieldCls} />
                       </div>
+                      <label className="mt-2 flex items-center gap-2 text-xs font-medium text-slatey-500">
+                        <input
+                          type="checkbox"
+                          checked={whatsapp}
+                          onChange={(e) => setWhatsapp(e.target.checked)}
+                          className="h-4 w-4 rounded border-ink/25 text-lime accent-lime focus:ring-lime/40"
+                        />
+                        WhatsApp is enabled on this number
+                      </label>
                     </div>
                   </div>
 
-                  <div>
-                    <label className="mb-1.5 block font-display text-sm font-semibold text-ink">Email</label>
-                    <input required type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@email.com" className={fieldCls} />
+                  {/* Email + a messaging ID share a row; at least one is required. */}
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div>
+                      <label className="mb-1.5 block font-display text-sm font-semibold text-ink">Email</label>
+                      <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@email.com" className={fieldCls} />
+                    </div>
+                    <div>
+                      <label className="mb-1.5 block font-display text-sm font-semibold text-ink">
+                        LINE / Telegram ID
+                      </label>
+                      <div className="flex gap-2">
+                        <select
+                          value={imApp}
+                          onChange={(e) => setImApp(e.target.value)}
+                          aria-label="Messaging app"
+                          className="w-[6.5rem] shrink-0 rounded-xl border border-ink/12 bg-white px-2 py-3 font-body text-sm text-ink focus:border-lime focus:outline-none focus:ring-1 focus:ring-lime/40"
+                        >
+                          <option value="LINE">LINE</option>
+                          <option value="Telegram">Telegram</option>
+                        </select>
+                        <input value={imId} onChange={(e) => setImId(e.target.value)} placeholder="Your ID" className={fieldCls} />
+                      </div>
+                    </div>
                   </div>
+                  <p className="-mt-2 text-xs text-slatey-400">
+                    Add your email or a LINE/Telegram ID — whichever you prefer we reply on.
+                  </p>
 
                   <div>
                     <label className="mb-1.5 block font-display text-sm font-semibold text-ink">Property type</label>
@@ -232,6 +294,11 @@ export default function ContactSection() {
                     />
                   </div>
 
+                  {error && (
+                    <p className="rounded-lg bg-red-50 px-3 py-2 text-center text-sm font-medium text-red-600">
+                      {error}
+                    </p>
+                  )}
                   <button
                     type="submit"
                     className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-lime px-6 py-3.5 font-display text-base font-bold text-white transition hover:bg-lime-dark"

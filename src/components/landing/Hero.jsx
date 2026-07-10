@@ -47,7 +47,7 @@ export default function Hero() {
           <h1 className="font-display text-[clamp(1.25rem,4.4vw,3rem)] font-extrabold leading-[1.05] tracking-tight text-white">
             Everyone deserves the sun<span className="text-lime">.</span>
           </h1>
-          <p className="mx-auto mt-1.5 max-w-2xl font-display text-[clamp(0.7rem,2vw,1.15rem)] font-semibold text-white/90">
+          <p className="mx-auto mt-1.5 max-w-2xl font-display text-[clamp(0.8rem,2.3vw,1.32rem)] font-semibold text-white/90">
             Rooftop systems for homeowners. Balcony solar for renters.
             <br className="hidden sm:block" /> Clean energy for every Thai home.
           </p>

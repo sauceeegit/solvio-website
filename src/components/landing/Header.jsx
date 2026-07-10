@@ -5,7 +5,7 @@ import LandingNav from './LandingNav';
 // together at the top of the viewport while the page scrolls.
 export default function Header() {
   return (
-    <div className="sticky top-0 z-50">
+    <div id="site-header" className="sticky top-0 z-50">
       <TopBar />
       <LandingNav />
     </div>

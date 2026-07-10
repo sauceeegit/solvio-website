@@ -16,6 +16,8 @@ export default function RooftopSystemPage() {
   usePageMeta('/rooftop-system');
   const videoRef = useRef(null);
   const [ready, setReady] = useState(false);
+  // Height of the sticky site header, so the tagline can freeze just below it.
+  const [headerH, setHeaderH] = useState(0);
 
   // Ensure the loop autoplays muted (React can drop the muted attribute).
   useEffect(() => {
@@ -27,41 +29,60 @@ export default function RooftopSystemPage() {
     }
   }, []);
 
+  // Track the sticky header height (varies mobile/desktop and on resize).
+  useEffect(() => {
+    const el = document.getElementById('site-header');
+    if (!el) return undefined;
+    const measure = () => setHeaderH(el.offsetHeight);
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    window.addEventListener('resize', measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener('resize', measure);
+    };
+  }, []);
+
   return (
     <div id="top" className="min-h-screen bg-surface">
       <Header />
       <main>
-        {/* Tagline bar above the looping video */}
-        <section className="bg-white">
-          <div className="container-x py-6 text-center sm:py-8">
-            <h1 className="font-display text-2xl font-extrabold tracking-tight text-ink sm:text-4xl">
-              Thailand&apos;s complete residential and commercial solar solution.
-            </h1>
-          </div>
-        </section>
+        {/* Tagline + video share a wrapper so the tagline can stay frozen (sticky
+            just below the header) until the looping video has scrolled past. */}
+        <div className="relative">
+          {/* Tagline bar — freezes below the header while the video scrolls by. */}
+          <section className="sticky z-30 bg-white" style={{ top: headerH }}>
+            <div className="container-x py-6 text-center sm:py-8">
+              <h1 className="font-display text-2xl font-extrabold tracking-tight text-ink sm:text-4xl">
+                Thailand&apos;s complete residential and commercial solar solution.
+              </h1>
+            </div>
+          </section>
 
-        {/* Full-bleed looping video — spans the entire viewport width. */}
-        <section className="relative w-full">
-          {/* Aspect-locked, brand-dark backdrop so there's no layout jump and a
-              clean fill (not a blank flash) while the loop downloads. */}
-          <div className="relative aspect-video w-full overflow-hidden bg-ink">
-            <video
-              ref={videoRef}
-              className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
-                ready ? 'opacity-100' : 'opacity-0'
-              }`}
-              src={rooftopVideo}
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="auto"
-              onLoadedData={() => setReady(true)}
-              onCanPlay={() => setReady(true)}
-            />
-            <MediaLoader show={!ready} label="Loading video" />
-          </div>
-        </section>
+          {/* Full-bleed looping video — spans the entire viewport width. */}
+          <section className="relative w-full">
+            {/* Aspect-locked, brand-dark backdrop so there's no layout jump and a
+                clean fill (not a blank flash) while the loop downloads. */}
+            <div className="relative aspect-video w-full overflow-hidden bg-ink">
+              <video
+                ref={videoRef}
+                className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+                  ready ? 'opacity-100' : 'opacity-0'
+                }`}
+                src={rooftopVideo}
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+                onLoadedData={() => setReady(true)}
+                onCanPlay={() => setReady(true)}
+              />
+              <MediaLoader show={!ready} label="Loading video" />
+            </div>
+          </section>
+        </div>
 
         <section className="bg-white">
           <div className="container-x">

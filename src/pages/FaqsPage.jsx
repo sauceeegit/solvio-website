@@ -17,20 +17,19 @@ const TABS = [
   { id: 'panels', label: 'Solar Panels', items: panelFaqs },
 ];
 
+// Question background: closed = orange, opened = light orange (font unchanged).
 function Item({ q, a, open, onToggle }) {
   return (
-    <div className="border-b border-ink/[0.08] last:border-0">
-      <button onClick={onToggle} className="flex w-full items-center justify-between gap-4 py-5 text-left">
+    <div>
+      <button
+        onClick={onToggle}
+        className="flex w-full items-center justify-between gap-4 rounded-xl px-5 py-4 text-left transition-colors"
+        style={{ backgroundColor: open ? '#FFA05C' : '#FF6700' }}
+      >
+        <span className="font-display text-base font-semibold text-ink">{q}</span>
         <span
-          className={`font-display text-base font-semibold transition-colors ${
-            open ? 'text-[#FFA05C]' : 'text-lime'
-          }`}
-        >
-          {q}
-        </span>
-        <span
-          className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border border-ink/15 transition ${
-            open ? 'rotate-45 bg-ink text-lime' : 'text-ink'
+          className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border border-ink/15 bg-white/70 text-ink transition ${
+            open ? 'rotate-45' : ''
           }`}
         >
           <Plus size={16} />
@@ -45,7 +44,7 @@ function Item({ q, a, open, onToggle }) {
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden"
           >
-            <p className="pb-5 pr-12 text-[15px] leading-relaxed text-slatey-500 max-sm:pr-0 max-sm:text-sm">{a}</p>
+            <p className="px-5 pb-4 pt-3 text-[15px] leading-relaxed text-slatey-500 max-sm:text-sm">{a}</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -119,7 +118,7 @@ export default function FaqsPage() {
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.25 }}
-                className="rounded-xl2 border border-ink/[0.07] bg-white px-6 shadow-soft"
+                className="space-y-2.5 rounded-xl2 border border-ink/[0.07] bg-white p-3 shadow-soft"
               >
                 {active.items.map((f, i) => (
                   <Item key={f.q} q={f.q} a={f.a} open={open === i} onToggle={() => setOpen(open === i ? -1 : i)} />

@@ -214,28 +214,30 @@ export default function FinancingOptions() {
           {loans[segment].map((l, i) => (
             <Reveal key={`${segment}-${l.bank}`} delay={i * 0.06}>
               <div className="card flex h-full flex-col p-6">
-                <div className="flex items-center gap-2.5">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <p className="font-mono text-[11px] uppercase tracking-wider text-slatey-400">
+                      {l.bank}
+                    </p>
+                    <h4 className="mt-1 font-display text-lg font-bold text-ink">{l.product}</h4>
+                  </div>
                   {l.logo ? (
                     <img
                       src={asset(l.logo)}
                       alt={`${l.bank} logo`}
                       loading="lazy"
-                      className="h-9 w-9 shrink-0 rounded-md object-cover"
+                      className="h-16 w-16 shrink-0 rounded-lg object-cover"
                     />
                   ) : (
                     <span
-                      className="grid h-8 shrink-0 place-items-center rounded-md px-2 font-display text-[11px] font-extrabold uppercase tracking-wide text-white"
+                      className="grid h-16 w-16 shrink-0 place-items-center rounded-lg px-2 text-center font-display text-xs font-extrabold uppercase tracking-wide text-white"
                       style={{ backgroundColor: l.color }}
                       aria-hidden="true"
                     >
                       {l.mark}
                     </span>
                   )}
-                  <p className="font-mono text-[11px] uppercase tracking-wider text-slatey-400">
-                    {l.bank}
-                  </p>
                 </div>
-                <h4 className="mt-2 font-display text-lg font-bold text-ink">{l.product}</h4>
 
                 <dl className="mt-4 space-y-2 border-t border-ink/[0.07] pt-4 text-sm">
                   <div className="flex items-center gap-2 text-ink/80">
