@@ -49,7 +49,7 @@ export default function Hero() {
           </h1>
           <p className="mx-auto mt-1.5 max-w-2xl font-display text-[clamp(0.8rem,2.3vw,1.32rem)] font-semibold text-white/90">
             Rooftop systems for homeowners. Balcony solar for renters.
-            <br className="hidden sm:block" /> Clean energy for every Thai home.
+            <br /> Clean energy for every Thai home.
           </p>
         </div>
       </div>

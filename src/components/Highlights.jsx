@@ -119,7 +119,7 @@ export default function Highlights() {
                 alt="Easy installation — connecting a panel by hand in the garden"
                 className="absolute inset-0 h-full w-full object-cover"
               />
-              <div className="absolute bottom-0 right-0 flex h-[40%] w-[74%] flex-col justify-center rounded-tl-xl2 p-6 transition-all duration-500 ease-out group-hover:h-full group-hover:w-full" style={{ backgroundColor: '#ffb64d' }}>
+              <div className="absolute bottom-0 right-0 flex h-[40%] w-[74%] flex-col justify-center rounded-tl-xl2 p-6 transition-all duration-500 ease-out group-hover:h-full group-hover:w-full" style={{ backgroundColor: '#fdbd4f' }}>
                 <p className="text-center font-display text-[18px] font-bold text-ink/70">
                   Plug &amp; Play:
                 </p>
