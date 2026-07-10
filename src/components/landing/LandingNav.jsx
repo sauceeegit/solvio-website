@@ -7,10 +7,21 @@ import Logo from '../Logo';
 
 const links = [
   { label: 'Rooftop Solar', to: '/rooftop-system', sub: 'For Homeowner' },
-  { label: 'Balcony Solar', to: '/balcony-system', sub: 'For Renter' },
+  { label: 'Balcony Solar', to: '/balcony-system', sub: 'For Tenant' },
   { label: 'Portable Solar', to: '/portable-system' },
   { label: 'Solar Panel', to: '/solar-panel' },
+  { label: 'FAQs', to: '/faqs' },
+  { label: 'Bgreenie Membership', href: 'https://bgreenie.me/', star: true },
 ];
+
+// Small green star pinned to the top-right of a nav label.
+function StarBadge() {
+  return (
+    <span aria-hidden="true" className="absolute -right-3 -top-1.5 text-[10px] leading-none text-[#16A34A]">
+      ★
+    </span>
+  );
+}
 
 export default function LandingNav() {
   const [scrolled, setScrolled] = useState(false);
@@ -35,21 +46,35 @@ export default function LandingNav() {
         <ul className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
             <li key={l.label}>
-              <NavLink
-                to={l.to}
-                className={({ isActive }) =>
-                  `group flex flex-col leading-tight transition ${
-                    isActive ? 'text-lime' : 'text-ink/75 hover:text-lime'
-                  }`
-                }
-              >
-                <span className="font-display text-[17px] font-semibold">{l.label}</span>
-                {l.sub && (
-                  <span className="font-display text-[11px] font-medium text-ink/40 group-hover:text-lime/70">
-                    {l.sub}
+              {l.href ? (
+                <a
+                  href={l.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex flex-col leading-tight text-ink/75 transition hover:text-lime"
+                >
+                  <span className="relative font-display text-[17px] font-semibold">
+                    {l.label}
+                    {l.star && <StarBadge />}
                   </span>
-                )}
-              </NavLink>
+                </a>
+              ) : (
+                <NavLink
+                  to={l.to}
+                  className={({ isActive }) =>
+                    `group flex flex-col leading-tight transition ${
+                      isActive ? 'text-lime' : 'text-ink/75 hover:text-lime'
+                    }`
+                  }
+                >
+                  <span className="font-display text-[17px] font-semibold">{l.label}</span>
+                  {l.sub && (
+                    <span className="font-display text-[11px] font-medium text-ink/40 group-hover:text-lime/70">
+                      {l.sub}
+                    </span>
+                  )}
+                </NavLink>
+              )}
             </li>
           ))}
         </ul>
@@ -98,22 +123,37 @@ export default function LandingNav() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.05 * i }}
                 >
-                  <NavLink
-                    to={l.to}
-                    onClick={() => setOpen(false)}
-                    className={({ isActive }) =>
-                      `block border-b border-white/10 py-4 font-display ${
-                        isActive ? 'text-lime' : 'text-white'
-                      }`
-                    }
-                  >
-                    <span className="text-2xl font-semibold">{l.label}</span>
-                    {l.sub && (
-                      <span className="ml-2 align-middle text-sm font-medium text-white/45">
-                        {l.sub}
+                  {l.href ? (
+                    <a
+                      href={l.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setOpen(false)}
+                      className="block border-b border-white/10 py-4 font-display text-white"
+                    >
+                      <span className="relative text-2xl font-semibold">
+                        {l.label}
+                        {l.star && <StarBadge />}
                       </span>
-                    )}
-                  </NavLink>
+                    </a>
+                  ) : (
+                    <NavLink
+                      to={l.to}
+                      onClick={() => setOpen(false)}
+                      className={({ isActive }) =>
+                        `block border-b border-white/10 py-4 font-display ${
+                          isActive ? 'text-lime' : 'text-white'
+                        }`
+                      }
+                    >
+                      <span className="text-2xl font-semibold">{l.label}</span>
+                      {l.sub && (
+                        <span className="ml-2 align-middle text-sm font-medium text-white/45">
+                          {l.sub}
+                        </span>
+                      )}
+                    </NavLink>
+                  )}
                 </motion.li>
               ))}
             </ul>

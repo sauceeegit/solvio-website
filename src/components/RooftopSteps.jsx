@@ -40,6 +40,7 @@ function StepImage({ src, alt }) {
 function ContactOptions({ onVisit }) {
   const [address, setAddress] = useState('');
   const [cost, setCost] = useState('');
+  const [email, setEmail] = useState('');
   const [sent, setSent] = useState(false);
   return (
     <div className="mt-3 space-y-2">
@@ -51,7 +52,7 @@ function ContactOptions({ onVisit }) {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            if (address) setSent(true);
+            if (address && email) setSent(true);
           }}
           className="space-y-1.5"
         >
@@ -69,6 +70,14 @@ function ContactOptions({ onVisit }) {
             value={cost}
             onChange={(e) => setCost(e.target.value)}
             placeholder="Monthly electricity cost (optional)"
+            className="w-full min-w-0 rounded-lg border border-ink/15 bg-white px-3 py-2 text-xs text-ink placeholder:text-slatey-400 focus:border-lime focus:outline-none"
+          />
+          <input
+            type="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Your email"
             className="w-full min-w-0 rounded-lg border border-ink/15 bg-white px-3 py-2 text-xs text-ink placeholder:text-slatey-400 focus:border-lime focus:outline-none"
           />
           <button type="submit" className="flex w-full items-center justify-center gap-1.5 rounded-lg bg-lime px-3 py-2 text-xs font-bold text-white transition hover:bg-lime-dark">

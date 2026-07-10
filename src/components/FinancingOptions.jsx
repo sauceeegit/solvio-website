@@ -11,6 +11,7 @@ import {
   Percent,
 } from 'lucide-react';
 import Reveal from './Reveal';
+import { asset } from '../lib/format';
 
 /**
  * FinancingOptions — owner-focused financing section.
@@ -33,7 +34,7 @@ const payWays = [
   },
   {
     icon: 'CalendarClock',
-    title: 'Instalments with Solvio',
+    title: 'Instalments with Solvio (100% approval rate)',
     body: 'Split your project into monthly payments arranged directly with us.',
   },
   {
@@ -43,14 +44,16 @@ const payWays = [
   },
 ];
 
-// Each bank carries a brand-coloured monogram chip next to its name. Swap these
-// for real logo images by dropping PNGs in /public and setting `logo: asset(...)`.
+// Each bank shows its real logo (square WebPs in /public, padded to square on
+// the bank's own background colour). `mark`/`color` remain as a fallback chip
+// for any future bank without a logo file.
 const loans = {
   home: [
     {
       bank: 'Bangkok Bank',
       mark: 'BBL',
       color: '#1E4598',
+      logo: '/bank-bbl.webp',
       product: 'Bualuang Poonphol Green',
       rate: 'from MRR − 1%',
       amount: 'Up to ฿10M',
@@ -61,6 +64,7 @@ const loans = {
       bank: 'GSB (Government Savings Bank)',
       mark: 'GSB',
       color: '#EB1F8E',
+      logo: '/bank-gsb.webp',
       product: 'GSB Go Green',
       rate: 'promo rates from 1.99%',
       amount: 'Up to ฿5M secured · ฿500K unsecured',
@@ -71,6 +75,7 @@ const loans = {
       bank: 'GH Bank (ธอส.)',
       mark: 'GHB',
       color: '#F58220',
+      logo: '/bank-ghb.webp',
       product: 'Solar Roof Loan',
       rate: 'fixed intro rates',
       amount: 'Per quotation',
@@ -83,6 +88,7 @@ const loans = {
       bank: 'Kasikornbank',
       mark: 'KBank',
       color: '#138F2D',
+      logo: '/bank-kbank.webp',
       product: 'K-Solar Rooftop Financing',
       rate: 'from MLR − 1%',
       amount: '100% of project value',
@@ -93,6 +99,7 @@ const loans = {
       bank: 'Krungsri',
       mark: 'KS',
       color: '#7A5CA0',
+      logo: '/bank-krungsri.webp',
       product: 'SME Solar Rooftop',
       rate: 'special SME rates',
       amount: '100% of project value',
@@ -103,6 +110,7 @@ const loans = {
       bank: 'SME D Bank',
       mark: 'SME',
       color: '#00539B',
+      logo: '/bank-sme.webp',
       product: 'Green business loans',
       rate: 'from 3% fixed (first 3 yrs)',
       amount: 'Up to ฿10M+',
@@ -207,13 +215,22 @@ export default function FinancingOptions() {
             <Reveal key={`${segment}-${l.bank}`} delay={i * 0.06}>
               <div className="card flex h-full flex-col p-6">
                 <div className="flex items-center gap-2.5">
-                  <span
-                    className="grid h-8 shrink-0 place-items-center rounded-md px-2 font-display text-[11px] font-extrabold uppercase tracking-wide text-white"
-                    style={{ backgroundColor: l.color }}
-                    aria-hidden="true"
-                  >
-                    {l.mark}
-                  </span>
+                  {l.logo ? (
+                    <img
+                      src={asset(l.logo)}
+                      alt={`${l.bank} logo`}
+                      loading="lazy"
+                      className="h-9 w-9 shrink-0 rounded-md object-cover"
+                    />
+                  ) : (
+                    <span
+                      className="grid h-8 shrink-0 place-items-center rounded-md px-2 font-display text-[11px] font-extrabold uppercase tracking-wide text-white"
+                      style={{ backgroundColor: l.color }}
+                      aria-hidden="true"
+                    >
+                      {l.mark}
+                    </span>
+                  )}
                   <p className="font-mono text-[11px] uppercase tracking-wider text-slatey-400">
                     {l.bank}
                   </p>

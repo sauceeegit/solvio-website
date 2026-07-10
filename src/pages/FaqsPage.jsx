@@ -21,7 +21,13 @@ function Item({ q, a, open, onToggle }) {
   return (
     <div className="border-b border-ink/[0.08] last:border-0">
       <button onClick={onToggle} className="flex w-full items-center justify-between gap-4 py-5 text-left">
-        <span className="font-display text-base font-semibold text-ink">{q}</span>
+        <span
+          className={`font-display text-base font-semibold transition-colors ${
+            open ? 'text-[#FFA05C]' : 'text-lime'
+          }`}
+        >
+          {q}
+        </span>
         <span
           className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border border-ink/15 transition ${
             open ? 'rotate-45 bg-ink text-lime' : 'text-ink'

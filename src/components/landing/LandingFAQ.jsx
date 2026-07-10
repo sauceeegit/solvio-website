@@ -63,7 +63,7 @@ export default function LandingFAQ() {
                   >
                     <span
                       className={`font-display font-semibold transition-colors ${
-                        open === i ? 'text-lg text-lime-dark' : 'text-base text-ink'
+                        open === i ? 'text-lg text-[#FFA05C]' : 'text-base text-lime'
                       }`}
                     >
                       {f.q}

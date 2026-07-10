@@ -34,7 +34,7 @@ export default function RooftopSystemPage() {
         {/* Tagline bar above the looping video */}
         <section className="bg-white">
           <div className="container-x py-6 text-center sm:py-8">
-            <h1 className="font-display text-xl font-extrabold tracking-tight text-ink sm:text-3xl">
+            <h1 className="font-display text-2xl font-extrabold tracking-tight text-ink sm:text-4xl">
               Thailand&apos;s complete residential and commercial solar solution.
             </h1>
           </div>
@@ -86,6 +86,19 @@ export default function RooftopSystemPage() {
                     the space, we&apos;ve got the system to fill it<span className="max-sm:hidden"> — sized
                     to your building, your load, and your ambitions</span>.
                   </p>
+                  {/* roof types we install on */}
+                  <ul className="mt-5 grid max-w-md grid-cols-1 gap-x-4 gap-y-2.5 sm:grid-cols-2">
+                    {[
+                      'Standing Seam Metal Roofs',
+                      'Asphalt Shingle Roofs',
+                      'Clay Tile Roofs',
+                      'Flat Concrete Roofs',
+                    ].map((x) => (
+                      <li key={x} className="flex items-center gap-2 font-display text-sm font-semibold text-ink">
+                        <Check size={16} strokeWidth={3} className="shrink-0 text-lime-dark" /> {x}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </Reveal>

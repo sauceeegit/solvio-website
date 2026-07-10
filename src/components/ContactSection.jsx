@@ -9,6 +9,34 @@ const WHATSAPP = 'https://wa.me/66843488428';
 const PROPERTY_TYPES = ['Residential', 'Commercial'];
 const INTERESTS = ['Rooftop', 'Balcony', 'Portable'];
 
+// Country dial codes for the phone field (Thailand first / default).
+const DIAL_CODES = [
+  { code: '+66', label: '🇹🇭 Thailand' },
+  { code: '+1', label: '🇺🇸 USA / Canada' },
+  { code: '+44', label: '🇬🇧 UK' },
+  { code: '+61', label: '🇦🇺 Australia' },
+  { code: '+49', label: '🇩🇪 Germany' },
+  { code: '+33', label: '🇫🇷 France' },
+  { code: '+31', label: '🇳🇱 Netherlands' },
+  { code: '+41', label: '🇨🇭 Switzerland' },
+  { code: '+46', label: '🇸🇪 Sweden' },
+  { code: '+7', label: '🇷🇺 Russia' },
+  { code: '+86', label: '🇨🇳 China' },
+  { code: '+81', label: '🇯🇵 Japan' },
+  { code: '+82', label: '🇰🇷 South Korea' },
+  { code: '+852', label: '🇭🇰 Hong Kong' },
+  { code: '+65', label: '🇸🇬 Singapore' },
+  { code: '+60', label: '🇲🇾 Malaysia' },
+  { code: '+62', label: '🇮🇩 Indonesia' },
+  { code: '+63', label: '🇵🇭 Philippines' },
+  { code: '+84', label: '🇻🇳 Vietnam' },
+  { code: '+855', label: '🇰🇭 Cambodia' },
+  { code: '+856', label: '🇱🇦 Laos' },
+  { code: '+95', label: '🇲🇲 Myanmar' },
+  { code: '+91', label: '🇮🇳 India' },
+  { code: '+971', label: '🇦🇪 UAE' },
+];
+
 // Site-wide contact form. Rendered at the foot of every page; the footer
 // "Contact" link scrolls here via the #contact anchor. With no backend yet, the
 // form opens the visitor's mail client pre-addressed to sales@solvio.solar with
@@ -16,6 +44,7 @@ const INTERESTS = ['Rooftop', 'Balcony', 'Portable'];
 export default function ContactSection() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [dialCode, setDialCode] = useState('+66');
   const [phone, setPhone] = useState('');
   const [propertyType, setPropertyType] = useState('Residential');
   const [interests, setInterests] = useState([]);
@@ -30,7 +59,7 @@ export default function ContactSection() {
     const body = [
       `Name: ${name}`,
       `Email: ${email}`,
-      `Phone: ${phone}`,
+      `Phone: ${phone ? `${dialCode} ${phone}` : '—'}`,
       `Property type: ${propertyType}`,
       `Interested in: ${interests.length ? interests.join(', ') : '—'}`,
       '',
@@ -125,7 +154,21 @@ export default function ContactSection() {
                     </div>
                     <div>
                       <label className="mb-1.5 block font-display text-sm font-semibold text-ink">Phone number</label>
-                      <input value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+66 ..." className={fieldCls} />
+                      <div className="flex gap-2">
+                        <select
+                          value={dialCode}
+                          onChange={(e) => setDialCode(e.target.value)}
+                          aria-label="Country code"
+                          className="w-[5.5rem] shrink-0 rounded-xl border border-ink/12 bg-white px-2 py-3 font-body text-sm text-ink focus:border-lime focus:outline-none focus:ring-1 focus:ring-lime/40"
+                        >
+                          {DIAL_CODES.map((c) => (
+                            <option key={c.code} value={c.code} title={c.label}>
+                              {`${c.label.split(' ')[0]} ${c.code}`}
+                            </option>
+                          ))}
+                        </select>
+                        <input value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="81 234 5678" className={fieldCls} />
+                      </div>
                     </div>
                   </div>
 
@@ -195,6 +238,9 @@ export default function ContactSection() {
                   >
                     Send message <Send size={16} />
                   </button>
+                  <p className="text-center font-display text-sm font-semibold text-lime-dark">
+                    We will get in touch within 1 hour
+                  </p>
                   <p className="text-center text-xs text-slatey-400">
                     Your details are sent straight to {SALES_EMAIL}. We never share them.
                   </p>
