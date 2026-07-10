@@ -62,7 +62,7 @@ export default function FAQ({
             href="https://wa.me/66843488428?text=Hi%20Solvio%20%E2%80%94%20I%27d%20like%20to%20talk%20to%20an%20advisor."
             target="_blank"
             rel="noreferrer"
-            className="btn-ghost mt-5"
+            className="mt-5 inline-flex items-center rounded-full bg-lime px-5 py-2.5 font-display text-sm font-bold text-white transition hover:bg-lime-dark"
           >
             Talk to an advisor
           </a>

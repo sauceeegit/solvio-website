@@ -136,7 +136,7 @@ export default function ContactSection() {
 
             <ul className="mt-8 space-y-4 text-sm">
               <li className="flex items-center gap-3 text-ink/80">
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full" style={{ backgroundColor: '#4f271e', color: '#ec702e' }}>
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full text-white" style={{ backgroundColor: '#4f271e' }}>
                   <Mail size={18} />
                 </span>
                 <a href={`mailto:${SALES_EMAIL}`} className="font-semibold hover:text-lime-dark">
@@ -144,7 +144,7 @@ export default function ContactSection() {
                 </a>
               </li>
               <li className="flex items-center gap-3 text-ink/80">
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full" style={{ backgroundColor: '#4f271e', color: '#ec702e' }}>
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full text-white" style={{ backgroundColor: '#4f271e' }}>
                   <Phone size={18} />
                 </span>
                 <a href="tel:+66843488428" className="font-semibold hover:text-lime-dark">
@@ -152,7 +152,7 @@ export default function ContactSection() {
                 </a>
               </li>
               <li className="flex items-center gap-3 text-ink/80">
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full" style={{ backgroundColor: '#4f271e', color: '#ec702e' }}>
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full text-white" style={{ backgroundColor: '#4f271e' }}>
                   <MessageCircle size={18} />
                 </span>
                 <a href={WHATSAPP} target="_blank" rel="noreferrer" className="font-semibold hover:text-lime-dark">
@@ -160,7 +160,7 @@ export default function ContactSection() {
                 </a>
               </li>
               <li className="flex items-center gap-3 text-ink/80">
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full" style={{ backgroundColor: '#4f271e', color: '#ec702e' }}>
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full text-white" style={{ backgroundColor: '#4f271e' }}>
                   <MapPin size={18} />
                 </span>
                 <span className="font-semibold">Patongo, Pa Tong, Kathu District, Phuket 83150</span>
@@ -172,15 +172,8 @@ export default function ContactSection() {
               href={MAP_LINK}
               target="_blank"
               rel="noreferrer"
-              className="relative mt-6 block overflow-hidden rounded-xl2 border border-ink/[0.07] shadow-soft"
+              className="mt-6 block overflow-hidden rounded-xl2 border border-ink/[0.07] shadow-soft"
             >
-              {/* Custom orange pin overlay — positioned at map center */}
-              <span className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center" style={{ paddingBottom: '12%' }}>
-                <svg viewBox="0 0 24 32" className="h-9 w-9 drop-shadow-md" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 0C7.03 0 3 4.03 3 9c0 6.75 9 23 9 23s9-16.25 9-23c0-4.97-4.03-9-9-9z" fill="#ec702e"/>
-                  <circle cx="12" cy="9" r="3.5" fill="white"/>
-                </svg>
-              </span>
               <iframe
                 title="Solvio Solar location"
                 src={MAP_EMBED}
