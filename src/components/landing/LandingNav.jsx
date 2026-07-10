@@ -7,8 +7,8 @@ import Logo from '../Logo';
 import { useBgreenie } from '../../context/BgreenieModal';
 
 const links = [
-  { label: 'Rooftop Solar', to: '/rooftop-system', sub: 'For Homeowner' },
-  { label: 'Balcony Solar', to: '/balcony-system', sub: 'For Tenant' },
+  { label: 'Rooftop Solar', to: '/rooftop-system' },
+  { label: 'Balcony Solar', to: '/balcony-system' },
   { label: 'Portable Solar', to: '/portable-system' },
   { label: 'Solar Panel', to: '/solar-panel' },
   { label: 'FAQs', to: '/faqs' },
