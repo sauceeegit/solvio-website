@@ -2,8 +2,8 @@
 // Used by BOTH the client-side usePageMeta hook and scripts/prerender-meta.mjs
 // (a plain node script) — so keep this file free of vite-specific imports.
 
-// Update this origin when the custom domain (solvio.solar) is attached.
-export const SITE = 'https://sauceeegit.github.io/solvio-website';
+// Canonical origin for the live site (custom domain).
+export const SITE = 'https://solvio.solar';
 
 export const routeMeta = {
   '/': {

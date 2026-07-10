@@ -1,28 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://sauceeegit.github.io/solvio-website/</loc>
+    <loc>https://solvio.solar/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://sauceeegit.github.io/solvio-website/balcony-system/</loc>
+    <loc>https://solvio.solar/balcony-system/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://sauceeegit.github.io/solvio-website/portable-system/</loc>
+    <loc>https://solvio.solar/rooftop-system/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://sauceeegit.github.io/solvio-website/rooftop-system/</loc>
+    <loc>https://solvio.solar/portable-system/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://sauceeegit.github.io/solvio-website/solar-panel/</loc>
+    <loc>https://solvio.solar/solar-panel/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://solvio.solar/about/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://solvio.solar/faqs/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>
