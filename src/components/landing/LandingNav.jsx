@@ -89,10 +89,10 @@ export default function LandingNav() {
           </Link>
           <button
             onClick={() => setOpen(true)}
-            className="grid h-10 w-10 place-items-center rounded-full text-ink/70 transition hover:bg-ink/[0.05] md:hidden"
+            className="grid h-11 w-11 place-items-center rounded-full text-ink transition hover:bg-ink/[0.05] md:hidden"
             aria-label="Open menu"
           >
-            <Menu size={20} />
+            <Menu size={30} strokeWidth={2.25} />
           </button>
         </div>
       </nav>
