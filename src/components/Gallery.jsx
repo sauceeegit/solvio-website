@@ -6,7 +6,7 @@ export const MODEL_ORIGIN = 'https://sauceeegit.github.io';
 // serving a stale build after the solvio-panel-3d repo updates. Bump this
 // version tag whenever the model changes to force a fresh fetch. (Query strings
 // don't affect the postMessage origin, which stays MODEL_ORIGIN.)
-const MODEL_VERSION = '20260710-embed2';
+const MODEL_VERSION = '20260710-embed3';
 // `embed=1` tells the model it's driven by the on-page configurator, so it hides
 // its own controls on mobile/tablet (fixes the model/parameter-bar overlap).
 export const MODEL_URL = `${MODEL_ORIGIN}/solvio-panel-3d/?v=${MODEL_VERSION}&embed=1`;
@@ -17,6 +17,9 @@ export const MODEL_URL = `${MODEL_ORIGIN}/solvio-panel-3d/?v=${MODEL_VERSION}&em
 export default function Gallery({ derived, mobileFreeze = false }) {
   const frameRef = useRef(null);
   const [loaded, setLoaded] = useState(false);
+  // Freeze the model just below the sticky header so its top (the "Wp" badge)
+  // stays visible instead of hiding behind the header on mobile.
+  const [headerH, setHeaderH] = useState(96);
   const cfg = derived?.config;
   const wp = derived?.wp ?? 0;
 
@@ -59,11 +62,27 @@ export default function Gallery({ derived, mobileFreeze = false }) {
     return () => clearTimeout(t);
   }, []);
 
+  // Track the sticky header height so the frozen model docks right beneath it.
+  useEffect(() => {
+    const el = document.getElementById('site-header');
+    if (!el) return undefined;
+    const measure = () => setHeaderH(el.offsetHeight);
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    window.addEventListener('resize', measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener('resize', measure);
+    };
+  }, []);
+
   return (
     <div
+      style={{ '--frozen-top': `${headerH + 8}px` }}
       className={`lg:sticky lg:top-24 lg:self-start ${
         mobileFreeze
-          ? 'max-lg:sticky max-lg:top-[84px] max-lg:z-20 max-lg:max-h-[44vh] max-lg:overflow-hidden max-lg:rounded-xl2 max-lg:shadow-lift'
+          ? 'max-lg:sticky max-lg:top-[var(--frozen-top)] max-lg:z-20 max-lg:max-h-[52vh] max-lg:overflow-hidden max-lg:rounded-xl2 max-lg:shadow-lift'
           : ''
       }`}
     >
@@ -72,7 +91,7 @@ export default function Gallery({ derived, mobileFreeze = false }) {
           ref={frameRef}
           src={MODEL_URL}
           title="Solvio balcony panel — interactive 3D model"
-          className="block aspect-[10/9] w-full border-0"
+          className="block aspect-[10/9] w-full border-0 max-lg:aspect-[29/30]"
           onLoad={send}
           allow="fullscreen; xr-spatial-tracking; accelerometer; gyroscope"
           allowFullScreen

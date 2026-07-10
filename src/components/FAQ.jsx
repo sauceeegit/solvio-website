@@ -58,7 +58,12 @@ export default function FAQ({
             {heading}
           </h2>
           <p className="mt-3 text-slatey-500">{subtitle}</p>
-          <a href="#top" className="btn-ghost mt-5">
+          <a
+            href="https://wa.me/66843488428?text=Hi%20Solvio%20%E2%80%94%20I%27d%20like%20to%20talk%20to%20an%20advisor."
+            target="_blank"
+            rel="noreferrer"
+            className="btn-ghost mt-5"
+          >
             Talk to an advisor
           </a>
         </Reveal>

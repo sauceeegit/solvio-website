@@ -120,6 +120,9 @@ export default function RooftopSystemPage() {
                       </li>
                     ))}
                   </ul>
+                  <p className="mt-5 max-w-md rounded-xl2 bg-lime px-5 py-4 font-display text-base font-bold leading-snug text-white">
+                    Engineered for 99% of rooftops. Ultra-lightweight solar, exclusively from Solvio.
+                  </p>
                 </div>
               </div>
             </Reveal>

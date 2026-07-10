@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import { BgreenieProvider } from './context/BgreenieModal';
 import ScrollToTop from './components/ScrollToTop';
 import LandingPage from './pages/LandingPage';
 import ProductPage from './pages/ProductPage';
@@ -10,7 +11,7 @@ import FaqsPage from './pages/FaqsPage';
 
 export default function App() {
   return (
-    <>
+    <BgreenieProvider>
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<LandingPage />} />
@@ -21,6 +22,6 @@ export default function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/faqs" element={<FaqsPage />} />
       </Routes>
-    </>
+    </BgreenieProvider>
   );
 }

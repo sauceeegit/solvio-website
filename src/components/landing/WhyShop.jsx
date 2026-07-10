@@ -4,6 +4,7 @@ import { icons } from '../../lib/icons';
 import { whyShop } from '../../data/landing';
 import { asset } from '../../lib/format';
 import Reveal from '../Reveal';
+import { useBgreenie } from '../../context/BgreenieModal';
 
 function SolvioCoin({ size = 82 }) {
   // Layout: face shifted left, bevel circle shifted right → exposes right-side rim
@@ -256,6 +257,7 @@ function BenefitCard({ item, big }) {
 }
 
 export default function WhyShop() {
+  const openBgreenie = useBgreenie();
   return (
     <section style={{ background: '#FFFDF9' }} className="py-16">
       <div className="container-x">
@@ -320,16 +322,15 @@ export default function WhyShop() {
                         </p>
                       </div>
 
-                      {/* CTA */}
-                      <a
-                        href="https://wa.me/66843488428?text=Hi%20Solvio%20%E2%80%94%20tell%20me%20about%20the%20rewards%20program"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 font-display text-[13px] font-bold transition-all duration-300 group-hover:gap-2.5"
+                      {/* CTA — opens the shared Bgreenie membership popup */}
+                      <button
+                        type="button"
+                        onClick={openBgreenie}
+                        className="inline-flex items-center gap-1.5 self-start font-display text-[13px] font-bold transition-all duration-300 group-hover:gap-2.5"
                         style={{ color: '#FC4302' }}
                       >
                         Learn more <ArrowRight size={13} />
-                      </a>
+                      </button>
                     </div>
 
                     {/* RIGHT: coin image — absolutely positioned, slightly overflowing right edge */}
