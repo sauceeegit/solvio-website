@@ -19,7 +19,7 @@ export default function LandingFAQ() {
         <div className="mt-8 grid gap-6 lg:grid-cols-[280px_1fr] lg:gap-10">
           {/* side tab — fills the column height (content centred) so it doesn't leave a gap */}
           <Reveal>
-            <div className="flex h-full flex-col justify-center rounded-xl2 bg-ink p-6 text-white sm:p-8">
+            <div className="flex h-full flex-col justify-center rounded-xl2 bg-ink p-6 text-white sm:p-8 lg:min-h-0">
               <span className="grid h-11 w-11 place-items-center rounded-xl bg-lime text-white">
                 <HelpCircle size={22} />
               </span>
@@ -49,24 +49,30 @@ export default function LandingFAQ() {
 
           {/* accordion */}
           <Reveal delay={0.1}>
-            <div className="space-y-2.5 rounded-xl2 border border-ink/[0.07] bg-surface p-3 shadow-soft">
+            <div className="rounded-xl2 border border-ink/[0.07] bg-surface px-6 shadow-soft">
               {landingFaqs.map((f, i) => (
-                <div key={f.q}>
+                <div
+                  key={f.q}
+                  className={`border-b border-ink/[0.08] last:border-0 transition-colors duration-200 ${
+                    open === i ? 'bg-white/70 -mx-6 px-6 rounded-xl' : ''
+                  }`}
+                >
                   <button
                     onClick={() => setOpen(open === i ? -1 : i)}
-                    className="flex w-full items-center justify-between gap-4 rounded-xl px-5 py-4 text-left transition-colors"
-                    style={{ backgroundColor: open === i ? '#FF6700' : '#FFA05C' }}
+                    className="flex w-full items-center justify-between gap-4 py-5 text-left"
                   >
                     <span
-                      className={`font-display font-semibold ${
-                        open === i ? 'text-lg text-ink' : 'text-base text-ink'
+                      className={`font-display font-semibold transition-colors ${
+                        open === i ? 'text-lg text-lime-dark' : 'text-base text-ink'
                       }`}
                     >
                       {f.q}
                     </span>
                     <span
-                      className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border border-ink/15 bg-white/70 text-ink transition ${
-                        open === i ? 'rotate-45' : ''
+                      className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border transition ${
+                        open === i
+                          ? 'rotate-45 border-lime bg-lime text-white'
+                          : 'border-ink/15 text-ink'
                       }`}
                     >
                       <Plus size={16} />
@@ -81,7 +87,7 @@ export default function LandingFAQ() {
                         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                         className="overflow-hidden"
                       >
-                        <p className="px-5 pb-4 pt-3 text-[15px] leading-relaxed text-slatey-500 max-sm:text-sm">
+                        <p className="pb-5 pr-10 text-[15px] leading-relaxed text-slatey-500 max-sm:pr-0 max-sm:text-sm">
                           {f.a}
                         </p>
                       </motion.div>
