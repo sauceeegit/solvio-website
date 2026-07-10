@@ -265,7 +265,7 @@ export default function ContactSection() {
                     <label className="mb-1.5 block font-display text-sm font-semibold text-ink">
                       Interested in <span className="font-normal text-slatey-400">· choose any</span>
                     </label>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="grid grid-cols-3 gap-2">
                       {INTERESTS.map((t) => {
                         const active = interests.includes(t);
                         return (
@@ -273,11 +273,11 @@ export default function ContactSection() {
                             key={t}
                             type="button"
                             onClick={() => toggleInterest(t)}
-                            className={`inline-flex items-center gap-1.5 rounded-full border px-4 py-2 font-display text-sm font-semibold transition ${
+                            className={`flex items-center justify-center gap-1.5 rounded-full border px-2 py-2 text-center font-display text-sm font-semibold transition ${
                               active ? 'border-lime bg-lime text-white' : 'border-ink/12 text-ink/70 hover:border-ink/30'
                             }`}
                           >
-                            {active && <Check size={14} strokeWidth={3} />}
+                            {active && <Check size={14} strokeWidth={3} className="shrink-0" />}
                             {t} Solar
                           </button>
                         );
