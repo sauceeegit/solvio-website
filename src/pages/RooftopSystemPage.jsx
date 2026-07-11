@@ -99,7 +99,7 @@ export default function RooftopSystemPage() {
 
                 {/* text — nudged up just slightly relative to the image */}
                 <div className="lg:-mt-3 lg:self-start">
-                  <h2 className="font-display text-3xl font-extrabold leading-[1.1] tracking-tight text-ink sm:text-4xl lg:text-5xl">
+                  <h2 className="font-display text-2xl font-medium leading-[1.1] tracking-tight text-ink sm:text-3xl lg:text-4xl">
                     Big Roof? Build Big.
                   </h2>
                   <p className="mt-5 max-w-md text-lg leading-relaxed text-slatey-500">
@@ -140,7 +140,7 @@ export default function RooftopSystemPage() {
 
                 {/* text (left on desktop) */}
                 <div className="lg:order-1">
-                  <h2 className="font-display text-3xl font-extrabold leading-[1.1] tracking-tight text-ink sm:text-4xl lg:text-5xl">
+                  <h2 className="font-display text-2xl font-medium leading-[1.1] tracking-tight text-ink sm:text-3xl lg:text-4xl">
                     Designed and installed by people who&apos;ve done it before
                   </h2>
                   {/* trimmed copy + segment checklist (same on mobile + desktop) */}
