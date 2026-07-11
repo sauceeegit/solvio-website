@@ -66,7 +66,7 @@ export const bestsellers = [
     specs: [
       '2 solar modules of 450 W each, 900 Wp',
       'Determine the assembly location yourself',
-      'Flexibly expandable storage 2.4–9.6 kWh',
+      'Expandable Solvio Venus A storage, 2.12–6.36 kWh',
     ],
   },
   {
@@ -81,7 +81,7 @@ export const bestsellers = [
     specs: [
       '2 solar modules of 450 W each, 900 Wp',
       'Determine the assembly location yourself',
-      'Flexibly expandable storage 2.4–9.6 kWh',
+      'Expandable Solvio Venus A storage, 2.12–6.36 kWh',
     ],
   },
   {
@@ -95,7 +95,7 @@ export const bestsellers = [
     specs: [
       '4 solar modules of 450 W each, 1800 Wp',
       'Determine the assembly location yourself',
-      'Flexibly expandable storage 3.84–23.04 kWh',
+      'Expandable Solvio Venus A storage, 2.12–6.36 kWh',
     ],
   },
 ];

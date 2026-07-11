@@ -247,7 +247,7 @@ export const comparison = {
     { label: 'Yearly yield*', values: ['~860 kWh', '~1720 kWh', '~2580 kWh'] },
     { label: 'Best for', values: ['Singles & couples', 'Small families', 'High usage'] },
     { label: 'Plug & play', values: [true, true, true] },
-    { label: 'From', values: ['฿12,990', '฿27,990', '฿39,990'] },
+    { label: 'From', values: ['฿30,750', '฿49,550', '฿68,350'] },
   ],
 };
 
