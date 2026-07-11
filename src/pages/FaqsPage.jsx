@@ -68,7 +68,7 @@ export default function FaqsPage() {
     <div id="top" className="min-h-screen bg-surface">
       <Header />
       <main>
-        <section className="bg-white py-16 sm:py-20">
+        <section className="bg-surface py-16 sm:py-20">
           <div className="container-x">
             <Reveal>
               <div className="mx-auto max-w-2xl text-center">
