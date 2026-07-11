@@ -88,7 +88,7 @@ function OrderSummary({ items, editable, onQtyChange }) {
   return (
     <div className="overflow-hidden rounded-2xl border border-ink/[0.07] bg-white shadow-soft">
       {/* Header */}
-      <div className="border-b border-ink/[0.06] bg-white px-5 py-4">
+      <div className="border-b border-ink/[0.06] bg-[#EEF5FC] px-5 py-4">
         <p className="font-display text-sm font-bold uppercase tracking-wide text-ink/60">Order summary</p>
       </div>
 
@@ -169,7 +169,7 @@ function OrderSummary({ items, editable, onQtyChange }) {
       </div>
 
       {/* Trust row */}
-      <div className="border-t border-ink/[0.06] bg-white px-5 py-4">
+      <div className="border-t border-ink/[0.06] bg-[#EEF5FC] px-5 py-4">
         <div className="grid grid-cols-3 gap-2 text-center">
           {[
             { icon: Shield, label: '2-yr warranty' },
