@@ -88,7 +88,7 @@ function OrderSummary({ items, editable, onQtyChange }) {
   return (
     <div className="overflow-hidden rounded-2xl border border-ink/[0.07] bg-white shadow-soft">
       {/* Header */}
-      <div className="border-b border-ink/[0.06] bg-[#EEF5FC] px-5 py-4">
+      <div className="border-b border-ink/[0.06] bg-[#f2f0eb] px-5 py-4">
         <p className="font-display text-sm font-bold uppercase tracking-wide text-ink/60">Order summary</p>
       </div>
 
@@ -169,7 +169,7 @@ function OrderSummary({ items, editable, onQtyChange }) {
       </div>
 
       {/* Trust row */}
-      <div className="border-t border-ink/[0.06] bg-[#EEF5FC] px-5 py-4">
+      <div className="border-t border-ink/[0.06] bg-[#f2f0eb] px-5 py-4">
         <div className="grid grid-cols-3 gap-2 text-center">
           {[
             { icon: Shield, label: '2-yr warranty' },
@@ -261,7 +261,7 @@ function StepCart({ items, onQtyChange, onNext }) {
       </ul>
 
       {/* Upsell nudge */}
-      <div className="rounded-2xl border border-ink/[0.07] bg-[#EEF5FC] px-5 py-4 shadow-soft">
+      <div className="rounded-2xl border border-ink/[0.07] bg-[#f2f0eb] px-5 py-4 shadow-soft">
         <div className="flex items-center gap-3">
           <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-white text-lime-dark shadow-sm">
             <Sun size={16} />
