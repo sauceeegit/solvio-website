@@ -177,7 +177,7 @@ function OrderSummary({ items, editable, onQtyChange }) {
             { icon: Lock,   label: 'Secure order' },
           ].map(({ icon: Icon, label }) => (
             <div key={label} className="flex flex-col items-center gap-1.5">
-              <span className="grid h-8 w-8 place-items-center rounded-full bg-lime/10 text-lime-dark">
+              <span className="grid h-8 w-8 place-items-center rounded-full bg-white text-lime-dark shadow-sm">
                 <Icon size={14} />
               </span>
               <span className="text-[10px] font-semibold leading-tight text-ink/50">{label}</span>
@@ -203,7 +203,7 @@ function StepCart({ items, onQtyChange, onNext }) {
         ].map(({ id, icon: Icon, label }) => (
           <button key={id} type="button" onClick={() => setTab(id)}
             className={`flex items-center justify-center gap-2 rounded-xl py-3 font-display text-sm font-bold transition-all
-              ${tab === id ? 'bg-ink text-white shadow-sm' : 'text-ink/40 hover:text-ink/70'}`}>
+              ${tab === id ? 'bg-[#4a251a] text-white shadow-sm' : 'text-ink/40 hover:text-ink/70'}`}>
             <Icon size={15} />{label}
           </button>
         ))}
