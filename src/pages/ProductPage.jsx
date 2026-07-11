@@ -7,6 +7,7 @@ import PaymentRow from '../components/PaymentRow';
 import Highlights from '../components/Highlights';
 import PlugPlayVideo from '../components/PlugPlayVideo';
 import ModuleBanner from '../components/ModuleBanner';
+import PhotoBanner from '../components/PhotoBanner';
 import IncludedItems from '../components/IncludedItems';
 import CalculatorSection from '../components/CalculatorSection';
 import Testimonials from '../components/Testimonials';
@@ -40,6 +41,7 @@ export default function ProductPage() {
         <PaymentRow />
         <Highlights />
         <PlugPlayVideo />
+        <PhotoBanner />
         <ModuleBanner />
         <IncludedItems />
         <CalculatorSection derived={cfg} />
