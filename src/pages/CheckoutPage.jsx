@@ -203,7 +203,7 @@ function StepCart({ items, onQtyChange, onNext }) {
         ].map(({ id, icon: Icon, label }) => (
           <button key={id} type="button" onClick={() => setTab(id)}
             className={`flex items-center justify-center gap-2 rounded-xl py-3 font-display text-sm font-bold transition-all
-              ${tab === id ? 'bg-[#4a251a] text-white shadow-sm' : 'text-ink/40 hover:text-ink/70'}`}>
+              ${tab === id ? 'bg-[#5e352b] text-white shadow-sm' : 'text-ink/40 hover:text-ink/70'}`}>
             <Icon size={15} />{label}
           </button>
         ))}
