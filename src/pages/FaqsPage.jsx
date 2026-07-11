@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Header from '../components/landing/Header';
 import Footer from '../components/Footer';
 import ContactSection from '../components/ContactSection';
+import CalculatorSection from '../components/CalculatorSection';
 import Reveal from '../components/Reveal';
 import { landingFaqs, rooftopFaqs, panelFaqs } from '../data/landing';
 import { faqs as balconyFaqs } from '../data/product';
@@ -128,6 +129,7 @@ export default function FaqsPage() {
           </div>
         </section>
 
+        <CalculatorSection />
         <ContactSection />
       </main>
       <Footer />
