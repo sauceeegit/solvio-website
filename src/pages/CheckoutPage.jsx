@@ -19,7 +19,7 @@ const DEMO_ITEMS = [
     variant: '4 × Dark Feather · Venus A 2.12 kWh',
     qty: 1,
     price: 52160,
-    img: asset('/module-dark.webp'),
+    img: asset('/4xPanels.png'),
     badge: 'Best seller',
   },
   {
@@ -88,16 +88,16 @@ function OrderSummary({ items, editable, onQtyChange }) {
   return (
     <div className="overflow-hidden rounded-2xl border border-ink/[0.07] bg-white shadow-soft">
       {/* Header */}
-      <div className="border-b border-ink/[0.06] bg-surface px-5 py-4">
-        <p className="font-display text-sm font-bold uppercase tracking-wide text-ink/50">Order summary</p>
+      <div className="border-b border-ink/[0.06] bg-white px-5 py-4">
+        <p className="font-display text-sm font-bold uppercase tracking-wide text-ink/60">Order summary</p>
       </div>
 
       {/* Items */}
       <ul className="divide-y divide-ink/[0.05] px-5">
         {items.map((item) => (
           <li key={item.id} className="flex gap-3 py-4">
-            <div className="relative h-[60px] w-[60px] shrink-0 overflow-hidden rounded-xl border border-ink/[0.07] bg-surface">
-              <img src={item.img} alt={item.name} className="h-full w-full object-cover" />
+            <div className="relative h-[60px] w-[60px] shrink-0 overflow-hidden rounded-xl border border-ink/[0.07] bg-[#f5f5f3]">
+              <img src={item.img} alt={item.name} className="h-full w-full object-contain p-1" />
               <span className="absolute -right-1.5 -top-1.5 grid h-5 w-5 place-items-center rounded-full bg-ink font-display text-[10px] font-bold text-white">
                 {item.qty}
               </span>
@@ -169,7 +169,7 @@ function OrderSummary({ items, editable, onQtyChange }) {
       </div>
 
       {/* Trust row */}
-      <div className="border-t border-ink/[0.06] bg-surface px-5 py-4">
+      <div className="border-t border-ink/[0.06] bg-white px-5 py-4">
         <div className="grid grid-cols-3 gap-2 text-center">
           {[
             { icon: Shield, label: '2-yr warranty' },
@@ -180,7 +180,7 @@ function OrderSummary({ items, editable, onQtyChange }) {
               <span className="grid h-8 w-8 place-items-center rounded-full bg-white text-lime-dark shadow-sm">
                 <Icon size={14} />
               </span>
-              <span className="text-[10px] font-semibold leading-tight text-ink/50">{label}</span>
+              <span className="text-[10px] font-bold leading-tight text-ink/60">{label}</span>
             </div>
           ))}
         </div>
@@ -211,8 +211,8 @@ function StepCart({ items, onQtyChange, onNext }) {
 
       {/* Items */}
       <div className="overflow-hidden rounded-2xl border border-ink/[0.07] bg-white shadow-soft">
-        <div className="border-b border-ink/[0.06] bg-surface px-5 py-3.5">
-          <p className="font-display text-sm font-bold uppercase tracking-wide text-ink/50">
+        <div className="border-b border-ink/[0.06] bg-white px-5 py-3.5">
+          <p className="font-display text-sm font-bold uppercase tracking-wide text-ink/70">
             {items.length} item{items.length !== 1 ? 's' : ''} in your cart
           </p>
         </div>
@@ -221,8 +221,8 @@ function StepCart({ items, onQtyChange, onNext }) {
           {items.map((item) => (
             <li key={item.id} className="flex gap-4 px-5 py-5">
               {/* Image */}
-              <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-xl border border-ink/[0.07] bg-surface">
-                <img src={item.img} alt={item.name} className="h-full w-full object-cover" />
+              <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-xl border border-ink/[0.07] bg-[#f5f5f3]">
+                <img src={item.img} alt={item.name} className="h-full w-full object-contain p-1.5" />
                 {item.badge && (
                   <span className="absolute bottom-0 left-0 right-0 bg-lime py-0.5 text-center font-display text-[9px] font-bold uppercase tracking-wide text-white">
                     {item.badge}
@@ -234,7 +234,7 @@ function StepCart({ items, onQtyChange, onNext }) {
               <div className="flex flex-1 flex-col justify-between py-0.5">
                 <div>
                   <p className="font-display text-base font-bold text-ink">{item.name}</p>
-                  {item.variant && <p className="mt-0.5 text-xs text-slatey-400">{item.variant}</p>}
+                  {item.variant && <p className="mt-0.5 text-xs font-medium text-ink/55">{item.variant}</p>}
                 </div>
                 {/* Qty stepper */}
                 <div className="flex items-center justify-between">
