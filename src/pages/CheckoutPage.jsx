@@ -209,46 +209,51 @@ function StepCart({ items, onQtyChange, onNext }) {
         ))}
       </div>
 
-      {/* Item cards */}
-      <ul className="space-y-3">
+      {/* Item cards — styled like the kit component cards */}
+      <ul className="grid gap-4 sm:grid-cols-2">
         {items.map((item) => (
-          <li key={item.id} className="overflow-hidden rounded-2xl border border-ink/[0.07] bg-white shadow-soft">
-            <div className="flex gap-0">
-              {/* Big image panel */}
-              <div className="relative w-40 shrink-0 bg-[#f2f0eb]">
-                <img src={item.img} alt={item.name} className="h-full w-full object-contain p-4" />
-                {item.badge && (
-                  <span className="absolute left-3 top-3 rounded-full bg-lime px-2.5 py-1 font-display text-[10px] font-bold uppercase tracking-wide text-white shadow-sm">
-                    {item.badge}
-                  </span>
+          <li key={item.id} className="flex flex-col overflow-hidden rounded-3xl border border-ink/[0.07] bg-white shadow-soft">
+            {/* Image area */}
+            <div className="relative bg-[#f2f0eb] px-6 pt-8 pb-4">
+              {/* Orange qty badge */}
+              <span className="absolute left-4 top-4 grid h-9 w-9 place-items-center rounded-full bg-lime font-display text-sm font-extrabold text-white shadow-sm">
+                {item.qty}×
+              </span>
+              {item.badge && (
+                <span className="absolute right-4 top-4 rounded-full bg-ink px-2.5 py-1 font-display text-[10px] font-bold uppercase tracking-wide text-white">
+                  {item.badge}
+                </span>
+              )}
+              <img src={item.img} alt={item.name} className="mx-auto h-36 w-full object-contain" />
+            </div>
+
+            {/* Info + stepper */}
+            <div className="flex flex-1 flex-col justify-between p-5">
+              <div>
+                <p className="font-display text-base font-extrabold leading-snug text-ink">{item.name}</p>
+                {item.variant && (
+                  <div className="mt-1.5 space-y-0.5">
+                    {item.variant.split(' · ').map((line) => (
+                      <p key={line} className="text-sm text-ink/50">{line}</p>
+                    ))}
+                  </div>
                 )}
               </div>
 
-              {/* Info panel */}
-              <div className="flex flex-1 flex-col justify-between p-5">
-                <div>
-                  <p className="font-display text-base font-extrabold text-ink">{item.name}</p>
-                  {item.variant && (
-                    <p className="mt-1 text-sm font-medium leading-snug text-ink/55">{item.variant}</p>
-                  )}
+              <div className="mt-5 flex items-center justify-between">
+                {/* Stepper */}
+                <div className="flex items-center gap-1 rounded-2xl bg-[#f2f0eb] p-1">
+                  <button type="button" disabled={item.qty <= 1} onClick={() => onQtyChange(item.id, item.qty - 1)}
+                    className="grid h-8 w-8 place-items-center rounded-xl bg-white font-bold text-ink shadow-sm transition hover:bg-ink hover:text-white disabled:opacity-30">
+                    −
+                  </button>
+                  <span className="min-w-[2rem] text-center font-display text-sm font-bold text-ink">{item.qty}</span>
+                  <button type="button" onClick={() => onQtyChange(item.id, item.qty + 1)}
+                    className="grid h-8 w-8 place-items-center rounded-xl bg-white font-bold text-ink shadow-sm transition hover:bg-ink hover:text-white">
+                    +
+                  </button>
                 </div>
-                <div className="mt-4 flex items-center justify-between">
-                  {/* Qty stepper */}
-                  <div className="flex items-center overflow-hidden rounded-xl border border-ink/12 bg-surface">
-                    <button type="button" disabled={item.qty <= 1} onClick={() => onQtyChange(item.id, item.qty - 1)}
-                      className="px-3.5 py-2.5 font-bold text-ink/40 transition hover:bg-ink/5 hover:text-ink disabled:opacity-30">
-                      −
-                    </button>
-                    <span className="min-w-[2.5rem] border-x border-ink/10 py-2.5 text-center font-display text-sm font-bold text-ink">
-                      {item.qty}
-                    </span>
-                    <button type="button" onClick={() => onQtyChange(item.id, item.qty + 1)}
-                      className="px-3.5 py-2.5 font-bold text-ink/40 transition hover:bg-ink/5 hover:text-ink">
-                      +
-                    </button>
-                  </div>
-                  <span className="font-display text-xl font-extrabold text-ink">{baht(item.price * item.qty)}</span>
-                </div>
+                <span className="font-display text-xl font-extrabold text-ink">{baht(item.price * item.qty)}</span>
               </div>
             </div>
           </li>
