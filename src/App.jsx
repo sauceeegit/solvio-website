@@ -8,6 +8,7 @@ import SolarPanelPage from './pages/SolarPanelPage';
 import RooftopSystemPage from './pages/RooftopSystemPage';
 import AboutPage from './pages/AboutPage';
 import FaqsPage from './pages/FaqsPage';
+import CheckoutPage from './pages/CheckoutPage';
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/rooftop-system" element={<RooftopSystemPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/faqs" element={<FaqsPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
       </Routes>
     </BgreenieProvider>
   );
