@@ -52,9 +52,9 @@ export default function RooftopSystemPage() {
             just below the header) until the looping video has scrolled past. */}
         <div className="relative">
           {/* Tagline bar — freezes below the header while the video scrolls by. */}
-          <section className="sticky z-30 bg-white" style={{ top: headerH }}>
-            <div className="container-x py-6 text-center sm:py-8">
-              <h1 className="font-display text-2xl font-extrabold tracking-tight text-ink sm:text-4xl">
+          <section className="sticky z-30" style={{ top: headerH, backgroundColor: '#EEF5FC' }}>
+            <div className="container-x py-4 text-center sm:py-5">
+              <h1 className="font-display text-lg font-extrabold tracking-tight text-ink sm:text-2xl">
                 Thailand&apos;s complete residential and commercial solar solution.
               </h1>
             </div>
