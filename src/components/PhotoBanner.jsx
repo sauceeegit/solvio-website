@@ -8,31 +8,31 @@ const SLIDES = [
     src: asset('/savings-bg.jpg'),
     alt: 'Couple on a balcony with Solvio solar panels on the railing at sunset',
     caption: 'Solar on every balcony',
+    sub: 'Save ฿65k over 10 years — per module',
   },
   {
     src: asset('/plugplay-photo.jpg'),
     alt: 'Easy plug & play installation — connecting a panel by hand',
     caption: 'Plug & Play in minutes',
-  },
-  {
-    src: asset('/w1.webp'),
-    alt: 'Solvio balcony solar panel lifestyle',
-    caption: 'Clean energy for renters',
-  },
-  {
-    src: asset('/w2.webp'),
-    alt: 'Solvio balcony solar panel outdoor use',
-    caption: 'Works anywhere with a plug',
-  },
-  {
-    src: asset('/w3.webp'),
-    alt: 'Solvio balcony solar panel in use',
-    caption: "Thailand's most popular balcony kit",
+    sub: 'No electrician needed',
   },
   {
     src: asset('/balcony-power-plants.jpg'),
     alt: 'Balcony with Solvio solar panels overlooking the sea',
     caption: 'Power your home from your balcony',
+    sub: 'Works in any apartment or condo',
+  },
+  {
+    src: asset('/dark-feather-1800.jpg'),
+    alt: 'Solvio Dark Feather 450 Wp solar panel',
+    caption: 'Dark Feather 450 Wp',
+    sub: 'Full black · ultra-lightweight · Glas-Glas',
+  },
+  {
+    src: asset('/module-white.jpg'),
+    alt: 'Solvio White Feather solar panel',
+    caption: 'White Feather 450 Wp',
+    sub: 'Clean white finish for bright balconies',
   },
 ];
 
@@ -67,7 +67,7 @@ export default function PhotoBanner() {
   };
 
   return (
-    <section className="overflow-hidden bg-ink py-0">
+    <section className="overflow-hidden bg-[#f2f0eb] py-0">
       <div
         className="relative"
         onMouseEnter={() => setPaused(true)}
@@ -106,18 +106,24 @@ export default function PhotoBanner() {
           </AnimatePresence>
 
           {/* Caption */}
-          <div className="absolute bottom-0 left-0 right-0 z-10 px-6 pb-6 sm:px-10 sm:pb-8">
+          <div className="absolute bottom-0 left-0 right-0 z-10 px-6 pb-7 sm:px-10 sm:pb-10">
             <AnimatePresence mode="wait">
-              <motion.p
+              <motion.div
                 key={current}
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -6 }}
-                transition={{ duration: 0.3, delay: 0.15 }}
-                className="font-display text-xl font-extrabold text-white drop-shadow sm:text-3xl"
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.35, delay: 0.15 }}
               >
-                {SLIDES[current].caption}
-              </motion.p>
+                <p className="font-display text-2xl font-extrabold text-white drop-shadow-md sm:text-4xl">
+                  {SLIDES[current].caption}
+                </p>
+                {SLIDES[current].sub && (
+                  <p className="mt-1.5 font-display text-sm font-semibold text-white/70 sm:text-base">
+                    {SLIDES[current].sub}
+                  </p>
+                )}
+              </motion.div>
             </AnimatePresence>
           </div>
 
@@ -140,25 +146,25 @@ export default function PhotoBanner() {
           </button>
         </div>
 
-        {/* Dot indicators + thumbnail strip */}
-        <div className="flex items-center justify-center gap-2 bg-ink px-4 py-4">
+        {/* Thumbnail strip */}
+        <div className="flex items-center justify-center gap-3 bg-[#f2f0eb] px-4 py-4">
           {SLIDES.map((slide, i) => (
             <button
               key={slide.src}
               type="button"
               onClick={() => go(i, i > current ? 1 : -1)}
               aria-label={`Go to slide ${i + 1}`}
-              className="group relative overflow-hidden rounded-lg transition-all duration-300"
-              style={{ width: i === current ? 72 : 44, height: 44 }}
+              className="relative shrink-0 overflow-hidden rounded-xl transition-all duration-300"
+              style={{ width: i === current ? 88 : 56, height: 56 }}
             >
               <img
                 src={slide.src}
                 alt=""
-                className="h-full w-full object-cover transition-opacity"
-                style={{ opacity: i === current ? 1 : 0.45 }}
+                className="h-full w-full object-cover transition-all duration-300"
+                style={{ opacity: i === current ? 1 : 0.5, filter: i === current ? 'none' : 'saturate(0.6)' }}
               />
               {i === current && (
-                <span className="absolute inset-0 rounded-lg ring-2 ring-lime ring-offset-1 ring-offset-ink" />
+                <span className="absolute inset-0 rounded-xl ring-2 ring-lime ring-offset-1 ring-offset-[#f2f0eb]" />
               )}
             </button>
           ))}
