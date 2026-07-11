@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { Check, ShieldCheck, Truck, RotateCcw, Bookmark } from 'lucide-react';
+import { Check, ShieldCheck, RotateCcw, Bookmark } from 'lucide-react';
 import { baht } from '../lib/format';
 import { product } from '../data/product';
 import SaveConfigModal from './SaveConfigModal';
 
 const guarantees = [
-  { icon: ShieldCheck, text: '2-year product warranty' },
-  { icon: Truck, text: 'Free shipping on all orders' },
+  { icon: ShieldCheck, text: '10-year product warranty' },
   { icon: RotateCcw, text: '30-day hassle-free returns' },
 ];
 

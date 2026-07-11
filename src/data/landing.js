@@ -59,7 +59,7 @@ export const bestsellers = [
     id: 'white-900',
     name: 'White Feather 900W',
     subtitle: 'Duo set with inverter and smart meter',
-    price: 12990,
+    price: 35900,
     img: asset('/white-feather-900.jpg'),
     fit: 'contain',
     bg: '#F84F01',
@@ -73,7 +73,7 @@ export const bestsellers = [
     id: 'dark-900',
     name: 'Dark Feather 900W',
     subtitle: 'Duo set with inverter and smart meter',
-    price: 14990,
+    price: 37990,
     featured: true,
     img: asset('/dark-feather-900.jpg'),
     fit: 'contain',
@@ -88,7 +88,7 @@ export const bestsellers = [
     id: 'dark-1800',
     name: 'Dark Feather 1800W',
     subtitle: 'Quattro set with battery, inverter and smart meter',
-    price: 27990,
+    price: 93900,
     img: asset('/dark-feather-1800.jpg'),
     fit: 'contain',
     bg: '#FA4700',
@@ -250,18 +250,18 @@ export const portableHeaderSlides = [
 
 // Capacities/prices are placeholders — adjust to the real specs.
 export const portableBatteries = [
-  { id: 'd100', name: 'Solvio D100', capacity: '100 Wh', price: 3990, img: asset('/portable-100.jpg'), sideImg: asset('/portable-100-side.jpg') },
-  { id: 'd200', name: 'Solvio D200', capacity: '200 Wh', price: 5990, img: asset('/portable-200.jpg'), sideImg: asset('/portable-200-side.jpg') },
-  { id: 'd400', name: 'Solvio D400', capacity: '400 Wh', price: 9990, img: asset('/portable-400.jpg'), sideImg: asset('/portable-400-side.jpg') },
-  { id: 'd600', name: 'Solvio D600', capacity: '600 Wh', price: 14990, img: asset('/portable-600.jpg'), sideImg: asset('/portable-600-side.jpg') },
-  { id: 'd1200', name: 'Solvio D1200', capacity: '1200 Wh', price: 26990, img: asset('/portable-1200.jpg'), sideImg: asset('/portable-1200-side.jpg') },
-  { id: 'd2400', name: 'Solvio D2400', capacity: '2400 Wh', price: 44990, img: asset('/portable-2400.jpg'), sideImg: asset('/portable-2400-side.jpg') },
+  { id: 'd100', name: 'Solvio D100', capacity: '100 Wh', price: 6990, img: asset('/portable-100.jpg'), sideImg: asset('/portable-100-side.jpg') },
+  { id: 'd150', name: 'Solvio D150', capacity: '150 Wh', price: 8300, img: asset('/portable-200.jpg'), sideImg: asset('/portable-200-side.jpg') },
+  { id: 'd300', name: 'Solvio D300', capacity: '300 Wh', price: 12200, img: asset('/portable-400.jpg'), sideImg: asset('/portable-400-side.jpg') },
+  { id: 'd600', name: 'Solvio D600', capacity: '600 Wh', price: 20000, img: asset('/portable-600.jpg'), sideImg: asset('/portable-600-side.jpg') },
+  { id: 'd1200', name: 'Solvio D1200', capacity: '1200 Wh', price: 36000, img: asset('/portable-1200.jpg'), sideImg: asset('/portable-1200-side.jpg') },
+  { id: 'd2400', name: 'Solvio D2400', capacity: '2400 Wh', price: 64900, img: asset('/portable-2400.jpg'), sideImg: asset('/portable-2400-side.jpg') },
 ];
 
 // Portable foldable solar panels. Prices in Thai Baht (฿).
 export const portablePanels = [
-  { id: 'p50', name: '50W', watt: '50 W', price: 1000, img: asset('/w1.webp'), imgClass: 'scale-[0.6375] group-hover:scale-[0.67]' },
-  { id: 'p100', name: '100W', watt: '100 W', price: 1800, img: asset('/w1.webp'), imgClass: 'scale-75 group-hover:scale-[0.79]' },
-  { id: 'p200', name: '200W', watt: '200 W', price: 3500, img: asset('/w2.webp') },
-  { id: 'p400', name: '400W', watt: '400 W', price: 6000, img: asset('/w3.webp') },
+  { id: 'p60', name: '60W', watt: '60 W', price: 5000, img: asset('/w1.webp'), imgClass: 'scale-[0.6375] group-hover:scale-[0.67]' },
+  { id: 'p120', name: '120W', watt: '120 W', price: 7500, img: asset('/w1.webp'), imgClass: 'scale-75 group-hover:scale-[0.79]' },
+  { id: 'p200', name: '200W', watt: '200 W', price: 14000, img: asset('/w2.webp') },
+  { id: 'p400', name: '400W', watt: '400 W', price: 30000, img: asset('/w3.webp') },
 ];

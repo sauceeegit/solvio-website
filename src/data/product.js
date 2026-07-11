@@ -50,14 +50,13 @@ export const locations = [
   { id: 'facade', label: 'Facade', sub: 'Wall bracket set', icon: 'PanelTop' },
 ];
 
-// Panels are priced per unit in USD and converted to THB.
-export const USD_THB = 36.5; // USD → THB rate (adjust to your current rate)
+// Panels are priced per unit, directly in Thai Baht (`thb`).
 export const panelOptions = [
   {
     id: 'white',
     label: 'White Feather',
     sub: 'Silver-frame',
-    usd: 200,
+    thb: 9400,
     img: asset('/module-white.jpg'),
     wp: 450,
     dims: '1760 × 1130 × 4.75 mm',
@@ -67,7 +66,7 @@ export const panelOptions = [
     id: 'dark',
     label: 'Dark Feather',
     sub: 'All-black',
-    usd: 220,
+    thb: 10500,
     img: asset('/module-dark.webp'),
     wp: 450,
     dims: '1760 × 1130 × 4.75 mm',
@@ -76,8 +75,13 @@ export const panelOptions = [
 ];
 export const panelThb = (id) => {
   const p = panelOptions.find((o) => o.id === id) ?? panelOptions[0];
-  return Math.round(p.usd * USD_THB);
+  return p.thb;
 };
+
+// The system's micro-inverter (the "No storage" option). Added to every total;
+// the Venus batteries carry their own inverter, so their price fields below are
+// the ADDITIONAL cost over this inverter (main-unit price − INVERTER_THB).
+export const INVERTER_THB = 11950;
 
 // Storage lineup mirrors the reference configurator; euro prices ported to THB.
 export const EUR_THB = 39; // EUR → THB rate (adjust to your current rate)
@@ -102,7 +106,8 @@ export const storageOptions = [
     specs: ['4 MPPT inputs up to 2.4 kW', 'Integrated 1500 W inverter', 'Anti Feed-in Control'],
     wh: 2120,
     expandable: true,
-    price: 19000,
+    // Main unit ฿69,000 − ฿11,950 inverter = additional cost.
+    price: 57050,
   },
   {
     id: 'venus4',
@@ -113,7 +118,8 @@ export const storageOptions = [
     specs: ['4 MPPT inputs up to 2.4 kW', 'Integrated 1500 W inverter', 'Anti Feed-in Control'],
     wh: 4240,
     expandable: true,
-    price: 31000,
+    // Main unit ฿120,000 − ฿11,950 inverter = additional cost.
+    price: 108050,
   },
   {
     id: 'venus6',
@@ -124,7 +130,8 @@ export const storageOptions = [
     specs: ['4 MPPT inputs up to 2.4 kW', 'Integrated 1500 W inverter', 'Anti Feed-in Control'],
     wh: 6360,
     expandable: true,
-    price: 35000,
+    // Main unit ฿170,000 − ฿11,950 inverter = additional cost.
+    price: 158050,
   },
 ];
 
@@ -150,7 +157,8 @@ export function computeConfig(config) {
   const storage = storageOptions.find((s) => s.id === config.storage) ?? storageOptions[0];
   const cable = cableOptions.find((c) => c.id === config.cable) ?? cableOptions[0];
   const location = locations.find((l) => l.id === config.location) ?? locations[0];
-  const total = base + storage.price + cable.price;
+  // Every system includes the micro-inverter; storage.price is the add-on over it.
+  const total = base + INVERTER_THB + storage.price + cable.price;
   return {
     base,
     modules,
