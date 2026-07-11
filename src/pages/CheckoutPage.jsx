@@ -106,7 +106,7 @@ function OrderSummary({ items, editable, onQtyChange }) {
               <p className="font-display text-sm font-semibold leading-snug text-ink">{item.name}</p>
               {item.variant && <p className="text-[11px] leading-snug text-slatey-400">{item.variant}</p>}
               {editable && (
-                <div className="mt-1.5 flex items-center gap-1.5 rounded-lg border border-ink/10 bg-surface px-1.5 py-0.5 self-start">
+                <div className="mt-1.5 flex items-center gap-1.5 rounded-lg border border-ink/10 bg-[#f2f0eb] px-1.5 py-0.5 self-start">
                   <button type="button" disabled={item.qty <= 1} onClick={() => onQtyChange(item.id, item.qty - 1)}
                     className="px-1.5 py-0.5 font-bold text-ink/40 transition hover:text-ink disabled:opacity-30 text-sm">−</button>
                   <span className="min-w-[1.25rem] text-center font-display text-xs font-bold text-ink">{item.qty}</span>
@@ -132,7 +132,7 @@ function OrderSummary({ items, editable, onQtyChange }) {
               value={promoInput}
               onChange={(e) => setPromoInput(e.target.value.toUpperCase())}
               placeholder="Promo code"
-              className="min-w-0 flex-1 rounded-xl border border-ink/12 bg-surface px-3 py-2.5 font-body text-sm text-ink placeholder:text-slatey-400 focus:border-lime focus:outline-none focus:ring-1 focus:ring-lime/30"
+              className="min-w-0 flex-1 rounded-xl border border-ink/12 bg-[#f2f0eb] px-3 py-2.5 font-body text-sm text-ink placeholder:text-slatey-400 focus:border-lime focus:outline-none focus:ring-1 focus:ring-lime/30"
             />
             <button
               type="button"
@@ -309,7 +309,7 @@ function StepDetails({ onNext, onBack }) {
     <form onSubmit={(e) => { e.preventDefault(); onNext(); }} className="space-y-4">
       {/* Contact card */}
       <div className="overflow-hidden rounded-2xl border border-ink/[0.07] bg-white shadow-soft">
-        <div className="border-b border-ink/[0.06] bg-surface px-5 py-3.5 flex items-center gap-2">
+        <div className="border-b border-ink/[0.06] bg-[#f2f0eb] px-5 py-3.5 flex items-center gap-2">
           <Mail size={14} className="text-lime-dark" />
           <p className="font-display text-sm font-bold uppercase tracking-wide text-ink/50">Contact info</p>
         </div>
@@ -347,7 +347,7 @@ function StepDetails({ onNext, onBack }) {
 
       {/* Delivery card */}
       <div className="overflow-hidden rounded-2xl border border-ink/[0.07] bg-white shadow-soft">
-        <div className="border-b border-ink/[0.06] bg-surface px-5 py-3.5 flex items-center gap-2">
+        <div className="border-b border-ink/[0.06] bg-[#f2f0eb] px-5 py-3.5 flex items-center gap-2">
           <MapPin size={14} className="text-lime-dark" />
           <p className="font-display text-sm font-bold uppercase tracking-wide text-ink/50">Delivery address</p>
         </div>
@@ -398,13 +398,13 @@ function StepReview({ items, onBack, onPlace }) {
     <div className="space-y-4">
       {/* Items recap */}
       <div className="overflow-hidden rounded-2xl border border-ink/[0.07] bg-white shadow-soft">
-        <div className="border-b border-ink/[0.06] bg-surface px-5 py-3.5">
+        <div className="border-b border-ink/[0.06] bg-[#f2f0eb] px-5 py-3.5">
           <p className="font-display text-sm font-bold uppercase tracking-wide text-ink/50">Your items</p>
         </div>
         <ul className="divide-y divide-ink/[0.05]">
           {items.map((item) => (
             <li key={item.id} className="flex items-center gap-3 px-5 py-4">
-              <div className="h-12 w-12 shrink-0 overflow-hidden rounded-xl border border-ink/[0.07] bg-surface">
+              <div className="h-12 w-12 shrink-0 overflow-hidden rounded-xl border border-ink/[0.07] bg-[#f2f0eb]">
                 <img src={item.img} alt={item.name} className="h-full w-full object-cover" />
               </div>
               <div className="flex-1">
@@ -415,7 +415,7 @@ function StepReview({ items, onBack, onPlace }) {
             </li>
           ))}
         </ul>
-        <div className="border-t border-ink/[0.06] bg-surface px-5 py-3 flex justify-between font-display text-sm">
+        <div className="border-t border-ink/[0.06] bg-[#f2f0eb] px-5 py-3 flex justify-between font-display text-sm">
           <span className="text-ink/50">Subtotal</span>
           <span className="font-bold text-ink">{baht(subtotal)}</span>
         </div>
@@ -423,7 +423,7 @@ function StepReview({ items, onBack, onPlace }) {
 
       {/* Delivery */}
       <div className="overflow-hidden rounded-2xl border border-ink/[0.07] bg-white shadow-soft">
-        <div className="flex items-center justify-between border-b border-ink/[0.06] bg-surface px-5 py-3.5">
+        <div className="flex items-center justify-between border-b border-ink/[0.06] bg-[#f2f0eb] px-5 py-3.5">
           <div className="flex items-center gap-2">
             <MapPin size={14} className="text-lime-dark" />
             <p className="font-display text-sm font-bold uppercase tracking-wide text-ink/50">Delivering to</p>
@@ -441,7 +441,7 @@ function StepReview({ items, onBack, onPlace }) {
 
       {/* Payment */}
       <div className="overflow-hidden rounded-2xl border border-ink/[0.07] bg-white shadow-soft">
-        <div className="border-b border-ink/[0.06] bg-surface px-5 py-3.5 flex items-center gap-2">
+        <div className="border-b border-ink/[0.06] bg-[#f2f0eb] px-5 py-3.5 flex items-center gap-2">
           <Lock size={14} className="text-lime-dark" />
           <p className="font-display text-sm font-bold uppercase tracking-wide text-ink/50">Payment method</p>
         </div>
@@ -534,7 +534,7 @@ function Confirmation({ items }) {
 
       {/* Next steps */}
       <div className="mt-4 overflow-hidden rounded-2xl border border-ink/[0.07] bg-white shadow-soft">
-        <div className="border-b border-ink/[0.06] bg-surface px-5 py-3.5">
+        <div className="border-b border-ink/[0.06] bg-[#f2f0eb] px-5 py-3.5">
           <p className="font-display text-sm font-bold uppercase tracking-wide text-ink/50">What happens next</p>
         </div>
         <ul className="divide-y divide-ink/[0.05]">
@@ -582,7 +582,7 @@ export default function CheckoutPage() {
 
   if (placed) {
     return (
-      <div className="min-h-screen bg-surface">
+      <div className="min-h-screen bg-[#f2f0eb]">
         <Header />
         <main className="container-x py-12"><Confirmation items={items} /></main>
         <Footer />
@@ -591,7 +591,7 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="min-h-screen bg-surface">
+    <div className="min-h-screen bg-[#f2f0eb]">
       <Header />
       <main className="container-x py-10 pb-20">
         {/* Step bar */}
