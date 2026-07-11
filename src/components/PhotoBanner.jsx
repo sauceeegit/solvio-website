@@ -27,7 +27,7 @@ const SLIDES = [
   {
     src: asset('/w3.webp'),
     alt: 'Solvio balcony solar panel in use',
-    caption: 'Thailand's most popular balcony kit',
+    caption: "Thailand's most popular balcony kit",
   },
   {
     src: asset('/balcony-power-plants.jpg'),
