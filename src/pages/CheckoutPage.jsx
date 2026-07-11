@@ -209,68 +209,64 @@ function StepCart({ items, onQtyChange, onNext }) {
         ))}
       </div>
 
-      {/* Items */}
-      <div className="overflow-hidden rounded-2xl border border-ink/[0.07] bg-white shadow-soft">
-        <div className="border-b border-ink/[0.06] bg-white px-5 py-3.5">
-          <p className="font-display text-sm font-bold uppercase tracking-wide text-ink/70">
-            {items.length} item{items.length !== 1 ? 's' : ''} in your cart
-          </p>
-        </div>
-
-        <ul className="divide-y divide-ink/[0.05]">
-          {items.map((item) => (
-            <li key={item.id} className="flex gap-4 px-5 py-5">
-              {/* Image */}
-              <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-xl border border-ink/[0.07] bg-[#f5f5f3]">
-                <img src={item.img} alt={item.name} className="h-full w-full object-contain p-1.5" />
+      {/* Item cards */}
+      <ul className="space-y-3">
+        {items.map((item) => (
+          <li key={item.id} className="overflow-hidden rounded-2xl border border-ink/[0.07] bg-white shadow-soft">
+            <div className="flex gap-0">
+              {/* Big image panel */}
+              <div className="relative w-40 shrink-0 bg-[#f2f0eb]">
+                <img src={item.img} alt={item.name} className="h-full w-full object-contain p-4" />
                 {item.badge && (
-                  <span className="absolute bottom-0 left-0 right-0 bg-lime py-0.5 text-center font-display text-[9px] font-bold uppercase tracking-wide text-white">
+                  <span className="absolute left-3 top-3 rounded-full bg-lime px-2.5 py-1 font-display text-[10px] font-bold uppercase tracking-wide text-white shadow-sm">
                     {item.badge}
                   </span>
                 )}
               </div>
 
-              {/* Info */}
-              <div className="flex flex-1 flex-col justify-between py-0.5">
+              {/* Info panel */}
+              <div className="flex flex-1 flex-col justify-between p-5">
                 <div>
-                  <p className="font-display text-base font-bold text-ink">{item.name}</p>
-                  {item.variant && <p className="mt-0.5 text-xs font-medium text-ink/55">{item.variant}</p>}
+                  <p className="font-display text-base font-extrabold text-ink">{item.name}</p>
+                  {item.variant && (
+                    <p className="mt-1 text-sm font-medium leading-snug text-ink/55">{item.variant}</p>
+                  )}
                 </div>
-                {/* Qty stepper */}
-                <div className="flex items-center justify-between">
+                <div className="mt-4 flex items-center justify-between">
+                  {/* Qty stepper */}
                   <div className="flex items-center overflow-hidden rounded-xl border border-ink/12 bg-surface">
                     <button type="button" disabled={item.qty <= 1} onClick={() => onQtyChange(item.id, item.qty - 1)}
-                      className="px-3 py-2 font-bold text-ink/40 transition hover:bg-ink/5 hover:text-ink disabled:opacity-30">
+                      className="px-3.5 py-2.5 font-bold text-ink/40 transition hover:bg-ink/5 hover:text-ink disabled:opacity-30">
                       −
                     </button>
-                    <span className="min-w-[2rem] border-x border-ink/10 py-2 text-center font-display text-sm font-bold text-ink">
+                    <span className="min-w-[2.5rem] border-x border-ink/10 py-2.5 text-center font-display text-sm font-bold text-ink">
                       {item.qty}
                     </span>
                     <button type="button" onClick={() => onQtyChange(item.id, item.qty + 1)}
-                      className="px-3 py-2 font-bold text-ink/40 transition hover:bg-ink/5 hover:text-ink">
+                      className="px-3.5 py-2.5 font-bold text-ink/40 transition hover:bg-ink/5 hover:text-ink">
                       +
                     </button>
                   </div>
-                  <span className="font-display text-lg font-extrabold text-ink">{baht(item.price * item.qty)}</span>
+                  <span className="font-display text-xl font-extrabold text-ink">{baht(item.price * item.qty)}</span>
                 </div>
               </div>
-            </li>
-          ))}
-        </ul>
+            </div>
+          </li>
+        ))}
+      </ul>
 
-        {/* Upsell nudge */}
-        <div className="border-t border-ink/[0.06] bg-[#EEF5FC] px-5 py-4">
-          <div className="flex items-center gap-3">
-            <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white text-lime-dark shadow-sm">
-              <Sun size={15} />
-            </span>
-            <p className="text-sm text-ink/70">
-              <span className="font-semibold text-ink">Own your roof?</span>{' '}
-              <Link to="/rooftop-system" className="font-semibold text-lime-dark hover:underline">
-                Get a free rooftop solar quote →
-              </Link>
-            </p>
-          </div>
+      {/* Upsell nudge */}
+      <div className="rounded-2xl border border-ink/[0.07] bg-[#EEF5FC] px-5 py-4 shadow-soft">
+        <div className="flex items-center gap-3">
+          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-white text-lime-dark shadow-sm">
+            <Sun size={16} />
+          </span>
+          <p className="text-sm text-ink/70">
+            <span className="font-semibold text-ink">Own your roof?</span>{' '}
+            <Link to="/rooftop-system" className="font-semibold text-lime-dark hover:underline">
+              Get a free rooftop solar quote →
+            </Link>
+          </p>
         </div>
       </div>
 
