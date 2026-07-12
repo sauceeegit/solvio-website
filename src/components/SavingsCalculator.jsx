@@ -1,6 +1,6 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Sun, Wallet, Leaf, Clock, ArrowRight, Check } from 'lucide-react';
-import { orientations, calculatorDefaults, computeConfig, defaultConfig } from '../data/product';
+import { orientations, calculatorDefaults, computeConfig, defaultConfig, MODULE_WP } from '../data/product';
 import { baht, num } from '../lib/format';
 import Reveal from './Reveal';
 
@@ -22,8 +22,13 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
   const [rate, setRate] = useState(calculatorDefaults.rate);
   // Off by default: plug-in kits usually can't register for PEA net-billing.
   const [exportOn, setExportOn] = useState(false);
+  // Panel count — starts from the configurator's choice (or the 4-panel default)
+  // and stays in sync with it, but can be adjusted here independently.
+  const [modules, setModules] = useState(derived.modules);
   const [email, setEmail] = useState('');
   const [sent, setSent] = useState(false);
+
+  useEffect(() => setModules(derived.modules), [derived.modules]);
 
   const submitQuote = (e) => {
     e.preventDefault();
@@ -32,10 +37,20 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
 
   const factor = orientations.find((o) => o.id === orientation)?.factor ?? 1;
 
+  // The system being modeled: the live configurator's kit, re-priced for the
+  // panel count chosen here (same panel type, storage and cable).
+  const sized = useMemo(
+    () =>
+      modules === derived.modules
+        ? derived
+        : computeConfig({ ...(derived.config ?? defaultConfig), modules }),
+    [modules, derived],
+  );
+
   const { annualYield, savings, payback, co2, selfUse } = useMemo(() => {
-    const y = derived.wp * YIELD_PER_WP * factor;
+    const y = sized.wp * YIELD_PER_WP * factor;
     // self-consumption: ~65% base; a configured battery shifts surplus to the evening
-    const battKwh = (derived.storage?.wh ?? 0) / 1000;
+    const battKwh = (sized.storage?.wh ?? 0) / 1000;
     const sc = Math.min(SC_MAX, SC_BASE + (y > 0 ? (battKwh * BATT_KWH_CYCLES) / y : 0));
     const usable = Math.min(y * sc, household); // can't save more than you use
     // surplus (not offset at the retail rate) earns the PEA credit when enabled
@@ -44,11 +59,11 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
     return {
       annualYield: y,
       savings: s,
-      payback: s > 0 ? derived.total / s : 0,
+      payback: s > 0 ? sized.total / s : 0,
       co2: y * CO2_PER_KWH,
       selfUse: sc,
     };
-  }, [derived.wp, derived.total, derived.storage?.wh, factor, household, rate, exportOn]);
+  }, [sized, factor, household, rate, exportOn]);
 
   const stats = [
     { icon: Sun, label: 'Annual yield', value: `${num(annualYield)} kWh`, tint: 'text-amber-dark' },
@@ -60,14 +75,63 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
   return (
     <>
       <p className="mx-auto mb-5 max-w-4xl text-sm text-slatey-500">
-        Sized for {derived.modules} module{derived.modules > 1 ? 's' : ''} ({num(derived.wp)} Wp). Adjust
-        the sliders to match your home.
+        Set your system size and adjust the sliders to match your home.
       </p>
 
       <Reveal delay={0.1}>
         <div className="mx-auto grid max-w-4xl gap-6 rounded-xl2 border border-ink/[0.07] bg-white p-6 shadow-soft md:grid-cols-2 md:p-8">
             {/* controls */}
             <div className="space-y-6">
+              {/* panel count */}
+              <div>
+                <div className="mb-2 flex items-baseline justify-between">
+                  <label className="font-display text-sm font-semibold text-ink">
+                    Number of panels
+                  </label>
+                  <span className="font-mono text-sm font-semibold text-ink">
+                    {num(sized.wp)} Wp
+                  </span>
+                </div>
+                <div className="flex items-center justify-between gap-3 rounded-lg border border-ink/10 px-3 py-2">
+                  <span className="text-xs text-slatey-500">
+                    {MODULE_WP} Wp each · kit {baht(sized.total)}
+                  </span>
+                  <div className="flex items-center gap-1">
+                    <button
+                      type="button"
+                      onClick={() => setModules(Math.max(1, modules - 1))}
+                      aria-label="Remove a panel"
+                      className="grid h-8 w-8 place-items-center rounded-lg border border-ink/12 text-ink transition hover:border-ink/30 disabled:opacity-40"
+                      disabled={modules <= 1}
+                    >
+                      −
+                    </button>
+                    <input
+                      type="number"
+                      min="1"
+                      max="12"
+                      inputMode="numeric"
+                      value={modules}
+                      onChange={(e) => {
+                        const v = parseInt(e.target.value, 10);
+                        setModules(Number.isFinite(v) ? Math.min(12, Math.max(1, v)) : 1);
+                      }}
+                      aria-label="Number of panels"
+                      className="h-8 w-14 rounded-lg border border-ink/12 bg-white text-center font-display text-sm font-bold text-ink focus:border-lime focus:outline-none focus:ring-1 focus:ring-lime/40"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setModules(Math.min(12, modules + 1))}
+                      aria-label="Add a panel"
+                      className="grid h-8 w-8 place-items-center rounded-lg border border-ink/12 text-ink transition hover:border-ink/30 disabled:opacity-40"
+                      disabled={modules >= 12}
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+
               <div>
                 <label className="mb-2 block font-display text-sm font-semibold text-ink">
                   Roof / railing orientation
@@ -207,9 +271,10 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
         </Reveal>
 
       <p className="mx-auto mt-4 max-w-2xl text-center text-xs text-slatey-400">
-        Estimates only. Payback uses your <strong>kit price (self-installed)</strong>. Assumes ~
+        Estimates only. Payback uses your <strong>kit price (self-installed)</strong> —{' '}
+        {baht(sized.total)} for {modules} panel{modules > 1 ? 's' : ''}. Assumes ~
         {Math.round(selfUse * 100)}% of generation is used at home
-        {(derived.storage?.wh ?? 0) > 0 ? ' (raised by your configured battery)' : ' (a battery raises this)'},
+        {(sized.storage?.wh ?? 0) > 0 ? ' (raised by your configured battery)' : ' (a battery raises this)'},
         surplus {exportOn ? `exported at ฿${EXPORT_RATE.toFixed(2)}/kWh (PEA net-billing)` : 'unpaid'},
         Thai grid CO₂ {CO2_PER_KWH} kg/kWh. Actual yield depends on location, shading, tilt and weather.
       </p>
