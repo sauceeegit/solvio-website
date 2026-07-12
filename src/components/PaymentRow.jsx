@@ -18,24 +18,22 @@ function Mastercard() {
 
 function PayPal() {
   return (
-    <svg viewBox="0 0 72 24" className="h-5 w-auto" aria-label="PayPal" xmlns="http://www.w3.org/2000/svg">
-      {/* P mark */}
-      <text x="2" y="18" fontFamily="Arial,sans-serif" fontSize="18" fontWeight="900" fill="#009CDE">P</text>
-      <text x="10" y="18" fontFamily="Arial,sans-serif" fontSize="18" fontWeight="900" fill="#003087">P</text>
-      {/* wordmark */}
-      <text x="22" y="17" fontFamily="Arial,sans-serif" fontSize="13" fontWeight="700" fill="#003087">Pay</text>
-      <text x="42" y="17" fontFamily="Arial,sans-serif" fontSize="13" fontWeight="700" fill="#009CDE">Pal</text>
+    <svg viewBox="0 0 56 20" className="h-5 w-auto" aria-label="PayPal" xmlns="http://www.w3.org/2000/svg">
+      <text x="0" y="15" fontFamily="Arial,sans-serif" fontSize="14" fontWeight="900" fill="#003087">Pay</text>
+      <text x="24" y="15" fontFamily="Arial,sans-serif" fontSize="14" fontWeight="900" fill="#009CDE">Pal</text>
     </svg>
   );
 }
 
 function ApplePay() {
   return (
-    <svg viewBox="0 0 72 28" className="h-6 w-auto" aria-label="Apple Pay" xmlns="http://www.w3.org/2000/svg">
-      {/* Apple logo glyph */}
-      <path d="M16 7.2c.8-1 1.3-2.3 1.1-3.6-1.1.1-2.4.7-3.2 1.7-.7.9-1.3 2.2-.1 3.5 1.1-.1 2.4-.7 3.2-1.6z" fill="#000"/>
-      <path d="M19.5 9.4c-1.8-.1-3.3 1-4.2 1-.9 0-2.2-1-3.7-.9-1.9.1-3.6 1.1-4.5 2.7-1.9 3.3-.5 8.1 1.3 10.8.9 1.3 2 2.7 3.4 2.7 1.3-.1 1.8-.9 3.4-.9 1.6 0 2 .9 3.3.8 1.5-.1 2.4-1.4 3.3-2.7 1-1.5 1.4-3 1.4-3.1-.1 0-2.7-1.1-2.8-4.2 0-2.6 2.1-3.8 2.2-3.9-1-1.6-2.8-2.2-3.1-2.3z" fill="#000"/>
-      <text x="28" y="20" fontFamily="-apple-system,BlinkMacSystemFont,sans-serif" fontSize="13" fontWeight="600" fill="#000">Pay</text>
+    <svg viewBox="0 0 64 22" className="h-5 w-auto" aria-label="Apple Pay" xmlns="http://www.w3.org/2000/svg">
+      {/* Apple glyph, scaled to ~10px tall, vertically centred in 22-unit viewBox */}
+      <g transform="translate(2,3) scale(0.55)">
+        <path d="M16 4.2c.8-1 1.3-2.3 1.1-3.6-1.1.1-2.4.7-3.2 1.7-.7.9-1.3 2.2-.1 3.5 1.1-.1 2.4-.7 3.2-1.6z" fill="#000"/>
+        <path d="M19.5 6.4c-1.8-.1-3.3 1-4.2 1-.9 0-2.2-1-3.7-.9-1.9.1-3.6 1.1-4.5 2.7-1.9 3.3-.5 8.1 1.3 10.8.9 1.3 2 2.7 3.4 2.7 1.3-.1 1.8-.9 3.4-.9 1.6 0 2 .9 3.3.8 1.5-.1 2.4-1.4 3.3-2.7 1-1.5 1.4-3 1.4-3.1-.1 0-2.7-1.1-2.8-4.2 0-2.6 2.1-3.8 2.2-3.9-1-1.6-2.8-2.2-3.1-2.3z" fill="#000"/>
+      </g>
+      <text x="17" y="16" fontFamily="Arial,sans-serif" fontSize="13" fontWeight="700" fill="#000">Pay</text>
     </svg>
   );
 }
@@ -70,7 +68,7 @@ const PAYMENT_ICONS = [
 export default function PaymentRow() {
   return (
     <div className="container-x flex flex-wrap items-center justify-center gap-x-2 gap-y-2 py-6">
-      <span className="mr-2 font-display text-sm font-bold tracking-wide text-ink">
+      <span className="mr-2 font-display text-sm font-bold tracking-wide text-lime">
         Secure checkout
       </span>
       {PAYMENT_ICONS.map(({ key, label, Icon }) => (

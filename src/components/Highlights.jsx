@@ -89,7 +89,7 @@ export default function Highlights() {
         <Reveal>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-6 lg:grid-rows-2 lg:h-[600px]">
             {/* A — annual yield gauge (dark) */}
-            <div className="flex h-full min-h-[260px] flex-col items-center justify-center rounded-xl2 p-6 text-center text-white max-sm:col-span-2 lg:col-span-2 lg:col-start-1 lg:row-start-1" style={{ backgroundColor: '#2e5b44' }}>
+            <div className="flex h-full min-h-[260px] flex-col items-center justify-center rounded-xl2 p-6 text-center text-white max-sm:col-span-2 lg:col-span-2 lg:col-start-1 lg:row-start-1" style={{ backgroundColor: '#1d3d2e' }}>
               <Gauge />
               <p className="mt-3 text-[11px] font-medium uppercase tracking-wide text-white/55">Up to</p>
               <p className="font-display text-3xl font-extrabold text-lime">

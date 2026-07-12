@@ -106,7 +106,7 @@ function StorageCard({ selected, onClick, opt }) {
         )}
         <span className="font-display text-[15px] font-bold leading-tight">{opt.name}</span>
 
-        <ul className={`mt-2 space-y-1 font-body text-sm font-semibold ${selected ? 'text-white/85' : 'text-slatey-500'}`}>
+        <ul className={`mt-2 space-y-1 font-body text-xs font-semibold ${selected ? 'text-white/85' : 'text-slatey-500'}`}>
           {opt.specs.map((s) => (
             <li key={s} className="flex gap-1.5">
               <span className={selected ? 'text-white/80' : 'text-lime-dark'}>·</span>
