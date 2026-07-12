@@ -114,15 +114,15 @@ export const founder = {
 export const landingFaqs = [
   {
     q: 'How much does solar cost in Thailand?',
-    a: 'Balcony kits start at ฿12,990 plug-and-play; full rooftop systems are sized to your home and priced transparently in Baht after a free assessment. No hidden fees.',
+    a: 'Balcony kits start at ฿30,750 plug-and-play (2 panels + inverter); full rooftop systems are sized to your home and priced transparently in Baht after a free assessment. No hidden fees.',
   },
   {
     q: 'How fast does it pay for itself?',
-    a: 'Balcony kits typically pay back in 3–4 years; full rooftop installations in about 4–6. After that, the electricity is essentially free for decades — panels carry a 30-year performance warranty.',
+    a: 'Both balcony kits and full rooftop installations typically pay back in about 5–7 years, depending on your usage and orientation. After that, the electricity is essentially free for decades — panels carry a 30-year performance warranty.',
   },
   {
     q: 'Rooftop or balcony — which is right for me?',
-    a: 'Balcony is the fast start: plug-and-play from ฿12,990, no permits, no electrician, and it moves with you — ideal for condos, renters and smaller bills. Rooftop is the full solution: sized to your roof, it can cover most of your home’s usage for the biggest long-term savings. Own your roof and want maximum impact? Go rooftop. Want solar today with zero hassle? Start with balcony — you can always add rooftop later.',
+    a: 'Balcony is the fast start: plug-and-play from ฿30,750, no permits, no electrician, and it moves with you — ideal for condos, renters and smaller bills. Rooftop is the full solution: sized to your roof, it can cover most of your home’s usage for the biggest long-term savings. Own your roof and want maximum impact? Go rooftop. Want solar today with zero hassle? Start with balcony — you can always add rooftop later.',
   },
   {
     q: 'Do I need permission to install solar?',

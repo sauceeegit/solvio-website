@@ -93,9 +93,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
                   </span>
                 </div>
                 <div className="flex items-center justify-between gap-3 rounded-lg border border-ink/10 px-3 py-2">
-                  <span className="text-xs text-slatey-500">
-                    {MODULE_WP} Wp each · kit {baht(sized.total)}
-                  </span>
+                  <span className="text-xs text-slatey-500">{MODULE_WP} Wp each</span>
                   <div className="flex items-center gap-1">
                     <button
                       type="button"
@@ -222,7 +220,26 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
             </div>
 
             {/* results */}
-            <div className="grid grid-cols-2 gap-3">
+            <div className="flex flex-col gap-3">
+              {/* overall system cost — follows the panel count */}
+              <div className="flex items-center justify-between gap-3 rounded-xl bg-ink px-5 py-3.5">
+                <div>
+                  <p className="font-mono text-[11px] uppercase tracking-wider text-white/55">
+                    System cost
+                  </p>
+                  <p className="font-display text-2xl font-extrabold tabular-nums text-lime">
+                    {baht(sized.total)}
+                  </p>
+                </div>
+                <p className="text-right text-xs leading-relaxed text-white/60">
+                  {modules} × {MODULE_WP} Wp panels
+                  {(sized.storage?.wh ?? 0) > 0 ? ' + battery' : ''}
+                  <br />
+                  incl. inverter &amp; mount
+                </p>
+              </div>
+
+              <div className="grid flex-1 grid-cols-2 gap-3">
               {stats.map((s) => (
                 <div
                   key={s.label}
@@ -237,6 +254,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
                   </div>
                 </div>
               ))}
+              </div>
             </div>
 
             {/* quote by email */}

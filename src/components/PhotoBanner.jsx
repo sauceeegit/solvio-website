@@ -8,7 +8,7 @@ const SLIDES = [
     src: asset('/savings-bg.jpg'),
     alt: 'Couple on a balcony with Solvio solar panels on the railing at sunset',
     caption: 'Solar on every balcony',
-    sub: 'Save ฿65k over 10 years — per module',
+    sub: 'Save over ฿79k in 10 years — with a 4-panel kit',
   },
   {
     src: asset('/plugplay-photo.jpg'),

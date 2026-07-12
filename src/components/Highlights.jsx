@@ -107,8 +107,8 @@ export default function Highlights() {
               />
               <div className="absolute bottom-0 left-0 max-w-[90%] rounded-tr-xl2 bg-lime p-5 text-white">
                 <p className="text-[11px] font-medium uppercase tracking-wide text-white/85">More than</p>
-                <p className="font-display text-3xl font-extrabold leading-none">฿65k</p>
-                <p className="mt-1.5 text-xs font-semibold">saved in 10 years, per module</p>
+                <p className="font-display text-3xl font-extrabold leading-none">฿79k</p>
+                <p className="mt-1.5 text-xs font-semibold">saved in 10 years, per 4-panel kit</p>
               </div>
             </div>
 
