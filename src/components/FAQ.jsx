@@ -16,7 +16,7 @@ function Item({ q, a, open, onToggle }) {
       >
         <span className="font-display text-base font-semibold text-ink">{q}</span>
         <span
-          className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border border-ink/15 bg-white/70 text-ink transition ${
+          className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border border-ink/15 bg-white text-ink transition ${
             open ? 'rotate-45' : ''
           }`}
         >
