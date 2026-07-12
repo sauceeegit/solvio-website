@@ -58,7 +58,7 @@ export default function CalculatorSection({ derived }) {
           </div>
         </Reveal>
 
-        <div className="mt-6">
+        <div className="mt-2">
           {/* Export credit defaults ON for rooftop-scale (landing) and OFF where the
               calculator sits next to the plug-in kit configurator (balcony page). */}
           {mode === 'basic' ? (
