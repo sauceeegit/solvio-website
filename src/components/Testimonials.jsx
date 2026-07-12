@@ -55,10 +55,11 @@ export default function Testimonials() {
           ref={scroller}
           className="no-scrollbar mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-2"
         >
-          {testimonials.map((t) => (
+          {testimonials.map((t, i) => (
             <figure
               key={t.name}
-              className="flex w-[300px] shrink-0 snap-start flex-col rounded-xl2 border border-ink/[0.07] bg-[#F5F5F5] p-6 sm:w-[360px]"
+              className="flex w-[300px] shrink-0 snap-start flex-col rounded-xl2 border border-ink/[0.07] p-6 sm:w-[360px]"
+              style={{ backgroundColor: i % 2 === 0 ? '#EBEBEB' : '#F5F5F5' }}
             >
               <Quote size={26} className="text-lime-dark" />
               <blockquote className="mt-3 flex-1 text-[15px] leading-relaxed text-ink/80">
