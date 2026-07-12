@@ -19,21 +19,23 @@ function Mastercard() {
 function PayPal() {
   return (
     <svg viewBox="0 0 56 20" className="h-5 w-auto" aria-label="PayPal" xmlns="http://www.w3.org/2000/svg">
-      <text x="0" y="15" fontFamily="Arial,sans-serif" fontSize="14" fontWeight="900" fill="#003087">Pay</text>
-      <text x="24" y="15" fontFamily="Arial,sans-serif" fontSize="14" fontWeight="900" fill="#009CDE">Pal</text>
+      {/* "PayPal" centered — navy "Pay" + blue "Pal" as a tspan pair */}
+      <text y="15" fontFamily="Arial,sans-serif" fontSize="14" fontWeight="900" textAnchor="middle" x="28">
+        <tspan fill="#003087">Pay</tspan><tspan fill="#009CDE">Pal</tspan>
+      </text>
     </svg>
   );
 }
 
 function ApplePay() {
   return (
-    <svg viewBox="0 0 64 22" className="h-5 w-auto" aria-label="Apple Pay" xmlns="http://www.w3.org/2000/svg">
-      {/* Apple glyph, scaled to ~10px tall, vertically centred in 22-unit viewBox */}
-      <g transform="translate(2,3) scale(0.55)">
+    <svg viewBox="0 0 60 22" className="h-5 w-auto" aria-label="Apple Pay" xmlns="http://www.w3.org/2000/svg">
+      {/* Apple glyph centered above "Pay" — total content ~36px wide, starts at x=12 */}
+      <g transform="translate(10,1) scale(0.52)">
         <path d="M16 4.2c.8-1 1.3-2.3 1.1-3.6-1.1.1-2.4.7-3.2 1.7-.7.9-1.3 2.2-.1 3.5 1.1-.1 2.4-.7 3.2-1.6z" fill="#000"/>
         <path d="M19.5 6.4c-1.8-.1-3.3 1-4.2 1-.9 0-2.2-1-3.7-.9-1.9.1-3.6 1.1-4.5 2.7-1.9 3.3-.5 8.1 1.3 10.8.9 1.3 2 2.7 3.4 2.7 1.3-.1 1.8-.9 3.4-.9 1.6 0 2 .9 3.3.8 1.5-.1 2.4-1.4 3.3-2.7 1-1.5 1.4-3 1.4-3.1-.1 0-2.7-1.1-2.8-4.2 0-2.6 2.1-3.8 2.2-3.9-1-1.6-2.8-2.2-3.1-2.3z" fill="#000"/>
       </g>
-      <text x="17" y="16" fontFamily="Arial,sans-serif" fontSize="13" fontWeight="700" fill="#000">Pay</text>
+      <text x="30" y="16" fontFamily="Arial,sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Pay</text>
     </svg>
   );
 }
