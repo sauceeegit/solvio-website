@@ -141,7 +141,7 @@ export default function Highlights() {
             </div>
 
             {/* E1 — yield donut (orange) */}
-            <div className="flex h-full min-h-[160px] flex-col items-center justify-center rounded-xl2 p-5 text-center lg:col-span-1 lg:col-start-5 lg:row-start-2" style={{ backgroundColor: 'rgba(255,103,0,0.10)' }}>
+            <div className="flex h-full min-h-[160px] flex-col items-center justify-center rounded-xl2 p-5 text-center lg:col-span-1 lg:col-start-5 lg:row-start-2" style={{ backgroundColor: 'rgba(255,103,0,0.18)' }}>
               <div className="relative">
                 <Donut />
                 <span className="absolute inset-0 flex items-center justify-center font-display text-xl font-extrabold text-ink">

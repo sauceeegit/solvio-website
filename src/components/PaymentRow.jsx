@@ -28,14 +28,11 @@ function PayPal() {
 }
 
 function ApplePay() {
+  // Apple glyph (~10×13) + " Pay" rendered as one centered text line
+  // Using  (apple) unicode glyph — renders in all modern browsers
   return (
-    <svg viewBox="0 0 60 22" className="h-5 w-auto" aria-label="Apple Pay" xmlns="http://www.w3.org/2000/svg">
-      {/* Apple glyph centered above "Pay" — total content ~36px wide, starts at x=12 */}
-      <g transform="translate(10,1) scale(0.52)">
-        <path d="M16 4.2c.8-1 1.3-2.3 1.1-3.6-1.1.1-2.4.7-3.2 1.7-.7.9-1.3 2.2-.1 3.5 1.1-.1 2.4-.7 3.2-1.6z" fill="#000"/>
-        <path d="M19.5 6.4c-1.8-.1-3.3 1-4.2 1-.9 0-2.2-1-3.7-.9-1.9.1-3.6 1.1-4.5 2.7-1.9 3.3-.5 8.1 1.3 10.8.9 1.3 2 2.7 3.4 2.7 1.3-.1 1.8-.9 3.4-.9 1.6 0 2 .9 3.3.8 1.5-.1 2.4-1.4 3.3-2.7 1-1.5 1.4-3 1.4-3.1-.1 0-2.7-1.1-2.8-4.2 0-2.6 2.1-3.8 2.2-3.9-1-1.6-2.8-2.2-3.1-2.3z" fill="#000"/>
-      </g>
-      <text x="30" y="16" fontFamily="Arial,sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Pay</text>
+    <svg viewBox="0 0 60 20" className="h-5 w-auto" aria-label="Apple Pay" xmlns="http://www.w3.org/2000/svg">
+      <text x="50%" y="15" textAnchor="middle" fontFamily="-apple-system,BlinkMacSystemFont,Arial,sans-serif" fontSize="13" fontWeight="700" fill="#000"> Pay</text>
     </svg>
   );
 }
@@ -69,7 +66,7 @@ const PAYMENT_ICONS = [
 
 export default function PaymentRow() {
   return (
-    <div className="container-x flex flex-wrap items-center justify-center gap-x-2 gap-y-2 py-6">
+    <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2 py-6 px-4" style={{ backgroundColor: '#f2f0eb' }}>
       <span className="mr-2 font-display text-sm font-bold tracking-wide text-lime">
         Secure checkout
       </span>
