@@ -30,13 +30,12 @@ function PayPal() {
 function ApplePay() {
   // Apple glyph (paths) left + "Pay" text right, both centered as a unit
   return (
-    <svg viewBox="0 0 54 20" className="h-5 w-auto" aria-label="Apple Pay" xmlns="http://www.w3.org/2000/svg">
-      {/* Apple logo paths, scaled & positioned so total width ~54, centred */}
-      <g transform="translate(7,1) scale(0.82)">
+    <svg viewBox="0 0 60 20" className="h-5 w-auto" aria-label="Apple Pay" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(4,1) scale(0.82)">
         <path d="M11.6 3.9c.7-.9 1.2-2.1 1-3.3-1 .1-2.2.7-2.9 1.6-.6.8-1.2 2-.9 3.2 1.1 0 2.1-.6 2.8-1.5z" fill="#000"/>
         <path d="M14.2 5.7c-1.6-.1-3 .9-3.8.9-.8 0-2-.9-3.4-.8-1.7.1-3.3 1-4.1 2.5-1.7 3-.5 7.4 1.2 9.8.8 1.2 1.8 2.5 3.1 2.4 1.2 0 1.7-.8 3.1-.8s1.9.8 3.1.8c1.3 0 2.2-1.2 3-2.5.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.5-1-2.5-3.8 0-2.4 1.9-3.5 2-3.6-.9-1.5-2.5-2-3-2.1z" fill="#000"/>
       </g>
-      <text x="32" y="15" textAnchor="middle" fontFamily="Arial,sans-serif" fontSize="13" fontWeight="700" fill="#000">Pay</text>
+      <text x="38" y="15" textAnchor="middle" fontFamily="Arial,sans-serif" fontSize="13" fontWeight="700" fill="#000">Pay</text>
     </svg>
   );
 }
