@@ -69,7 +69,7 @@ export default function LandingFAQ() {
                       <span className={`font-display font-semibold transition-colors ${open === i ? 'text-lg text-lime-dark' : 'text-base text-ink'}`}>
                         {f.q}
                       </span>
-                      <span className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border transition ${open === i ? 'rotate-45 border-lime bg-lime text-white' : 'border-ink/15 text-ink'}`}>
+                      <span style={open !== i ? { backgroundColor: '#ffffff' } : {}} className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border transition ${open === i ? 'rotate-45 border-lime bg-lime text-white' : 'border-ink/25 text-ink shadow-sm'}`}>
                         <Plus size={16} />
                       </span>
                     </button>
