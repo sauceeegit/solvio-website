@@ -6,8 +6,7 @@ import Reveal from './Reveal';
 
 const YIELD_PER_WP = 1.5; // kWh per Wp per year, south-facing (Thailand, ~5 peak sun-hours)
 const CO2_PER_KWH = 0.5; // kg avoided per kWh (Thai grid emission factor)
-const SC_BASE = 0.65; // share of solar used at home without a battery (daytime AC/fridge load)
-const SC_MAX = 0.95; // even a big battery loses a little to conversion & full days
+const DAY_SHARE = 0.5; // share of household consumption that falls in solar hours
 const BATT_KWH_CYCLES = 330; // useful battery cycles/yr (~365 days × ~90% usable)
 const EXPORT_RATE = 2.2; // ฿/kWh — PEA net-billing credit (requires MEA/PEA registration)
 
@@ -48,20 +47,31 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
   );
 
   const { annualYield, savings, payback, co2, selfUse } = useMemo(() => {
-    const y = sized.wp * YIELD_PER_WP * factor;
-    // self-consumption: ~65% base; a configured battery shifts surplus to the evening
+    const y = sized.wp * YIELD_PER_WP * factor; // annual generation
+    // Self-consumption is driven by how your load lines up with the sun, not a
+    // fixed fraction. Without a battery, solar can only offset load that happens
+    // while it's generating — roughly DAY_SHARE of your annual use — capped by
+    // what the panels actually make.
+    let selfUsed = Math.min(y, household * DAY_SHARE);
+    // A battery time-shifts leftover surplus onto evening/night load, bounded by
+    // the surplus available, the battery's yearly throughput, and remaining load.
     const battKwh = (sized.storage?.wh ?? 0) / 1000;
-    const sc = Math.min(SC_MAX, SC_BASE + (y > 0 ? (battKwh * BATT_KWH_CYCLES) / y : 0));
-    const usable = Math.min(y * sc, household); // can't save more than you use
+    const batteryShift = Math.min(
+      y - selfUsed,
+      battKwh * BATT_KWH_CYCLES,
+      Math.max(0, household - selfUsed),
+    );
+    selfUsed += batteryShift;
     // surplus (not offset at the retail rate) earns the PEA credit when enabled
-    const exportRev = exportOn ? Math.max(0, y - usable) * EXPORT_RATE : 0;
-    const s = usable * rate + exportRev; // ฿
+    const surplus = Math.max(0, y - selfUsed);
+    const exportRev = exportOn ? surplus * EXPORT_RATE : 0;
+    const s = selfUsed * rate + exportRev; // ฿
     return {
       annualYield: y,
       savings: s,
       payback: s > 0 ? sized.total / s : 0,
       co2: y * CO2_PER_KWH,
-      selfUse: sc,
+      selfUse: y > 0 ? selfUsed / y : 0,
     };
   }, [sized, factor, household, rate, exportOn]);
 
@@ -292,7 +302,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
         Estimates only. Payback uses your <strong>kit price (self-installed)</strong> —{' '}
         {baht(sized.total)} for {modules} panel{modules > 1 ? 's' : ''}. Assumes ~
         {Math.round(selfUse * 100)}% of generation is used at home
-        {(sized.storage?.wh ?? 0) > 0 ? ' (raised by your configured battery)' : ' (a battery raises this)'},
+        {(sized.storage?.wh ?? 0) > 0 ? ' (raised by your household use and configured battery)' : ' (higher household use and a battery raise this)'},
         surplus {exportOn ? `exported at ฿${EXPORT_RATE.toFixed(2)}/kWh (PEA net-billing)` : 'unpaid'},
         Thai grid CO₂ {CO2_PER_KWH} kg/kWh. Actual yield depends on location, shading, tilt and weather.
       </p>
