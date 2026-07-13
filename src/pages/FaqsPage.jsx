@@ -29,7 +29,8 @@ function Item({ q, a, open, onToggle }) {
       >
         <span className="font-display text-base font-semibold text-ink">{q}</span>
         <span
-          className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border border-ink/25 bg-white text-ink shadow-sm transition ${
+          style={{ backgroundColor: '#ffffff' }}
+          className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border border-ink/25 text-ink shadow-sm transition ${
             open ? 'rotate-45' : ''
           }`}
         >
