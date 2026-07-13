@@ -49,7 +49,7 @@ export default function LandingNav() {
       <nav className="container-x flex h-16 items-center justify-between">
         <Logo href="/" />
 
-        <ul className="hidden items-center gap-8 md:flex">
+        <ul className="hidden items-center gap-5 lg:flex xl:gap-8">
           {links.map((l) => (
             <li key={l.label}>
               <NavLink
@@ -60,7 +60,7 @@ export default function LandingNav() {
                   }`
                 }
               >
-                <span className="font-display text-[17px] font-semibold">{l.label}</span>
+                <span className="whitespace-nowrap font-display text-[15px] font-semibold xl:text-[17px]">{l.label}</span>
                 {l.sub && (
                   <span className="absolute left-0 top-full pt-0.5 font-display text-[11px] font-medium text-lime opacity-0 transition-opacity duration-150 group-hover:opacity-100 whitespace-nowrap">
                     {l.sub}
@@ -71,24 +71,24 @@ export default function LandingNav() {
           ))}
         </ul>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 xl:gap-4">
           {/* Bgreenie Membership — sits just left of Shop now; opens the intro popup. */}
           <button
             type="button"
             onClick={openBgreenie}
-            className="hidden items-center rounded-full border border-ink/40 px-4 py-2 font-display text-[15px] font-semibold text-ink/75 transition hover:border-lime hover:text-lime md:inline-flex"
+            className="hidden items-center whitespace-nowrap rounded-full border border-ink/40 px-3.5 py-2 font-display text-[15px] font-semibold text-ink/75 transition hover:border-lime hover:text-lime lg:inline-flex xl:px-4"
           >
             Bgreenie Membership
           </button>
           <Link
             to="/balcony-system"
-            className="hidden items-center gap-2 rounded-full bg-lime px-4 py-2.5 font-display text-sm font-bold text-white transition hover:bg-lime-dark sm:inline-flex"
+            className="hidden items-center gap-2 whitespace-nowrap rounded-full bg-lime px-4 py-2.5 font-display text-sm font-bold text-white transition hover:bg-lime-dark sm:inline-flex"
           >
             <ShoppingCart size={16} /> Shop now
           </Link>
           <button
             onClick={() => setOpen(true)}
-            className="grid h-11 w-11 place-items-center rounded-full text-ink transition hover:bg-ink/[0.05] md:hidden"
+            className="grid h-11 w-11 place-items-center rounded-full text-ink transition hover:bg-ink/[0.05] lg:hidden"
             aria-label="Open menu"
           >
             <Menu size={30} strokeWidth={2.25} />
