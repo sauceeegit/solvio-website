@@ -364,7 +364,7 @@ export default function WhyShop() {
           <button
             type="button"
             onClick={() => setShowAll(true)}
-            className="mx-auto mt-4 flex items-center gap-2 rounded-full border border-ink/15 px-5 py-2.5 font-display text-sm font-semibold text-ink/70 transition hover:border-ink/30 sm:hidden"
+            className="mx-auto mt-4 flex items-center gap-2 rounded-full border border-ink/30 bg-white px-5 py-2.5 font-display text-sm font-semibold text-ink transition hover:border-ink/50 sm:hidden"
           >
             Show all benefits <ChevronDown size={16} />
           </button>
