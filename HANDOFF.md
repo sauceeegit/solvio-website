@@ -7,12 +7,40 @@ block where they disagree.
 
 ---
 
-## ⭐ CURRENT STATE (2026-07-10) — read this first
+## ⭐ CURRENT STATE (2026-07-13) — read this first
 
 **Repo (public):** https://github.com/sauceeegit/solvio-website (account `sauceeegit`)
 **Live:** https://solvio.solar — custom domain (Pages), auto-deploys on every push to `main` (~3 min, GitHub Actions).
 The old `sauceeegit.github.io/solvio-website/` subpath is superseded; base is now `/` (see `deploy.yml` `VITE_BASE: /` + `public/CNAME`).
 **Collaborator:** `GG2026chad` (hansk09@gmail.com) has write access + the Claude GitHub App is granted, so two people/Claudes push in parallel.
+
+### 2026-07-13 session — what changed (newest first)
+- **New `/checkout` page** (`src/pages/CheckoutPage.jsx`, route added in `App.jsx`). A polished **3-step
+  demo checkout** — Cart → Details → Review → Confirmation — with a sticky Order-Summary sidebar (subtotal,
+  **VAT 7%**, promo code **`WELCOME5`** = 5% off, free shipping, trust badges), payment options (bank
+  transfer / COD / 0% installment — all **UI-only**, "Card & PromptPay coming soon"), and a success screen
+  (hard-coded order #SOL-2024-0042). **All demo/UI-only:** cart items are hard-coded `DEMO_ITEMS`, no cart
+  context, no real payment/backend. **Nothing links to `/checkout` yet** (reachable only by URL) — wire the
+  "Add to cart"/"Buy" buttons + a real cart when ready. Uses `usePageMeta('/')` (homepage meta — give it its
+  own route meta in `seo.js` later). New product images: `public/4xPanels.png`, `public/kit-cable-2m.png`.
+- **`PhotoBanner.jsx`** — a swipeable auto-advancing photo carousel (5 slides, thumbnails, arrows, 4 s
+  auto-play) added on the **balcony page** (`ProductPage.jsx`).
+- **FAQ colour scheme changed (teammate) + made consistent.** All pill-style FAQ accordions (`FAQ.jsx` on
+  product/rooftop/solar pages **and** `FaqsPage.jsx` `/faqs`) now use **closed = light blue `#e6eaff`,
+  opened = white `#ffffff`** with a white +/− chip (was orange/light-orange). `LandingFAQ.jsx` is a
+  separate design (border-b rows, "Show more" toggle, lime-dark open text) — intentionally NOT a pill.
+- **Contact form now sends for real** via **Web3Forms** (`ContactSection.jsx`) → delivers to
+  **info@solvio.solar**, no mail client. ⚠️ **Needs a real access key**: set `VITE_WEB3FORMS_KEY` or replace
+  `YOUR_WEB3FORMS_ACCESS_KEY` in `ContactSection.jsx` (get it free at web3forms.com by verifying
+  info@solvio.solar). Until then submit shows an "email us directly" fallback (never opens an email client).
+- **Mobile scroll-freeze polish**: the landing hero video and the balcony 3D model now freeze below the
+  header and release *smoothly with the scroll* (no snap-away) once the next section touches them
+  (`LandingPage.jsx` sticky hero wrapper; `Gallery.jsx` scroll-tracked `--frozen-top` vs `#cfg-step-3`).
+- **3D model** (`MODEL_VERSION` now `20260710-panelframe`): half-transparent **"Drag with your mouse/finger"**
+  hint (pointer-type aware, fades on first drag); on **mobile embed** the **panel counter floats into the
+  model's bottom-right corner** (out of the bar) and the two dimension sliders sit on one row.
+- **Footer** (teammate bg `#122316`): "Get sunnier inbox energy" newsletter removed; Products/Learn/Company
+  share one row on mobile; less dead space above the logo.
 
 ### 2026-07-10 session — what changed (newest first)
 - **REAL PRICING (replaces all placeholders).** Balcony panels priced directly in THB (`product.js`

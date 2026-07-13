@@ -18,18 +18,18 @@ const TABS = [
   { id: 'panels', label: 'Solar Panels', items: panelFaqs },
 ];
 
-// Question background: closed = orange, opened = light orange (font unchanged).
+// Question background: closed = light blue, opened = white (matches FAQ.jsx).
 function Item({ q, a, open, onToggle }) {
   return (
     <div>
       <button
         onClick={onToggle}
         className="flex w-full items-center justify-between gap-4 rounded-xl px-5 py-4 text-left transition-colors"
-        style={{ backgroundColor: open ? '#FF6700' : '#FFA05C' }}
+        style={{ backgroundColor: open ? '#ffffff' : '#e6eaff' }}
       >
         <span className="font-display text-base font-semibold text-ink">{q}</span>
         <span
-          className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border border-ink/15 bg-white/70 text-ink transition ${
+          className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border border-ink/15 bg-white text-ink transition ${
             open ? 'rotate-45' : ''
           }`}
         >
