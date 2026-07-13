@@ -1,6 +1,6 @@
 # Solvio — Project handoff / continuation notes
 
-_Last updated: 2026-07-10._ **Read `CLAUDE.md` (repo root) first — it has the team working rules.**
+_Last updated: 2026-07-13._ **Read `CLAUDE.md` (repo root) first — it has the team working rules.**
 The `## CURRENT STATE` block below is authoritative; the older sections further down still
 describe individual components accurately but predate the multi-page/3D/perf work — trust this
 block where they disagree.
@@ -15,6 +15,32 @@ The old `sauceeegit.github.io/solvio-website/` subpath is superseded; base is no
 **Collaborator:** `GG2026chad` (hansk09@gmail.com) has write access + the Claude GitHub App is granted, so two people/Claudes push in parallel.
 
 ### 2026-07-10 session — what changed (newest first)
+- **REAL PRICING (replaces all placeholders).** Balcony panels priced directly in THB (`product.js`
+  `panelOptions.thb`): **White Feather ฿9,400, Dark Feather ฿10,500** per panel (the old `usd`/`USD_THB`
+  path is gone; `panelThb()` returns `.thb`). New **`INVERTER_THB = 11,950`** — the micro-inverter is added
+  to EVERY total in `computeConfig` (`total = base + INVERTER_THB + storage.price + cable.price`). Storage
+  prices are now the **additional cost over that inverter**: No-storage = `0` ("Included"), Venus A 2.12/
+  4.24/6.36 = **฿57,050 / ฿108,050 / ฿158,050** (main units ฿69k/฿120k/฿170k − ฿11,950). So a 4-white-panel
+  default kit = **฿49,550**; the Save-Config modal, PriceBox, StickyCartBar and Basic calculator all read this.
+  Also: **Comparison "From"** ฿30,750 / ฿49,550 / ฿68,350; **Bestsellers** White 900W ฿35,900 / Dark 900W
+  ฿37,990 / Dark 1800W ฿93,900 (+ specs now cite the real Venus 2.12–6.36 kWh lineup); **Portable** batteries
+  renamed **D200→D150 (150 Wh), D400→D300 (300 Wh)** with prices ฿6,990/8,300/12,200/20,000/36,000/64,900 and
+  panels **50W→60W, 100W→120W** at ฿5,000/7,500/14,000/30,000; **PriceBox** now "**10-year product warranty**"
+  (was 2) and **Free shipping removed**. Stale marketing copy swept to match: payback **5–7 yrs** (was 3–4),
+  entry **from ฿30,750** (was ฿12,990), Highlights/PhotoBanner **"฿79k / 10 yrs per 4-panel kit"** (was ฿65k/module).
+- **Basic calculator (`SavingsCalculator.jsx`) overhauled.** Added a **"Number of panels" stepper** (1–12,
+  syncs from the configurator's Step-2 count via `useEffect`, re-prices the kit through `computeConfig`), a
+  dark **"System cost" bar** in the results column that tracks panel count + battery, and — most importantly —
+  **replaced the fixed 65% self-consumption cap with a load-driven model**: `selfUsed = min(generation,
+  household × DAY_SHARE)` + battery time-shift, so household use now genuinely scales savings (it used to do
+  nothing above ~1,755 kWh). **`DAY_SHARE = 0.5`** is the one tuning dial. Self-use % footnote is now dynamic.
+- **New pages & site-wide sections** (mine, earlier 2026-07-10): **`/about`** (`AboutPage.jsx`) and **`/faqs`**
+  (`FaqsPage.jsx` — 4 tabs: General/Rooftop/Balcony/Panels reusing `landingFaqs`/`rooftopFaqs`/product `faqs`/
+  `panelFaqs`, styled like the rooftop FAQ `bg-surface`, with a calculator below it); **`ContactSection.jsx`**
+  at the foot of every page (footer Contact → `#contact`). **Renamed "… System" → "… Solar"** everywhere
+  (nav, footer, breadcrumb, `product.js` name, comparison col). **`SaveConfigModal.jsx`** snapshot is the
+  **live 3D model** (imports `MODEL_URL`/`MODEL_ORIGIN` from `Gallery.jsx`), balcony **FAQ bg = white**.
+  `rooftopFaqs` (7 Q&As, bracketed placeholders filled: 2–4 wk process, 25/10/2-yr warranties) live in `landing.js`.
 - **Shared Bgreenie popup** — `src/context/BgreenieModal.jsx` exports `BgreenieProvider` (wraps everything
   in `App.jsx`) + `useBgreenie()` returning an `open()` fn. The nav "Bgreenie Membership" tab AND the landing
   **WhyShop "Earn Solvio rewards → Learn more"** both call it → one shared modal (intro copy + "Continue to
@@ -99,9 +125,11 @@ The old `sauceeegit.github.io/solvio-website/` subpath is superseded; base is no
   scroll correctly again. Portable "See details" fallback now points to `/portable-system`
   (was `/portable`, a nonexistent route). ⚠️ Don't switch back to HashRouter.
 
-### Pages & nav (5 routes, in `src/App.jsx`)
-`/` landing · `/balcony-system` · `/portable-system` · `/solar-panel` · `/rooftop-system`.
-Each page = `<Header/>` (sticky TopBar+nav) → `<main>` → `<Footer/>`.
+### Pages & nav (8 routes, in `src/App.jsx`)
+`/` landing · `/balcony-system` · `/portable-system` · `/solar-panel` · `/rooftop-system` ·
+`/about` (About Solvio) · `/faqs` (4-tab combined FAQ) · `/checkout`.
+Each page = `<Header/>` (sticky TopBar+nav) → `<main>` → `<Footer/>`, and every content page ends with
+`<ContactSection/>` (the `#contact` anchor the footer "Contact" links to).
 **Nav links are HARDCODED** in `src/components/landing/LandingNav.jsx` (the `links` array), NOT the
 `landingNav` data (which is now dead). Edit menu items there.
 
@@ -173,8 +201,16 @@ Each page = `<Header/>` (sticky TopBar+nav) → `<main>` → `<Footer/>`.
 - All € euros converted to ฿ (product.js benefits/comparison/related/FAQ; `euro()` removed from format.js).
 
 ### Open items / not-yet-wired
-1. **All email forms are UI-only** (GuidePopup, Advanced calculator, PriceBox, footer newsletter) — show a
-   confirmation but send nothing. Wire to Formspree/Mailchimp before launch.
+1. **Email forms.** `ContactSection.jsx` posts to **Web3Forms** but still ships the placeholder
+   `WEB3FORMS_KEY = 'YOUR_WEB3FORMS_ACCESS_KEY'` — set `VITE_WEB3FORMS_KEY` (verify `info@solvio.solar`) or it
+   just shows the "email us directly" fallback. The other forms (GuidePopup, both calculators' "email me a
+   quote", PriceBox, footer newsletter) are still **UI-only** — confirmation shown, nothing sent.
+1b. **Calculator model caveats (Basic).** Generation scales **linearly with panel count and ignores inverter
+   clipping** — 12 panels shows 8,100 kWh even though the 800 W plug-in inverter can't pass it (real ≈1,500–
+   1,700). The Highlights bento still hard-codes **"Up to 1,720 kWh/year"**, which now contradicts the
+   calculator's 2,700 kWh for the same 4-panel kit. Self-consumption is load-driven with **`DAY_SHARE = 0.5`**
+   (tune if too generous). Fix would cap yield at ~`inverterW × 2.1 kWh/W` (lifted when a Venus battery's
+   1,500 W inverter is selected) and add a railing-vs-tilted mount factor.
 2. ~~**Custom domain**: attach `solvio.solar` to Pages, then update canonical/OG/robots/sitemap URLs.~~
    **DONE (2026-07-10):** `public/CNAME` = `solvio.solar`, `deploy.yml` `VITE_BASE: /` (root base), `robots.txt`/
    `sitemap.xml`/`src/data/seo.js` (`SITE`) and `index.html` head (canonical/OG/Twitter/JSON-LD, incl. og:image
