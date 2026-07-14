@@ -4,6 +4,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { founder } from '../../data/landing';
 import Reveal from '../Reveal';
 
+const BREAK_AFTER = '— and why we think Solvio is the best partner for your energy transition.';
+
 export default function FounderVideo() {
   const [open, setOpen] = useState(false);
   const hasVideo = !!founder.youtubeEmbed;
@@ -21,6 +23,9 @@ export default function FounderVideo() {
 
   const openVideo = () => hasVideo && setOpen(true);
 
+  // Split body text at the break marker so the remainder goes on a new line
+  const bodyParts = founder.body.split(BREAK_AFTER);
+
   return (
     <section className="bg-surface py-16">
       <div className="container-x grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
@@ -31,7 +36,7 @@ export default function FounderVideo() {
             className="group relative block aspect-video w-full overflow-hidden rounded-xl2 bg-ink shadow-lift"
             aria-label="Play founder interview"
           >
-            <img
+            <img loading="lazy"
               src={founder.poster}
               alt="Founder interview"
               className="absolute inset-0 h-full w-full object-cover opacity-80 transition duration-700 group-hover:scale-105"
@@ -47,11 +52,19 @@ export default function FounderVideo() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <p className="eyebrow">Solar in Thailand</p>
-          <h2 className="mt-2 font-display text-3xl font-extrabold leading-tight tracking-tight text-ink sm:text-4xl">
+          <p className="eyebrow font-bold">Solar in Thailand</p>
+          <h2 className="mt-2 font-display text-3xl font-extrabold leading-tight tracking-tight text-ink sm:text-4xl max-sm:text-[22px]">
             {founder.heading}
           </h2>
-          <p className="mt-4 text-[15px] leading-relaxed text-slatey-500">{founder.body}</p>
+          <p className="mt-4 text-[15px] leading-relaxed text-slatey-500">
+            {bodyParts[0]}{BREAK_AFTER}
+            {bodyParts.length > 1 && bodyParts[1] && (
+              <>
+                <br />
+                {bodyParts[1]}
+              </>
+            )}
+          </p>
           <button
             type="button"
             onClick={openVideo}
