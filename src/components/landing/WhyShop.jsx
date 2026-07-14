@@ -237,11 +237,11 @@ function BenefitCard({ item, big }) {
       {/* Text + arrow — locked to bottom */}
       <div className="flex items-end justify-between gap-3">
         <div>
-          <h3 className="font-display font-bold leading-snug" style={{ fontSize: 14, color: '#09321B' }}>
+          <h3 className="font-display font-bold leading-snug" style={{ fontSize: 16, color: '#09321B' }}>
             {item.title}
           </h3>
           {item.sub && (
-            <p className="mt-1 text-[12px] leading-relaxed" style={{ color: '#888' }}>
+            <p className="mt-1 text-[13px] font-medium leading-relaxed" style={{ color: '#555' }}>
               {item.sub}
             </p>
           )}

@@ -15,7 +15,7 @@ export default {
         // Solvio brand orange. Token kept as `lime` so all existing bg-lime / text-lime-dark classes pick it up.
         lime: {
           DEFAULT: '#FF6700',
-          dark: '#213c2f',
+          dark: '#a3550f',
         },
         amber: {
           DEFAULT: '#FFB330',

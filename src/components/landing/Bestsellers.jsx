@@ -59,9 +59,9 @@ export default function Bestsellers() {
                       ))}
                     </ul>
 
-                    <div className="mt-auto flex items-end justify-between gap-3">
+                    <div className="mt-auto flex items-end justify-between gap-3 pt-5">
                       <div>
-                        <p className="font-mono text-[11px] uppercase tracking-wider text-slatey-400">From</p>
+                        <p className="font-mono text-[11px] uppercase tracking-wider text-slatey-600">From</p>
                         <p className="font-display text-2xl font-extrabold text-ink">{baht(p.price)}</p>
                       </div>
                       <Link

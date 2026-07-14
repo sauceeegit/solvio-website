@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { founder } from '../../data/landing';
 import Reveal from '../Reveal';
 
+
 export default function FounderVideo() {
   const [open, setOpen] = useState(false);
   const hasVideo = !!founder.youtubeEmbed;
@@ -20,6 +21,7 @@ export default function FounderVideo() {
   }, [open]);
 
   const openVideo = () => hasVideo && setOpen(true);
+
 
   return (
     <section className="bg-surface py-16">
@@ -47,11 +49,15 @@ export default function FounderVideo() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <p className="eyebrow">Solar in Thailand</p>
+          <p className="eyebrow font-bold">Solar in Thailand</p>
           <h2 className="mt-2 font-display text-3xl font-extrabold leading-tight tracking-tight text-ink sm:text-4xl max-sm:text-[22px]">
             {founder.heading}
           </h2>
-          <p className="mt-4 text-[15px] leading-relaxed text-slatey-500">{founder.body}</p>
+          <p className="mt-4 text-[15px] leading-relaxed text-slatey-500">
+            Here is our founder David Spence interviewed on the prospects of solar in Thailand —
+            <br />
+            and why we think Solvio is the best partner for your energy transition.
+          </p>
           <button
             type="button"
             onClick={openVideo}

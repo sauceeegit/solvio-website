@@ -84,7 +84,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
 
   return (
     <>
-      <p className="mx-auto mb-5 max-w-4xl text-sm text-slatey-500">
+      <p className="mx-auto mb-2 max-w-4xl text-sm text-slatey-500">
         Set your system size and adjust the sliders to match your home.
       </p>
 
@@ -103,7 +103,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
                   </span>
                 </div>
                 <div className="flex items-center justify-between gap-3 rounded-lg border border-ink/10 px-3 py-2">
-                  <span className="text-xs text-slatey-500">{MODULE_WP} Wp each</span>
+                  <span className="text-sm font-medium text-slatey-600">{MODULE_WP} Wp each</span>
                   <div className="flex items-center gap-1">
                     <button
                       type="button"
@@ -234,14 +234,14 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
               {/* overall system cost — follows the panel count */}
               <div className="flex items-center justify-between gap-3 rounded-xl bg-ink px-5 py-3.5">
                 <div>
-                  <p className="font-mono text-[11px] uppercase tracking-wider text-white/55">
+                  <p className="font-mono text-[11px] uppercase tracking-wider text-white/90">
                     System cost
                   </p>
                   <p className="font-display text-2xl font-extrabold tabular-nums text-lime">
                     {baht(sized.total)}
                   </p>
                 </div>
-                <p className="text-right text-xs leading-relaxed text-white/60">
+                <p className="text-right text-xs leading-relaxed text-white/85">
                   {modules} × {MODULE_WP} Wp panels
                   {(sized.storage?.wh ?? 0) > 0 ? ' + battery' : ''}
                   <br />
@@ -255,12 +255,12 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
                   key={s.label}
                   className="flex flex-col justify-between rounded-xl border border-ink/[0.07] bg-[#f0f8ff] p-4 max-sm:p-3"
                 >
-                  <s.icon size={18} className={s.tint} />
+                  <s.icon size={36} className={s.tint} />
                   <div className="mt-6 max-sm:mt-2">
                     <p className="font-display text-2xl font-extrabold tracking-tight text-ink tabular-nums max-sm:text-xl">
                       {s.value}
                     </p>
-                    <p className="text-xs text-slatey-500">{s.label}</p>
+                    <p className="text-sm font-medium text-slatey-700">{s.label}</p>
                   </div>
                 </div>
               ))}
