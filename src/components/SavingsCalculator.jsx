@@ -84,7 +84,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
 
   return (
     <>
-      <p className="mx-auto mb-5 max-w-4xl text-sm text-slatey-500">
+      <p className="mx-auto mb-2 max-w-4xl text-sm text-slatey-500">
         Set your system size and adjust the sliders to match your home.
       </p>
 
@@ -103,7 +103,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
                   </span>
                 </div>
                 <div className="flex items-center justify-between gap-3 rounded-lg border border-ink/10 px-3 py-2">
-                  <span className="text-xs text-slatey-500">{MODULE_WP} Wp each</span>
+                  <span className="text-sm font-medium text-slatey-600">{MODULE_WP} Wp each</span>
                   <div className="flex items-center gap-1">
                     <button
                       type="button"
