@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { founder } from '../../data/landing';
 import Reveal from '../Reveal';
 
-const BREAK_AFTER = '— and why we think Solvio is the best partner for your energy transition.';
+const BREAK_BEFORE = 'and why we think Solvio is the best partner for your energy transition.';
 
 export default function FounderVideo() {
   const [open, setOpen] = useState(false);
@@ -23,8 +23,8 @@ export default function FounderVideo() {
 
   const openVideo = () => hasVideo && setOpen(true);
 
-  // Split body text at the break marker so the remainder goes on a new line
-  const bodyParts = founder.body.split(BREAK_AFTER);
+  // Split body text so "and why we think..." starts on a new line
+  const bodyParts = founder.body.split(BREAK_BEFORE);
 
   return (
     <section className="bg-surface py-16">
@@ -57,11 +57,11 @@ export default function FounderVideo() {
             {founder.heading}
           </h2>
           <p className="mt-4 text-[15px] leading-relaxed text-slatey-500">
-            {bodyParts[0]}{BREAK_AFTER}
-            {bodyParts.length > 1 && bodyParts[1] && (
+            {bodyParts[0]}
+            {bodyParts.length > 1 && (
               <>
                 <br />
-                {bodyParts[1]}
+                {BREAK_BEFORE}
               </>
             )}
           </p>
