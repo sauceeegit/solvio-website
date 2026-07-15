@@ -27,7 +27,7 @@ export default function PortableBatteries() {
               <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
                 Portable Batteries
               </h2>
-              <p className="mt-3 text-base text-ink/60">
+              <p className="mt-3 text-base text-ink/80">
                 Take your power anywhere. Compact, lightweight, and powerful.
               </p>
             </div>
@@ -37,14 +37,14 @@ export default function PortableBatteries() {
             <button
               onClick={() => scrollByCard(-1)}
               aria-label="Previous"
-              className="grid h-11 w-11 place-items-center rounded-full border border-ink/15 text-ink transition hover:border-ink/40 hover:bg-ink/[0.04] active:scale-95"
+              className="grid h-11 w-11 place-items-center rounded-full bg-lime text-white transition hover:bg-lime-dark active:scale-95"
             >
               <ChevronLeft size={20} />
             </button>
             <button
               onClick={() => scrollByCard(1)}
               aria-label="Next"
-              className="grid h-11 w-11 place-items-center rounded-full border border-ink/15 text-ink transition hover:border-ink/40 hover:bg-ink/[0.04] active:scale-95"
+              className="grid h-11 w-11 place-items-center rounded-full bg-lime text-white transition hover:bg-lime-dark active:scale-95"
             >
               <ChevronRight size={20} />
             </button>
@@ -81,13 +81,13 @@ export default function PortableBatteries() {
 
                 <div className="flex flex-1 flex-col gap-3 p-5">
                   <div>
-                    <h3 className="font-display text-lg font-extrabold text-ink">{p.name}</h3>
-                    <p className="mt-0.5 text-sm text-ink/60">{p.tagline ?? `${p.capacity} portable power station`}</p>
+                    <h3 className="font-display text-[1.2rem] font-extrabold text-ink">{p.name}</h3>
+                    <p className="mt-0.5 text-[13px] text-ink/75">{p.tagline ?? `${p.capacity} portable power station`}</p>
                   </div>
 
                   <div className="mt-auto flex items-end justify-between gap-3">
                     <div>
-                      <p className="font-mono text-[11px] uppercase tracking-wider text-slatey-400">From</p>
+                      <p className="font-mono text-[11px] uppercase tracking-wider text-slatey-600">From</p>
                       <p className="font-display text-2xl font-extrabold text-ink tabular-nums">{baht(p.price)}</p>
                     </div>
                     <Link to={p.href ?? '/portable-system'}>

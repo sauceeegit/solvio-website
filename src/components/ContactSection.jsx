@@ -117,7 +117,7 @@ export default function ContactSection() {
   };
 
   const fieldCls =
-    'w-full rounded-xl border border-ink/12 bg-white px-4 py-3 font-body text-sm text-ink placeholder:text-slatey-400 focus:border-lime focus:outline-none focus:ring-1 focus:ring-lime/40';
+    'w-full rounded-xl border border-ink/12 bg-white px-4 py-3 font-body text-sm text-ink placeholder:text-slatey-600 focus:border-lime focus:outline-none focus:ring-1 focus:ring-lime/40';
 
   return (
     <section id="contact" className="scroll-mt-20 py-20" style={{ backgroundColor: '#fffbf5' }}>
@@ -129,7 +129,7 @@ export default function ContactSection() {
             <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
               Talk to a Solvio solar advisor
             </h2>
-            <p className="mt-3 max-w-md text-slatey-500">
+            <p className="mt-3 max-w-md text-ink/75">
               Tell us about your home or business and what you&apos;re looking for. We&apos;ll get
               back to you with honest, no-pressure advice.
             </p>
@@ -267,8 +267,8 @@ export default function ContactSection() {
                       </div>
                     </div>
                   </div>
-                  <p className="-mt-2 text-xs text-slatey-400">
-                    Add your email or a LINE/Telegram ID — whichever you prefer we reply on.
+                  <p className="-mt-2 text-xs text-ink/60">
+                    Add your email or a LINE/Telegram ID — whichever you prefer, we reply on.
                   </p>
 
                   <div>
