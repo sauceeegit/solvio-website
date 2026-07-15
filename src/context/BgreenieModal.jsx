@@ -1,14 +1,23 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-import { X, Star, Gift, Zap } from 'lucide-react';
+import { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
+import { X, ArrowRight } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 
-const BgreenieCtx = createContext(() => {});
+const BGREENIE_URL = 'https://bgreenie.me/';
 
+const BgreenieContext = createContext(() => {});
+
+// Hook returning a function that opens the shared Bgreenie intro popup.
+export const useBgreenie = () => useContext(BgreenieContext);
+
+// Provider that renders the single Bgreenie popup and exposes an opener via
+// context, so the nav and the "Earn Solvio rewards" CTA share one modal.
 export function BgreenieProvider({ children }) {
   const [open, setOpen] = useState(false);
+  const openBgreenie = useCallback(() => setOpen(true), []);
 
   useEffect(() => {
-    if (!open) return;
+    if (!open) return undefined;
     const onKey = (e) => e.key === 'Escape' && setOpen(false);
     window.addEventListener('keydown', onKey);
     document.body.style.overflow = 'hidden';
@@ -19,84 +28,74 @@ export function BgreenieProvider({ children }) {
   }, [open]);
 
   return (
-    <BgreenieCtx.Provider value={() => setOpen(true)}>
+    <BgreenieContext.Provider value={openBgreenie}>
       {children}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            className="fixed inset-0 z-[70] flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setOpen(false)}
-          >
+      {createPortal(
+        <AnimatePresence>
+          {open && (
             <motion.div
-              className="relative w-full max-w-md overflow-hidden rounded-2xl bg-white shadow-2xl"
-              initial={{ scale: 0.92, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.92, opacity: 0 }}
-              transition={{ type: 'spring', damping: 24, stiffness: 280 }}
-              onClick={(e) => e.stopPropagation()}
+              className="fixed inset-0 z-[80] flex items-center justify-center bg-ink/70 p-4 backdrop-blur-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setOpen(false)}
             >
-              {/* Header */}
-              <div className="bg-lime px-6 py-8 text-center">
-                <p className="font-mono text-xs font-bold uppercase tracking-widest text-white/70">
-                  Solvio Rewards
-                </p>
-                <h2 className="mt-1 font-display text-3xl font-extrabold text-white">
-                  Bgreenie Membership
-                </h2>
-                <p className="mt-2 text-sm text-white/80">
-                  Earn points on every purchase. Redeem for exclusive rewards.
-                </p>
-              </div>
-
-              {/* Benefits */}
-              <div className="space-y-4 p-6">
-                {[
-                  { icon: Star, title: 'Earn points', body: 'Get points with every Solvio purchase — the more you buy, the more you earn.' },
-                  { icon: Gift, title: 'Redeem rewards', body: 'Redeem points for discounts, exclusive products and member-only benefits.' },
-                  { icon: Zap, title: 'Members-only deals', body: 'Get early access to new products and special pricing before anyone else.' },
-                ].map(({ icon: Icon, title, body }) => (
-                  <div key={title} className="flex gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-lime/10">
-                      <Icon size={18} className="text-lime" />
-                    </div>
-                    <div>
-                      <p className="font-display text-sm font-bold text-ink">{title}</p>
-                      <p className="text-xs leading-relaxed text-slatey-500">{body}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* CTA */}
-              <div className="border-t border-ink/[0.07] px-6 pb-6 pt-4">
-                <a
-                  href="mailto:hello@solvio.co?subject=Bgreenie Membership"
-                  className="block w-full rounded-full bg-lime py-3 text-center font-display text-sm font-bold text-white transition hover:bg-lime-dark"
-                >
-                  Join Bgreenie — it's free
-                </a>
-                <p className="mt-2 text-center text-xs text-slatey-400">
-                  Contact us to get started. No subscription required.
-                </p>
-              </div>
-
-              <button
-                type="button"
-                onClick={() => setOpen(false)}
-                aria-label="Close"
-                className="absolute right-4 top-4 grid h-8 w-8 place-items-center rounded-full bg-white/20 text-white transition hover:bg-white/30"
+              <motion.div
+                role="dialog"
+                aria-modal="true"
+                aria-label="Bgreenie Membership"
+                className="relative w-full max-w-md rounded-xl2 bg-white p-7 text-center shadow-lift sm:p-8"
+                initial={{ scale: 0.94, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.94, opacity: 0 }}
+                transition={{ type: 'spring', damping: 24, stiffness: 280 }}
+                onClick={(e) => e.stopPropagation()}
               >
-                <X size={16} />
-              </button>
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  aria-label="Close"
+                  className="absolute right-3 top-3 grid h-8 w-8 place-items-center rounded-full text-ink/50 transition hover:bg-ink/[0.06]"
+                >
+                  <X size={18} />
+                </button>
+
+                <span className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-[#16A34A]/12 text-2xl leading-none text-[#16A34A]">
+                  ★
+                </span>
+                <h3 className="mt-4 font-display text-xl font-extrabold text-ink">
+                  Bgreenie Membership
+                </h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-slatey-500">
+                  Solvio has teamed up with Bgreenie to democratize solar energy. Members get
+                  exclusive discounts on solar products and access to community revenue-sharing
+                  opportunities.
+                </p>
+
+                <div className="mt-6 flex flex-col gap-2.5 sm:flex-row-reverse">
+                  <a
+                    href={BGREENIE_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setOpen(false)}
+                    className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-lime px-5 py-3 font-display text-sm font-bold text-white transition hover:bg-lime-dark"
+                  >
+                    Continue to Bgreenie <ArrowRight size={16} />
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => setOpen(false)}
+                    className="inline-flex flex-1 items-center justify-center rounded-full border border-ink/15 px-5 py-3 font-display text-sm font-bold text-ink/70 transition hover:border-ink/30 hover:text-ink"
+                  >
+                    Stay
+                  </button>
+                </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </BgreenieCtx.Provider>
+          )}
+        </AnimatePresence>,
+        document.body,
+      )}
+    </BgreenieContext.Provider>
   );
 }
-
-export const useBgreenie = () => useContext(BgreenieCtx);
