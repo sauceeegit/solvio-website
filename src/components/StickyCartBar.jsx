@@ -8,7 +8,7 @@ export default function StickyCartBar({ derived, onAddToCart, added }) {
       <div className="mx-auto flex max-w-lg items-center justify-between gap-3">
         <div>
           <p className="font-display text-sm font-extrabold text-ink">{product.name}</p>
-          <p className="font-display text-base font-extrabold text-lime">{baht(derived?.total ?? 0)}</p>
+          <p className="font-display text-base font-extrabold text-price">{baht(derived?.total ?? 0)}</p>
         </div>
         <button
           onClick={onAddToCart}

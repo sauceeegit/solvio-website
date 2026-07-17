@@ -22,9 +22,13 @@ export default {
           dark: '#E09A14',
         },
         slatey: {
+          700: '#3a4f45',
+          600: '#4a6057',
           500: '#5A6B62',
           400: '#7E8C84',
         },
+        // Price green — lighter than the contact icon circles (#1d3d2e)
+        price: '#2a7050',
       },
       fontFamily: {
         display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],

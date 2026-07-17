@@ -237,7 +237,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
                   <p className="font-mono text-[11px] uppercase tracking-wider text-white/90">
                     System cost
                   </p>
-                  <p className="font-display text-2xl font-extrabold tabular-nums text-lime">
+                  <p className="font-display text-2xl font-extrabold tabular-nums text-price">
                     {baht(sized.total)}
                   </p>
                 </div>

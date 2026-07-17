@@ -62,7 +62,7 @@ export default function Bestsellers() {
                     <div className="mt-auto flex items-end justify-between gap-3 pt-5">
                       <div>
                         <p className="font-mono text-[11px] uppercase tracking-wider text-slatey-600">From</p>
-                        <p className="font-display text-2xl font-extrabold text-ink">{baht(p.price)}</p>
+                        <p className="font-display text-2xl font-extrabold text-price">{baht(p.price)}</p>
                       </div>
                       <Link
                         to="/balcony-system"
