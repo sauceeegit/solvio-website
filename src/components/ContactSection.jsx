@@ -117,7 +117,7 @@ export default function ContactSection() {
   };
 
   const fieldCls =
-    'w-full rounded-xl border border-ink/12 bg-white px-4 py-3 font-body text-sm text-ink placeholder:text-slatey-600 focus:border-lime focus:outline-none focus:ring-1 focus:ring-lime/40';
+    'w-full rounded-xl border border-ink/12 bg-white px-4 py-3 font-body text-[15px] text-ink placeholder:text-ink/40 focus:border-lime focus:outline-none focus:ring-1 focus:ring-lime/40';
 
   return (
     <section id="contact" className="scroll-mt-20 py-20" style={{ backgroundColor: '#fffbf5' }}>

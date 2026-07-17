@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { portablePanels } from '../../data/landing';
@@ -7,12 +7,26 @@ import Reveal from '../Reveal';
 
 export default function PortablePanels() {
   const trackRef = useRef(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+
+  const updateScrollState = () => {
+    const el = trackRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 4);
+  };
+
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    el.addEventListener('scroll', updateScrollState, { passive: true });
+    return () => el.removeEventListener('scroll', updateScrollState);
+  }, []);
 
   const scrollByCard = (dir) => {
     const el = trackRef.current;
     if (!el) return;
     const card = el.querySelector('[data-card]');
-    const gap = 24; // gap-6
+    const gap = 24;
     const step = card ? card.offsetWidth + gap : el.clientWidth * 0.7;
     el.scrollBy({ left: dir * step, behavior: 'smooth' });
   };
@@ -37,7 +51,11 @@ export default function PortablePanels() {
             <button
               onClick={() => scrollByCard(-1)}
               aria-label="Previous"
-              className="grid h-11 w-11 place-items-center rounded-full bg-lime text-white transition hover:bg-lime-dark active:scale-95"
+              className={`grid h-11 w-11 place-items-center rounded-full transition active:scale-95 ${
+                canScrollLeft
+                  ? 'bg-lime text-white hover:bg-lime-dark'
+                  : 'bg-ink/8 text-ink/40'
+              }`}
             >
               <ChevronLeft size={20} />
             </button>
@@ -73,7 +91,7 @@ export default function PortablePanels() {
                 <div className="flex flex-1 flex-col gap-3 p-5">
                   <div>
                     <h3 className="font-display text-[1.2rem] font-extrabold text-ink">{p.name}</h3>
-                    <p className="mt-0.5 text-[13px] text-ink/75">{p.tagline ?? `${p.watt} foldable solar panel`}</p>
+                    <p className="mt-0.5 text-[13px] font-medium text-ink/75">{p.tagline ?? `${p.watt} foldable solar panel`}</p>
                   </div>
 
                   <div className="mt-auto flex items-end justify-between gap-3">
