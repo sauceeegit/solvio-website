@@ -13,7 +13,7 @@ export default function ProductHero({ cfg, onAddToCart, added }) {
     <section id="product" className="container-x scroll-mt-20 pb-16 pt-2">
       <div className="grid grid-cols-1 gap-8 lg:ml-[calc(50%-50vw+1.5rem)] lg:grid-cols-[1.55fr_1fr] lg:gap-10">
         {/* Left — gallery */}
-        <Gallery derived={cfg} mobileFreeze />
+        <Gallery derived={cfg} />
 
         {/* Right — details */}
         <div>
