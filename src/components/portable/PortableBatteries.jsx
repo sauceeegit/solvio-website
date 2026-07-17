@@ -32,7 +32,7 @@ export default function PortableBatteries() {
   };
 
   return (
-    <section className="bg-white py-16">
+    <section className="py-16" style={{ background: '#FFF7E9' }}>
       <div className="container-x">
         <div className="flex items-end justify-between gap-4">
           <Reveal>
