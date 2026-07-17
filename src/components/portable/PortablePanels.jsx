@@ -90,8 +90,8 @@ export default function PortablePanels() {
 
                 <div className="flex flex-1 flex-col gap-3 p-5">
                   <div>
-                    <h3 className="font-display text-[1.2rem] font-extrabold text-ink">{p.name}</h3>
-                    <p className="mt-0.5 text-[13px] font-medium text-ink/75">{p.tagline ?? `${p.watt} foldable solar panel`}</p>
+                    <h3 className="font-display text-[1.35rem] font-extrabold text-ink">{p.name}</h3>
+                    <p className="mt-0.5 text-[15px] font-medium" style={{ color: '#477296' }}>{p.tagline ?? `${p.watt} foldable solar panel`}</p>
                   </div>
 
                   <div className="mt-auto flex items-end justify-between gap-3">

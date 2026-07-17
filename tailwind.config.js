@@ -28,7 +28,7 @@ export default {
           400: '#7E8C84',
         },
         // Price green — lighter than the contact icon circles (#1d3d2e)
-        price: '#2a7050',
+        price: '#117238',
       },
       fontFamily: {
         display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
