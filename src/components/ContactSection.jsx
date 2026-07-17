@@ -126,7 +126,7 @@ export default function ContactSection() {
           {/* Left — heading + direct contact details */}
           <Reveal>
             <p className="eyebrow font-bold">Get in touch</p>
-            <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+            <h2 className="mt-2 font-display text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">
               Talk to a Solvio solar advisor
             </h2>
             <p className="mt-3 max-w-md text-ink/75">
