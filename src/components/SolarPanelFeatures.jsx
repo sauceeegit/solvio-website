@@ -4,13 +4,13 @@ import { asset } from '../lib/format';
 const features = [
   {
     id: 'aesthetics',
-    img: asset('/sp-feature-1.webp'),
-    imgAlt: 'Solvio Dark Feather solar roof on a modern Thai villa at sunset',
+    img: asset('/sp-feature-house.webp'),
+    imgAlt: 'Modern home with Solvio Black Feather solar panels on the roof and balcony railing',
     aspect: 'aspect-[3/2]',
     imageSide: 'left',
     valign: 'center',
-    title: 'The Perfect Fusion of Aesthetics and Technology',
-    body: 'Efficiency meets elegance. The Solvio Dark Feather turns clean energy into a design statement.',
+    title: 'The Black Feather. Made for Real Homes.',
+    body: 'All-black, ultra-slim, and built to complement your home — not just sit on top of it. Solar that looks like it belongs.',
   },
   {
     id: 'lightweight',
