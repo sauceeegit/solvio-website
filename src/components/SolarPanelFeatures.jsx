@@ -68,7 +68,7 @@ export default function SolarPanelFeatures() {
                   f.valign === 'start' ? 'lg:pt-8' : ''
                 }`}
               >
-                <h2 className="font-display text-3xl font-extrabold leading-[1.1] tracking-tight text-ink sm:text-4xl lg:text-5xl">
+                <h2 className="font-display text-3xl font-extrabold leading-tight tracking-tight text-ink sm:text-4xl">
                   {f.title}
                 </h2>
                 <p className="mt-5 max-w-md text-lg text-slatey-500">{f.body}</p>
