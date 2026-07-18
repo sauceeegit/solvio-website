@@ -76,10 +76,10 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
   }, [sized, factor, household, rate, exportOn]);
 
   const stats = [
-    { icon: Sun, label: 'Annual yield', value: `${num(annualYield)} kWh`, tint: 'text-amber-dark' },
-    { icon: Wallet, label: 'You save / year', value: baht(savings), tint: 'text-lime-dark' },
-    { icon: Clock, label: 'Pays back in', value: `${payback.toFixed(1)} yrs`, tint: 'text-ink' },
-    { icon: Leaf, label: 'CO₂ avoided / yr', value: `${num(co2)} kg`, tint: 'text-lime-dark' },
+    { icon: Sun, label: 'Annual yield', value: `${num(annualYield)} kWh`, tint: 'text-lime' },
+    { icon: Wallet, label: 'You save / year', value: baht(savings), tint: 'text-lime' },
+    { icon: Clock, label: 'Pays back in', value: `${payback.toFixed(1)} yrs`, tint: 'text-lime' },
+    { icon: Leaf, label: 'CO₂ avoided / yr', value: `${num(co2)} kg`, tint: 'text-lime' },
   ];
 
   return (
@@ -237,7 +237,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
                   <p className="font-mono text-[11px] uppercase tracking-wider text-white/90">
                     System cost
                   </p>
-                  <p className="font-display text-2xl font-extrabold tabular-nums text-price">
+                  <p className="font-display text-2xl font-extrabold tabular-nums text-white">
                     {baht(sized.total)}
                   </p>
                 </div>
