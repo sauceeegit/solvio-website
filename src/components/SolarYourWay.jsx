@@ -76,87 +76,11 @@ const HOURS = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24];
 function EnergyChart() {
   return (
     <div className="mt-12 overflow-hidden rounded-2xl border border-ink/[0.07] bg-white shadow-soft">
-      {/* Legend */}
-      <div className="flex flex-wrap gap-x-7 gap-y-2 border-b border-ink/[0.07] px-6 py-4 text-[13px] text-ink/70">
-        <span className="flex items-center gap-2.5">
-          <span className="inline-block h-[3px] w-7 rounded-full bg-lime" />
-          Solar Energy Production
-        </span>
-        <span className="flex items-center gap-2.5">
-          <span className="inline-block h-[3px] w-7 rounded-full bg-ink/50" />
-          Household Energy Consumption
-        </span>
-        <span className="flex items-center gap-2.5">
-          <span
-            className="inline-block h-[3px] w-7"
-            style={{ background: 'repeating-linear-gradient(90deg,#FF6700 0,#FF6700 5px,transparent 5px,transparent 9px)' }}
-          />
-          Self-generated solar energy
-        </span>
-        <span className="flex items-center gap-2.5">
-          <span className="inline-block h-[3px] w-7 rounded-full bg-ink/15" />
-          Less electricity purchased from the grid
-        </span>
-      </div>
-
-      <div className="px-4 pb-2 pt-4">
-        <svg
-          viewBox={`0 0 ${W} ${H}`}
-          className="w-full"
-          aria-label="Solar energy production vs household consumption over 24 hours"
-        >
-          <defs>
-            <marker id="arrowhead" markerWidth="7" markerHeight="7" refX="4" refY="3.5" orient="auto">
-              <path d="M0,0 L7,3.5 L0,7 Z" fill="#555" />
-            </marker>
-          </defs>
-
-          {/* Grey fill — total household consumption area */}
-          <path d={HOUSE_FILL} fill="#e0e0e0" fillOpacity="0.55" />
-
-          {/* Orange fill — self-generated solar (where solar > household) */}
-          <path d={SELF_FILL} fill="#FF6700" fillOpacity="0.18" />
-
-          {/* Household consumption line */}
-          <path d={HOUSE} fill="none" stroke="#444" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-
-          {/* Solar production line */}
-          <path d={SOLAR} fill="none" stroke="#FF6700" strokeWidth="3.5" strokeLinecap="round" />
-
-          {/* Dashed outline on solar line for the "self-generated" legend cue */}
-          <path d={SOLAR} fill="none" stroke="#FF6700" strokeWidth="1.5" strokeDasharray="7 5" strokeLinecap="round" opacity="0.35" />
-
-          {/* "Self-generated solar energy" label */}
-          <text x={x(12)} y={y(0.60)} fontSize="22" fontWeight="700" fill="#FF6700" textAnchor="middle" fontFamily="Space Grotesk, sans-serif">
-            Self-generated
-          </text>
-          <text x={x(12)} y={y(0.46)} fontSize="22" fontWeight="700" fill="#FF6700" textAnchor="middle" fontFamily="Space Grotesk, sans-serif">
-            solar energy
-          </text>
-
-          {/* "Less electricity purchased" label + arrow */}
-          <text x={x(21)} y={y(1.02)} fontSize="18" fill="#555" textAnchor="middle" fontFamily="DM Sans, sans-serif">Less electricity</text>
-          <text x={x(21)} y={y(0.90)} fontSize="18" fill="#555" textAnchor="middle" fontFamily="DM Sans, sans-serif">purchased from</text>
-          <text x={x(21)} y={y(0.78)} fontSize="18" fill="#555" textAnchor="middle" fontFamily="DM Sans, sans-serif">the grid</text>
-          <path
-            d={`M ${x(19.8)},${y(0.84)} Q ${x(19)},${y(0.80)} ${x(18.8)},${y(0.74)}`}
-            fill="none" stroke="#666" strokeWidth="1.5" markerEnd="url(#arrowhead)"
-          />
-
-          {/* X-axis baseline */}
-          <line x1={x(0)} y1={y(0)} x2={x(24)} y2={y(0)} stroke="#e0e0e0" strokeWidth="1.5" />
-
-          {/* Hour ticks + labels */}
-          {HOURS.map((h) => (
-            <g key={h}>
-              <line x1={x(h)} y1={y(0)} x2={x(h)} y2={y(0) + 7} stroke="#ccc" strokeWidth="1.2" />
-              <text x={x(h)} y={y(0) + 26} fontSize="19" fill="#aaa" textAnchor="middle" fontFamily="JetBrains Mono, monospace">
-                {h}
-              </text>
-            </g>
-          ))}
-        </svg>
-      </div>
+      <img
+        src={asset('/solar-energy-chart.png')}
+        alt="Solar energy production vs household consumption over 24 hours"
+        className="w-full"
+      />
     </div>
   );
 }
