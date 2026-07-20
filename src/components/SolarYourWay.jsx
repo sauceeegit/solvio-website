@@ -10,7 +10,7 @@ const ALL_CARDS = [
     icon: Building2,
     title: 'Balcony Installation',
     body: 'Perfect for apartments and urban living. Generate clean electricity without modifying your roof.',
-    img: asset('/balcony-power-plants.jpg'),
+    img: asset('/sp-balcony.webp'),
     alt: 'Black solar panels on a modern apartment balcony railing',
     tabs: ['Balcony & Facade'],
   },
