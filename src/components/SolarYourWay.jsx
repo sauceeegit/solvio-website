@@ -114,7 +114,7 @@ export default function SolarYourWay() {
         }`}>
           {cards.map((c, i) => (
             <Reveal key={c.title} delay={i * 0.07}>
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-6">
                 <div className="flex items-start gap-3">
                   <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-lime">
                     <c.icon size={20} className="text-white" strokeWidth={2} />
