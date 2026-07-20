@@ -18,7 +18,7 @@ const ALL_CARDS = [
     icon: Layers,
     title: 'Facade Installation',
     body: 'Turn unused wall space into energy. The all-black design integrates beautifully into contemporary architecture.',
-    img: asset('/sp-feature-2.webp'),
+    img: asset('/sp-facade.webp'),
     alt: 'Solvio Black Feather panels on a building facade',
     tabs: ['Balcony & Facade'],
   },
