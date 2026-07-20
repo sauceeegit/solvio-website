@@ -39,38 +39,37 @@ const PW = W - PL - PR, PH = H - PT - PB;
 const x = (h) => PL + (h / 24) * PW;
 const y = (f) => PT + PH * (1 - f);
 
-// Solar bell: 0 at 5am, peaks at noon, back to 0 at 19:30
+// Solar bell: 0 at ~6am, peaks at noon (~72% height), back to 0 at ~18:30
 const SOLAR =
   `M ${x(0)},${y(0)}` +
-  ` C ${x(4.5)},${y(0)} ${x(6)},${y(0.04)} ${x(7)},${y(0.18)}` +
-  ` C ${x(9)},${y(0.68)} ${x(10.5)},${y(0.96)} ${x(12)},${y(1)}` +
-  ` C ${x(13.5)},${y(0.96)} ${x(15)},${y(0.68)} ${x(17)},${y(0.18)}` +
-  ` C ${x(18)},${y(0.04)} ${x(19.5)},${y(0)} ${x(24)},${y(0)}`;
+  ` C ${x(5)},${y(0)} ${x(6.5)},${y(0.03)} ${x(7.5)},${y(0.14)}` +
+  ` C ${x(9.5)},${y(0.52)} ${x(11)},${y(0.7)} ${x(12)},${y(0.72)}` +
+  ` C ${x(13)},${y(0.7)} ${x(14.5)},${y(0.52)} ${x(16.5)},${y(0.14)}` +
+  ` C ${x(17.5)},${y(0.03)} ${x(19)},${y(0)} ${x(24)},${y(0)}`;
 
-// Household: starts low, morning bump ~8, midday trough, evening peak ~19-21
+// Household: base ~12%, morning bump ~8 (peak 48%), midday dip ~12 (26%), evening peak ~20 (88%), falls
 const HOUSE =
-  `M ${x(0)},${y(0.1)}` +
-  ` C ${x(1.5)},${y(0.08)} ${x(4)},${y(0.09)} ${x(6)},${y(0.14)}` +
-  ` C ${x(7)},${y(0.22)} ${x(7.5)},${y(0.42)} ${x(8)},${y(0.5)}` +
-  ` C ${x(9)},${y(0.36)} ${x(10.5)},${y(0.28)} ${x(12)},${y(0.28)}` +
-  ` C ${x(13.5)},${y(0.28)} ${x(15)},${y(0.32)} ${x(17)},${y(0.44)}` +
-  ` C ${x(18.5)},${y(0.62)} ${x(19.5)},${y(0.72)} ${x(20.5)},${y(0.72)}` +
-  ` C ${x(22)},${y(0.72)} ${x(23)},${y(0.5)} ${x(24)},${y(0.28)}`;
+  `M ${x(0)},${y(0.12)}` +
+  ` C ${x(2)},${y(0.10)} ${x(5)},${y(0.11)} ${x(6.5)},${y(0.18)}` +
+  ` C ${x(7.2)},${y(0.30)} ${x(7.6)},${y(0.44)} ${x(8)},${y(0.48)}` +
+  ` C ${x(9)},${y(0.34)} ${x(10.5)},${y(0.26)} ${x(12)},${y(0.26)}` +
+  ` C ${x(13.5)},${y(0.26)} ${x(15)},${y(0.30)} ${x(17)},${y(0.44)}` +
+  ` C ${x(18.5)},${y(0.70)} ${x(19.5)},${y(0.88)} ${x(20.5)},${y(0.88)}` +
+  ` C ${x(22)},${y(0.88)} ${x(23)},${y(0.65)} ${x(24)},${y(0.40)}`;
 
 // Grey fill under the whole household curve (total consumption footprint)
 const HOUSE_FILL =
   HOUSE +
   ` L ${x(24)},${y(0)} L ${x(0)},${y(0)} Z`;
 
-// Orange fill: where solar > household (self-consumed solar) — roughly 7:30 → 17
+// Orange fill: where solar > household (roughly 9am → 16pm, between the two curves)
 const SELF_FILL =
-  `M ${x(7.2)},${y(0.19)}` +
-  ` C ${x(9)},${y(0.68)} ${x(10.5)},${y(0.96)} ${x(12)},${y(1)}` +
-  ` C ${x(13.5)},${y(0.96)} ${x(15)},${y(0.68)} ${x(17)},${y(0.19)}` +
-  // back along household line
-  ` C ${x(15.2)},${y(0.32)} ${x(13.5)},${y(0.28)} ${x(12)},${y(0.28)}` +
-  ` C ${x(10.5)},${y(0.28)} ${x(9)},${y(0.36)} ${x(7.8)},${y(0.47)}` +
-  ` C ${x(7.5)},${y(0.42)} ${x(7.3)},${y(0.3)} ${x(7.2)},${y(0.19)} Z`;
+  `M ${x(9)},${y(0.26)}` +
+  ` C ${x(10)},${y(0.52)} ${x(11)},${y(0.70)} ${x(12)},${y(0.72)}` +
+  ` C ${x(13)},${y(0.70)} ${x(14.5)},${y(0.52)} ${x(16)},${y(0.26)}` +
+  // back along household
+  ` C ${x(14.5)},${y(0.30)} ${x(13.5)},${y(0.26)} ${x(12)},${y(0.26)}` +
+  ` C ${x(10.5)},${y(0.26)} ${x(9.5)},${y(0.30)} ${x(9)},${y(0.26)} Z`;
 
 const HOURS = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24];
 
@@ -128,19 +127,19 @@ function EnergyChart() {
           <path d={SOLAR} fill="none" stroke="#FF6700" strokeWidth="1.5" strokeDasharray="7 5" strokeLinecap="round" opacity="0.35" />
 
           {/* "Self-generated solar energy" label */}
-          <text x={x(12)} y={y(0.74)} fontSize="24" fontWeight="700" fill="#FF6700" textAnchor="middle" fontFamily="Space Grotesk, sans-serif">
+          <text x={x(12)} y={y(0.60)} fontSize="22" fontWeight="700" fill="#FF6700" textAnchor="middle" fontFamily="Space Grotesk, sans-serif">
             Self-generated
           </text>
-          <text x={x(12)} y={y(0.58)} fontSize="24" fontWeight="700" fill="#FF6700" textAnchor="middle" fontFamily="Space Grotesk, sans-serif">
+          <text x={x(12)} y={y(0.46)} fontSize="22" fontWeight="700" fill="#FF6700" textAnchor="middle" fontFamily="Space Grotesk, sans-serif">
             solar energy
           </text>
 
           {/* "Less electricity purchased" label + arrow */}
-          <text x={x(20.8)} y={y(0.62)} fontSize="19" fill="#555" textAnchor="middle" fontFamily="DM Sans, sans-serif">Less electricity</text>
-          <text x={x(20.8)} y={y(0.49)} fontSize="19" fill="#555" textAnchor="middle" fontFamily="DM Sans, sans-serif">purchased from</text>
-          <text x={x(20.8)} y={y(0.36)} fontSize="19" fill="#555" textAnchor="middle" fontFamily="DM Sans, sans-serif">the grid</text>
+          <text x={x(21)} y={y(1.02)} fontSize="18" fill="#555" textAnchor="middle" fontFamily="DM Sans, sans-serif">Less electricity</text>
+          <text x={x(21)} y={y(0.90)} fontSize="18" fill="#555" textAnchor="middle" fontFamily="DM Sans, sans-serif">purchased from</text>
+          <text x={x(21)} y={y(0.78)} fontSize="18" fill="#555" textAnchor="middle" fontFamily="DM Sans, sans-serif">the grid</text>
           <path
-            d={`M ${x(19.4)},${y(0.42)} Q ${x(18.5)},${y(0.5)} ${x(18)},${y(0.56)}`}
+            d={`M ${x(19.8)},${y(0.84)} Q ${x(19)},${y(0.80)} ${x(18.8)},${y(0.74)}`}
             fill="none" stroke="#666" strokeWidth="1.5" markerEnd="url(#arrowhead)"
           />
 
