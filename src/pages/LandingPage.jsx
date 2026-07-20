@@ -7,6 +7,7 @@ import CalculatorSection from '../components/CalculatorSection';
 import LandingFAQ from '../components/landing/LandingFAQ';
 import FounderVideo from '../components/landing/FounderVideo';
 import WhyShop from '../components/landing/WhyShop';
+import SolarYourWay from '../components/SolarYourWay';
 import Community from '../components/landing/Community';
 import GuidePopup from '../components/GuidePopup';
 import ContactSection from '../components/ContactSection';
@@ -42,6 +43,7 @@ export default function LandingPage() {
         </div>
         <CategoryGrid />
         <Bestsellers />
+        <SolarYourWay />
         <CalculatorSection />
         <FounderVideo />
         <LandingFAQ />

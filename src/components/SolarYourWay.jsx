@@ -5,166 +5,166 @@ import Reveal from './Reveal';
 
 const TABS = ['Balcony & Facade', 'Lightweight Roof'];
 
-const CARDS = {
-  'Balcony & Facade': [
-    {
-      icon: Building2,
-      title: 'Balcony Installation',
-      body: 'Perfect for apartments and urban living. Generate clean electricity without modifying your roof.',
-      img: asset('/balcony-power-plants.jpg'),
-      alt: 'Black solar panels on a modern apartment balcony railing',
-    },
-    {
-      icon: Layers,
-      title: 'Facade Installation',
-      body: 'Turn unused wall space into energy. The all-black design integrates beautifully into contemporary architecture.',
-      img: asset('/dark-feather-1800.jpg'),
-      alt: 'Solvio Black Feather panels mounted on a building facade',
-    },
-  ],
-  'Lightweight Roof': [
-    {
-      icon: Home,
-      title: 'Lightweight Roof Installation',
-      body: 'When every kilogram matters. At only 6 kg/m², The Black Feather is engineered for lightweight structures.',
-      img: asset('/rooftop-solar.jpg'),
-      alt: 'Solvio Black Feather panels on a lightweight residential roof',
-    },
-  ],
-};
+const ALL_CARDS = [
+  {
+    icon: Building2,
+    title: 'Balcony Installation',
+    body: 'Perfect for apartments and urban living. Generate clean electricity without modifying your roof.',
+    img: asset('/balcony-power-plants.jpg'),
+    alt: 'Black solar panels on a modern apartment balcony railing',
+    tabs: ['Balcony & Facade'],
+  },
+  {
+    icon: Layers,
+    title: 'Facade Installation',
+    body: 'Turn unused wall space into energy. The all-black design integrates beautifully into contemporary architecture.',
+    img: asset('/sp-feature-2.webp'),
+    alt: 'Solvio Black Feather panels on a building facade',
+    tabs: ['Balcony & Facade'],
+  },
+  {
+    icon: Home,
+    title: 'Lightweight Roof Installation',
+    body: 'When every kilogram matters. At only 6 kg/m², The Black Feather is engineered for lightweight structures.',
+    img: asset('/rooftop-feature.webp'),
+    alt: 'Solvio Black Feather panels on a lightweight residential roof',
+    tabs: ['Balcony & Facade', 'Lightweight Roof'],
+  },
+];
 
-// SVG chart — 24-hour solar production vs household consumption
-// All coordinates are in a 1000×280 viewBox.
-const CHART_W = 1000;
-const CHART_H = 280;
-const PAD_L = 10;
-const PAD_R = 10;
-const PAD_T = 20;
-const PAD_B = 40;
-const PLOT_W = CHART_W - PAD_L - PAD_R;
-const PLOT_H = CHART_H - PAD_T - PAD_B;
+// ── SVG Energy Chart ────────────────────────────────────────────────────────
+// viewBox: 1000 × 300
+const W = 1000, H = 300, PL = 14, PR = 14, PT = 16, PB = 44;
+const PW = W - PL - PR, PH = H - PT - PB;
+const x = (h) => PL + (h / 24) * PW;
+const y = (f) => PT + PH * (1 - f);
 
-// Map hour (0-24) → x, fraction (0-1) → y (inverted — 0 = top)
-const px = (h) => PAD_L + (h / 24) * PLOT_W;
-const py = (f) => PAD_T + PLOT_H * (1 - f);
+// Solar bell: 0 at 5am, peaks at noon, back to 0 at 19:30
+const SOLAR =
+  `M ${x(0)},${y(0)}` +
+  ` C ${x(4.5)},${y(0)} ${x(6)},${y(0.04)} ${x(7)},${y(0.18)}` +
+  ` C ${x(9)},${y(0.68)} ${x(10.5)},${y(0.96)} ${x(12)},${y(1)}` +
+  ` C ${x(13.5)},${y(0.96)} ${x(15)},${y(0.68)} ${x(17)},${y(0.18)}` +
+  ` C ${x(18)},${y(0.04)} ${x(19.5)},${y(0)} ${x(24)},${y(0)}`;
 
-// Solar bell: 0 before 5, rises to peak at 12, falls to 0 after 19
-const solarPath =
-  `M ${px(0)} ${py(0)}` +
-  ` C ${px(4)} ${py(0)}, ${px(6)} ${py(0.05)}, ${px(7)} ${py(0.25)}` +
-  ` C ${px(9)} ${py(0.7)}, ${px(10)} ${py(0.95)}, ${px(12)} ${py(1)}` +
-  ` C ${px(14)} ${py(0.95)}, ${px(15)} ${py(0.7)}, ${px(17)} ${py(0.25)}` +
-  ` C ${px(18)} ${py(0.05)}, ${px(19.5)} ${py(0)}, ${px(24)} ${py(0)}`;
+// Household: starts low, morning bump ~8, midday trough, evening peak ~19-21
+const HOUSE =
+  `M ${x(0)},${y(0.1)}` +
+  ` C ${x(1.5)},${y(0.08)} ${x(4)},${y(0.09)} ${x(6)},${y(0.14)}` +
+  ` C ${x(7)},${y(0.22)} ${x(7.5)},${y(0.42)} ${x(8)},${y(0.5)}` +
+  ` C ${x(9)},${y(0.36)} ${x(10.5)},${y(0.28)} ${x(12)},${y(0.28)}` +
+  ` C ${x(13.5)},${y(0.28)} ${x(15)},${y(0.32)} ${x(17)},${y(0.44)}` +
+  ` C ${x(18.5)},${y(0.62)} ${x(19.5)},${y(0.72)} ${x(20.5)},${y(0.72)}` +
+  ` C ${x(22)},${y(0.72)} ${x(23)},${y(0.5)} ${x(24)},${y(0.28)}`;
 
-// Household: base ~0.28, morning bump ~7 (0.55), midday dip ~12 (0.3), evening peak ~19 (0.65)
-const housePath =
-  `M ${px(0)} ${py(0.3)}` +
-  ` C ${px(2)} ${py(0.28)}, ${px(5)} ${py(0.32)}, ${px(7)} ${py(0.55)}` +
-  ` C ${px(9)} ${py(0.38)}, ${px(11)} ${py(0.3)}, ${px(12)} ${py(0.3)}` +
-  ` C ${px(13)} ${py(0.3)}, ${px(15)} ${py(0.35)}, ${px(17)} ${py(0.5)}` +
-  ` C ${px(18.5)} ${py(0.65)}, ${px(20)} ${py(0.65)}, ${px(22)} ${py(0.55)}` +
-  ` C ${px(23)} ${py(0.42)}, ${px(23.5)} ${py(0.35)}, ${px(24)} ${py(0.3)}`;
+// Grey fill under the whole household curve (total consumption footprint)
+const HOUSE_FILL =
+  HOUSE +
+  ` L ${x(24)},${y(0)} L ${x(0)},${y(0)} Z`;
 
-// Filled area (solar > household): roughly hours 8–17
-const selfGenArea =
-  `M ${px(8)} ${py(0.3)}` +
-  ` C ${px(9)} ${py(0.7)}, ${px(10)} ${py(0.95)}, ${px(12)} ${py(1)}` +
-  ` C ${px(14)} ${py(0.95)}, ${px(15)} ${py(0.7)}, ${px(17)} ${py(0.3)}` +
-  ` C ${px(15)} ${py(0.35)}, ${px(13)} ${py(0.3)}, ${px(12)} ${py(0.3)}` +
-  ` C ${px(11)} ${py(0.3)}, ${px(9)} ${py(0.35)}, ${px(8)} ${py(0.3)} Z`;
+// Orange fill: where solar > household (self-consumed solar) — roughly 7:30 → 17
+const SELF_FILL =
+  `M ${x(7.2)},${y(0.19)}` +
+  ` C ${x(9)},${y(0.68)} ${x(10.5)},${y(0.96)} ${x(12)},${y(1)}` +
+  ` C ${x(13.5)},${y(0.96)} ${x(15)},${y(0.68)} ${x(17)},${y(0.19)}` +
+  // back along household line
+  ` C ${x(15.2)},${y(0.32)} ${x(13.5)},${y(0.28)} ${x(12)},${y(0.28)}` +
+  ` C ${x(10.5)},${y(0.28)} ${x(9)},${y(0.36)} ${x(7.8)},${y(0.47)}` +
+  ` C ${x(7.5)},${y(0.42)} ${x(7.3)},${y(0.3)} ${x(7.2)},${y(0.19)} Z`;
 
 const HOURS = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24];
 
 function EnergyChart() {
   return (
-    <div className="mt-12 rounded-2xl border border-ink/[0.07] bg-white p-6 shadow-soft">
+    <div className="mt-12 overflow-hidden rounded-2xl border border-ink/[0.07] bg-white shadow-soft">
       {/* Legend */}
-      <div className="mb-6 flex flex-wrap gap-x-6 gap-y-2 text-[13px]">
-        <span className="flex items-center gap-2">
-          <span className="inline-block h-[3px] w-8 rounded bg-lime" />
+      <div className="flex flex-wrap gap-x-7 gap-y-2 border-b border-ink/[0.07] px-6 py-4 text-[13px] text-ink/70">
+        <span className="flex items-center gap-2.5">
+          <span className="inline-block h-[3px] w-7 rounded-full bg-lime" />
           Solar Energy Production
         </span>
-        <span className="flex items-center gap-2">
-          <span className="inline-block h-[3px] w-8 rounded bg-ink/60" />
+        <span className="flex items-center gap-2.5">
+          <span className="inline-block h-[3px] w-7 rounded-full bg-ink/50" />
           Household Energy Consumption
         </span>
-        <span className="flex items-center gap-2">
+        <span className="flex items-center gap-2.5">
           <span
-            className="inline-block h-[3px] w-8 rounded"
-            style={{ background: 'repeating-linear-gradient(90deg,#FF6700 0,#FF6700 6px,transparent 6px,transparent 10px)' }}
+            className="inline-block h-[3px] w-7"
+            style={{ background: 'repeating-linear-gradient(90deg,#FF6700 0,#FF6700 5px,transparent 5px,transparent 9px)' }}
           />
           Self-generated solar energy
         </span>
-        <span className="flex items-center gap-2">
-          <span className="inline-block h-[3px] w-8 rounded bg-ink/20" />
+        <span className="flex items-center gap-2.5">
+          <span className="inline-block h-[3px] w-7 rounded-full bg-ink/15" />
           Less electricity purchased from the grid
         </span>
       </div>
 
-      <svg
-        viewBox={`0 0 ${CHART_W} ${CHART_H}`}
-        className="w-full"
-        aria-label="Energy production and consumption over 24 hours"
-      >
-        {/* Self-generated fill */}
-        <path d={selfGenArea} fill="#FF6700" fillOpacity="0.15" />
+      <div className="px-4 pb-2 pt-4">
+        <svg
+          viewBox={`0 0 ${W} ${H}`}
+          className="w-full"
+          aria-label="Solar energy production vs household consumption over 24 hours"
+        >
+          <defs>
+            <marker id="arrowhead" markerWidth="7" markerHeight="7" refX="4" refY="3.5" orient="auto">
+              <path d="M0,0 L7,3.5 L0,7 Z" fill="#555" />
+            </marker>
+          </defs>
 
-        {/* "Less electricity" label */}
-        <text x={px(19.5)} y={py(0.56)} fontSize="22" fill="#444" textAnchor="middle" fontFamily="DM Sans, sans-serif">
-          Less electricity
-        </text>
-        <text x={px(19.5)} y={py(0.44)} fontSize="22" fill="#444" textAnchor="middle" fontFamily="DM Sans, sans-serif">
-          purchased from
-        </text>
-        <text x={px(19.5)} y={py(0.32)} fontSize="22" fill="#444" textAnchor="middle" fontFamily="DM Sans, sans-serif">
-          the grid
-        </text>
-        {/* arrow */}
-        <path d={`M ${px(18.8)} ${py(0.38)} Q ${px(17.5)} ${py(0.42)} ${px(17)} ${py(0.5)}`}
-          fill="none" stroke="#555" strokeWidth="1.5" markerEnd="url(#arr)" />
+          {/* Grey fill — total household consumption area */}
+          <path d={HOUSE_FILL} fill="#e0e0e0" fillOpacity="0.55" />
 
-        {/* Self-generated label */}
-        <text x={px(12)} y={py(0.78)} fontSize="26" fontWeight="bold" fill="#FF6700" textAnchor="middle" fontFamily="Space Grotesk, sans-serif">
-          Self-generated
-        </text>
-        <text x={px(12)} y={py(0.63)} fontSize="26" fontWeight="bold" fill="#FF6700" textAnchor="middle" fontFamily="Space Grotesk, sans-serif">
-          solar energy
-        </text>
+          {/* Orange fill — self-generated solar (where solar > household) */}
+          <path d={SELF_FILL} fill="#FF6700" fillOpacity="0.18" />
 
-        {/* Household line */}
-        <path d={housePath} fill="none" stroke="#333" strokeWidth="3" strokeLinecap="round" />
+          {/* Household consumption line */}
+          <path d={HOUSE} fill="none" stroke="#444" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
 
-        {/* Solar line */}
-        <path d={solarPath} fill="none" stroke="#FF6700" strokeWidth="3.5" strokeLinecap="round" />
+          {/* Solar production line */}
+          <path d={SOLAR} fill="none" stroke="#FF6700" strokeWidth="3.5" strokeLinecap="round" />
 
-        {/* Dashed solar line (self-gen visual) */}
-        <path d={solarPath} fill="none" stroke="#FF6700" strokeWidth="2" strokeDasharray="8 5" strokeLinecap="round" opacity="0.4" />
+          {/* Dashed outline on solar line for the "self-generated" legend cue */}
+          <path d={SOLAR} fill="none" stroke="#FF6700" strokeWidth="1.5" strokeDasharray="7 5" strokeLinecap="round" opacity="0.35" />
 
-        {/* Arrow marker */}
-        <defs>
-          <marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
-            <path d="M0,0 L6,3 L0,6 Z" fill="#555" />
-          </marker>
-        </defs>
+          {/* "Self-generated solar energy" label */}
+          <text x={x(12)} y={y(0.74)} fontSize="24" fontWeight="700" fill="#FF6700" textAnchor="middle" fontFamily="Space Grotesk, sans-serif">
+            Self-generated
+          </text>
+          <text x={x(12)} y={y(0.58)} fontSize="24" fontWeight="700" fill="#FF6700" textAnchor="middle" fontFamily="Space Grotesk, sans-serif">
+            solar energy
+          </text>
 
-        {/* X-axis */}
-        <line x1={px(0)} y1={py(0)} x2={px(24)} y2={py(0)} stroke="#ddd" strokeWidth="1" />
-        {HOURS.map((h) => (
-          <g key={h}>
-            <line x1={px(h)} y1={py(0)} x2={px(h)} y2={py(0) + 6} stroke="#ccc" strokeWidth="1" />
-            <text x={px(h)} y={py(0) + 22} fontSize="20" fill="#999" textAnchor="middle" fontFamily="JetBrains Mono, monospace">
-              {h}
-            </text>
-          </g>
-        ))}
-      </svg>
+          {/* "Less electricity purchased" label + arrow */}
+          <text x={x(20.8)} y={y(0.62)} fontSize="19" fill="#555" textAnchor="middle" fontFamily="DM Sans, sans-serif">Less electricity</text>
+          <text x={x(20.8)} y={y(0.49)} fontSize="19" fill="#555" textAnchor="middle" fontFamily="DM Sans, sans-serif">purchased from</text>
+          <text x={x(20.8)} y={y(0.36)} fontSize="19" fill="#555" textAnchor="middle" fontFamily="DM Sans, sans-serif">the grid</text>
+          <path
+            d={`M ${x(19.4)},${y(0.42)} Q ${x(18.5)},${y(0.5)} ${x(18)},${y(0.56)}`}
+            fill="none" stroke="#666" strokeWidth="1.5" markerEnd="url(#arrowhead)"
+          />
+
+          {/* X-axis baseline */}
+          <line x1={x(0)} y1={y(0)} x2={x(24)} y2={y(0)} stroke="#e0e0e0" strokeWidth="1.5" />
+
+          {/* Hour ticks + labels */}
+          {HOURS.map((h) => (
+            <g key={h}>
+              <line x1={x(h)} y1={y(0)} x2={x(h)} y2={y(0) + 7} stroke="#ccc" strokeWidth="1.2" />
+              <text x={x(h)} y={y(0) + 26} fontSize="19" fill="#aaa" textAnchor="middle" fontFamily="JetBrains Mono, monospace">
+                {h}
+              </text>
+            </g>
+          ))}
+        </svg>
+      </div>
     </div>
   );
 }
 
 export default function SolarYourWay() {
   const [tab, setTab] = useState(TABS[0]);
-  const cards = CARDS[tab];
+  const cards = ALL_CARDS.filter((c) => c.tabs.includes(tab));
 
   return (
     <section className="bg-white py-16 sm:py-20">
@@ -175,7 +175,7 @@ export default function SolarYourWay() {
             <h2 className="font-display text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
               Solar. Your way.
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-base text-ink/70">
+            <p className="mx-auto mt-4 max-w-2xl text-base text-ink/65">
               Choose how you bring clean energy into your home. Whether on your balcony, facade
               or lightweight roof, Solvio makes premium solar possible where conventional panels simply don&apos;t fit.
             </p>
@@ -185,7 +185,7 @@ export default function SolarYourWay() {
         {/* Tabs */}
         <Reveal delay={0.08}>
           <div className="mt-8 flex justify-center">
-            <div className="inline-flex rounded-full border border-ink/10 bg-light p-1">
+            <div className="inline-flex rounded-full border border-ink/10 bg-light p-1 gap-1">
               {TABS.map((t) => (
                 <button
                   key={t}
@@ -193,7 +193,7 @@ export default function SolarYourWay() {
                   className={`rounded-full px-6 py-2.5 font-display text-sm font-bold transition ${
                     tab === t
                       ? 'bg-lime text-white shadow-sm'
-                      : 'text-ink/60 hover:text-ink'
+                      : 'text-ink/55 hover:text-ink'
                   }`}
                 >
                   {t}
@@ -203,23 +203,25 @@ export default function SolarYourWay() {
           </div>
         </Reveal>
 
-        {/* Installation cards */}
-        <div className={`mt-10 grid gap-6 ${cards.length === 1 ? 'max-w-lg mx-auto' : 'sm:grid-cols-2'}`}>
+        {/* Installation cards — 3-col when all 3 visible, 1-col for single */}
+        <div className={`mt-10 grid gap-6 ${
+          cards.length === 3 ? 'sm:grid-cols-3' :
+          cards.length === 2 ? 'sm:grid-cols-2' :
+          'max-w-md mx-auto'
+        }`}>
           {cards.map((c, i) => (
-            <Reveal key={c.title} delay={i * 0.08}>
+            <Reveal key={c.title} delay={i * 0.07}>
               <div className="flex flex-col gap-4">
-                {/* Icon + text */}
-                <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-lime">
-                    <c.icon size={22} className="text-white" strokeWidth={2} />
+                <div className="flex items-start gap-3">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-lime">
+                    <c.icon size={20} className="text-white" strokeWidth={2} />
                   </div>
                   <div>
-                    <h3 className="font-display text-lg font-extrabold text-ink">{c.title}</h3>
-                    <p className="mt-1 text-[14px] leading-relaxed text-ink/65">{c.body}</p>
+                    <h3 className="font-display text-[1.05rem] font-extrabold text-ink">{c.title}</h3>
+                    <p className="mt-1 text-[13px] leading-relaxed text-ink/60">{c.body}</p>
                   </div>
                 </div>
-                {/* Photo */}
-                <div className="overflow-hidden rounded-xl aspect-[4/3] bg-surface">
+                <div className="aspect-[4/3] overflow-hidden rounded-xl bg-surface">
                   <img
                     src={c.img}
                     alt={c.alt}
