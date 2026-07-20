@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Header from '../components/landing/Header';
 import SolarPanelFeatures from '../components/SolarPanelFeatures';
+import SolarYourWay from '../components/SolarYourWay';
 import PanelComparison from '../components/PanelComparison';
 import FAQ from '../components/FAQ';
 import ContactSection from '../components/ContactSection';
@@ -70,6 +71,7 @@ export default function SolarPanelPage() {
         </section>
 
         <SolarPanelFeatures />
+        <SolarYourWay />
         <PanelComparison />
         <FAQ
           items={panelFaqs}
