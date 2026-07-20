@@ -3,7 +3,7 @@ import { Building2, Layers, Home } from 'lucide-react';
 import { asset } from '../lib/format';
 import Reveal from './Reveal';
 
-const TABS = ['Balcony & Facade', 'Lightweight Roof'];
+const TABS = ['Balcony & Facade'];
 
 const ALL_CARDS = [
   {
@@ -105,26 +105,6 @@ export default function SolarYourWay() {
           </div>
         </Reveal>
 
-        {/* Tabs */}
-        <Reveal delay={0.08}>
-          <div className="mt-8 flex justify-center">
-            <div className="inline-flex rounded-full border border-ink/10 bg-light p-1 gap-1">
-              {TABS.map((t) => (
-                <button
-                  key={t}
-                  onClick={() => setTab(t)}
-                  className={`rounded-full px-6 py-2.5 font-display text-sm font-bold transition ${
-                    tab === t
-                      ? 'bg-lime text-white shadow-sm'
-                      : 'text-ink/55 hover:text-ink'
-                  }`}
-                >
-                  {t}
-                </button>
-              ))}
-            </div>
-          </div>
-        </Reveal>
 
         {/* Installation cards — 3-col when all 3 visible, 1-col for single */}
         <div className={`mt-10 grid gap-6 ${
