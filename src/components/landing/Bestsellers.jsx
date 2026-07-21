@@ -14,7 +14,7 @@ export default function Bestsellers() {
         <Reveal>
           <div className="text-center">
             <p className="eyebrow">Bestsellers</p>
-            <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+            <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-price sm:text-4xl">
               Our most popular systems
             </h2>
           </div>
