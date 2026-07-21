@@ -42,7 +42,8 @@ export default function TopBar() {
             href={WA_CONSULT}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden items-center gap-2 rounded-full border border-white/20 px-3.5 py-1.5 font-display text-[0.7rem] font-semibold text-white transition hover:bg-white/10 sm:inline-flex"
+            className="hidden items-center gap-2 rounded-full px-3.5 py-1.5 font-display text-[0.7rem] font-semibold text-white transition hover:opacity-90 sm:inline-flex"
+            style={{ backgroundColor: '#2a7050' }}
           >
             <CalendarCheck size={14} className="text-lime" />
             <span className="hidden sm:inline">{topBar.cta}</span>
