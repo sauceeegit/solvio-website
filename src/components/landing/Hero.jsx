@@ -47,7 +47,7 @@ export default function Hero() {
           <h1 className="font-display text-[clamp(1.25rem,4.4vw,3rem)] font-extrabold leading-[1.05] tracking-tight text-white">
             Clean Energy<span className="text-lime">.</span> Made Simple<span className="text-lime">.</span>
           </h1>
-          <p className="mx-auto mt-1.5 max-w-2xl font-display text-[clamp(0.75rem,2vw,1.15rem)] font-semibold text-white/90">
+          <p className="mx-auto mt-1.5 max-w-2xl font-display text-[clamp(0.6rem,1.4vw,0.85rem)] font-semibold text-white/90">
             Premium solar for every Thai home — balcony, rooftop, or facade.
             <br /> Plug in. Save money. Start today.
           </p>
