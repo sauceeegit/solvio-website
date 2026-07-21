@@ -51,16 +51,6 @@ export default function Hero() {
             Premium solar for every Thai home — balcony, rooftop, or facade.
             <br /> Plug in. Save money. Start today.
           </p>
-          {/* Trust badges */}
-          <div className="mt-3 flex flex-wrap justify-center gap-x-4 gap-y-1.5 text-[clamp(0.6rem,1.4vw,0.8rem)] text-white/80">
-            <span>★★★★★ Rated by homeowners</span>
-            <span className="opacity-40">·</span>
-            <span>Free consultation</span>
-            <span className="opacity-40">·</span>
-            <span>Certified installers</span>
-            <span className="opacity-40">·</span>
-            <span>No hidden costs</span>
-          </div>
         </div>
       </div>
 
