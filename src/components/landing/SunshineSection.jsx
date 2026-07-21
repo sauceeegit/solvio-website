@@ -36,14 +36,12 @@ export default function SunshineSection() {
 
           {/* Image */}
           <Reveal>
-            <div className="overflow-hidden rounded-2xl">
-              <img
-                src={asset('/solvio-savings.webp')}
-                alt="Solvio balcony solar system installed on a modern home"
-                className="w-full"
-                loading="lazy"
-              />
-            </div>
+            <img
+              src={asset('/solvio-savings.webp')}
+              alt="Solvio balcony solar system installed on a modern home"
+              className="mx-auto w-full max-h-[480px] rounded-2xl object-contain"
+              loading="lazy"
+            />
           </Reveal>
 
           {/* Text */}
