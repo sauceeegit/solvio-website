@@ -14,7 +14,7 @@ export default function LandingFAQ() {
     <section id="faq" className="scroll-mt-20 bg-white py-16">
       <div className="container-x">
         <Reveal>
-          <h2 className="font-display text-3xl font-extrabold tracking-tight text-price sm:text-4xl">
+          <h2 className="font-display text-3xl font-extrabold tracking-tight sm:text-4xl" style={{ color: '#C29848' }}>
             Frequently asked questions
           </h2>
         </Reveal>
