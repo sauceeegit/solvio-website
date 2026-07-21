@@ -12,7 +12,7 @@ const features = [
   },
   {
     title: 'Premium Black Solar Panels',
-    body: 'High-efficiency monocrystalline modules with a sleek all-black design for maximum performance and modern aesthetics.',
+    body: 'High-efficiency monocrystalline modules with a sleek all-black design for maximum performance\nand modern aesthetics.',
   },
   {
     title: 'Designed for Every Home',
@@ -68,7 +68,7 @@ export default function SunshineSection() {
                     </span>
                     <div>
                       <p className="font-display text-[15px] font-bold text-ink">{f.title}</p>
-                      <p className="mt-0.5 text-[13px] leading-relaxed text-ink/60">{f.body}</p>
+                      <p className="mt-0.5 whitespace-pre-line text-[13px] leading-relaxed text-ink/60">{f.body}</p>
                     </div>
                   </li>
                 ))}
