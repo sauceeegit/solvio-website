@@ -32,15 +32,16 @@ export default function SunshineSection() {
   return (
     <section className="bg-white py-16 sm:py-20">
       <div className="container-x">
-        <div className="grid items-stretch gap-10 lg:grid-cols-2 lg:gap-16">
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
 
           {/* Image */}
-          <Reveal className="h-full">
-            <div className="h-full overflow-hidden rounded-2xl">
+          <Reveal>
+            <div className="overflow-hidden rounded-2xl">
               <img
                 src={asset('/solvio-savings.webp')}
                 alt="Solvio balcony solar system installed on a modern home"
-                className="h-full w-full object-cover"
+                className="w-full object-cover object-top"
+                style={{ maxHeight: '520px' }}
                 loading="lazy"
               />
             </div>
