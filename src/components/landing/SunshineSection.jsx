@@ -50,7 +50,7 @@ export default function SunshineSection() {
           {/* Text */}
           <Reveal delay={0.1}>
             <div>
-              <h2 className="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+              <h2 className="font-display text-3xl font-extrabold tracking-tight text-price sm:text-4xl">
                 Turn Sunshine Into Savings.
               </h2>
               <p className="mt-4 text-base leading-relaxed text-ink/65">
