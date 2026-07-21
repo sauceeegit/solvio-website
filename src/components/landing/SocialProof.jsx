@@ -1,0 +1,28 @@
+import Reveal from '../Reveal';
+
+const stats = [
+  { value: '5,000+', label: 'Happy Customers' },
+  { value: '18 MW+', label: 'Installed' },
+  { value: '98%', label: 'Customer Satisfaction' },
+  { value: '25 Yrs', label: 'Performance Warranty' },
+  { value: '4.9★', label: 'Average Rating' },
+];
+
+export default function SocialProof() {
+  return (
+    <section className="border-y border-ink/[0.07] bg-white py-10">
+      <div className="container-x">
+        <Reveal>
+          <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
+            {stats.map((s) => (
+              <div key={s.label} className="text-center">
+                <p className="font-display text-3xl font-extrabold text-price sm:text-4xl">{s.value}</p>
+                <p className="mt-1 text-[13px] font-medium text-ink/55">{s.label}</p>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}

@@ -9,6 +9,8 @@ import FounderVideo from '../components/landing/FounderVideo';
 import WhyShop from '../components/landing/WhyShop';
 import SunshineSection from '../components/landing/SunshineSection';
 import Community from '../components/landing/Community';
+import SocialProof from '../components/landing/SocialProof';
+import HowItWorks from '../components/landing/HowItWorks';
 import GuidePopup from '../components/GuidePopup';
 import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
@@ -41,9 +43,11 @@ export default function LandingPage() {
           </div>
           <div aria-hidden="true" className="h-14 lg:hidden" />
         </div>
+        <SocialProof />
         <CategoryGrid />
         <Bestsellers />
         <SunshineSection />
+        <HowItWorks />
         <CalculatorSection />
         <FounderVideo />
         <LandingFAQ />

@@ -101,7 +101,7 @@ export const bestsellers = [
 ];
 
 export const founder = {
-  heading: 'Why 2026 is the year to go solar in Thailand',
+  heading: 'Solar in Thailand. Why Now?',
   body:
     'Here is our founder David Spence interviewed on the prospects of solar in Thailand — and why we think Solvio is the best partner for your energy transition.',
   cta: 'See more videos',
@@ -209,13 +209,13 @@ export const rooftopFaqs = [
 // (row-span-2) feature cell, index 5 is the wide (col-span-2) feature cell.
 export const whyShop = [
   { icon: 'Coins', title: 'Earn Solvio rewards', img: asset('/earn-rewards.jpg') },
-  { icon: 'PiggyBank', title: 'Convenient installment plans', sub: '0% interest, up to 12 months' },
-  { icon: 'Headphones', title: 'Lifetime customer support', sub: 'Real experts, always available' },
-  { icon: 'RotateCcw', title: '30-day returns', sub: 'Hassle-free, no questions asked' },
-  { icon: 'ShieldCheck', title: 'Warranty protection', sub: '5-year comprehensive coverage' },
-  { icon: 'Package', title: 'Comprehensive balcony solar solutions', sub: 'Complete systems, fully matched components' },
-  { icon: 'Truck', title: 'Fast shipping', sub: 'Delivered in 3–5 business days' },
-  { icon: 'CreditCard', title: 'Secure multiple payments', sub: 'Card, bank transfer or PromptPay' },
+  { icon: 'PiggyBank', title: 'Own Solar Today. Pay Over Time.', sub: '0% interest, up to 12 months' },
+  { icon: 'Headphones', title: 'Real Experts. Whenever You Need Them.', sub: 'Lifetime support from people who know solar' },
+  { icon: 'RotateCcw', title: 'Not Happy? Send It Back.', sub: '30-day returns, no questions asked' },
+  { icon: 'ShieldCheck', title: 'Built to Last. Backed by Warranty.', sub: '5-year comprehensive coverage included' },
+  { icon: 'Package', title: 'Everything Included. Nothing Missing.', sub: 'Complete kits with fully matched components' },
+  { icon: 'Truck', title: 'Delivered Fast. Installed Even Faster.', sub: 'At your door in 3–5 business days' },
+  { icon: 'CreditCard', title: 'Pay Your Way. Securely.', sub: 'Card, bank transfer or PromptPay' },
 ];
 
 // "Become part of Solvio" — 3 membership / community cards.
