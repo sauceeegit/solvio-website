@@ -336,8 +336,7 @@ export default function WhyShop() {
                       className="pointer-events-none absolute"
                       style={{
                         right: '-12px',
-                        top: '50%',
-                        transform: 'translateY(-50%)',
+                        bottom: '-8px',
                         width: '52%',
                       }}
                     >
