@@ -18,7 +18,7 @@ function Social({ label, href = '#', color, children }) {
       aria-label={label}
       target={external ? '_blank' : undefined}
       rel={external ? 'noopener noreferrer' : undefined}
-      className="grid h-9 w-9 place-items-center rounded-lg text-white shadow-sm transition hover:opacity-90"
+      className="grid h-9 w-9 place-items-center rounded-full text-white shadow-sm transition hover:opacity-90"
       style={{ backgroundColor: color }}
     >
       {children}
