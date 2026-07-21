@@ -43,7 +43,7 @@ export default function TopBar() {
             target="_blank"
             rel="noopener noreferrer"
             className="hidden items-center gap-2 rounded-full px-3.5 py-1.5 font-display text-[0.7rem] font-semibold text-white transition hover:opacity-90 sm:inline-flex"
-            style={{ backgroundColor: '#2a7050' }}
+            style={{ backgroundColor: '#1d5040' }}
           >
             <CalendarCheck size={14} className="text-lime" />
             <span className="hidden sm:inline">{topBar.cta}</span>
