@@ -40,8 +40,7 @@ export default function SunshineSection() {
               <img
                 src={asset('/solvio-savings.webp')}
                 alt="Solvio balcony solar system installed on a modern home"
-                className="w-full object-cover object-center"
-                style={{ maxHeight: '520px' }}
+                className="w-full"
                 loading="lazy"
               />
             </div>
