@@ -23,16 +23,16 @@ const SLIDES = [
     sub: 'Works in any apartment or condo',
   },
   {
-    src: asset('/dark-feather-1800.jpg'),
-    alt: 'Solvio Dark Feather 450 Wp solar panel',
-    caption: 'Dark Feather 450 Wp',
-    sub: 'Full black · ultra-lightweight · Glas-Glas',
+    src: asset('/sp-balcony.png'),
+    alt: 'Solvio balcony solar installation',
+    caption: 'Balcony Solar',
+    sub: 'Plug & play · no drilling · moves with you',
   },
   {
-    src: asset('/module-white.jpg'),
-    alt: 'Solvio White Feather solar panel',
-    caption: 'White Feather 450 Wp',
-    sub: 'Clean white finish for bright balconies',
+    src: asset('/sp-facade.png'),
+    alt: 'Solvio facade solar installation',
+    caption: 'Facade Solar',
+    sub: 'Sleek all-black panels integrated into your facade',
   },
 ];
 

@@ -12,7 +12,7 @@ function Item({ q, a, open, onToggle }) {
       <button
         onClick={onToggle}
         className="flex w-full items-center justify-between gap-4 rounded-xl px-5 py-4 text-left transition-colors"
-        style={{ backgroundColor: open ? '#ffffff' : '#fff7f3' }}
+        style={{ backgroundColor: open ? '#ffffff' : '#e6eaff' }}
       >
         <span className="font-display text-base font-semibold text-lime">{q}</span>
         <span
