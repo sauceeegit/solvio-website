@@ -14,12 +14,12 @@ function CardInner({ c, dimmed }) {
           c.fit === 'contain' ? 'object-contain' : 'object-cover'
         } ${c.imgClass || ''}`}
       />
-      <div className="absolute inset-x-0 top-0 h-[55%] bg-gradient-to-b from-black/75 via-black/35 to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/70 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-[55%] bg-gradient-to-b from-black/50 via-black/20 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/45 to-transparent" />
 
       {/* dim overlay — visible on non-hovered cards */}
       <div
-        className="absolute inset-0 bg-black/55 transition-opacity duration-300"
+        className="absolute inset-0 bg-black/25 transition-opacity duration-300"
         style={{ opacity: dimmed ? 1 : 0 }}
       />
 
