@@ -7,7 +7,7 @@ export const SITE = 'https://solvio.solar';
 
 export const routeMeta = {
   '/': {
-    title: 'Solvio — Sun. Sorted. | Rooftop, Balcony & Portable Solar in Thailand',
+    title: 'Solvio | Rooftop, Balcony & Portable Solar in Thailand',
     description:
       'Solvio makes solar simple for every Thai home — plug-and-play balcony kits, rooftop systems and portable power stations. Transparent Baht pricing, free sizing advice.',
   },
