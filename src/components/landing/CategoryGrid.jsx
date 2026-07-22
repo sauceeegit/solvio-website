@@ -4,7 +4,7 @@ import { Plus, ArrowRight } from 'lucide-react';
 import { categories } from '../../data/landing';
 import Reveal from '../Reveal';
 
-function CardInner({ c, dimmed }) {
+function CardInner({ c, dimmed, lightOverlay }) {
   return (
     <>
       <img loading="lazy"
@@ -14,13 +14,13 @@ function CardInner({ c, dimmed }) {
           c.fit === 'contain' ? 'object-contain' : 'object-cover'
         } ${c.imgClass || ''}`}
       />
-      <div className="absolute inset-x-0 top-0 h-[55%] bg-gradient-to-b from-black/50 via-black/20 to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/45 to-transparent" />
+      <div className={`absolute inset-x-0 top-0 h-[55%] bg-gradient-to-b to-transparent ${lightOverlay ? 'from-black/40 via-black/15' : 'from-black/75 via-black/35'}`} />
+      <div className={`absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t to-transparent ${lightOverlay ? 'from-black/30' : 'from-black/70'}`} />
 
       {/* dim overlay — visible on non-hovered cards */}
       <div
-        className="absolute inset-0 bg-black/25 transition-opacity duration-300"
-        style={{ opacity: dimmed ? 1 : 0 }}
+        className="absolute inset-0 transition-opacity duration-300"
+        style={{ opacity: dimmed ? 1 : 0, backgroundColor: lightOverlay ? 'rgba(0,0,0,0.15)' : 'rgba(0,0,0,0.55)' }}
       />
 
       <span className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full bg-lime text-white transition group-hover:rotate-90">
@@ -72,11 +72,11 @@ export default function CategoryGrid() {
             <Reveal key={c.title} delay={i * 0.08}>
               {internal ? (
                 <Link to={c.to} className={cls} style={c.bg ? { backgroundColor: c.bg } : undefined} {...handlers}>
-                  <CardInner c={c} dimmed={dimmed} />
+                  <CardInner c={c} dimmed={dimmed} lightOverlay={c.id === 'portable'} />
                 </Link>
               ) : (
                 <a href={c.to} className={cls} style={c.bg ? { backgroundColor: c.bg } : undefined} {...handlers}>
-                  <CardInner c={c} dimmed={dimmed} />
+                  <CardInner c={c} dimmed={dimmed} lightOverlay={c.id === 'portable'} />
                 </a>
               )}
             </Reveal>
