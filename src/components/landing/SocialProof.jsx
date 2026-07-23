@@ -9,7 +9,7 @@ const stats = [
 
 export default function SocialProof() {
   return (
-    <section className="border-y border-ink/[0.07] bg-white pt-4 pb-4 sm:py-10">
+    <section className="border-y border-ink/[0.07] bg-white pt-4 pb-4 sm:py-10 -mt-px">
       <div className="container-x">
         <Reveal>
           <div className="grid grid-cols-4 gap-3 sm:gap-6">
