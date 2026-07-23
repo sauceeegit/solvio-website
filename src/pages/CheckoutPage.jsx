@@ -164,12 +164,12 @@ function OrderSummary({ items, editable, onQtyChange }) {
         </div>
         <div className="flex justify-between border-t border-ink/[0.07] pt-3 font-display text-lg font-extrabold text-ink">
           <span>Total</span>
-          <span className="text-lime-dark">{baht(total - discount)}</span>
+          <span className="text-lime">{baht(total - discount)}</span>
         </div>
       </div>
 
       {/* Trust row */}
-      <div className="border-t border-ink/[0.06] bg-[#f2f0eb] px-5 py-4">
+      <div className="border-t border-ink/[0.06] bg-white px-5 py-4">
         <div className="grid grid-cols-3 gap-2 text-center">
           {[
             { icon: Shield, label: '2-yr warranty' },
