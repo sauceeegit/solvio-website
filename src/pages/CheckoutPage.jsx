@@ -309,9 +309,9 @@ function StepDetails({ onNext, onBack }) {
     <form onSubmit={(e) => { e.preventDefault(); onNext(); }} className="space-y-4">
       {/* Contact card */}
       <div className="overflow-hidden rounded-2xl border border-ink/[0.07] bg-white shadow-soft">
-        <div className="border-b border-ink/[0.06] bg-[#f2f0eb] px-5 py-3.5 flex items-center gap-2">
-          <Mail size={14} className="text-lime-dark" />
-          <p className="font-display text-sm font-bold uppercase tracking-wide text-ink/50">Contact info</p>
+        <div className="border-b border-ink/[0.06] px-5 py-3.5 flex items-center gap-2" style={{ backgroundColor: '#09321B' }}>
+          <Mail size={14} className="text-white" />
+          <p className="font-display text-sm font-bold uppercase tracking-wide text-white">Contact info</p>
         </div>
         <div className="space-y-4 p-5">
           <div className="grid gap-4 sm:grid-cols-2">
@@ -347,9 +347,9 @@ function StepDetails({ onNext, onBack }) {
 
       {/* Delivery card */}
       <div className="overflow-hidden rounded-2xl border border-ink/[0.07] bg-white shadow-soft">
-        <div className="border-b border-ink/[0.06] bg-[#f2f0eb] px-5 py-3.5 flex items-center gap-2">
-          <MapPin size={14} className="text-lime-dark" />
-          <p className="font-display text-sm font-bold uppercase tracking-wide text-ink/50">Delivery address</p>
+        <div className="border-b border-ink/[0.06] px-5 py-3.5 flex items-center gap-2" style={{ backgroundColor: '#09321B' }}>
+          <MapPin size={14} className="text-white" />
+          <p className="font-display text-sm font-bold uppercase tracking-wide text-white">Delivery address</p>
         </div>
         <div className="space-y-4 p-5">
           <div><label className={labelCls}>Street address</label>
