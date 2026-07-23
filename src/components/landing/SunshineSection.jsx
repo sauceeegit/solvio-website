@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { asset } from '../../lib/format';
 import Reveal from '../Reveal';
 
@@ -28,7 +29,11 @@ const features = [
   },
 ];
 
+const VISIBLE_MOBILE = 2;
+
 export default function SunshineSection() {
+  const [expanded, setExpanded] = useState(false);
+
   return (
     <section className="bg-white py-16 sm:py-20">
       <div className="container-x">
@@ -55,9 +60,11 @@ export default function SunshineSection() {
               </p>
 
               <ul className="mt-8 space-y-5">
-                {features.map((f) => (
-                  <li key={f.title} className="flex items-start gap-3.5">
-                    {/* Orange circle with white checkmark */}
+                {features.map((f, i) => (
+                  <li
+                    key={f.title}
+                    className={`flex items-start gap-3.5 ${i >= VISIBLE_MOBILE && !expanded ? 'hidden sm:flex' : 'flex'}`}
+                  >
                     <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-lime">
                       <svg width="12" height="9" viewBox="0 0 12 9" fill="none">
                         <path d="M1 4L4.5 7.5L11 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -70,6 +77,15 @@ export default function SunshineSection() {
                   </li>
                 ))}
               </ul>
+
+              {/* Show more — mobile only */}
+              <button
+                type="button"
+                onClick={() => setExpanded(!expanded)}
+                className="mt-5 inline-flex items-center gap-1.5 rounded-full border border-ink/20 px-4 py-2 font-display text-sm font-semibold text-ink transition hover:border-lime hover:text-lime sm:hidden"
+              >
+                {expanded ? 'Show less' : 'Show more'}
+              </button>
             </div>
           </Reveal>
 
