@@ -54,7 +54,7 @@ export default function FAQ({
       <div className="container-x grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <Reveal>
           <p className="eyebrow">{eyebrow}</p>
-          <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+          <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-price sm:text-4xl">
             {heading}
           </h2>
           <p className="mt-3 text-slatey-500">{subtitle}</p>

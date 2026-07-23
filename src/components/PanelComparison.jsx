@@ -30,7 +30,7 @@ export default function PanelComparison() {
       <div className="container-x">
         <Reveal>
           <p className="eyebrow">Solvio EZ Solar · panel technology comparison</p>
-          <h2 className="mt-2 max-w-3xl font-display text-3xl font-extrabold leading-tight tracking-tight text-ink sm:text-4xl">
+          <h2 className="mt-2 max-w-3xl font-display text-3xl font-extrabold leading-tight tracking-tight text-price sm:text-4xl">
             Firm-Light PLUS vs. Top-Tier Residential Modules
           </h2>
         </Reveal>

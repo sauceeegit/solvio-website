@@ -95,7 +95,7 @@ export default function SolarYourWay() {
         {/* Heading */}
         <Reveal>
           <div className="text-center">
-            <h2 className="font-display text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
+            <h2 className="font-display text-4xl font-extrabold tracking-tight text-price sm:text-5xl">
               Solar. Your way.
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base text-ink/65">

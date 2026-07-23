@@ -19,7 +19,7 @@ export default function Testimonials() {
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="eyebrow">Reviews</p>
-              <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+              <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-price sm:text-4xl">
                 Loved on balconies everywhere
               </h2>
               <div className="mt-3 flex items-center gap-2.5">
