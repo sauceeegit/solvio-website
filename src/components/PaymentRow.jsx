@@ -64,7 +64,6 @@ const PAYMENT_ICONS = [
   { key: 'paypal',   label: 'PayPal',    Icon: PayPal },
   { key: 'applepay', label: 'Apple Pay', Icon: ApplePay },
   { key: 'klarna',   label: 'Klarna',    Icon: Klarna },
-  { key: 'sepa',     label: 'SEPA',      Icon: Sepa },
 ];
 
 export default function PaymentRow() {

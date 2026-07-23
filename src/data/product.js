@@ -183,7 +183,7 @@ export const benefits = [
   { icon: 'ShieldCheck', title: '30-year warranty', sub: 'On module performance & build.' },
 ];
 
-export const payments = ['Visa', 'Mastercard', 'PayPal', 'Apple Pay', 'Klarna', 'SEPA'];
+export const payments = ['Visa', 'Mastercard', 'PayPal', 'Apple Pay', 'Klarna'];
 
 export const howItWorks = [
   {
