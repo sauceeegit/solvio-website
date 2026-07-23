@@ -12,7 +12,7 @@ export default function SocialProof() {
     <section className="border-y border-ink/[0.07] bg-white py-10">
       <div className="container-x">
         <Reveal>
-          <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
+          <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
             {stats.map((s) => (
               <div key={s.label} className="text-center">
                 <p className="font-display text-xl font-extrabold sm:text-3xl" style={{ color: '#C29848' }}>{s.value}</p>
