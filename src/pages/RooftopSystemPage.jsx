@@ -140,7 +140,7 @@ export default function RooftopSystemPage() {
 
                 {/* text (left on desktop) */}
                 <div className="lg:order-1">
-                  <h2 className="font-display text-2xl font-medium leading-[1.1] tracking-tight text-ink sm:text-3xl lg:text-4xl">
+                  <h2 className="font-display text-2xl font-medium leading-[1.1] tracking-tight text-price sm:text-3xl lg:text-4xl">
                     Designed and installed by people who&apos;ve done it before
                   </h2>
                   {/* trimmed copy + segment checklist (same on mobile + desktop) */}

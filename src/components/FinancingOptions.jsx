@@ -146,7 +146,7 @@ export default function FinancingOptions() {
         {/* Heading */}
         <Reveal>
           <p className="eyebrow">Financing</p>
-          <h2 className="mt-2 max-w-2xl font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+          <h2 className="mt-2 max-w-2xl font-display text-3xl font-extrabold tracking-tight text-price sm:text-4xl">
             Own your roof&rsquo;s power without paying it all upfront
           </h2>
           <p className="mt-3 max-w-xl text-slatey-500">
