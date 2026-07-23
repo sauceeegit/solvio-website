@@ -214,7 +214,7 @@ function StepCart({ items, onQtyChange, onNext }) {
         {items.map((item) => (
           <li key={item.id} className="flex flex-col overflow-hidden rounded-3xl border border-ink/[0.07] bg-white shadow-soft">
             {/* Image area */}
-            <div className="relative bg-[#f2f0eb] px-6 pt-8 pb-4">
+            <div className="relative bg-white px-6 pt-8 pb-4">
               {/* Orange qty badge */}
               <span className="absolute left-4 top-4 grid h-9 w-9 place-items-center rounded-full bg-lime font-display text-sm font-extrabold text-white shadow-sm">
                 {item.qty}×
