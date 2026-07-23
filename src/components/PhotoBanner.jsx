@@ -23,13 +23,13 @@ const SLIDES = [
     sub: 'Works in any apartment or condo',
   },
   {
-    src: asset('/sp-balcony.png'),
+    src: asset('/sp-balcony.webp'),
     alt: 'Solvio balcony solar installation',
     caption: 'Balcony Solar',
     sub: 'Plug & play · no drilling · moves with you',
   },
   {
-    src: asset('/sp-facade.png'),
+    src: asset('/sp-facade.webp'),
     alt: 'Solvio facade solar installation',
     caption: 'Facade Solar',
     sub: 'Sleek all-black panels integrated into your facade',
