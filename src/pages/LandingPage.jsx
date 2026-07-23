@@ -41,7 +41,7 @@ export default function LandingPage() {
           <div className="max-lg:sticky" style={{ top: headerH }}>
             <Hero />
           </div>
-          <div aria-hidden="true" className="h-14 lg:hidden" />
+          <div aria-hidden="true" className="h-1 lg:hidden" />
         </div>
         <SocialProof />
         <CategoryGrid />
