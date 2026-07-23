@@ -84,7 +84,7 @@ export default function PortableBatteries() {
                   <img loading="lazy"
                     src={p.img}
                     alt={p.name}
-                    className={`absolute inset-0 h-full w-full transition-opacity duration-500 ${p.contain ? 'object-contain p-3' : 'object-cover'} ${
+                    className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
                       p.sideImg ? 'group-hover:opacity-0' : ''
                     }`}
                   />
@@ -92,7 +92,7 @@ export default function PortableBatteries() {
                     <img loading="lazy"
                       src={p.sideImg}
                       alt={`${p.name} — side view`}
-                      className={`absolute inset-0 h-full w-full opacity-0 transition-opacity duration-500 group-hover:opacity-100 ${p.contain ? 'object-contain p-3' : 'object-cover'}`}
+                      className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                     />
                   )}
                 </div>
