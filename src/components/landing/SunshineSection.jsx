@@ -53,7 +53,7 @@ export default function SunshineSection() {
           <Reveal delay={0.1}>
             <div>
               <h2 className="font-display text-3xl font-extrabold tracking-tight text-price sm:text-4xl">
-                Turn Sunshine Into Savings.
+                Turn Sunshine Into Savings
               </h2>
               <p className="mt-4 text-base leading-relaxed text-ink/65">
                 Solvio makes solar energy simple. Our premium plug-and-play balcony solar systems let you generate your own clean electricity in minutes—no complicated installation, no expensive renovations, just reliable energy and lower electricity bills.

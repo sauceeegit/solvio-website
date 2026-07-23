@@ -15,7 +15,7 @@ export default function HowItWorks() {
           <div className="text-center">
             <p className="eyebrow">Simple process</p>
             <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-              Up and running in 3 steps.
+              Up and running in 3 steps
             </h2>
           </div>
         </Reveal>

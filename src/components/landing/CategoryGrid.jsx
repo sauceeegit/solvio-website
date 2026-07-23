@@ -54,7 +54,7 @@ export default function CategoryGrid() {
     <section id="categories" className="container-x scroll-mt-20 py-14 max-lg:pt-10">
       <Reveal>
         <h2 className="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-          From Rooftop to Backpack<span className="text-lime-dark">.</span>
+          From Rooftop to Backpack
         </h2>
       </Reveal>
 
