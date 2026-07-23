@@ -5,7 +5,6 @@ const stats = [
   { value: '18 MW+', label: 'Installed' },
   { value: '98%', label: 'Customer Satisfaction' },
   { value: '25 Yrs', label: 'Performance Warranty' },
-  { value: '4.9★', label: 'Average Rating' },
 ];
 
 export default function SocialProof() {
