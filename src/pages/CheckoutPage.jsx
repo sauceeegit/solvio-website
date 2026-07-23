@@ -177,7 +177,7 @@ function OrderSummary({ items, editable, onQtyChange }) {
             { icon: Lock,   label: 'Secure order' },
           ].map(({ icon: Icon, label }) => (
             <div key={label} className="flex flex-col items-center gap-1.5">
-              <span className="grid h-8 w-8 place-items-center rounded-full bg-white text-lime-dark shadow-sm">
+              <span className="grid h-8 w-8 place-items-center rounded-full bg-lime text-white">
                 <Icon size={14} />
               </span>
               <span className="text-[10px] font-bold leading-tight text-ink/60">{label}</span>
