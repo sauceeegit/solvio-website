@@ -26,7 +26,7 @@ const ALL_CARDS = [
     icon: Home,
     title: 'Lightweight Roof Installation',
     body: 'When every kilogram matters. At only 6 kg/m², The Black Feather is engineered for lightweight structures.',
-    img: asset('/rooftop-feature.webp'),
+    img: asset('/rooftop-solar.jpg'),
     alt: 'Solvio Black Feather panels on a lightweight residential roof',
     tabs: ['Balcony & Facade', 'Lightweight Roof'],
   },
