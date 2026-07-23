@@ -16,7 +16,7 @@ export default function SocialProof() {
             {stats.map((s) => (
               <div key={s.label} className="text-center">
                 <p className="font-display text-xl font-extrabold sm:text-3xl" style={{ color: '#C29848' }}>{s.value}</p>
-                <p className="mt-1 text-[11px] font-medium text-ink/55 sm:text-[13px]">{s.label}</p>
+                <p className="mt-1 text-[11px] font-medium leading-tight text-ink/55 sm:text-[13px] sm:leading-normal">{s.label}</p>
               </div>
             ))}
           </div>
