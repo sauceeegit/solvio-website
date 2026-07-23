@@ -295,8 +295,8 @@ export default function WhyShop() {
                         <span
                           className="inline-block self-start rounded-full font-mono text-[9px] font-bold uppercase tracking-[0.14em]"
                           style={{
-                            color: '#FC4302',
-                            border: '1px solid rgba(252,67,2,0.28)',
+                            color: '#fff',
+                            backgroundColor: '#C29848',
                             padding: '4px 10px',
                           }}
                         >
