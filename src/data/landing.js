@@ -266,6 +266,6 @@ export const portableBatteries = [
 export const portablePanels = [
   { id: 'p60', name: '60W', watt: '60 W', price: 5000, img: asset('/panel-60w.png'), imgClass: 'scale-[0.6375] group-hover:scale-[0.67]' },
   { id: 'p120', name: '120W', watt: '120 W', price: 7500, img: asset('/panel-60w.png'), imgClass: 'scale-75 group-hover:scale-[0.79]' },
-  { id: 'p200', name: '200W', watt: '200 W', price: 14000, img: asset('/w2.webp') },
+  { id: 'p200', name: '200W', watt: '200 W', price: 14000, img: asset('/panel-200w.png') },
   { id: 'p400', name: '400W', watt: '400 W', price: 30000, img: asset('/w3.webp') },
 ];
