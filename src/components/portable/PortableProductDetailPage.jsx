@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { ArrowLeft, ArrowRight, Check, ChevronDown, MessageCircle } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, ChevronDown, MessageCircle, Zap, Plug, Smartphone, Weight, Sun, Shield } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router-dom';
 import Header from '../landing/Header';
 import ContactSection from '../ContactSection';
@@ -141,36 +141,27 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
           </div>
         </section>
 
-        <section className="border-y border-ink/[0.07] bg-white py-8 sm:py-10">
-          <div className="container-x grid grid-cols-2 gap-6 lg:grid-cols-4">
-            {product.facts.map((fact) => (
-              <div key={fact.label} className="border-l-2 border-lime pl-4">
-                <p className="font-display text-xl font-extrabold text-ink sm:text-2xl">{fact.value}</p>
-                <p className="mt-1 text-sm text-ink/55">{fact.label}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section id="details" className="bg-[#FFF7E9] py-16 sm:py-24">
-          <div className="container-x space-y-16 sm:space-y-24">
-            {product.sections.map((section, index) => {
-              const media = product.media.find((item) => item.id === section.mediaId);
-              return (
-                <div key={`${product.id}-${section.title}`} className="grid items-start gap-9 lg:grid-cols-2 lg:gap-16">
-                  <div className={index % 2 ? 'lg:order-2' : ''}>
-                    <MediaPlaceholder item={media} />
-                  </div>
-                  <div className={index % 2 ? 'lg:order-1' : ''}>
-                    <p className="eyebrow">{section.eyebrow}</p>
-                    <h2 className="mt-3 max-w-xl font-display text-4xl font-black tracking-[-0.035em] text-ink sm:text-5xl">
-                      {section.title}
-                    </h2>
-                    <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink/70">{section.body}</p>
-                  </div>
+        {/* Key features icon strip */}
+        <section id="details" className="border-y border-ink/[0.07] bg-white py-10 sm:py-14">
+          <div className="container-x">
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+              {[
+                { icon: Zap,        label: product.metricValue, sub: 'Capacity' },
+                { icon: Plug,       label: 'AC + DC + USB', sub: 'Multi-output' },
+                { icon: Smartphone, label: 'Front display', sub: 'Live status' },
+                { icon: Weight,     label: 'Compact build', sub: 'Travel-ready' },
+                { icon: Sun,        label: 'Solar input', sub: 'Recharge anywhere' },
+                { icon: Shield,     label: '2-yr warranty', sub: 'Covered' },
+              ].map(({ icon: Icon, label, sub }) => (
+                <div key={sub} className="flex flex-col items-center gap-2 rounded-2xl border border-ink/[0.07] p-4 text-center">
+                  <span className="grid h-10 w-10 place-items-center rounded-full bg-lime/10 text-lime">
+                    <Icon size={18} strokeWidth={2} />
+                  </span>
+                  <p className="font-display text-sm font-extrabold text-ink leading-tight">{label}</p>
+                  <p className="text-[11px] text-ink/50 leading-tight">{sub}</p>
                 </div>
-              );
-            })}
+              ))}
+            </div>
           </div>
         </section>
 
