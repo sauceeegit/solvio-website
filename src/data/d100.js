@@ -82,7 +82,7 @@ export const portableProductModels = portableBatteries.map((model) => {
       ...item,
       label: `${shortName} — ${item.label}`,
       alt: `${model.name} ${item.label.toLowerCase()}`,
-      src: null,
+      src: item.id === 1 ? (model.img ?? null) : item.id === 2 ? (model.sideImg ?? null) : null,
     })),
     facts: [
       { value: model.capacity, label: 'Selected capacity' },

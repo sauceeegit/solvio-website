@@ -87,13 +87,13 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
 
               <aside className="self-start lg:sticky lg:top-32">
                 <p className="eyebrow">{product.category}</p>
-                <h1 className="mt-3 font-display text-5xl font-black tracking-[-0.045em] text-ink sm:text-6xl">
+                <h1 className="mt-3 font-display text-3xl font-black tracking-[-0.03em] text-ink sm:text-4xl">
                   {product.name}
                 </h1>
-                <p className="mt-3 font-display text-xl font-semibold text-[#477296]">{product.tagline}</p>
+                <p className="mt-3 font-display text-base font-semibold text-[#477296]">{product.tagline}</p>
 
                 <div className="mt-7">
-                  <label htmlFor="model-selector" className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-ink/50">
+                  <label htmlFor="model-selector" className="font-display text-sm font-extrabold uppercase tracking-[0.12em] text-ink">
                     {product.selectorHeading}
                   </label>
                   <div className="relative mt-2">
@@ -144,7 +144,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
                   >
                     <MessageCircle size={18} /> Ask about {product.shortName}
                   </a>
-                  <a href="#details" className="btn-ghost">
+                  <a href="#details" className="btn-primary">
                     Explore details <ArrowRight size={18} />
                   </a>
                 </div>
