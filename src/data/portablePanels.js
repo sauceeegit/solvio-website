@@ -46,7 +46,7 @@ export const portablePanelModels = portablePanels.map((panel) => {
       ...item,
       label: `${shortName} — ${item.label}`,
       alt: `${productName} ${item.label.toLowerCase()}`,
-      src: null,
+      src: item.id === 1 ? (panel.img ?? null) : null,
     })),
     facts: [
       { value: panel.watt, label: 'Selected output' },
