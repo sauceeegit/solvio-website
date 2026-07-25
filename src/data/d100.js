@@ -20,13 +20,13 @@ const d100ExtraImages = {
 };
 
 const d100Specifications = [
-  { label: 'Capacity', value: '100 Wh' },
-  { label: 'USB-C', value: 'PD 100 W' },
-  { label: 'USB-C', value: 'PD 18 W' },
-  { label: 'USB-A', value: 'QC 18 W' },
-  { label: 'USB-A', value: '5 V / 2.4 A' },
-  { label: 'DC output', value: '12 V / 10 A' },
-  { label: 'AC output', value: 'Universal side outlet' },
+  { icon: 'Battery',   label: 'Capacity',   value: '100 Wh' },
+  { icon: 'ZapFast',   label: 'USB-C',      value: 'PD 100 W' },
+  { icon: 'Zap',       label: 'USB-C',      value: 'PD 18 W' },
+  { icon: 'Zap',       label: 'USB-A',      value: 'QC 18 W' },
+  { icon: 'Smartphone',label: 'USB-A',      value: '5 V / 2.4 A' },
+  { icon: 'Plug',      label: 'DC output',  value: '12 V / 10 A' },
+  { icon: 'PlugZap',   label: 'AC output',  value: 'Universal side outlet' },
 ];
 
 function displayCapacity(capacity) {

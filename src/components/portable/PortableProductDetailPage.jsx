@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
-import { ArrowLeft, ArrowRight, Check, ChevronDown, MessageCircle, Zap, Plug, Smartphone, Weight, Sun, Shield } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, ChevronDown, MessageCircle, Zap, Plug, Smartphone, Weight, Sun, Shield, Battery, PlugZap } from 'lucide-react';
+
+const SPEC_ICONS = { Battery, Zap, ZapFast: Zap, Smartphone, Plug, PlugZap, Weight, Sun, Shield };
 import { Link, useSearchParams } from 'react-router-dom';
 import Header from '../landing/Header';
 import ContactSection from '../ContactSection';
@@ -177,15 +179,25 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
 
             <div>
               <dl className="overflow-hidden rounded-[1.5rem] border border-ink/10">
-                {product.specifications.map((specification, index) => (
-                  <div
-                    key={`${product.id}-${specification.label}-${index}`}
-                    className={`flex items-center justify-between gap-5 px-5 py-4 sm:px-7 ${index ? 'border-t border-ink/10' : ''}`}
-                  >
-                    <dt className="font-display font-bold text-ink">{specification.label}</dt>
-                    <dd className="text-right font-mono text-sm text-ink/60">{specification.value}</dd>
-                  </div>
-                ))}
+                {product.specifications.map((specification, index) => {
+                  const Icon = specification.icon ? SPEC_ICONS[specification.icon] : null;
+                  return (
+                    <div
+                      key={`${product.id}-${specification.label}-${index}`}
+                      className={`flex items-center justify-between gap-5 px-5 py-3.5 sm:px-7 ${index ? 'border-t border-ink/10' : ''}`}
+                    >
+                      <dt className="flex items-center gap-3 font-display font-bold text-ink">
+                        {Icon && (
+                          <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-lime/10 text-lime">
+                            <Icon size={14} strokeWidth={2.5} />
+                          </span>
+                        )}
+                        {specification.label}
+                      </dt>
+                      <dd className="text-right font-mono text-sm text-ink/60">{specification.value}</dd>
+                    </div>
+                  );
+                })}
               </dl>
               <p className="mt-4 rounded-xl bg-amber/15 px-4 py-3 text-sm leading-relaxed text-ink/65">
                 {product.note}
