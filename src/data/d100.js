@@ -73,6 +73,10 @@ export const portableProductModels = portableBatteries.map((model) => {
     ...copy,
     shortName,
     category: 'Portable Power',
+    pageTitle: `${model.name} Portable Power Station — Product Details | Solvio`,
+    selectorHeading: 'Choose capacity',
+    metricLabel: 'Capacity',
+    metricValue: model.capacity,
     selectorLabel: `${displayCapacity(model.capacity)} — ${shortName}`,
     media: mediaTemplate.map((item) => ({
       ...item,

@@ -26,6 +26,11 @@ export const routeMeta = {
     description:
       'Explore the compact Solvio D100 portable power station, including its 100 Wh capacity, visible connection options and portable design.',
   },
+  '/portable-system/panel': {
+    title: 'Solvio 60W Portable Solar Panel — Product Details | Solvio',
+    description:
+      'Explore Solvio foldable portable solar panels from 60 W to 400 W, with model-specific pricing, imagery and technical information.',
+  },
   '/solar-panel': {
     title: 'Dark Feather 450 Wp Solar Panel — Glass-Glass, IP68 | Solvio',
     description:
