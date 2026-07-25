@@ -30,7 +30,7 @@ export const categories = [
     title: 'Rooftop Solar',
     sub: 'For Homeowner',
     blurb: 'Power your whole home with a rooftop array — get a free estimate now.',
-    img: asset('/rooftop-solar.jpg'),
+    img: asset('/rooftop-solar.webp'),
     imgClass: 'brightness-110',
     to: '/rooftop-system',
   },
@@ -243,9 +243,9 @@ export const community = [
 // Portable System page — looping header banners + portable battery products.
 export const portableHeaderSlides = [
   { video: asset('/portable-hero.mp4') },
-  { desktop: asset('/portable-slide-2.png'), mobile: asset('/portable-slide-2.png') },
-  { desktop: asset('/portable-slide-d150.png'), mobile: asset('/portable-slide-d150.png') },
-  { desktop: asset('/portable-slide-3.png'), mobile: asset('/portable-slide-3.png') },
+  { desktop: asset('/portable-slide-2.webp'), mobile: asset('/portable-slide-2.webp') },
+  { desktop: asset('/portable-slide-d150.webp'), mobile: asset('/portable-slide-d150.webp') },
+  { desktop: asset('/portable-slide-3.webp'), mobile: asset('/portable-slide-3.webp') },
   { desktop: asset('/portable-header-1.jpg'), mobile: asset('/portable-header-m1.jpg') },
   { desktop: asset('/portable-header-2.jpg'), mobile: asset('/portable-header-m2.jpg') },
   { desktop: asset('/portable-header-3.jpg'), mobile: asset('/portable-header-m3.jpg') },
@@ -254,18 +254,18 @@ export const portableHeaderSlides = [
 
 // Capacities/prices are placeholders — adjust to the real specs.
 export const portableBatteries = [
-  { id: 'd100', name: 'Solvio D100', capacity: '100 Wh', price: 6990, img: asset('/portable-100.jpg'), sideImg: asset('/portable-100-side.jpg'), href: '/portable-system/d100' },
-  { id: 'd150', name: 'Solvio D150', capacity: '150 Wh', price: 8300, img: asset('/portable-200.jpg'), sideImg: asset('/portable-200-side.jpg'), href: '/portable-system/d100?model=d150' },
-  { id: 'd300', name: 'Solvio D300', capacity: '300 Wh', price: 12200, img: asset('/portable-400.jpg'), sideImg: asset('/portable-400-side.jpg'), imgScale: 'scale-125', href: '/portable-system/d100?model=d300' },
-  { id: 'd600', name: 'Solvio D600', capacity: '600 Wh', price: 20000, img: asset('/portable-600.jpg'), sideImg: asset('/portable-600-side.jpg'), href: '/portable-system/d100?model=d600' },
-  { id: 'd1200', name: 'Solvio D1200', capacity: '1200 Wh', price: 36000, img: asset('/portable-1200.jpg'), sideImg: asset('/portable-1200-side.jpg'), href: '/portable-system/d100?model=d1200' },
-  { id: 'd2400', name: 'Solvio D2400', capacity: '2400 Wh', price: 64900, img: asset('/portable-2400.jpg'), sideImg: asset('/portable-2400-side.jpg'), href: '/portable-system/d100?model=d2400' },
+  { id: 'd100', name: 'Solvio D100', capacity: '100 Wh', price: 6990, img: asset('/portable-100.webp'), sideImg: asset('/portable-100-side.webp'), href: '/portable-system/d100' },
+  { id: 'd150', name: 'Solvio D150', capacity: '150 Wh', price: 8300, img: asset('/portable-200.webp'), sideImg: asset('/portable-200-side.webp'), href: '/portable-system/d100?model=d150' },
+  { id: 'd300', name: 'Solvio D300', capacity: '300 Wh', price: 12200, img: asset('/portable-400.webp'), sideImg: asset('/portable-400-side.webp'), imgScale: 'scale-125', href: '/portable-system/d100?model=d300' },
+  { id: 'd600', name: 'Solvio D600', capacity: '600 Wh', price: 20000, img: asset('/portable-600.webp'), sideImg: asset('/portable-600-side.webp'), href: '/portable-system/d100?model=d600' },
+  { id: 'd1200', name: 'Solvio D1200', capacity: '1200 Wh', price: 36000, img: asset('/portable-1200.webp'), sideImg: asset('/portable-1200-side.webp'), href: '/portable-system/d100?model=d1200' },
+  { id: 'd2400', name: 'Solvio D2400', capacity: '2400 Wh', price: 64900, img: asset('/portable-2400.webp'), sideImg: asset('/portable-2400-side.webp'), href: '/portable-system/d100?model=d2400' },
 ];
 
 // Portable foldable solar panels. Prices in Thai Baht (฿).
 export const portablePanels = [
-  { id: 'p60', name: '60W', watt: '60 W', price: 5000, img: asset('/panel-60w.png'), imgClass: 'scale-[0.6375] group-hover:scale-[0.67]', href: '/portable-system/panel' },
-  { id: 'p120', name: '120W', watt: '120 W', price: 7500, img: asset('/panel-60w.png'), imgClass: 'scale-75 group-hover:scale-[0.79]', href: '/portable-system/panel?model=p120' },
-  { id: 'p200', name: '200W', watt: '200 W', price: 14000, img: asset('/panel-200w.png'), href: '/portable-system/panel?model=p200' },
-  { id: 'p400', name: '400W', watt: '400 W', price: 30000, img: asset('/panel-200w.png'), href: '/portable-system/panel?model=p400' },
+  { id: 'p60', name: '60W', watt: '60 W', price: 5000, img: asset('/panel-60w.webp'), imgClass: 'scale-[0.6375] group-hover:scale-[0.67]', href: '/portable-system/panel' },
+  { id: 'p120', name: '120W', watt: '120 W', price: 7500, img: asset('/panel-60w.webp'), imgClass: 'scale-75 group-hover:scale-[0.79]', href: '/portable-system/panel?model=p120' },
+  { id: 'p200', name: '200W', watt: '200 W', price: 14000, img: asset('/panel-200w.webp'), href: '/portable-system/panel?model=p200' },
+  { id: 'p400', name: '400W', watt: '400 W', price: 30000, img: asset('/panel-200w.webp'), href: '/portable-system/panel?model=p400' },
 ];
