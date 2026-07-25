@@ -18,6 +18,12 @@ const d100ExtraImages = {
   6: asset('/d100-img06.png'),
 };
 
+const d150ExtraImages = {
+  3: asset('/d150-img03.png'),
+  4: asset('/d150-img05.png'),
+  5: asset('/d150-img04.png'),
+};
+
 const d100Specifications = [
   { icon: 'Battery',   label: 'Capacity',   value: '100 Wh' },
   { icon: 'ZapFast',   label: 'USB-C',      value: 'PD 100 W' },
@@ -91,7 +97,11 @@ export const portableProductModels = portableBatteries.map((model) => {
       ...item,
       label: `${shortName} — ${item.label}`,
       alt: `${model.name} ${item.label.toLowerCase()}`,
-      src: item.id === 1 ? (model.img ?? null) : item.id === 2 ? (model.sideImg ?? null) : (model.id === 'd100' ? (d100ExtraImages[item.id] ?? null) : null),
+      src: item.id === 1 ? (model.img ?? null)
+         : item.id === 2 ? (model.sideImg ?? null)
+         : model.id === 'd100' ? (d100ExtraImages[item.id] ?? null)
+         : model.id === 'd150' ? (d150ExtraImages[item.id] ?? null)
+         : null,
     })),
     facts: [
       { value: model.capacity, label: 'Selected capacity' },
