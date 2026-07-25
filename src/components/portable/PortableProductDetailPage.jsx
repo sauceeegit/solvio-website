@@ -12,7 +12,7 @@ function MediaPlaceholder({ item, featured = false }) {
 
   return (
     <div
-      className={`relative flex min-h-[280px] snap-center flex-col justify-between overflow-hidden rounded-[1.5rem] border border-dashed border-lime/45 bg-white/70 p-5 shadow-soft sm:min-h-[340px] lg:min-h-0 ${
+      className={`relative flex min-h-[280px] snap-center flex-col justify-between overflow-hidden rounded-[1.5rem] border border-ink/[0.07] bg-white/70 p-5 shadow-soft sm:min-h-[340px] lg:min-h-0 ${
         featured ? 'lg:col-span-3 lg:aspect-[16/10]' : 'lg:aspect-square'
       }`}
       aria-label={item.src ? item.alt : `Image placeholder ${imageNumber}: ${item.label}`}
@@ -90,7 +90,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
                 <h1 className="mt-3 font-display text-3xl font-black tracking-[-0.03em] text-ink sm:text-4xl">
                   {product.name}
                 </h1>
-                <p className="mt-3 font-display text-base font-semibold text-[#477296]">{product.tagline}</p>
+                <p className="mt-1 font-display text-base font-semibold text-ink/50">{product.tagline}</p>
 
                 <div className="mt-7">
                   <label htmlFor="model-selector" className="font-display text-sm font-extrabold uppercase tracking-[0.12em] text-ink">
@@ -113,7 +113,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
 
                 <div className="mt-5 flex items-end justify-between gap-6 border-y border-ink/10 py-5">
                   <div>
-                    <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink/45">{product.metricLabel}</p>
+                    <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink/70">{product.metricLabel}</p>
                     <p className="mt-1 font-display text-2xl font-extrabold text-ink">{product.metricValue}</p>
                   </div>
                   <div className="text-right">
