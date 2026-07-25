@@ -12,6 +12,8 @@ const mediaTemplate = [
 ];
 
 const d100ExtraImages = {
+  3: asset('/d100-img03.png'),
+  4: asset('/d100-img04.png'),
   5: asset('/d100-img05.png'),
   6: asset('/d100-img06.png'),
   7: asset('/d100-img07.png'),
