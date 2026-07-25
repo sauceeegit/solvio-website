@@ -254,7 +254,7 @@ export const portableHeaderSlides = [
 
 // Capacities/prices are placeholders — adjust to the real specs.
 export const portableBatteries = [
-  { id: 'd100', name: 'Solvio D100', capacity: '100 Wh', price: 6990, img: asset('/portable-100.jpg'), sideImg: asset('/portable-100-side.jpg') },
+  { id: 'd100', name: 'Solvio D100', capacity: '100 Wh', price: 6990, img: asset('/portable-100.jpg'), sideImg: asset('/portable-100-side.jpg'), href: '/portable-system/d100' },
   { id: 'd150', name: 'Solvio D150', capacity: '150 Wh', price: 8300, img: asset('/portable-200.jpg'), sideImg: asset('/portable-200-side.jpg') },
   { id: 'd300', name: 'Solvio D300', capacity: '300 Wh', price: 12200, img: asset('/portable-400.jpg'), sideImg: asset('/portable-400-side.jpg'), imgScale: 'scale-125' },
   { id: 'd600', name: 'Solvio D600', capacity: '600 Wh', price: 20000, img: asset('/portable-600.jpg'), sideImg: asset('/portable-600-side.jpg') },

@@ -4,6 +4,7 @@ import ScrollToTop from './components/ScrollToTop';
 import LandingPage from './pages/LandingPage';
 import ProductPage from './pages/ProductPage';
 import PortablePage from './pages/PortablePage';
+import D100ProductPage from './pages/D100ProductPage';
 import SolarPanelPage from './pages/SolarPanelPage';
 import RooftopSystemPage from './pages/RooftopSystemPage';
 import AboutPage from './pages/AboutPage';
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/balcony-system" element={<ProductPage />} />
         <Route path="/portable-system" element={<PortablePage />} />
+        <Route path="/portable-system/d100" element={<D100ProductPage />} />
         <Route path="/solar-panel" element={<SolarPanelPage />} />
         <Route path="/rooftop-system" element={<RooftopSystemPage />} />
         <Route path="/about" element={<AboutPage />} />
