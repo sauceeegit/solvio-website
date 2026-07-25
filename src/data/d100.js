@@ -24,6 +24,12 @@ const d150ExtraImages = {
   5: asset('/d150-img04.png'),
 };
 
+const d2400ExtraImages = {
+  3: asset('/d2400-img03.png'),
+  4: asset('/d2400-img04.png'),
+  5: asset('/d2400-img05.png'),
+};
+
 const d600ExtraImages = {
   3: asset('/d600-img03.png'),
   4: asset('/d600-img04.png'),
@@ -115,6 +121,7 @@ export const portableProductModels = portableBatteries.map((model) => {
          : model.id === 'd150' ? (d150ExtraImages[item.id] ?? null)
          : model.id === 'd300' ? (d300ExtraImages[item.id] ?? null)
          : model.id === 'd600' ? (d600ExtraImages[item.id] ?? null)
+         : model.id === 'd2400' ? (d2400ExtraImages[item.id] ?? null)
          : null,
     })),
     facts: [
