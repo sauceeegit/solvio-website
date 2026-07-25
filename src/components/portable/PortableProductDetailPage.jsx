@@ -156,8 +156,8 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
                 { icon: Shield,     label: '2-yr warranty', sub: 'Covered' },
               ].map(({ icon: Icon, label, sub }) => (
                 <div key={sub} className="flex flex-col items-center gap-2 rounded-2xl border border-ink/[0.07] p-4 text-center">
-                  <span className="grid h-10 w-10 place-items-center rounded-full bg-lime/10 text-lime">
-                    <Icon size={18} strokeWidth={2} />
+                  <span className="grid h-16 w-16 place-items-center rounded-full bg-lime/10 text-lime">
+                    <Icon size={30} strokeWidth={1.75} />
                   </span>
                   <p className="font-display text-sm font-extrabold text-ink leading-tight">{label}</p>
                   <p className="text-[11px] text-ink/50 leading-tight">{sub}</p>
