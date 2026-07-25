@@ -4,6 +4,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import Header from '../landing/Header';
 import ContactSection from '../ContactSection';
 import Footer from '../Footer';
+import ProductGallery from './ProductGallery';
 import { baht } from '../../lib/format';
 import { usePageMeta } from '../../hooks/usePageMeta';
 
@@ -42,7 +43,6 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
   const [searchParams, setSearchParams] = useSearchParams();
   const requestedModel = searchParams.get('model');
   const product = products.find((item) => item.id === requestedModel) ?? defaultProduct;
-  const [featured, ...supporting] = product.media.slice(0, 4);
   const whatsappMessage = encodeURIComponent(`Hi Solvio — I'd like more information about the ${product.shortName}`);
 
   useEffect(() => {
@@ -70,19 +70,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
 
             <div className="mt-7 grid gap-10 lg:grid-cols-[minmax(0,1.25fr)_minmax(360px,0.75fr)] xl:gap-16">
               <div className="min-w-0" key={product.id}>
-                <div className="no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0">
-                  <div className="w-[88%] shrink-0 sm:w-[72%] lg:contents">
-                    <MediaPlaceholder item={featured} featured />
-                  </div>
-                  {supporting.map((item) => (
-                    <div key={`${product.id}-${item.id}`} className="w-[78%] shrink-0 sm:w-[46%] lg:w-auto">
-                      <MediaPlaceholder item={item} />
-                    </div>
-                  ))}
-                </div>
-                <p className="mt-2 text-center font-mono text-[10px] uppercase tracking-[0.16em] text-ink/45 lg:hidden">
-                  Swipe to view {product.shortName} image positions 01–04
-                </p>
+                <ProductGallery media={product.media} />
               </div>
 
               <aside className="self-start lg:sticky lg:top-32">
