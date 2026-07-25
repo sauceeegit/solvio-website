@@ -118,7 +118,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
                   </div>
                   <div className="text-right">
                     <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink/45">From</p>
-                    <p className="mt-1 font-display text-3xl font-black text-price">{baht(product.price)}</p>
+                    <p className="mt-1 font-display text-2xl font-extrabold text-price">{baht(product.price)}</p>
                   </div>
                 </div>
 
