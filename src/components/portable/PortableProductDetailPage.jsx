@@ -130,7 +130,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
                     href={`https://wa.me/66843488428?text=${whatsappMessage}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-lime bg-surface px-6 py-3.5 font-display text-sm font-semibold text-lime transition hover:bg-lime/5 active:scale-95"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-lime bg-surface px-6 py-3.5 font-display text-sm font-semibold text-lime transition hover:bg-white active:scale-95"
                   >
                     <MessageCircle size={18} /> Ask about {product.shortName}
                   </a>
