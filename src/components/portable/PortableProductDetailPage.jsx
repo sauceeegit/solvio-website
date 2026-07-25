@@ -12,7 +12,7 @@ function MediaPlaceholder({ item, featured = false }) {
 
   return (
     <div
-      className={`relative flex min-h-[280px] snap-center flex-col justify-between overflow-hidden rounded-[1.5rem] border border-ink/[0.07] bg-white/70 p-5 shadow-soft sm:min-h-[340px] lg:min-h-0 ${
+      className={`relative flex min-h-[220px] snap-center flex-col justify-between overflow-hidden rounded-[1.5rem] border border-ink/[0.07] bg-white/70 p-5 shadow-soft sm:min-h-[270px] lg:min-h-0 ${
         featured ? 'lg:col-span-3 lg:aspect-[16/10]' : 'lg:aspect-square'
       }`}
       aria-label={item.src ? item.alt : `Image placeholder ${imageNumber}: ${item.label}`}
@@ -169,7 +169,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
             {product.sections.map((section, index) => {
               const media = product.media.find((item) => item.id === section.mediaId);
               return (
-                <div key={`${product.id}-${section.title}`} className="grid items-center gap-9 lg:grid-cols-2 lg:gap-16">
+                <div key={`${product.id}-${section.title}`} className="grid items-start gap-9 lg:grid-cols-2 lg:gap-16">
                   <div className={index % 2 ? 'lg:order-2' : ''}>
                     <MediaPlaceholder item={media} />
                   </div>
