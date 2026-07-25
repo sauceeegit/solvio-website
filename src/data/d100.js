@@ -1,3 +1,4 @@
+import { asset } from '../lib/format';
 import { portableBatteries } from './landing';
 
 const mediaTemplate = [
@@ -7,7 +8,14 @@ const mediaTemplate = [
   { id: 4, label: 'In use', note: 'Recommended: lifestyle image showing real scale' },
   { id: 5, label: 'Portable design', note: 'Recommended: carrying or travel scene' },
   { id: 6, label: 'Connection detail', note: 'Recommended: connected devices or cable layout' },
+  { id: 7, label: 'Detail view', note: 'Recommended: additional product detail' },
 ];
+
+const d100ExtraImages = {
+  5: asset('/d100-img05.png'),
+  6: asset('/d100-img06.png'),
+  7: asset('/d100-img07.png'),
+};
 
 const d100Specifications = [
   { label: 'Capacity', value: '100 Wh' },
@@ -82,7 +90,7 @@ export const portableProductModels = portableBatteries.map((model) => {
       ...item,
       label: `${shortName} — ${item.label}`,
       alt: `${model.name} ${item.label.toLowerCase()}`,
-      src: item.id === 1 ? (model.img ?? null) : item.id === 2 ? (model.sideImg ?? null) : null,
+      src: item.id === 1 ? (model.img ?? null) : item.id === 2 ? (model.sideImg ?? null) : (model.id === 'd100' ? (d100ExtraImages[item.id] ?? null) : null),
     })),
     facts: [
       { value: model.capacity, label: 'Selected capacity' },
