@@ -68,12 +68,12 @@ function modelSpecifications(model) {
   if (model.id === 'd100') return d100Specifications;
 
   return [
-    { label: 'Capacity', value: model.capacity },
-    { label: 'Dimensions', value: 'To be added' },
-    { label: 'Weight', value: 'To be added' },
-    { label: 'Charging time', value: 'To be added' },
-    { label: 'AC output', value: 'To be added' },
-    { label: 'Connection details', value: 'To be added' },
+    { icon: 'Battery',    label: 'Capacity',           value: model.capacity },
+    { icon: 'Maximize2',  label: 'Dimensions',          value: 'To be added' },
+    { icon: 'Weight',     label: 'Weight',              value: 'To be added' },
+    { icon: 'Clock',      label: 'Charging time',       value: 'To be added' },
+    { icon: 'PlugZap',    label: 'AC output',           value: 'To be added' },
+    { icon: 'Cable',      label: 'Connection details',  value: 'To be added' },
   ];
 }
 

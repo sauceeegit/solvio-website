@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { ArrowLeft, ArrowRight, Check, ChevronDown, MessageCircle, Zap, Plug, Smartphone, Weight, Sun, Shield, Battery, PlugZap, Maximize2, Minimize2, Cable } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, ChevronDown, MessageCircle, Zap, Plug, Smartphone, Weight, Sun, Shield, Battery, PlugZap, Maximize2, Minimize2, Cable, Clock } from 'lucide-react';
 
-const SPEC_ICONS = { Battery, Zap, ZapFast: Zap, Smartphone, Plug, PlugZap, Weight, Sun, Shield, Maximize2, Minimize2, Cable };
+const SPEC_ICONS = { Battery, Zap, ZapFast: Zap, Smartphone, Plug, PlugZap, Weight, Sun, Shield, Maximize2, Minimize2, Cable, Clock };
 import { Link, useSearchParams } from 'react-router-dom';
 import Header from '../landing/Header';
 import ContactSection from '../ContactSection';
