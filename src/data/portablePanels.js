@@ -5,6 +5,7 @@ const p200ExtraImages = {
   2: asset('/p200-img02.png'),
   3: asset('/p200-img03.png'),
   4: asset('/p200-img04.png'),
+  5: asset('/p200-img05.png'),
 };
 
 const p60ExtraImages = {
