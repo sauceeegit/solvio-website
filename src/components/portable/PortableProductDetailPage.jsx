@@ -171,7 +171,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
           <div className="container-x grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
             <div>
               <p className="eyebrow">Specifications</p>
-              <h2 className="mt-3 font-display text-4xl font-black tracking-[-0.035em] text-ink sm:text-5xl">
+              <h2 className="mt-3 font-display text-4xl font-black tracking-[-0.035em] text-lime sm:text-5xl">
                 {product.shortName} at a glance
               </h2>
               <p className="mt-5 max-w-xl text-base leading-relaxed text-ink/65">{product.specificationIntro}</p>
