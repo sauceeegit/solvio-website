@@ -80,7 +80,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
                 <h1 className="mt-3 font-display text-3xl font-black tracking-[-0.03em] text-ink sm:text-4xl">
                   {product.name}
                 </h1>
-                <p className="mt-1 font-display text-base font-semibold text-ink/50">{product.tagline}</p>
+                <p className="mt-1 font-display text-base font-semibold text-ink/70">{product.tagline}</p>
 
                 <div className="mt-7">
                   <label htmlFor="model-selector" className="font-display text-sm font-extrabold uppercase tracking-[0.12em] text-ink">
@@ -103,20 +103,20 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
 
                 <div className="mt-5 flex items-end justify-between gap-6 border-y border-ink/10 py-5">
                   <div>
-                    <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink/70">{product.metricLabel}</p>
+                    <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink/85">{product.metricLabel}</p>
                     <p className="mt-1 font-display text-2xl font-extrabold text-ink">{product.metricValue}</p>
                   </div>
                   <div className="text-right">
-                    <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink/45">From</p>
+                    <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink/65">From</p>
                     <p className="mt-1 font-display text-2xl font-extrabold text-price">{baht(product.price)}</p>
                   </div>
                 </div>
 
-                <p className="mt-6 text-base leading-relaxed text-ink/75">{product.description}</p>
+                <p className="mt-6 text-base leading-relaxed text-ink/90">{product.description}</p>
 
                 <ul className="mt-6 space-y-3">
                   {product.highlights.map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-ink/80">
+                    <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-ink/90">
                       <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-lime text-white">
                         <Check size={13} strokeWidth={3} />
                       </span>
