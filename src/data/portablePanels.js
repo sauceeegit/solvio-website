@@ -1,4 +1,11 @@
+import { asset } from '../lib/format';
 import { portablePanels } from './landing';
+
+const p60ExtraImages = {
+  1: asset('/p60-img01.png'),
+  2: asset('/p60-img02.png'),
+  3: asset('/p60-img03.png'),
+};
 
 const panelMediaTemplate = [
   { id: 1, label: 'Main panel view', note: 'Recommended: clean unfolded front view' },
@@ -46,7 +53,9 @@ export const portablePanelModels = portablePanels.map((panel) => {
       ...item,
       label: `${shortName} — ${item.label}`,
       alt: `${productName} ${item.label.toLowerCase()}`,
-      src: item.id === 1 ? (panel.img ?? null) : null,
+      src: panel.id === 'p60' ? (p60ExtraImages[item.id] ?? null)
+         : item.id === 1 ? (panel.img ?? null)
+         : null,
     })),
     facts: [
       { value: panel.watt, label: 'Selected output' },
