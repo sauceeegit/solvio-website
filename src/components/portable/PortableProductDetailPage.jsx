@@ -77,7 +77,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
 
               <aside className="self-start lg:sticky lg:top-32">
                 <p className="eyebrow">{product.category}</p>
-                <h1 className="mt-3 font-display text-3xl font-black tracking-[-0.03em] text-ink sm:text-4xl">
+                <h1 className="mt-3 font-display text-3xl font-black tracking-[-0.03em] text-lime sm:text-4xl">
                   {product.name}
                 </h1>
                 <p className="mt-1 font-display text-base font-semibold text-ink/50">{product.tagline}</p>
@@ -210,7 +210,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
           <div className="container-x max-w-5xl">
             <div className="text-center">
               <p className="eyebrow">Good to know</p>
-              <h2 className="mt-3 font-display text-4xl font-black tracking-[-0.035em] text-ink sm:text-5xl">
+              <h2 className="mt-3 font-display text-4xl font-black tracking-[-0.035em] text-lime sm:text-5xl">
                 {product.shortName} questions
               </h2>
             </div>
