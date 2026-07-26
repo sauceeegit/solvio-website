@@ -1,6 +1,12 @@
 import { asset } from '../lib/format';
 import { portablePanels } from './landing';
 
+const p200ExtraImages = {
+  2: asset('/p200-img02.png'),
+  3: asset('/p200-img03.png'),
+  4: asset('/p200-img04.png'),
+};
+
 const p60ExtraImages = {
   2: asset('/p60-sideview.png'),
   3: asset('/p60-backview.png'),
@@ -57,6 +63,7 @@ export const portablePanelModels = portablePanels.map((panel) => {
       alt: `${productName} ${item.label.toLowerCase()}`,
       src: item.id === 1 ? (panel.img ?? null)
          : panel.id === 'p60' || panel.id === 'p120' ? (p60ExtraImages[item.id] ?? null)
+         : panel.id === 'p200' || panel.id === 'p400' ? (p200ExtraImages[item.id] ?? null)
          : null,
     })),
     facts: [
