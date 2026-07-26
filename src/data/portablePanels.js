@@ -2,9 +2,11 @@ import { asset } from '../lib/format';
 import { portablePanels } from './landing';
 
 const p60ExtraImages = {
-  2: asset('/p60-img02.png'),
-  3: asset('/p60-img03.png'),
-  4: asset('/p60-img01.png'),
+  2: asset('/p60-sideview.png'),
+  3: asset('/p60-backview.png'),
+  4: asset('/p60-img02.png'),
+  5: asset('/p60-img03.png'),
+  6: asset('/p60-img01.png'),
 };
 
 const panelMediaTemplate = [
