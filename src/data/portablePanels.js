@@ -56,7 +56,7 @@ export const portablePanelModels = portablePanels.map((panel) => {
       label: `${shortName} — ${item.label}`,
       alt: `${productName} ${item.label.toLowerCase()}`,
       src: item.id === 1 ? (panel.img ?? null)
-         : panel.id === 'p60' ? (p60ExtraImages[item.id] ?? null)
+         : panel.id === 'p60' || panel.id === 'p120' ? (p60ExtraImages[item.id] ?? null)
          : null,
     })),
     facts: [
