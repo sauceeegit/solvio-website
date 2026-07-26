@@ -27,12 +27,12 @@ const panelMediaTemplate = [
 
 function panelSpecifications(panel) {
   return [
-    { label: 'Rated output', value: panel.watt },
-    { label: 'Unfolded dimensions', value: 'To be added' },
-    { label: 'Folded dimensions', value: 'To be added' },
-    { label: 'Weight', value: 'To be added' },
-    { label: 'Connector', value: 'To be added' },
-    { label: 'Protection class', value: 'To be added' },
+    { icon: 'Zap',        label: 'Rated output',       value: panel.watt },
+    { icon: 'Maximize2',  label: 'Unfolded dimensions', value: 'To be added' },
+    { icon: 'Minimize2',  label: 'Folded dimensions',   value: 'To be added' },
+    { icon: 'Weight',     label: 'Weight',              value: 'To be added' },
+    { icon: 'Cable',      label: 'Connector',           value: 'To be added' },
+    { icon: 'Shield',     label: 'Protection class',    value: 'To be added' },
   ];
 }
 

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { ArrowLeft, ArrowRight, Check, ChevronDown, MessageCircle, Zap, Plug, Smartphone, Weight, Sun, Shield, Battery, PlugZap } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, ChevronDown, MessageCircle, Zap, Plug, Smartphone, Weight, Sun, Shield, Battery, PlugZap, Maximize2, Minimize2, Cable } from 'lucide-react';
 
-const SPEC_ICONS = { Battery, Zap, ZapFast: Zap, Smartphone, Plug, PlugZap, Weight, Sun, Shield };
+const SPEC_ICONS = { Battery, Zap, ZapFast: Zap, Smartphone, Plug, PlugZap, Weight, Sun, Shield, Maximize2, Minimize2, Cable };
 import { Link, useSearchParams } from 'react-router-dom';
 import Header from '../landing/Header';
 import ContactSection from '../ContactSection';
@@ -77,7 +77,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
 
               <aside className="self-start lg:sticky lg:top-32">
                 <p className="eyebrow">{product.category}</p>
-                <h1 className="mt-3 font-display text-3xl font-black tracking-[-0.03em] text-lime sm:text-4xl">
+                <h1 className="mt-3 font-display text-3xl font-black tracking-[-0.03em] text-price sm:text-4xl">
                   {product.name}
                 </h1>
                 <p className="mt-1 font-display text-base font-semibold text-ink/50">{product.tagline}</p>
@@ -171,7 +171,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
           <div className="container-x grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
             <div>
               <p className="eyebrow">Specifications</p>
-              <h2 className="mt-3 font-display text-4xl font-black tracking-[-0.035em] text-lime sm:text-5xl">
+              <h2 className="mt-3 font-display text-4xl font-black tracking-[-0.035em] text-price sm:text-5xl">
                 {product.shortName} at a glance
               </h2>
               <p className="mt-5 max-w-xl text-base leading-relaxed text-ink/65">{product.specificationIntro}</p>
@@ -210,7 +210,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
           <div className="container-x max-w-5xl">
             <div className="text-center">
               <p className="eyebrow">Good to know</p>
-              <h2 className="mt-3 font-display text-4xl font-black tracking-[-0.035em] text-lime sm:text-5xl">
+              <h2 className="mt-3 font-display text-4xl font-black tracking-[-0.035em] text-price sm:text-5xl">
                 {product.shortName} questions
               </h2>
             </div>
