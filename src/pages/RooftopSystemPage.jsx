@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Check } from 'lucide-react';
+import { Check, Building2, Hotel, Home, Layers, Landmark, Truck } from 'lucide-react';
 import Header from '../components/landing/Header';
 import Footer from '../components/Footer';
 import MediaLoader from '../components/MediaLoader';
@@ -52,9 +52,10 @@ export default function RooftopSystemPage() {
             just below the header) until the looping video has scrolled past. */}
         <div className="relative">
           {/* Tagline bar — freezes below the header while the video scrolls by. */}
-          <section className="sticky z-30" style={{ top: headerH, backgroundColor: '#EEF5FC' }}>
-            <div className="container-x py-4 text-center sm:py-5">
-              <h1 className="font-display text-lg font-extrabold tracking-tight text-ink sm:text-2xl">
+          <section className="sticky z-30 border-b border-ink/[0.07]" style={{ top: headerH, backgroundColor: '#EEF5FC' }}>
+            <div className="container-x py-5 text-center sm:py-6">
+              <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-lime">Rooftop Solar Thailand</p>
+              <h1 className="mt-1 font-display text-xl font-black tracking-tight text-ink sm:text-3xl">
                 Thailand&apos;s complete residential and commercial solar solution.
               </h1>
             </div>
@@ -145,14 +146,23 @@ export default function RooftopSystemPage() {
                   </h2>
                   {/* trimmed copy + segment checklist (same on mobile + desktop) */}
                   <div className="mt-5 max-w-md">
-                    <p className="text-lg leading-relaxed text-slatey-500">
-                      Our team brings years of hands-on experience and state-of-the-art design to
-                      every rooftop we take on.
+                    <p className="text-base leading-normal text-slatey-500">
+                      Our team brings years of hands-on experience and state-of-the-art design to every rooftop we take on.
                     </p>
-                    <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2.5">
-                      {['Resort', 'Hotel', 'Commercial Block', 'Condo', 'House', 'Mobile unit'].map((x) => (
-                        <li key={x} className="flex items-center gap-2 font-display text-sm font-semibold text-ink">
-                          <Check size={16} strokeWidth={3} className="shrink-0 text-lime-dark" /> {x}
+                    <ul className="mt-5 grid grid-cols-2 gap-3">
+                      {[
+                        { label: 'Resort', icon: Layers },
+                        { label: 'Hotel', icon: Hotel },
+                        { label: 'Commercial Block', icon: Building2 },
+                        { label: 'Condo', icon: Landmark },
+                        { label: 'House', icon: Home },
+                        { label: 'Mobile unit', icon: Truck },
+                      ].map(({ label, icon: Icon }) => (
+                        <li key={label} className="flex items-center gap-2.5 rounded-xl border border-ink/[0.08] bg-surface px-3 py-2.5 font-display text-sm font-semibold text-ink">
+                          <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-price/10 text-price">
+                            <Icon size={14} strokeWidth={2} />
+                          </span>
+                          {label}
                         </li>
                       ))}
                     </ul>
