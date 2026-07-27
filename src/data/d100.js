@@ -144,7 +144,7 @@ export const portableProductModels = portableBatteries.map((model) => {
            : model.id === 'd600'  ? { src: asset('/d600-hero.webp') }
            : model.id === 'd300'  ? { src: asset('/d300-hero.webp') }
            : model.id === 'd150'  ? { src: asset('/d150-hero.webp') }
-           : model.id === 'd100'  ? { src: asset('/d100-hero.webp'), objectPosition: '50% 30%' }
+           : model.id === 'd100'  ? { src: asset('/d100-hero.webp'), objectPosition: '50% 20%' }
            : null,
     facts: [
       { value: model.capacity, label: 'Selected capacity' },
