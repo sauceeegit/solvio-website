@@ -177,30 +177,39 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
           </section>
         )}
 
-        <section className="py-16 sm:py-24" style={{ backgroundColor: '#071a10' }}>
+        <section className="py-16 sm:py-24" style={{ backgroundColor: '#040f08' }}>
           <div className="container-x">
             <div className="text-center">
               <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em]" style={{ color: '#fffbf5' }}>Specifications</p>
               <h2 className="mt-3 font-display text-4xl font-black tracking-tight text-white sm:text-5xl">
                 {product.shortName} at a glance
               </h2>
-              <p className="mt-3 text-sm" style={{ color: 'rgba(255,255,255,0.45)' }}>{product.specificationIntro}</p>
+              <p className="mt-3 text-sm" style={{ color: 'rgba(255,255,255,0.4)' }}>Key technical values for the {product.shortName}. Ask us for the full spec sheet.</p>
             </div>
 
             <dl className="mx-auto mt-12 grid max-w-5xl grid-cols-1 sm:grid-cols-2">
               {product.specifications.map((specification, index) => (
                 <div
                   key={`${product.id}-${specification.label}-${index}`}
-                  className="flex items-baseline justify-between gap-6 py-5 px-2"
-                  style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}
+                  className="grid grid-cols-2 items-baseline gap-4 py-5 px-2"
                 >
-                  <dt className="text-sm" style={{ color: 'rgba(255,255,255,0.5)' }}>{specification.label}:</dt>
-                  <dd className="font-display text-sm font-bold text-white text-right">{specification.value}</dd>
+                  <dt
+                    className="text-sm pb-4"
+                    style={{ color: 'rgba(255,255,255,0.45)', borderBottom: '1px solid rgba(255,255,255,0.1)' }}
+                  >
+                    {specification.label}:
+                  </dt>
+                  <dd
+                    className="font-display text-sm font-bold text-white text-right pb-4"
+                    style={{ borderBottom: '2px solid rgba(255,255,255,0.25)' }}
+                  >
+                    {specification.value}
+                  </dd>
                 </div>
               ))}
             </dl>
 
-            <p className="mx-auto mt-8 max-w-2xl text-center text-xs leading-relaxed" style={{ color: 'rgba(255,255,255,0.35)' }}>
+            <p className="mx-auto mt-8 max-w-2xl text-center text-xs leading-relaxed" style={{ color: 'rgba(255,255,255,0.3)' }}>
               {product.note}
             </p>
           </div>
