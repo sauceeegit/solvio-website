@@ -35,8 +35,12 @@ export default function Bestsellers() {
                   onMouseEnter={() => setHoveredIdx(i)}
                   onMouseLeave={() => setHoveredIdx(null)}
                 >
-                  <div className="relative aspect-[4/3] bg-lime">
-                    <img src={p.img} alt={p.name} className="h-full w-full object-cover" />
+                  <div className="relative aspect-[4/3] bg-lime" style={p.bg ? { backgroundColor: p.bg } : undefined}>
+                    <img
+                      src={p.img}
+                      alt={p.name}
+                      className={`absolute inset-0 h-full w-full p-3 ${p.fit === 'contain' ? 'object-contain' : 'object-cover'}`}
+                    />
                     {p.badge && (
                       <span className="absolute left-3 top-3 rounded-full bg-lime px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-wider text-white">
                         {p.badge}
