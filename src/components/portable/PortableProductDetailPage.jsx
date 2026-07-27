@@ -167,6 +167,40 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
           </div>
         </section>
 
+        {product.heroImg && (
+          <section className="relative aspect-video w-full overflow-hidden">
+            <img
+              src={product.heroImg}
+              alt={`${product.name} lifestyle`}
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-ink/60 via-ink/20 to-transparent" />
+            <div className="absolute inset-0 flex flex-col justify-center px-8 sm:px-16 lg:px-24">
+              <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-white/60">
+                {product.category}
+              </p>
+              <h2 className="mt-3 font-display text-3xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl">
+                {product.name}
+              </h2>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {[
+                  [product.metricValue, 'Capacity'],
+                  ['AC + DC + USB', 'Multi-output'],
+                  ['Front display', 'Live status'],
+                  ['Compact build', 'Travel-ready'],
+                  ['Solar input', 'Recharge anywhere'],
+                  ['2-yr warranty', 'Covered'],
+                ].map(([label, sub]) => (
+                  <span key={sub} className="rounded-full border border-white/25 bg-white/10 px-3 py-1.5 backdrop-blur-sm">
+                    <span className="font-display text-sm font-bold text-white">{label}</span>
+                    <span className="ml-1.5 text-xs text-white/60">{sub}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
         <section className="bg-white py-16 sm:py-24">
           <div className="container-x grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
             <div>
