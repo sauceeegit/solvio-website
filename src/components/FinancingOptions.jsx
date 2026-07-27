@@ -163,10 +163,10 @@ export default function FinancingOptions() {
             return (
               <Reveal key={w.title} delay={i * 0.08}>
                 <div className="card h-full p-6">
-                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-lime/10 text-lime">
-                    <Icon size={22} />
+                  <span className="grid h-14 w-14 place-items-center rounded-xl bg-price/10 text-price">
+                    <Icon size={28} />
                   </span>
-                  <h3 className="mt-4 font-display text-lg font-bold text-ink">{w.title}</h3>
+                  <h3 className="mt-4 font-display text-lg font-bold text-price">{w.title}</h3>
                   <p className="mt-1.5 text-sm leading-relaxed text-slatey-500">{w.body}</p>
                 </div>
               </Reveal>
