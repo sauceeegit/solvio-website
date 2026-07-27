@@ -177,7 +177,7 @@ export default function FinancingOptions() {
         {/* Bank loans: Home / Business toggle */}
         <Reveal className="mt-16">
           <div className="flex flex-wrap items-end justify-between gap-4">
-            <h3 className="font-display text-xl font-bold text-ink sm:text-2xl">
+            <h3 className="font-display text-xl font-bold text-price sm:text-2xl">
               Green loans owners use with Solvio
             </h3>
             <div
@@ -219,7 +219,7 @@ export default function FinancingOptions() {
                     <p className="font-mono text-[11px] uppercase tracking-wider text-slatey-400">
                       {l.bank}
                     </p>
-                    <h4 className="mt-1 font-display text-lg font-bold text-ink">{l.product}</h4>
+                    <h4 className="mt-1 font-display text-lg font-bold text-price">{l.product}</h4>
                   </div>
                   {l.logo ? (
                     <img
@@ -268,7 +268,7 @@ export default function FinancingOptions() {
           <div className="rounded-xl2 bg-ink p-6 text-white sm:p-8">
             <div className="flex flex-wrap items-center justify-between gap-6">
               <div className="max-w-md">
-                <h3 className="font-display text-xl font-bold">
+                <h3 className="font-display text-xl font-bold text-white">
                   We hand you a bank-ready pack
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-white/60">
