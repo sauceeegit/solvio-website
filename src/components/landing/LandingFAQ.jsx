@@ -15,7 +15,7 @@ export default function LandingFAQ() {
       <div className="container-x">
         <Reveal>
           <h2 className="font-display text-3xl font-extrabold tracking-tight text-price sm:text-4xl">
-            Frequently asked questions
+            FAQ
           </h2>
         </Reveal>
 

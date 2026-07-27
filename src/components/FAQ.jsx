@@ -43,7 +43,7 @@ function Item({ q, a, open, onToggle }) {
 export default function FAQ({
   items = faqs,
   eyebrow = 'Questions',
-  heading = 'Everything you wanted to ask',
+  heading = 'FAQ',
   subtitle = 'Still unsure? Our solar advisors answer in plain language, Monday to Friday.',
   bg,
 }) {

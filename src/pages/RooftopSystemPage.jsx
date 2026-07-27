@@ -179,7 +179,7 @@ export default function RooftopSystemPage() {
         <FAQ
           items={rooftopFaqs}
           eyebrow="Rooftop FAQs"
-          heading="Frequently asked questions"
+          heading="FAQ"
           subtitle="Roof suitability, timelines, permits and warranties — the questions Thai homeowners ask us most."
         />
         <ContactSection />

@@ -76,7 +76,7 @@ export default function SolarPanelPage() {
         <FAQ
           items={panelFaqs}
           eyebrow="Panel tech"
-          heading="Frequently asked questions"
+          heading="FAQ"
           subtitle="The engineering behind Solvio panels — cells, build, and how they hold up in Thai heat."
         />
         <ContactSection />
