@@ -158,8 +158,8 @@ export default function RooftopSystemPage() {
                         { label: 'House', icon: Home },
                         { label: 'Mobile unit', icon: Truck },
                       ].map(({ label, icon: Icon }) => (
-                        <li key={label} className="flex items-center gap-2.5 rounded-xl border border-ink/[0.08] bg-surface px-3 py-2.5 font-display text-sm font-semibold text-ink">
-                          <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-price/10 text-price">
+                        <li key={label} className="flex items-center gap-2.5 rounded-xl border border-ink/[0.08] px-3 py-2.5 font-display text-sm font-semibold text-ink" style={{ backgroundColor: '#EEF5FC' }}>
+                          <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-lime text-white">
                             <Icon size={14} strokeWidth={2} />
                           </span>
                           {label}
