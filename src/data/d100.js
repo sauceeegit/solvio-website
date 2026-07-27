@@ -139,12 +139,12 @@ export const portableProductModels = portableBatteries.map((model) => {
         imgClass: extra?.imgClass ?? null,
       };
     }),
-    heroImg: model.id === 'd2400' ? asset('/d2400-hero.webp')
-           : model.id === 'd1200' ? asset('/d1200-hero.webp')
-           : model.id === 'd600'  ? asset('/d600-hero.webp')
-           : model.id === 'd300'  ? asset('/d300-hero.webp')
-           : model.id === 'd150'  ? asset('/d150-hero.webp')
-           : model.id === 'd100'  ? asset('/d100-hero.webp')
+    heroImg: model.id === 'd2400' ? { src: asset('/d2400-hero.webp') }
+           : model.id === 'd1200' ? { src: asset('/d1200-hero.webp') }
+           : model.id === 'd600'  ? { src: asset('/d600-hero.webp') }
+           : model.id === 'd300'  ? { src: asset('/d300-hero.webp') }
+           : model.id === 'd150'  ? { src: asset('/d150-hero.webp') }
+           : model.id === 'd100'  ? { src: asset('/d100-hero.webp'), objectPosition: 'top' }
            : null,
     facts: [
       { value: model.capacity, label: 'Selected capacity' },
