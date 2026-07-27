@@ -221,7 +221,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
             <div className="text-center">
               <p className="eyebrow">Good to know</p>
               <h2 className="mt-3 font-display text-4xl font-black tracking-[-0.035em] text-ink sm:text-5xl">
-                {product.shortName} questions
+                FAQ
               </h2>
             </div>
             <div className="mt-10 space-y-3">
