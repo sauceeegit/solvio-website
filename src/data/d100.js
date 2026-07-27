@@ -11,7 +11,7 @@ const mediaTemplate = [
   { id: 7, label: 'Detail view', note: 'Recommended: additional product detail' },
 ];
 
-const ZOOM = 'scale-[1.18]';
+const ZOOM = 'object-cover';
 
 const d100ExtraImages = {
   3: { src: asset('/d100-img03.webp') },

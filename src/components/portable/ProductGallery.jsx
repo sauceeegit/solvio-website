@@ -31,7 +31,7 @@ export default function ProductGallery({ media }) {
             key={img.id}
             src={img.src}
             alt={img.alt}
-            className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-700 ease-in-out ${
+            className={`absolute inset-0 h-full w-full transition-opacity duration-700 ease-in-out ${img.imgClass ?? 'object-contain'} ${
               idx === active ? 'opacity-100' : 'opacity-0'
             }`}
           />
