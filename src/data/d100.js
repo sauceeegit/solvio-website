@@ -12,40 +12,40 @@ const mediaTemplate = [
 ];
 
 const d100ExtraImages = {
-  3: asset('/d100-img03.png'),
-  4: asset('/d100-img04.png'),
-  5: asset('/d100-img05.png'),
-  6: asset('/d100-img06.png'),
+  3: asset('/d100-img03.webp'),
+  4: asset('/d100-img04.webp'),
+  5: asset('/d100-img05.webp'),
+  6: asset('/d100-img06.webp'),
 };
 
 const d150ExtraImages = {
-  3: asset('/d150-img03.png'),
-  4: asset('/d150-img05.png'),
-  5: asset('/d150-img04.png'),
+  3: asset('/d150-img03.webp'),
+  4: asset('/d150-img05.webp'),
+  5: asset('/d150-img04.webp'),
 };
 
 const d1200ExtraImages = {
-  3: asset('/d1200-img03.png'),
-  4: asset('/d1200-img04.png'),
-  5: asset('/d1200-img05.png'),
+  3: asset('/d1200-img03.webp'),
+  4: asset('/d1200-img04.webp'),
+  5: asset('/d1200-img05.webp'),
 };
 
 const d2400ExtraImages = {
-  3: asset('/d2400-img03.png'),
-  4: asset('/d2400-img04.png'),
-  5: asset('/d2400-img05.png'),
+  3: asset('/d2400-img03.webp'),
+  4: asset('/d2400-img04.webp'),
+  5: asset('/d2400-img05.webp'),
 };
 
 const d600ExtraImages = {
-  3: asset('/d600-img03.png'),
-  4: asset('/d600-img04.png'),
-  5: asset('/d600-img05.png'),
+  3: asset('/d600-img03.webp'),
+  4: asset('/d600-img04.webp'),
+  5: asset('/d600-img05.webp'),
 };
 
 const d300ExtraImages = {
-  3: asset('/d300-img03.png'),
-  4: asset('/d300-img04.png'),
-  5: asset('/d300-img05.png'),
+  3: asset('/d300-img03.webp'),
+  4: asset('/d300-img04.webp'),
+  5: asset('/d300-img05.webp'),
 };
 
 const d100Specifications = [
