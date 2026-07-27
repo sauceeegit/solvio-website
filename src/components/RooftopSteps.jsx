@@ -157,23 +157,19 @@ export default function RooftopSteps() {
             {STEPS.map((s) => (
               <li
                 key={s.n}
-                className="relative flex flex-col rounded-xl2 border p-4 shadow-sm"
-                style={{
-                  borderColor: `rgba(156,163,175,${0.15 + (s.n - 1) / 6 * 0.25})`,
-                  backgroundColor: `color-mix(in srgb, #9ca3af ${Math.round((s.n - 1) / 6 * 18)}%, white)`,
-                }}
+                className="relative flex flex-col overflow-hidden rounded-xl2 border border-ink/[0.08] bg-white p-4 shadow-sm"
               >
-                {/* Mobile: number + title on one row. Desktop (sm+): number on
-                    top, then a fixed two-line title height so the images below
-                    all start at the same Y (aligned picture row). */}
-                <div className="flex items-center gap-3 sm:block">
+                {/* Colored top accent bar */}
+                <div className="absolute inset-x-0 top-0 h-1 rounded-t-xl2" style={{ backgroundColor: s.color }} />
+
+                <div className="flex items-center gap-3 pt-2 sm:block">
                   <span
-                    className="grid h-10 w-10 shrink-0 place-items-center rounded-full font-display text-base font-bold"
+                    className="grid h-12 w-12 shrink-0 place-items-center rounded-full font-display text-lg font-black shadow-sm"
                     style={{ backgroundColor: s.color, color: s.dark ? '#0C1E1A' : '#FFFFFF' }}
                   >
                     {s.n}
                   </span>
-                  <h3 className="font-display text-sm font-bold leading-snug text-ink sm:mt-3 sm:min-h-[2.5rem]">{s.title}</h3>
+                  <h3 className="font-display text-sm font-extrabold leading-snug text-price sm:mt-3 sm:min-h-[2.5rem]">{s.title}</h3>
                 </div>
 
                 {/* Order per card: title → picture (or form/payment) → gray copy. */}
