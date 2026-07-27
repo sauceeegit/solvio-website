@@ -21,7 +21,7 @@ function MediaPlaceholder({ item, featured = false }) {
       aria-label={item.src ? item.alt : `Image placeholder ${imageNumber}: ${item.label}`}
     >
       {item.src ? (
-        <img className="absolute inset-0 h-full w-full object-cover" src={item.src} alt={item.alt} />
+        <img className={`absolute inset-0 h-full w-full object-cover${item.imgClass ? ` ${item.imgClass}` : ''}`} src={item.src} alt={item.alt} />
       ) : (
         <>
           <div className="absolute -right-5 -top-8 font-display text-[9rem] font-black leading-none text-lime/[0.08] sm:text-[12rem]">

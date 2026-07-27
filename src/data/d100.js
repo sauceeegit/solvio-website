@@ -11,41 +11,43 @@ const mediaTemplate = [
   { id: 7, label: 'Detail view', note: 'Recommended: additional product detail' },
 ];
 
+const ZOOM = 'scale-[1.18]';
+
 const d100ExtraImages = {
-  3: asset('/d100-img03.webp'),
-  4: asset('/d100-img04.webp'),
-  5: asset('/d100-img05.webp'),
-  6: asset('/d100-img06.webp'),
+  3: { src: asset('/d100-img03.webp') },
+  4: { src: asset('/d100-img04.webp') },
+  5: { src: asset('/d100-img05.webp'), imgClass: ZOOM },
+  6: { src: asset('/d100-img06.webp'), imgClass: ZOOM },
 };
 
 const d150ExtraImages = {
-  3: asset('/d150-img03.webp'),
-  4: asset('/d150-img05.webp'),
-  5: asset('/d150-img04.webp'),
+  3: { src: asset('/d150-img03.webp') },
+  4: { src: asset('/d150-img05.webp'), imgClass: ZOOM },
+  5: { src: asset('/d150-img04.webp'), imgClass: ZOOM },
 };
 
 const d1200ExtraImages = {
-  3: asset('/d1200-img03.webp'),
-  4: asset('/d1200-img04.webp'),
-  5: asset('/d1200-img05.webp'),
+  3: { src: asset('/d1200-img03.webp') },
+  4: { src: asset('/d1200-img04.webp'), imgClass: ZOOM },
+  5: { src: asset('/d1200-img05.webp'), imgClass: ZOOM },
 };
 
 const d2400ExtraImages = {
-  3: asset('/d2400-img03.webp'),
-  4: asset('/d2400-img04.webp'),
-  5: asset('/d2400-img05.webp'),
+  3: { src: asset('/d2400-img03.webp') },
+  4: { src: asset('/d2400-img04.webp'), imgClass: ZOOM },
+  5: { src: asset('/d2400-img05.webp'), imgClass: ZOOM },
 };
 
 const d600ExtraImages = {
-  3: asset('/d600-img03.webp'),
-  4: asset('/d600-img04.webp'),
-  5: asset('/d600-img05.webp'),
+  3: { src: asset('/d600-img03.webp') },
+  4: { src: asset('/d600-img04.webp'), imgClass: ZOOM },
+  5: { src: asset('/d600-img05.webp'), imgClass: ZOOM },
 };
 
 const d300ExtraImages = {
-  3: asset('/d300-img03.webp'),
-  4: asset('/d300-img04.webp'),
-  5: asset('/d300-img05.webp'),
+  3: { src: asset('/d300-img03.webp') },
+  4: { src: asset('/d300-img04.webp') },
+  5: { src: asset('/d300-img05.webp'), imgClass: ZOOM },
 };
 
 const d100Specifications = [
@@ -117,20 +119,26 @@ export const portableProductModels = portableBatteries.map((model) => {
     metricLabel: 'Capacity',
     metricValue: model.capacity,
     selectorLabel: `${displayCapacity(model.capacity)} — ${shortName}`,
-    media: mediaTemplate.map((item) => ({
-      ...item,
-      label: `${shortName} — ${item.label}`,
-      alt: `${model.name} ${item.label.toLowerCase()}`,
-      src: item.id === 1 ? (model.img ?? null)
-         : item.id === 2 ? (model.sideImg ?? null)
-         : model.id === 'd100' ? (d100ExtraImages[item.id] ?? null)
-         : model.id === 'd150' ? (d150ExtraImages[item.id] ?? null)
-         : model.id === 'd300' ? (d300ExtraImages[item.id] ?? null)
-         : model.id === 'd600' ? (d600ExtraImages[item.id] ?? null)
-         : model.id === 'd1200' ? (d1200ExtraImages[item.id] ?? null)
-         : model.id === 'd2400' ? (d2400ExtraImages[item.id] ?? null)
-         : null,
-    })),
+    media: mediaTemplate.map((item) => {
+      const extra = item.id === 1 ? null
+        : item.id === 2 ? null
+        : model.id === 'd100'  ? (d100ExtraImages[item.id]  ?? null)
+        : model.id === 'd150'  ? (d150ExtraImages[item.id]  ?? null)
+        : model.id === 'd300'  ? (d300ExtraImages[item.id]  ?? null)
+        : model.id === 'd600'  ? (d600ExtraImages[item.id]  ?? null)
+        : model.id === 'd1200' ? (d1200ExtraImages[item.id] ?? null)
+        : model.id === 'd2400' ? (d2400ExtraImages[item.id] ?? null)
+        : null;
+      return {
+        ...item,
+        label: `${shortName} — ${item.label}`,
+        alt: `${model.name} ${item.label.toLowerCase()}`,
+        src: item.id === 1 ? (model.img ?? null)
+           : item.id === 2 ? (model.sideImg ?? null)
+           : extra?.src ?? null,
+        imgClass: extra?.imgClass ?? null,
+      };
+    }),
     facts: [
       { value: model.capacity, label: 'Selected capacity' },
       { value: shortName, label: 'Selected model' },
