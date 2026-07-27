@@ -47,7 +47,7 @@ export const categories = [
     id: 'portable',
     title: 'Portable Solar',
     blurb: 'Take solar with you anywhere — camping, markets, off-grid weekends.',
-    img: asset('/portable-systems.jpg'),
+    img: asset('/portable-systems-new.webp'),
     imgClass: 'brightness-[.82] saturate-[.82]',
     to: '/portable-system',
   },
