@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Check, MapPin, CalendarClock, X, ChevronRight, ChevronDown } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { asset } from '../lib/format';
@@ -126,8 +126,12 @@ function PaymentOptions() {
   );
 }
 
+const MOBILE_SHOW = 2;
+
 export default function RooftopSteps() {
   const [mapOpen, setMapOpen] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const expandRef = useRef(null);
 
   useEffect(() => {
     if (!mapOpen) return undefined;
@@ -154,10 +158,11 @@ export default function RooftopSteps() {
 
         <Reveal delay={0.1}>
           <ol className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 xl:gap-3">
-            {STEPS.map((s) => (
+            {STEPS.map((s, i) => (
               <li
+                ref={i === MOBILE_SHOW ? expandRef : null}
                 key={s.n}
-                className="relative flex flex-col overflow-hidden rounded-xl2 border border-ink/[0.08] bg-white p-4 shadow-sm"
+                className={`relative flex flex-col overflow-hidden rounded-xl2 border border-ink/[0.08] bg-white p-4 shadow-sm${i >= MOBILE_SHOW && !expanded ? ' hidden sm:flex' : ''}`}
               >
                 {/* Colored top accent bar */}
                 <div className="absolute inset-x-0 top-0 h-1 rounded-t-xl2" style={{ backgroundColor: s.color }} />
@@ -206,6 +211,27 @@ export default function RooftopSteps() {
               </li>
             ))}
           </ol>
+
+          {/* Mobile-only show more / less toggle */}
+          <div className="mt-4 flex justify-center sm:hidden">
+            <button
+              type="button"
+              onClick={() => {
+                if (expanded && expandRef.current) {
+                  expandRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+                setExpanded((v) => !v);
+              }}
+              className="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white px-5 py-2.5 font-display text-sm font-bold text-ink shadow-soft transition hover:border-lime hover:text-lime"
+            >
+              <ChevronDown
+                size={16}
+                strokeWidth={2.5}
+                className={`transition-transform duration-300 ${expanded ? 'rotate-180' : ''}`}
+              />
+              {expanded ? 'Show fewer steps' : `Show all 7 steps`}
+            </button>
+          </div>
         </Reveal>
 
         <Reveal delay={0.15}>
