@@ -177,42 +177,32 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
           </section>
         )}
 
-        <section className="bg-white py-16 sm:py-24">
-          <div className="container-x grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-            <div>
-              <p className="eyebrow">Specifications</p>
-              <h2 className="mt-3 font-display text-4xl font-black tracking-[-0.035em] text-price sm:text-5xl">
+        <section className="py-16 sm:py-24" style={{ backgroundColor: '#0C2B1A' }}>
+          <div className="container-x">
+            <div className="text-center">
+              <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em]" style={{ color: '#6DBF8A' }}>Specifications</p>
+              <h2 className="mt-3 font-display text-4xl font-black tracking-tight text-white sm:text-5xl">
                 {product.shortName} at a glance
               </h2>
-              <p className="mt-5 max-w-xl text-base leading-relaxed text-ink/65">{product.specificationIntro}</p>
+              <p className="mt-3 text-sm" style={{ color: 'rgba(255,255,255,0.45)' }}>{product.specificationIntro}</p>
             </div>
 
-            <div>
-              <dl className="overflow-hidden rounded-[1.5rem] border border-ink/10">
-                {product.specifications.map((specification, index) => {
-                  const Icon = specification.icon ? SPEC_ICONS[specification.icon] : null;
-                  return (
-                    <div
-                      key={`${product.id}-${specification.label}-${index}`}
-                      className={`flex items-center justify-between gap-5 px-5 py-3.5 sm:px-7 ${index ? 'border-t border-ink/10' : ''}`}
-                    >
-                      <dt className="flex items-center gap-3 font-display font-bold text-ink">
-                        {Icon && (
-                          <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-lime/10 text-lime">
-                            <Icon size={14} strokeWidth={2.5} />
-                          </span>
-                        )}
-                        {specification.label}
-                      </dt>
-                      <dd className="text-right font-mono text-sm text-ink/60">{specification.value}</dd>
-                    </div>
-                  );
-                })}
-              </dl>
-              <p className="mt-4 rounded-xl bg-amber/15 px-4 py-3 text-sm leading-relaxed text-ink/65">
-                {product.note}
-              </p>
-            </div>
+            <dl className="mx-auto mt-12 grid max-w-5xl grid-cols-1 sm:grid-cols-2">
+              {product.specifications.map((specification, index) => (
+                <div
+                  key={`${product.id}-${specification.label}-${index}`}
+                  className="flex items-baseline justify-between gap-6 py-5 px-2"
+                  style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}
+                >
+                  <dt className="text-sm" style={{ color: 'rgba(255,255,255,0.5)' }}>{specification.label}:</dt>
+                  <dd className="font-display text-sm font-bold text-white text-right">{specification.value}</dd>
+                </div>
+              ))}
+            </dl>
+
+            <p className="mx-auto mt-8 max-w-2xl text-center text-xs leading-relaxed" style={{ color: 'rgba(255,255,255,0.35)' }}>
+              {product.note}
+            </p>
           </div>
         </section>
 
