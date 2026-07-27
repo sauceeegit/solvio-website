@@ -8,11 +8,13 @@ import Reveal from '../Reveal';
 export default function PortableBatteries() {
   const trackRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
 
   const updateScrollState = () => {
     const el = trackRef.current;
     if (!el) return;
     setCanScrollLeft(el.scrollLeft > 4);
+    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 4);
   };
 
   useEffect(() => {
@@ -62,7 +64,11 @@ export default function PortableBatteries() {
             <button
               onClick={() => scrollByCard(1)}
               aria-label="Next"
-              className="grid h-11 w-11 place-items-center rounded-full bg-lime text-white transition hover:bg-lime-dark active:scale-95"
+              className={`grid h-11 w-11 place-items-center rounded-full transition active:scale-95 ${
+                canScrollRight
+                  ? 'bg-lime text-white hover:bg-lime-dark'
+                  : 'bg-ink/8 text-ink/40'
+              }`}
             >
               <ChevronRight size={20} />
             </button>
