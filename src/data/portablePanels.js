@@ -62,15 +62,21 @@ export const portablePanelModels = portablePanels.map((panel) => {
       'Dedicated image set for this panel',
       'Model-specific specifications ready to be completed',
     ],
-    media: panelMediaTemplate.map((item) => ({
-      ...item,
-      label: `${shortName} — ${item.label}`,
-      alt: `${productName} ${item.label.toLowerCase()}`,
-      src: item.id === 1 ? (panel.img ?? null)
-         : panel.id === 'p60' || panel.id === 'p120' ? (p60ExtraImages[item.id] ?? null)
-         : panel.id === 'p200' || panel.id === 'p400' ? (p200ExtraImages[item.id] ?? null)
-         : null,
-    })),
+    media: panelMediaTemplate.map((item) => {
+      const isP6060120 = panel.id === 'p60' || panel.id === 'p120';
+      const isP200400 = panel.id === 'p200' || panel.id === 'p400';
+      const needsCover = (isP6060120 && item.id >= 4) || (isP200400 && item.id >= 4 && item.id <= 5);
+      return {
+        ...item,
+        label: `${shortName} — ${item.label}`,
+        alt: `${productName} ${item.label.toLowerCase()}`,
+        src: item.id === 1 ? (panel.img ?? null)
+           : isP6060120 ? (p60ExtraImages[item.id] ?? null)
+           : isP200400 ? (p200ExtraImages[item.id] ?? null)
+           : null,
+        imgClass: needsCover ? 'object-cover' : undefined,
+      };
+    }),
     facts: [
       { value: panel.watt, label: 'Selected output' },
       { value: panel.name, label: 'Selected panel' },
