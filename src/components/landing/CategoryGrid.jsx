@@ -14,13 +14,13 @@ function CardInner({ c, dimmed, lightOverlay }) {
           c.fit === 'contain' ? 'object-contain' : 'object-cover'
         } ${c.imgClass || ''}`}
       />
-      <div className={`absolute inset-x-0 top-0 h-[55%] bg-gradient-to-b to-transparent ${lightOverlay ? 'from-black/40 via-black/15' : 'from-black/75 via-black/35'}`} />
-      <div className={`absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t to-transparent ${lightOverlay ? 'from-black/30' : 'from-black/70'}`} />
+      <div className="absolute inset-x-0 top-0 h-[55%] bg-gradient-to-b from-black/50 via-black/20 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/40 to-transparent" />
 
       {/* dim overlay — visible on non-hovered cards */}
       <div
         className="absolute inset-0 transition-opacity duration-300"
-        style={{ opacity: dimmed ? 1 : 0, backgroundColor: lightOverlay ? 'rgba(0,0,0,0.15)' : 'rgba(0,0,0,0.55)' }}
+        style={{ opacity: dimmed ? 1 : 0, backgroundColor: 'rgba(0,0,0,0.3)' }}
       />
 
       <span className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full bg-lime text-white transition group-hover:rotate-90">
@@ -54,7 +54,7 @@ export default function CategoryGrid() {
     <section id="categories" className="scroll-mt-20 py-14 max-lg:pt-10" style={{ backgroundColor: '#040f08' }}>
       <div className="container-x">
       <Reveal>
-        <h2 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+        <h2 className="font-display text-2xl font-extrabold tracking-tight sm:text-3xl" style={{ color: 'rgba(255,255,255,0.55)' }}>
           From Rooftop to Backpack
         </h2>
       </Reveal>
