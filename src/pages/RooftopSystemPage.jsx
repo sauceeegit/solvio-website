@@ -100,7 +100,7 @@ export default function RooftopSystemPage() {
 
                 <div className="lg:-mt-3 lg:self-start">
                   <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-lime">Rooftop Solar</p>
-                  <h2 className="mt-3 font-display text-3xl font-black leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-5xl">
+                  <h2 className="mt-3 font-display text-3xl font-medium leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-5xl">
                     Big Roof?<br />Build Big.
                   </h2>
                   <p className="mt-5 max-w-md text-base leading-relaxed" style={{ color: 'rgba(255,255,255,0.55)' }}>
@@ -137,7 +137,7 @@ export default function RooftopSystemPage() {
 
                 <div className="lg:order-1">
                   <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-lime">Our team</p>
-                  <h2 className="mt-3 font-display text-3xl font-black leading-[1.1] tracking-tight text-white sm:text-4xl">
+                  <h2 className="mt-3 font-display text-3xl font-medium leading-[1.1] tracking-tight text-white sm:text-4xl">
                     Designed and installed by people who&apos;ve done it before
                   </h2>
                   <p className="mt-4 max-w-md text-base leading-relaxed" style={{ color: 'rgba(255,255,255,0.55)' }}>
