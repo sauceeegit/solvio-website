@@ -6,17 +6,17 @@ import Reveal from './Reveal';
 
 function Item({ q, a, open, onToggle }) {
   return (
-    <div className={`rounded-xl overflow-hidden transition-all ${open ? 'bg-white shadow-soft ring-1 ring-ink/10' : 'bg-ink'}`}>
+    <div className={`rounded-xl overflow-hidden transition-all ${open ? 'bg-white shadow-soft ring-1 ring-ink/10' : 'bg-ink/[0.06]'}`}>
       <button
         onClick={onToggle}
         className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
       >
-        <span className={`font-display text-base font-semibold transition-colors ${open ? 'text-ink' : 'text-white'}`}>{q}</span>
+        <span className={`font-display text-base font-semibold transition-colors ${open ? 'text-ink' : 'text-ink'}`}>{q}</span>
         <span
           className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border transition ${
             open
               ? 'rotate-45 border-ink/20 bg-ink text-white'
-              : 'border-white/20 bg-white/10 text-white'
+              : 'border-ink/15 bg-white text-ink'
           }`}
         >
           <Plus size={16} />
