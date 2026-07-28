@@ -3,6 +3,7 @@ import { portablePanels } from './landing';
 
 const panelHeroImg = { src: asset('/panel-hero.webp') };
 const panelHeroImg200 = { src: asset('/panel-hero-200.webp') };
+const panelLongLastingImg = { src: asset('/panel-long-lasting.webp') };
 
 const p200ExtraImages = {
   2: asset('/p200-img02.webp'),
@@ -95,6 +96,7 @@ export const portablePanelModels = portablePanels.map((panel) => {
     heroImg: (panel.id === 'p60' || panel.id === 'p120') ? panelHeroImg
            : (panel.id === 'p200' || panel.id === 'p400') ? panelHeroImg200
            : null,
+    afterSpecsImg: panelLongLastingImg,
     specifications: panelSpecifications(panel),
     specificationIntro:
       `The listed output for the ${shortName} is shown below. Dimensions, weight, connector and protection details can be added to this panel’s record when confirmed.`,

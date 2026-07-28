@@ -219,6 +219,12 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
           </div>
         </section>
 
+        {product.afterSpecsImg && (
+          <section className="w-full overflow-hidden bg-ink">
+            <img src={product.afterSpecsImg.src} alt={`${product.name} details`} className="block w-full" />
+          </section>
+        )}
+
         <section className="bg-surface py-16 sm:py-24">
           <div className="container-x max-w-5xl">
             <div className="text-center">
