@@ -1,10 +1,10 @@
-import { ShoppingCart, CalendarCheck, Zap } from 'lucide-react';
+import { ShoppingCart, CalendarCheck, PiggyBank } from 'lucide-react';
 import Reveal from '../Reveal';
 
 const steps = [
   { icon: ShoppingCart, step: '01', title: 'Choose Your System', body: 'Pick the kit that fits your home and budget. Not sure? We help you choose — for free.' },
   { icon: CalendarCheck, step: '02', title: 'Schedule Installation', body: 'Our certified team installs your system fast. Usually within a week of your order.' },
-  { icon: Zap, step: '03', title: 'Start Saving', body: 'Your panels go live and your electricity bill drops — from day one.' },
+  { icon: PiggyBank, step: '03', title: 'Start Saving', body: 'Your panels go live and your electricity bill drops — from day one.' },
 ];
 
 export default function HowItWorks() {
