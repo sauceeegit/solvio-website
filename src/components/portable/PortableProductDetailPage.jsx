@@ -10,36 +10,6 @@ import ProductGallery from './ProductGallery';
 import { baht } from '../../lib/format';
 import { usePageMeta } from '../../hooks/usePageMeta';
 
-function MediaPlaceholder({ item, featured = false }) {
-  const imageNumber = String(item.id).padStart(2, '0');
-
-  return (
-    <div
-      className={`relative flex min-h-[220px] snap-center flex-col justify-between overflow-hidden rounded-[1.5rem] border border-ink/[0.07] bg-white/70 p-5 shadow-soft sm:min-h-[270px] lg:min-h-0 ${
-        featured ? 'lg:col-span-3 lg:aspect-[16/10]' : 'lg:aspect-square'
-      }`}
-      aria-label={item.src ? item.alt : `Image placeholder ${imageNumber}: ${item.label}`}
-    >
-      {item.src ? (
-        <img className={`absolute inset-0 h-full w-full object-cover${item.imgClass ? ` ${item.imgClass}` : ''}`} src={item.src} alt={item.alt} />
-      ) : (
-        <>
-          <div className="absolute -right-5 -top-8 font-display text-[9rem] font-black leading-none text-lime/[0.08] sm:text-[12rem]">
-            {imageNumber}
-          </div>
-          <span className="relative w-fit rounded-full bg-ink px-3 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-white">
-            Image {imageNumber}
-          </span>
-          <div className="relative max-w-sm">
-            <p className="font-display text-xl font-extrabold text-ink">{item.label}</p>
-            <p className="mt-1 text-sm leading-relaxed text-ink/60">{item.note}</p>
-          </div>
-        </>
-      )}
-    </div>
-  );
-}
-
 export default function PortableProductDetailPage({ products, defaultProduct, metaPath }) {
   usePageMeta(metaPath);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -147,14 +117,9 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
         <section id="details" className="border-y border-ink/[0.07] bg-white py-10 sm:py-14">
           <div className="container-x">
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-              {[
-                { icon: Zap,        label: product.metricValue, sub: 'Capacity' },
-                { icon: Plug,       label: 'AC + DC + USB', sub: 'Multi-output' },
-                { icon: Smartphone, label: 'Front display', sub: 'Live status' },
-                { icon: Weight,     label: 'Compact build', sub: 'Travel-ready' },
-                { icon: Sun,        label: 'Solar input', sub: 'Recharge anywhere' },
-                { icon: Shield,     label: '2-yr warranty', sub: 'Covered' },
-              ].map(({ icon: Icon, label, sub }) => (
+              {product.featureStrip.map(({ icon, label, sub }) => {
+                const Icon = SPEC_ICONS[icon];
+                return (
                 <div key={sub} className="flex flex-col items-center gap-2 rounded-2xl border border-ink/[0.07] p-4 text-center">
                   <span className="grid h-16 w-16 place-items-center rounded-full bg-white text-ink shadow-soft">
                     <Icon size={30} strokeWidth={1.75} />
@@ -162,7 +127,8 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
                   <p className="font-display text-sm font-extrabold text-ink leading-tight">{label}</p>
                   <p className="text-[11px] text-ink/50 leading-tight">{sub}</p>
                 </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
@@ -185,7 +151,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
               <h2 className="mt-3 font-display text-4xl font-black tracking-tight text-white sm:text-5xl">
                 {product.shortName} at a glance
               </h2>
-              <p className="mt-3 text-sm" style={{ color: 'rgba(255,255,255,0.4)' }}>Key technical values for the {product.shortName}. Ask us for the full spec sheet.</p>
+              <p className="mt-3 text-sm" style={{ color: 'rgba(255,255,255,0.4)' }}>{product.specificationIntro}</p>
             </div>
 
             <dl className="mx-auto mt-12 grid max-w-5xl grid-cols-1 sm:grid-cols-2">

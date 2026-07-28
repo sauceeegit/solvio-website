@@ -19,7 +19,7 @@ export const routeMeta = {
   '/portable-system': {
     title: 'Portable Power Stations & Foldable Solar Panels | Solvio',
     description:
-      'Solvio portable power stations from 100 Wh to 2400 Wh plus foldable solar panels — clean power for camping, markets and off-grid weekends in Thailand.',
+      'Solvio portable power stations with 100 W to 2,400 W output and 76.8 Wh to 2,160 Wh LiFePO₄ batteries, plus foldable solar panels for Thailand.',
   },
   '/portable-system/d100': {
     title: 'Solvio D100 Portable Power Station — Product Details | Solvio',

@@ -252,14 +252,15 @@ export const portableHeaderSlides = [
   { desktop: asset('/portable-header-4.jpg'), mobile: asset('/portable-header-m4.jpg') },
 ];
 
-// Capacities/prices are placeholders — adjust to the real specs.
+// Technical output/capacity values are verified from the supplied specification labels.
+// Prices remain provisional until commercially approved.
 export const portableBatteries = [
-  { id: 'd100', name: 'Solvio D100', capacity: '100 Wh', price: 6990, img: asset('/portable-100.webp'), sideImg: asset('/portable-100-side.webp'), href: '/portable-system/d100' },
-  { id: 'd150', name: 'Solvio D150', capacity: '150 Wh', price: 8300, img: asset('/portable-200.webp'), sideImg: asset('/portable-200-side.webp'), href: '/portable-system/d100?model=d150' },
-  { id: 'd300', name: 'Solvio D300', capacity: '300 Wh', price: 12200, img: asset('/portable-400.webp'), sideImg: asset('/portable-400-side.webp'), imgScale: 'scale-125', href: '/portable-system/d100?model=d300' },
-  { id: 'd600', name: 'Solvio D600', capacity: '600 Wh', price: 20000, img: asset('/portable-600.webp'), sideImg: asset('/portable-600-side.webp'), href: '/portable-system/d100?model=d600' },
-  { id: 'd1200', name: 'Solvio D1200', capacity: '1200 Wh', price: 36000, img: asset('/portable-1200.webp'), sideImg: asset('/d1200-sideview.webp'), href: '/portable-system/d100?model=d1200' },
-  { id: 'd2400', name: 'Solvio D2400', capacity: '2400 Wh', price: 64900, img: asset('/portable-2400.webp'), sideImg: asset('/portable-2400-side.webp'), href: '/portable-system/d100?model=d2400' },
+  { id: 'd100', name: 'Solvio D100', specModel: 'X100', output: '100 W', capacity: '76.8 Wh', price: 6990, img: asset('/portable-100.webp'), sideImg: asset('/portable-100-side.webp'), href: '/portable-system/d100' },
+  { id: 'd150', name: 'Solvio D150', specModel: 'X150', output: '150 W', capacity: '153.6 Wh', price: 8300, img: asset('/portable-200.webp'), sideImg: asset('/portable-200-side.webp'), href: '/portable-system/d100?model=d150' },
+  { id: 'd300', name: 'Solvio D300', specModel: 'X300', output: '300 W', capacity: '288 Wh', price: 12200, img: asset('/portable-400.webp'), sideImg: asset('/portable-400-side.webp'), imgScale: 'scale-125', href: '/portable-system/d100?model=d300' },
+  { id: 'd600', name: 'Solvio D600', specModel: 'X600', output: '600 W', capacity: '512 Wh', price: 20000, img: asset('/portable-600.webp'), sideImg: asset('/portable-600-side.webp'), href: '/portable-system/d100?model=d600' },
+  { id: 'd1200', name: 'Solvio D1200', specModel: 'K1200', output: '1,200 W', capacity: '1,008 Wh', price: 36000, img: asset('/portable-1200.webp'), sideImg: asset('/d1200-sideview.webp'), href: '/portable-system/d100?model=d1200' },
+  { id: 'd2400', name: 'Solvio D2400', specModel: 'K2400', output: '2,400 W', capacity: '2,160 Wh', price: 64900, img: asset('/portable-2400.webp'), sideImg: asset('/portable-2400-side.webp'), href: '/portable-system/d100?model=d2400' },
 ];
 
 // Portable foldable solar panels. Prices in Thai Baht (฿).

@@ -50,63 +50,106 @@ const d300ExtraImages = {
   5: { src: asset('/d300-img05.webp'), imgClass: ZOOM },
 };
 
-const d100Specifications = [
-  { icon: 'Battery',   label: 'Capacity',   value: '100 Wh' },
-  { icon: 'ZapFast',   label: 'USB-C',      value: 'PD 100 W' },
-  { icon: 'Zap',       label: 'USB-C',      value: 'PD 18 W' },
-  { icon: 'Zap',       label: 'USB-A',      value: 'QC 18 W' },
-  { icon: 'Smartphone',label: 'USB-A',      value: '5 V / 2.4 A' },
-  { icon: 'Plug',      label: 'DC output',  value: '12 V / 10 A' },
-  { icon: 'PlugZap',   label: 'AC output',  value: 'Universal side outlet' },
-];
+const technicalSpecifications = {
+  d100: {
+    battery: '76.8 Wh; 3.2 V / 24,000 mAh; 12.8 V / 6,000 mAh',
+    dimensions: '165 × 90 × 105 mm', weight: 'Approx. 1.5 kg',
+    inverter: 'Modified sine wave, 100 W', cycleLife: '≥2,000 cycles',
+    carCharging: '12 V / 5 A, 60 W max; or 24 V / 3.75 A, 90 W max',
+    solarCharging: '10–28 V / 5 A, 90 W max',
+    acOutput: 'Modified sine wave, 100 W', dcOutput: '12 V / 10 A',
+    cigarette: 'Not listed', usbA: '5 V / 2.4 A ×1; QC 18 W ×1',
+    usbC: 'PD 18 W ×1; PD 100 W ×1', dischargeTemp: '−10°C to 45°C', chargeTemp: '0°C to 45°C',
+  },
+  d150: {
+    battery: '153.6 Wh; 3.2 V / 48,000 mAh',
+    dimensions: '204 × 102 × 188 mm', weight: 'Approx. 2 kg',
+    inverter: 'Modified sine wave, 150 W', cycleLife: '≥2,000 cycles',
+    carCharging: '12 V / 7.5 A, 90 W max', solarCharging: '10–28 V / 3.61 A, 65 W max',
+    acOutput: 'Modified sine wave, 150 W', dcOutput: '11.2–14.6 V / 10 A',
+    cigarette: '11.2–14.6 V / 10 A', usbA: '5 V / 3 A, 9 V / 2 A or 12 V / 1.5 A; 18 W max ×2',
+    usbC: '5 / 9 / 12 / 15 / 20 V, 5 A; 100 W max', dischargeTemp: '−10°C to 45°C', chargeTemp: '0°C to 45°C',
+  },
+  d300: {
+    battery: '288 Wh; 3.2 V / 90,000 mAh',
+    dimensions: '212 × 149.8 × 169.2 × 234.7 mm (as printed; supplier confirmation required)', weight: 'Approx. 3.3 kg',
+    inverter: 'Pure sine wave, 300 W', cycleLife: '≥2,000 cycles',
+    carCharging: '12 V / 7 A, 84 W max', solarCharging: '10–28 V / 7 A, 120 W max',
+    acOutput: 'Pure sine wave, 300 W', dcOutput: '12 V / 10 A', cigarette: '12 V / 10 A',
+    usbA: '5 V / 3 A, 9 V / 2 A or 12 V / 1.5 A; 18 W max ×2',
+    usbC: 'PD 18 W ×1; PD 100 W ×1', dischargeTemp: '−10°C to 45°C', chargeTemp: '0°C to 45°C',
+  },
+  d600: {
+    battery: '512 Wh; 3.2 V / 160,000 mAh; 25.6 V / 20,000 mAh',
+    dimensions: '250 × 195 × 180 mm', weight: 'Approx. 7 kg',
+    inverter: 'Pure sine wave, 600 W total; 1,200 W peak', cycleLife: '80%+ capacity after 2,000 cycles',
+    carCharging: '12 V / 7.5 A, 90 W, about 6 h; or 24 V / 6.25 A, 150 W, about 3.7 h',
+    solarCharging: 'MPPT, 10–28 V / 8 A, 150 W max; about 3.7 h',
+    acOutput: '2 outlets; pure sine wave; 600 W total / 1,200 W peak; 100–240 V, 50 / 60 Hz',
+    dcOutput: 'DC5521 ×2; 13.5 V / 10 A, 12 A max', cigarette: 'Not listed separately',
+    usbA: 'QC 18 W ×2', usbC: 'PD 18 W ×1; PD 100 W ×1',
+    dischargeTemp: '−10°C to 45°C', chargeTemp: '0°C to 45°C',
+  },
+  d1200: {
+    battery: '1,008 Wh; 3.2 V / 315,000 mAh',
+    dimensions: '395 × 190 × 220 mm', weight: 'Approx. 13 kg',
+    inverter: 'Pure sine wave, 1,200 W', cycleLife: '80%+ capacity after 2,000 cycles',
+    carCharging: '12 V / 9 A, 108 W max; or 24 V / 8 A, 192 W max',
+    solarCharging: 'MPPT, 10–60 V / 10 A, 400 W max', acOutput: 'Pure sine wave, 1,200 W',
+    dcOutput: '13.5 V / 10 A, 12 A max', cigarette: '13.5 V / 10 A, 12 A max',
+    usbA: '5 V / 3 A, 9 V / 2 A or 12 V / 1.5 A; 18 W max ×2',
+    usbC: '5 / 9 / 12 / 15 / 20 V, 5 A; 100 W max', dischargeTemp: '−10°C to 45°C', chargeTemp: '0°C to 45°C',
+  },
+  d2400: {
+    battery: '2,160 Wh; 3.2 V / 675,000 mAh; 48 V / 45,000 mAh',
+    dimensions: 'Not provided in supplied specification', weight: 'Not provided in supplied specification',
+    inverter: 'Pure sine wave, 2,400 W', cycleLife: 'Not provided in supplied specification',
+    carCharging: '13 V / 9 A, 117 W max; or 24 V / 8 A, 192 W max',
+    solarCharging: 'MPPT, 10–60 V / 15 A, 600 W max',
+    acOutput: '2 outlets; pure sine wave; 230 V / 50 Hz, 2,400 W total',
+    dcOutput: '13.5 V / 10 A, 12 A max ×2', cigarette: '13.5 V / 10 A, 12 A max ×1',
+    usbA: '5 V / 2.4 A ×2; plus QC 18 W ×2', usbC: 'PD 18 W ×2; PD 100 W ×2',
+    dischargeTemp: 'Not provided in supplied specification', chargeTemp: 'Not provided in supplied specification',
+  },
+};
 
-function displayCapacity(capacity) {
-  if (capacity === '1200 Wh') return '1.2 kWh (1200 Wh)';
-  if (capacity === '2400 Wh') return '2.4 kWh (2400 Wh)';
-  return capacity;
-}
-
-function modelSpecifications(model) {
-  if (model.id === 'd100') return d100Specifications;
-
+function modelSpecifications(model, technical) {
   return [
-    { icon: 'Battery',    label: 'Capacity',           value: model.capacity },
-    { icon: 'Maximize2',  label: 'Dimensions',          value: 'To be added' },
-    { icon: 'Weight',     label: 'Weight',              value: 'To be added' },
-    { icon: 'Clock',      label: 'Charging time',       value: 'To be added' },
-    { icon: 'PlugZap',    label: 'AC output',           value: 'To be added' },
-    { icon: 'Cable',      label: 'Connection details',  value: 'To be added' },
+    { icon: 'Battery', label: 'Specification model', value: model.specModel },
+    { icon: 'Battery', label: 'Battery type', value: 'LiFePO₄' },
+    { icon: 'Battery', label: 'Battery capacity', value: technical.battery },
+    { icon: 'Maximize2', label: 'Dimensions', value: technical.dimensions },
+    { icon: 'Weight', label: 'Weight', value: technical.weight },
+    { icon: 'PlugZap', label: 'AC inverter', value: technical.inverter },
+    { icon: 'Clock', label: 'Cycle life', value: technical.cycleLife },
+    { icon: 'Cable', label: 'Car charging', value: technical.carCharging },
+    { icon: 'Sun', label: 'Solar charging', value: technical.solarCharging },
+    { icon: 'PlugZap', label: 'AC output', value: technical.acOutput },
+    { icon: 'Plug', label: 'DC output', value: technical.dcOutput },
+    { icon: 'Plug', label: 'Cigarette-lighter output', value: technical.cigarette },
+    { icon: 'Zap', label: 'USB-A output', value: technical.usbA },
+    { icon: 'ZapFast', label: 'USB-C output', value: technical.usbC },
+    { icon: 'Minimize2', label: 'Discharging temperature', value: technical.dischargeTemp },
+    { icon: 'Minimize2', label: 'Charging temperature', value: technical.chargeTemp },
   ];
 }
 
 function modelCopy(model) {
-  if (model.id === 'd100') {
-    return {
-      tagline: 'Compact power for the devices that keep your day moving.',
-      description:
-        'A small-format portable power station with a clear front display, carry strap and a practical mix of USB, DC and AC connections.',
-      highlights: [
-        'Compact format with an integrated carry strap',
-        'USB-C, USB-A, DC and AC connections in one unit',
-        'Front status display for at-a-glance information',
-      ],
-    };
-  }
-
   return {
-    tagline: `${model.capacity} in Solvio’s portable power range.`,
+    tagline: `${model.output} output with ${model.capacity} of LiFePO₄ battery storage.`,
     description:
-      `The ${model.name} is the ${model.capacity} option in Solvio’s portable power-station range. Select another capacity to compare its model-specific information.`,
+      `The ${model.name} pairs ${model.output} rated AC output with a ${model.capacity} LiFePO₄ battery. Select another model to compare its verified model-specific information.`,
     highlights: [
-      `${model.capacity} selected capacity`,
-      'Dedicated image set for this model',
-      'Model-specific specifications ready to be completed',
+      `${model.capacity} LiFePO₄ battery capacity`,
+      `${model.output} rated AC output`,
+      'Model-specific charging, output and temperature specifications',
     ],
   };
 }
 
 export const portableProductModels = portableBatteries.map((model) => {
   const copy = modelCopy(model);
+  const technical = technicalSpecifications[model.id];
   const shortName = model.name.replace('Solvio ', '');
 
   return {
@@ -115,10 +158,18 @@ export const portableProductModels = portableBatteries.map((model) => {
     shortName,
     category: 'Portable Power',
     pageTitle: `${model.name} Portable Power Station — Product Details | Solvio`,
-    selectorHeading: 'Choose capacity',
-    metricLabel: 'Capacity',
+    selectorHeading: 'Choose model',
+    metricLabel: 'Battery capacity',
     metricValue: model.capacity,
-    selectorLabel: `${displayCapacity(model.capacity)} — ${shortName}`,
+    selectorLabel: `${model.output} — ${shortName}`,
+    featureStrip: [
+      { icon: 'Battery', label: model.capacity, sub: 'Battery capacity' },
+      { icon: 'PlugZap', label: model.output, sub: 'Rated AC output' },
+      { icon: 'Battery', label: 'LiFePO₄', sub: 'Battery chemistry' },
+      { icon: 'Zap', label: model.specModel, sub: 'Specification model' },
+      { icon: 'Plug', label: 'AC + DC + USB', sub: 'Output options' },
+      { icon: 'Sun', label: 'Solar charging', sub: 'Model-specific input' },
+    ],
     media: mediaTemplate.map((item) => {
       const extra = item.id === 1 ? null
         : item.id === 2 ? null
@@ -147,44 +198,46 @@ export const portableProductModels = portableBatteries.map((model) => {
            : model.id === 'd100'  ? { src: asset('/d100-hero.webp'), objectPosition: '50% 20%' }
            : null,
     facts: [
-      { value: model.capacity, label: 'Selected capacity' },
+      { value: model.capacity, label: 'Battery capacity' },
+      { value: model.output, label: 'Rated AC output' },
       { value: shortName, label: 'Selected model' },
-      { value: '01–06', label: 'Model-specific images' },
-      { value: 'On request', label: 'Approved technical sheet' },
+      { value: model.specModel, label: 'Specification model' },
     ],
     sections: [
       {
-        eyebrow: 'Choose your capacity',
+        eyebrow: 'Choose your model',
         title: 'Portable power sized around your needs',
         body:
-          `The Solvio range spans compact day-to-day models through larger-capacity options. You are currently viewing the ${model.name} with ${model.capacity} of capacity.`,
+          `The Solvio range spans compact day-to-day models through larger options. You are viewing the ${model.name}, rated at ${model.output} with ${model.capacity} of battery capacity.`,
         mediaId: 5,
       },
       {
         eyebrow: 'Model-specific details',
         title: 'The page changes with your selection',
         body:
-          `Each capacity has its own six-image set and specification record. Choose another model above and the ${shortName} information will be replaced without leaving this page.`,
+          `Each model has its own image set and specification record. Choose another model above and the ${shortName} information will be replaced without leaving this page.`,
         mediaId: 6,
       },
     ],
-    specifications: modelSpecifications(model),
+    specifications: modelSpecifications(model, technical),
     specificationIntro:
-      model.id === 'd100'
-        ? 'These are the capacity and connection labels visible on the current D100 media. Ask Solvio for the latest approved specification sheet if you need additional technical values.'
-        : `The confirmed capacity for the ${shortName} is shown below. The remaining approved technical values can be added to this model’s record when available.`,
+      `Verified battery, charging, output and operating values supplied for specification model ${model.specModel}.`,
     note:
-      `Need dimensions, weight, charging time or the confirmed AC output rating? Ask Solvio for the latest ${shortName} technical sheet before choosing a configuration.`,
+      model.id === 'd2400'
+        ? 'K2400 dimensions, weight, cycle life and operating temperatures were not visible in the supplied specification. Ask Solvio to confirm these values before purchase.'
+        : model.id === 'd300'
+          ? 'The supplied X300 label prints four dimension values. Confirm the final three-dimensional measurement with Solvio before purchase.'
+          : 'Specifications are based on the supplied product labels. Confirm compatibility and the latest technical sheet with Solvio before purchase.',
     faqs: [
       {
         question: `What is the ${shortName}?`,
         answer:
-          `The ${model.name} is the ${model.capacity} model in Solvio’s portable power-station range. Always check a connected device’s required input and wattage before choosing a model.`,
+          `The ${model.name} is a ${model.output} portable power station with a ${model.capacity} LiFePO₄ battery. Always check a connected device’s required input and wattage before choosing a model.`,
       },
       {
         question: `Where can I find the full ${shortName} specifications?`,
         answer:
-          `Ask Solvio for the latest approved ${shortName} technical sheet. Dimensions and additional technical values will also be added to this page when confirmed.`,
+          `The supplied model-specific values are listed on this page. Ask Solvio for the latest approved ${shortName} technical sheet and confirmation of any value marked as not provided.`,
       },
       {
         question: `Can I pair the ${shortName} with a portable solar panel?`,
