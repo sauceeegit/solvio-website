@@ -138,6 +138,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
         </section>
 
         {/* Key features icon strip */}
+        {product.featureStrip?.length > 0 && (
         <section id="details" className="border-y border-ink/[0.07] bg-white py-10 sm:py-14">
           <div className="container-x">
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
@@ -156,6 +157,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
             </div>
           </div>
         </section>
+        )}
 
         {product.heroImg && (
           <section className="aspect-video w-full overflow-hidden">
