@@ -1,9 +1,15 @@
 import { useEffect, useState } from 'react';
 import { ArrowLeft, ArrowRight, Check, ChevronDown, MessageCircle, Plus, Zap, Plug, Smartphone, Weight, Sun, Shield, Battery, PlugZap, Maximize2, Minimize2, Cable, Clock } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Link, useSearchParams } from 'react-router-dom';
+import Header from '../landing/Header';
+import ContactSection from '../ContactSection';
+import Footer from '../Footer';
+import ProductGallery from './ProductGallery';
+import { baht } from '../../lib/format';
+import { usePageMeta } from '../../hooks/usePageMeta';
 
 const SPEC_ICONS = { Battery, Zap, ZapFast: Zap, Smartphone, Plug, PlugZap, Weight, Sun, Shield, Maximize2, Minimize2, Cable, Clock };
-import { Link, useSearchParams } from 'react-router-dom';
 
 function PortableFAQItem({ q, a }) {
   const [open, setOpen] = useState(false);
@@ -25,12 +31,6 @@ function PortableFAQItem({ q, a }) {
     </div>
   );
 }
-import Header from '../landing/Header';
-import ContactSection from '../ContactSection';
-import Footer from '../Footer';
-import ProductGallery from './ProductGallery';
-import { baht } from '../../lib/format';
-import { usePageMeta } from '../../hooks/usePageMeta';
 
 export default function PortableProductDetailPage({ products, defaultProduct, metaPath }) {
   usePageMeta(metaPath);
