@@ -46,7 +46,7 @@ const d600ExtraImages = {
 
 const d300ExtraImages = {
   3: { src: asset('/d300-img03.webp') },
-  4: { src: asset('/d300-img04.webp') },
+  4: { src: asset('/d300-img04.webp'), imgClass: ZOOM },
   5: { src: asset('/d300-img05.webp'), imgClass: ZOOM },
 };
 
