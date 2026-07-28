@@ -160,7 +160,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
               {product.specifications.map((specification, index) => (
                 <div
                   key={`${product.id}-${specification.label}-${index}`}
-                  className={`${index >= 8 && !showAllSpecifications ? 'hidden sm:grid' : 'flex sm:grid'} min-w-0 flex-col gap-2 border-b border-white/10 px-1 py-4 sm:grid-cols-2 sm:items-baseline sm:gap-4 sm:border-b-0 sm:px-2 sm:py-5`}
+                  className={`${index >= 8 && !showAllSpecifications ? 'hidden sm:grid' : 'flex sm:grid'} min-w-0 flex-col gap-2 border-b border-white/10 px-1 py-4 sm:grid-cols-2 sm:items-end sm:gap-4 sm:border-b-0 sm:px-2 sm:py-5`}
                 >
                   <dt
                     className="text-xs leading-snug sm:pb-4 sm:text-sm"
