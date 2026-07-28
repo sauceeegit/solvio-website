@@ -20,7 +20,7 @@ function CardInner({ c, dimmed, lightOverlay }) {
       {/* dim overlay — visible on non-hovered cards */}
       <div
         className="absolute inset-0 transition-opacity duration-300"
-        style={{ opacity: dimmed ? 1 : 0, backgroundColor: 'rgba(0,0,0,0.3)' }}
+        style={{ opacity: dimmed ? 1 : 0, backgroundColor: 'rgba(0,0,0,0.65)' }}
       />
 
       <span className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full bg-lime text-white transition group-hover:rotate-90">
@@ -37,7 +37,7 @@ function CardInner({ c, dimmed, lightOverlay }) {
 
       {/* Explore pill button */}
       <div className="absolute inset-x-0 bottom-0 p-5">
-        <span className="inline-flex items-center gap-2 rounded-full border-2 border-white/70 px-5 py-2 font-display text-base font-bold text-white transition duration-300 group-hover:border-lime group-hover:bg-lime">
+        <span className="inline-flex items-center gap-2 rounded-full border-2 border-white/70 px-5 py-2 font-display text-base font-bold text-white transition duration-300 group-hover:scale-105 group-hover:border-lime group-hover:bg-lime group-hover:shadow-lg">
           Explore <ArrowRight size={16} />
         </span>
       </div>
