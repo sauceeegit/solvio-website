@@ -85,12 +85,12 @@ export default function RooftopSystemPage() {
           </section>
         </div>
 
-        <section className="bg-white">
+        <section style={{ backgroundColor: '#040f08' }}>
           <div className="container-x">
             <Reveal>
               <div className="grid items-center gap-8 py-14 sm:py-20 lg:grid-cols-2 lg:gap-14">
                 {/* image */}
-                <div className="overflow-hidden rounded-xl2 shadow-soft">
+                <div className="overflow-hidden rounded-xl2">
                   <img loading="lazy"
                     src={asset('/rooftop-feature.webp')}
                     alt="Aerial before and after — a villa roof fitted with a full Solvio solar array"
@@ -98,31 +98,28 @@ export default function RooftopSystemPage() {
                   />
                 </div>
 
-                {/* text — nudged up just slightly relative to the image */}
                 <div className="lg:-mt-3 lg:self-start">
-                  <h2 className="font-display text-2xl font-medium leading-[1.1] tracking-tight text-ink sm:text-3xl lg:text-4xl">
-                    Big Roof? Build Big.
+                  <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-lime">Rooftop Solar</p>
+                  <h2 className="mt-3 font-display text-3xl font-black leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-5xl">
+                    Big Roof?<br />Build Big.
                   </h2>
-                  <p className="mt-5 max-w-md text-lg leading-relaxed text-slatey-500">
-                    Every square metre of unused roof is money left on the table. If you&apos;ve got
-                    the space, we&apos;ve got the system to fill it<span className="max-sm:hidden"> — sized
-                    to your building, your load, and your ambitions</span>.
+                  <p className="mt-5 max-w-md text-base leading-relaxed" style={{ color: 'rgba(255,255,255,0.55)' }}>
+                    Every square metre of unused roof is money left on the table. If you&apos;ve got the space, we&apos;ve got the system to fill it — sized to your building, your load, and your ambitions.
                   </p>
-                  {/* roof types we install on */}
-                  <ul className="mt-5 grid max-w-md grid-cols-1 gap-x-4 gap-y-2.5 sm:grid-cols-2">
+                  <ul className="mt-6 grid max-w-md grid-cols-2 gap-x-4 gap-y-3">
                     {[
-                      'Standing Seam Metal Roofs',
-                      'Asphalt Shingle Roofs',
+                      'Standing Seam Metal',
+                      'Asphalt Shingle',
                       'Clay Tile Roofs',
                       'Flat Concrete Roofs',
                     ].map((x) => (
-                      <li key={x} className="flex items-center gap-2 font-display text-sm font-semibold text-ink">
-                        <Check size={16} strokeWidth={3} className="shrink-0 text-lime-dark" /> {x}
+                      <li key={x} className="flex items-center gap-2 font-display text-sm font-semibold text-white">
+                        <Check size={15} strokeWidth={3} className="shrink-0 text-lime" /> {x}
                       </li>
                     ))}
                   </ul>
-                  <p className="mt-5 max-w-md rounded-xl2 bg-lime px-5 py-4 font-display text-base font-bold leading-snug text-white">
-                    Engineered for 99% of rooftops. Ultra-lightweight solar, exclusively from Solvio.
+                  <p className="mt-6 max-w-md font-mono text-xs font-bold uppercase tracking-[0.12em]" style={{ color: 'rgba(255,255,255,0.3)' }}>
+                    Engineered for 99% of rooftops · Ultra-lightweight · Exclusively Solvio
                   </p>
                 </div>
               </div>
@@ -130,8 +127,7 @@ export default function RooftopSystemPage() {
 
             <Reveal>
               <div className="grid items-center gap-8 pb-14 sm:pb-20 lg:grid-cols-2 lg:gap-14">
-                {/* image (right on desktop) */}
-                <div className="overflow-hidden rounded-xl2 shadow-soft lg:order-2">
+                <div className="overflow-hidden rounded-xl2 lg:order-2">
                   <img loading="lazy"
                     src={asset('/rooftop-cta.webp')}
                     alt="Solvio technicians installing a rooftop solar array on a resort at sunset"
@@ -139,34 +135,31 @@ export default function RooftopSystemPage() {
                   />
                 </div>
 
-                {/* text (left on desktop) */}
                 <div className="lg:order-1">
-                  <h2 className="font-display text-2xl font-medium leading-[1.1] tracking-tight text-price sm:text-3xl lg:text-4xl">
+                  <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-lime">Our team</p>
+                  <h2 className="mt-3 font-display text-3xl font-black leading-[1.1] tracking-tight text-white sm:text-4xl">
                     Designed and installed by people who&apos;ve done it before
                   </h2>
-                  {/* trimmed copy + segment checklist (same on mobile + desktop) */}
-                  <div className="mt-5 max-w-md">
-                    <p className="text-base leading-normal text-slatey-500">
-                      Our team brings years of hands-on experience and state-of-the-art design to every rooftop we take on.
-                    </p>
-                    <ul className="mt-5 grid grid-cols-2 gap-3">
-                      {[
-                        { label: 'Resort', icon: Layers },
-                        { label: 'Hotel', icon: Hotel },
-                        { label: 'Commercial Block', icon: Building2 },
-                        { label: 'Condo', icon: Landmark },
-                        { label: 'House', icon: Home },
-                        { label: 'Mobile unit', icon: Truck },
-                      ].map(({ label, icon: Icon }) => (
-                        <li key={label} className="flex items-center gap-2.5 rounded-xl border border-ink/[0.08] px-3 py-2.5 font-display text-sm font-semibold text-ink" style={{ backgroundColor: '#EEF5FC' }}>
-                          <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-lime text-white">
-                            <Icon size={14} strokeWidth={2} />
-                          </span>
-                          {label}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <p className="mt-4 max-w-md text-base leading-relaxed" style={{ color: 'rgba(255,255,255,0.55)' }}>
+                    Our team brings years of hands-on experience and state-of-the-art design to every rooftop we take on.
+                  </p>
+                  <ul className="mt-6 grid grid-cols-2 gap-3">
+                    {[
+                      { label: 'Resort', icon: Layers },
+                      { label: 'Hotel', icon: Hotel },
+                      { label: 'Commercial Block', icon: Building2 },
+                      { label: 'Condo', icon: Landmark },
+                      { label: 'House', icon: Home },
+                      { label: 'Mobile unit', icon: Truck },
+                    ].map(({ label, icon: Icon }) => (
+                      <li key={label} className="flex items-center gap-2.5 rounded-xl px-3 py-2.5 font-display text-sm font-semibold text-white" style={{ backgroundColor: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.1)' }}>
+                        <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-lime text-white">
+                          <Icon size={14} strokeWidth={2} />
+                        </span>
+                        {label}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </Reveal>
