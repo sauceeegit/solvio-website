@@ -28,7 +28,7 @@ function CardInner({ c, dimmed, lightOverlay }) {
       </span>
 
       <div className="absolute inset-x-0 top-0 p-5 pr-16">
-        <h3 className="font-display text-[31px] font-extrabold leading-tight text-white max-sm:text-2xl">{c.title}</h3>
+        <h3 className={`font-display text-[31px] font-extrabold leading-tight max-sm:text-2xl transition-colors duration-300 ${dimmed ? 'text-white/40' : 'text-white'}`}>{c.title}</h3>
         {c.sub && (
           <p className="mt-1 font-display text-lg font-bold text-lime max-sm:text-base">{c.sub}</p>
         )}
