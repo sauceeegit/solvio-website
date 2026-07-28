@@ -120,7 +120,7 @@ export default function ContactSection() {
     'w-full rounded-xl border border-ink/12 bg-white px-4 py-3 font-body text-[15px] text-ink placeholder:text-ink/40 focus:border-lime focus:outline-none focus:ring-1 focus:ring-lime/40';
 
   return (
-    <section id="contact" className="scroll-mt-20 py-20" style={{ backgroundColor: '#f5f5f5' }}>
+    <section id="contact" className="scroll-mt-20 py-20" style={{ backgroundColor: '#fafafa' }}>
       <div className="container-x">
         <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
           {/* Left — heading + direct contact details */}
