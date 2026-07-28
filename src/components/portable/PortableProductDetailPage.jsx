@@ -1,8 +1,30 @@
 import { useEffect, useState } from 'react';
-import { ArrowLeft, ArrowRight, Check, ChevronDown, MessageCircle, Zap, Plug, Smartphone, Weight, Sun, Shield, Battery, PlugZap, Maximize2, Minimize2, Cable, Clock } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, ChevronDown, MessageCircle, Plus, Zap, Plug, Smartphone, Weight, Sun, Shield, Battery, PlugZap, Maximize2, Minimize2, Cable, Clock } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const SPEC_ICONS = { Battery, Zap, ZapFast: Zap, Smartphone, Plug, PlugZap, Weight, Sun, Shield, Maximize2, Minimize2, Cable, Clock };
 import { Link, useSearchParams } from 'react-router-dom';
+
+function PortableFAQItem({ q, a }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className={`rounded-xl overflow-hidden transition-all ${open ? 'bg-white shadow-soft ring-1 ring-ink/10' : 'bg-ink/[0.06]'}`}>
+      <button onClick={() => setOpen((v) => !v)} className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left">
+        <span className="font-display text-base font-semibold text-ink">{q}</span>
+        <span className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border transition ${open ? 'rotate-45 border-ink/20 bg-ink text-white' : 'border-ink/15 bg-white text-ink'}`}>
+          <Plus size={16} />
+        </span>
+      </button>
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }} className="overflow-hidden">
+            <p className="px-5 pb-5 pt-1 text-[15px] leading-relaxed text-ink/65">{a}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
 import Header from '../landing/Header';
 import ContactSection from '../ContactSection';
 import Footer from '../Footer';
@@ -204,15 +226,9 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
                 FAQ
               </h2>
             </div>
-            <div className="mt-10 space-y-3">
-              {product.faqs.map((item) => (
-                <details key={`${product.id}-${item.question}`} className="group rounded-2xl border border-ink/10 bg-white px-5 py-1 shadow-soft sm:px-7">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-5 py-5 font-display text-lg font-extrabold text-ink">
-                    {item.question}
-                    <ChevronDown className="shrink-0 text-lime transition group-open:rotate-180" size={21} />
-                  </summary>
-                  <p className="max-w-3xl pb-6 text-base leading-relaxed text-ink/65">{item.answer}</p>
-                </details>
+            <div className="mt-10 space-y-2">
+              {product.faqs.map((item, i) => (
+                <PortableFAQItem key={`${product.id}-${item.question}`} q={item.question} a={item.answer} />
               ))}
             </div>
           </div>

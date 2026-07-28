@@ -52,24 +52,20 @@ export default function LandingFAQ() {
 
           {/* accordion */}
           <Reveal delay={0.1}>
-            <div className="rounded-xl2 border border-ink/[0.07] bg-surface px-6 shadow-soft">
+            <div className="space-y-2">
               {landingFaqs.map((f, i) => {
                 const hiddenOnMobile = i >= MOBILE_SHOW && !showAll;
                 return (
                   <div
                     key={f.q}
-                    className={`border-b border-ink/[0.08] last:border-0 transition-colors duration-200 ${
-                      open === i ? 'bg-white -mx-6 px-6 rounded-xl' : ''
-                    } ${hiddenOnMobile ? 'hidden sm:block' : ''}`}
+                    className={`rounded-xl overflow-hidden transition-all ${hiddenOnMobile ? 'hidden sm:block' : ''} ${open === i ? 'bg-white shadow-soft ring-1 ring-ink/10' : 'bg-ink/[0.06]'}`}
                   >
                     <button
                       onClick={() => setOpen(open === i ? -1 : i)}
-                      className="flex w-full items-center justify-between gap-4 py-5 text-left"
+                      className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
                     >
-                      <span className={`font-display font-semibold transition-colors ${open === i ? 'text-lg text-lime-dark' : 'text-base text-ink'}`}>
-                        {f.q}
-                      </span>
-                      <span style={open !== i ? { backgroundColor: '#ffffff' } : {}} className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border transition ${open === i ? 'rotate-45 border-lime bg-lime text-white' : 'border-ink/25 text-ink shadow-sm'}`}>
+                      <span className="font-display text-base font-semibold text-ink">{f.q}</span>
+                      <span className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border transition ${open === i ? 'rotate-45 border-ink/20 bg-ink text-white' : 'border-ink/15 bg-white text-ink'}`}>
                         <Plus size={16} />
                       </span>
                     </button>
@@ -82,7 +78,7 @@ export default function LandingFAQ() {
                           transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                           className="overflow-hidden"
                         >
-                          <p className="pb-5 pr-10 text-[15px] leading-relaxed text-slatey-500 max-sm:pr-0 max-sm:text-sm">
+                          <p className="px-5 pb-5 pt-1 text-[15px] leading-relaxed text-ink/65 max-sm:text-sm">
                             {f.a}
                           </p>
                         </motion.div>
