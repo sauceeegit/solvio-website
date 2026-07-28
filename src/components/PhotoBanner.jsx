@@ -67,7 +67,7 @@ export default function PhotoBanner() {
   };
 
   return (
-    <section className="overflow-hidden bg-[#f2f0eb] py-0">
+    <section className="overflow-hidden py-0" style={{ backgroundColor: '#140e0b' }}>
       <div
         className="relative"
         onMouseEnter={() => setPaused(true)}
@@ -147,7 +147,7 @@ export default function PhotoBanner() {
         </div>
 
         {/* Thumbnail strip */}
-        <div className="flex items-center justify-center gap-3 bg-[#f2f0eb] px-4 py-4">
+        <div className="flex items-center justify-center gap-3 px-4 py-4" style={{ backgroundColor: '#140e0b' }}>
           {SLIDES.map((slide, i) => (
             <button
               key={slide.src}
@@ -164,7 +164,7 @@ export default function PhotoBanner() {
                 style={{ opacity: i === current ? 1 : 0.5, filter: i === current ? 'none' : 'saturate(0.6)' }}
               />
               {i === current && (
-                <span className="absolute inset-0 rounded-xl ring-2 ring-lime ring-offset-1 ring-offset-[#f2f0eb]" />
+                <span className="absolute inset-0 rounded-xl ring-2 ring-lime ring-offset-1 ring-offset-[#140e0b]" />
               )}
             </button>
           ))}
