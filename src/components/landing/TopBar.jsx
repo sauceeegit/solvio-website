@@ -18,8 +18,10 @@ function Social({ label, href = '#', color, children }) {
       aria-label={label}
       target={external ? '_blank' : undefined}
       rel={external ? 'noopener noreferrer' : undefined}
-      className="grid h-9 w-9 place-items-center rounded-full text-white shadow-sm transition hover:opacity-90"
-      style={{ backgroundColor: color }}
+      className="group grid h-9 w-9 place-items-center rounded-full border-2 transition-all duration-200"
+      style={{ borderColor: color, color: color, backgroundColor: 'transparent' }}
+      onMouseEnter={e => { e.currentTarget.style.backgroundColor = color; e.currentTarget.style.color = '#fff'; }}
+      onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = color; }}
     >
       {children}
     </a>
