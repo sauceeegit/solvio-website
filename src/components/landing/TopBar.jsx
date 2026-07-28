@@ -28,7 +28,7 @@ function Social({ label, href = '#', color, children }) {
 
 export default function TopBar() {
   return (
-    <div className="bg-ink text-white">
+    <div className="text-white" style={{ backgroundColor: '#040f08' }}>
       <div className="container-x flex flex-wrap items-center justify-between gap-x-4 gap-y-2 py-2.5">
         {/* Contact */}
         <div className="flex items-center gap-3">
