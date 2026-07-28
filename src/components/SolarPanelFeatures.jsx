@@ -17,7 +17,7 @@ const features = [
     img: asset('/sp-feature-2.webp'),
     imgAlt: 'Close-up of the thin, lightweight Solvio Dark Feather panel',
     aspect: 'aspect-[4/3]',
-    objectPos: 'object-[50%_72%]',
+    objectFit: 'object-contain',
     imageSide: 'right',
     valign: 'start',
     title: "So light, your roof won't feel it.",
@@ -58,7 +58,7 @@ export default function SolarPanelFeatures() {
                 <img loading="lazy"
                   src={f.img}
                   alt={f.imgAlt}
-                  className={`h-full w-full object-cover ${f.objectPos || ''}`}
+                  className={`h-full w-full ${f.objectFit || 'object-cover'} ${f.objectPos || ''}`}
                 />
               </div>
 
