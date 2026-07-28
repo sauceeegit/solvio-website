@@ -156,20 +156,20 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
               <p className="mt-3 text-sm" style={{ color: 'rgba(255,255,255,0.4)' }}>{product.specificationIntro}</p>
             </div>
 
-            <dl className="mx-auto mt-12 max-w-4xl">
+            <dl className="mx-auto mt-12 grid max-w-5xl grid-cols-2 gap-x-4 sm:gap-x-0">
               {product.specifications.map((specification, index) => (
                 <div
                   key={`${product.id}-${specification.label}-${index}`}
-                  className={`${index >= 8 && !showAllSpecifications ? 'hidden' : 'grid'} grid-cols-[35%_65%] items-end gap-4 px-2 pt-5`}
+                  className={`${index >= 8 && !showAllSpecifications ? 'hidden sm:grid' : 'flex sm:grid'} min-w-0 flex-col gap-2 border-b border-white/10 px-1 py-4 sm:grid-cols-2 sm:items-end sm:gap-4 sm:border-b-0 sm:px-2 sm:py-5`}
                 >
                   <dt
-                    className="pb-3 text-sm"
+                    className="text-xs leading-snug sm:pb-4 sm:text-sm"
                     style={{ color: 'rgba(255,255,255,0.55)', borderBottom: '1px solid rgba(255,255,255,0.1)' }}
                   >
                     {specification.label}:
                   </dt>
                   <dd
-                    className="pb-3 text-right font-display text-sm font-bold text-white"
+                    className="break-words font-display text-xs font-bold leading-snug text-white sm:pb-4 sm:text-right sm:text-sm"
                     style={{ borderBottom: '2px solid rgba(255,255,255,0.25)' }}
                   >
                     {specification.value}
