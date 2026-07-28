@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ArrowLeft, ArrowRight, Check, ChevronDown, MessageCircle, Zap, Plug, Smartphone, Weight, Sun, Shield, Battery, PlugZap, Maximize2, Minimize2, Cable, Clock } from 'lucide-react';
 
 const SPEC_ICONS = { Battery, Zap, ZapFast: Zap, Smartphone, Plug, PlugZap, Weight, Sun, Shield, Maximize2, Minimize2, Cable, Clock };
@@ -13,6 +13,7 @@ import { usePageMeta } from '../../hooks/usePageMeta';
 export default function PortableProductDetailPage({ products, defaultProduct, metaPath }) {
   usePageMeta(metaPath);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [showAllSpecifications, setShowAllSpecifications] = useState(false);
   const requestedModel = searchParams.get('model');
   const product = products.find((item) => item.id === requestedModel) ?? defaultProduct;
   const whatsappMessage = encodeURIComponent(`Hi Solvio — I'd like more information about the ${product.shortName}`);
@@ -23,6 +24,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
 
   const selectModel = (event) => {
     const modelId = event.target.value;
+    setShowAllSpecifications(false);
     setSearchParams(modelId === defaultProduct.id ? {} : { model: modelId }, { replace: true });
   };
 
@@ -154,20 +156,20 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
               <p className="mt-3 text-sm" style={{ color: 'rgba(255,255,255,0.4)' }}>{product.specificationIntro}</p>
             </div>
 
-            <dl className="mx-auto mt-12 grid max-w-5xl grid-cols-1 sm:grid-cols-2">
+            <dl className="mx-auto mt-12 grid max-w-5xl grid-cols-2 gap-x-4 sm:gap-x-0">
               {product.specifications.map((specification, index) => (
                 <div
                   key={`${product.id}-${specification.label}-${index}`}
-                  className="grid grid-cols-2 items-baseline gap-4 py-5 px-2"
+                  className={`${index >= 8 && !showAllSpecifications ? 'hidden sm:grid' : 'flex sm:grid'} min-w-0 flex-col gap-2 border-b border-white/10 px-1 py-4 sm:grid-cols-2 sm:items-baseline sm:gap-4 sm:border-b-0 sm:px-2 sm:py-5`}
                 >
                   <dt
-                    className="text-sm pb-4"
-                    style={{ color: 'rgba(255,255,255,0.45)', borderBottom: '1px solid rgba(255,255,255,0.1)' }}
+                    className="text-xs leading-snug sm:pb-4 sm:text-sm"
+                    style={{ color: 'rgba(255,255,255,0.55)', borderBottom: '1px solid rgba(255,255,255,0.1)' }}
                   >
                     {specification.label}:
                   </dt>
                   <dd
-                    className="font-display text-sm font-bold text-white text-right pb-4"
+                    className="break-words font-display text-xs font-bold leading-snug text-white sm:pb-4 sm:text-right sm:text-sm"
                     style={{ borderBottom: '2px solid rgba(255,255,255,0.25)' }}
                   >
                     {specification.value}
@@ -175,6 +177,18 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
                 </div>
               ))}
             </dl>
+
+            {product.specifications.length > 8 && (
+              <button
+                type="button"
+                aria-expanded={showAllSpecifications}
+                onClick={() => setShowAllSpecifications((visible) => !visible)}
+                className="mx-auto mt-8 flex items-center gap-2 rounded-full border border-white/25 px-5 py-3 font-display text-sm font-bold text-white transition hover:border-white/50 sm:hidden"
+              >
+                {showAllSpecifications ? 'Show fewer specifications' : 'Show all specifications'}
+                <ChevronDown className={`transition ${showAllSpecifications ? 'rotate-180' : ''}`} size={18} />
+              </button>
+            )}
 
             <p className="mx-auto mt-8 max-w-2xl text-center text-xs leading-relaxed" style={{ color: 'rgba(255,255,255,0.3)' }}>
               {product.note}
