@@ -169,7 +169,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
                     {specification.label}:
                   </dt>
                   <dd
-                    className="whitespace-nowrap pb-3 text-right font-display text-sm font-bold text-white"
+                    className="pb-3 text-right font-display text-sm font-bold text-white"
                     style={{ borderBottom: '2px solid rgba(255,255,255,0.25)' }}
                   >
                     {specification.value}
