@@ -54,7 +54,7 @@ export default function CategoryGrid() {
     <section id="categories" className="scroll-mt-20 py-14 max-lg:pt-10" style={{ backgroundColor: '#140e0b' }}>
       <div className="container-x">
       <Reveal>
-        <h2 className="font-display font-medium text-lime" style={{ fontSize: '22px' }}>
+        <h2 className="font-display text-2xl font-medium text-lime sm:text-3xl">
           From Rooftop to Backpack
         </h2>
       </Reveal>
