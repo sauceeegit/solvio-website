@@ -160,12 +160,11 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
         )}
 
         {product.heroImg && (
-          <section className="aspect-video w-full overflow-hidden">
+          <section className="w-full overflow-hidden bg-ink">
             <img
               src={product.heroImg.src}
               alt={`${product.name} lifestyle`}
-              className="h-full w-full object-cover"
-              style={product.heroImg.objectPosition ? { objectPosition: product.heroImg.objectPosition } : undefined}
+              className="block w-full"
             />
           </section>
         )}
