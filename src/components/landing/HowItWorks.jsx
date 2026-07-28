@@ -9,32 +9,39 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="bg-surface py-16 sm:py-20">
+    <section className="py-16 sm:py-24" style={{ backgroundColor: '#140e0b' }}>
       <div className="container-x">
         <Reveal>
           <div className="text-center">
-            <p className="eyebrow">Simple process</p>
-            <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+            <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-lime">Simple process</p>
+            <h2 className="mt-3 font-display text-3xl font-black tracking-tight text-white sm:text-5xl">
               Up and running in 3 steps
             </h2>
           </div>
         </Reveal>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-3">
+        <div className="relative mt-16 grid gap-8 sm:grid-cols-3 sm:gap-6">
+          {/* connecting line (desktop only) */}
+          <div className="absolute left-0 right-0 top-8 hidden h-px sm:block" style={{ background: 'rgba(255,255,255,0.08)' }} />
+
           {steps.map((s, i) => (
-            <Reveal key={s.step} delay={i * 0.1}>
-              <div className="relative flex flex-col gap-4 rounded-2xl border border-ink/[0.07] bg-white p-7 shadow-soft">
-                {/* Step number background */}
-                <span className="absolute right-5 top-5 font-display text-6xl font-extrabold text-ink/[0.04] select-none">
-                  {s.step}
+            <Reveal key={s.step} delay={i * 0.12}>
+              <div className="relative flex flex-col">
+                {/* step number dot */}
+                <div className="relative z-10 mb-6 flex items-center gap-4 sm:flex-col sm:items-start sm:gap-0">
+                  <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-lime shadow-lg sm:mb-5">
+                    <s.icon size={26} className="text-white" strokeWidth={2} />
+                  </div>
+                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] sm:hidden" style={{ color: 'rgba(255,255,255,0.3)' }}>
+                    Step {s.step}
+                  </span>
+                </div>
+
+                <span className="mb-2 hidden font-mono text-[11px] font-bold uppercase tracking-[0.18em] sm:block" style={{ color: 'rgba(255,255,255,0.3)' }}>
+                  Step {s.step}
                 </span>
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-lime">
-                  <s.icon size={22} className="text-white" strokeWidth={2} />
-                </div>
-                <div>
-                  <h3 className="font-display text-lg font-extrabold text-ink">{s.title}</h3>
-                  <p className="mt-1.5 text-[14px] leading-relaxed text-ink/60">{s.body}</p>
-                </div>
+                <h3 className="font-display text-xl font-extrabold text-white sm:text-2xl">{s.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.45)' }}>{s.body}</p>
               </div>
             </Reveal>
           ))}
