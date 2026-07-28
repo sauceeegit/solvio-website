@@ -4,20 +4,19 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { faqs } from '../data/product';
 import Reveal from './Reveal';
 
-// Question background: closed = orange, opened = light orange. Font colour is
-// left as the original ink (only the background is tinted).
 function Item({ q, a, open, onToggle }) {
   return (
-    <div>
+    <div className={`rounded-xl overflow-hidden transition-all ${open ? 'bg-white shadow-soft ring-1 ring-ink/10' : 'bg-ink'}`}>
       <button
         onClick={onToggle}
-        className="flex w-full items-center justify-between gap-4 rounded-xl px-5 py-4 text-left transition-colors"
-        style={{ backgroundColor: open ? '#ffffff' : '#e6eaff' }}
+        className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
       >
-        <span className="font-display text-base font-semibold text-ink">{q}</span>
+        <span className={`font-display text-base font-semibold transition-colors ${open ? 'text-ink' : 'text-white'}`}>{q}</span>
         <span
-          className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border border-ink/15 bg-white text-ink transition ${
-            open ? 'rotate-45' : ''
+          className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border transition ${
+            open
+              ? 'rotate-45 border-ink/20 bg-ink text-white'
+              : 'border-white/20 bg-white/10 text-white'
           }`}
         >
           <Plus size={16} />
@@ -32,7 +31,7 @@ function Item({ q, a, open, onToggle }) {
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden"
           >
-            <p className="px-5 pb-4 pt-3 text-[15px] leading-relaxed text-slatey-500 max-sm:text-sm">{a}</p>
+            <p className="px-5 pb-5 pt-1 text-[15px] leading-relaxed text-ink/65 max-sm:text-sm">{a}</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -50,14 +49,14 @@ export default function FAQ({
   const [open, setOpen] = useState(0);
 
   return (
-    <section id="faq" className={`scroll-mt-20 py-20 ${bg ? '' : 'bg-surface'}`} style={bg ? { background: bg } : undefined}>
+    <section id="faq" className={`scroll-mt-20 py-20 ${bg ? '' : 'bg-white'}`} style={bg ? { background: bg } : undefined}>
       <div className="container-x grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <Reveal>
           <p className="eyebrow">{eyebrow}</p>
-          <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-price sm:text-4xl">
+          <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
             {heading}
           </h2>
-          <p className="mt-3 text-slatey-500">{subtitle}</p>
+          <p className="mt-3 text-ink/55">{subtitle}</p>
           <a
             href="https://wa.me/66843488428?text=Hi%20Solvio%20%E2%80%94%20I%27d%20like%20to%20talk%20to%20an%20advisor."
             target="_blank"
@@ -69,7 +68,7 @@ export default function FAQ({
         </Reveal>
 
         <Reveal delay={0.1}>
-          <div className="space-y-2.5 rounded-xl2 border border-ink/[0.07] bg-white p-3 shadow-soft">
+          <div className="space-y-2">
             {items.map((f, i) => (
               <Item
                 key={f.q}

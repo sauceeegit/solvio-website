@@ -26,46 +26,41 @@ const ROWS = [
 
 export default function PanelComparison() {
   return (
-    <section className="bg-white py-16 sm:py-20">
+    <section className="py-16 sm:py-20" style={{ backgroundColor: '#040f08' }}>
       <div className="container-x">
         <Reveal>
-          <p className="eyebrow">Solvio EZ Solar · panel technology comparison</p>
-          <h2 className="mt-2 max-w-3xl font-display text-3xl font-extrabold leading-tight tracking-tight text-price sm:text-4xl">
+          <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em]" style={{ color: '#fffbf5' }}>
+            Solvio EZ Solar · panel technology comparison
+          </p>
+          <h2 className="mt-3 max-w-3xl font-display text-3xl font-black leading-tight tracking-tight text-white sm:text-4xl">
             Firm-Light PLUS vs. Top-Tier Residential Modules
           </h2>
         </Reveal>
 
         <Reveal delay={0.1}>
-          <div className="mt-8 overflow-x-auto rounded-xl2 border border-ink/[0.08] shadow-soft">
+          <div className="mt-10 overflow-x-auto rounded-2xl" style={{ border: '1px solid rgba(255,255,255,0.08)' }}>
             <table className="w-full min-w-[560px] border-collapse text-center sm:min-w-[780px]">
               <thead>
                 <tr>
-                  {/* top-left corner */}
-                  <th className="sticky left-0 z-20 bg-white p-4" />
+                  <th className="sticky left-0 z-20 p-4" style={{ backgroundColor: '#040f08' }} />
                   {COLUMNS.map((col) => (
                     <th
                       key={col.name}
-                      className={`p-2.5 align-top sm:p-4 ${
-                        col.solvio
-                          ? 'border-x-2 border-lime bg-lime text-white'
-                          : 'bg-ink text-white/90'
-                      }`}
+                      className={`p-2.5 align-top sm:p-4 ${col.solvio ? 'bg-lime text-white' : ''}`}
+                      style={!col.solvio ? { backgroundColor: 'rgba(255,255,255,0.06)' } : undefined}
                     >
-                      <span className="block font-display text-[13px] font-bold leading-snug sm:text-base">{col.name}</span>
-                      <span className={`mt-0.5 block font-mono text-[10px] sm:text-xs ${col.solvio ? 'text-white/85' : 'text-white/55'}`}>
-                        {col.sub}
-                      </span>
+                      <span className="block font-display text-[13px] font-bold leading-snug sm:text-base text-white">{col.name}</span>
+                      <span className="mt-0.5 block font-mono text-[10px] sm:text-xs text-white/60">{col.sub}</span>
                     </th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {ROWS.map((row, ri) => (
-                  <tr key={row.label} className={ri % 2 ? 'bg-[#FFF6F1]' : 'bg-white'}>
+                  <tr key={row.label} style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}>
                     <td
-                      className={`sticky left-0 z-10 border-t border-ink/[0.07] p-2.5 text-left font-display text-[13px] font-semibold text-ink sm:p-4 sm:text-[15px] ${
-                        ri % 2 ? 'bg-[#FFF6F1]' : 'bg-white'
-                      }`}
+                      className="sticky left-0 z-10 p-2.5 text-left font-display text-[13px] font-semibold sm:p-4 sm:text-[15px]"
+                      style={{ backgroundColor: '#040f08', color: 'rgba(255,255,255,0.55)' }}
                     >
                       {row.label}
                     </td>
@@ -74,11 +69,8 @@ export default function PanelComparison() {
                       return (
                         <td
                           key={ci}
-                          className={`border-t p-2.5 text-[13px] sm:p-4 sm:text-[15px] ${
-                            isSolvio
-                              ? 'border-x-2 border-lime/30 border-t-lime/20 bg-lime/[0.07] font-bold text-ink'
-                              : 'border-ink/[0.07] text-ink/70'
-                          } ${ri === ROWS.length - 1 && isSolvio ? 'border-b-2 border-b-lime/30' : ''}`}
+                          className={`p-2.5 text-[13px] sm:p-4 sm:text-[15px] ${isSolvio ? 'bg-lime/10 font-bold text-white' : ''}`}
+                          style={!isSolvio ? { color: 'rgba(255,255,255,0.45)' } : undefined}
                         >
                           <span className="inline-flex items-center justify-center gap-1.5">
                             {v}
@@ -95,8 +87,8 @@ export default function PanelComparison() {
             </table>
           </div>
 
-          <p className="mt-3 text-xs text-slatey-400 sm:hidden">Swipe the table sideways to compare →</p>
-          <p className="mt-4 max-w-3xl text-xs leading-relaxed text-slatey-400">
+          <p className="mt-3 text-xs sm:hidden" style={{ color: 'rgba(255,255,255,0.3)' }}>Swipe the table sideways to compare →</p>
+          <p className="mt-4 max-w-3xl text-xs leading-relaxed" style={{ color: 'rgba(255,255,255,0.3)' }}>
             <Check size={13} strokeWidth={3} className="mb-0.5 mr-1 inline text-lime" /> = category-leading in
             this set. Efficiency and power-density figures reflect the 460 W top bin. Temp coefficient shown is
             parity with the best n-type modules.
