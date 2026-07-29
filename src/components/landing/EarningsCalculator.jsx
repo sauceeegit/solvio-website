@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Wallet, ArrowRight, BatteryCharging, Plug, Check, Zap, Ban } from 'lucide-react';
 import { baht, num } from '../../lib/format';
+import { calculatorDefaults } from '../../data/product';
 import Reveal from '../Reveal';
 
 // Locked assumptions (confirmed):
@@ -167,7 +168,7 @@ function Metric({ label, value, valueClass = 'text-ink' }) {
 export default function EarningsCalculator({ exportDefault = true }) {
   const [bill, setBill] = useState(5000);
   const [coverage, setCoverage] = useState(80);
-  const [rate, setRate] = useState(4.5);
+  const [rate, setRate] = useState(calculatorDefaults.rate);
   const [months, setMonths] = useState(24);
   const [interest, setInterest] = useState(0);
   const [battery, setBattery] = useState(false);

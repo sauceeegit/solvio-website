@@ -315,7 +315,7 @@ export const faqs = [
 export const calculatorDefaults = {
   orientationFactor: 1.0, // south
   household: 3500, // kWh / year
-  rate: 4.5, // ฿ / kWh
+  rate: 4.9, // ฿ / kWh
 };
 
 export const orientations = [
