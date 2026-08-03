@@ -78,7 +78,6 @@ export default function PortableBatteries() {
         <div
           ref={trackRef}
           className="no-scrollbar mt-8 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-3 touch-pan-y"
-          style={{ overflowY: 'clip' }}
         >
           {portableBatteries.map((p, i) => (
             <Reveal
