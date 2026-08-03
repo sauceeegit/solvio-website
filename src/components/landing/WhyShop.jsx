@@ -341,7 +341,7 @@ export default function WhyShop() {
                       }}
                     >
                       <img loading="lazy"
-                        src={asset('/solvio_coing_2.png')}
+                        src={asset('/solvio-coin2.webp')}
                         alt="Solvio Rewards coin"
                         style={{ width: '100%', height: 'auto', display: 'block' }}
                       />
