@@ -40,16 +40,15 @@ export default function Hero() {
         <img src={hero.poster} alt={hero.caption} className="block h-auto w-full object-cover" />
       )}
 
-      {/* Slogan across the top of the looping video */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-10">
-        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-ink/50 to-transparent sm:h-48" />
-        <div className="relative px-4 pt-[clamp(0.6rem,3vw,2.25rem)] text-center">
-          <h1 className="font-display text-[clamp(1.25rem,4.4vw,3rem)] font-extrabold leading-[1.05] tracking-tight text-white">
-            Clean Energy<span className="text-lime">.</span> Made Simple<span className="text-lime">.</span>
+      {/* Slogan — bottom-left aligned, B&O style */}
+      <div className="pointer-events-none absolute inset-0 z-10">
+        <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-ink/70 via-ink/20 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 container-x pb-[clamp(1.25rem,5vw,4rem)]">
+          <h1 className="font-display text-[clamp(1.4rem,4vw,3.25rem)] font-bold leading-[1.08] tracking-tight text-white max-w-xl">
+            Clean Energy<span className="text-lime">.</span><br />Made Simple<span className="text-lime">.</span>
           </h1>
-          <p className="mx-auto mt-1.5 max-w-2xl font-display text-[clamp(0.6rem,1.4vw,0.85rem)] font-semibold text-white/90">
-            Premium solar for every Thai home — balcony, rooftop, or facade.
-            <br /> Plug in. Save money. Start today.
+          <p className="mt-2 font-display text-[clamp(0.7rem,1.3vw,0.9rem)] font-medium text-white/75 max-w-sm">
+            Premium solar for every Thai home.
           </p>
         </div>
       </div>
