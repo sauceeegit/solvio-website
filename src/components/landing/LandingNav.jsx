@@ -45,7 +45,7 @@ export default function LandingNav() {
       className={`border-b transition-all duration-500 ${
         scrolled
           ? 'border-ink/10 bg-white/95 shadow-soft backdrop-blur-md'
-          : 'border-ink/[0.06] bg-white/70 backdrop-blur-sm'
+          : 'border-transparent bg-white/20 backdrop-blur-sm'
       }`}
     >
       <nav className="container-x flex h-16 items-center justify-between">
