@@ -9,7 +9,7 @@ export default function ModuleBanner() {
     <section className="relative w-full">
       {/* Mobile uses the portrait Dark Feather artwork; desktop uses the wide banner. */}
       <picture>
-        <source media="(min-width: 640px)" srcSet={asset('/Solvio_Feather_image.png')} />
+        <source media="(min-width: 640px)" srcSet={asset('/solvio-feather.webp')} />
         <img loading="lazy"
           src={asset('/sp-feature-top-mobile.webp')}
           alt="Solvio Dark Feather — Ultra Black, Ultra Thin, Ultra Light"

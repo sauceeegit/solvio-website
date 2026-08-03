@@ -19,7 +19,7 @@ const DEMO_ITEMS = [
     variant: '4 × Dark Feather · Venus A 2.12 kWh',
     qty: 1,
     price: 52160,
-    img: asset('/4xPanels.png'),
+    img: asset('/4xPanels.webp'),
     badge: 'Best seller',
   },
   {
@@ -29,7 +29,7 @@ const DEMO_ITEMS = [
     variant: 'Routes to a more distant outlet',
     qty: 1,
     price: 790,
-    img: asset('/kit-cable-2m.png'),
+    img: asset('/kit-cable-2m.webp'),
   },
 ];
 

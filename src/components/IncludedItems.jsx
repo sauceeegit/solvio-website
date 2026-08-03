@@ -119,7 +119,7 @@ function KitCard({ badge, img, imgAlt, imgStyle, title, bullets }) {
 const topRow = [
   {
     badge: '4x',
-    img: asset('/4xPanels.png'),
+    img: asset('/4xPanels.webp'),
     imgAlt: '4x 450 Wp Solar Module',
     imgStyle: { objectPosition: 'center' },
     title: '4x 450 Wp Solar Module',
@@ -128,7 +128,7 @@ const topRow = [
   },
   {
     badge: '1x',
-    img: asset('/kit-inverter.png'),
+    img: asset('/kit-inverter.webp'),
     imgAlt: '1x Micro Inverter 800 W',
     title: '1x Micro Inverter 800 W',
     bullets: ['Max. Output Power: 800 W', 'Wi-Fi Enabled', 'IP67 Waterproof'],
@@ -136,7 +136,7 @@ const topRow = [
   },
   {
     badge: '2x',
-    img: asset('/kit-ycable.png'),
+    img: asset('/kit-ycable.webp'),
     imgAlt: '2x Y-Cable Set',
     title: '2x Y-Cable Set',
     bullets: ['Parallel Connection', 'Connects two modules to one DC input'],
@@ -144,7 +144,7 @@ const topRow = [
   },
   {
     badge: '4x',
-    img: asset('/kit-bracket.png'),
+    img: asset('/kit-bracket.webp'),
     imgAlt: '4x Mounting Bracket',
     title: '4x Mounting Bracket',
     bullets: ['Adjustable tilt frame', 'Corrosion-resistant', 'Built for outdoor use'],
@@ -152,7 +152,7 @@ const topRow = [
   },
   {
     badge: '1x',
-    img: asset('/kit-manual.png'),
+    img: asset('/kit-manual.webp'),
     imgAlt: '1x Installation Manual',
     title: '1x Installation Manual',
     bullets: ['Step-by-step guide', 'Illustrated instructions', 'Easy installation'],
@@ -163,21 +163,21 @@ const topRow = [
 const bottomRow = [
   {
     badge: '2x',
-    img: asset('/kit-cable-1m.png'),
+    img: asset('/kit-cable-1m.webp'),
     imgAlt: '2x DC Extension Cable – 1 m',
     title: '2x DC Extension Cable – 1 m',
     bullets: ['Connects modules to inverter / storage', 'UV-resistant, outdoor grade'],
   },
   {
     badge: '4x',
-    img: asset('/kit-cable-2m.png'),
+    img: asset('/kit-cable-2m.webp'),
     imgAlt: '4x DC Extension Cable – 2 m',
     title: '4x DC Extension Cable – 2 m',
     bullets: ['Connects modules to inverter / storage', 'UV-resistant, outdoor grade'],
   },
   {
     badge: '1x',
-    img: asset('/kit-hardware.png'),
+    img: asset('/kit-hardware.webp'),
     imgAlt: '1x Inverter Bracket & Hardware Kit',
     title: '1x Inverter Bracket & Hardware Kit',
     bullets: ['Fixes the inverter to the module frame', 'All tools & fasteners included'],
