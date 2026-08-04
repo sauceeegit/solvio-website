@@ -21,7 +21,19 @@ export default function PortableBatteries() {
     const el = trackRef.current;
     if (!el) return;
     el.addEventListener('scroll', updateScrollState, { passive: true });
-    return () => el.removeEventListener('scroll', updateScrollState);
+    // Pass vertical wheel events through to the page — prevents the horizontal
+    // scroll container from swallowing them when the cursor is over a card.
+    const onWheel = (e) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+        window.scrollBy({ top: e.deltaY, behavior: 'instant' });
+      }
+    };
+    el.addEventListener('wheel', onWheel, { passive: false });
+    return () => {
+      el.removeEventListener('scroll', updateScrollState);
+      el.removeEventListener('wheel', onWheel);
+    };
   }, []);
 
   const scrollByCard = (dir) => {
