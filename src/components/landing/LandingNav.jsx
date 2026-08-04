@@ -71,7 +71,7 @@ export default function LandingNav() {
                   }`
                 }
               >
-                <span className="whitespace-nowrap font-display text-[15px] font-semibold xl:text-[17px]">{l.label}</span>
+                <span className="whitespace-nowrap font-display text-[15px] font-medium xl:text-[17px]">{l.label}</span>
                 {l.sub && (
                   <span className="absolute left-0 top-full pt-0.5 font-display text-[11px] font-medium text-lime opacity-0 transition-opacity duration-150 group-hover:opacity-100 whitespace-nowrap">
                     {l.sub}
@@ -86,7 +86,7 @@ export default function LandingNav() {
           <button
             type="button"
             onClick={openBgreenie}
-            className={`hidden items-center whitespace-nowrap rounded-full border px-3.5 py-2 font-display text-[15px] font-semibold transition lg:inline-flex xl:px-4 ${solid ? 'border-ink/40 text-ink/75 hover:border-lime hover:text-lime' : 'border-white/50 text-white/90 hover:border-white hover:text-white'}`}
+            className={`hidden items-center whitespace-nowrap rounded-full border px-3.5 py-2 font-display text-[15px] font-medium transition lg:inline-flex xl:px-4 ${solid ? 'border-ink/40 text-ink/75 hover:border-lime hover:text-lime' : 'border-white/50 text-white/90 hover:border-white hover:text-white'}`}
           >
             Bgreenie Membership
           </button>
