@@ -247,7 +247,7 @@ export const community = [
 
 // Portable System page — looping header banners + portable battery products.
 export const portableHeaderSlides = [
-  { desktop: asset('/portable-header-5.webp'), mobile: asset('/portable-header-m5.webp'), mobilePos: 'right center' },
+  { desktop: asset('/portable-header-5.webp'), mobile: asset('/portable-header-5.webp'), mobilePos: 'right center' },
   { desktop: asset('/portable-slide-2.webp'), mobile: asset('/portable-slide-2.webp') },
   { desktop: asset('/portable-slide-d150.webp'), mobile: asset('/portable-slide-d150.webp') },
   { desktop: asset('/portable-slide-3.webp'), mobile: asset('/portable-slide-3.webp') },
