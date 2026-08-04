@@ -50,40 +50,38 @@ export default function RooftopSystemPage() {
       <main>
         {/* Tagline + video share a wrapper so the tagline can stay frozen (sticky
             just below the header) until the looping video has scrolled past. */}
-        <div className="relative">
-          {/* Tagline bar — freezes below the header while the video scrolls by. */}
-          <section className="sticky z-30 border-b border-ink/[0.07]" style={{ top: headerH, backgroundColor: '#EEF5FC' }}>
-            <div className="container-x py-5 text-center sm:py-6">
-              <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-lime">Rooftop Solar Thailand</p>
-              <h1 className="mt-1 font-display text-xl font-black tracking-tight text-ink sm:text-3xl">
-                Thailand&apos;s complete residential and commercial solar solution.
-              </h1>
-            </div>
-          </section>
+        {/* Full-bleed hero video with overlaid headline */}
+        <section className="relative w-full" style={{ marginTop: -headerH }}>
+          <div className="relative aspect-video w-full overflow-hidden bg-ink">
+            <video
+              ref={videoRef}
+              className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+                ready ? 'opacity-100' : 'opacity-0'
+              }`}
+              src={rooftopVideo}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              onLoadedData={() => setReady(true)}
+              onCanPlay={() => setReady(true)}
+            />
+            <MediaLoader show={!ready} label="Loading video" />
 
-          {/* Full-bleed looping video — spans the entire viewport width. */}
-          <section className="relative w-full">
-            {/* Aspect-locked, brand-dark backdrop so there's no layout jump and a
-                clean fill (not a blank flash) while the loop downloads. */}
-            <div className="relative aspect-video w-full overflow-hidden bg-ink">
-              <video
-                ref={videoRef}
-                className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
-                  ready ? 'opacity-100' : 'opacity-0'
-                }`}
-                src={rooftopVideo}
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
-                onLoadedData={() => setReady(true)}
-                onCanPlay={() => setReady(true)}
-              />
-              <MediaLoader show={!ready} label="Loading video" />
+            {/* Gradients + text overlay */}
+            <div className="pointer-events-none absolute inset-0 z-10">
+              <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/50 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-ink/70 via-ink/20 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 container-x pb-[clamp(1.25rem,4vw,3.5rem)]">
+                <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-lime/90">Rooftop Solar Thailand</p>
+                <h1 className="mt-2 font-display text-[clamp(1.5rem,3.5vw,3rem)] font-medium leading-[1.1] tracking-tight text-white max-w-2xl">
+                  Thailand&apos;s complete residential and commercial solar solution.
+                </h1>
+              </div>
             </div>
-          </section>
-        </div>
+          </div>
+        </section>
 
         <section style={{ backgroundColor: '#040f08' }}>
           <div className="container-x">
