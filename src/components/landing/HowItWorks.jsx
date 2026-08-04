@@ -4,7 +4,7 @@ import Reveal from '../Reveal';
 const steps = [
   { icon: ShoppingCart, step: '01', title: 'Choose Your System', body: 'Pick the kit that fits your home and budget. Not sure? We help you choose — for free.' },
   { icon: CalendarCheck, step: '02', title: 'Schedule Installation', body: 'Our certified team installs your system fast. Usually within a week of your order.', dark: true },
-  { icon: PiggyBank, step: '03', title: 'Start Saving', body: 'Your panels go live and your electricity bill drops — from day one.', dark: true },
+  { icon: PiggyBank, step: '03', title: 'Start Saving', body: 'Your panels go live and your electricity bill drops — from day one.', green: true },
 ];
 
 export default function HowItWorks() {
@@ -28,7 +28,7 @@ export default function HowItWorks() {
             <Reveal key={s.step} delay={i * 0.12}>
               <div className="relative flex flex-col">
                 <div className="relative z-10 mb-6 flex items-center gap-4 sm:flex-col sm:items-start sm:gap-0">
-                  <div className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-full shadow-lg sm:mb-5 ${s.dark ? 'bg-neutral-800' : 'bg-lime'}`}>
+                  <div className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-full shadow-lg sm:mb-5 ${s.dark ? 'bg-neutral-800' : s.green ? 'bg-price' : 'bg-lime'}`}>
                     <s.icon size={26} className="text-white" strokeWidth={2} />
                   </div>
                   <span className="font-display text-4xl font-black sm:hidden" style={{ color: 'rgba(0,0,0,0.10)' }}>
