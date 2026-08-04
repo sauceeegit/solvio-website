@@ -60,11 +60,18 @@ npm run build          # production build into /dist (also runs scripts/prerende
 
 ## 5. Architecture map
 
-**Routing** — `src/App.jsx` wraps everything in `<BgreenieProvider>` and defines routes:
-`/` `LandingPage` · `/balcony-system` `ProductPage` · `/portable-system` · `/solar-panel` ·
+**Routing** — `src/App.jsx` wraps everything in `<BgreenieProvider>` and defines 10 routes:
+`/` `LandingPage` · `/balcony-system` `ProductPage` · `/portable-system` ·
+`/portable-system/d100` · `/portable-system/panel` · `/solar-panel` ·
 `/rooftop-system` · `/about` · `/faqs` · `/checkout`.
 Every page = `<Header/>` (sticky TopBar + nav) → `<main>` → `<Footer/>`, and most end with
 `<ContactSection/>`.
+
+⚠️ The two `/portable-system/*` routes are **shared detail pages**: six batteries live on
+`/portable-system/d100?model=d150|d300|d600|d1200|d2400` and four panels on
+`/portable-system/panel?model=p120|p200|p400`. Both render the same
+`components/portable/PortableProductDetailPage.jsx`, which reads the `?model=` param and drives a
+`<select>` capacity picker. The repeated `href`s in `landing.js` are intentional — don't dedupe them.
 
 **Nav** — links are **hard-coded** in `src/components/landing/LandingNav.jsx` (the `links` array). Edit
 menu items there (the `landingNav` data export is dead/unused).
@@ -72,6 +79,8 @@ menu items there (the `landingNav` data export is dead/unused).
 **Content/data (edit copy & options here):**
 - `src/data/landing.js` — landing content + all FAQ sets (`landingFaqs`, `rooftopFaqs`, `panelFaqs`).
 - `src/data/product.js` — the **balcony product, pricing, and configurator options** (see §6).
+- `src/data/d100.js` — the six **portable batteries**: full technical specs, gallery images, FAQs.
+- `src/data/portablePanels.js` — the four **portable folding panels**, same shape as above.
 - `src/data/seo.js` — `SITE` (`https://solvio.solar`) + per-route `<head>` meta used by the prerender.
 
 **Shared Bgreenie popup** — `src/context/BgreenieModal.jsx` exposes `BgreenieProvider` + `useBgreenie()`
