@@ -10,7 +10,7 @@ export default {
           700: '#0E3320',
           600: '#143D28',
         },
-        surface: '#e3f1ff',
+        surface: '#f5f5f7',
         light: '#f0f3f7',
         // Solvio brand orange. Token kept as `lime` so all existing bg-lime / text-lime-dark classes pick it up.
         lime: {
