@@ -25,6 +25,7 @@ function StarBadge() {
 
 export default function LandingNav() {
   const [scrolled, setScrolled] = useState(false);
+  const [hovered, setHovered] = useState(false);
   const [open, setOpen] = useState(false);
   const openModal = useBgreenie();
 
@@ -40,10 +41,14 @@ export default function LandingNav() {
     openModal();
   };
 
+  const solid = scrolled || hovered;
+
   return (
     <header
-      className={`border-b transition-all duration-500 ${
-        scrolled
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className={`border-b transition-all duration-300 ${
+        solid
           ? 'border-ink/10 bg-white/95 shadow-soft backdrop-blur-md'
           : 'border-transparent bg-transparent'
       }`}
@@ -60,7 +65,7 @@ export default function LandingNav() {
                   `group relative transition-colors duration-300 ${
                     isActive
                       ? 'text-lime'
-                      : scrolled ? 'text-ink/75 hover:text-lime' : 'text-white/90 hover:text-white'
+                      : solid ? 'text-ink/75 hover:text-lime' : 'text-white/90 hover:text-white'
                   }`
                 }
               >
@@ -79,7 +84,7 @@ export default function LandingNav() {
           <button
             type="button"
             onClick={openBgreenie}
-            className={`hidden items-center whitespace-nowrap rounded-full border px-3.5 py-2 font-display text-[15px] font-semibold transition lg:inline-flex xl:px-4 ${scrolled ? 'border-ink/40 text-ink/75 hover:border-lime hover:text-lime' : 'border-white/50 text-white/90 hover:border-white hover:text-white'}`}
+            className={`hidden items-center whitespace-nowrap rounded-full border px-3.5 py-2 font-display text-[15px] font-semibold transition lg:inline-flex xl:px-4 ${solid ? 'border-ink/40 text-ink/75 hover:border-lime hover:text-lime' : 'border-white/50 text-white/90 hover:border-white hover:text-white'}`}
           >
             Bgreenie Membership
           </button>
@@ -91,7 +96,7 @@ export default function LandingNav() {
           </Link>
           <button
             onClick={() => setOpen(true)}
-            className={`grid h-11 w-11 place-items-center rounded-full transition lg:hidden ${scrolled ? 'text-ink hover:bg-ink/[0.05]' : 'text-white hover:bg-white/10'}`}
+            className={`grid h-11 w-11 place-items-center rounded-full transition lg:hidden ${solid ? 'text-ink hover:bg-ink/[0.05]' : 'text-white hover:bg-white/10'}`}
             aria-label="Open menu"
           >
             <Menu size={30} strokeWidth={2.25} />
