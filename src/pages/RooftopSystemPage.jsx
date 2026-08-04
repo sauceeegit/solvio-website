@@ -94,6 +94,8 @@ export default function RooftopSystemPage() {
                   <img loading="lazy"
                     src={asset('/rooftop-feature.webp')}
                     alt="Aerial before and after — a villa roof fitted with a full Solvio solar array"
+                    width={1448}
+                    height={1086}
                     className="block w-full"
                   />
                 </div>
@@ -131,6 +133,8 @@ export default function RooftopSystemPage() {
                   <img loading="lazy"
                     src={asset('/rooftop-cta.webp')}
                     alt="Solvio technicians installing a rooftop solar array on a resort at sunset"
+                    width={1448}
+                    height={1086}
                     className="block w-full"
                   />
                 </div>

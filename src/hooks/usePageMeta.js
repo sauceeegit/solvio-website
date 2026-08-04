@@ -23,5 +23,22 @@ export function usePageMeta(route) {
     set('meta[property="og:url"]', 'content', url);
     set('meta[name="twitter:title"]', 'content', meta.title);
     set('meta[name="twitter:description"]', 'content', meta.description);
+
+    // Routes flagged noindex (currently only the demo /checkout) get a robots
+    // meta injected; every other route must have it REMOVED, otherwise a
+    // client-side nav away from /checkout would leave the whole SPA noindex'd.
+    const existing = document.querySelector('meta[name="robots"]');
+    if (meta.noindex) {
+      if (existing) {
+        existing.setAttribute('content', 'noindex, follow');
+      } else {
+        const el = document.createElement('meta');
+        el.setAttribute('name', 'robots');
+        el.setAttribute('content', 'noindex, follow');
+        document.head.appendChild(el);
+      }
+    } else if (existing) {
+      existing.remove();
+    }
   }, [route]);
 }

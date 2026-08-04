@@ -1,9 +1,12 @@
 import { asset } from '../lib/format';
 import { portablePanels } from './landing';
 
-const panelHeroImg = { src: asset('/panel-hero.webp') };
-const panelHeroImg200 = { src: asset('/panel-hero-200.webp') };
-const panelLongLastingImg = { src: asset('/panel-long-lasting.webp') };
+// w/h are the files' intrinsic pixel dimensions — they let the browser reserve
+// the right space before the image loads (no layout shift). Update them if you
+// swap a file for one with a different aspect ratio.
+const panelHeroImg = { src: asset('/panel-hero.webp'), w: 1958, h: 803 };
+const panelHeroImg200 = { src: asset('/panel-hero-200.webp'), w: 1958, h: 803 };
+const panelLongLastingImg = { src: asset('/panel-long-lasting.webp'), w: 1958, h: 803 };
 
 const p200ExtraImages = {
   2: asset('/p200-img02.webp'),

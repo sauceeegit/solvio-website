@@ -1,13 +1,136 @@
 # Solvio — Project handoff / continuation notes
 
-_Last updated: 2026-07-13._ **Read `CLAUDE.md` (repo root) first — it has the team working rules.**
+_Last updated: 2026-08-04._ **Read `CLAUDE.md` (repo root) first — it has the team working rules.**
 The `## CURRENT STATE` block below is authoritative; the older sections further down still
 describe individual components accurately but predate the multi-page/3D/perf work — trust this
 block where they disagree.
 
 ---
 
-## ⭐ CURRENT STATE (2026-07-13) — read this first
+## ⭐ CURRENT STATE (2026-08-04) — read this first
+
+### 2026-08-04 SEO pass (non-visual) — what changed
+Acted on an external SEO audit. **Everything here is invisible on the page** — no component
+layout or styling was touched.
+- **Product JSON-LD prices were badly stale**: `prerender-meta.mjs` advertised ฿12,990–43,800,
+  impossible since the July repricing. Now **฿30,750–68,350**, mirroring the Comparison "From"
+  row (2/4/6 White Feather + the ฿11,950 inverter). ⚠️ **Re-check these whenever panel or
+  inverter pricing moves** — structured data quoting an unbuildable price disqualifies you from
+  Merchant Center.
+- **`ElectricalContractor` schema** added in `index.html` (Phuket address, geo, sameAs). That's a
+  real schema.org LocalBusiness subtype; **`SolarEnergyCompany` is not a type** — don't swap it in.
+- **`/checkout` is now noindex** and has its own meta (it was inheriting the homepage's).
+  `seo.js` carries a `noindex` flag; both the prerender and `usePageMeta` honor it, and the hook
+  **removes** the tag when navigating away — without that, one SPA nav off `/checkout` would leave
+  the entire site noindexed. **Do NOT also disallow `/checkout` in robots.txt** — blocking the
+  crawl hides the noindex.
+- **Phuket in titles/descriptions** for the locally-sold pages (home, rooftop, about); nationwide
+  product pages keep "Thailand". **H1s and body copy are untouched.**
+- **`width`/`height`** on the full-bleed banners that had no reserved space. Safe because Tailwind
+  preflight keeps `height:auto`. Portable banner dimensions live next to their `src` as `w`/`h` in
+  `d100.js` / `portablePanels.js` — **update them if you swap a file with a different ratio**.
+- **Dead code removed**: `SpecCard.jsx` (imported nowhere) and `product.images` (5 hotlinked
+  Unsplash stock photos rendered by nothing). The `hero.poster` fallback now points at a local
+  asset. **No Unsplash URLs remain in the bundle.**
+
+**Audit claims that turned out to be FALSE** — don't re-open these:
+- *"~35 images missing alt"* — **all 44 `<img>` tags have alt text**, and it's genuinely
+  descriptive. The claim came from a grep that mistook tags whose `alt` sits on a later line.
+- *"Hotlinked Unsplash hero poster is the homepage LCP"* — it was in the dead `else` branch of
+  `Hero.jsx` (`videoSrc ? <video> : <img>`), so it never rendered. Cleaned up anyway.
+- *"22 MB video on the homepage"* — that's `portable-hero.mp4` on **`/portable-system`**. The
+  homepage hero is `hero-loop.mp4` at 3.7 MB.
+- *"Fake German-city testimonials"* — already localized to Thai cities. The invented
+  **4.8★ / 1,294 reviews** IS still live, but only in visible HTML — **not** in structured data,
+  so there's no fake-review manual-action risk.
+
+**Still open from this pass:**
+- **No poster on the hero `<video>`** — it shows a dark box + spinner until the first frame.
+  Needs a frame extracted with ffmpeg (not available in the web session; do it locally).
+- **`portable-hero.mp4` is 21 MiB** — needs ffmpeg to compress (~720p CRF 25–28).
+- **Search Console (DNS) + Bing WMT + IndexNow** — account actions, can't be done from the repo.
+- **Google Business Profile** — off-site, and the highest-value item for "solar Phuket" queries.
+- **Trust/legal**: the 4.8★/1,294 rating, the SocialProof stats strip (5,000+ customers / 18 MW+ /
+  98%), the six testimonials, and the three dead `href="#"` footer links (Imprint/Privacy/Terms).
+  All deferred by the user — they change visible design and need real content decisions (PDPA).
+- **Thai-language content** — deferred. Would need a language switcher (new UI) + hreflang.
+- Optional: `eslint-plugin-jsx-a11y` as an alt-text guard. Not installed; alt is currently clean.
+
+### 2026-07-14 → 2026-08-03 — summarized (~250 commits, thematic not chronological)
+This stretch was mostly **portable-product build-out** plus a **site-wide dark/editorial restyle**.
+It was never written up as it happened, so the notes below are reconstructed from the git history
+and the current code — accurate as to *what exists now*, thinner on the reasoning than the
+session-by-session entries below it.
+
+**Portable system is now a 3-route product line (the biggest addition).**
+- `/portable-system` (`PortablePage.jsx`) = `HeaderCarousel` (auto-advancing hero slides, first
+  slide is a video, data in `landing.js` `portableHeaderSlides`) → `PortableBatteries` →
+  `PortablePanels` → `PanelFeatures` → `ContactSection`. New folder `src/components/portable/`.
+- **`/portable-system/d100`** and **`/portable-system/panel`** are two thin page wrappers
+  (`D100ProductPage.jsx`, `PortablePanelProductPage.jsx`) around ONE shared component,
+  **`PortableProductDetailPage.jsx`**.
+- ⚠️ **Six batteries share the d100 route and four panels share the panel route** — the model is
+  picked by the **`?model=` query param** (`useSearchParams`) driving a `<select>` capacity
+  selector. So `/portable-system/d100?model=d600` is the D600 page. The `href`s in `landing.js`
+  (`portableBatteries`, `portablePanels`) look duplicated on purpose — **don't "fix" them**, and
+  don't split them into separate routes without asking.
+- Detail-page data: **`src/data/d100.js`** (batteries — full `technicalSpecifications` per model,
+  built by mapping over `portableBatteries`) and **`src/data/portablePanels.js`** (panels).
+  Section order in the shared component: gallery + selector → `featureStrip` (icon row, guarded
+  with `?.length > 0`) → optional full-bleed `heroImg` → **dark `#040f08` specs table**
+  (two-column, "Show all" past 8 rows) → optional `afterSpecsImg` banner → FAQ accordion.
+  Every image slot is optional — a model without `heroImg`/`afterSpecsImg` just skips the section.
+- `ProductGallery.jsx` = auto-advancing gallery + thumbnails. Per-image `imgClass` overrides
+  (`object-cover`, `scale-125`) exist because the product shots have inconsistent padding —
+  **preserve them when restyling** (see CLAUDE.md golden rule 3).
+- Prices unchanged from 2026-07-10: batteries ฿6,990 / 8,300 / 12,200 / 20,000 / 36,000 / 64,900,
+  panels ฿5,000 / 7,500 / 14,000 / 30,000.
+
+**Site-wide dark / editorial restyle** (a deliberate direction, not a bug):
+- `TopBar` and `Footer` backgrounds → **`#040f08`**; `CategoryGrid` → dark with dimmed
+  non-hovered cards; `HowItWorks` → dark `#381914` with a connecting line; `RooftopSystemPage`
+  feature sections → dark; `Comparison` + `PhotoBanner` → dark specs styling.
+- Headings settled on **`price` green `#117238`** after passing through mustard `#C29848`
+  (mustard survives in a few eyebrow/stat accents). Prices render in forest green.
+- **Nav (`LandingNav.jsx`) is B&O-inspired**: transparent-ish `bg-white/20 backdrop-blur-sm` at
+  the top of the page, solid `bg-white/95 shadow-soft backdrop-blur-md` once `scrolled`. Hero
+  headline is left-aligned to match.
+- The brand orange token `lime` is **`#FF6700`** (dark `#a3550f`) — the older `#FC4302` note
+  elsewhere in this file is stale.
+
+**New landing sections** (all wired into `LandingPage.jsx` in this order): `SocialProof`
+(4-stat strip under the hero — the average-rating stat was deliberately removed),
+`SunshineSection` ("Turn Sunshine Into Savings"), `HowItWorks`. Also `SolarYourWay.jsx`
+(tabbed installation cards + energy-chart image) — it lives on **`/solar-panel` only**; it was
+added to the landing page and then deliberately removed, so don't re-add it there.
+`MobileCollapse.jsx` is the shared "Show all / Show more" mobile truncation helper.
+
+**Fixes & housekeeping worth knowing:**
+- **SPA deep links fixed properly** (commit `3a78e15`): `public/404.html` now redirects with the
+  path in a `?p=` param and `index.html` restores it. This is what made `/checkout` and the other
+  deep links work on a hard refresh — the old "copy index.html to 404.html" trick is superseded.
+- **Calculator electricity rate is now ฿4.9/kWh** (`product.js` `rate`) — the 4.5 figure quoted
+  further down this file is stale. `EXPORT_RATE` is still ฿2.20.
+- **Mobile touch-scroll bugs** on the portable carousels were fixed twice: `touch-pan-y` on the
+  track, then removing an `overflow-y` clip that blocked vertical scroll. If you restyle
+  `PortableBatteries` / `PortablePanels` / `HeaderCarousel`, **don't reintroduce `overflow-y`
+  on the scroller** — test on a touch device.
+- Large PNG→WebP compression passes throughout (D-series, kit images, panels, logo, heroes).
+- "Sun. Sorted." slogan dropped from all titles/meta. All FAQ headings simplified to "FAQ".
+- Bgreenie "Learn more" modal rewired; TopBar gained **LINE (@250wcgbc)** and
+  **Telegram (@solviosolar)** chips.
+
+**Two gaps this created:**
+- `public/sitemap.xml` still lists only 7 routes — **`/portable-system/d100` and
+  `/portable-system/panel` are missing** (they *are* in `src/data/seo.js`, so their prerendered
+  meta is correct; only the sitemap is behind). `/checkout` is omitted on purpose.
+- **~60 source PNGs are committed at the repo root** (`Solvio-D1200-Frontview.png`,
+  `Solvio-Hero-x222.png`, …) from the "Add files via upload" commits. They're outside `public/`,
+  so they're never served — they only bloat the clone (~100 MB). The WebP versions in `public/`
+  are what the site actually uses. Safe to delete from git once you've archived the originals
+  elsewhere, but **ask first** — they're the only full-resolution copies in the repo.
+
+### 2026-07-13 session — what changed
 
 **Repo (public):** https://github.com/sauceeegit/solvio-website (account `sauceeegit`)
 **Live:** https://solvio.solar — custom domain (Pages), auto-deploys on every push to `main` (~3 min, GitHub Actions).
@@ -148,14 +271,18 @@ The old `sauceeegit.github.io/solvio-website/` subpath is superseded; base is no
 
 ### Routing — **BrowserRouter** (switched back 2026-07-08, fixes the anchor bug)
 - `src/main.jsx` uses `<BrowserRouter basename={import.meta.env.BASE_URL…}>`. Clean URLs
-  (`…/solvio-website/balcony-system`); deep links / refresh work via the CI-generated `dist/404.html`.
+  (`https://solvio.solar/balcony-system`); deep links / refresh work via **`public/404.html`**,
+  which encodes the requested path into `?p=` and lets the `index.html` snippet restore it
+  (added 2026-07-23 — this replaced the older "CI copies index.html to 404.html" approach and is
+  what made `/checkout` and the nested portable routes survive a hard refresh).
 - The HashRouter anchor bug is FIXED by this: `#calculator`, `#reviews`, `#top` and the footer logo
   scroll correctly again. Portable "See details" fallback now points to `/portable-system`
   (was `/portable`, a nonexistent route). ⚠️ Don't switch back to HashRouter.
 
-### Pages & nav (8 routes, in `src/App.jsx`)
-`/` landing · `/balcony-system` · `/portable-system` · `/solar-panel` · `/rooftop-system` ·
-`/about` (About Solvio) · `/faqs` (4-tab combined FAQ) · `/checkout`.
+### Pages & nav (10 routes, in `src/App.jsx`)
+`/` landing · `/balcony-system` · `/portable-system` · **`/portable-system/d100`** (6 batteries
+via `?model=`) · **`/portable-system/panel`** (4 panels via `?model=`) · `/solar-panel` ·
+`/rooftop-system` · `/about` (About Solvio) · `/faqs` (4-tab combined FAQ) · `/checkout`.
 Each page = `<Header/>` (sticky TopBar+nav) → `<main>` → `<Footer/>`, and every content page ends with
 `<ContactSection/>` (the `#contact` anchor the footer "Contact" links to).
 **Nav links are HARDCODED** in `src/components/landing/LandingNav.jsx` (the `links` array), NOT the
@@ -274,6 +401,15 @@ Each page = `<Header/>` (sticky TopBar+nav) → `<main>` → `<Footer/>`, and ev
    Also: the balcony bento tile "฿65k saved in 10 years per module" is user-specified copy that no
    longer matches the model (~฿20k/module at 65% SC) — awaiting user decision.
    Market refs used: 5 kW installed ฿130-250k, payback 4-6y typical; PEA net-billing ฿2.20/unit.
+   **Update:** the base electricity rate is now **฿4.9/kWh** (was 4.5) — `rate` in `product.js`.
+7. ~~**`public/sitemap.xml` is missing the two portable detail routes.**~~ **DONE 2026-08-04**
+   along with a non-visual SEO pass — see the "2026-08-04 SEO pass" block at the top of
+   CURRENT STATE for what changed and what's still open.
+8. **~60 full-resolution source PNGs sit at the repo root**, committed by the "Add files via
+   upload" commits (they bypass `public/`, so nothing serves them). They add ~100 MB to every
+   clone. Removing them is safe for the site but **ask the user first** — the repo is currently
+   the only copy of some of those originals. Going forward, upload sources somewhere else and
+   commit only the compressed WebP into `public/`.
 
 ---
 
@@ -357,7 +493,7 @@ Most landing content lives in **`src/data/landing.js`** (one source of truth).
 
 ## The solar calculator — `src/components/landing/EarningsCalculator.jsx`
 Bill-first. Inputs: monthly bill, **coverage %**, electricity **rate** (฿/kWh, default
-4.5), **instalment plan** (6/12/18/24/48 mo), **instalment interest %** (default 0,
+**4.9** since 2026-07-29 — `rate` in `product.js`), **instalment plan** (6/12/18/24/48 mo), **instalment interest %** (default 0,
 amortized when >0), and a **battery** toggle. Results: red/green break-even chart
 (red before payback, green after), saving/month + saving/25yr (green text),
 payback, monthly instalment, system size (kW) + ~450 W panel count, plus an

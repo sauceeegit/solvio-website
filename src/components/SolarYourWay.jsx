@@ -79,6 +79,8 @@ function EnergyChart() {
       <img
         src={asset('/solar-energy-chart.png')}
         alt="Solar energy production vs household consumption over 24 hours"
+        width={2000}
+        height={425}
         className="w-full"
       />
     </div>

@@ -570,7 +570,7 @@ function Confirmation({ items }) {
 
 // ─── Page shell ───────────────────────────────────────────────────────────────
 export default function CheckoutPage() {
-  usePageMeta('/');
+  usePageMeta('/checkout');
   const [step, setStep] = useState(0);
   const [placed, setPlaced] = useState(false);
   const [items, setItems] = useState(DEMO_ITEMS);

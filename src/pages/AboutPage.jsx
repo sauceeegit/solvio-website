@@ -69,6 +69,8 @@ export default function AboutPage() {
                 <img
                   src={asset('/rooftop-cta.webp')}
                   alt="Solvio technicians installing a rooftop solar array in Thailand"
+                  width={1448}
+                  height={1086}
                   className="block w-full"
                   loading="lazy"
                 />

@@ -24,6 +24,7 @@
       {
         "@context": "https://schema.org",
         "@type": "Organization",
+        "@id": "https://solvio.solar/#organization",
         "name": "Solvio",
         "url": "https://solvio.solar/",
         "logo": "https://solvio.solar/solvio-logo.png",
@@ -34,6 +35,53 @@
           "areaServed": "TH",
           "availableLanguage": ["en", "th"]
         }
+      }
+    </script>
+    <!--
+      Local business schema for the Phuket storefront. ElectricalContractor is a
+      real schema.org type (LocalBusiness > HomeAndConstructionBusiness >
+      ElectricalContractor) and fits a solar installer better than bare
+      LocalBusiness. Note: "SolarEnergyCompany" is NOT a schema.org type — don't
+      swap it in, it will simply be ignored.
+      Keep the address/geo in sync with src/components/ContactSection.jsx.
+    -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ElectricalContractor",
+        "@id": "https://solvio.solar/#localbusiness",
+        "name": "Solvio Solar",
+        "url": "https://solvio.solar/",
+        "image": "https://solvio.solar/og-image.jpg",
+        "logo": "https://solvio.solar/solvio-logo.png",
+        "telephone": "+66 84 348 8428",
+        "email": "info@solvio.solar",
+        "parentOrganization": { "@id": "https://solvio.solar/#organization" },
+        "priceRange": "฿฿",
+        "currenciesAccepted": "THB",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Patongo, Pa Tong",
+          "addressLocality": "Kathu District",
+          "addressRegion": "Phuket",
+          "postalCode": "83150",
+          "addressCountry": "TH"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 7.8894748,
+          "longitude": 98.3009435
+        },
+        "areaServed": [
+          { "@type": "AdministrativeArea", "name": "Phuket" },
+          { "@type": "Country", "name": "Thailand" }
+        ],
+        "knowsLanguage": ["en", "th"],
+        "sameAs": [
+          "https://www.facebook.com/profile.php?id=61589293775189",
+          "https://line.me/R/ti/p/@250wcgbc",
+          "https://t.me/solviosolar"
+        ]
       }
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />

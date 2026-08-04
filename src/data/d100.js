@@ -190,19 +190,22 @@ export const portableProductModels = portableBatteries.map((model) => {
         imgClass: extra?.imgClass ?? null,
       };
     }),
-    heroImg: model.id === 'd2400' ? { src: asset('/d2400-hero.webp') }
-           : model.id === 'd1200' ? { src: asset('/d1200-hero.webp') }
-           : model.id === 'd600'  ? { src: asset('/d600-hero.webp') }
-           : model.id === 'd300'  ? { src: asset('/d300-hero.webp') }
-           : model.id === 'd150'  ? { src: asset('/d150-hero.webp') }
-           : model.id === 'd100'  ? { src: asset('/d100-hero.webp'), objectPosition: '50% 20%' }
+    // w/h are the files' intrinsic pixel dimensions — they let the browser
+    // reserve the right space before the image loads (no layout shift). Update
+    // them if you swap a file for one with a different aspect ratio.
+    heroImg: model.id === 'd2400' ? { src: asset('/d2400-hero.webp'), w: 2928, h: 1200 }
+           : model.id === 'd1200' ? { src: asset('/d1200-hero.webp'), w: 1958, h: 803 }
+           : model.id === 'd600'  ? { src: asset('/d600-hero.webp'), w: 1789, h: 879 }
+           : model.id === 'd300'  ? { src: asset('/d300-hero.webp'), w: 1695, h: 928 }
+           : model.id === 'd150'  ? { src: asset('/d150-hero.webp'), w: 1672, h: 941 }
+           : model.id === 'd100'  ? { src: asset('/d100-hero.webp'), w: 1535, h: 1024, objectPosition: '50% 20%' }
            : null,
-    afterSpecsImg: model.id === 'd100'  ? { src: asset('/solvio-d100.webp') }
-                 : model.id === 'd150'  ? { src: asset('/solvio-d150.webp') }
-                 : model.id === 'd300'  ? { src: asset('/solvio-d300.webp') }
-                 : model.id === 'd600'  ? { src: asset('/solvio-d600.webp') }
-                 : model.id === 'd1200' ? { src: asset('/solvio-d1200.webp') }
-                 : model.id === 'd2400' ? { src: asset('/solvio-d2400.webp') }
+    afterSpecsImg: model.id === 'd100'  ? { src: asset('/solvio-d100.webp'), w: 1959, h: 803 }
+                 : model.id === 'd150'  ? { src: asset('/solvio-d150.webp'), w: 1774, h: 887 }
+                 : model.id === 'd300'  ? { src: asset('/solvio-d300.webp'), w: 1958, h: 803 }
+                 : model.id === 'd600'  ? { src: asset('/solvio-d600.webp'), w: 1959, h: 803 }
+                 : model.id === 'd1200' ? { src: asset('/solvio-d1200.webp'), w: 1959, h: 803 }
+                 : model.id === 'd2400' ? { src: asset('/solvio-d2400.webp'), w: 1956, h: 804 }
                  : null,
     facts: [
       { value: model.capacity, label: 'Battery capacity' },

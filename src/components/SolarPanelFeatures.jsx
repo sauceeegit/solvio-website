@@ -36,6 +36,8 @@ export default function SolarPanelFeatures() {
           <img loading="lazy"
             src={asset('/sp-feature-top-mobile.webp')}
             alt="Solvio Dark Feather — Ultra Black, Ultra Thin, Ultra Light"
+            width={800}
+            height={1200}
             className="block w-full"
           />
         </picture>

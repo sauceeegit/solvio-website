@@ -164,6 +164,8 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
             <img
               src={product.heroImg.src}
               alt={`${product.name} lifestyle`}
+              width={product.heroImg.w}
+              height={product.heroImg.h}
               className="block w-full"
             />
           </section>
@@ -221,7 +223,13 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
 
         {product.afterSpecsImg && (
           <section className="w-full overflow-hidden bg-ink">
-            <img src={product.afterSpecsImg.src} alt={`${product.name} details`} className="block w-full" />
+            <img
+              src={product.afterSpecsImg.src}
+              alt={`${product.name} details`}
+              width={product.afterSpecsImg.w}
+              height={product.afterSpecsImg.h}
+              className="block w-full"
+            />
           </section>
         )}
 

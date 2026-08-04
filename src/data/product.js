@@ -12,28 +12,10 @@ export const product = {
   reviewCount: 1294,
   // base price reflects the default config: 4 modules, balcony mount, no storage, no extra cable
   currency: '฿',
-  images: [
-    {
-      src: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1200&q=80',
-      alt: 'Solar panels mounted on a sunny balcony railing',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1545209463-e2825498edbf?auto=format&fit=crop&w=1200&q=80',
-      alt: 'Close-up of monocrystalline solar cells',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1613665813446-82a78c468a1d?auto=format&fit=crop&w=1200&q=80',
-      alt: 'Rooftop solar installation at golden hour',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1592833159155-c62df1b65634?auto=format&fit=crop&w=1200&q=80',
-      alt: 'Solar array against a blue sky',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1497440001374-f26997328c1b?auto=format&fit=crop&w=1200&q=80',
-      alt: 'Modern apartment balcony with greenery',
-    },
-  ],
+  // NOTE: the old `images` array (5 hotlinked Unsplash stock photos) was removed
+  // on 2026-08-04. Nothing rendered it — the balcony hero is the embedded 3D
+  // model in Gallery.jsx — so it only shipped dead third-party URLs in the
+  // bundle. If a real photo gallery comes back, use local /public assets.
   highlights: [
     'Tool-light setup in under 30 minutes',
     'Fits most railing and grid balconies',
