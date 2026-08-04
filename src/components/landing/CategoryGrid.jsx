@@ -13,6 +13,8 @@ function CardInner({ c, dimmed }) {
         alt={c.title}
         className={`absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105 ${c.imgClass || ''}`}
       />
+      {/* dim overlay for non-hovered cards */}
+      <div className={`absolute inset-0 bg-black transition-opacity duration-300 ${dimmed ? 'opacity-40' : 'opacity-0'}`} />
 
       {/* text block — frosted pill so no overlay needed on image */}
       <div className="absolute inset-x-0 top-0 p-5 pr-14">
