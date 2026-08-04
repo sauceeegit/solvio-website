@@ -45,7 +45,7 @@ export default function LandingNav() {
       className={`border-b transition-all duration-500 ${
         scrolled
           ? 'border-ink/10 bg-white/95 shadow-soft backdrop-blur-md'
-          : 'border-transparent bg-white/20 backdrop-blur-sm'
+          : 'border-transparent bg-transparent'
       }`}
     >
       <nav className="container-x flex h-16 items-center justify-between">
@@ -60,7 +60,7 @@ export default function LandingNav() {
                   `group relative transition-colors duration-300 ${
                     isActive
                       ? 'text-lime'
-                      : 'text-ink/75 hover:text-lime'
+                      : scrolled ? 'text-ink/75 hover:text-lime' : 'text-white/90 hover:text-white'
                   }`
                 }
               >
@@ -79,7 +79,7 @@ export default function LandingNav() {
           <button
             type="button"
             onClick={openBgreenie}
-            className="hidden items-center whitespace-nowrap rounded-full border border-ink/40 px-3.5 py-2 font-display text-[15px] font-semibold text-ink/75 transition hover:border-lime hover:text-lime lg:inline-flex xl:px-4"
+            className={`hidden items-center whitespace-nowrap rounded-full border px-3.5 py-2 font-display text-[15px] font-semibold transition lg:inline-flex xl:px-4 ${scrolled ? 'border-ink/40 text-ink/75 hover:border-lime hover:text-lime' : 'border-white/50 text-white/90 hover:border-white hover:text-white'}`}
           >
             Bgreenie Membership
           </button>
@@ -91,7 +91,7 @@ export default function LandingNav() {
           </Link>
           <button
             onClick={() => setOpen(true)}
-            className="grid h-11 w-11 place-items-center rounded-full text-ink transition hover:bg-ink/[0.05] lg:hidden"
+            className={`grid h-11 w-11 place-items-center rounded-full transition lg:hidden ${scrolled ? 'text-ink hover:bg-ink/[0.05]' : 'text-white hover:bg-white/10'}`}
             aria-label="Open menu"
           >
             <Menu size={30} strokeWidth={2.25} />
