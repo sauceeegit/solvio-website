@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import { Menu, X, ShoppingCart } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Logo from '../Logo';
@@ -41,7 +41,9 @@ export default function LandingNav() {
     openModal();
   };
 
-  const solid = scrolled || hovered;
+  const { pathname } = useLocation();
+  const isHome = pathname === '/';
+  const solid = !isHome || scrolled || hovered;
 
   return (
     <header
