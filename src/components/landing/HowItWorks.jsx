@@ -14,7 +14,7 @@ export default function HowItWorks() {
         <Reveal>
           <div className="text-center">
             <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-lime">Simple process</p>
-            <h2 className="mt-3 font-display text-3xl font-medium tracking-tight text-ink sm:text-5xl">
+            <h2 className="mt-3 font-display text-2xl font-medium tracking-tight text-ink sm:text-3xl">
               Up and running in 3 steps
             </h2>
           </div>
