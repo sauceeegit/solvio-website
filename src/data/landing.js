@@ -19,6 +19,8 @@ export const rooftopVideo = asset('/rooftop-loop.mp4');
 export const hero = {
   // Looping hero video (served from /public).
   videoSrc: asset('/hero-loop.mp4'),
+  // First frame of hero-loop.mp4 — shown while the video buffers (poster attr).
+  videoPoster: asset('/hero-poster.webp'),
   // Fallback still, used by Hero.jsx ONLY if videoSrc is ever removed — the
   // video branch renders in practice, so this does not currently appear.
   // Was a hotlinked Unsplash stock photo until 2026-08-04; now a local brand
@@ -245,7 +247,7 @@ export const community = [
 
 // Portable System page — looping header banners + portable battery products.
 export const portableHeaderSlides = [
-  { video: asset('/portable-hero.mp4') },
+  { video: asset('/portable-hero.mp4'), poster: asset('/portable-hero-poster.webp') },
   { desktop: asset('/portable-header-5.webp'), mobile: asset('/portable-header-m5.webp') },
   { desktop: asset('/portable-slide-2.webp'), mobile: asset('/portable-slide-2.webp') },
   { desktop: asset('/portable-slide-d150.webp'), mobile: asset('/portable-slide-d150.webp') },

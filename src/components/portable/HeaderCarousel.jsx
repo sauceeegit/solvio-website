@@ -54,6 +54,7 @@ export default function HeaderCarousel({ slides, interval = 3375 }) {
               <video
                 key={idx}
                 src={s.video}
+                poster={s.poster}
                 autoPlay
                 loop
                 muted

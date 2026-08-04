@@ -26,6 +26,7 @@ export default function Hero() {
               ready ? 'opacity-100' : 'opacity-0'
             }`}
             src={hero.videoSrc}
+            poster={hero.videoPoster}
             autoPlay
             loop
             muted
