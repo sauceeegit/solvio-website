@@ -61,7 +61,7 @@ export default function Hero() {
               Clean Energy<span className="text-lime">.</span><br />Made Simple<span className="text-lime">.</span>
             </motion.h1>
             <motion.p
-              className="mt-2 font-display text-[clamp(0.7rem,1.3vw,0.9rem)] font-medium text-white/75 max-w-sm"
+              className="mt-4 font-display text-[clamp(0.85rem,1.4vw,1rem)] font-medium tracking-wide text-white/90 max-w-sm"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.6, ease: EASE }}
