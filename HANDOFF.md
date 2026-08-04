@@ -9,6 +9,53 @@ block where they disagree.
 
 ## ⭐ CURRENT STATE (2026-08-04) — read this first
 
+### 2026-08-04 SEO pass (non-visual) — what changed
+Acted on an external SEO audit. **Everything here is invisible on the page** — no component
+layout or styling was touched.
+- **Product JSON-LD prices were badly stale**: `prerender-meta.mjs` advertised ฿12,990–43,800,
+  impossible since the July repricing. Now **฿30,750–68,350**, mirroring the Comparison "From"
+  row (2/4/6 White Feather + the ฿11,950 inverter). ⚠️ **Re-check these whenever panel or
+  inverter pricing moves** — structured data quoting an unbuildable price disqualifies you from
+  Merchant Center.
+- **`ElectricalContractor` schema** added in `index.html` (Phuket address, geo, sameAs). That's a
+  real schema.org LocalBusiness subtype; **`SolarEnergyCompany` is not a type** — don't swap it in.
+- **`/checkout` is now noindex** and has its own meta (it was inheriting the homepage's).
+  `seo.js` carries a `noindex` flag; both the prerender and `usePageMeta` honor it, and the hook
+  **removes** the tag when navigating away — without that, one SPA nav off `/checkout` would leave
+  the entire site noindexed. **Do NOT also disallow `/checkout` in robots.txt** — blocking the
+  crawl hides the noindex.
+- **Phuket in titles/descriptions** for the locally-sold pages (home, rooftop, about); nationwide
+  product pages keep "Thailand". **H1s and body copy are untouched.**
+- **`width`/`height`** on the full-bleed banners that had no reserved space. Safe because Tailwind
+  preflight keeps `height:auto`. Portable banner dimensions live next to their `src` as `w`/`h` in
+  `d100.js` / `portablePanels.js` — **update them if you swap a file with a different ratio**.
+- **Dead code removed**: `SpecCard.jsx` (imported nowhere) and `product.images` (5 hotlinked
+  Unsplash stock photos rendered by nothing). The `hero.poster` fallback now points at a local
+  asset. **No Unsplash URLs remain in the bundle.**
+
+**Audit claims that turned out to be FALSE** — don't re-open these:
+- *"~35 images missing alt"* — **all 44 `<img>` tags have alt text**, and it's genuinely
+  descriptive. The claim came from a grep that mistook tags whose `alt` sits on a later line.
+- *"Hotlinked Unsplash hero poster is the homepage LCP"* — it was in the dead `else` branch of
+  `Hero.jsx` (`videoSrc ? <video> : <img>`), so it never rendered. Cleaned up anyway.
+- *"22 MB video on the homepage"* — that's `portable-hero.mp4` on **`/portable-system`**. The
+  homepage hero is `hero-loop.mp4` at 3.7 MB.
+- *"Fake German-city testimonials"* — already localized to Thai cities. The invented
+  **4.8★ / 1,294 reviews** IS still live, but only in visible HTML — **not** in structured data,
+  so there's no fake-review manual-action risk.
+
+**Still open from this pass:**
+- **No poster on the hero `<video>`** — it shows a dark box + spinner until the first frame.
+  Needs a frame extracted with ffmpeg (not available in the web session; do it locally).
+- **`portable-hero.mp4` is 21 MiB** — needs ffmpeg to compress (~720p CRF 25–28).
+- **Search Console (DNS) + Bing WMT + IndexNow** — account actions, can't be done from the repo.
+- **Google Business Profile** — off-site, and the highest-value item for "solar Phuket" queries.
+- **Trust/legal**: the 4.8★/1,294 rating, the SocialProof stats strip (5,000+ customers / 18 MW+ /
+  98%), the six testimonials, and the three dead `href="#"` footer links (Imprint/Privacy/Terms).
+  All deferred by the user — they change visible design and need real content decisions (PDPA).
+- **Thai-language content** — deferred. Would need a language switcher (new UI) + hreflang.
+- Optional: `eslint-plugin-jsx-a11y` as an alt-text guard. Not installed; alt is currently clean.
+
 ### 2026-07-14 → 2026-08-03 — summarized (~250 commits, thematic not chronological)
 This stretch was mostly **portable-product build-out** plus a **site-wide dark/editorial restyle**.
 It was never written up as it happened, so the notes below are reconstructed from the git history
@@ -355,9 +402,9 @@ Each page = `<Header/>` (sticky TopBar+nav) → `<main>` → `<Footer/>`, and ev
    longer matches the model (~฿20k/module at 65% SC) — awaiting user decision.
    Market refs used: 5 kW installed ฿130-250k, payback 4-6y typical; PEA net-billing ฿2.20/unit.
    **Update:** the base electricity rate is now **฿4.9/kWh** (was 4.5) — `rate` in `product.js`.
-7. **`public/sitemap.xml` is missing the two portable detail routes** (`/portable-system/d100`,
-   `/portable-system/panel`). They're already in `src/data/seo.js` so prerendered meta is fine;
-   just add the two `<loc>` entries. `/checkout` stays out until it's a real flow.
+7. ~~**`public/sitemap.xml` is missing the two portable detail routes.**~~ **DONE 2026-08-04**
+   along with a non-visual SEO pass — see the "2026-08-04 SEO pass" block at the top of
+   CURRENT STATE for what changed and what's still open.
 8. **~60 full-resolution source PNGs sit at the repo root**, committed by the "Add files via
    upload" commits (they bypass `public/`, so nothing serves them). They add ~100 MB to every
    clone. Removing them is safe for the site but **ask the user first** — the repo is currently
