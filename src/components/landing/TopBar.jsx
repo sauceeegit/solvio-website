@@ -61,7 +61,7 @@ export default function TopBar() {
               aria-label={label}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-neutral-400 transition-colors duration-150"
+              className="text-neutral-500 transition-colors duration-150"
               onMouseEnter={e => e.currentTarget.style.color = color}
               onMouseLeave={e => e.currentTarget.style.color = ''}
             >
