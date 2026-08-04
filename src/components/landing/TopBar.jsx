@@ -35,7 +35,7 @@ export default function TopBar() {
         <div className="flex items-center gap-2.5">
           <a
             href={`tel:${topBar.phone.replace(/\s/g, '')}`}
-            className="inline-flex items-center gap-1.5 rounded-full bg-lime px-3 py-1 font-display text-[0.72rem] font-semibold text-white transition hover:bg-lime-dark"
+            className="inline-flex items-center gap-1.5 rounded-full bg-neutral-200 px-3 py-1 font-display text-[0.72rem] font-semibold text-neutral-700 transition hover:bg-lime hover:text-white"
           >
             <Phone size={12} /> {topBar.phone}
           </a>
@@ -43,8 +43,9 @@ export default function TopBar() {
             href={WA_CONSULT}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden items-center gap-1.5 rounded-full px-3 py-1 font-display text-[0.72rem] font-semibold text-white transition hover:opacity-90 sm:inline-flex"
-            style={{ backgroundColor: '#1d5040' }}
+            className="hidden items-center gap-1.5 rounded-full bg-neutral-200 px-3 py-1 font-display text-[0.72rem] font-semibold text-neutral-700 transition hover:text-white sm:inline-flex"
+            onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#1d5040'; }}
+            onMouseLeave={e => { e.currentTarget.style.backgroundColor = ''; }}
           >
             <CalendarCheck size={12} />
             {topBar.cta}
