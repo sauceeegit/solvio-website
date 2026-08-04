@@ -19,8 +19,11 @@ export const rooftopVideo = asset('/rooftop-loop.mp4');
 export const hero = {
   // Looping hero video (served from /public).
   videoSrc: asset('/hero-loop.mp4'),
-  poster:
-    'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=1600&q=80',
+  // Fallback still, used by Hero.jsx ONLY if videoSrc is ever removed — the
+  // video branch renders in practice, so this does not currently appear.
+  // Was a hotlinked Unsplash stock photo until 2026-08-04; now a local brand
+  // asset so the homepage can never depend on a third-party host.
+  poster: asset('/sp-feature-top.webp'),
   caption: 'Clean energy for every Thai home',
 };
 
