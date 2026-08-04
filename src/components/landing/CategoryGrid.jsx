@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Plus, ArrowRight } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { categories } from '../../data/landing';
 import Reveal from '../Reveal';
 
@@ -14,35 +14,29 @@ function CardInner({ c, dimmed, lightOverlay }) {
           c.fit === 'contain' ? 'object-contain' : 'object-cover'
         } ${c.imgClass || ''}`}
       />
-      {/* very subtle top fade for text legibility */}
-      <div className="absolute inset-x-0 top-0 h-[45%] bg-gradient-to-b from-black/40 to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black/30 to-transparent" />
+      {/* minimal top gradient — just enough for text */}
+      <div className="absolute inset-x-0 top-0 h-[40%] bg-gradient-to-b from-black/55 via-black/20 to-transparent" />
 
-      {/* dim overlay — visible on non-hovered cards */}
+      {/* dim overlay on non-hovered cards */}
       <div
-        className="absolute inset-0 transition-opacity duration-300"
-        style={{ opacity: dimmed ? 1 : 0, backgroundColor: 'rgba(0,0,0,0.45)' }}
+        className="absolute inset-0 transition-opacity duration-500"
+        style={{ opacity: dimmed ? 0.35 : 0, backgroundColor: '#000' }}
       />
 
-      <span className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full bg-lime text-white transition group-hover:rotate-90">
-        <Plus size={18} />
-      </span>
-
-      <div className="absolute inset-x-0 top-0 p-5 pr-16">
-        <h3
-          className={`font-display text-[31px] font-extrabold leading-tight max-sm:text-2xl transition-colors duration-300 ${dimmed ? 'text-white/40' : 'text-white'}`}
-          style={{ textShadow: '0 1px 8px rgba(0,0,0,0.4)' }}
-        >{c.title}</h3>
+      <div className="absolute inset-x-0 top-0 p-5 pr-14">
         {c.sub && (
-          <p className="mt-1 font-display text-lg font-bold text-lime max-sm:text-base">{c.sub}</p>
+          <p className="mb-1 font-display text-sm font-semibold uppercase tracking-widest text-white/70">{c.sub}</p>
         )}
-        <p className="mt-1.5 text-sm text-white/90 max-sm:hidden" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>{c.blurb}</p>
+        <h3
+          className={`font-display text-[28px] font-extrabold leading-tight max-sm:text-2xl transition-colors duration-300 ${dimmed ? 'text-white/50' : 'text-white'}`}
+          style={{ textShadow: '0 2px 12px rgba(0,0,0,0.35)' }}
+        >{c.title}</h3>
       </div>
 
-      {/* Explore pill button */}
-      <div className="absolute inset-x-0 bottom-0 p-5">
-        <span className="inline-flex items-center gap-2 rounded-full border-2 border-white/70 px-5 py-2 font-display text-base font-bold text-white transition duration-300 group-hover:scale-105 group-hover:border-lime group-hover:bg-lime group-hover:shadow-lg">
-          Explore <ArrowRight size={16} />
+      {/* + button bottom right like Apple */}
+      <div className="absolute bottom-5 right-5">
+        <span className="grid h-9 w-9 place-items-center rounded-full bg-white/20 backdrop-blur-sm text-white ring-1 ring-white/40 transition group-hover:bg-lime group-hover:ring-lime">
+          <Plus size={18} />
         </span>
       </div>
     </>
