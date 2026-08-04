@@ -44,7 +44,7 @@ export default function CategoryGrid() {
   return (
     // Mobile top padding lives in LandingPage's spacer (the hero's sticky
     // freeze distance) so the heading meets the frozen video exactly.
-    <section id="categories" className="scroll-mt-20 py-14 max-lg:pt-10" style={{ backgroundColor: '#f5f5f7' }}>
+    <section id="categories" className="scroll-mt-20 py-14 max-lg:pt-10" style={{ backgroundColor: '#fafafa' }}>
       <div className="container-x">
       <Reveal>
         <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">
@@ -56,7 +56,8 @@ export default function CategoryGrid() {
         {categories.map((c, i) => {
           const internal = c.to?.startsWith('/');
           const cls =
-            'group relative block aspect-[5/4] overflow-hidden rounded-xl2 shadow-soft sm:aspect-[16/10] md:aspect-[3/4]';
+            'group relative block aspect-[5/4] overflow-hidden rounded-xl2 sm:aspect-[16/10] md:aspect-[3/4]';
+          const cardStyle = { boxShadow: '0 4px 24px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06)' };
           const dimmed = hoveredIdx !== null && hoveredIdx !== i;
           const handlers = {
             onMouseEnter: () => setHoveredIdx(i),
@@ -65,11 +66,11 @@ export default function CategoryGrid() {
           return (
             <Reveal key={c.title} delay={i * 0.08}>
               {internal ? (
-                <Link to={c.to} className={cls} style={c.bg ? { backgroundColor: c.bg } : undefined} {...handlers}>
+                <Link to={c.to} className={cls} style={{ ...cardStyle, ...(c.bg ? { backgroundColor: c.bg } : {}) }} {...handlers}>
                   <CardInner c={c} dimmed={dimmed} />
                 </Link>
               ) : (
-                <a href={c.to} className={cls} style={c.bg ? { backgroundColor: c.bg } : undefined} {...handlers}>
+                <a href={c.to} className={cls} style={{ ...cardStyle, ...(c.bg ? { backgroundColor: c.bg } : {}) }} {...handlers}>
                   <CardInner c={c} dimmed={dimmed} />
                 </a>
               )}
