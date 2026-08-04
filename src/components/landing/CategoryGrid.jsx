@@ -14,13 +14,13 @@ function CardInner({ c, dimmed, lightOverlay }) {
           c.fit === 'contain' ? 'object-contain' : 'object-cover'
         } ${c.imgClass || ''}`}
       />
-      {/* minimal top gradient — just enough for text */}
-      <div className="absolute inset-x-0 top-0 h-[40%] bg-gradient-to-b from-black/55 via-black/20 to-transparent" />
+      {/* hairline top gradient — just for text legibility */}
+      <div className="absolute inset-x-0 top-0 h-[35%] bg-gradient-to-b from-black/30 to-transparent" />
 
-      {/* dim overlay on non-hovered cards */}
+      {/* subtle dim on non-hovered cards */}
       <div
         className="absolute inset-0 transition-opacity duration-500"
-        style={{ opacity: dimmed ? 0.35 : 0, backgroundColor: '#000' }}
+        style={{ opacity: dimmed ? 0.2 : 0, backgroundColor: '#000' }}
       />
 
       <div className="absolute inset-x-0 top-0 p-5 pr-14">
