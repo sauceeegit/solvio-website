@@ -51,17 +51,18 @@ export default function Hero() {
         <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/50 to-transparent" />
         {/* bottom gradient — behind the headline text */}
         <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-ink/70 via-ink/20 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 container-x pb-[clamp(1.25rem,5vw,4rem)]">
-          <h1 className="font-display text-[clamp(1.4rem,4vw,3.25rem)] font-bold leading-[1.08] tracking-tight text-white max-w-xl">
-            Clean Energy<span className="text-lime">.</span><br />Made Simple<span className="text-lime">.</span>
-          </h1>
-          <p className="mt-2 font-display text-[clamp(0.7rem,1.3vw,0.9rem)] font-medium text-white/75 max-w-sm">
-            Premium solar for every Thai home.
-          </p>
+        <div className="absolute inset-x-0 bottom-0 container-x pb-[clamp(1.25rem,5vw,4rem)] flex items-end justify-between gap-4">
+          <div>
+            <h1 className="font-display text-[clamp(1.4rem,4vw,3.25rem)] font-bold leading-[1.08] tracking-tight text-white max-w-xl">
+              Clean Energy<span className="text-lime">.</span><br />Made Simple<span className="text-lime">.</span>
+            </h1>
+            <p className="mt-2 font-display text-[clamp(0.7rem,1.3vw,0.9rem)] font-medium text-white/75 max-w-sm">
+              Premium solar for every Thai home.
+            </p>
+          </div>
+          <PhuketClock />
         </div>
       </div>
-
-      <PhuketClock />
     </section>
   );
 }

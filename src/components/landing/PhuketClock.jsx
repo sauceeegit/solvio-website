@@ -45,7 +45,7 @@ export default function PhuketClock() {
   const { Icon, label } = periodIcon(now);
 
   return (
-    <div className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center p-4 sm:p-6">
+    <div className="pointer-events-none shrink-0">
       <div className="flex origin-center scale-[.7] items-center gap-3 rounded-full bg-ink/55 px-5 py-2.5 ring-1 ring-white/15 backdrop-blur-md lg:scale-100 lg:gap-5 lg:px-10 lg:py-5">
         <Icon className="h-4 w-4 text-lime lg:h-7 lg:w-7" strokeWidth={2} aria-label={label} />
         <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/70 lg:text-xl">
