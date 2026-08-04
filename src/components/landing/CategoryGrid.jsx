@@ -14,13 +14,14 @@ function CardInner({ c, dimmed, lightOverlay }) {
           c.fit === 'contain' ? 'object-contain' : 'object-cover'
         } ${c.imgClass || ''}`}
       />
-      <div className="absolute inset-x-0 top-0 h-[55%] bg-gradient-to-b from-black/35 via-black/14 to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/28 to-transparent" />
+      {/* very subtle top fade for text legibility */}
+      <div className="absolute inset-x-0 top-0 h-[45%] bg-gradient-to-b from-black/40 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black/30 to-transparent" />
 
       {/* dim overlay — visible on non-hovered cards */}
       <div
         className="absolute inset-0 transition-opacity duration-300"
-        style={{ opacity: dimmed ? 1 : 0, backgroundColor: 'rgba(0,0,0,0.65)' }}
+        style={{ opacity: dimmed ? 1 : 0, backgroundColor: 'rgba(0,0,0,0.45)' }}
       />
 
       <span className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full bg-lime text-white transition group-hover:rotate-90">
@@ -28,11 +29,14 @@ function CardInner({ c, dimmed, lightOverlay }) {
       </span>
 
       <div className="absolute inset-x-0 top-0 p-5 pr-16">
-        <h3 className={`font-display text-[31px] font-extrabold leading-tight max-sm:text-2xl transition-colors duration-300 ${dimmed ? 'text-white/40' : 'text-white'}`}>{c.title}</h3>
+        <h3
+          className={`font-display text-[31px] font-extrabold leading-tight max-sm:text-2xl transition-colors duration-300 ${dimmed ? 'text-white/40' : 'text-white'}`}
+          style={{ textShadow: '0 1px 8px rgba(0,0,0,0.4)' }}
+        >{c.title}</h3>
         {c.sub && (
           <p className="mt-1 font-display text-lg font-bold text-lime max-sm:text-base">{c.sub}</p>
         )}
-        <p className="mt-1.5 text-sm text-white/80 max-sm:hidden">{c.blurb}</p>
+        <p className="mt-1.5 text-sm text-white/90 max-sm:hidden" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>{c.blurb}</p>
       </div>
 
       {/* Explore pill button */}
