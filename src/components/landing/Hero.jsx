@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 import { hero } from '../../data/landing';
 import MediaLoader from '../MediaLoader';
 import PhuketClock from './PhuketClock';
 
+const EASE = [0.16, 1, 0.3, 1];
+
 export default function Hero() {
   const videoRef = useRef(null);
-  // Under headless prerender, start "ready" so the snapshot shows the poster
-  // frame instead of the loading overlay (see Reveal.jsx for the same guard).
   const [ready, setReady] = useState(
     () => typeof navigator !== 'undefined' && navigator.webdriver
   );
@@ -47,20 +48,34 @@ export default function Hero() {
 
       {/* Gradients + slogan */}
       <div className="pointer-events-none absolute inset-0 z-10">
-        {/* top gradient — darkens behind the transparent nav */}
         <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/50 to-transparent" />
-        {/* bottom gradient — behind the headline text */}
         <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-ink/70 via-ink/20 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 container-x pb-[clamp(1.25rem,5vw,4rem)] flex items-end justify-between gap-4">
           <div>
-            <h1 className="font-display text-[clamp(2rem,5vw,3.25rem)] font-medium leading-[1.08] tracking-tight text-white max-w-xl">
+            <motion.h1
+              className="font-display text-[clamp(2rem,5vw,3.25rem)] font-medium leading-[1.08] tracking-tight text-white max-w-xl"
+              initial={{ opacity: 0, y: 28, filter: 'blur(8px)' }}
+              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              transition={{ duration: 1, delay: 0.3, ease: EASE }}
+            >
               Clean Energy<span className="text-lime">.</span><br />Made Simple<span className="text-lime">.</span>
-            </h1>
-            <p className="mt-2 font-display text-[clamp(0.7rem,1.3vw,0.9rem)] font-medium text-white/75 max-w-sm">
+            </motion.h1>
+            <motion.p
+              className="mt-2 font-display text-[clamp(0.7rem,1.3vw,0.9rem)] font-medium text-white/75 max-w-sm"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.6, ease: EASE }}
+            >
               Premium solar for every Thai home.
-            </p>
+            </motion.p>
           </div>
-          <PhuketClock />
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.9, ease: EASE }}
+          >
+            <PhuketClock />
+          </motion.div>
         </div>
       </div>
     </section>
