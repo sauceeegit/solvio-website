@@ -47,7 +47,7 @@ export default function HeaderCarousel({ slides, interval = 3375 }) {
         <div
           ref={trackRef}
           onScroll={onScroll}
-          className="no-scrollbar flex aspect-[3/4] w-full snap-x snap-mandatory overflow-x-auto overscroll-x-contain bg-[#F2A03D] touch-pan-y"
+          className="no-scrollbar flex aspect-[3/4] w-full snap-x snap-mandatory overflow-x-auto overscroll-x-contain bg-[#F2A03D]"
         >
           {slides.map((s, idx) => (
             s.video ? (
