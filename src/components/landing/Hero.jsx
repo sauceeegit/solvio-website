@@ -21,7 +21,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative w-full" style={{ height: '100svh', minHeight: 500 }}>
+    <section className="relative w-full" style={{ height: '82svh', minHeight: 480 }}>
       {hero.videoSrc ? (
         <div className="absolute inset-0 overflow-hidden bg-ink">
           <video
@@ -45,8 +45,11 @@ export default function Hero() {
         <img src={hero.poster} alt={hero.caption} className="block h-auto w-full object-cover" />
       )}
 
-      {/* Slogan — bottom-left aligned, B&O style */}
+      {/* Gradients + slogan */}
       <div className="pointer-events-none absolute inset-0 z-10">
+        {/* top gradient — darkens behind the transparent nav */}
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/50 to-transparent" />
+        {/* bottom gradient — behind the headline text */}
         <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-ink/70 via-ink/20 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 container-x pb-[clamp(1.25rem,5vw,4rem)]">
           <h1 className="font-display text-[clamp(1.4rem,4vw,3.25rem)] font-bold leading-[1.08] tracking-tight text-white max-w-xl">
