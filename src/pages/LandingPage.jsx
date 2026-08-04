@@ -40,8 +40,8 @@ export default function LandingPage() {
         <div className="relative" style={{ marginTop: -headerH }}>
           <Hero />
         </div>
-        <SocialProof />
         <CategoryGrid />
+        <SocialProof />
         <Bestsellers />
         <SunshineSection />
         <HowItWorks />
