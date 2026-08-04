@@ -68,7 +68,8 @@ export default function HeaderCarousel({ slides, interval = 3375 }) {
                 src={s.mobile}
                 alt="Solvio portable power stations"
                 draggable={false}
-                className={`h-full w-full shrink-0 snap-center object-cover ${s.mobilePos ?? ''}`}
+                className="h-full w-full shrink-0 snap-center object-cover"
+                style={s.mobilePos ? { objectPosition: s.mobilePos } : undefined}
               />
             )
           ))}
