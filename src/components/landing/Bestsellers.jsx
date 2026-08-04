@@ -9,7 +9,7 @@ export default function Bestsellers() {
   const [hoveredIdx, setHoveredIdx] = useState(null);
 
   return (
-    <section id="bestsellers" className="scroll-mt-20 py-16 sm:py-24" style={{ backgroundColor: '#f5f5f7' }}>
+    <section id="bestsellers" className="scroll-mt-20 pb-16 pt-8 sm:pb-24 sm:pt-12" style={{ backgroundColor: '#f5f5f7' }}>
       <div className="container-x">
         <Reveal>
           <div className="flex items-end justify-between gap-4 mb-10">
