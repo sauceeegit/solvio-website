@@ -36,7 +36,7 @@ export const categories = [
     sub: 'For Homeowner',
     blurb: 'Power your whole home with a rooftop array — get a free estimate now.',
     img: asset('/category-rooftop.webp'),
-    imgClass: 'brightness-110',
+    imgClass: '',
     to: '/rooftop-system',
   },
   {
@@ -53,7 +53,7 @@ export const categories = [
     title: 'Portable Solar',
     blurb: 'Take solar with you anywhere — camping, markets, off-grid weekends.',
     img: asset('/portable-systems-new.webp'),
-    imgClass: 'brightness-[.82] saturate-[.82]',
+    imgClass: '',
     to: '/portable-system',
   },
 ];

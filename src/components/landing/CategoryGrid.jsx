@@ -4,38 +4,33 @@ import { Plus } from 'lucide-react';
 import { categories } from '../../data/landing';
 import Reveal from '../Reveal';
 
-function CardInner({ c, dimmed, lightOverlay }) {
+function CardInner({ c, dimmed }) {
   return (
     <>
-      <img loading="lazy"
+      <img
+        loading="lazy"
         src={c.img}
         alt={c.title}
-        className={`absolute inset-0 h-full w-full transition duration-700 group-hover:scale-105 ${
-          c.fit === 'contain' ? 'object-contain' : 'object-cover'
-        } ${c.imgClass || ''}`}
-      />
-      {/* hairline top gradient — just for text legibility */}
-      <div className="absolute inset-x-0 top-0 h-[35%] bg-gradient-to-b from-black/30 to-transparent" />
-
-      {/* subtle dim on non-hovered cards */}
-      <div
-        className="absolute inset-0 transition-opacity duration-500"
-        style={{ opacity: dimmed ? 0.2 : 0, backgroundColor: '#000' }}
+        className={`absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105 ${c.imgClass || ''}`}
       />
 
+      {/* text block — frosted pill so no overlay needed on image */}
       <div className="absolute inset-x-0 top-0 p-5 pr-14">
         {c.sub && (
-          <p className="mb-1 font-display text-sm font-semibold uppercase tracking-widest text-white/70">{c.sub}</p>
+          <p
+            className="mb-1 font-display text-xs font-semibold uppercase tracking-widest text-white"
+            style={{ textShadow: '0 1px 6px rgba(0,0,0,0.7)' }}
+          >{c.sub}</p>
         )}
         <h3
-          className={`font-display text-[28px] font-extrabold leading-tight max-sm:text-2xl transition-colors duration-300 ${dimmed ? 'text-white/50' : 'text-white'}`}
-          style={{ textShadow: '0 2px 12px rgba(0,0,0,0.35)' }}
+          className="font-display text-[26px] font-extrabold leading-tight text-white max-sm:text-xl"
+          style={{ textShadow: '0 2px 16px rgba(0,0,0,0.6)' }}
         >{c.title}</h3>
       </div>
 
-      {/* + button bottom right like Apple */}
+      {/* + button bottom right */}
       <div className="absolute bottom-5 right-5">
-        <span className="grid h-9 w-9 place-items-center rounded-full bg-white/20 backdrop-blur-sm text-white ring-1 ring-white/40 transition group-hover:bg-lime group-hover:ring-lime">
+        <span className="grid h-9 w-9 place-items-center rounded-full bg-black/25 backdrop-blur-sm text-white ring-1 ring-white/30 transition group-hover:bg-lime group-hover:ring-lime">
           <Plus size={18} />
         </span>
       </div>
@@ -71,11 +66,11 @@ export default function CategoryGrid() {
             <Reveal key={c.title} delay={i * 0.08}>
               {internal ? (
                 <Link to={c.to} className={cls} style={c.bg ? { backgroundColor: c.bg } : undefined} {...handlers}>
-                  <CardInner c={c} dimmed={dimmed} lightOverlay={c.id === 'portable'} />
+                  <CardInner c={c} dimmed={dimmed} />
                 </Link>
               ) : (
                 <a href={c.to} className={cls} style={c.bg ? { backgroundColor: c.bg } : undefined} {...handlers}>
-                  <CardInner c={c} dimmed={dimmed} lightOverlay={c.id === 'portable'} />
+                  <CardInner c={c} dimmed={dimmed} />
                 </a>
               )}
             </Reveal>
