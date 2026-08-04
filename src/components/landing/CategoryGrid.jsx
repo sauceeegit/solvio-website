@@ -14,8 +14,8 @@ function CardInner({ c, dimmed, lightOverlay }) {
           c.fit === 'contain' ? 'object-contain' : 'object-cover'
         } ${c.imgClass || ''}`}
       />
-      <div className="absolute inset-x-0 top-0 h-[55%] bg-gradient-to-b from-black/50 via-black/20 to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/40 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-[55%] bg-gradient-to-b from-black/35 via-black/14 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/28 to-transparent" />
 
       {/* dim overlay — visible on non-hovered cards */}
       <div
