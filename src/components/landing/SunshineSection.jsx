@@ -50,21 +50,22 @@ export default function SunshineSection() {
           </Reveal>
 
           {/* Text */}
-          <Reveal delay={0.1}>
-            <div>
+          <div>
+            <Reveal delay={0.05}>
               <h2 className="font-display text-3xl font-extrabold tracking-tight text-price sm:text-4xl">
                 Turn Sunshine Into Savings
               </h2>
+            </Reveal>
+            <Reveal delay={0.12}>
               <p className="mt-4 text-base leading-relaxed text-ink/65">
                 Solvio makes solar energy simple. Our premium plug-and-play balcony solar systems let you generate your own clean electricity in minutes—no complicated installation, no expensive renovations, just reliable energy and lower electricity bills.
               </p>
+            </Reveal>
 
-              <ul className="mt-8 space-y-5">
-                {features.map((f, i) => (
-                  <li
-                    key={f.title}
-                    className={`flex items-start gap-3.5 ${i >= VISIBLE_MOBILE && !expanded ? 'hidden sm:flex' : 'flex'}`}
-                  >
+            <ul className="mt-8 space-y-5">
+              {features.map((f, i) => (
+                <Reveal key={f.title} delay={0.1 + i * 0.07}>
+                  <li className={`flex items-start gap-3.5 ${i >= VISIBLE_MOBILE && !expanded ? 'hidden sm:flex' : 'flex'}`}>
                     <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-lime">
                       <svg width="12" height="9" viewBox="0 0 12 9" fill="none">
                         <path d="M1 4L4.5 7.5L11 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -75,10 +76,12 @@ export default function SunshineSection() {
                       <p className="mt-0.5 whitespace-pre-line text-[13px] leading-relaxed text-ink/60">{f.body}</p>
                     </div>
                   </li>
-                ))}
-              </ul>
+                </Reveal>
+              ))}
+            </ul>
 
-              {/* Show more — mobile only */}
+            {/* Show more — mobile only */}
+            <Reveal delay={0.15}>
               <button
                 type="button"
                 onClick={() => setExpanded(!expanded)}
@@ -86,8 +89,8 @@ export default function SunshineSection() {
               >
                 {expanded ? 'Show less' : 'Show more'}
               </button>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
 
         </div>
       </div>
