@@ -1,8 +1,12 @@
-// Post-build: create dist/<route>/index.html for every route with route-specific
-// <title>/description/canonical/OG tags, so GitHub Pages serves deep links with
-// HTTP 200 (not the 404.html fallback) and crawlers/link-unfurlers that don't run
-// JS still see the right meta. Runs automatically via `npm run build`.
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+// Post-build (after prerender-snap.mjs): patch route-specific
+// <title>/description/canonical/OG tags into every dist/<route>/index.html,
+// so GitHub Pages serves deep links with HTTP 200 (not the 404.html fallback)
+// and crawlers/link-unfurlers that don't run JS still see the right meta.
+// Each route's OWN snapshot is patched in place — never copy one route's HTML
+// over another's (that would destroy the per-route body content react-snap
+// just created). Routes without a snapshot (noindexed /checkout) fall back to
+// the home page HTML. Runs automatically via `npm run build`.
+import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { SITE, routeMeta } from '../src/data/seo.js';
@@ -40,11 +44,11 @@ const extraJsonLd = {
   '/balcony-system': `<script type="application/ld+json">${JSON.stringify(productJsonLd)}</script>`,
 };
 
-function renderRoute(route, meta) {
+function renderRoute(route, meta, html) {
   // Trailing slash matches the URL GitHub Pages actually serves (it 301s
   // /route -> /route/), so canonicals point at the final URL, no redirect hop.
   const url = route === '/' ? `${SITE}/` : `${SITE}${route}/`;
-  let html = template
+  html = html
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(meta.title)}</title>`)
     .replace(/(<meta name="description" content=")[^"]*(")/, `$1${esc(meta.description)}$2`)
     .replace(/(<link rel="canonical" href=")[^"]*(")/, `$1${url}$2`)
@@ -61,7 +65,10 @@ function renderRoute(route, meta) {
 }
 
 for (const [route, meta] of Object.entries(routeMeta)) {
-  const html = renderRoute(route, meta);
+  const routeFile =
+    route === '/' ? join(dist, 'index.html') : join(dist, route.slice(1), 'index.html');
+  const base = existsSync(routeFile) ? readFileSync(routeFile, 'utf8') : template;
+  const html = renderRoute(route, meta, base);
   if (route === '/') {
     writeFileSync(join(dist, 'index.html'), html);
   } else {

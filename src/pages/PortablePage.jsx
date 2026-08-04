@@ -14,6 +14,9 @@ export default function PortablePage() {
     <div id="top" className="min-h-screen bg-surface">
       <Header />
       <main>
+        {/* Visually hidden — this page leads with a video carousel, so the H1
+            lives here for crawlers/screen readers without changing the design. */}
+        <h1 className="sr-only">Portable power stations and foldable solar panels in Thailand</h1>
         <HeaderCarousel slides={portableHeaderSlides} />
         <PortableBatteries />
         <PortablePanels />

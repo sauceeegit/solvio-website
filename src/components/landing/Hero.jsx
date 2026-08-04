@@ -5,7 +5,11 @@ import PhuketClock from './PhuketClock';
 
 export default function Hero() {
   const videoRef = useRef(null);
-  const [ready, setReady] = useState(false);
+  // Under headless prerender, start "ready" so the snapshot shows the poster
+  // frame instead of the loading overlay (see Reveal.jsx for the same guard).
+  const [ready, setReady] = useState(
+    () => typeof navigator !== 'undefined' && navigator.webdriver
+  );
 
   useEffect(() => {
     const v = videoRef.current;

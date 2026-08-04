@@ -1,6 +1,13 @@
 import { motion } from 'framer-motion';
 
+// True under headless prerender (react-snap/puppeteer). whileInView never
+// fires for below-fold sections in a snapshot, so without this guard the
+// static HTML would ship content stuck at opacity:0. Real visitors are
+// unaffected — webdriver is only set by automation.
+const PRERENDER = typeof navigator !== 'undefined' && navigator.webdriver;
+
 export default function Reveal({ children, delay = 0, y = 16, className = '' }) {
+  if (PRERENDER) return <div className={className}>{children}</div>;
   return (
     <motion.div
       className={className}

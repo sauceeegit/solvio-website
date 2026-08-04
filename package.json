@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/prerender-meta.mjs",
+    "build": "vite build && node scripts/prerender-snap.mjs && node scripts/prerender-meta.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -27,6 +27,7 @@
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.6.0",
     "postcss": "^8.5.15",
+    "react-snap": "^1.23.0",
     "tailwindcss": "^3.4.19",
     "vite": "^8.0.12"
   }

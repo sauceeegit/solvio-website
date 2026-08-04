@@ -5,7 +5,9 @@ import { SITE, routeMeta } from '../src/data/seo.js';
 
 const KEY = 'cb872d129e6941b6722a11f51c006406';
 
-const urls = Object.keys(routeMeta).map((r) => (r === '/' ? `${SITE}/` : `${SITE}${r}/`));
+const urls = Object.entries(routeMeta)
+  .filter(([, meta]) => !meta.noindex) // never ping noindexed routes (e.g. /checkout)
+  .map(([r]) => (r === '/' ? `${SITE}/` : `${SITE}${r}/`));
 
 const res = await fetch('https://api.indexnow.org/indexnow', {
   method: 'POST',

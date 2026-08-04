@@ -41,6 +41,9 @@ export default function SolarPanelPage() {
     <div id="top" className="min-h-screen bg-surface">
       <Header />
       <main>
+        {/* Visually hidden — full-bleed video leads this page, so the H1 lives
+            here for crawlers/screen readers without changing the design. */}
+        <h1 className="sr-only">Dark Feather 450 Wp solar panel — glass-glass, IP68</h1>
         {/* Full-bleed looping video — spans the entire viewport width. */}
         <section className="relative w-full">
           {/* Aspect-locked, brand-dark backdrop so there's no layout jump and a
