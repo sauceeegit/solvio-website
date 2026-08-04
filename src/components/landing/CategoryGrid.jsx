@@ -44,10 +44,10 @@ export default function CategoryGrid() {
   return (
     // Mobile top padding lives in LandingPage's spacer (the hero's sticky
     // freeze distance) so the heading meets the frozen video exactly.
-    <section id="categories" className="scroll-mt-20 py-14 max-lg:pt-10" style={{ backgroundColor: '#140e0b' }}>
+    <section id="categories" className="scroll-mt-20 py-14 max-lg:pt-10" style={{ backgroundColor: '#f5f5f7' }}>
       <div className="container-x">
       <Reveal>
-        <h2 className="font-display text-2xl font-medium text-lime sm:text-3xl">
+        <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">
           From Rooftop to Backpack
         </h2>
       </Reveal>
