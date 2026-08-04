@@ -13,7 +13,8 @@ export default function ProductHero({ cfg, onAddToCart, added }) {
   // Gallery itself releases it smoothly once Step 3 (#cfg-step-3) touches its
   // bottom edge (scroll-tracked sticky top — no snap-away).
   return (
-    <section id="product" className="container-x scroll-mt-20 pb-16 pt-2">
+    <section id="product" className="scroll-mt-20" style={{ backgroundColor: '#e8e8ed' }}>
+    <div className="container-x pb-16 pt-2">
       <div className="grid grid-cols-1 gap-8 lg:ml-[calc(50%-50vw+1.5rem)] lg:grid-cols-[1.55fr_1fr] lg:gap-10">
         {/* Left — gallery */}
         <Gallery derived={cfg} />
@@ -60,6 +61,7 @@ export default function ProductHero({ cfg, onAddToCart, added }) {
           </motion.div>
         </div>
       </div>
+    </div>
     </section>
   );
 }
