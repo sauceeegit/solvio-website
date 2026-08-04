@@ -21,9 +21,9 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative w-full">
+    <section className="relative w-full" style={{ height: '100svh', minHeight: 500 }}>
       {hero.videoSrc ? (
-        <div className="relative h-screen min-h-[500px] w-full overflow-hidden bg-ink">
+        <div className="absolute inset-0 overflow-hidden bg-ink">
           <video
             ref={videoRef}
             className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
