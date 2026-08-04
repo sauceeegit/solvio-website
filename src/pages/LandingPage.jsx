@@ -37,11 +37,8 @@ export default function LandingPage() {
     <div id="top" className="min-h-screen bg-surface">
       <Header />
       <main>
-        <div className="relative">
-          <div className="max-lg:sticky" style={{ top: headerH }}>
-            <Hero />
-          </div>
-          <div aria-hidden="true" className="lg:hidden" />
+        <div className="relative" style={{ marginTop: -headerH }}>
+          <Hero />
         </div>
         <SocialProof />
         <CategoryGrid />
