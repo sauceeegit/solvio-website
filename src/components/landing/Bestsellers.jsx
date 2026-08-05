@@ -16,7 +16,7 @@ export default function Bestsellers() {
             <h2 className="font-display text-3xl font-medium tracking-tight text-ink sm:text-4xl">
               Our most popular systems
             </h2>
-            <Link to="/balcony-system" className="hidden whitespace-nowrap font-display text-[15px] font-medium text-lime hover:underline sm:block">
+            <Link to="/balcony-system" className="hidden whitespace-nowrap rounded-full bg-ink px-4 py-2 font-display text-[13px] font-bold text-white transition hover:bg-lime sm:inline-flex">
               Shop all →
             </Link>
           </div>
