@@ -71,7 +71,7 @@ export default function Hero() {
             </motion.p>
           </div>
           <motion.div
-            className="self-center sm:self-auto"
+            className="self-start sm:self-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.9, ease: EASE }}
