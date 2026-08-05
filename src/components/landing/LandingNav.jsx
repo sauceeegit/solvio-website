@@ -57,7 +57,7 @@ export default function LandingNav() {
       <nav className="container-x flex h-16 items-center">
         <Logo href="/" />
 
-        <ul className="ml-6 hidden items-center gap-0.5 lg:flex">
+        <ul className="hidden flex-1 items-center justify-center gap-0.5 lg:flex">
           {links.map((l) => (
             <li key={l.label}>
               <NavLink
@@ -75,7 +75,7 @@ export default function LandingNav() {
                 <span className="whitespace-nowrap font-display text-[13px] font-medium">
                   {l.label}
                   {l.sub && (
-                    <span className="pointer-events-none absolute -bottom-5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-lime/15 px-1.5 py-0.5 font-display text-[9px] font-semibold uppercase tracking-wide text-lime opacity-0 transition-opacity duration-150 group-hover:opacity-100">
+                    <span className="ml-1 inline-block max-w-0 overflow-hidden align-middle font-display text-[9px] font-semibold uppercase tracking-wide text-lime transition-[max-width,opacity] duration-200 group-hover:max-w-[80px] opacity-0 group-hover:opacity-100 whitespace-nowrap">
                       {l.sub}
                     </span>
                   )}
