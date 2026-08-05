@@ -54,16 +54,16 @@ export default function LandingNav() {
           : 'border-transparent bg-transparent'
       }`}
     >
-      <nav className="container-x flex h-16 items-center gap-6 xl:gap-8">
+      <nav className="container-x flex h-16 items-center justify-between">
         <Logo href="/" />
 
-        <ul className="hidden items-center gap-1 lg:flex xl:gap-2">
+        <ul className="hidden items-center gap-0.5 lg:flex">
           {links.map((l) => (
             <li key={l.label}>
               <NavLink
                 to={l.to}
                 className={({ isActive }) =>
-                  `group relative block rounded-lg px-3 py-1.5 transition-all duration-200 xl:px-4 ${
+                  `group relative block rounded-lg px-3 py-1.5 transition-all duration-200 ${
                     isActive
                       ? solid ? 'bg-ink/[0.06] text-lime' : 'bg-white/15 text-white'
                       : solid
@@ -72,7 +72,7 @@ export default function LandingNav() {
                   }`
                 }
               >
-                <span className="whitespace-nowrap font-display text-[13px] font-medium xl:text-[14px]">
+                <span className="whitespace-nowrap font-display text-[13px] font-medium">
                   {l.label}
                   {l.sub && (
                     <span className="ml-1.5 inline-block rounded-full bg-lime/15 px-1.5 py-0.5 font-display text-[9px] font-semibold uppercase tracking-wide text-lime opacity-0 transition-opacity duration-150 group-hover:opacity-100">
@@ -85,7 +85,7 @@ export default function LandingNav() {
           ))}
         </ul>
 
-        <div className="ml-auto flex items-center gap-3 xl:gap-4">
+        <div className="flex items-center gap-3">
           <button
             type="button"
             onClick={openBgreenie}
