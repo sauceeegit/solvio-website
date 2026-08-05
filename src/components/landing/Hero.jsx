@@ -53,7 +53,7 @@ export default function Hero() {
         <div className="absolute inset-x-0 bottom-0 container-x pb-[clamp(1.25rem,5vw,4rem)] flex flex-col items-start gap-3 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
           <div>
             <motion.h1
-              className="font-display text-[clamp(2rem,5vw,3.25rem)] font-normal leading-[1.08] tracking-tight text-white max-w-xl"
+              className="font-display text-[clamp(2.4rem,5vw,3.25rem)] font-normal leading-[1.08] tracking-tight text-white max-w-xl"
               style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}
               initial={{ opacity: 0, y: 28, filter: 'blur(8px)' }}
               animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
