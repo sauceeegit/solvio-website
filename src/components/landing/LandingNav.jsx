@@ -75,7 +75,7 @@ export default function LandingNav() {
                 <span className="whitespace-nowrap font-display text-[13px] font-medium">
                   {l.label}
                   {l.sub && (
-                    <span className="ml-1.5 inline-block rounded-full bg-lime/15 px-1.5 py-0.5 font-display text-[9px] font-semibold uppercase tracking-wide text-lime opacity-0 transition-opacity duration-150 group-hover:opacity-100">
+                    <span className="pointer-events-none absolute -bottom-5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-lime/15 px-1.5 py-0.5 font-display text-[9px] font-semibold uppercase tracking-wide text-lime opacity-0 transition-opacity duration-150 group-hover:opacity-100">
                       {l.sub}
                     </span>
                   )}
