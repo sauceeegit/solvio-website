@@ -23,8 +23,8 @@ const steps = [
     eyebrow: 'Step 3',
     title: 'Start saving.',
     body: 'Your panels go live and your electricity bill drops — from day one.',
-    iconBg: '#dcfce7',
-    iconColor: '#16a34a',
+    iconBg: '#09321B',
+    iconColor: '#fff',
   },
 ];
 
@@ -47,13 +47,13 @@ export default function HowItWorks() {
               >
                 {/* text top */}
                 <div className="p-8 pb-0">
-                  <p className="font-display text-[12px] font-semibold uppercase tracking-widest text-ink/40 mb-3">
+                  <p className="font-display text-[12px] font-semibold uppercase tracking-widest text-ink/70 mb-3">
                     {s.eyebrow}
                   </p>
                   <h3 className="font-display text-[1.4rem] font-semibold leading-snug text-ink">
                     {s.title}
                   </h3>
-                  <p className="mt-3 text-[15px] leading-relaxed text-ink/55">
+                  <p className="mt-3 text-[15px] leading-relaxed text-ink/75">
                     {s.body}
                   </p>
                 </div>
