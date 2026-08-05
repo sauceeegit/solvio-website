@@ -54,10 +54,10 @@ export default function LandingNav() {
           : 'border-transparent bg-transparent'
       }`}
     >
-      <nav className="container-x flex h-16 items-center justify-between">
+      <nav className="container-x flex h-16 items-center gap-6 xl:gap-8">
         <Logo href="/" />
 
-        <ul className="hidden items-center gap-1 lg:flex xl:gap-2">
+        <ul className="hidden flex-1 items-center gap-1 lg:flex xl:gap-2">
           {links.map((l) => (
             <li key={l.label}>
               <NavLink
@@ -83,7 +83,7 @@ export default function LandingNav() {
           ))}
         </ul>
 
-        <div className="flex items-center gap-3 xl:gap-4">
+        <div className="ml-auto flex items-center gap-3 xl:gap-4">
           <button
             type="button"
             onClick={openBgreenie}
