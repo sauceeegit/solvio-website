@@ -85,7 +85,7 @@ export default function LandingNav() {
           ))}
         </ul>
 
-        <div className="flex items-center gap-3">
+        <div className="ml-auto flex items-center gap-3">
           <button
             type="button"
             onClick={openBgreenie}
