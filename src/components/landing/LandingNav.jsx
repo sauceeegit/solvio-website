@@ -14,7 +14,6 @@ const links = [
   { label: 'FAQs', to: '/faqs' },
 ];
 
-// Small green star pinned to the top-right of the Bgreenie label.
 function StarBadge() {
   return (
     <span aria-hidden="true" className="absolute -right-1.5 -top-1.5 text-[10px] leading-none text-[#16A34A]">
@@ -58,22 +57,24 @@ export default function LandingNav() {
       <nav className="container-x flex h-16 items-center justify-between">
         <Logo href="/" />
 
-        <ul className="hidden items-center gap-5 lg:flex xl:gap-8">
+        <ul className="hidden items-center gap-1 lg:flex xl:gap-2">
           {links.map((l) => (
             <li key={l.label}>
               <NavLink
                 to={l.to}
                 className={({ isActive }) =>
-                  `group relative transition-colors duration-300 ${
+                  `group relative block rounded-lg px-3 py-1.5 transition-all duration-200 xl:px-4 ${
                     isActive
-                      ? 'text-lime'
-                      : solid ? 'text-ink/75 hover:text-lime' : 'text-white/90 hover:text-white'
+                      ? solid ? 'bg-ink/[0.06] text-lime' : 'bg-white/15 text-white'
+                      : solid
+                        ? 'text-ink/75 hover:bg-ink/[0.06] hover:text-ink'
+                        : 'text-white/90 hover:bg-white/12 hover:text-white'
                   }`
                 }
               >
                 <span className="whitespace-nowrap font-display text-[15px] font-medium xl:text-[17px]">{l.label}</span>
                 {l.sub && (
-                  <span className="absolute left-0 top-full pt-0.5 font-display text-[11px] font-medium text-lime opacity-0 transition-opacity duration-150 group-hover:opacity-100 whitespace-nowrap">
+                  <span className="absolute left-3 top-full pt-0.5 font-display text-[11px] font-medium text-lime opacity-0 transition-opacity duration-150 group-hover:opacity-100 whitespace-nowrap xl:left-4">
                     {l.sub}
                   </span>
                 )}
@@ -110,64 +111,83 @@ export default function LandingNav() {
         <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-[70] bg-ink md:hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[70] md:hidden"
+            style={{ backgroundColor: '#09321B' }}
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="container-x flex h-16 items-center justify-between">
               <Logo dark href="/" />
-              <button
+              <motion.button
                 onClick={() => setOpen(false)}
                 className="grid h-10 w-10 place-items-center rounded-full text-white/80 hover:bg-white/10"
                 aria-label="Close menu"
+                initial={{ opacity: 0, rotate: -90 }}
+                animate={{ opacity: 1, rotate: 0 }}
+                transition={{ duration: 0.3, delay: 0.1 }}
               >
                 <X size={22} />
-              </button>
+              </motion.button>
             </div>
-            <ul className="container-x mt-6 flex flex-col gap-1">
+            <ul className="container-x mt-4 flex flex-col">
               {links.map((l, i) => (
                 <motion.li
                   key={l.label}
-                  initial={{ opacity: 0, x: -16 }}
+                  initial={{ opacity: 0, x: -24 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.05 * i }}
+                  transition={{ duration: 0.4, delay: 0.07 + 0.06 * i, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <NavLink
                     to={l.to}
                     onClick={() => setOpen(false)}
                     className={({ isActive }) =>
-                      `block border-b border-white/10 py-4 font-display ${
+                      `flex items-baseline gap-3 border-b border-white/10 py-4 font-display transition-colors hover:text-lime ${
                         isActive ? 'text-lime' : 'text-white'
                       }`
                     }
                   >
-                    <span className="text-2xl font-semibold">{l.label}</span>
+                    <span className="text-2xl font-medium">{l.label}</span>
                     {l.sub && (
-                      <span className="ml-2 align-middle text-sm font-medium text-lime">
-                        {l.sub}
-                      </span>
+                      <span className="text-sm font-medium text-lime/80">{l.sub}</span>
                     )}
                   </NavLink>
                 </motion.li>
               ))}
               <motion.li
-                initial={{ opacity: 0, x: -16 }}
+                initial={{ opacity: 0, x: -24 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.05 * links.length }}
+                transition={{ duration: 0.4, delay: 0.07 + 0.06 * links.length, ease: [0.16, 1, 0.3, 1] }}
               >
                 <button
                   type="button"
                   onClick={openBgreenie}
-                  className="block w-full border-b border-white/10 py-4 text-left font-display text-white"
+                  className="block w-full border-b border-white/10 py-4 text-left font-display text-white transition-colors hover:text-lime"
                 >
-                  <span className="relative text-2xl font-semibold">
+                  <span className="relative text-2xl font-medium">
                     Bgreenie Membership
                     <StarBadge />
                   </span>
                 </button>
               </motion.li>
             </ul>
+
+            {/* Bottom shop now button */}
+            <motion.div
+              className="container-x mt-8"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.07 + 0.06 * (links.length + 1), ease: [0.16, 1, 0.3, 1] }}
+            >
+              <Link
+                to="/balcony-system"
+                onClick={() => setOpen(false)}
+                className="flex items-center justify-center gap-2 rounded-full bg-lime px-6 py-3.5 font-display text-base font-bold text-white transition hover:bg-lime-dark"
+              >
+                <ShoppingCart size={18} /> Shop now
+              </Link>
+            </motion.div>
           </motion.div>
         )}
         </AnimatePresence>,
