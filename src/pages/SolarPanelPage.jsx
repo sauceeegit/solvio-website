@@ -2,6 +2,7 @@ import Header from '../components/landing/Header';
 import SolarPanelFeatures from '../components/SolarPanelFeatures';
 import SolarYourWay from '../components/SolarYourWay';
 import PanelComparison from '../components/PanelComparison';
+import PlugPlayVideo from '../components/PlugPlayVideo';
 import FAQ from '../components/FAQ';
 import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
@@ -16,6 +17,7 @@ export default function SolarPanelPage() {
       <Header />
       <main>
         <h1 className="sr-only">Dark Feather 450 Wp solar panel — glass-glass, IP68</h1>
+        <PlugPlayVideo />
         <SolarPanelFeatures />
         <SolarYourWay />
         <PanelComparison />

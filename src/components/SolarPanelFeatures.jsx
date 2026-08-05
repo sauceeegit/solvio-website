@@ -28,21 +28,6 @@ const features = [
 export default function SolarPanelFeatures() {
   return (
     <section className="bg-white">
-      {/* Full-bleed intro banner (full composed artwork) above the first row.
-          Mobile uses a portrait version; desktop uses the wide banner. */}
-      <Reveal>
-        <picture>
-          <source media="(min-width: 640px)" srcSet={asset('/sp-feature-top.webp')} />
-          <img loading="lazy"
-            src={asset('/sp-feature-top-mobile.webp')}
-            alt="Solvio Dark Feather — Ultra Black, Ultra Thin, Ultra Light"
-            width={800}
-            height={1200}
-            className="block w-full"
-          />
-        </picture>
-      </Reveal>
-
       <div className="container-x">
         {features.map((f, i) => (
           <Reveal key={f.id}>
