@@ -2,9 +2,30 @@ import { ShoppingCart, CalendarCheck, PiggyBank } from 'lucide-react';
 import Reveal from '../Reveal';
 
 const steps = [
-  { icon: ShoppingCart, title: 'Choose Your System', body: 'Pick the kit that fits your home and budget. Not sure? We help you choose — for free.' },
-  { icon: CalendarCheck, title: 'Schedule Installation', body: 'Our certified team installs your system fast. Usually within a week of your order.' },
-  { icon: PiggyBank, title: 'Start Saving', body: 'Your panels go live and your electricity bill drops — from day one.', iconColor: '#16a34a' },
+  {
+    icon: ShoppingCart,
+    eyebrow: 'Step 1',
+    title: 'Choose your system.',
+    body: 'Pick the kit that fits your home and budget. Not sure? We help you choose — for free.',
+    iconBg: '#1c1c1e',
+    iconColor: '#fff',
+  },
+  {
+    icon: CalendarCheck,
+    eyebrow: 'Step 2',
+    title: 'Schedule installation.',
+    body: 'Our certified team installs your system fast. Usually within a week of your order.',
+    iconBg: '#1c1c1e',
+    iconColor: '#fff',
+  },
+  {
+    icon: PiggyBank,
+    eyebrow: 'Step 3',
+    title: 'Start saving.',
+    body: 'Your panels go live and your electricity bill drops — from day one.',
+    iconBg: '#dcfce7',
+    iconColor: '#16a34a',
+  },
 ];
 
 export default function HowItWorks() {
@@ -12,7 +33,7 @@ export default function HowItWorks() {
     <section className="py-20 sm:py-28" style={{ backgroundColor: '#f5f5f7' }}>
       <div className="container-x">
         <Reveal>
-          <h2 className="font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl mb-10 sm:mb-14">
+          <h2 className="font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl mb-10 sm:mb-12">
             Up and running<br className="hidden sm:block" /> in 3 steps.
           </h2>
         </Reveal>
@@ -20,15 +41,32 @@ export default function HowItWorks() {
         <div className="grid gap-4 sm:grid-cols-3">
           {steps.map((s, i) => (
             <Reveal key={s.title} delay={i * 0.1}>
-              <div className="flex h-full flex-col rounded-3xl bg-white p-8" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
-                <div
-                  className="mb-6 flex h-12 w-12 items-center justify-center rounded-full"
-                  style={{ backgroundColor: s.iconColor ? '#dcfce7' : '#1c1c1e' }}
-                >
-                  <s.icon size={22} strokeWidth={2} style={{ color: s.iconColor || '#fff' }} />
+              <div
+                className="flex h-full flex-col rounded-3xl bg-white overflow-hidden"
+                style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}
+              >
+                {/* text top */}
+                <div className="p-8 pb-0">
+                  <p className="font-display text-[12px] font-semibold uppercase tracking-widest text-ink/40 mb-3">
+                    {s.eyebrow}
+                  </p>
+                  <h3 className="font-display text-[1.4rem] font-semibold leading-snug text-ink">
+                    {s.title}
+                  </h3>
+                  <p className="mt-3 text-[15px] leading-relaxed text-ink/55">
+                    {s.body}
+                  </p>
                 </div>
-                <h3 className="font-display text-xl font-semibold text-ink leading-snug">{s.title}.</h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-ink/55">{s.body}</p>
+
+                {/* icon bottom */}
+                <div className="mt-auto flex items-end justify-center p-8 pt-10">
+                  <div
+                    className="flex h-20 w-20 items-center justify-center rounded-full"
+                    style={{ backgroundColor: s.iconBg }}
+                  >
+                    <s.icon size={32} strokeWidth={1.75} style={{ color: s.iconColor }} />
+                  </div>
+                </div>
               </div>
             </Reveal>
           ))}
