@@ -67,12 +67,12 @@ export default function LandingNav() {
                     isActive
                       ? solid ? 'bg-ink/[0.06] text-lime' : 'bg-white/15 text-white'
                       : solid
-                        ? 'text-ink/75 hover:bg-ink/[0.06] hover:text-ink'
+                        ? 'text-ink/90 hover:bg-ink/[0.06] hover:text-ink'
                         : 'text-white/90 hover:bg-white/12 hover:text-white'
                   }`
                 }
               >
-                <span className="whitespace-nowrap font-display text-[13px] font-medium">
+                <span className="whitespace-nowrap font-display text-[14.5px] font-semibold">
                   {l.label}
                   {l.sub && (
                     <span className="ml-1 inline-block max-w-0 overflow-hidden align-middle font-display text-[9px] font-semibold uppercase tracking-wide text-lime transition-[max-width,opacity] duration-200 group-hover:max-w-[80px] opacity-0 group-hover:opacity-100 whitespace-nowrap">
