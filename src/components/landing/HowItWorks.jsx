@@ -2,45 +2,33 @@ import { ShoppingCart, CalendarCheck, PiggyBank } from 'lucide-react';
 import Reveal from '../Reveal';
 
 const steps = [
-  { icon: ShoppingCart, step: '01', title: 'Choose Your System', body: 'Pick the kit that fits your home and budget. Not sure? We help you choose — for free.' },
-  { icon: CalendarCheck, step: '02', title: 'Schedule Installation', body: 'Our certified team installs your system fast. Usually within a week of your order.' },
-  { icon: PiggyBank, step: '03', title: 'Start Saving', body: 'Your panels go live and your electricity bill drops — from day one.' },
+  { icon: ShoppingCart, title: 'Choose Your System', body: 'Pick the kit that fits your home and budget. Not sure? We help you choose — for free.' },
+  { icon: CalendarCheck, title: 'Schedule Installation', body: 'Our certified team installs your system fast. Usually within a week of your order.' },
+  { icon: PiggyBank, title: 'Start Saving', body: 'Your panels go live and your electricity bill drops — from day one.', iconColor: '#16a34a' },
 ];
 
 export default function HowItWorks() {
   return (
-    <section className="py-16 sm:py-24" style={{ backgroundColor: '#f5f5f7' }}>
+    <section className="py-20 sm:py-28" style={{ backgroundColor: '#f5f5f7' }}>
       <div className="container-x">
         <Reveal>
-          <div className="text-center">
-            <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-lime">Simple process</p>
-            <h2 className="mt-3 font-display text-3xl font-medium tracking-tight text-ink sm:text-4xl">
-              Up and running in 3 steps
-            </h2>
-          </div>
+          <h2 className="font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl mb-10 sm:mb-14">
+            Up and running<br className="hidden sm:block" /> in 3 steps.
+          </h2>
         </Reveal>
 
-        <div className="relative mt-16 grid gap-8 sm:grid-cols-3 sm:gap-6">
-          {/* connecting line (desktop only) */}
-          <div className="absolute left-0 right-0 top-8 hidden h-px sm:block" style={{ background: 'rgba(0,0,0,0.08)' }} />
-
+        <div className="grid gap-4 sm:grid-cols-3">
           {steps.map((s, i) => (
-            <Reveal key={s.step} delay={i * 0.12}>
-              <div className="relative flex flex-col">
-                <div className="relative z-10 mb-6 flex items-center gap-4 sm:flex-col sm:items-start sm:gap-0">
-                  <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full shadow-lg sm:mb-5 bg-neutral-800">
-                    <s.icon size={26} className="text-white" strokeWidth={2} />
-                  </div>
-                  <span className="font-display text-4xl font-black sm:hidden" style={{ color: 'rgba(0,0,0,0.10)' }}>
-                    {s.step}
-                  </span>
+            <Reveal key={s.title} delay={i * 0.1}>
+              <div className="flex h-full flex-col rounded-3xl bg-white p-8" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+                <div
+                  className="mb-6 flex h-12 w-12 items-center justify-center rounded-full"
+                  style={{ backgroundColor: s.iconColor ? '#dcfce7' : '#1c1c1e' }}
+                >
+                  <s.icon size={22} strokeWidth={2} style={{ color: s.iconColor || '#fff' }} />
                 </div>
-
-                <span className="mb-2 hidden font-display text-4xl font-black sm:block" style={{ color: 'rgba(0,0,0,0.10)' }}>
-                  {s.step}
-                </span>
-                <h3 className="font-display text-xl font-extrabold text-ink sm:text-2xl">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink/50">{s.body}</p>
+                <h3 className="font-display text-xl font-semibold text-ink leading-snug">{s.title}.</h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-ink/55">{s.body}</p>
               </div>
             </Reveal>
           ))}
