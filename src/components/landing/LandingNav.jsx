@@ -72,7 +72,14 @@ export default function LandingNav() {
                   }`
                 }
               >
-                <span className="whitespace-nowrap font-display text-[13px] font-medium xl:text-[14px]">{l.label}</span>
+                <span className="whitespace-nowrap font-display text-[13px] font-medium xl:text-[14px]">
+                  {l.label}
+                  {l.sub && (
+                    <span className="ml-1.5 inline-block rounded-full bg-lime/15 px-1.5 py-0.5 font-display text-[9px] font-semibold uppercase tracking-wide text-lime opacity-0 transition-opacity duration-150 group-hover:opacity-100">
+                      {l.sub}
+                    </span>
+                  )}
+                </span>
               </NavLink>
             </li>
           ))}
