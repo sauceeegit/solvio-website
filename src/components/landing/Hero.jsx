@@ -50,10 +50,10 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-0 z-10">
         <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/50 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-ink/70 via-ink/20 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 container-x pb-[clamp(1.25rem,5vw,4rem)] flex items-end justify-between gap-4">
+        <div className="absolute inset-x-0 bottom-0 container-x pb-[clamp(1.25rem,5vw,4rem)] flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
           <div>
             <motion.h1
-              className="font-display text-[clamp(1.55rem,7.5vw,3.25rem)] font-medium leading-[1.08] tracking-tight text-white max-w-xl"
+              className="font-display text-[clamp(2rem,5vw,3.25rem)] font-medium leading-[1.08] tracking-tight text-white max-w-xl"
               initial={{ opacity: 0, y: 28, filter: 'blur(8px)' }}
               animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
               transition={{ duration: 1, delay: 0.3, ease: EASE }}
