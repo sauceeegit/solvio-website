@@ -55,7 +55,7 @@ export default function LandingNav() {
       }`}
     >
       <nav className="container-x flex h-16 items-center">
-        <Logo href="/" />
+        <Logo href="/" size="h-7" />
 
         <ul className="hidden flex-1 items-center justify-center gap-0.5 lg:flex">
           {links.map((l) => (
@@ -89,13 +89,13 @@ export default function LandingNav() {
           <button
             type="button"
             onClick={openBgreenie}
-            className={`hidden items-center whitespace-nowrap rounded-full border px-3.5 py-2 font-display text-[15px] font-medium transition lg:inline-flex xl:px-4 ${solid ? 'border-ink/40 text-ink/75 hover:border-lime hover:text-lime' : 'border-white/50 text-white/90 hover:border-white hover:text-white'}`}
+            className={`hidden items-center whitespace-nowrap rounded-full border px-3 py-1.5 font-display text-[13px] font-medium transition lg:inline-flex xl:px-3.5 ${solid ? 'border-ink/40 text-ink/75 hover:border-lime hover:text-lime' : 'border-white/50 text-white/90 hover:border-white hover:text-white'}`}
           >
             Bgreenie Membership
           </button>
           <Link
             to="/balcony-system"
-            className="hidden items-center gap-2 whitespace-nowrap rounded-full bg-lime px-4 py-2.5 font-display text-sm font-bold text-white transition hover:bg-lime-dark sm:inline-flex"
+            className="hidden items-center gap-1.5 whitespace-nowrap rounded-full bg-lime px-3.5 py-1.5 font-display text-[13px] font-bold text-white transition hover:bg-lime-dark sm:inline-flex"
           >
             <ShoppingCart size={16} /> Shop now
           </Link>
