@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Header from '../components/landing/Header';
+import PlugPlayVideo from '../components/PlugPlayVideo';
 import SolarPanelFeatures from '../components/SolarPanelFeatures';
 import SolarYourWay from '../components/SolarYourWay';
 import PanelComparison from '../components/PanelComparison';
@@ -51,6 +52,7 @@ export default function SolarPanelPage() {
       <main>
         <h1 className="sr-only">Dark Feather 450 Wp solar panel — glass-glass, IP68</h1>
         <SolarPanelFeatures />
+        <PlugPlayVideo />
         <FeatherVideo />
         <SolarYourWay />
         <PanelComparison />
