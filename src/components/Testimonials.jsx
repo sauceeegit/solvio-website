@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { testimonials, product } from '../data/product';
 import Stars from './Stars';
 import Reveal from './Reveal';
@@ -9,71 +9,81 @@ export default function Testimonials() {
 
   const scrollBy = (dir) => {
     const el = scroller.current;
-    if (el) el.scrollBy({ left: dir * (el.clientWidth * 0.8), behavior: 'smooth' });
+    if (!el) return;
+    const card = el.querySelector('[data-card]');
+    const gap = 16;
+    const step = card ? card.offsetWidth + gap : el.clientWidth * 0.8;
+    el.scrollBy({ left: dir * step, behavior: 'smooth' });
   };
 
   return (
-    <section id="reviews" className="scroll-mt-20 bg-white py-20">
+    <section id="reviews" className="scroll-mt-20 py-20" style={{ backgroundColor: '#f5f5f7' }}>
       <div className="container-x">
         <Reveal>
-          <div className="flex flex-wrap items-end justify-between gap-4">
+          <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
             <div>
-              <p className="eyebrow">Reviews</p>
-              <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-price sm:text-4xl">
-                Loved on balconies everywhere
+              <p className="eyebrow mb-2">Reviews</p>
+              <h2 className="font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
+                Loved on balconies<br className="hidden sm:block" /> everywhere.
               </h2>
-              <div className="mt-3 flex items-center gap-2.5">
+              <div className="mt-4 flex items-center gap-2.5">
                 <Stars value={product.rating} />
                 <span className="font-display text-sm font-semibold text-ink">
                   {product.rating} / 5
                 </span>
-                <span className="text-sm text-slatey-500">
+                <span className="text-sm text-ink/50">
                   · {product.reviewCount.toLocaleString()} verified buyers
                 </span>
               </div>
-            </div>
-            <div className="hidden gap-2 sm:flex">
-              <button
-                onClick={() => scrollBy(-1)}
-                className="grid h-10 w-10 place-items-center rounded-full border border-ink/15 text-ink transition hover:bg-ink/[0.04]"
-                aria-label="Previous reviews"
-              >
-                <ChevronLeft size={18} />
-              </button>
-              <button
-                onClick={() => scrollBy(1)}
-                className="grid h-10 w-10 place-items-center rounded-full border border-ink/15 text-ink transition hover:bg-ink/[0.04]"
-                aria-label="Next reviews"
-              >
-                <ChevronRight size={18} />
-              </button>
             </div>
           </div>
         </Reveal>
 
         <div
           ref={scroller}
-          className="no-scrollbar mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-2"
+          className="no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2"
         >
           {testimonials.map((t, i) => (
             <figure
+              data-card
               key={t.name}
-              className="flex w-[300px] shrink-0 snap-start flex-col rounded-xl2 border border-ink/[0.07] p-6 sm:w-[360px]"
-              style={{ backgroundColor: i % 2 === 0 ? '#EBEBEB' : '#F5F5F5' }}
+              className="flex w-[85vw] max-w-[340px] shrink-0 snap-start flex-col justify-between rounded-3xl bg-white p-7 sm:w-[320px]"
+              style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}
             >
-              <Quote size={26} className="text-lime-dark" />
-              <blockquote className="mt-3 flex-1 text-[15px] leading-relaxed text-ink/80">
-                {t.text}
-              </blockquote>
-              <figcaption className="mt-5 flex items-center justify-between border-t border-ink/[0.07] pt-4">
+              <div>
+                <p className="font-display text-[11px] font-semibold uppercase tracking-widest text-ink/40 mb-3">
+                  {t.city}
+                </p>
+                <blockquote className="font-display text-[1.05rem] font-medium leading-snug text-ink">
+                  "{t.text}"
+                </blockquote>
+              </div>
+              <figcaption className="mt-8 flex items-center justify-between">
                 <div>
-                  <p className="font-display text-sm font-bold text-ink">{t.name}</p>
-                  <p className="text-xs text-slatey-500">{t.city}</p>
+                  <p className="font-display text-sm font-semibold text-ink">{t.name}</p>
                 </div>
-                <Stars value={t.rating} size={14} />
+                <Stars value={t.rating} size={13} />
               </figcaption>
             </figure>
           ))}
+        </div>
+
+        {/* Apple-style bottom-right arrows */}
+        <div className="mt-6 flex justify-end gap-2">
+          <button
+            onClick={() => scrollBy(-1)}
+            className="grid h-10 w-10 place-items-center rounded-full bg-white text-ink shadow-sm transition hover:bg-ink hover:text-white"
+            aria-label="Previous reviews"
+          >
+            <ChevronLeft size={18} />
+          </button>
+          <button
+            onClick={() => scrollBy(1)}
+            className="grid h-10 w-10 place-items-center rounded-full bg-white text-ink shadow-sm transition hover:bg-ink hover:text-white"
+            aria-label="Next reviews"
+          >
+            <ChevronRight size={18} />
+          </button>
         </div>
       </div>
     </section>
