@@ -18,7 +18,7 @@ export default function CalculatorSection({ derived }) {
           <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-5 sm:flex-row sm:items-end">
             <div>
               <p className="eyebrow">Run the numbers</p>
-              <h2 className="mt-2 text-2xl font-medium tracking-tight text-price sm:text-3xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
+              <h2 className="mt-2 text-2xl font-semibold tracking-tight text-price sm:text-3xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
                 See what you&apos;d save with solar
               </h2>
               <p className="mt-3 max-w-xl text-slatey-500">

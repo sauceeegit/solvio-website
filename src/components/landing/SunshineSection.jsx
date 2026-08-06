@@ -52,7 +52,7 @@ export default function SunshineSection() {
           {/* Text */}
           <div>
             <Reveal delay={0.05}>
-              <h2 className="text-2xl font-medium tracking-tight text-price sm:text-3xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
+              <h2 className="text-2xl font-semibold tracking-tight text-price sm:text-3xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
                 Turn Sunshine Into Savings
               </h2>
             </Reveal>

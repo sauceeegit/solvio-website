@@ -265,7 +265,7 @@ export default function WhyShop() {
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
             <p className="eyebrow">The Solvio difference</p>
-            <h2 className="mt-2 text-2xl font-medium tracking-tight text-price sm:text-3xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
+            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-price sm:text-3xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
               Why choose Solvio?
             </h2>
             <p className="mt-3 text-[15px]" style={{ color: '#888' }}>

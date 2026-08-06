@@ -13,7 +13,7 @@ export default function Bestsellers() {
       <div className="container-x">
         <Reveal>
           <div className="flex items-end justify-between gap-4 mb-10">
-            <h2 className="text-2xl font-medium tracking-tight text-ink sm:text-3xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
+            <h2 className="text-2xl font-semibold tracking-tight text-ink sm:text-3xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
               Our most popular systems
             </h2>
             <Link to="/balcony-system" className="hidden whitespace-nowrap rounded-full bg-ink px-4 py-2 font-display text-[13px] font-bold text-white transition hover:bg-lime sm:inline-flex">
@@ -73,7 +73,7 @@ export default function Bestsellers() {
                   <div className="flex flex-1 flex-col gap-4 p-5">
                     <div>
                       <p className="font-mono text-[10px] uppercase tracking-widest text-ink/70">{p.tagline || 'Balcony Solar'}</p>
-                      <h3 className="mt-1 text-xl font-medium text-ink" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>{p.name}</h3>
+                      <h3 className="mt-1 text-xl font-semibold text-ink" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>{p.name}</h3>
                     </div>
 
                     <ul className="flex flex-col gap-1.5">
