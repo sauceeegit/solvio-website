@@ -39,12 +39,22 @@ export default function Bestsellers() {
                   onMouseEnter={() => setHoveredIdx(i)}
                   onMouseLeave={() => setHoveredIdx(null)}
                 >
-                  <div className="relative aspect-[4/3]" style={p.bg ? { backgroundColor: p.bg } : { backgroundColor: '#FF6700' }}>
+                  <div
+                    className="relative aspect-[4/3] transition-colors duration-500"
+                    style={{ backgroundColor: hoveredIdx === i && p.hoverBg ? p.hoverBg : (p.bg || '#FF6700') }}
+                  >
                     <img
                       src={p.img}
                       alt={p.name}
-                      className={`absolute inset-0 h-full w-full p-3 ${p.fit === 'contain' ? 'object-contain' : 'object-cover'}`}
+                      className={`absolute inset-0 h-full w-full p-3 transition-opacity duration-500 ${p.fit === 'contain' ? 'object-contain' : 'object-cover'} ${hoveredIdx === i && p.hoverImg ? 'opacity-0' : 'opacity-100'}`}
                     />
+                    {p.hoverImg && (
+                      <img
+                        src={p.hoverImg}
+                        alt={p.name}
+                        className={`absolute inset-0 h-full w-full p-3 transition-opacity duration-500 ${p.fit === 'contain' ? 'object-contain' : 'object-cover'} ${hoveredIdx === i ? 'opacity-100' : 'opacity-0'}`}
+                      />
+                    )}
                     {p.badge && (
                       <span className="absolute left-3 top-3 rounded-full bg-white/20 backdrop-blur-sm px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-wider text-white">
                         {p.badge}
