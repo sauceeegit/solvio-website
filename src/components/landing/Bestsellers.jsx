@@ -45,22 +45,17 @@ export default function Bestsellers() {
                     className="relative aspect-[4/3] overflow-hidden"
                     style={{ backgroundColor: p.bg || '#ffffff' }}
                   >
-                    {/* default image — always visible underneath */}
+                    {/* both images always in DOM (preloaded) — visibility swap is instant, zero blending */}
                     <img
                       src={p.img}
                       alt={p.name}
-                      className="absolute inset-0 h-full w-full p-6 object-contain"
+                      className={`absolute inset-0 h-full w-full p-6 object-contain ${isHovered && p.hoverImg ? 'invisible' : 'visible'}`}
                     />
-                    {/* hover image — clip-path wipes in on hover, no opacity = zero color bleed */}
                     {p.hoverImg && (
                       <img
                         src={p.hoverImg}
                         alt={p.name}
-                        className="absolute inset-0 z-10 h-full w-full object-cover"
-                        style={{
-                          clipPath: isHovered ? 'inset(0 0 0 0)' : 'inset(100% 0 0 0)',
-                          transition: 'clip-path 0.45s ease-in-out',
-                        }}
+                        className={`absolute inset-0 z-10 h-full w-full object-cover transition-transform duration-500 ease-out ${isHovered ? 'visible scale-105' : 'invisible scale-100'}`}
                       />
                     )}
                     {p.badge && (
