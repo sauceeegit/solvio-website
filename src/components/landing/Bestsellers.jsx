@@ -13,7 +13,7 @@ export default function Bestsellers() {
       <div className="container-x">
         <Reveal>
           <div className="flex items-end justify-between gap-4 mb-10">
-            <h2 className="font-display text-3xl font-medium tracking-tight text-ink sm:text-4xl">
+            <h2 className="font-display text-3xl font-normal tracking-tight text-ink sm:text-4xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
               Our most popular systems
             </h2>
             <Link to="/balcony-system" className="hidden whitespace-nowrap rounded-full bg-ink px-4 py-2 font-display text-[13px] font-bold text-white transition hover:bg-lime sm:inline-flex">
@@ -24,39 +24,43 @@ export default function Bestsellers() {
 
         <div className="flex snap-x gap-4 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:grid sm:gap-5 sm:overflow-visible sm:pb-0 sm:grid-cols-2 lg:grid-cols-3">
           {bestsellers.map((p, i) => {
-            const dimmed = hoveredIdx !== null && hoveredIdx !== i;
+            const isHovered = hoveredIdx === i;
+            const dimmed = hoveredIdx !== null && !isHovered;
             return (
               <Reveal key={p.id} delay={i * 0.06} className="max-sm:w-[78%] max-sm:shrink-0 max-sm:snap-start">
                 <div
-                  className="flex h-full flex-col overflow-hidden rounded-2xl bg-white transition-all duration-500 ease-out"
+                  className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white transition-all duration-500 ease-out"
                   style={{
-                    boxShadow: hoveredIdx === i
+                    boxShadow: isHovered
                       ? '0 20px 50px -12px rgba(0,0,0,0.18)'
                       : '0 2px 12px rgba(0,0,0,0.07)',
                     opacity: dimmed ? 0.55 : 1,
-                    transform: hoveredIdx === i ? 'scale(1.02) translateY(-4px)' : 'scale(1) translateY(0)',
+                    transform: isHovered ? 'scale(1.02) translateY(-4px)' : 'scale(1) translateY(0)',
                   }}
                   onMouseEnter={() => setHoveredIdx(i)}
                   onMouseLeave={() => setHoveredIdx(null)}
                 >
+                  {/* image area */}
                   <div
-                    className="relative aspect-[4/3] transition-colors duration-500"
-                    style={{ backgroundColor: hoveredIdx === i && p.hoverBg ? p.hoverBg : (p.bg || '#FF6700') }}
+                    className="relative aspect-[4/3] overflow-hidden transition-colors duration-500"
+                    style={{ backgroundColor: isHovered && p.hoverBg ? p.hoverBg : (p.bg || '#ffffff') }}
                   >
+                    {/* default image — sits behind, fades out on hover */}
                     <img
                       src={p.img}
                       alt={p.name}
-                      className={`absolute inset-0 h-full w-full p-6 transition-opacity duration-500 ${p.fit === 'contain' ? 'object-contain' : 'object-cover'} ${hoveredIdx === i && p.hoverImg ? 'opacity-0' : 'opacity-100'}`}
+                      className={`absolute inset-0 h-full w-full p-6 transition-opacity duration-500 ${p.fit === 'contain' ? 'object-contain' : 'object-cover'} ${isHovered && p.hoverImg ? 'opacity-0' : 'opacity-100'}`}
                     />
+                    {/* hover image — sits on top, fades in on hover */}
                     {p.hoverImg && (
                       <img
                         src={p.hoverImg}
                         alt={p.name}
-                        className={`absolute inset-0 h-full w-full p-3 transition-opacity duration-500 ${p.fit === 'contain' ? 'object-contain' : 'object-cover'} ${hoveredIdx === i ? 'opacity-100' : 'opacity-0'}`}
+                        className={`absolute inset-0 z-10 h-full w-full p-3 transition-opacity duration-500 ${p.fit === 'contain' ? 'object-contain' : 'object-cover'} ${isHovered ? 'opacity-100' : 'opacity-0'}`}
                       />
                     )}
                     {p.badge && (
-                      <span className="absolute left-3 top-3 rounded-full bg-white/20 backdrop-blur-sm px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-wider text-white">
+                      <span className="absolute left-3 top-3 z-20 rounded-full bg-white/20 backdrop-blur-sm px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-wider text-white">
                         {p.badge}
                       </span>
                     )}
@@ -84,7 +88,7 @@ export default function Bestsellers() {
                       </div>
                       <Link
                         to="/balcony-system"
-                        className="inline-flex items-center gap-1.5 rounded-full bg-ink px-4 py-2.5 font-display text-sm font-medium text-white transition hover:bg-lime"
+                        className="inline-flex items-center gap-1.5 rounded-full bg-ink px-4 py-2.5 font-display text-sm font-medium text-white transition duration-300 group-hover:bg-lime hover:!bg-lime-dark"
                       >
                         See details <ArrowRight size={15} />
                       </Link>

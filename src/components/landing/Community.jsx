@@ -10,7 +10,7 @@ export default function Community() {
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
             <p className="eyebrow">Join the movement</p>
-            <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">
+            <h2 className="mt-2 font-display text-3xl font-normal tracking-tight sm:text-4xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
               Become part of Solvio
             </h2>
             <p className="mt-3 text-white/60">

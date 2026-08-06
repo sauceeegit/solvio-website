@@ -33,7 +33,7 @@ export default function HowItWorks() {
     <section className="py-20 sm:py-28" style={{ backgroundColor: '#f5f5f7' }}>
       <div className="container-x">
         <Reveal>
-          <h2 className="font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl mb-10 sm:mb-12">
+          <h2 className="font-display text-4xl font-normal tracking-tight text-ink sm:text-5xl mb-10 sm:mb-12" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
             Up and running<br className="hidden sm:block" /> in 3 steps.
           </h2>
         </Reveal>
