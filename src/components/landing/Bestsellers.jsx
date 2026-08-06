@@ -22,7 +22,7 @@ export default function Bestsellers() {
           </div>
         </Reveal>
 
-        <div className="flex snap-x gap-4 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:grid sm:gap-5 sm:overflow-visible sm:pb-0 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="flex snap-x gap-4 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:grid sm:gap-5 sm:overflow-visible sm:pb-0 sm:grid-cols-2 lg:grid-cols-3" onPointerLeave={() => setHoveredIdx(null)}>
           {bestsellers.map((p, i) => {
             const isHovered = hoveredIdx === i;
             const dimmed = hoveredIdx !== null && !isHovered;
