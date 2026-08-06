@@ -69,7 +69,7 @@ export default function Bestsellers() {
                   <div className="flex flex-1 flex-col gap-4 p-5">
                     <div>
                       <p className="font-mono text-[10px] uppercase tracking-widest text-ink/70">{p.tagline || 'Balcony Solar'}</p>
-                      <h3 className="mt-1 font-display text-xl font-medium text-ink">{p.name}</h3>
+                      <h3 className="mt-1 font-display text-xl font-medium text-ink" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>{p.name}</h3>
                     </div>
 
                     <ul className="flex flex-col gap-1.5">
