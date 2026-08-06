@@ -25,8 +25,8 @@ function CardInner({ c, dimmed }) {
           >{c.sub}</p>
         )}
         <h3
-          className="font-display text-[26px] font-extrabold leading-tight text-white max-sm:text-xl"
-          style={{ textShadow: '0 2px 16px rgba(0,0,0,0.6)' }}
+          className="font-display text-[26px] font-medium leading-tight text-white max-sm:text-xl"
+          style={{ textShadow: '0 2px 16px rgba(0,0,0,0.6)', fontFamily: '"Space Grotesk", system-ui, sans-serif' }}
         >{c.title}</h3>
       </div>
 
@@ -49,7 +49,7 @@ export default function CategoryGrid() {
     <section id="categories" className="scroll-mt-20 py-14 max-lg:pt-10" style={{ backgroundColor: '#fafafa' }}>
       <div className="container-x">
       <Reveal>
-        <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">
+        <h2 className="font-display text-2xl font-medium text-ink sm:text-3xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
           From Rooftop to Backpack
         </h2>
       </Reveal>
