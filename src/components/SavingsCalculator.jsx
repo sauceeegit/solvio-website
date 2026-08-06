@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Sun, Wallet, Leaf, Clock, ArrowRight, Check } from 'lucide-react';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
 import { orientations, calculatorDefaults, computeConfig, defaultConfig, MODULE_WP } from '../data/product';
 import { baht, num } from '../lib/format';
 import Reveal from './Reveal';
@@ -15,7 +17,20 @@ const DEFAULT_DERIVED = computeConfig(defaultConfig);
 
 // Card-only "Basic" calculator. The surrounding section, heading and Basic/Advanced
 // toggle are provided by CalculatorSection.
+const iconVariants = [
+  // Sun — spin
+  { animate: { rotate: [0, 20, -10, 15, 0], scale: [1, 1.18, 1.1, 1.15, 1] }, transition: { duration: 0.7, ease: 'easeOut' } },
+  // Wallet — bounce up
+  { animate: { y: [0, -10, 4, -6, 0], scale: [1, 1.15, 1.08, 1.12, 1] }, transition: { duration: 0.65, ease: 'easeOut' } },
+  // Clock — wiggle
+  { animate: { rotate: [0, -15, 12, -8, 0], scale: [1, 1.15, 1.1, 1.12, 1] }, transition: { duration: 0.6, ease: 'easeOut' } },
+  // Leaf — sway
+  { animate: { rotate: [0, 12, -8, 10, 0], y: [0, -6, 2, -4, 0] }, transition: { duration: 0.65, ease: 'easeOut' } },
+];
+
 export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
+  const statsRef = useRef(null);
+  const inView = useInView(statsRef, { once: true, margin: '-80px' });
   const [orientation, setOrientation] = useState('south');
   const [household, setHousehold] = useState(calculatorDefaults.household);
   const [rate, setRate] = useState(calculatorDefaults.rate);
@@ -249,13 +264,19 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
                 </p>
               </div>
 
-              <div className="grid flex-1 grid-cols-2 gap-3">
-              {stats.map((s) => (
+              <div ref={statsRef} className="grid flex-1 grid-cols-2 gap-3">
+              {stats.map((s, idx) => (
                 <div
                   key={s.label}
                   className="flex flex-col justify-between rounded-2xl bg-white p-4 max-sm:p-3" style={{ boxShadow: '0 1px 8px rgba(0,0,0,0.06)' }}
                 >
-                  <s.icon size={36} className={s.tint} />
+                  <motion.div
+                    animate={inView ? iconVariants[idx].animate : {}}
+                    transition={{ ...iconVariants[idx].transition, delay: idx * 0.1 }}
+                    style={{ display: 'inline-flex' }}
+                  >
+                    <s.icon size={36} className={s.tint} />
+                  </motion.div>
                   <div className="mt-6 max-sm:mt-2">
                     <p className="font-display text-2xl font-extrabold tracking-tight text-ink tabular-nums max-sm:text-xl">
                       {s.value}

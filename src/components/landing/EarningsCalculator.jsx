@@ -156,7 +156,7 @@ function BreakEvenChart({ series, cost, payback }) {
 
 function Metric({ label, value, valueClass = 'text-ink' }) {
   return (
-    <div className="rounded-xl bg-white p-3.5">
+    <div className="rounded-2xl bg-white p-4" style={{ boxShadow: '0 1px 8px rgba(0,0,0,0.06)' }}>
       <p className="text-[13px] text-slatey-500">{label}</p>
       <p className={`mt-1 font-display text-2xl font-extrabold tabular-nums ${valueClass}`}>{value}</p>
     </div>
@@ -192,7 +192,7 @@ export default function EarningsCalculator({ exportDefault = true }) {
   return (
     <>
       <Reveal delay={0.1}>
-        <div className="mx-auto max-w-4xl rounded-xl2 border border-ink/[0.07] bg-[#f0f8ff] p-5 shadow-soft sm:p-7">
+        <div className="mx-auto max-w-6xl rounded-3xl bg-white p-6 md:p-10" style={{ boxShadow: '0 2px 24px rgba(0,0,0,0.07)' }}>
             {/* bill */}
             <div>
               <div className="flex items-baseline justify-between">
