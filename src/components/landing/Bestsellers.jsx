@@ -45,17 +45,23 @@ export default function Bestsellers() {
                     className="relative aspect-[4/3] overflow-hidden"
                     style={{ backgroundColor: p.bg || '#ffffff' }}
                   >
-                    {/* both images always in DOM (preloaded) — visibility swap is instant, zero blending */}
+                    {/* both images always in DOM — instant visibility swap via inline style (no Tailwind purge risk) */}
                     <img
                       src={p.img}
                       alt={p.name}
-                      className={`absolute inset-0 h-full w-full p-6 object-contain ${isHovered && p.hoverImg ? 'invisible' : 'visible'}`}
+                      className="absolute inset-0 h-full w-full p-6 object-contain"
+                      style={{ visibility: (isHovered && p.hoverImg) ? 'hidden' : 'visible' }}
                     />
                     {p.hoverImg && (
                       <img
                         src={p.hoverImg}
                         alt={p.name}
-                        className={`absolute inset-0 z-10 h-full w-full object-cover transition-transform duration-500 ease-out ${isHovered ? 'visible scale-105' : 'invisible scale-100'}`}
+                        className="absolute inset-0 z-10 h-full w-full object-cover"
+                        style={{
+                          visibility: isHovered ? 'visible' : 'hidden',
+                          transform: isHovered ? 'scale(1.05)' : 'scale(1)',
+                          transition: 'transform 500ms ease-out',
+                        }}
                       />
                     )}
                     {p.badge && (
