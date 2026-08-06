@@ -46,7 +46,7 @@ export default function Bestsellers() {
                     <img
                       src={p.img}
                       alt={p.name}
-                      className={`absolute inset-0 h-full w-full p-3 transition-opacity duration-500 ${p.fit === 'contain' ? 'object-contain' : 'object-cover'} ${hoveredIdx === i && p.hoverImg ? 'opacity-0' : 'opacity-100'}`}
+                      className={`absolute inset-0 h-full w-full p-6 transition-opacity duration-500 ${p.fit === 'contain' ? 'object-contain' : 'object-cover'} ${hoveredIdx === i && p.hoverImg ? 'opacity-0' : 'opacity-100'}`}
                     />
                     {p.hoverImg && (
                       <img
