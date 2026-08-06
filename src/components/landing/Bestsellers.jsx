@@ -55,7 +55,7 @@ export default function Bestsellers() {
                       <img
                         src={p.hoverImg}
                         alt={p.name}
-                        className="absolute inset-0 z-10 h-full w-full object-cover scale-105"
+                        className="absolute inset-0 z-10 h-full w-full object-contain"
                       />
                     )}
                     {p.badge && (
