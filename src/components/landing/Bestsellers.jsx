@@ -13,7 +13,7 @@ export default function Bestsellers() {
       <div className="container-x">
         <Reveal>
           <div className="flex items-end justify-between gap-4 mb-10">
-            <h2 className="font-display text-3xl font-medium tracking-tight text-ink sm:text-4xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
+            <h2 className="font-display text-2xl font-medium tracking-tight text-ink sm:text-3xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
               Our most popular systems
             </h2>
             <Link to="/balcony-system" className="hidden whitespace-nowrap rounded-full bg-ink px-4 py-2 font-display text-[13px] font-bold text-white transition hover:bg-lime sm:inline-flex">

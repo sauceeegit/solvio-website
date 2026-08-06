@@ -14,7 +14,7 @@ export default function LandingFAQ() {
     <section id="faq" className="scroll-mt-20 bg-white py-16">
       <div className="container-x">
         <Reveal>
-          <h2 className="font-display text-3xl font-extrabold tracking-tight text-price sm:text-4xl">
+          <h2 className="font-display text-2xl font-medium tracking-tight text-price sm:text-3xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
             FAQ
           </h2>
         </Reveal>
