@@ -68,7 +68,7 @@ export const bestsellers = [
     img: asset('/white-feather-900-1.png'),
     hoverImg: asset('/white-feather-900.jpg'),
     fit: 'contain',
-    bg: '#ffffff',
+    bg: '#f5f5f7',
     hoverBg: '#F84F01',
     specs: [
       '2 solar modules of 450 W each, 900 Wp',
@@ -85,7 +85,7 @@ export const bestsellers = [
     img: asset('/dark-feather-900-1.png'),
     hoverImg: asset('/dark-feather-900.jpg'),
     fit: 'contain',
-    bg: '#ffffff',
+    bg: '#f5f5f7',
     hoverBg: '#FB5804',
     specs: [
       '2 solar modules of 450 W each, 900 Wp',
@@ -101,7 +101,7 @@ export const bestsellers = [
     img: asset('/dark-feather-1800-1.png'),
     hoverImg: asset('/dark-feather-1800.jpg'),
     fit: 'contain',
-    bg: '#ffffff',
+    bg: '#f5f5f7',
     hoverBg: '#FA4700',
     specs: [
       '4 solar modules of 450 W each, 1800 Wp',
