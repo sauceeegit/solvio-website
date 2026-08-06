@@ -37,31 +37,25 @@ export default function Bestsellers() {
                     opacity: dimmed ? 0.55 : 1,
                     transform: isHovered ? 'scale(1.02) translateY(-4px)' : 'scale(1) translateY(0)',
                   }}
-                  onMouseEnter={() => setHoveredIdx(i)}
-                  onMouseLeave={() => setHoveredIdx(null)}
+                  onPointerEnter={(e) => { if (e.pointerType === 'mouse') setHoveredIdx(i); }}
+                  onPointerLeave={(e) => { if (e.pointerType === 'mouse') setHoveredIdx(null); }}
                 >
                   {/* image area */}
                   <div
                     className="relative aspect-[4/3] overflow-hidden"
                     style={{ backgroundColor: p.bg || '#ffffff' }}
                   >
-                    {/* both images always in DOM — instant visibility swap via inline style (no Tailwind purge risk) */}
                     <img
                       src={p.img}
                       alt={p.name}
                       className="absolute inset-0 h-full w-full p-6 object-contain"
-                      style={{ visibility: (isHovered && p.hoverImg) ? 'hidden' : 'visible' }}
+                      style={{ display: (isHovered && p.hoverImg) ? 'none' : 'block' }}
                     />
-                    {p.hoverImg && (
+                    {p.hoverImg && isHovered && (
                       <img
                         src={p.hoverImg}
                         alt={p.name}
-                        className="absolute inset-0 z-10 h-full w-full object-cover"
-                        style={{
-                          visibility: isHovered ? 'visible' : 'hidden',
-                          transform: isHovered ? 'scale(1.05)' : 'scale(1)',
-                          transition: 'transform 500ms ease-out',
-                        }}
+                        className="absolute inset-0 z-10 h-full w-full object-cover scale-105"
                       />
                     )}
                     {p.badge && (
