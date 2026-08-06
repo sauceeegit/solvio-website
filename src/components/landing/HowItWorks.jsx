@@ -33,7 +33,7 @@ export default function HowItWorks() {
     <section className="py-20 sm:py-28" style={{ backgroundColor: '#f5f5f7' }}>
       <div className="container-x">
         <Reveal>
-          <h2 className="font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl mb-10 sm:mb-12" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
+          <h2 className="text-4xl font-semibold tracking-tight text-ink sm:text-5xl mb-10 sm:mb-12" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
             Up and running<br className="hidden sm:block" /> in 3 steps.
           </h2>
         </Reveal>
@@ -47,10 +47,10 @@ export default function HowItWorks() {
               >
                 {/* text top */}
                 <div className="p-8 pb-0">
-                  <p className="font-display text-[12px] font-semibold uppercase tracking-widest text-ink/70 mb-3">
+                  <p className="text-[12px] font-semibold uppercase tracking-widest text-ink/70 mb-3" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
                     {s.eyebrow}
                   </p>
-                  <h3 className="font-display text-[1.4rem] font-semibold leading-snug text-ink">
+                  <h3 className="text-[1.4rem] font-semibold leading-snug text-ink" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
                     {s.title}
                   </h3>
                   <p className="mt-3 text-[15px] leading-relaxed text-ink/75">
