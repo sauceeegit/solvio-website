@@ -50,7 +50,7 @@ export default function FounderVideo() {
 
         <Reveal delay={0.1}>
           <p className="eyebrow font-bold">Solar in Thailand</p>
-          <h2 className="mt-2 font-display text-3xl font-normal leading-tight tracking-tight text-ink sm:text-4xl max-sm:text-[22px]" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
+          <h2 className="mt-2 font-display text-3xl font-medium leading-tight tracking-tight text-ink sm:text-4xl max-sm:text-[22px]" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
             {founder.heading}
           </h2>
           <p className="mt-4 text-[15px] leading-relaxed text-slatey-500">
