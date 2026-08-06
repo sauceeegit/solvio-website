@@ -64,13 +64,13 @@ export default function Bestsellers() {
 
                   <div className="flex flex-1 flex-col gap-4 p-5">
                     <div>
-                      <p className="font-mono text-[10px] uppercase tracking-widest text-ink/40">{p.tagline || 'Balcony Solar'}</p>
+                      <p className="font-mono text-[10px] uppercase tracking-widest text-ink/70">{p.tagline || 'Balcony Solar'}</p>
                       <h3 className="mt-1 font-display text-xl font-medium text-ink">{p.name}</h3>
                     </div>
 
                     <ul className="flex flex-col gap-1.5">
                       {p.specs.map((s) => (
-                        <li key={s} className="flex items-start gap-2 text-[14px] text-ink/60">
+                        <li key={s} className="flex items-start gap-2 text-[14px] text-ink/80">
                           <Check size={14} className="mt-0.5 shrink-0 text-lime" strokeWidth={3} />
                           {s}
                         </li>
@@ -84,7 +84,7 @@ export default function Bestsellers() {
                       </div>
                       <Link
                         to="/balcony-system"
-                        className="inline-flex items-center gap-1.5 rounded-full bg-lime px-4 py-2.5 font-display text-sm font-medium text-white transition hover:bg-lime-dark"
+                        className="inline-flex items-center gap-1.5 rounded-full bg-ink px-4 py-2.5 font-display text-sm font-medium text-white transition hover:bg-lime"
                       >
                         See details <ArrowRight size={15} />
                       </Link>
