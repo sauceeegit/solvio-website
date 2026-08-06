@@ -18,9 +18,9 @@ export default function SolarPanelPage() {
       <Header />
       <main>
         <h1 className="sr-only">Dark Feather 450 Wp solar panel — glass-glass, IP68</h1>
+        <PlugPlayVideo />
         <ModuleBanner />
         <SolarPanelFeatures />
-        <PlugPlayVideo />
         <SolarYourWay />
         <PanelComparison />
         <FAQ
