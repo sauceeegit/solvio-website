@@ -40,7 +40,7 @@ export default function HowItWorks() {
 
         <div className="grid gap-4 sm:grid-cols-3">
           {steps.map((s, i) => (
-            <Reveal key={s.title} delay={i * 0.1}>
+            <Reveal key={s.title} delay={i * 0.18} y={32}>
               <div
                 className="flex h-full flex-col rounded-3xl bg-white overflow-hidden"
                 style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}
