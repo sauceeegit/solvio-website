@@ -45,11 +45,11 @@ export default function Bestsellers() {
                     className="relative aspect-[4/3] overflow-hidden transition-colors duration-500"
                     style={{ backgroundColor: isHovered && p.hoverBg ? p.hoverBg : (p.bg || '#ffffff') }}
                   >
-                    {/* default image — sits behind, fades out on hover */}
+                    {/* default image — always visible, no fade */}
                     <img
                       src={p.img}
                       alt={p.name}
-                      className={`absolute inset-0 h-full w-full p-6 transition-opacity duration-500 ${p.fit === 'contain' ? 'object-contain' : 'object-cover'} ${isHovered && p.hoverImg ? 'opacity-0' : 'opacity-100'}`}
+                      className={`absolute inset-0 h-full w-full p-6 ${p.fit === 'contain' ? 'object-contain' : 'object-cover'}`}
                     />
                     {/* hover image — sits on top, fades in on hover */}
                     {p.hoverImg && (
