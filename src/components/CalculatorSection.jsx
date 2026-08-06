@@ -15,7 +15,7 @@ export default function CalculatorSection({ derived }) {
     <section id="calculator" className="scroll-mt-20 bg-white py-16">
       <div className="container-x">
         <Reveal>
-          <div className="mx-auto flex max-w-4xl flex-col items-start justify-between gap-5 sm:flex-row sm:items-end">
+          <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-5 sm:flex-row sm:items-end">
             <div>
               <p className="eyebrow">Run the numbers</p>
               <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-price sm:text-4xl">

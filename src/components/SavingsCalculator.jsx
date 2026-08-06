@@ -84,12 +84,12 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
 
   return (
     <>
-      <p className="mx-auto mb-2 max-w-4xl text-sm text-slatey-500">
+      <p className="mx-auto mb-2 max-w-6xl text-sm text-slatey-500">
         Set your system size and adjust the sliders to match your home.
       </p>
 
       <Reveal delay={0.1}>
-        <div className="mx-auto grid max-w-4xl gap-6 rounded-xl2 border border-ink/[0.07] bg-white p-6 shadow-soft md:grid-cols-2 md:p-8">
+        <div className="mx-auto grid max-w-6xl gap-6 rounded-xl2 border border-ink/[0.07] bg-white p-6 shadow-soft md:grid-cols-2 md:p-10">
             {/* controls */}
             <div className="space-y-6">
               {/* panel count */}
@@ -253,7 +253,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
               {stats.map((s) => (
                 <div
                   key={s.label}
-                  className="flex flex-col justify-between rounded-xl border border-ink/[0.07] bg-[#eef7ff] p-4 max-sm:p-3"
+                  className="flex flex-col justify-between rounded-xl border border-ink/[0.07] bg-white p-4 max-sm:p-3"
                 >
                   <s.icon size={36} className={s.tint} />
                   <div className="mt-6 max-sm:mt-2">
@@ -298,7 +298,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
           </div>
         </Reveal>
 
-      <p className="mx-auto mt-4 max-w-2xl text-center text-xs text-slatey-400">
+      <p className="mx-auto mt-4 max-w-6xl text-center text-xs text-slatey-400">
         Estimates only. Payback uses your <strong>kit price (self-installed)</strong> —{' '}
         {baht(sized.total)} for {modules} panel{modules > 1 ? 's' : ''}. Assumes ~
         {Math.round(selfUse * 100)}% of generation is used at home
