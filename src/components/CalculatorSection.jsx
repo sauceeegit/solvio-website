@@ -12,7 +12,7 @@ export default function CalculatorSection({ derived }) {
   const [mode, setMode] = useState('basic');
 
   return (
-    <section id="calculator" className="scroll-mt-20 bg-white py-16">
+    <section id="calculator" className="scroll-mt-20 py-16" style={{ backgroundColor: '#f5f5f7' }}>
       <div className="container-x">
         <Reveal>
           <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-5 sm:flex-row sm:items-end">

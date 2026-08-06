@@ -89,7 +89,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
       </p>
 
       <Reveal delay={0.1}>
-        <div className="mx-auto grid max-w-6xl gap-6 rounded-xl2 border border-ink/[0.07] bg-white p-6 shadow-soft md:grid-cols-2 md:p-10">
+        <div className="mx-auto grid max-w-6xl gap-6 rounded-3xl bg-white p-6 md:grid-cols-2 md:p-10" style={{ boxShadow: '0 2px 24px rgba(0,0,0,0.07)' }}>
             {/* controls */}
             <div className="space-y-6">
               {/* panel count */}
@@ -253,7 +253,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
               {stats.map((s) => (
                 <div
                   key={s.label}
-                  className="flex flex-col justify-between rounded-xl border border-ink/[0.07] bg-white p-4 max-sm:p-3"
+                  className="flex flex-col justify-between rounded-2xl bg-white p-4 max-sm:p-3" style={{ boxShadow: '0 1px 8px rgba(0,0,0,0.06)' }}
                 >
                   <s.icon size={36} className={s.tint} />
                   <div className="mt-6 max-sm:mt-2">
