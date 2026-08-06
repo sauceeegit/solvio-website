@@ -45,7 +45,7 @@ export default function Bestsellers() {
                     className="relative aspect-[4/3] overflow-hidden"
                     style={{ backgroundColor: p.bg || '#ffffff' }}
                   >
-                    {/* hover image — always opaque underneath (z-0), revealed when default fades out */}
+                    {/* hover image — always sitting underneath, revealed when default slides away */}
                     {p.hoverImg && (
                       <img
                         src={p.hoverImg}
@@ -53,11 +53,11 @@ export default function Bestsellers() {
                         className="absolute inset-0 h-full w-full object-cover"
                       />
                     )}
-                    {/* default image — on top (z-10), fades out on hover to reveal image below */}
+                    {/* default image — slides up out of frame on hover (no opacity = no color bleed) */}
                     <img
                       src={p.img}
                       alt={p.name}
-                      className={`absolute inset-0 z-10 h-full w-full p-6 transition-opacity duration-500 ${p.fit === 'contain' ? 'object-contain' : 'object-cover'} ${isHovered && p.hoverImg ? 'opacity-0' : 'opacity-100'}`}
+                      className={`absolute inset-0 z-10 h-full w-full p-6 transition-transform duration-500 ease-in-out ${p.fit === 'contain' ? 'object-contain' : 'object-cover'} ${isHovered && p.hoverImg ? '-translate-y-full' : 'translate-y-0'}`}
                     />
                     {p.badge && (
                       <span className="absolute left-3 top-3 z-20 rounded-full bg-white/20 backdrop-blur-sm px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-wider text-white">
