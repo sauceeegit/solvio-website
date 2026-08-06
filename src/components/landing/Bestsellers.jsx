@@ -42,8 +42,8 @@ export default function Bestsellers() {
                 >
                   {/* image area */}
                   <div
-                    className="relative aspect-[4/3] overflow-hidden transition-colors duration-500"
-                    style={{ backgroundColor: isHovered && p.hoverBg ? p.hoverBg : (p.bg || '#ffffff') }}
+                    className="relative aspect-[4/3] overflow-hidden"
+                    style={{ backgroundColor: p.bg || '#ffffff' }}
                   >
                     {/* default image — always visible, no fade */}
                     <img
@@ -51,12 +51,12 @@ export default function Bestsellers() {
                       alt={p.name}
                       className={`absolute inset-0 h-full w-full p-6 ${p.fit === 'contain' ? 'object-contain' : 'object-cover'}`}
                     />
-                    {/* hover image — sits on top, fades in on hover */}
+                    {/* hover image — orange bg baked in, fills edge to edge, fades in on top */}
                     {p.hoverImg && (
                       <img
                         src={p.hoverImg}
                         alt={p.name}
-                        className={`absolute inset-0 z-10 h-full w-full p-3 transition-opacity duration-500 ${p.fit === 'contain' ? 'object-contain' : 'object-cover'} ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+                        className={`absolute inset-0 z-10 h-full w-full object-cover transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
                       />
                     )}
                     {p.badge && (
