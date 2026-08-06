@@ -6,16 +6,16 @@ import Reveal from './Reveal';
 // placed just above the Dark Feather banner.
 export default function PlugPlayVideo() {
   return (
-    <section className="bg-[#eaf4fc]">
-      <div className="container-x">
-        <Reveal>
-          <div className="grid items-center gap-8 py-14 sm:py-20 lg:grid-cols-2 lg:gap-14">
+    <section className="bg-[#eaf4fc]" style={{ minHeight: '82svh' }}>
+      <div className="container-x h-full">
+        <Reveal className="h-full">
+          <div className="grid h-full items-center gap-8 py-14 sm:py-20 lg:grid-cols-2 lg:gap-14" style={{ minHeight: '82svh' }}>
             {/* video */}
-            <div className="aspect-video overflow-hidden rounded-xl2 bg-ink shadow-soft">
+            <div className="overflow-hidden rounded-xl2 bg-ink shadow-soft" style={{ minHeight: '50svh' }}>
               <iframe
                 src="https://www.youtube.com/embed/HXFWIwgacsg?rel=0"
                 title="Easy Plug & Play — Solvio balcony solar"
-                className="h-full w-full border-0"
+                className="aspect-video h-full w-full border-0"
                 loading="lazy"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
