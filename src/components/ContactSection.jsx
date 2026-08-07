@@ -129,7 +129,7 @@ export default function ContactSection() {
             <h2 className="mt-2 text-2xl font-semibold tracking-tight text-price sm:text-3xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
               Talk to a Solvio solar advisor
             </h2>
-            <p className="mt-3 max-w-md text-ink/75">
+            <p className="mt-3 max-w-md text-ink/85">
               Tell us about your home or business and what you&apos;re looking for. We&apos;ll get
               back to you with honest, no-pressure advice.
             </p>
@@ -194,7 +194,7 @@ export default function ContactSection() {
                     <Check size={28} strokeWidth={3} />
                   </span>
                   <h3 className="mt-4 font-display text-xl font-bold text-ink">Thanks — message sent</h3>
-                  <p className="mt-2 max-w-sm text-sm text-slatey-500">
+                  <p className="mt-2 max-w-sm text-sm text-ink/70">
                     Your enquiry is on its way to our team. We&apos;ll get back to you within an hour.
                   </p>
                   <button
@@ -229,7 +229,7 @@ export default function ContactSection() {
                         </select>
                         <input value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="81 234 5678" className={fieldCls} />
                       </div>
-                      <label className="mt-2 flex items-center gap-2 text-xs font-medium text-slatey-500">
+                      <label className="mt-2 flex items-center gap-2 text-xs font-medium text-ink/65">
                         <input
                           type="checkbox"
                           checked={whatsapp}
@@ -245,13 +245,13 @@ export default function ContactSection() {
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
                       <label className="mb-1.5 block font-display text-sm font-semibold text-ink">
-                        <span className="font-normal text-slatey-400">or </span>Email
+                        <span className="font-normal text-ink/55">or </span>Email
                       </label>
                       <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@email.com" className={fieldCls} />
                     </div>
                     <div>
                       <label className="mb-1.5 block font-display text-sm font-semibold text-ink">
-                        <span className="font-normal text-slatey-400">or </span>LINE / Telegram ID
+                        <span className="font-normal text-ink/55">or </span>LINE / Telegram ID
                       </label>
                       <div className="flex gap-2">
                         <select
@@ -267,7 +267,7 @@ export default function ContactSection() {
                       </div>
                     </div>
                   </div>
-                  <p className="-mt-2 text-xs text-ink/60">
+                  <p className="-mt-2 text-xs text-ink/65">
                     Add your email or a LINE/Telegram ID — whichever you prefer, we reply on.
                   </p>
 
@@ -282,7 +282,7 @@ export default function ContactSection() {
                           className={`rounded-full border px-4 py-2 font-display text-sm font-semibold transition ${
                             propertyType === t
                               ? 'border-lime bg-lime text-white'
-                              : 'border-ink/12 text-ink/70 hover:border-ink/30'
+                              : 'border-ink/12 text-ink/80 hover:border-ink/30'
                           }`}
                         >
                           {t}
@@ -293,7 +293,7 @@ export default function ContactSection() {
 
                   <div>
                     <label className="mb-1.5 block font-display text-sm font-semibold text-ink">
-                      Interested in <span className="font-normal text-slatey-400">· choose any</span>
+                      Interested in <span className="font-normal text-ink/55">· choose any</span>
                     </label>
                     <div className="grid grid-cols-3 gap-2">
                       {INTERESTS.map((t) => {
@@ -304,7 +304,7 @@ export default function ContactSection() {
                             type="button"
                             onClick={() => toggleInterest(t)}
                             className={`flex items-center justify-center gap-1.5 rounded-full border px-2 py-2 text-center font-display text-sm font-semibold transition ${
-                              active ? 'border-lime bg-lime text-white' : 'border-ink/12 text-ink/70 hover:border-ink/30'
+                              active ? 'border-lime bg-lime text-white' : 'border-ink/12 text-ink/80 hover:border-ink/30'
                             }`}
                           >
                             {active && <Check size={14} strokeWidth={3} className="shrink-0" />}
@@ -341,7 +341,7 @@ export default function ContactSection() {
                   <p className="text-center font-display text-sm font-semibold text-lime-dark">
                     We will get in touch within 1 hour
                   </p>
-                  <p className="text-center text-xs text-slatey-400">
+                  <p className="text-center text-xs text-ink/55">
                     Your details are sent straight to {FORM_INBOX}. We never share them.
                   </p>
                 </form>

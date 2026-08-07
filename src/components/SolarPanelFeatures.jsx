@@ -49,7 +49,7 @@ export default function SolarPanelFeatures() {
                   >
                     {c.title}
                   </h2>
-                  <p className="mt-2 text-[15px] leading-relaxed text-ink/50">
+                  <p className="mt-2 text-[15px] leading-relaxed text-ink/70">
                     {c.body}
                   </p>
                 </div>
