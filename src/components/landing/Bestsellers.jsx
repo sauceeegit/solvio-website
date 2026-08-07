@@ -87,7 +87,7 @@ export default function Bestsellers() {
                       </div>
                       <Link
                         to="/balcony-system"
-                        className="inline-flex items-center gap-1.5 rounded-full bg-ink px-4 py-2.5 font-display text-sm font-medium text-white transition duration-300 group-hover:bg-lime hover:!bg-lime-dark"
+                        className="inline-flex items-center gap-1.5 rounded-full bg-ink px-4 py-2.5 font-display text-sm font-medium text-white transition duration-300 group-hover:bg-lime hover:!bg-lime-dark whitespace-nowrap"
                       >
                         See details <ArrowRight size={15} />
                       </Link>
