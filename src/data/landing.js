@@ -119,7 +119,7 @@ export const founder = {
   // Paste a YouTube embed URL here to go live (e.g. https://www.youtube.com/embed/VIDEO_ID).
   youtubeEmbed: 'https://www.youtube.com/embed/KJ7ffvduQ_U',
   // Real thumbnail for the embedded YouTube video.
-  poster: 'https://img.youtube.com/vi/KJ7ffvduQ_U/maxresdefault.jpg',
+  poster: 'https://img.youtube.com/vi/KJ7ffvduQ_U/2.jpg',
 };
 
 export const landingFaqs = [
