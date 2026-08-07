@@ -1,68 +1,68 @@
 import Reveal from './Reveal';
 import { asset } from '../lib/format';
 
-const features = [
+const cards = [
   {
     id: 'aesthetics',
     img: asset('/sp-feature-house.webp'),
-    imgAlt: 'Modern home with Solvio Black Feather solar panels on the roof and balcony railing',
-    aspect: 'aspect-[3/2]',
-    imageSide: 'left',
-    valign: 'center',
-    title: 'The Black Feather. Made for Real Homes.',
+    imgAlt: 'Modern home with Solvio Black Feather solar panels on the roof',
+    title: 'The Black Feather.\nMade for Real Homes.',
     body: 'All-black, ultra-slim, and built to complement your home — not just sit on top of it. Solar that looks like it belongs.',
+    bg: '#09321B',
+    textColor: '#fff',
+    subtextColor: 'rgba(255,255,255,0.65)',
+    imgPosition: 'object-top',
   },
   {
     id: 'lightweight',
     img: asset('/sp-feature-2.webp'),
-    imgAlt: 'Close-up of the thin, lightweight Solvio Dark Feather panel',
-    aspect: 'aspect-[4/3]',
-    objectFit: 'object-contain',
-    imageSide: 'right',
-    valign: 'start',
-    title: "So light, your roof won't feel it.",
-    body: 'Weight only 6kg/m² and 4.5mm thick.',
+    imgAlt: 'Ultra-thin Solvio Dark Feather panel floating above a mountain landscape',
+    title: 'So light, your roof\nwon\'t feel it.',
+    body: 'Weight only 6 kg/m² and 4.5 mm thick — the slimmest glass-glass panel on the market.',
+    bg: '#f5f5f7',
+    textColor: '#09321B',
+    subtextColor: 'rgba(9,50,27,0.6)',
+    imgPosition: 'object-center',
   },
 ];
 
 export default function SolarPanelFeatures() {
   return (
-    <section className="bg-white">
+    <section className="bg-white py-6 sm:py-8">
       <div className="container-x">
-        {features.map((f, i) => (
-          <Reveal key={f.id}>
-            <div
-              className={`grid gap-8 lg:grid-cols-2 lg:gap-14 ${
-                f.valign === 'start' ? 'items-center lg:items-start' : 'items-center'
-              } ${i === 0 ? 'pt-8 pb-2 sm:pt-10 sm:pb-3' : 'pt-2 pb-12 sm:pt-3 sm:pb-16'}`}
-            >
-              {/* image */}
+        <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
+          {cards.map((c, i) => (
+            <Reveal key={c.id} delay={i * 0.08}>
               <div
-                className={`overflow-hidden rounded-xl2 shadow-soft ${f.aspect} ${
-                  f.imageSide === 'right' ? 'lg:order-2' : ''
-                }`}
+                className="relative flex flex-col overflow-hidden rounded-3xl"
+                style={{ backgroundColor: c.bg, minHeight: 560 }}
               >
-                <img loading="lazy"
-                  src={f.img}
-                  alt={f.imgAlt}
-                  className={`h-full w-full ${f.objectFit || 'object-cover'} ${f.objectPos || ''}`}
-                />
-              </div>
+                {/* image — top 60% */}
+                <div className="relative h-[62%] w-full overflow-hidden" style={{ minHeight: 300 }}>
+                  <img
+                    loading="lazy"
+                    src={c.img}
+                    alt={c.imgAlt}
+                    className={`absolute inset-0 h-full w-full object-cover ${c.imgPosition}`}
+                  />
+                </div>
 
-              {/* text */}
-              <div
-                className={`${f.imageSide === 'right' ? 'lg:order-1' : ''} ${
-                  f.valign === 'start' ? 'lg:pt-8' : ''
-                }`}
-              >
-                <h2 className="font-display text-3xl font-extrabold leading-tight tracking-tight text-price sm:text-4xl">
-                  {f.title}
-                </h2>
-                <p className="mt-5 max-w-md text-lg text-slatey-500">{f.body}</p>
+                {/* text — bottom */}
+                <div className="flex flex-1 flex-col justify-end p-7 sm:p-8">
+                  <h2
+                    className="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl"
+                    style={{ color: c.textColor, fontFamily: '"Space Grotesk", system-ui, sans-serif', whiteSpace: 'pre-line' }}
+                  >
+                    {c.title}
+                  </h2>
+                  <p className="mt-3 text-[15px] leading-relaxed" style={{ color: c.subtextColor }}>
+                    {c.body}
+                  </p>
+                </div>
               </div>
-            </div>
-          </Reveal>
-        ))}
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );
