@@ -22,7 +22,7 @@ const cards = [
 
 export default function SolarPanelFeatures() {
   return (
-    <section className="bg-white py-6 sm:py-8">
+    <section className="bg-white pt-14 pb-8 sm:pt-20 sm:pb-10">
       <div className="container-x">
         <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
           {cards.map((c, i) => (
