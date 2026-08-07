@@ -214,7 +214,7 @@ export default function EarningsCalculator({ exportDefault = true }) {
 
             {/* coverage */}
             <div className="mt-6">
-              <div className="flex items-baseline justify-between">
+              <div className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between">
                 <label className="font-display text-sm font-semibold text-ink">
                   How much of your usage should solar cover?
                 </label>
@@ -348,19 +348,19 @@ export default function EarningsCalculator({ exportDefault = true }) {
             {/* system spec — mobile: size + panels on one row, cost below; desktop: single flex row */}
             <div className="mt-6 grid grid-cols-2 items-center gap-x-4 gap-y-3 rounded-xl bg-ink px-5 py-4 sm:flex sm:flex-wrap sm:gap-x-6">
               <div>
-                <p className="font-mono text-[11px] uppercase tracking-wider text-white/55">System size</p>
+                <p className="font-mono text-[11px] uppercase tracking-wider text-white/80">System size</p>
                 <p className="font-display text-2xl font-extrabold text-lime">{r.kwCapacity.toFixed(2)} kW</p>
               </div>
               <div className="hidden h-9 w-px bg-white/15 sm:block" />
               <div>
-                <p className="font-mono text-[11px] uppercase tracking-wider text-white/55">Panels needed</p>
+                <p className="font-mono text-[11px] uppercase tracking-wider text-white/80">Panels needed</p>
                 <p className="font-display text-2xl font-extrabold text-white">
                   ~{r.panels} <span className="text-base font-semibold text-white/70">× {PANEL_W} W</span>
                 </p>
               </div>
               <div className="hidden h-9 w-px bg-white/15 sm:block" />
               <div className="max-sm:col-span-2">
-                <p className="font-mono text-[11px] uppercase tracking-wider text-white/55">System cost</p>
+                <p className="font-mono text-[11px] uppercase tracking-wider text-white/80">System cost</p>
                 <p className="font-display text-2xl font-extrabold text-white">{baht(r.cost)}</p>
               </div>
             </div>
@@ -386,19 +386,19 @@ export default function EarningsCalculator({ exportDefault = true }) {
 
             {/* cash-flow callout */}
             <div className="mt-5 flex items-center gap-3 rounded-xl bg-white p-3.5 ring-1 ring-ink/[0.06]">
-              <Wallet size={22} className="shrink-0 text-lime-dark" />
+              <Wallet size={22} className="shrink-0 text-lime" />
               {net >= 0 ? (
                 <p className="text-[13px] leading-relaxed text-slatey-700">
                   On the {months}-month plan:{' '}
                   <span className="font-semibold text-ink">{baht(r.monthlyInstalment)}/mo</span> instalment vs{' '}
                   <span className="font-semibold text-ink">{baht(r.monthlySave)}/mo</span> saved —{' '}
-                  <span className="font-bold text-lime-dark">+{baht(net)}/mo in your pocket from day one</span>
+                  <span className="font-bold text-lime">+{baht(net)}/mo in your pocket from day one</span>
                 </p>
               ) : (
                 <p className="text-[13px] leading-relaxed text-slatey-700">
                   Spread it over {months} months at{' '}
                   <span className="font-semibold text-ink">{baht(r.monthlyInstalment)}/mo</span>, then{' '}
-                  <span className="font-bold text-lime-dark">{baht(r.monthlySave)}/mo in pure savings</span> for
+                  <span className="font-bold text-lime">{baht(r.monthlySave)}/mo in pure savings</span> for
                   decades.
                 </p>
               )}
@@ -436,14 +436,7 @@ export default function EarningsCalculator({ exportDefault = true }) {
         </Reveal>
 
         <p className="mx-auto mt-4 max-w-2xl text-center text-xs text-slatey-600">
-          Estimates only. Priced as a <strong>professionally installed rooftop system</strong>: ฿
-          {COST_PER_KW.toLocaleString()}/kW + ฿{COST_FIXED.toLocaleString()} install base (฿
-          {COST_PER_KW_BAT.toLocaleString()}/kW + ฿{COST_FIXED_BAT.toLocaleString()} with battery) — for the
-          plug-and-play kit price, use the configurator. Assumes {SUN_HOURS} sun-hours/day,{' '}
-          {Math.round(PR * 100)}% performance ratio, {PANEL_W} W panels, {Math.round(SC_NONE * 100)}%
-          self-consumption without a battery / {Math.round(SC_BAT * 100)}% with, surplus export at ฿
-          {EXPORT_RATE.toFixed(2)}/kWh when enabled (PEA net-billing), flat tariff and{' '}
-          {((1 - DEGRADATION) * 100).toFixed(1)}%/yr degradation.
+          Estimates only. Priced as a <strong>professionally installed rooftop system</strong>: ฿{COST_PER_KW.toLocaleString()}/kW + ฿{COST_FIXED.toLocaleString()} install base (฿{COST_PER_KW_BAT.toLocaleString()}/kW + ฿{COST_FIXED_BAT.toLocaleString()} with battery) — for the plug-and-play kit price, use the configurator. Assumes {SUN_HOURS} sun-hours/day, {Math.round(PR * 100)}% performance ratio, {PANEL_W} W panels, {Math.round(SC_NONE * 100)}% self-consumption without a battery / {Math.round(SC_BAT * 100)}% with, surplus export at ฿{EXPORT_RATE.toFixed(2)}/kWh when enabled (PEA net-billing), flat tariff and {((1 - DEGRADATION) * 100).toFixed(1)}%/yr degradation.
       </p>
     </>
   );
