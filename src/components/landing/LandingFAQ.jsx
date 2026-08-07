@@ -22,12 +22,12 @@ export default function LandingFAQ() {
         <div className="mt-8 grid gap-6 lg:grid-cols-[280px_1fr] lg:gap-10">
           {/* side tab */}
           <Reveal>
-            <div className="flex flex-col justify-center rounded-xl2 bg-ink p-6 text-white sm:p-8 lg:self-start">
-              <span className="grid h-11 w-11 place-items-center rounded-xl bg-lime text-white">
-                <HelpCircle size={22} />
+            <div className="flex flex-col justify-center rounded-3xl p-6 sm:p-8 lg:self-start" style={{ backgroundColor: '#f5f5f7' }}>
+              <span className="grid h-11 w-11 place-items-center rounded-2xl" style={{ backgroundColor: '#e8f0ea' }}>
+                <HelpCircle size={22} style={{ color: '#09321B' }} />
               </span>
-              <h3 className="mt-4 font-display text-xl font-extrabold">About Solvio</h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/60">
+              <h3 className="mt-5 text-xl font-semibold text-ink" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>About Solvio</h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink/55">
                 <span className="max-sm:hidden">
                   Everything from one source — from a single balcony panel to a full rooftop array.{' '}
                 </span>
@@ -35,7 +35,10 @@ export default function LandingFAQ() {
               </p>
               <a
                 href="#calculator"
-                className="mt-6 inline-flex rounded-full bg-lime px-4 py-2.5 font-display text-sm font-bold text-white transition hover:bg-lime-dark"
+                className="mt-6 inline-flex w-fit rounded-full px-4 py-2.5 text-sm font-semibold text-white transition"
+                style={{ backgroundColor: '#09321B' }}
+                onMouseEnter={e => e.currentTarget.style.backgroundColor = '#0d4526'}
+                onMouseLeave={e => e.currentTarget.style.backgroundColor = '#09321B'}
               >
                 Explore Solvio
               </a>
@@ -43,7 +46,10 @@ export default function LandingFAQ() {
                 href="https://wa.me/66843488428"
                 target="_blank"
                 rel="noreferrer"
-                className="mt-3 block text-sm font-semibold text-white/70 transition hover:text-white"
+                className="mt-3 block text-sm font-semibold transition"
+                style={{ color: 'rgba(9,50,27,0.5)' }}
+                onMouseEnter={e => e.currentTarget.style.color = '#09321B'}
+                onMouseLeave={e => e.currentTarget.style.color = 'rgba(9,50,27,0.5)'}
               >
                 Chat on WhatsApp →
               </a>
