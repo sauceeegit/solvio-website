@@ -268,7 +268,7 @@ export default function WhyShop() {
             <h2 className="mt-2 text-2xl font-semibold tracking-tight text-price sm:text-3xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
               Why choose Solvio?
             </h2>
-            <p className="mt-3 text-[15px]" style={{ color: '#888' }}>
+            <p className="mt-3 text-[15px] text-ink/70">
               Trusted by thousands of homeowners across Thailand.
             </p>
           </div>
