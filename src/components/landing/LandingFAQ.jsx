@@ -27,7 +27,7 @@ export default function LandingFAQ() {
                 <HelpCircle size={22} style={{ color: '#09321B' }} />
               </span>
               <h3 className="mt-5 text-xl font-semibold text-ink" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>About Solvio</h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink/55">
+              <p className="mt-2 text-sm leading-relaxed text-ink/70">
                 <span className="max-sm:hidden">
                   Everything from one source — from a single balcony panel to a full rooftop array.{' '}
                 </span>
@@ -84,7 +84,7 @@ export default function LandingFAQ() {
                           transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                           className="overflow-hidden"
                         >
-                          <p className="px-5 pb-5 pt-1 text-[15px] leading-relaxed text-ink/65 max-sm:text-sm">
+                          <p className="px-5 pb-5 pt-1 text-[15px] leading-relaxed text-ink/75 max-sm:text-sm">
                             {f.a}
                           </p>
                         </motion.div>

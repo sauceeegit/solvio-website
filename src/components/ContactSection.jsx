@@ -229,7 +229,7 @@ export default function ContactSection() {
                         </select>
                         <input value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="81 234 5678" className={fieldCls} />
                       </div>
-                      <label className="mt-2 flex items-center gap-2 text-xs font-medium text-ink/65">
+                      <label className="mt-2 flex items-center gap-2 text-xs font-medium text-ink/75">
                         <input
                           type="checkbox"
                           checked={whatsapp}
@@ -245,13 +245,13 @@ export default function ContactSection() {
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
                       <label className="mb-1.5 block font-display text-sm font-semibold text-ink">
-                        <span className="font-normal text-ink/55">or </span>Email
+                        <span className="font-normal text-ink/70">or </span>Email
                       </label>
                       <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@email.com" className={fieldCls} />
                     </div>
                     <div>
                       <label className="mb-1.5 block font-display text-sm font-semibold text-ink">
-                        <span className="font-normal text-ink/55">or </span>LINE / Telegram ID
+                        <span className="font-normal text-ink/70">or </span>LINE / Telegram ID
                       </label>
                       <div className="flex gap-2">
                         <select
@@ -267,7 +267,7 @@ export default function ContactSection() {
                       </div>
                     </div>
                   </div>
-                  <p className="-mt-2 text-xs text-ink/65">
+                  <p className="-mt-2 text-xs text-ink/75">
                     Add your email or a LINE/Telegram ID — whichever you prefer, we reply on.
                   </p>
 
@@ -293,7 +293,7 @@ export default function ContactSection() {
 
                   <div>
                     <label className="mb-1.5 block font-display text-sm font-semibold text-ink">
-                      Interested in <span className="font-normal text-ink/55">· choose any</span>
+                      Interested in <span className="font-normal text-ink/70">· choose any</span>
                     </label>
                     <div className="grid grid-cols-3 gap-2">
                       {INTERESTS.map((t) => {
@@ -341,7 +341,7 @@ export default function ContactSection() {
                   <p className="text-center font-display text-sm font-semibold text-lime-dark">
                     We will get in touch within 1 hour
                   </p>
-                  <p className="text-center text-xs text-ink/55">
+                  <p className="text-center text-xs text-ink/70">
                     Your details are sent straight to {FORM_INBOX}. We never share them.
                   </p>
                 </form>

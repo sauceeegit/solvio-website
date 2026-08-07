@@ -24,7 +24,7 @@ function PortableFAQItem({ q, a }) {
       <AnimatePresence initial={false}>
         {open && (
           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }} className="overflow-hidden">
-            <p className="px-5 pb-5 pt-1 text-[15px] leading-relaxed text-ink/65">{a}</p>
+            <p className="px-5 pb-5 pt-1 text-[15px] leading-relaxed text-ink/75">{a}</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -59,7 +59,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
           <div className="container-x">
             <Link
               to="/portable-system"
-              className="inline-flex items-center gap-2 font-display text-sm font-bold text-ink/65 transition hover:text-lime"
+              className="inline-flex items-center gap-2 font-display text-sm font-bold text-ink/75 transition hover:text-lime"
             >
               <ArrowLeft size={17} /> Back to portable power
             </Link>
@@ -101,7 +101,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
                     <p className="mt-1 font-display text-2xl font-extrabold text-ink">{product.metricValue}</p>
                   </div>
                   <div className="text-right">
-                    <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink/65">From</p>
+                    <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink/75">From</p>
                     <p className="mt-1 font-display text-2xl font-extrabold text-price">{baht(product.price)}</p>
                   </div>
                 </div>
@@ -150,7 +150,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
                     <Icon size={30} strokeWidth={1.75} />
                   </span>
                   <p className="font-display text-sm font-extrabold text-ink leading-tight">{label}</p>
-                  <p className="text-[11px] text-ink/50 leading-tight">{sub}</p>
+                  <p className="text-[11px] text-ink/70 leading-tight">{sub}</p>
                 </div>
                 );
               })}

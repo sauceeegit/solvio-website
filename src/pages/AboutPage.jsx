@@ -89,7 +89,7 @@ export default function AboutPage() {
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
-              <div className="space-y-4 text-[15px] leading-relaxed text-slatey-500">
+              <div className="space-y-4 text-[15px] leading-relaxed text-slatey-700">
                 <p>
                   Solvio started with a simple frustration: going solar in Thailand was far harder
                   than it needed to be. Confusing quotes, opaque pricing, and paperwork that scared
@@ -128,7 +128,7 @@ export default function AboutPage() {
                     <Home size={24} />
                   </span>
                   <h3 className="mt-4 font-display text-xl font-bold text-ink">For homeowners</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slatey-500">
+                  <p className="mt-2 text-sm leading-relaxed text-slatey-700">
                     Full rooftop systems sized to your home, designed for maximum yield and the
                     biggest long-term savings — with financing and buyback options included.
                   </p>
@@ -140,7 +140,7 @@ export default function AboutPage() {
                     <Building2 size={24} />
                   </span>
                   <h3 className="mt-4 font-display text-xl font-bold text-ink">For renters</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slatey-500">
+                  <p className="mt-2 text-sm leading-relaxed text-slatey-700">
                     Plug-and-play balcony kits that need no drilling, no electrician and no permits —
                     and move with you when you do. Solar you can start today.
                   </p>
@@ -169,7 +169,7 @@ export default function AboutPage() {
                       <v.icon size={22} />
                     </span>
                     <h3 className="mt-4 font-display text-lg font-bold text-ink">{v.title}</h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-slatey-500">{v.body}</p>
+                    <p className="mt-1.5 text-sm leading-relaxed text-slatey-700">{v.body}</p>
                   </div>
                 </Reveal>
               ))}

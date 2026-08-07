@@ -70,7 +70,7 @@ export default function SocialProof() {
                 <p className="font-display text-xl font-extrabold sm:text-3xl" style={{ color: '#C29848' }}>
                   <CountUp raw={s.value} />
                 </p>
-                <p className="mt-1 text-[11px] font-medium leading-tight text-ink/55 sm:text-[13px] sm:leading-normal">{s.label}</p>
+                <p className="mt-1 text-[11px] font-medium leading-tight text-ink/70 sm:text-[13px] sm:leading-normal">{s.label}</p>
               </div>
             ))}
           </div>

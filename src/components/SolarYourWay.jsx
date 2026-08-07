@@ -100,7 +100,7 @@ export default function SolarYourWay() {
             <h2 className="font-display text-4xl font-extrabold tracking-tight text-price sm:text-5xl">
               Solar. Your way.
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-base text-ink/65">
+            <p className="mx-auto mt-4 max-w-2xl text-base text-ink/75">
               Choose how you bring clean energy into your home. Whether on your balcony, facade
               or lightweight roof, Solvio makes premium solar possible where conventional panels simply don&apos;t fit.
             </p>
@@ -123,7 +123,7 @@ export default function SolarYourWay() {
                   </div>
                   <div>
                     <h3 className="font-display text-[1.05rem] font-extrabold text-ink">{c.title}</h3>
-                    <p className="mt-1 text-[13px] leading-relaxed text-ink/60">{c.body}</p>
+                    <p className="mt-1 text-[13px] leading-relaxed text-ink/72">{c.body}</p>
                   </div>
                 </div>
                 <div className="aspect-[4/3] overflow-hidden rounded-xl bg-surface">

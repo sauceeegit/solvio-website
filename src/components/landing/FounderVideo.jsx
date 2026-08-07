@@ -53,7 +53,7 @@ export default function FounderVideo() {
           <h2 className="mt-2 text-2xl font-medium leading-tight tracking-tight text-ink sm:text-3xl max-sm:text-[22px]" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
             {founder.heading}
           </h2>
-          <p className="mt-4 text-[15px] leading-relaxed text-slatey-500">
+          <p className="mt-4 text-[15px] leading-relaxed text-slatey-700">
             Here is our founder David Spence interviewed on the prospects of solar in Thailand —
             <br />
             and why we think Solvio is the best partner for your energy transition.

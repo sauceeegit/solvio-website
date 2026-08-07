@@ -31,7 +31,7 @@ function Item({ q, a, open, onToggle }) {
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden"
           >
-            <p className="px-5 pb-5 pt-1 text-[15px] leading-relaxed text-ink/65 max-sm:text-sm">{a}</p>
+            <p className="px-5 pb-5 pt-1 text-[15px] leading-relaxed text-ink/75 max-sm:text-sm">{a}</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -56,7 +56,7 @@ export default function FAQ({
           <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
             {heading}
           </h2>
-          <p className="mt-3 text-ink/55">{subtitle}</p>
+          <p className="mt-3 text-ink/70">{subtitle}</p>
           <a
             href="https://wa.me/66843488428?text=Hi%20Solvio%20%E2%80%94%20I%27d%20like%20to%20talk%20to%20an%20advisor."
             target="_blank"

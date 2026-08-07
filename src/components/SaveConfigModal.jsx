@@ -97,7 +97,7 @@ export default function SaveConfigModal({ open, onClose, derived }) {
           >
             <div className="flex items-center justify-between border-b border-ink/[0.07] px-5 py-3.5">
               <p className="font-display text-base font-extrabold text-ink">Your Solvio configuration</p>
-              <button type="button" onClick={onClose} aria-label="Close" className="grid h-8 w-8 place-items-center rounded-full text-ink/60 transition hover:bg-ink/[0.06]">
+              <button type="button" onClick={onClose} aria-label="Close" className="grid h-8 w-8 place-items-center rounded-full text-ink/72 transition hover:bg-ink/[0.06]">
                 <X size={18} />
               </button>
             </div>
@@ -126,14 +126,14 @@ export default function SaveConfigModal({ open, onClose, derived }) {
               <ul className="space-y-2.5">
                 {rows.map((r) => (
                   <li key={r.label} className="flex items-center justify-between gap-4 text-sm">
-                    <span className="inline-flex items-center gap-2 text-slatey-500">
+                    <span className="inline-flex items-center gap-2 text-slatey-700">
                       <r.icon size={15} className="shrink-0 text-lime-dark" /> {r.label}
                     </span>
                     <span className="text-right font-semibold text-ink">{r.value}</span>
                   </li>
                 ))}
                 <li className="flex items-center justify-between gap-4 border-t border-ink/[0.07] pt-3 text-sm">
-                  <span className="text-slatey-500">AC cable</span>
+                  <span className="text-slatey-700">AC cable</span>
                   <span className="font-semibold text-ink">{cable?.label}</span>
                 </li>
               </ul>
@@ -156,21 +156,21 @@ export default function SaveConfigModal({ open, onClose, derived }) {
                     </label>
                     <form onSubmit={submit} className="flex flex-col gap-2.5 sm:flex-row">
                       <div className="flex flex-1 items-center gap-2 rounded-full border border-ink/15 bg-white px-4">
-                        <Mail size={16} className="shrink-0 text-slatey-400" />
+                        <Mail size={16} className="shrink-0 text-slatey-600" />
                         <input
                           type="email"
                           required
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           placeholder="you@email.com"
-                          className="w-full min-w-0 bg-transparent py-3 font-display text-sm text-ink placeholder:text-slatey-400 focus:outline-none"
+                          className="w-full min-w-0 bg-transparent py-3 font-display text-sm text-ink placeholder:text-slatey-600 focus:outline-none"
                         />
                       </div>
                       <button type="submit" className="shrink-0 rounded-full bg-lime px-6 py-3 font-display text-sm font-bold text-white transition hover:bg-lime-dark">
                         Send report
                       </button>
                     </form>
-                    <p className="mt-2 text-xs text-slatey-400">
+                    <p className="mt-2 text-xs text-slatey-600">
                       We&apos;ll email your saved configuration and a follow-up quote from sales@solvio.solar.
                     </p>
                   </>

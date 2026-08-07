@@ -149,7 +149,7 @@ export default function FinancingOptions() {
           <h2 className="mt-2 max-w-2xl font-display text-3xl font-extrabold tracking-tight text-price sm:text-4xl">
             Own your roof&rsquo;s power without paying it all upfront
           </h2>
-          <p className="mt-3 max-w-xl text-slatey-500">
+          <p className="mt-3 max-w-xl text-slatey-700">
             Thai banks offer green loans built for exactly this — and your monthly savings on
             electricity can cover most of the repayment. Here are three ways to pay, and the
             loans property owners use most.
@@ -167,7 +167,7 @@ export default function FinancingOptions() {
                     <Icon size={28} />
                   </span>
                   <h3 className="mt-4 font-display text-lg font-bold text-price">{w.title}</h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-slatey-500">{w.body}</p>
+                  <p className="mt-1.5 text-sm leading-relaxed text-slatey-700">{w.body}</p>
                 </div>
               </Reveal>
             );
@@ -198,7 +198,7 @@ export default function FinancingOptions() {
                     aria-selected={active}
                     onClick={() => setSegment(t.id)}
                     className={`inline-flex items-center gap-2 rounded-full px-4 py-2 font-display text-sm font-semibold transition ${
-                      active ? 'bg-ink text-white shadow-soft' : 'text-ink/60 hover:text-ink'
+                      active ? 'bg-ink text-white shadow-soft' : 'text-ink/72 hover:text-ink'
                     }`}
                   >
                     <Icon size={15} />
@@ -216,7 +216,7 @@ export default function FinancingOptions() {
               <div className="card flex h-full flex-col p-6">
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
-                    <p className="font-mono text-[11px] uppercase tracking-wider text-slatey-400">
+                    <p className="font-mono text-[11px] uppercase tracking-wider text-slatey-600">
                       {l.bank}
                     </p>
                     <h4 className="mt-1 font-display text-lg font-bold text-price">{l.product}</h4>
@@ -257,7 +257,7 @@ export default function FinancingOptions() {
                   </div>
                 </dl>
 
-                <p className="mt-4 flex-1 text-sm leading-relaxed text-slatey-500">{l.note}</p>
+                <p className="mt-4 flex-1 text-sm leading-relaxed text-slatey-700">{l.note}</p>
               </div>
             </Reveal>
           ))}
@@ -295,7 +295,7 @@ export default function FinancingOptions() {
         </Reveal>
 
         {/* Disclaimer */}
-        <p className="mt-6 max-w-3xl text-xs leading-relaxed text-slatey-400">
+        <p className="mt-6 max-w-3xl text-xs leading-relaxed text-slatey-600">
           Rates, amounts, and terms shown are indicative, set by each bank, and change with
           bank announcements and campaigns. Loan approval is at each bank&rsquo;s sole
           discretion. Solvio is a solar installer, not a lender or financial advisor — please

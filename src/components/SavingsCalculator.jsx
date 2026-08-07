@@ -99,7 +99,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
 
   return (
     <>
-      <p className="mx-auto mb-2 max-w-6xl text-sm text-slatey-500">
+      <p className="mx-auto mb-2 max-w-6xl text-sm text-slatey-700">
         Set your system size and adjust the sliders to match your home.
       </p>
 
@@ -167,7 +167,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
                       className={`rounded-lg border px-2 py-2.5 text-xs font-semibold transition ${
                         orientation === o.id
                           ? 'border-lime bg-lime text-white'
-                          : 'border-ink/10 text-slatey-500 hover:border-ink/25'
+                          : 'border-ink/10 text-slatey-700 hover:border-ink/25'
                       }`}
                     >
                       {o.label}
@@ -229,14 +229,14 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
                       className={`rounded-lg border px-2 py-2.5 text-xs font-semibold transition ${
                         exportOn === o.v
                           ? 'border-lime bg-lime text-white'
-                          : 'border-ink/10 text-slatey-500 hover:border-ink/25'
+                          : 'border-ink/10 text-slatey-700 hover:border-ink/25'
                       }`}
                     >
                       {o.label}
                     </button>
                   ))}
                 </div>
-                <p className="mt-1.5 text-xs text-slatey-400">
+                <p className="mt-1.5 text-xs text-slatey-600">
                   {exportOn
                     ? 'Surplus sells to the grid at PEA net-billing rates — requires MEA/PEA registration.'
                     : 'Surplus earns nothing — typical for unregistered plug-in kits.'}
@@ -302,7 +302,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="you@email.com"
-                    className="w-full flex-1 rounded-full border border-ink/15 bg-white px-5 py-3 font-display text-sm text-ink placeholder:text-slatey-400 focus:border-lime-dark focus:outline-none"
+                    className="w-full flex-1 rounded-full border border-ink/15 bg-white px-5 py-3 font-display text-sm text-ink placeholder:text-slatey-600 focus:border-lime-dark focus:outline-none"
                   />
                   <button
                     type="submit"
@@ -312,14 +312,14 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
                   </button>
                 </form>
               )}
-              <p className="mt-2 text-sm text-slatey-500">
+              <p className="mt-2 text-sm text-slatey-700">
                 We&apos;ll send your estimate and follow up with a tailored quote.
               </p>
             </div>
           </div>
         </Reveal>
 
-      <p className="mx-auto mt-4 max-w-6xl text-center text-xs text-slatey-400">
+      <p className="mx-auto mt-4 max-w-6xl text-center text-xs text-slatey-600">
         Estimates only. Payback uses your <strong>kit price (self-installed)</strong> —{' '}
         {baht(sized.total)} for {modules} panel{modules > 1 ? 's' : ''}. Assumes ~
         {Math.round(selfUse * 100)}% of generation is used at home

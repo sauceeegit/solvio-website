@@ -116,7 +116,7 @@ export default function GuidePopup() {
                   </span>
                   <div>
                     <p className="font-display text-lg font-bold text-ink">You&apos;re in! 🎉</p>
-                    <p className="mt-1 text-sm text-slatey-500">
+                    <p className="mt-1 text-sm text-slatey-700">
                       The ultimate Solvio guide is on its way to <strong>{email}</strong>.
                     </p>
                   </div>
@@ -127,7 +127,7 @@ export default function GuidePopup() {
                   <h2 className="mt-2 font-display text-xl font-extrabold leading-tight text-ink sm:text-2xl">
                     Get your free copy
                   </h2>
-                  <p className="mt-2 text-sm text-slatey-500">
+                  <p className="mt-2 text-sm text-slatey-700">
                     Everything about your solar balcony system — sizing, savings and setup. Pop in
                     your email and we&apos;ll send it straight to your inbox.
                   </p>
@@ -138,7 +138,7 @@ export default function GuidePopup() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="you@email.com"
-                      className="w-full rounded-full border border-ink/15 bg-white px-5 py-3 font-display text-sm text-ink placeholder:text-slatey-400 focus:border-lime focus:outline-none"
+                      className="w-full rounded-full border border-ink/15 bg-white px-5 py-3 font-display text-sm text-ink placeholder:text-slatey-600 focus:border-lime focus:outline-none"
                     />
                     <button
                       type="submit"
@@ -147,7 +147,7 @@ export default function GuidePopup() {
                       Send me the guide <ArrowRight size={16} />
                     </button>
                   </form>
-                  <p className="mt-2.5 text-xs text-slatey-400">No spam — just the guide. Unsubscribe anytime.</p>
+                  <p className="mt-2.5 text-xs text-slatey-600">No spam — just the guide. Unsubscribe anytime.</p>
                 </>
               )}
             </div>

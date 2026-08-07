@@ -32,14 +32,14 @@ export default function ProductHero({ cfg, onAddToCart, added }) {
           >
             {product.name}
           </motion.h1>
-          <motion.p className="mt-2 max-w-md font-body text-[15px] font-medium text-slatey-500" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.35, ease: EASE }}>
+          <motion.p className="mt-2 max-w-md font-body text-[15px] font-medium text-slatey-700" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.35, ease: EASE }}>
             {product.tagline}
           </motion.p>
 
           <motion.div className="mt-3 flex items-center gap-2.5" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 0.45, ease: EASE }}>
             <Stars value={product.rating} />
             <span className="font-display text-sm font-semibold text-ink">{product.rating}</span>
-            <a href="#reviews" className="font-body text-sm font-medium text-slatey-500 underline-offset-2 hover:underline">
+            <a href="#reviews" className="font-body text-sm font-medium text-slatey-700 underline-offset-2 hover:underline">
               {product.reviewCount.toLocaleString()} reviews
             </a>
           </motion.div>

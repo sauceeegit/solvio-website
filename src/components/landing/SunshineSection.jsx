@@ -57,7 +57,7 @@ export default function SunshineSection() {
               </h2>
             </Reveal>
             <Reveal delay={0.12}>
-              <p className="mt-4 text-base leading-relaxed text-ink/65">
+              <p className="mt-4 text-base leading-relaxed text-ink/75">
                 Solvio makes solar energy simple. Our premium plug-and-play balcony solar systems let you generate your own clean electricity in minutes—no complicated installation, no expensive renovations, just reliable energy and lower electricity bills.
               </p>
             </Reveal>
@@ -73,7 +73,7 @@ export default function SunshineSection() {
                     </span>
                     <div>
                       <p className="font-display text-[15px] font-bold text-ink">{f.title}</p>
-                      <p className="mt-0.5 whitespace-pre-line text-[13px] leading-relaxed text-ink/60">{f.body}</p>
+                      <p className="mt-0.5 whitespace-pre-line text-[13px] leading-relaxed text-ink/72">{f.body}</p>
                     </div>
                   </li>
                 </Reveal>

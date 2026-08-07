@@ -46,7 +46,7 @@ function Item({ q, a, open, onToggle }) {
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden"
           >
-            <p className="px-5 pb-4 pt-3 text-[15px] leading-relaxed text-slatey-500 max-sm:text-sm">{a}</p>
+            <p className="px-5 pb-4 pt-3 text-[15px] leading-relaxed text-slatey-700 max-sm:text-sm">{a}</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -78,7 +78,7 @@ export default function FaqsPage() {
                 <h1 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-5xl">
                   Frequently asked questions
                 </h1>
-                <p className="mt-3 text-slatey-500">
+                <p className="mt-3 text-slatey-700">
                   Everything about rooftop, balcony and portable solar — in one place. Pick a topic
                   below.
                 </p>

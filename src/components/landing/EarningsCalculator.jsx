@@ -157,7 +157,7 @@ function BreakEvenChart({ series, cost, payback }) {
 function Metric({ label, value, valueClass = 'text-ink' }) {
   return (
     <div className="rounded-2xl bg-white p-4" style={{ boxShadow: '0 1px 8px rgba(0,0,0,0.06)' }}>
-      <p className="text-[13px] text-slatey-500">{label}</p>
+      <p className="text-[13px] text-slatey-700">{label}</p>
       <p className={`mt-1 font-display text-2xl font-extrabold tabular-nums ${valueClass}`}>{value}</p>
     </div>
   );
@@ -229,7 +229,7 @@ export default function EarningsCalculator({ exportDefault = true }) {
                 onChange={(e) => setCoverage(Number(e.target.value))}
                 className="mt-2 w-full accent-lime"
               />
-              <p className="mt-1.5 text-sm font-medium text-slatey-500">≈ {num(r.monthlyKwh)} kWh/month of usage</p>
+              <p className="mt-1.5 text-sm font-medium text-slatey-700">≈ {num(r.monthlyKwh)} kWh/month of usage</p>
             </div>
 
             {/* battery */}
@@ -246,14 +246,14 @@ export default function EarningsCalculator({ exportDefault = true }) {
                     className={`flex items-center justify-center gap-2 rounded-xl border px-2 py-3 font-display text-sm font-semibold transition ${
                       battery === o.v
                         ? 'border-lime bg-lime text-white'
-                        : 'border-ink/10 bg-white text-slatey-500 hover:border-ink/25'
+                        : 'border-ink/10 bg-white text-slatey-700 hover:border-ink/25'
                     }`}
                   >
                     <o.Icon size={17} /> {o.label}
                   </button>
                 ))}
               </div>
-              <p className="mt-1.5 text-sm text-slatey-500">
+              <p className="mt-1.5 text-sm text-slatey-700">
                 {battery
                   ? '~90% of your solar is used — the battery shifts daytime surplus to the evening.'
                   : '~65% is used live (daytime AC, fridge, appliances) — the rest is surplus.'}
@@ -274,14 +274,14 @@ export default function EarningsCalculator({ exportDefault = true }) {
                     className={`flex items-center justify-center gap-2 rounded-xl border px-2 py-3 font-display text-sm font-semibold transition ${
                       exportOn === o.v
                         ? 'border-lime bg-lime text-white'
-                        : 'border-ink/10 bg-white text-slatey-500 hover:border-ink/25'
+                        : 'border-ink/10 bg-white text-slatey-700 hover:border-ink/25'
                     }`}
                   >
                     <o.Icon size={17} /> {o.label}
                   </button>
                 ))}
               </div>
-              <p className="mt-1.5 text-sm text-slatey-500">
+              <p className="mt-1.5 text-sm text-slatey-700">
                 {exportOn
                   ? `Surplus sells to the grid at ฿${EXPORT_RATE.toFixed(2)}/kWh (PEA net-billing — requires MEA/PEA registration, rooftop systems).`
                   : 'Surplus is exported unpaid — typical for unregistered plug-in kits.'}
@@ -293,7 +293,7 @@ export default function EarningsCalculator({ exportDefault = true }) {
               <div>
                 <label className="mb-1.5 block font-display text-sm font-semibold text-ink">Electricity rate</label>
                 <div className="flex items-center gap-2">
-                  <span className="font-display text-sm text-slatey-500">฿</span>
+                  <span className="font-display text-sm text-slatey-700">฿</span>
                   <input
                     type="number"
                     min="1"
@@ -303,7 +303,7 @@ export default function EarningsCalculator({ exportDefault = true }) {
                     onChange={(e) => setRate(Number(e.target.value) || 0)}
                     className="w-full min-w-0 rounded-lg border border-ink/15 bg-white px-3 py-2 font-display text-sm font-semibold text-ink focus:border-lime-dark focus:outline-none sm:w-24"
                   />
-                  <span className="font-display text-sm text-slatey-500">/ kWh</span>
+                  <span className="font-display text-sm text-slatey-700">/ kWh</span>
                 </div>
               </div>
               <div>
@@ -318,7 +318,7 @@ export default function EarningsCalculator({ exportDefault = true }) {
                     onChange={(e) => setInterest(Number(e.target.value) || 0)}
                     className="w-full min-w-0 rounded-lg border border-ink/15 bg-white px-3 py-2 font-display text-sm font-semibold text-ink focus:border-lime-dark focus:outline-none sm:w-24"
                   />
-                  <span className="font-display text-sm text-slatey-500">% / yr</span>
+                  <span className="font-display text-sm text-slatey-700">% / yr</span>
                 </div>
               </div>
             </div>
@@ -326,7 +326,7 @@ export default function EarningsCalculator({ exportDefault = true }) {
             {/* instalment plan */}
             <div className="mt-5">
               <label className="mb-1.5 block font-display text-sm font-semibold text-ink">
-                Instalment plan <span className="font-normal text-slatey-400">· months</span>
+                Instalment plan <span className="font-normal text-slatey-600">· months</span>
               </label>
               <div className="grid grid-cols-5 gap-1.5">
                 {PLANS.map((m) => (
@@ -336,7 +336,7 @@ export default function EarningsCalculator({ exportDefault = true }) {
                     className={`rounded-lg border px-1 py-2 font-display text-sm font-semibold transition ${
                       months === m
                         ? 'border-lime bg-lime text-white'
-                        : 'border-ink/10 bg-white text-slatey-500 hover:border-ink/25'
+                        : 'border-ink/10 bg-white text-slatey-700 hover:border-ink/25'
                     }`}
                   >
                     {m}
@@ -375,9 +375,9 @@ export default function EarningsCalculator({ exportDefault = true }) {
 
             {/* chart */}
             <div className="mt-6">
-              <p className="mb-1 text-sm text-slatey-500">Cumulative savings vs system cost</p>
+              <p className="mb-1 text-sm text-slatey-700">Cumulative savings vs system cost</p>
               <BreakEvenChart series={r.series} cost={r.cost} payback={r.payback} />
-              <p className="mt-1 text-sm text-slatey-500">
+              <p className="mt-1 text-sm text-slatey-700">
                 {r.payback <= 25
                   ? `Break-even at year ${r.payback.toFixed(1)} — then ${Math.max(0, 25 - Math.round(r.payback))}+ years of near-free electricity.`
                   : 'Break-even falls beyond 25 years at this coverage — try a higher coverage %.'}
@@ -388,14 +388,14 @@ export default function EarningsCalculator({ exportDefault = true }) {
             <div className="mt-5 flex items-center gap-3 rounded-xl bg-white p-3.5 ring-1 ring-ink/[0.06]">
               <Wallet size={22} className="shrink-0 text-lime-dark" />
               {net >= 0 ? (
-                <p className="text-[13px] leading-relaxed text-slatey-500">
+                <p className="text-[13px] leading-relaxed text-slatey-700">
                   On the {months}-month plan:{' '}
                   <span className="font-semibold text-ink">{baht(r.monthlyInstalment)}/mo</span> instalment vs{' '}
                   <span className="font-semibold text-ink">{baht(r.monthlySave)}/mo</span> saved —{' '}
                   <span className="font-bold text-lime-dark">+{baht(net)}/mo in your pocket from day one</span>
                 </p>
               ) : (
-                <p className="text-[13px] leading-relaxed text-slatey-500">
+                <p className="text-[13px] leading-relaxed text-slatey-700">
                   Spread it over {months} months at{' '}
                   <span className="font-semibold text-ink">{baht(r.monthlyInstalment)}/mo</span>, then{' '}
                   <span className="font-bold text-lime-dark">{baht(r.monthlySave)}/mo in pure savings</span> for
@@ -418,7 +418,7 @@ export default function EarningsCalculator({ exportDefault = true }) {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="you@email.com"
-                    className="w-full flex-1 rounded-full border border-ink/15 bg-white px-5 py-3 font-display text-sm text-ink placeholder:text-slatey-400 focus:border-lime-dark focus:outline-none"
+                    className="w-full flex-1 rounded-full border border-ink/15 bg-white px-5 py-3 font-display text-sm text-ink placeholder:text-slatey-600 focus:border-lime-dark focus:outline-none"
                   />
                   <button
                     type="submit"
@@ -428,14 +428,14 @@ export default function EarningsCalculator({ exportDefault = true }) {
                   </button>
                 </form>
               )}
-              <p className="mt-2 text-sm text-slatey-500">
+              <p className="mt-2 text-sm text-slatey-700">
                 We&apos;ll send your estimate and follow up with a tailored quote.
               </p>
             </div>
           </div>
         </Reveal>
 
-        <p className="mx-auto mt-4 max-w-2xl text-center text-xs text-slatey-400">
+        <p className="mx-auto mt-4 max-w-2xl text-center text-xs text-slatey-600">
           Estimates only. Priced as a <strong>professionally installed rooftop system</strong>: ฿
           {COST_PER_KW.toLocaleString()}/kW + ฿{COST_FIXED.toLocaleString()} install base (฿
           {COST_PER_KW_BAT.toLocaleString()}/kW + ฿{COST_FIXED_BAT.toLocaleString()} with battery) — for the

@@ -15,7 +15,7 @@ export default function BenefitsStrip() {
                   <Icon size={26} />
                 </span>
                 <p className="font-display text-sm font-bold text-ink">{b.title}</p>
-                <p className="text-xs leading-snug text-slatey-500">{b.sub}</p>
+                <p className="text-xs leading-snug text-slatey-700">{b.sub}</p>
               </div>
             </Reveal>
           );

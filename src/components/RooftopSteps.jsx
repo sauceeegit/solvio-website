@@ -62,7 +62,7 @@ function ContactOptions({ onVisit }) {
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             placeholder="Your Google address"
-            className="w-full min-w-0 rounded-lg border border-ink/15 bg-white px-3 py-2 text-xs text-ink placeholder:text-slatey-400 focus:border-lime focus:outline-none"
+            className="w-full min-w-0 rounded-lg border border-ink/15 bg-white px-3 py-2 text-xs text-ink placeholder:text-slatey-600 focus:border-lime focus:outline-none"
           />
           <input
             type="text"
@@ -70,7 +70,7 @@ function ContactOptions({ onVisit }) {
             value={cost}
             onChange={(e) => setCost(e.target.value)}
             placeholder="Monthly electricity cost (optional)"
-            className="w-full min-w-0 rounded-lg border border-ink/15 bg-white px-3 py-2 text-xs text-ink placeholder:text-slatey-400 focus:border-lime focus:outline-none"
+            className="w-full min-w-0 rounded-lg border border-ink/15 bg-white px-3 py-2 text-xs text-ink placeholder:text-slatey-600 focus:border-lime focus:outline-none"
           />
           <input
             type="email"
@@ -78,18 +78,18 @@ function ContactOptions({ onVisit }) {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Your email"
-            className="w-full min-w-0 rounded-lg border border-ink/15 bg-white px-3 py-2 text-xs text-ink placeholder:text-slatey-400 focus:border-lime focus:outline-none"
+            className="w-full min-w-0 rounded-lg border border-ink/15 bg-white px-3 py-2 text-xs text-ink placeholder:text-slatey-600 focus:border-lime focus:outline-none"
           />
           <button type="submit" className="flex w-full items-center justify-center gap-1.5 rounded-lg bg-lime px-3 py-2 text-xs font-bold text-white transition hover:bg-lime-dark">
             Send me a preliminary design <ArrowRight size={13} strokeWidth={2.5} />
           </button>
-          <p className="text-[10px] leading-snug text-slatey-400">
+          <p className="text-[10px] leading-snug text-slatey-600">
             Drop your address and we&apos;ll send a preliminary design of your system.
           </p>
         </form>
       )}
 
-      <div className="flex items-center gap-2 py-0.5 text-[10px] font-semibold text-slatey-400">
+      <div className="flex items-center gap-2 py-0.5 text-[10px] font-semibold text-slatey-600">
         <span className="h-px flex-1 bg-ink/10" /> OR <span className="h-px flex-1 bg-ink/10" />
       </div>
 
@@ -107,10 +107,10 @@ function PaymentOptions() {
   return (
     <div className="mt-3 space-y-2">
       <div className="rounded-lg border border-ink/12 px-3 py-2 text-xs font-semibold text-ink">
-        Pay in full <span className="font-normal text-slatey-400">· cash discount</span>
+        Pay in full <span className="font-normal text-slatey-600">· cash discount</span>
       </div>
       <div className="rounded-lg border border-ink/12 px-3 py-2 text-xs font-semibold text-ink">
-        Installment plan <span className="font-normal text-slatey-400">· 0% interest</span>
+        Installment plan <span className="font-normal text-slatey-600">· 0% interest</span>
       </div>
       <div className="rounded-lg border border-ink/12 px-3 py-2">
         <p className="text-xs font-semibold text-ink">Bank loan — we help you apply</p>
@@ -181,7 +181,7 @@ export default function RooftopSteps() {
                 {s.type === 'contact' && <ContactOptions onVisit={() => setMapOpen(true)} />}
                 {s.type === 'payment' && <PaymentOptions />}
                 {s.img && <StepImage src={s.img} alt={s.title} />}
-                {s.desc && <p className="mt-2.5 text-xs leading-relaxed text-slatey-500">{s.desc}</p>}
+                {s.desc && <p className="mt-2.5 text-xs leading-relaxed text-slatey-700">{s.desc}</p>}
                 {s.note && (
                   <p className="mt-3 rounded-lg bg-[#FFF1E8] px-3 py-2 text-xs font-medium text-[#B84D00]">
                     {s.note}
@@ -268,7 +268,7 @@ export default function RooftopSteps() {
                 <p className="inline-flex items-center gap-2 font-display text-sm font-bold text-ink">
                   <MapPin size={16} className="text-lime-dark" /> Visit Solvio Solar
                 </p>
-                <button type="button" onClick={() => setMapOpen(false)} aria-label="Close" className="grid h-8 w-8 place-items-center rounded-full text-ink/60 transition hover:bg-ink/[0.06]">
+                <button type="button" onClick={() => setMapOpen(false)} aria-label="Close" className="grid h-8 w-8 place-items-center rounded-full text-ink/72 transition hover:bg-ink/[0.06]">
                   <X size={18} />
                 </button>
               </div>

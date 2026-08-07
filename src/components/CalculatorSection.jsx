@@ -21,13 +21,13 @@ export default function CalculatorSection({ derived }) {
               <h2 className="mt-2 text-2xl font-semibold tracking-tight text-price sm:text-3xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
                 See what you&apos;d save with solar
               </h2>
-              <p className="mt-3 max-w-xl text-slatey-500">
+              <p className="mt-3 max-w-xl text-slatey-700">
                 {mode === 'basic'
                   ? 'A quick estimate from your system size and electricity use.'
                   : 'Set your bill and coverage — we size the system and chart your payback.'}
               </p>
               {mode === 'advanced' && (
-                <p className="mt-1 max-w-xl text-sm text-slatey-400">
+                <p className="mt-1 max-w-xl text-sm text-slatey-600">
                   Priced as a professionally installed rooftop system{derived ? ' — kit prices are in the configurator above' : ''}.
                 </p>
               )}
@@ -48,7 +48,7 @@ export default function CalculatorSection({ derived }) {
                   className={`rounded-full px-4 py-1.5 font-display text-sm font-semibold transition ${
                     mode === t.id
                       ? 'bg-lime text-white shadow-sm'
-                      : 'text-slatey-500 hover:text-ink'
+                      : 'text-slatey-700 hover:text-ink'
                   }`}
                 >
                   {t.label}

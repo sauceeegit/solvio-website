@@ -157,7 +157,7 @@ export default function Highlights() {
 
             {/* E2 — optional support (cream + placeholder) */}
             <div className="flex h-full min-h-[160px] flex-col rounded-xl2 p-4 lg:col-span-1 lg:col-start-6 lg:row-start-2" style={{ backgroundColor: '#d6d3ba' }}>
-              <p className="text-[10px] font-semibold uppercase tracking-wide text-ink/50">Optional</p>
+              <p className="text-[10px] font-semibold uppercase tracking-wide text-ink/70">Optional</p>
               <SupportAgent className="mt-2 flex-1 rounded-lg" />
               <p className="mt-2 font-display text-sm font-bold leading-snug text-ink">Lifetime support</p>
             </div>
