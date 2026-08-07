@@ -29,7 +29,7 @@ export default function PlugPlayVideo() {
           <img
             src={POSTER}
             alt="Solvio balcony solar installation guide"
-            className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.02]"
+            className="absolute inset-0 h-full w-full object-cover object-top transition duration-700 group-hover:scale-[1.02]"
           />
           {/* dark overlay */}
           <div className="absolute inset-0 bg-black/30 transition duration-300 group-hover:bg-black/20" />
