@@ -36,7 +36,7 @@ export default function FounderVideo() {
             <img loading="lazy"
               src={founder.poster}
               alt="Founder interview"
-              className="absolute inset-0 h-full w-full object-cover opacity-80 transition duration-700 group-hover:scale-105"
+              className="absolute inset-0 h-full w-full object-cover object-top opacity-80 transition duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-ink/40" />
             <span className="absolute left-1/2 top-1/2 grid h-16 w-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-[#FF0000] text-white shadow-lift transition group-hover:scale-110">
