@@ -18,14 +18,14 @@ const DEFAULT_DERIVED = computeConfig(defaultConfig);
 // Card-only "Basic" calculator. The surrounding section, heading and Basic/Advanced
 // toggle are provided by CalculatorSection.
 const iconVariants = [
-  // Sun — spin
-  { animate: { rotate: [0, 20, -10, 15, 0], scale: [1, 1.18, 1.1, 1.15, 1] }, transition: { duration: 0.7, ease: 'easeOut' } },
-  // Wallet — bounce up
-  { animate: { y: [0, -10, 4, -6, 0], scale: [1, 1.15, 1.08, 1.12, 1] }, transition: { duration: 0.65, ease: 'easeOut' } },
-  // Clock — wiggle
-  { animate: { rotate: [0, -15, 12, -8, 0], scale: [1, 1.15, 1.1, 1.12, 1] }, transition: { duration: 0.6, ease: 'easeOut' } },
-  // Leaf — sway
-  { animate: { rotate: [0, 12, -8, 10, 0], y: [0, -6, 2, -4, 0] }, transition: { duration: 0.65, ease: 'easeOut' } },
+  // Sun — continuous slow spin
+  { animate: { rotate: 360 }, transition: { duration: 12, ease: 'linear', repeat: Infinity } },
+  // Wallet — gentle float up/down, loops
+  { animate: { y: [0, -6, 0] }, transition: { duration: 2.2, ease: 'easeInOut', repeat: Infinity } },
+  // Clock — slow clockwise tick loop
+  { animate: { rotate: [0, 6, 0, -6, 0] }, transition: { duration: 2.8, ease: 'easeInOut', repeat: Infinity } },
+  // Leaf — soft sway
+  { animate: { rotate: [0, 8, 0, -8, 0] }, transition: { duration: 3.2, ease: 'easeInOut', repeat: Infinity } },
 ];
 
 export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
@@ -266,13 +266,17 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
 
               <div ref={statsRef} className="grid flex-1 grid-cols-2 gap-3">
               {stats.map((s, idx) => (
-                <div
+                <motion.div
                   key={s.label}
-                  className="flex flex-col justify-between rounded-2xl bg-white p-4 max-sm:p-3" style={{ boxShadow: '0 1px 8px rgba(0,0,0,0.06)' }}
+                  className="flex flex-col justify-between rounded-2xl bg-white p-4 max-sm:p-3"
+                  style={{ boxShadow: '0 1px 8px rgba(0,0,0,0.06)' }}
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.55, delay: 0.1 + idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <motion.div
                     animate={inView ? iconVariants[idx].animate : {}}
-                    transition={{ ...iconVariants[idx].transition, delay: idx * 0.1 }}
+                    transition={{ ...iconVariants[idx].transition, delay: 0.3 + idx * 0.1 }}
                     style={{ display: 'inline-flex' }}
                   >
                     <s.icon size={36} className={s.tint} />
@@ -283,7 +287,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
                     </p>
                     <p className="text-sm font-medium text-slatey-700">{s.label}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
               </div>
             </div>
