@@ -47,26 +47,40 @@ function ModuleCard({ selected, onClick, panel }) {
   return (
     <button
       onClick={onClick}
-      className={`flex flex-col overflow-hidden rounded-xl border text-left transition ${
-        selected ? 'border-lime-dark ring-1 ring-lime/50' : 'border-ink/10 hover:border-ink/25'
+      className={`flex flex-col overflow-hidden rounded-2xl text-left transition-all duration-200 ${
+        selected
+          ? 'shadow-[0_0_0_2.5px_#FF6700,0_8px_24px_rgba(0,0,0,0.13)]'
+          : 'shadow-[0_1px_6px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.12)]'
       }`}
     >
-      <div className="relative aspect-[3/4] w-full overflow-hidden bg-surface">
+      {/* image */}
+      <div className="relative aspect-[3/4] w-full overflow-hidden">
         <img src={panel.img} alt={panel.label} className="h-full w-full object-cover" />
-        <span className="absolute left-2 top-2 rounded-full bg-ink/85 px-2 py-0.5 font-body text-[10px] font-semibold text-lime backdrop-blur">
-          {panel.wp} Wp
-        </span>
-        <span className={`absolute right-2 top-2 grid h-5 w-5 place-items-center rounded-full border ${selected ? 'border-lime-dark bg-lime-dark text-white' : 'border-white/70 bg-white/80 text-transparent'}`}>
-          {selected && <Check size={12} strokeWidth={3} />}
+        {/* selected tint */}
+        {selected && <div className="absolute inset-0 bg-lime/10 pointer-events-none" />}
+        {/* check */}
+        <span className={`absolute right-2.5 top-2.5 grid h-6 w-6 place-items-center rounded-full border-2 shadow-sm transition-all ${
+          selected ? 'border-lime bg-lime text-white' : 'border-white/80 bg-white/80 text-transparent'
+        }`}>
+          {selected && <Check size={13} strokeWidth={3} />}
         </span>
       </div>
-      <div className="flex flex-1 flex-col p-3 bg-white">
-        <div className="flex items-baseline justify-between gap-2">
-          <span className="font-display text-sm font-bold text-ink">{panel.label}</span>
-          <span className="font-body text-xs font-semibold text-ink">{baht(panelThb(panel.id))}</span>
+
+      {/* info */}
+      <div className="flex flex-1 flex-col bg-white p-3.5">
+        {/* prominent Wp badge */}
+        <span className={`mb-2.5 inline-flex self-start rounded-full px-3 py-1 font-display text-[13px] font-extrabold tracking-tight transition-colors ${
+          selected ? 'bg-lime text-white' : 'bg-ink text-white'
+        }`}>
+          {panel.wp} Wp
+        </span>
+
+        <div className="flex items-baseline justify-between gap-1">
+          <span className="font-display text-sm font-bold text-ink leading-tight">{panel.label}</span>
+          <span className="shrink-0 font-display text-sm font-bold text-ink">{baht(panelThb(panel.id))}</span>
         </div>
-        <span className="font-body text-xs text-slatey-500">{panel.sub}</span>
-        <span className="mt-2 border-t border-ink/[0.06] pt-2 font-body text-xs font-medium leading-relaxed text-slatey-500 max-sm:text-[10px]">
+        <span className="font-body text-xs text-slatey-600">{panel.sub}</span>
+        <span className="mt-2 border-t border-ink/[0.06] pt-2 font-body text-[11px] leading-relaxed text-slatey-600 max-sm:text-[10px]">
           {panel.dims}<br />{panel.weight} · per panel
         </span>
       </div>
