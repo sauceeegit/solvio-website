@@ -18,11 +18,11 @@ const DEFAULT_DERIVED = computeConfig(defaultConfig);
 // Card-only "Basic" calculator. The surrounding section, heading and Basic/Advanced
 // toggle are provided by CalculatorSection.
 const iconVariants = [
-  // Sun — continuous slow spin
-  { animate: { rotate: 360 }, transition: { duration: 12, ease: 'linear', repeat: Infinity } },
-  // Wallet — gentle float up/down, loops
-  { animate: { y: [0, -6, 0] }, transition: { duration: 2.2, ease: 'easeInOut', repeat: Infinity } },
-  // Clock — slow clockwise tick loop
+  // Sun — slow spin in place
+  { animate: { rotate: 360 }, transition: { duration: 14, ease: 'linear', repeat: Infinity } },
+  // Wallet — gentle scale pulse
+  { animate: { scale: [1, 1.12, 1] }, transition: { duration: 2.2, ease: 'easeInOut', repeat: Infinity } },
+  // Clock — soft tick
   { animate: { rotate: [0, 6, 0, -6, 0] }, transition: { duration: 2.8, ease: 'easeInOut', repeat: Infinity } },
   // Leaf — soft sway
   { animate: { rotate: [0, 8, 0, -8, 0] }, transition: { duration: 3.2, ease: 'easeInOut', repeat: Infinity } },
@@ -277,7 +277,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
                   <motion.div
                     animate={inView ? iconVariants[idx].animate : {}}
                     transition={{ ...iconVariants[idx].transition, delay: 0.3 + idx * 0.1 }}
-                    style={{ display: 'inline-flex' }}
+                    style={{ display: 'inline-flex', transformOrigin: 'center' }}
                   >
                     <s.icon size={36} className={s.tint} />
                   </motion.div>
