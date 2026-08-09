@@ -32,7 +32,13 @@ export default function ProductHero({ cfg, onAddToCart, added }) {
           >
             {product.name}
           </motion.h1>
-          <motion.p className="mt-2 max-w-md font-body text-[15px] font-medium text-slatey-700" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.35, ease: EASE }}>
+          <motion.div className="mt-2.5 flex items-center gap-2" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3, ease: EASE }}>
+            <span className="rounded-full bg-lime px-3.5 py-1 font-display text-sm font-extrabold text-white tracking-tight">
+              450 Wp
+            </span>
+            <span className="font-body text-sm font-medium text-slatey-600">per module · up to 1,800 Wp total</span>
+          </motion.div>
+          <motion.p className="mt-2.5 max-w-md font-body text-[15px] font-medium text-slatey-700" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.4, ease: EASE }}>
             {product.tagline}
           </motion.p>
 
