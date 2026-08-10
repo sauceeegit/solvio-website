@@ -18,18 +18,6 @@ const DEFAULT_DERIVED = computeConfig(defaultConfig);
 // Card-only "Basic" calculator. The surrounding section, heading and Basic/Advanced
 // toggle are provided by CalculatorSection.
 
-// CSS keyframe animations — more reliable than framer-motion for continuous looping.
-const ICON_STYLES = `
-@keyframes sc-spin  { to { transform: rotate(360deg); } }
-@keyframes sc-pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.13); } }
-@keyframes sc-tick  { 0%,100% { transform: rotate(0deg); } 25% { transform: rotate(6deg); } 75% { transform: rotate(-6deg); } }
-@keyframes sc-sway  { 0%,100% { transform: rotate(0deg); } 30% { transform: rotate(8deg); } 70% { transform: rotate(-8deg); } }
-.sc-spin  { animation: sc-spin  14s linear infinite; transform-origin: center; }
-.sc-pulse { animation: sc-pulse 2.2s ease-in-out infinite; transform-origin: center; }
-.sc-tick  { animation: sc-tick  2.8s ease-in-out infinite; transform-origin: center; }
-.sc-sway  { animation: sc-sway  3.2s ease-in-out infinite; transform-origin: center; }
-`;
-const iconClass = ['sc-spin', 'sc-pulse', 'sc-tick', 'sc-sway'];
 
 export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
   const statsRef = useRef(null);
@@ -102,7 +90,6 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
 
   return (
     <>
-      <style>{ICON_STYLES}</style>
       <p className="mx-auto mb-2 max-w-6xl text-sm text-slatey-700">
         Set your system size and adjust the sliders to match your home.
       </p>
@@ -278,9 +265,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.55, delay: 0.1 + idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <span className={`inline-flex ${inView ? iconClass[idx] : ''}`}>
-                    <s.icon size={36} className={s.tint} />
-                  </span>
+                  <s.icon size={36} className={s.tint} />
                   <div className="mt-6 max-sm:mt-2">
                     <p className="font-display text-2xl font-extrabold tracking-tight text-ink tabular-nums max-sm:text-xl">
                       {s.value}
