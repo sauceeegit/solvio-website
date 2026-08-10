@@ -52,6 +52,11 @@ export const routeMeta = {
     description:
       'Solvio makes solar simple in Thailand: rooftop systems for homeowners, plug-and-play balcony kits for renters, and portable power for the road. Meet the Phuket team behind the sun.',
   },
+  '/projects': {
+    title: 'Solar Projects — Rooftop, Facade, Curved Roof & BIPV | Solvio',
+    description:
+      'Reference solar installations behind Solvio technology: 68 MW steel-plant PV, curved granary and coal-shed roofs, building facades, BIPV greenhouses, hospital walkways and solar street lighting.',
+  },
   '/faqs': {
     title: 'Solar FAQs Thailand — Rooftop, Balcony & Panel Questions | Solvio',
     description:

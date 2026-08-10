@@ -10,6 +10,7 @@ import SolarPanelPage from './pages/SolarPanelPage';
 import RooftopSystemPage from './pages/RooftopSystemPage';
 import AboutPage from './pages/AboutPage';
 import FaqsPage from './pages/FaqsPage';
+import ProjectsPage from './pages/ProjectsPage';
 import CheckoutPage from './pages/CheckoutPage';
 
 export default function App() {
@@ -25,6 +26,7 @@ export default function App() {
         <Route path="/solar-panel" element={<SolarPanelPage />} />
         <Route path="/rooftop-system" element={<RooftopSystemPage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/faqs" element={<FaqsPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
       </Routes>

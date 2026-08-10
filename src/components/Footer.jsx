@@ -18,6 +18,7 @@ const cols = [
     title: 'Learn',
     links: [
       { label: 'How it works', to: '/balcony-system' },
+      { label: 'Projects', to: '/projects' },
       { label: 'Savings calculator', to: '/#calculator' },
       { label: 'FAQs', to: '/faqs' },
       { label: 'Solvio YouTube channel', href: 'https://www.youtube.com/channel/UC2Xmmij3QMf3beO2pf7Jf1g' },

@@ -11,6 +11,7 @@ const links = [
   { label: 'Balcony Solar', to: '/balcony-system', sub: 'For Tenant' },
   { label: 'Portable Solar', to: '/portable-system' },
   { label: 'Solar Panel', to: '/solar-panel' },
+  { label: 'Projects', to: '/projects' },
   { label: 'FAQs', to: '/faqs' },
 ];
 
