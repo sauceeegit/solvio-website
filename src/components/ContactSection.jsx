@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Mail, Phone, MapPin, MessageCircle, Send, Check } from 'lucide-react';
 import Reveal from './Reveal';
+import { asset } from '../lib/format';
 
 // Where every enquiry is sent.
 const SALES_EMAIL = 'sales@solvio.solar';
@@ -120,74 +121,76 @@ export default function ContactSection() {
     'w-full rounded-xl border border-ink/12 bg-white px-4 py-3 font-body text-[15px] text-ink placeholder:text-ink/55 focus:border-lime focus:outline-none focus:ring-1 focus:ring-lime/40';
 
   return (
-    <section id="contact" className="scroll-mt-20 py-20" style={{ backgroundColor: '#fafafa' }}>
-      <div className="container-x">
-        <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
-          {/* Left — heading + direct contact details */}
+    <section id="contact" className="scroll-mt-20" style={{ backgroundColor: '#fafafa' }}>
+      {/* Main grid — photo left, form right */}
+      <div className="container-x py-20">
+        <div className="grid gap-8 lg:grid-cols-2 lg:gap-10">
+
+          {/* Left — photo card with overlaid contact info */}
           <Reveal>
-            <p className="eyebrow font-bold">Get in touch</p>
-            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-price sm:text-3xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
-              Talk to a Solvio solar advisor
-            </h2>
-            <p className="mt-3 max-w-md text-ink/85">
-              Tell us about your home or business and what you&apos;re looking for. We&apos;ll get
-              back to you with honest, no-pressure advice.
-            </p>
-
-            <ul className="mt-8 space-y-4 text-sm">
-              <li className="flex items-center gap-3 text-ink/80">
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full text-white" style={{ backgroundColor: '#1d3d2e' }}>
-                  <Mail size={18} />
-                </span>
-                <a href={`mailto:${SALES_EMAIL}`} className="font-semibold hover:text-lime-dark">
-                  {SALES_EMAIL}
-                </a>
-              </li>
-              <li className="flex items-center gap-3 text-ink/80">
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full text-white" style={{ backgroundColor: '#1d3d2e' }}>
-                  <Phone size={18} />
-                </span>
-                <a href="tel:+66843488428" className="font-semibold hover:text-lime-dark">
-                  +66 84 348 8428
-                </a>
-              </li>
-              <li className="flex items-center gap-3 text-ink/80">
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full text-white" style={{ backgroundColor: '#1d3d2e' }}>
-                  <MessageCircle size={18} />
-                </span>
-                <a href={WHATSAPP} target="_blank" rel="noreferrer" className="font-semibold hover:text-lime-dark">
-                  Chat on WhatsApp
-                </a>
-              </li>
-              <li className="flex items-center gap-3 text-ink/80">
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full text-white" style={{ backgroundColor: '#1d3d2e' }}>
-                  <MapPin size={18} />
-                </span>
-                <span className="font-semibold">Patongo, Pa Tong, Kathu District, Phuket 83150</span>
-              </li>
-            </ul>
-
-            {/* Map to our address */}
-            <a
-              href={MAP_LINK}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-6 block overflow-hidden rounded-xl2 border border-ink/[0.07] shadow-soft"
-            >
-              <iframe
-                title="Solvio Solar location"
-                src={MAP_EMBED}
-                className="block aspect-[16/10] w-full border-0"
-                style={{ filter: 'grayscale(100%) contrast(0.9) brightness(1.05)' }}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
+            <div className="relative flex min-h-[520px] flex-col justify-between overflow-hidden rounded-3xl shadow-lift lg:min-h-full">
+              {/* background photo */}
+              <img
+                src={asset('/contact-advisor.webp')}
+                alt="Solvio solar advisor"
+                className="absolute inset-0 h-full w-full object-cover object-top"
               />
-            </a>
+              {/* gradient overlay so text stays readable */}
+              <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-ink/30 to-ink/80" />
+
+              {/* content */}
+              <div className="relative z-10 flex flex-col justify-between h-full p-8 sm:p-10">
+                {/* top: heading */}
+                <div>
+                  <p className="eyebrow font-bold text-white/70">Get in touch</p>
+                  <h2 className="mt-2 text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
+                    Talk to a Solvio<br />solar advisor
+                  </h2>
+                  <p className="mt-3 max-w-sm text-[15px] text-white/80">
+                    Tell us about your home or business and what you&apos;re looking for. We&apos;ll get back to you with honest, no-pressure advice.
+                  </p>
+                </div>
+
+                {/* bottom: contact links */}
+                <ul className="mt-8 space-y-3 text-sm">
+                  <li className="flex items-center gap-3 text-white">
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/15 backdrop-blur">
+                      <Mail size={17} />
+                    </span>
+                    <a href={`mailto:${SALES_EMAIL}`} className="font-semibold hover:text-white/80">
+                      {SALES_EMAIL}
+                    </a>
+                  </li>
+                  <li className="flex items-center gap-3 text-white">
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/15 backdrop-blur">
+                      <Phone size={17} />
+                    </span>
+                    <a href="tel:+66843488428" className="font-semibold hover:text-white/80">
+                      +66 84 348 8428
+                    </a>
+                  </li>
+                  <li className="flex items-center gap-3 text-white">
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/15 backdrop-blur">
+                      <MessageCircle size={17} />
+                    </span>
+                    <a href={WHATSAPP} target="_blank" rel="noreferrer" className="font-semibold hover:text-white/80">
+                      Chat on WhatsApp
+                    </a>
+                  </li>
+                  <li className="flex items-center gap-3 text-white">
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/15 backdrop-blur">
+                      <MapPin size={17} />
+                    </span>
+                    <span className="font-semibold">Patongo, Pa Tong, Kathu District, Phuket 83150</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </Reveal>
 
           {/* Right — form */}
           <Reveal delay={0.1}>
-            <div className="rounded-xl2 border border-ink/[0.07] bg-white p-6 shadow-soft sm:p-8">
+            <div className="rounded-3xl border border-ink/[0.07] bg-white p-6 shadow-soft sm:p-8">
               {sent ? (
                 <div className="flex h-full flex-col items-center justify-center py-10 text-center">
                   <span className="grid h-14 w-14 place-items-center rounded-full bg-lime/15 text-lime-dark">
@@ -350,6 +353,24 @@ export default function ContactSection() {
           </Reveal>
         </div>
       </div>
+
+      {/* Map strip — full width below the grid */}
+      <a
+        href={MAP_LINK}
+        target="_blank"
+        rel="noreferrer"
+        className="block overflow-hidden border-t border-ink/[0.06]"
+        aria-label="View Solvio on Google Maps"
+      >
+        <iframe
+          title="Solvio Solar location"
+          src={MAP_EMBED}
+          className="block h-64 w-full border-0 sm:h-80"
+          style={{ filter: 'grayscale(100%) contrast(0.9) brightness(1.05)' }}
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+      </a>
     </section>
   );
 }
