@@ -128,18 +128,19 @@ export default function ContactSection() {
 
           {/* Left — white card with text on left, photo on right */}
           <Reveal className="h-full">
-            <div className="relative flex h-full overflow-hidden rounded-3xl bg-white shadow-lift">
-              {/* Photo — right half */}
+            <div className="relative flex h-full overflow-hidden rounded-3xl shadow-lift">
+              {/* Photo covers the full card */}
               <img
                 src={asset('/contact-advisor.webp')}
                 alt="Solvio solar advisor"
-                className="absolute inset-y-0 right-0 h-full w-[58%] object-cover object-center"
+                className="absolute inset-0 h-full w-full object-cover object-center"
               />
-              {/* fade photo into white */}
-              <div className="absolute inset-y-0 right-[42%] w-28 bg-gradient-to-r from-white to-transparent" />
+              {/* white fade on left so text stays readable */}
+              <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent" style={{ width: '65%' }} />
+              <div className="absolute inset-0 bg-gradient-to-r from-white to-transparent" />
 
               {/* Text content — left side, full height, heading top + contacts bottom */}
-              <div className="relative z-10 flex w-[48%] flex-col justify-between p-8 sm:p-10">
+              <div className="relative z-10 flex w-[52%] flex-col justify-between p-8 sm:p-10">
                 {/* top */}
                 <div>
                   <p className="eyebrow font-bold">Get in touch</p>
