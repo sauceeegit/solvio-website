@@ -360,7 +360,7 @@ export default function ContactSection() {
         href={MAP_LINK}
         target="_blank"
         rel="noreferrer"
-        className="block overflow-hidden border-t border-ink/[0.06]"
+        className="relative block overflow-hidden border-t border-ink/[0.06]"
         aria-label="View Solvio on Google Maps"
       >
         <iframe
@@ -371,6 +371,17 @@ export default function ContactSection() {
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
         />
+        {/* Custom orange pin overlaid at the map centre (embed always centres on the coords) */}
+        <span
+          className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2"
+          style={{ marginTop: '-44px' }}
+          aria-hidden="true"
+        >
+          <svg width="36" height="48" viewBox="0 0 36 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 0C8.059 0 0 8.059 0 18c0 12.75 18 30 18 30s18-17.25 18-30C36 8.059 27.941 0 18 0z" fill="#FF6700"/>
+            <circle cx="18" cy="18" r="7" fill="white"/>
+          </svg>
+        </span>
       </a>
     </section>
   );
