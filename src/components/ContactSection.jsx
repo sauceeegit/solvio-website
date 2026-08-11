@@ -129,57 +129,59 @@ export default function ContactSection() {
           {/* Left — photo card with overlaid contact info */}
           <Reveal>
             <div className="relative flex min-h-[520px] flex-col justify-between overflow-hidden rounded-3xl shadow-lift lg:min-h-full">
-              {/* background photo */}
+              {/* background photo — show her face clearly */}
               <img
                 src={asset('/contact-advisor.webp')}
                 alt="Solvio solar advisor"
-                className="absolute inset-0 h-full w-full object-cover object-top"
+                className="absolute inset-0 h-full w-full object-cover object-center"
               />
-              {/* gradient overlay so text stays readable */}
-              <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-ink/30 to-ink/80" />
+              {/* subtle top fade for heading legibility */}
+              <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-black/55 to-transparent" />
+              {/* stronger bottom fade for contact list */}
+              <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-black/80 to-transparent" />
 
               {/* content */}
               <div className="relative z-10 flex flex-col justify-between h-full p-8 sm:p-10">
                 {/* top: heading */}
                 <div>
-                  <p className="eyebrow font-bold text-white/70">Get in touch</p>
+                  <p className="font-display text-xs font-bold uppercase tracking-widest text-white/60">Get in touch</p>
                   <h2 className="mt-2 text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
                     Talk to a Solvio<br />solar advisor
                   </h2>
-                  <p className="mt-3 max-w-sm text-[15px] text-white/80">
-                    Tell us about your home or business and what you&apos;re looking for. We&apos;ll get back to you with honest, no-pressure advice.
+                  <p className="mt-2.5 max-w-xs text-[14px] leading-relaxed text-white/75">
+                    Tell us about your home or business. We&apos;ll get back with honest, no-pressure advice.
                   </p>
                 </div>
 
                 {/* bottom: contact links */}
-                <ul className="mt-8 space-y-3 text-sm">
+                <ul className="space-y-2.5 text-sm">
                   <li className="flex items-center gap-3 text-white">
-                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/15 backdrop-blur">
-                      <Mail size={17} />
+                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-white/20 backdrop-blur-sm">
+                      <Mail size={16} />
                     </span>
                     <a href={`mailto:${SALES_EMAIL}`} className="font-semibold hover:text-white/80">
                       {SALES_EMAIL}
                     </a>
                   </li>
                   <li className="flex items-center gap-3 text-white">
-                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/15 backdrop-blur">
-                      <Phone size={17} />
+                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-white/20 backdrop-blur-sm">
+                      <Phone size={16} />
                     </span>
                     <a href="tel:+66843488428" className="font-semibold hover:text-white/80">
                       +66 84 348 8428
                     </a>
                   </li>
                   <li className="flex items-center gap-3 text-white">
-                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/15 backdrop-blur">
-                      <MessageCircle size={17} />
+                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-white/20 backdrop-blur-sm">
+                      <MessageCircle size={16} />
                     </span>
                     <a href={WHATSAPP} target="_blank" rel="noreferrer" className="font-semibold hover:text-white/80">
                       Chat on WhatsApp
                     </a>
                   </li>
                   <li className="flex items-center gap-3 text-white">
-                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/15 backdrop-blur">
-                      <MapPin size={17} />
+                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-white/20 backdrop-blur-sm">
+                      <MapPin size={16} />
                     </span>
                     <span className="font-semibold">Patongo, Pa Tong, Kathu District, Phuket 83150</span>
                   </li>
