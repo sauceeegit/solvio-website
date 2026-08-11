@@ -153,7 +153,7 @@ export default function ContactSection() {
                 </div>
 
                 {/* bottom — contacts pinned to bottom of card */}
-                <ul className="space-y-4 text-sm">
+                <ul className="space-y-4 text-sm mt-8">
                   <li className="flex items-center gap-3">
                     <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full text-white" style={{ backgroundColor: '#1d3d2e' }}>
                       <Mail size={17} />
