@@ -128,19 +128,19 @@ export default function ContactSection() {
 
           {/* Left — white card with text on left, photo on right */}
           <Reveal className="h-full">
-            <div className="relative flex h-full overflow-hidden rounded-3xl shadow-lift">
-              {/* Photo covers the full card */}
+            <div className="relative flex h-full overflow-hidden rounded-3xl bg-white shadow-lift">
+              {/* Photo — desktop only (hidden on mobile so text has full width) */}
               <img
                 src={asset('/contact-advisor.webp')}
                 alt="Solvio solar advisor"
-                className="absolute inset-0 h-full w-full object-cover object-center"
+                className="absolute inset-0 h-full w-full object-cover object-center max-lg:hidden"
               />
-              {/* white fade on left so text stays readable */}
-              <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent" style={{ width: '65%' }} />
-              <div className="absolute inset-0 bg-gradient-to-r from-white to-transparent" />
+              {/* white fade on left so text stays readable — desktop only */}
+              <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent max-lg:hidden" style={{ width: '65%' }} />
+              <div className="absolute inset-0 bg-gradient-to-r from-white to-transparent max-lg:hidden" />
 
-              {/* Text content — left side, full height, heading top + contacts bottom */}
-              <div className="relative z-10 flex w-[52%] flex-col justify-between p-8 sm:p-10">
+              {/* Text content — full width on mobile, 52% on desktop */}
+              <div className="relative z-10 flex w-full flex-col justify-between p-8 lg:w-[52%] lg:p-10">
                 {/* top */}
                 <div>
                   <p className="eyebrow font-bold">Get in touch</p>
