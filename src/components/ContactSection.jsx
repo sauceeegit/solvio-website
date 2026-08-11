@@ -124,11 +124,11 @@ export default function ContactSection() {
     <section id="contact" className="scroll-mt-20" style={{ backgroundColor: '#fafafa' }}>
       {/* Main grid — photo left, form right */}
       <div className="container-x py-20">
-        <div className="grid gap-8 lg:grid-cols-2 lg:gap-10">
+        <div className="grid gap-8 lg:grid-cols-2 lg:gap-10 lg:items-stretch">
 
           {/* Left — white card with text on left, photo on right */}
-          <Reveal>
-            <div className="relative overflow-hidden rounded-3xl bg-white shadow-lift" style={{ minHeight: 520 }}>
+          <Reveal className="h-full">
+            <div className="relative h-full overflow-hidden rounded-3xl bg-white shadow-lift" style={{ minHeight: 520 }}>
               {/* Photo — right half, absolutely positioned */}
               <img
                 src={asset('/contact-advisor.webp')}
@@ -139,7 +139,7 @@ export default function ContactSection() {
               <div className="absolute inset-y-0 right-[40%] w-32 bg-gradient-to-r from-white to-transparent" />
 
               {/* Text content — left side */}
-              <div className="relative z-10 flex h-full flex-col justify-between p-8 sm:p-10" style={{ maxWidth: '62%' }}>
+              <div className="relative z-10 flex h-full flex-col justify-between p-8 sm:p-10 lg:py-10" style={{ maxWidth: '58%' }}>
                 <div>
                   <p className="eyebrow font-bold">Get in touch</p>
                   <h2 className="mt-2 text-2xl font-bold leading-tight tracking-tight text-price sm:text-3xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
