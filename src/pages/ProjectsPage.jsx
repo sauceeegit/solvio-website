@@ -307,7 +307,7 @@ export default function ProjectsPage() {
             <Reveal>
               <div className="max-w-2xl">
                 <p className="eyebrow text-lime">Projects</p>
-                <h1 className="mt-3 font-display text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl">
+                <h1 className="mt-3 font-display text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
                   Solar that fits anything it touches.
                 </h1>
                 <p className="mt-5 text-lg leading-relaxed text-white/70">

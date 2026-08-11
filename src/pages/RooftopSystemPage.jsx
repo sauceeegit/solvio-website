@@ -75,7 +75,7 @@ export default function RooftopSystemPage() {
               <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-ink/70 via-ink/20 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 container-x pb-[clamp(1.25rem,4vw,3.5rem)]">
                 <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-white/70">Rooftop Solar Thailand</p>
-                <h1 className="mt-2 font-display text-[clamp(1.5rem,3.5vw,3rem)] font-medium leading-[1.1] tracking-tight text-white max-w-2xl">
+                <h1 className="mt-2 font-display text-[clamp(1.5rem,3.5vw,3rem)] font-medium leading-[1.1] tracking-tight text-white max-w-2xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
                   Thailand&apos;s complete residential and commercial solar solution.
                 </h1>
               </div>
