@@ -236,11 +236,11 @@ function ProjectCard({ project, onOpen }) {
     <button
       type="button"
       onClick={() => onOpen(project, 0)}
-      className={`group flex h-full flex-col overflow-hidden rounded-xl2 border border-ink/[0.07] bg-white text-left shadow-soft transition hover:shadow-lift ${
+      className={`group flex h-full w-full flex-col overflow-hidden rounded-xl2 border border-ink/[0.07] bg-white text-left shadow-soft transition hover:shadow-lift ${
         project.featured ? 'sm:col-span-2' : ''
       }`}
     >
-      <div className={`relative overflow-hidden ${project.featured ? 'aspect-[16/9]' : 'aspect-[4/3]'}`}>
+      <div className={`relative w-full overflow-hidden ${project.featured ? 'aspect-[16/9]' : 'aspect-[4/3]'}`}>
         <img
           loading="lazy"
           src={asset(`/projects/${project.images[0]}.webp`)}
