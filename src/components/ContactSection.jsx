@@ -139,16 +139,14 @@ export default function ContactSection() {
               <div className="absolute inset-y-0 right-[40%] w-32 bg-gradient-to-r from-white to-transparent" />
 
               {/* Text content — left side */}
-              <div className="relative z-10 flex h-full flex-col justify-between p-8 sm:p-10 lg:py-10" style={{ maxWidth: '58%' }}>
-                <div>
-                  <p className="eyebrow font-bold">Get in touch</p>
-                  <h2 className="mt-2 text-2xl font-bold leading-tight tracking-tight text-price sm:text-3xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
-                    Talk to a Solvio<br />solar advisor
-                  </h2>
-                  <p className="mt-3 text-[14px] leading-relaxed text-ink/80">
-                    Tell us about your home or business and what you&apos;re looking for. We&apos;ll get back to you with honest, no-pressure advice.
-                  </p>
-                </div>
+              <div className="relative z-10 flex flex-col p-8 sm:p-10" style={{ maxWidth: '58%' }}>
+                <p className="eyebrow font-bold">Get in touch</p>
+                <h2 className="mt-2 text-2xl font-bold leading-tight tracking-tight text-price sm:text-3xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
+                  Talk to a Solvio<br />solar advisor
+                </h2>
+                <p className="mt-3 text-[14px] leading-relaxed text-ink/80">
+                  Tell us about your home or business and what you&apos;re looking for. We&apos;ll get back to you with honest, no-pressure advice.
+                </p>
 
                 <ul className="mt-8 space-y-4 text-sm">
                   <li className="flex items-center gap-3">
