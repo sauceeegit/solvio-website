@@ -253,7 +253,7 @@ export default function IncludedItems() {
             }}
           >
             {features.map(({ Icon, title, sub }) => (
-              <div key={title} className="flex items-center gap-3">
+              <div key={title} className="flex items-start gap-3">
                 <Icon />
                 <div>
                   <p className="font-display font-bold" style={{ fontSize: 13, color: '#09321B' }}>
