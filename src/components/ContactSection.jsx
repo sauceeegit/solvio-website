@@ -124,31 +124,35 @@ export default function ContactSection() {
     <section id="contact" className="scroll-mt-20" style={{ backgroundColor: '#fafafa' }}>
       {/* Main grid — photo left, form right */}
       <div className="container-x py-20">
-        <div className="grid gap-8 lg:grid-cols-2 lg:gap-10 lg:items-start">
+        <div className="grid gap-8 lg:grid-cols-2 lg:gap-10 lg:items-stretch">
 
           {/* Left — white card with text on left, photo on right */}
-          <Reveal>
-            <div className="relative overflow-hidden rounded-3xl bg-white shadow-lift" style={{ minHeight: 480 }}>
-              {/* Photo — right half, absolutely positioned */}
+          <Reveal className="h-full">
+            <div className="relative flex h-full overflow-hidden rounded-3xl bg-white shadow-lift">
+              {/* Photo — right half */}
               <img
                 src={asset('/contact-advisor.webp')}
                 alt="Solvio solar advisor"
-                className="absolute inset-y-0 right-0 h-full w-[55%] object-cover object-center"
+                className="absolute inset-y-0 right-0 h-full w-[58%] object-cover object-center"
               />
-              {/* fade photo into white so text stays readable */}
-              <div className="absolute inset-y-0 right-[40%] w-32 bg-gradient-to-r from-white to-transparent" />
+              {/* fade photo into white */}
+              <div className="absolute inset-y-0 right-[42%] w-28 bg-gradient-to-r from-white to-transparent" />
 
-              {/* Text content — left side */}
-              <div className="relative z-10 flex flex-col p-8 pb-10 sm:p-10" style={{ maxWidth: '58%' }}>
-                <p className="eyebrow font-bold">Get in touch</p>
-                <h2 className="mt-2 text-2xl font-bold leading-tight tracking-tight text-price sm:text-3xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
-                  Talk to a Solvio<br />solar advisor
-                </h2>
-                <p className="mt-3 text-[14px] leading-relaxed text-ink/80">
-                  Tell us about your home or business and what you&apos;re looking for. We&apos;ll get back to you with honest, no-pressure advice.
-                </p>
+              {/* Text content — left side, full height, heading top + contacts bottom */}
+              <div className="relative z-10 flex w-[48%] flex-col justify-between p-8 sm:p-10">
+                {/* top */}
+                <div>
+                  <p className="eyebrow font-bold">Get in touch</p>
+                  <h2 className="mt-2 text-2xl font-bold leading-tight tracking-tight text-price sm:text-3xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
+                    Talk to a Solvio<br />solar advisor
+                  </h2>
+                  <p className="mt-3 text-[14px] leading-relaxed text-ink/80">
+                    Tell us about your home or business and what you&apos;re looking for. We&apos;ll get back to you with honest, no-pressure advice.
+                  </p>
+                </div>
 
-                <ul className="mt-8 space-y-4 text-sm">
+                {/* bottom — contacts pinned to bottom of card */}
+                <ul className="space-y-4 text-sm">
                   <li className="flex items-center gap-3">
                     <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full text-white" style={{ backgroundColor: '#1d3d2e' }}>
                       <Mail size={17} />
