@@ -57,7 +57,7 @@ export default function RooftopSystemPage() {
       <Header />
       <main>
         {/* Brand video — full-bleed, above the hero */}
-        <section className="relative w-full" style={{ marginTop: -headerH }}>
+        <section className="relative w-full">
           <div className="relative aspect-video w-full overflow-hidden bg-ink">
             <video
               ref={brandVideoRef}
