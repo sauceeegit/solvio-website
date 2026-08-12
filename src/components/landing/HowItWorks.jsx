@@ -46,25 +46,26 @@ export default function HowItWorks() {
                 style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}
               >
                 {/* text top */}
-                <div className="p-8 pb-0">
+                <div className="p-5 pb-0 sm:p-8 sm:pb-0">
                   <p className="text-[12px] font-semibold uppercase tracking-widest text-ink/70 mb-3" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
                     {s.eyebrow}
                   </p>
-                  <h3 className="text-[1.4rem] font-semibold leading-snug text-ink" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
+                  <h3 className="text-lg font-semibold leading-snug text-ink sm:text-[1.4rem]" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
                     {s.title}
                   </h3>
-                  <p className="mt-3 text-[15px] leading-relaxed text-ink/75">
+                  <p className="mt-2 text-[14px] leading-relaxed text-ink/75 sm:mt-3 sm:text-[15px]">
                     {s.body}
                   </p>
                 </div>
 
                 {/* icon bottom */}
-                <div className="mt-auto flex items-end justify-center p-8 pt-10">
+                <div className="mt-auto flex items-end justify-center p-5 pt-6 sm:p-8 sm:pt-10">
                   <div
-                    className="flex h-20 w-20 items-center justify-center rounded-full"
+                    className="flex h-14 w-14 items-center justify-center rounded-full sm:h-20 sm:w-20"
                     style={{ backgroundColor: s.iconBg }}
                   >
-                    <s.icon size={32} strokeWidth={1.75} style={{ color: s.iconColor }} />
+                    <s.icon size={24} strokeWidth={1.75} className="sm:hidden" style={{ color: s.iconColor }} />
+                    <s.icon size={32} strokeWidth={1.75} className="hidden sm:block" style={{ color: s.iconColor }} />
                   </div>
                 </div>
               </div>
