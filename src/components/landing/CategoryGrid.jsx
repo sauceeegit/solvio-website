@@ -25,7 +25,7 @@ function CardInner({ c, dimmed }) {
           >{c.sub}</p>
         )}
         <h3
-          className="text-[26px] font-semibold leading-tight text-white max-sm:text-xl"
+          className="font-display text-[26px] font-semibold leading-tight text-white max-sm:text-xl"
           style={{ textShadow: '0 2px 16px rgba(0,0,0,0.6)', fontFamily: '"Space Grotesk", system-ui, sans-serif' }}
         >{c.title}</h3>
       </div>
