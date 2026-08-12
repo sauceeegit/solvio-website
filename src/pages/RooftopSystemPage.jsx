@@ -58,7 +58,7 @@ export default function RooftopSystemPage() {
       <main>
         {/* Brand video — full-bleed, above the hero */}
         <section className="relative w-full">
-          <div className="relative aspect-video w-full overflow-hidden bg-ink">
+          <div className="relative aspect-[4/5] w-full overflow-hidden bg-ink sm:aspect-video">
             <video
               ref={brandVideoRef}
               className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
