@@ -1,5 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { X, ChevronLeft, ChevronRight, MapPin, Zap, ArrowRight } from 'lucide-react';
+import MediaLoader from '../components/MediaLoader';
+import { rooftopVideo } from '../data/landing';
 import { AnimatePresence, motion } from 'framer-motion';
 import Header from '../components/landing/Header';
 import Footer from '../components/Footer';
@@ -285,7 +287,14 @@ function ProjectCard({ project, onOpen }) {
 
 export default function ProjectsPage() {
   usePageMeta('/projects');
+  const videoRef = useRef(null);
+  const [videoReady, setVideoReady] = useState(false);
   const [cat, setCat] = useState('All');
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (v) { v.muted = true; v.play?.().catch(() => {}); if (v.readyState >= 2) setVideoReady(true); }
+  }, []);
   const [view, setView] = useState(null); // { project, index }
 
   const shown = cat === 'All' ? PROJECTS : PROJECTS.filter((p) => p.cat === cat);
@@ -301,32 +310,39 @@ export default function ProjectsPage() {
     <div id="top" className="min-h-screen bg-surface">
       <Header />
       <main>
-        {/* Hero */}
-        <section className="bg-ink text-white">
-          <div className="container-x py-16 sm:py-20">
-            <Reveal>
-              <div className="max-w-2xl">
-                <p className="eyebrow text-lime">Projects</p>
-                <h1 className="mt-3 font-display text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
+        {/* Hero — full-bleed rooftop video with text overlay */}
+        <section className="relative w-full">
+          <div className="relative aspect-[4/5] w-full overflow-hidden bg-ink sm:aspect-video">
+            <video
+              ref={videoRef}
+              className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
+              src={rooftopVideo}
+              autoPlay loop muted playsInline preload="auto"
+              onLoadedData={() => setVideoReady(true)}
+              onCanPlay={() => setVideoReady(true)}
+            />
+            <MediaLoader show={!videoReady} label="Loading video" />
+            <div className="pointer-events-none absolute inset-0 z-10">
+              <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/50 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-ink/80 via-ink/30 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 container-x pb-[clamp(1.25rem,4vw,3.5rem)]">
+                <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-white/70">Projects</p>
+                <h1 className="mt-2 font-display text-[clamp(1.5rem,3.5vw,3rem)] font-extrabold leading-[1.1] tracking-tight text-white max-w-2xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
                   Solar that fits anything it touches.
                 </h1>
-                <p className="mt-5 text-lg leading-relaxed text-white/70">
-                  Steel plants, curved granary roofs, hospital walkways, greenhouses and city
-                  streets. These are reference installations delivered with our manufacturing
-                  partner — the same ultra-lightweight technology behind every Solvio system.
+                <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/75 sm:text-base">
+                  Steel plants, curved granary roofs, hospital walkways, greenhouses and city streets — delivered with our manufacturing partner.
                 </p>
-                <a
-                  href="#contact"
-                  className="mt-7 inline-flex items-center gap-2 rounded-full bg-lime px-6 py-3.5 font-display text-base font-bold text-white transition hover:bg-lime-dark"
-                >
-                  Discuss your project <ArrowRight size={17} />
+                <a href="#contact" className="mt-5 inline-flex items-center gap-2 rounded-full bg-lime px-6 py-3 font-display text-sm font-bold text-white transition hover:bg-lime-dark">
+                  Discuss your project <ArrowRight size={16} />
                 </a>
               </div>
-            </Reveal>
-
-            {/* Stats */}
-            <Reveal delay={0.1}>
-              <dl className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-white/10 pt-10 lg:grid-cols-4">
+            </div>
+          </div>
+          {/* Stats strip */}
+          <div className="bg-ink">
+            <div className="container-x">
+              <dl className="grid grid-cols-2 gap-x-6 gap-y-8 border-t border-white/10 py-10 lg:grid-cols-4">
                 {STATS.map((s) => (
                   <div key={s.label}>
                     <dt className="font-display text-3xl font-extrabold text-lime sm:text-4xl">{s.value}</dt>
@@ -334,7 +350,7 @@ export default function ProjectsPage() {
                   </div>
                 ))}
               </dl>
-            </Reveal>
+            </div>
           </div>
         </section>
 
