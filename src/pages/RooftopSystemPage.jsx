@@ -14,17 +14,13 @@ import { usePageMeta } from '../hooks/usePageMeta';
 
 export default function RooftopSystemPage() {
   usePageMeta('/rooftop-system');
-  const videoRef = useRef(null);
   const brandVideoRef = useRef(null);
-  const [ready, setReady] = useState(false);
   const [brandReady, setBrandReady] = useState(false);
   // Height of the sticky site header, so the tagline can freeze just below it.
   const [headerH, setHeaderH] = useState(0);
 
   // Ensure the loop autoplays muted (React can drop the muted attribute).
   useEffect(() => {
-    const v = videoRef.current;
-    if (v) { v.muted = true; v.play?.().catch(() => {}); if (v.readyState >= 2) setReady(true); }
     const b = brandVideoRef.current;
     if (b) { b.muted = true; b.play?.().catch(() => {}); if (b.readyState >= 2) setBrandReady(true); }
   }, []);
@@ -63,38 +59,6 @@ export default function RooftopSystemPage() {
           </div>
         </section>
 
-        {/* Full-bleed hero video with overlaid headline */}
-        <section className="relative w-full">
-          <div className="relative aspect-video w-full overflow-hidden bg-ink">
-            <video
-              ref={videoRef}
-              className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
-                ready ? 'opacity-100' : 'opacity-0'
-              }`}
-              src={rooftopVideo}
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="auto"
-              onLoadedData={() => setReady(true)}
-              onCanPlay={() => setReady(true)}
-            />
-            <MediaLoader show={!ready} label="Loading video" />
-
-            {/* Gradients + text overlay */}
-            <div className="pointer-events-none absolute inset-0 z-10">
-              <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/50 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-ink/70 via-ink/20 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 container-x pb-[clamp(1.25rem,4vw,3.5rem)]">
-                <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-white/70">Rooftop Solar Thailand</p>
-                <h1 className="mt-2 font-display text-[clamp(1.5rem,3.5vw,3rem)] font-medium leading-[1.1] tracking-tight text-white max-w-2xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
-                  Thailand&apos;s complete residential and commercial solar solution.
-                </h1>
-              </div>
-            </div>
-          </div>
-        </section>
 
         <section style={{ backgroundColor: '#040f08' }}>
           <div className="container-x">
