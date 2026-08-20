@@ -3,10 +3,21 @@ import { Play, ArrowRight, Video, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { founder } from '../../data/landing';
 import Reveal from '../Reveal';
+import { useLanguage } from '../../context/LanguageContext';
+
+const founderTh = {
+  eyebrow: 'โซลาร์ในไทย',
+  heading: 'โซลาร์ในไทย ทำไมถึงต้องตอนนี้?',
+  body: 'ชมการสัมภาษณ์ผู้ก่อตั้ง David Spence เกี่ยวกับโอกาสของโซลาร์ในไทย และทำไม Solvio ถึงเป็นพันธมิตรที่ดีที่สุดสำหรับการเปลี่ยนผ่านพลังงานของคุณ',
+  cta: 'ดูวิดีโอเพิ่มเติม',
+  watchLabel: 'ชมการสัมภาษณ์',
+};
 
 
 export default function FounderVideo() {
   const [open, setOpen] = useState(false);
+  const { lang } = useLanguage();
+  const ft = lang === 'th' ? founderTh : null;
   const hasVideo = !!founder.youtubeEmbed;
 
   useEffect(() => {
@@ -43,27 +54,25 @@ export default function FounderVideo() {
               <Play size={26} className="ml-1 fill-white" />
             </span>
             <span className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-white backdrop-blur">
-              <Video size={13} /> Watch the interview
+              <Video size={13} /> {ft ? ft.watchLabel : 'Watch the interview'}
             </span>
           </button>
         </Reveal>
 
         <Reveal delay={0.1}>
-          <p className="eyebrow font-bold">Solar in Thailand</p>
+          <p className="eyebrow font-bold">{ft ? ft.eyebrow : 'Solar in Thailand'}</p>
           <h2 className="mt-2 text-2xl font-medium leading-tight tracking-tight text-ink sm:text-3xl max-sm:text-[22px]" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
-            {founder.heading}
+            {ft ? ft.heading : founder.heading}
           </h2>
           <p className="mt-4 text-[15px] leading-relaxed text-slatey-700">
-            Here is our founder David Spence interviewed on the prospects of solar in Thailand —
-            <br />
-            and why we think Solvio is the best partner for your energy transition.
+            {ft ? ft.body : <>Here is our founder David Spence interviewed on the prospects of solar in Thailand —<br />and why we think Solvio is the best partner for your energy transition.</>}
           </p>
           <button
             type="button"
             onClick={openVideo}
             className="mt-6 inline-flex items-center gap-2 rounded-full bg-lime px-6 py-3.5 font-display text-sm font-bold text-white transition hover:bg-lime-dark"
           >
-            {founder.cta} <ArrowRight size={16} />
+            {ft ? ft.cta : founder.cta} <ArrowRight size={16} />
           </button>
         </Reveal>
       </div>

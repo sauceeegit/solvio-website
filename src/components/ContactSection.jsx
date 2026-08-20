@@ -35,8 +35,8 @@ const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY || 'YOUR_WEB3FORMS_ACCE
 const MAP_LINK = 'https://maps.app.goo.gl/ffZ6JUvEEBZjsb3g9';
 const MAP_EMBED = 'https://maps.google.com/maps?q=7.8894748,98.3009435&z=16&output=embed';
 
-const PROPERTY_TYPES = ['Residential', 'Commercial'];
-const INTERESTS = ['Rooftop', 'Balcony', 'Portable'];
+const PROPERTY_TYPES = { en: ['Residential', 'Commercial'], th: ['ที่พักอาศัย', 'เชิงพาณิชย์'] };
+const INTERESTS = { en: ['Rooftop', 'Balcony', 'Portable'], th: ['หลังคา', 'ระเบียง', 'พกพา'] };
 
 // Country dial codes for the phone field (Thailand first / default).
 const DIAL_CODES = [
@@ -78,7 +78,7 @@ export default function ContactSection() {
   const [dialCode, setDialCode] = useState('+66');
   const [phone, setPhone] = useState('');
   const [whatsapp, setWhatsapp] = useState(false);
-  const [propertyType, setPropertyType] = useState('Residential');
+  const [propertyType, setPropertyType] = useState(0); // index into PROPERTY_TYPES
   const [interests, setInterests] = useState([]);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
@@ -89,12 +89,17 @@ export default function ContactSection() {
 
   const toggleInterest = (v) =>
     setInterests((prev) => (prev.includes(v) ? prev.filter((x) => x !== v) : [...prev, v]));
+  const propTypes = PROPERTY_TYPES[lang] || PROPERTY_TYPES.en;
+  const interestLabels = INTERESTS[lang] || INTERESTS.en;
+  const interestValuesEn = INTERESTS.en;
 
   const submit = async (e) => {
     e.preventDefault();
     // At least one reachable contact is required: a valid email OR a messaging ID.
     if (!email.trim() && !imId.trim()) {
-      setError('Please add your email or a LINE/Telegram ID so we can reply.');
+      setError(lang === 'th'
+        ? 'กรุณาใส่อีเมลหรือ LINE/Telegram ID เพื่อให้เราสามารถตอบกลับได้'
+        : 'Please add your email or a LINE/Telegram ID so we can reply.');
       return;
     }
     setError('');
@@ -113,7 +118,7 @@ export default function ContactSection() {
           Email: email || '—',
           [`${imApp} ID`]: imId || '—',
           Phone: phone ? `${dialCode} ${phone}${whatsapp ? ' (WhatsApp)' : ''}` : '—',
-          'Property type': propertyType,
+          'Property type': PROPERTY_TYPES.en[propertyType],
           'Interested in': interests.length ? interests.join(', ') : '—',
           Message: message || '—',
         }),
@@ -215,27 +220,35 @@ export default function ContactSection() {
                   <span className="grid h-14 w-14 place-items-center rounded-full bg-lime/15 text-lime-dark">
                     <Check size={28} strokeWidth={3} />
                   </span>
-                  <h3 className="mt-4 font-display text-xl font-bold text-ink">Thanks — message sent</h3>
+                  <h3 className="mt-4 font-display text-xl font-bold text-ink">
+                    {lang === 'th' ? 'ขอบคุณ — ส่งข้อความแล้ว' : 'Thanks — message sent'}
+                  </h3>
                   <p className="mt-2 max-w-sm text-sm text-ink/70">
-                    Your enquiry is on its way to our team. We&apos;ll get back to you within an hour.
+                    {lang === 'th'
+                      ? 'คำถามของคุณกำลังส่งไปยังทีมของเรา เราจะติดต่อกลับภายในหนึ่งชั่วโมง'
+                      : "Your enquiry is on its way to our team. We'll get back to you within an hour."}
                   </p>
                   <button
                     type="button"
                     onClick={() => setSent(false)}
                     className="mt-5 font-display text-sm font-semibold text-lime-dark hover:underline"
                   >
-                    ← Send another message
+                    {lang === 'th' ? '← ส่งข้อความอีกครั้ง' : '← Send another message'}
                   </button>
                 </div>
               ) : (
                 <form onSubmit={submit} className="space-y-5">
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
-                      <label className="mb-1.5 block font-display text-sm font-semibold text-ink">Name</label>
-                      <input required value={name} onChange={(e) => setName(e.target.value)} placeholder="Your name" className={fieldCls} />
+                      <label className="mb-1.5 block font-display text-sm font-semibold text-ink">
+                        {lang === 'th' ? 'ชื่อ' : 'Name'}
+                      </label>
+                      <input required value={name} onChange={(e) => setName(e.target.value)} placeholder={lang === 'th' ? 'ชื่อของคุณ' : 'Your name'} className={fieldCls} />
                     </div>
                     <div>
-                      <label className="mb-1.5 block font-display text-sm font-semibold text-ink">Phone number</label>
+                      <label className="mb-1.5 block font-display text-sm font-semibold text-ink">
+                        {lang === 'th' ? 'หมายเลขโทรศัพท์' : 'Phone number'}
+                      </label>
                       <div className="flex gap-2">
                         <select
                           value={dialCode}
@@ -258,7 +271,7 @@ export default function ContactSection() {
                           onChange={(e) => setWhatsapp(e.target.checked)}
                           className="h-4 w-4 rounded border-ink/25 text-lime accent-lime focus:ring-lime/40"
                         />
-                        WhatsApp is enabled on this number
+                        {lang === 'th' ? 'เปิดใช้ WhatsApp บนเบอร์นี้' : 'WhatsApp is enabled on this number'}
                       </label>
                     </div>
                   </div>
@@ -267,13 +280,13 @@ export default function ContactSection() {
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
                       <label className="mb-1.5 block font-display text-sm font-semibold text-ink">
-                        <span className="font-normal text-ink/70">or </span>Email
+                        <span className="font-normal text-ink/70">{lang === 'th' ? 'หรือ ' : 'or '}</span>Email
                       </label>
                       <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@email.com" className={fieldCls} />
                     </div>
                     <div>
                       <label className="mb-1.5 block font-display text-sm font-semibold text-ink">
-                        <span className="font-normal text-ink/70">or </span>LINE / Telegram ID
+                        <span className="font-normal text-ink/70">{lang === 'th' ? 'หรือ ' : 'or '}</span>LINE / Telegram ID
                       </label>
                       <div className="flex gap-2">
                         <select
@@ -285,24 +298,28 @@ export default function ContactSection() {
                           <option value="LINE">LINE</option>
                           <option value="Telegram">Telegram</option>
                         </select>
-                        <input value={imId} onChange={(e) => setImId(e.target.value)} placeholder="Your ID" className={fieldCls} />
+                        <input value={imId} onChange={(e) => setImId(e.target.value)} placeholder={lang === 'th' ? 'ID ของคุณ' : 'Your ID'} className={fieldCls} />
                       </div>
                     </div>
                   </div>
                   <p className="-mt-2 text-xs text-ink/75">
-                    Add your email or a LINE/Telegram ID — whichever you prefer, we reply on.
+                    {lang === 'th'
+                      ? 'ใส่อีเมลหรือ LINE/Telegram ID — เราจะตอบกลับช่องทางที่คุณสะดวก'
+                      : 'Add your email or a LINE/Telegram ID — whichever you prefer, we reply on.'}
                   </p>
 
                   <div>
-                    <label className="mb-1.5 block font-display text-sm font-semibold text-ink">Property type</label>
+                    <label className="mb-1.5 block font-display text-sm font-semibold text-ink">
+                      {lang === 'th' ? 'ประเภทอสังหาริมทรัพย์' : 'Property type'}
+                    </label>
                     <div className="flex flex-wrap gap-2">
-                      {PROPERTY_TYPES.map((t) => (
+                      {propTypes.map((t, i) => (
                         <button
                           key={t}
                           type="button"
-                          onClick={() => setPropertyType(t)}
+                          onClick={() => setPropertyType(i)}
                           className={`rounded-full border px-4 py-2 font-display text-sm font-semibold transition ${
-                            propertyType === t
+                            propertyType === i
                               ? 'border-lime bg-lime text-white'
                               : 'border-ink/12 text-ink/80 hover:border-ink/30'
                           }`}
@@ -315,22 +332,24 @@ export default function ContactSection() {
 
                   <div>
                     <label className="mb-1.5 block font-display text-sm font-semibold text-ink">
-                      Interested in <span className="font-normal text-ink/70">· choose any</span>
+                      {lang === 'th' ? 'สนใจ' : 'Interested in'}{' '}
+                      <span className="font-normal text-ink/70">{lang === 'th' ? '· เลือกได้หลายอย่าง' : '· choose any'}</span>
                     </label>
                     <div className="grid grid-cols-3 gap-2">
-                      {INTERESTS.map((t) => {
-                        const active = interests.includes(t);
+                      {interestLabels.map((label, i) => {
+                        const valEn = interestValuesEn[i];
+                        const active = interests.includes(valEn);
                         return (
                           <button
-                            key={t}
+                            key={valEn}
                             type="button"
-                            onClick={() => toggleInterest(t)}
+                            onClick={() => toggleInterest(valEn)}
                             className={`flex items-center justify-center gap-1.5 rounded-full border px-2 py-2 text-center font-display text-sm font-semibold transition ${
                               active ? 'border-lime bg-lime text-white' : 'border-ink/12 text-ink/80 hover:border-ink/30'
                             }`}
                           >
                             {active && <Check size={14} strokeWidth={3} className="shrink-0" />}
-                            {t} Solar
+                            {label}{lang === 'th' ? '' : ' Solar'}
                           </button>
                         );
                       })}
@@ -338,19 +357,23 @@ export default function ContactSection() {
                   </div>
 
                   <div>
-                    <label className="mb-1.5 block font-display text-sm font-semibold text-ink">Message</label>
+                    <label className="mb-1.5 block font-display text-sm font-semibold text-ink">
+                      {lang === 'th' ? 'ข้อความ' : 'Message'}
+                    </label>
                     <textarea
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                       rows={4}
-                      placeholder="Tell us a little about your roof, balcony or energy needs…"
+                      placeholder={lang === 'th' ? 'บอกเราเกี่ยวกับหลังคา ระเบียง หรือความต้องการด้านพลังงานของคุณ…' : 'Tell us a little about your roof, balcony or energy needs…'}
                       className={`${fieldCls} resize-none`}
                     />
                   </div>
 
                   {error && (
                     <p className="rounded-lg bg-red-50 px-3 py-2 text-center text-sm font-medium text-red-600">
-                      {error}
+                      {lang === 'th'
+                        ? `ขออภัย — ข้อความไม่ถูกส่ง กรุณาอีเมลเราโดยตรงที่ ${FORM_INBOX}`
+                        : error}
                     </p>
                   )}
                   <button
@@ -358,13 +381,18 @@ export default function ContactSection() {
                     disabled={sending}
                     className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-lime px-6 py-3.5 font-display text-base font-bold text-white transition hover:bg-lime-dark disabled:opacity-70"
                   >
-                    {sending ? 'Sending…' : 'Send message'} <Send size={16} />
+                    {sending
+                      ? (lang === 'th' ? 'กำลังส่ง…' : 'Sending…')
+                      : (lang === 'th' ? 'ส่งข้อความ' : 'Send message')}{' '}
+                    <Send size={16} />
                   </button>
                   <p className="text-center font-display text-sm font-semibold text-lime-dark">
-                    We will get in touch within 1 hour
+                    {lang === 'th' ? 'เราจะติดต่อกลับภายใน 1 ชั่วโมง' : 'We will get in touch within 1 hour'}
                   </p>
                   <p className="text-center text-xs text-ink/70">
-                    Your details are sent straight to {FORM_INBOX}. We never share them.
+                    {lang === 'th'
+                      ? `ข้อมูลของคุณจะถูกส่งตรงไปที่ ${FORM_INBOX} เราไม่เผยแพร่ข้อมูลของคุณ`
+                      : `Your details are sent straight to ${FORM_INBOX}. We never share them.`}
                   </p>
                 </form>
               )}

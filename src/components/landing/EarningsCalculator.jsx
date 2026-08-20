@@ -3,6 +3,7 @@ import { Wallet, ArrowRight, BatteryCharging, Plug, Check, Zap, Ban } from 'luci
 import { baht, num } from '../../lib/format';
 import { calculatorDefaults } from '../../data/product';
 import Reveal from '../Reveal';
+import { useLanguage } from '../../context/LanguageContext';
 
 // Locked assumptions (confirmed):
 const SUN_HOURS = 5; // peak sun hours / day
@@ -175,6 +176,8 @@ export default function EarningsCalculator({ exportDefault = true }) {
   const [exportOn, setExportOn] = useState(exportDefault);
   const [email, setEmail] = useState('');
   const [sent, setSent] = useState(false);
+  const { lang } = useLanguage();
+  const th = lang === 'th';
 
   const r = useMemo(
     () => compute({ bill, coverage, rate, months, interest, battery, exportOn }),
@@ -197,7 +200,7 @@ export default function EarningsCalculator({ exportDefault = true }) {
             <div>
               <div className="flex items-baseline justify-between">
                 <label className="font-display text-sm font-semibold text-ink">
-                  Average monthly electricity bill
+                  {th ? 'ค่าไฟฟ้าเฉลี่ยต่อเดือน' : 'Average monthly electricity bill'}
                 </label>
                 <span className="font-display text-2xl font-extrabold tabular-nums text-ink">{baht(bill)}</span>
               </div>
@@ -216,7 +219,7 @@ export default function EarningsCalculator({ exportDefault = true }) {
             <div className="mt-6">
               <div className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between">
                 <label className="font-display text-sm font-semibold text-ink">
-                  How much of your usage should solar cover?
+                  {th ? 'ต้องการให้โซลาร์ครอบคลุมการใช้ไฟเท่าไหร่?' : 'How much of your usage should solar cover?'}
                 </label>
                 <span className="font-display text-2xl font-extrabold tabular-nums text-ink">{coverage}%</span>
               </div>
@@ -234,11 +237,11 @@ export default function EarningsCalculator({ exportDefault = true }) {
 
             {/* battery */}
             <div className="mt-6">
-              <label className="mb-1.5 block font-display text-sm font-semibold text-ink">Battery storage</label>
+              <label className="mb-1.5 block font-display text-sm font-semibold text-ink">{th ? 'แบตเตอรี่สำรอง' : 'Battery storage'}</label>
               <div className="grid grid-cols-2 gap-2.5">
                 {[
-                  { v: false, label: 'No battery', Icon: Plug },
-                  { v: true, label: 'With battery', Icon: BatteryCharging },
+                  { v: false, label: th ? 'ไม่มีแบตเตอรี่' : 'No battery', Icon: Plug },
+                  { v: true, label: th ? 'มีแบตเตอรี่' : 'With battery', Icon: BatteryCharging },
                 ].map((o) => (
                   <button
                     key={o.label}
@@ -255,18 +258,18 @@ export default function EarningsCalculator({ exportDefault = true }) {
               </div>
               <p className="mt-1.5 text-sm text-slatey-700">
                 {battery
-                  ? '~90% of your solar is used — the battery shifts daytime surplus to the evening.'
-                  : '~65% is used live (daytime AC, fridge, appliances) — the rest is surplus.'}
+                  ? (th ? '~90% ของโซลาร์ถูกใช้งาน — แบตเตอรี่เก็บพลังงานส่วนเกินในตอนกลางวันไว้ใช้ตอนเย็น' : '~90% of your solar is used — the battery shifts daytime surplus to the evening.')
+                  : (th ? '~65% ถูกใช้โดยตรง (แอร์ ตู้เย็น เครื่องใช้ไฟฟ้า) — ส่วนที่เหลือเป็นพลังงานส่วนเกิน' : '~65% is used live (daytime AC, fridge, appliances) — the rest is surplus.')}
               </p>
             </div>
 
             {/* surplus export credit */}
             <div className="mt-6">
-              <label className="mb-1.5 block font-display text-sm font-semibold text-ink">Surplus export credit</label>
+              <label className="mb-1.5 block font-display text-sm font-semibold text-ink">{th ? 'เครดิตขายไฟส่วนเกิน' : 'Surplus export credit'}</label>
               <div className="grid grid-cols-2 gap-2.5">
                 {[
                   { v: true, label: `PEA ฿${EXPORT_RATE.toFixed(2)}/unit`, Icon: Zap },
-                  { v: false, label: 'No export credit', Icon: Ban },
+                  { v: false, label: th ? 'ไม่ขายไฟ' : 'No export credit', Icon: Ban },
                 ].map((o) => (
                   <button
                     key={o.label}
@@ -283,15 +286,15 @@ export default function EarningsCalculator({ exportDefault = true }) {
               </div>
               <p className="mt-1.5 text-sm text-slatey-700">
                 {exportOn
-                  ? `Surplus sells to the grid at ฿${EXPORT_RATE.toFixed(2)}/kWh (PEA net-billing — requires MEA/PEA registration, rooftop systems).`
-                  : 'Surplus is exported unpaid — typical for unregistered plug-in kits.'}
+                  ? (th ? `ขายไฟส่วนเกินคืนกริดที่ ฿${EXPORT_RATE.toFixed(2)}/kWh (PEA net-billing — ต้องลงทะเบียน MEA/PEA เฉพาะระบบหลังคา)` : `Surplus sells to the grid at ฿${EXPORT_RATE.toFixed(2)}/kWh (PEA net-billing — requires MEA/PEA registration, rooftop systems).`)
+                  : (th ? 'พลังงานส่วนเกินส่งออกโดยไม่ได้รับค่าตอบแทน — ทั่วไปสำหรับชุดปลั๊กอินที่ไม่ได้ลงทะเบียน' : 'Surplus is exported unpaid — typical for unregistered plug-in kits.')}
               </p>
             </div>
 
             {/* rate + interest — one row on all sizes */}
             <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-8">
               <div>
-                <label className="mb-1.5 block font-display text-sm font-semibold text-ink">Electricity rate</label>
+                <label className="mb-1.5 block font-display text-sm font-semibold text-ink">{th ? 'อัตราค่าไฟฟ้า' : 'Electricity rate'}</label>
                 <div className="flex items-center gap-2">
                   <span className="font-display text-sm text-slatey-700">฿</span>
                   <input
@@ -307,7 +310,7 @@ export default function EarningsCalculator({ exportDefault = true }) {
                 </div>
               </div>
               <div>
-                <label className="mb-1.5 block font-display text-sm font-semibold text-ink">Instalment interest</label>
+                <label className="mb-1.5 block font-display text-sm font-semibold text-ink">{th ? 'ดอกเบี้ยผ่อนชำระ' : 'Instalment interest'}</label>
                 <div className="flex items-center gap-2">
                   <input
                     type="number"
@@ -326,7 +329,7 @@ export default function EarningsCalculator({ exportDefault = true }) {
             {/* instalment plan */}
             <div className="mt-5">
               <label className="mb-1.5 block font-display text-sm font-semibold text-ink">
-                Instalment plan <span className="font-normal text-slatey-600">· months</span>
+                {th ? 'แผนผ่อนชำระ' : 'Instalment plan'} <span className="font-normal text-slatey-600">· {th ? 'เดือน' : 'months'}</span>
               </label>
               <div className="grid grid-cols-5 gap-1.5">
                 {PLANS.map((m) => (
@@ -348,39 +351,39 @@ export default function EarningsCalculator({ exportDefault = true }) {
             {/* system spec — mobile: size + panels on one row, cost below; desktop: single flex row */}
             <div className="mt-6 grid grid-cols-2 items-center gap-x-4 gap-y-3 rounded-xl bg-ink px-5 py-4 sm:flex sm:flex-wrap sm:gap-x-6">
               <div>
-                <p className="font-mono text-[11px] uppercase tracking-wider text-white/80">System size</p>
+                <p className="font-mono text-[11px] uppercase tracking-wider text-white/80">{th ? 'ขนาดระบบ' : 'System size'}</p>
                 <p className="font-display text-2xl font-extrabold text-lime">{r.kwCapacity.toFixed(2)} kW</p>
               </div>
               <div className="hidden h-9 w-px bg-white/15 sm:block" />
               <div>
-                <p className="font-mono text-[11px] uppercase tracking-wider text-white/80">Panels needed</p>
+                <p className="font-mono text-[11px] uppercase tracking-wider text-white/80">{th ? 'จำนวนแผง' : 'Panels needed'}</p>
                 <p className="font-display text-2xl font-extrabold text-white">
                   ~{r.panels} <span className="text-base font-semibold text-white/70">× {PANEL_W} W</span>
                 </p>
               </div>
               <div className="hidden h-9 w-px bg-white/15 sm:block" />
               <div className="max-sm:col-span-2">
-                <p className="font-mono text-[11px] uppercase tracking-wider text-white/80">System cost</p>
+                <p className="font-mono text-[11px] uppercase tracking-wider text-white/80">{th ? 'ราคาระบบ' : 'System cost'}</p>
                 <p className="font-display text-2xl font-extrabold text-white">{baht(r.cost)}</p>
               </div>
             </div>
 
             {/* metrics */}
             <div className="mt-7 grid grid-cols-2 gap-3 lg:grid-cols-4">
-              <Metric label="Saving / month" value={baht(r.monthlySave)} valueClass="text-[#1A8F66]" />
-              <Metric label="Saving / 25 years" value={shortBaht(r.life)} valueClass="text-[#1A8F66]" />
-              <Metric label="Pays back in" value={paybackLabel} />
-              <Metric label="Monthly instalment" value={baht(r.monthlyInstalment)} />
+              <Metric label={th ? 'ประหยัด / เดือน' : 'Saving / month'} value={baht(r.monthlySave)} valueClass="text-[#1A8F66]" />
+              <Metric label={th ? 'ประหยัด / 25 ปี' : 'Saving / 25 years'} value={shortBaht(r.life)} valueClass="text-[#1A8F66]" />
+              <Metric label={th ? 'คืนทุนใน' : 'Pays back in'} value={paybackLabel} />
+              <Metric label={th ? 'ค่าผ่อน / เดือน' : 'Monthly instalment'} value={baht(r.monthlyInstalment)} />
             </div>
 
             {/* chart */}
             <div className="mt-6">
-              <p className="mb-1 text-sm text-slatey-700">Cumulative savings vs system cost</p>
+              <p className="mb-1 text-sm text-slatey-700">{th ? 'การออมสะสมเทียบกับต้นทุนระบบ' : 'Cumulative savings vs system cost'}</p>
               <BreakEvenChart series={r.series} cost={r.cost} payback={r.payback} />
               <p className="mt-1 text-sm text-slatey-700">
                 {r.payback <= 25
-                  ? `Break-even at year ${r.payback.toFixed(1)} — then ${Math.max(0, 25 - Math.round(r.payback))}+ years of near-free electricity.`
-                  : 'Break-even falls beyond 25 years at this coverage — try a higher coverage %.'}
+                  ? (th ? `คืนทุนที่ปีที่ ${r.payback.toFixed(1)} — จากนั้นอีก ${Math.max(0, 25 - Math.round(r.payback))}+ ปีของไฟฟ้าแทบฟรี` : `Break-even at year ${r.payback.toFixed(1)} — then ${Math.max(0, 25 - Math.round(r.payback))}+ years of near-free electricity.`)
+                  : (th ? 'คืนทุนเกิน 25 ปีที่สัดส่วนนี้ — ลองเพิ่ม % การครอบคลุม' : 'Break-even falls beyond 25 years at this coverage — try a higher coverage %.')}
               </p>
             </div>
 
@@ -389,17 +392,16 @@ export default function EarningsCalculator({ exportDefault = true }) {
               <Wallet size={22} className="shrink-0 text-lime" />
               {net >= 0 ? (
                 <p className="text-[13px] leading-relaxed text-slatey-700">
-                  On the {months}-month plan:{' '}
-                  <span className="font-semibold text-ink">{baht(r.monthlyInstalment)}/mo</span> instalment vs{' '}
-                  <span className="font-semibold text-ink">{baht(r.monthlySave)}/mo</span> saved —{' '}
-                  <span className="font-bold text-lime">+{baht(net)}/mo in your pocket from day one</span>
+                  {th ? `แผน ${months} เดือน: ` : `On the ${months}-month plan: `}
+                  <span className="font-semibold text-ink">{baht(r.monthlyInstalment)}/{th ? 'เดือน' : 'mo'}</span> {th ? 'ค่าผ่อน เทียบกับ ' : 'instalment vs '}
+                  <span className="font-semibold text-ink">{baht(r.monthlySave)}/{th ? 'เดือน' : 'mo'}</span> {th ? 'ประหยัด — ' : 'saved — '}
+                  <span className="font-bold text-lime">+{baht(net)}/{th ? 'เดือนในกระเป๋าคุณตั้งแต่วันแรก' : 'mo in your pocket from day one'}</span>
                 </p>
               ) : (
                 <p className="text-[13px] leading-relaxed text-slatey-700">
-                  Spread it over {months} months at{' '}
-                  <span className="font-semibold text-ink">{baht(r.monthlyInstalment)}/mo</span>, then{' '}
-                  <span className="font-bold text-lime">{baht(r.monthlySave)}/mo in pure savings</span> for
-                  decades.
+                  {th ? `ผ่อน ${months} เดือน ที่ ` : `Spread it over ${months} months at `}
+                  <span className="font-semibold text-ink">{baht(r.monthlyInstalment)}/{th ? 'เดือน' : 'mo'}</span>{th ? ', จากนั้น ' : ', then '}
+                  <span className="font-bold text-lime">{baht(r.monthlySave)}/{th ? 'เดือน คือการออมแท้จริง' : 'mo in pure savings'}</span> {th ? 'หลายสิบปี' : 'for decades.'}
                 </p>
               )}
             </div>
@@ -408,7 +410,7 @@ export default function EarningsCalculator({ exportDefault = true }) {
             <div className="mt-6 border-t border-ink/[0.07] pt-5">
               {sent ? (
                 <p className="flex items-center gap-2 font-display text-sm font-semibold text-[#1A8F66]">
-                  <Check size={18} strokeWidth={3} /> Thanks! Your quote is on its way to {email}.
+                  <Check size={18} strokeWidth={3} /> {th ? `ขอบคุณ! ใบเสนอราคาของคุณกำลังส่งไปที่ ${email}` : `Thanks! Your quote is on its way to ${email}.`}
                 </p>
               ) : (
                 <form onSubmit={submitQuote} className="flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -424,12 +426,12 @@ export default function EarningsCalculator({ exportDefault = true }) {
                     type="submit"
                     className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-lime px-6 py-3 font-display text-sm font-bold text-white transition hover:bg-lime-dark"
                   >
-                    Email me my quote <ArrowRight size={16} />
+                    {th ? 'ส่งใบเสนอราคาให้ฉัน' : 'Email me my quote'} <ArrowRight size={16} />
                   </button>
                 </form>
               )}
               <p className="mt-2 text-sm text-slatey-700">
-                We&apos;ll send your estimate and follow up with a tailored quote.
+                {th ? 'เราจะส่งการประมาณการและติดตามด้วยใบเสนอราคาที่ปรับแต่งให้คุณ' : "We'll send your estimate and follow up with a tailored quote."}
               </p>
             </div>
           </div>
