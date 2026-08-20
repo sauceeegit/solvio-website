@@ -5,6 +5,7 @@ import { Menu, X, ShoppingCart } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Logo from '../Logo';
 import { useBgreenie } from '../../context/BgreenieModal';
+import { useLanguage } from '../../context/LanguageContext';
 
 const links = [
   { label: 'Rooftop Solar', to: '/rooftop-system', sub: 'For Homeowner' },
@@ -28,6 +29,7 @@ export default function LandingNav() {
   const [hovered, setHovered] = useState(false);
   const [open, setOpen] = useState(false);
   const openModal = useBgreenie();
+  const { lang, toggle: toggleLang } = useLanguage();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -87,6 +89,18 @@ export default function LandingNav() {
         </ul>
 
         <div className="ml-auto flex items-center gap-3">
+          <button
+            type="button"
+            onClick={toggleLang}
+            title={lang === 'en' ? 'Switch to Thai' : 'Switch to English'}
+            className="flex items-center gap-1.5 rounded-full px-2.5 py-1 font-display text-[13px] font-semibold transition hover:opacity-80"
+            style={{ background: 'transparent' }}
+          >
+            <span className="text-base leading-none">{lang === 'en' ? '🇹🇭' : '🇬🇧'}</span>
+            <span className={`hidden sm:inline text-[12px] font-bold ${solid ? 'text-ink/60' : 'text-white/70'}`}>
+              {lang === 'en' ? 'TH' : 'EN'}
+            </span>
+          </button>
           <button
             type="button"
             onClick={openBgreenie}

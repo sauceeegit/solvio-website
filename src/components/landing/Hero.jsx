@@ -3,11 +3,25 @@ import { motion } from 'framer-motion';
 import { hero } from '../../data/landing';
 import MediaLoader from '../MediaLoader';
 import PhuketClock from './PhuketClock';
+import { useLanguage } from '../../context/LanguageContext';
+
+const copy = {
+  en: {
+    headline: <>Clean Energy<span className="text-lime">.</span><br />Made Simple<span className="text-lime">.</span></>,
+    sub: 'Premium solar for every Thai home.',
+  },
+  th: {
+    headline: <>พลังงานสะอาด<span className="text-lime">.</span><br />เข้าใจง่าย<span className="text-lime">.</span></>,
+    sub: 'โซลาร์คุณภาพสูงสำหรับทุกบ้านในไทย',
+  },
+};
 
 const EASE = [0.16, 1, 0.3, 1];
 
 export default function Hero() {
   const videoRef = useRef(null);
+  const { lang } = useLanguage();
+  const t = copy[lang] || copy.en;
   const [ready, setReady] = useState(
     () => typeof navigator !== 'undefined' && navigator.webdriver
   );
@@ -59,7 +73,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
               transition={{ duration: 1, delay: 0.3, ease: EASE }}
             >
-              Clean Energy<span className="text-lime">.</span><br />Made Simple<span className="text-lime">.</span>
+              {t.headline}
             </motion.h1>
             <motion.p
               className="mt-4 font-display text-[clamp(0.85rem,1.4vw,1rem)] font-medium tracking-wide text-white/90 max-w-sm"
@@ -67,7 +81,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.6, ease: EASE }}
             >
-              Premium solar for every Thai home.
+              {t.sub}
             </motion.p>
           </div>
           <motion.div

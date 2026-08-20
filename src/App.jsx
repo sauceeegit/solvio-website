@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { BgreenieProvider } from './context/BgreenieModal';
+import { LanguageProvider } from './context/LanguageContext';
 import ScrollToTop from './components/ScrollToTop';
 import LandingPage from './pages/LandingPage';
 import ProductPage from './pages/ProductPage';
@@ -15,6 +16,7 @@ import CheckoutPage from './pages/CheckoutPage';
 
 export default function App() {
   return (
+    <LanguageProvider>
     <BgreenieProvider>
       <ScrollToTop />
       <Routes>
@@ -31,5 +33,6 @@ export default function App() {
         <Route path="/checkout" element={<CheckoutPage />} />
       </Routes>
     </BgreenieProvider>
+    </LanguageProvider>
   );
 }
