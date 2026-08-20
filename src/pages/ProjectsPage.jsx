@@ -312,7 +312,7 @@ export default function ProjectsPage() {
       <main>
         {/* Hero — full-bleed rooftop video with text overlay */}
         <section className="relative w-full">
-          <div className="relative aspect-[4/5] w-full overflow-hidden bg-ink sm:aspect-video">
+          <div className="relative w-full overflow-hidden bg-ink" style={{ height: '82svh', minHeight: 480 }}>
             <video
               ref={videoRef}
               className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
