@@ -242,7 +242,7 @@ function ProjectCard({ project, onOpen }) {
         project.featured ? 'sm:col-span-2' : ''
       }`}
     >
-      <div className={`relative w-full overflow-hidden ${project.featured ? 'aspect-[16/9]' : 'aspect-[4/3]'}`}>
+      <div className="relative aspect-video w-full overflow-hidden">
         <img
           loading="lazy"
           src={asset(`/projects/${project.images[0]}.webp`)}
