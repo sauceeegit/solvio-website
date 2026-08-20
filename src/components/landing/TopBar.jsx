@@ -1,5 +1,6 @@
 import { Phone, CalendarCheck } from 'lucide-react';
 import { topBar } from '../../data/landing';
+import { useLanguage } from '../../context/LanguageContext';
 
 const WA_CONSULT = `https://wa.me/66843488428?text=${encodeURIComponent(
   "Hi Solvio — I'd like to book a consultation appointment.",
@@ -28,6 +29,7 @@ const SOCIALS = [
 ];
 
 export default function TopBar() {
+  const { lang } = useLanguage();
   return (
     <div className="border-b border-neutral-200 bg-neutral-100">
       <div className="container-x flex items-center justify-between gap-4 py-2">
@@ -48,7 +50,7 @@ export default function TopBar() {
             onMouseLeave={e => { e.currentTarget.style.backgroundColor = ''; }}
           >
             <CalendarCheck size={12} />
-            {topBar.cta}
+            {lang === 'th' ? 'จองนัดปรึกษา' : topBar.cta}
           </a>
         </div>
 

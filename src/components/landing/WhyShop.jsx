@@ -5,6 +5,25 @@ import { whyShop } from '../../data/landing';
 import { asset } from '../../lib/format';
 import Reveal from '../Reveal';
 import { useBgreenie } from '../../context/BgreenieModal';
+import { useLanguage } from '../../context/LanguageContext';
+
+const whyShopTh = [
+  { icon: 'Coins', title: 'สะสม Solvio Rewards', img: true },
+  { icon: 'PiggyBank', title: 'ซื้อโซลาร์วันนี้ ผ่อนได้เลย', sub: '0% ดอกเบี้ย สูงสุด 12 เดือน' },
+  { icon: 'Headphones', title: 'ผู้เชี่ยวชาญจริง พร้อมช่วยตลอด', sub: 'ซัพพอร์ตตลอดชีพจากคนที่รู้เรื่องโซลาร์' },
+  { icon: 'RotateCcw', title: 'ไม่พอใจ? ส่งคืนได้เลย', sub: 'คืนสินค้าภายใน 30 วัน ไม่ต้องถามเหตุผล' },
+  { icon: 'ShieldCheck', title: 'คุณภาพดี มีการรับประกัน', sub: 'ประกันครบวงจร 5 ปีพร้อมทุกชุด' },
+  { icon: 'Package', title: 'ครบชุด ไม่มีขาด', sub: 'ชุดครบพร้อมอุปกรณ์ที่เข้ากันได้สมบูรณ์' },
+  { icon: 'Truck', title: 'จัดส่งเร็ว ติดตั้งเร็วกว่า', sub: 'ถึงมือคุณภายใน 3–5 วันทำการ' },
+  { icon: 'CreditCard', title: 'จ่ายได้ตามใจ อย่างปลอดภัย', sub: 'บัตรเครดิต โอนเงิน หรือ PromptPay' },
+];
+
+const bgreenieTh = {
+  badge: 'Solvio Rewards',
+  heading: <>สะสม Solvio<br />Rewards</>,
+  desc: 'สะสมคะแนนทุกครั้งที่ซื้อ แลกรับส่วนลด สินค้าพิเศษ และสิทธิประโยชน์สำหรับสมาชิก',
+  cta: 'เรียนรู้เพิ่มเติม',
+};
 
 function SolvioCoin({ size = 82 }) {
   // Layout: face shifted left, bevel circle shifted right → exposes right-side rim
@@ -259,23 +278,26 @@ function BenefitCard({ item, big }) {
 export default function WhyShop() {
   const openBgreenie = useBgreenie();
   const [showAll, setShowAll] = useState(false);
+  const { lang } = useLanguage();
+  const items = lang === 'th' ? whyShopTh.map((t, i) => ({ ...whyShop[i], ...t, img: whyShop[i].img })) : whyShop;
+  const bg = lang === 'th' ? bgreenieTh : null;
   return (
     <section style={{ background: '#FFFDF9' }} className="py-16">
       <div className="container-x">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
-            <p className="eyebrow">The Solvio difference</p>
+            <p className="eyebrow">{lang === 'th' ? 'ความแตกต่างของ Solvio' : 'The Solvio difference'}</p>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight text-price sm:text-3xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
-              Why choose Solvio?
+              {lang === 'th' ? 'ทำไมต้องเลือก Solvio?' : 'Why choose Solvio?'}
             </h2>
             <p className="mt-3 text-[15px] text-ink/70">
-              Trusted by thousands of homeowners across Thailand.
+              {lang === 'th' ? 'ได้รับความไว้วางใจจากเจ้าของบ้านหลายพันครัวเรือนทั่วประเทศไทย' : 'Trusted by thousands of homeowners across Thailand.'}
             </p>
           </div>
         </Reveal>
 
         <div className="mt-10 grid grid-cols-2 gap-3 lg:grid-cols-5 lg:grid-rows-2">
-          {whyShop.map((item, i) => {
+          {items.map((item, i) => {
             const big = i === 0 || i === 5;
             return (
               <Reveal key={item.title} delay={(i % 5) * 0.05} className={`h-full ${cellClass[i]} ${i >= 4 && !showAll ? 'hidden sm:block' : ''}`}>
@@ -300,7 +322,7 @@ export default function WhyShop() {
                             padding: '4px 10px',
                           }}
                         >
-                          Solvio Rewards
+                          {bg ? bg.badge : 'Solvio Rewards'}
                         </span>
 
                         {/* Headline */}
@@ -308,7 +330,7 @@ export default function WhyShop() {
                           className="font-display font-extrabold leading-tight"
                           style={{ fontSize: 'clamp(16px,2.2cqw,22px)', color: '#09321B' }}
                         >
-                          Earn Solvio<br />Rewards
+                          {bg ? bg.heading : <>Earn Solvio<br />Rewards</>}
                         </h3>
 
                         {/* Description */}
@@ -316,7 +338,7 @@ export default function WhyShop() {
                           className="text-[12px] leading-relaxed max-sm:hidden"
                           style={{ color: '#888' }}
                         >
-                          Collect points with every purchase. Redeem for discounts, exclusive products and member-only benefits.
+                          {bg ? bg.desc : 'Collect points with every purchase. Redeem for discounts, exclusive products and member-only benefits.'}
                         </p>
                       </div>
 
@@ -327,7 +349,7 @@ export default function WhyShop() {
                         className="inline-flex items-center gap-1.5 self-start font-display text-[13px] font-bold transition-all duration-300 group-hover:gap-2.5"
                         style={{ color: '#FC4302' }}
                       >
-                        Learn more <ArrowRight size={13} />
+                        {bg ? bg.cta : 'Learn more'} <ArrowRight size={13} />
                       </button>
                     </div>
 
@@ -364,7 +386,7 @@ export default function WhyShop() {
             onClick={() => setShowAll(true)}
             className="mx-auto mt-4 flex items-center gap-2 rounded-full border border-ink/30 bg-white px-5 py-2.5 font-display text-sm font-semibold text-ink transition hover:border-ink/50 sm:hidden"
           >
-            Show all benefits <ChevronDown size={16} />
+            {lang === 'th' ? 'ดูสิทธิประโยชน์ทั้งหมด' : 'Show all benefits'} <ChevronDown size={16} />
           </button>
         )}
       </div>

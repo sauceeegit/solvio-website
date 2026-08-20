@@ -2,26 +2,34 @@ import { ArrowRight } from 'lucide-react';
 import { icons } from '../../lib/icons';
 import { community } from '../../data/landing';
 import Reveal from '../Reveal';
+import { useLanguage } from '../../context/LanguageContext';
+
+const communityTh = [
+  { icon: 'UserPlus', title: 'เป็นสมาชิก', sub: 'สะสมเครดิต Solvio ทุกครั้งที่ซื้อและอัปเกรดเป็น PLUS เพื่อรับรางวัลมากขึ้น', cta: 'สมัครฟรี' },
+  { icon: 'Share2', title: 'แนะนำเพื่อน', sub: 'ให้เพื่อนส่วนลด 10% สำหรับชุดแรก และรับเงินคืน 5% สำหรับทุกการแนะนำ', cta: 'แชร์ลิงก์ของคุณ' },
+  { icon: 'Briefcase', title: 'เป็นพาร์ทเนอร์กับเรา', sub: 'ช่างติดตั้งและตัวแทนจำหน่าย: ร่วมเครือข่ายพาร์ทเนอร์ Solvio และเติบโตไปกับโซลาร์', cta: 'เป็นพาร์ทเนอร์' },
+];
 
 export default function Community() {
+  const { lang } = useLanguage();
+  const items = lang === 'th' ? communityTh : community;
   return (
     <section className="bg-ink py-16 text-white">
       <div className="container-x">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
-            <p className="eyebrow">Join the movement</p>
+            <p className="eyebrow">{lang === 'th' ? 'ร่วมเป็นส่วนหนึ่ง' : 'Join the movement'}</p>
             <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
-              Become part of Solvio
+              {lang === 'th' ? 'เป็นส่วนหนึ่งของ Solvio' : 'Become part of Solvio'}
             </h2>
             <p className="mt-3 text-white/60">
-              More than a store — a community powering Thailand's switch to clean energy. There's a
-              place for everyone.
+              {lang === 'th' ? 'มากกว่าร้านค้า — ชุมชนที่ขับเคลื่อนการเปลี่ยนผ่านของไทยสู่พลังงานสะอาด มีที่สำหรับทุกคน' : "More than a store — a community powering Thailand's switch to clean energy. There's a place for everyone."}
             </p>
           </div>
         </Reveal>
 
         <div className="mt-10 grid gap-5 md:grid-cols-3">
-          {community.map((c, i) => {
+          {items.map((c, i) => {
             const Icon = icons[c.icon] ?? icons.Users;
             return (
               <Reveal key={c.title} delay={i * 0.08}>
