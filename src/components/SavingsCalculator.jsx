@@ -5,6 +5,9 @@ import { useRef } from 'react';
 import { orientations, calculatorDefaults, computeConfig, defaultConfig, MODULE_WP } from '../data/product';
 import { baht, num } from '../lib/format';
 import Reveal from './Reveal';
+import { useLanguage } from '../context/LanguageContext';
+
+const orientationsTh = ['ทิศใต้', 'ทิศตะวันออก / ตะวันตก', 'มีร่มบางส่วน'];
 
 const YIELD_PER_WP = 1.5; // kWh per Wp per year, south-facing (Thailand, ~5 peak sun-hours)
 const CO2_PER_KWH = 0.5; // kg avoided per kWh (Thai grid emission factor)
@@ -22,6 +25,8 @@ const DEFAULT_DERIVED = computeConfig(defaultConfig);
 export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
   const statsRef = useRef(null);
   const inView = useInView(statsRef, { once: true, margin: '-80px' });
+  const { lang } = useLanguage();
+  const th = lang === 'th';
   const [orientation, setOrientation] = useState('south');
   const [household, setHousehold] = useState(calculatorDefaults.household);
   const [rate, setRate] = useState(calculatorDefaults.rate);
@@ -82,16 +87,16 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
   }, [sized, factor, household, rate, exportOn]);
 
   const stats = [
-    { icon: Sun, label: 'Annual yield', value: `${num(annualYield)} kWh`, tint: 'text-lime' },
-    { icon: Wallet, label: 'You save / year', value: baht(savings), tint: 'text-lime' },
-    { icon: Clock, label: 'Pays back in', value: `${payback.toFixed(1)} yrs`, tint: 'text-lime' },
-    { icon: Leaf, label: 'CO₂ avoided / yr', value: `${num(co2)} kg`, tint: 'text-lime' },
+    { icon: Sun, label: th ? 'พลังงานต่อปี' : 'Annual yield', value: `${num(annualYield)} kWh`, tint: 'text-lime' },
+    { icon: Wallet, label: th ? 'ประหยัดต่อปี' : 'You save / year', value: baht(savings), tint: 'text-lime' },
+    { icon: Clock, label: th ? 'คืนทุนใน' : 'Pays back in', value: th ? `${payback.toFixed(1)} ปี` : `${payback.toFixed(1)} yrs`, tint: 'text-lime' },
+    { icon: Leaf, label: th ? 'ลด CO₂ / ปี' : 'CO₂ avoided / yr', value: `${num(co2)} kg`, tint: 'text-lime' },
   ];
 
   return (
     <>
       <p className="mx-auto mb-2 max-w-6xl text-sm text-slatey-700">
-        Set your system size and adjust the sliders to match your home.
+        {th ? 'ตั้งค่าขนาดระบบและปรับสไลเดอร์ให้ตรงกับบ้านของคุณ' : 'Set your system size and adjust the sliders to match your home.'}
       </p>
 
       <Reveal delay={0.1}>
@@ -102,14 +107,14 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
               <div>
                 <div className="mb-2 flex items-baseline justify-between">
                   <label className="font-display text-sm font-semibold text-ink">
-                    Number of panels
+                    {th ? 'จำนวนแผง' : 'Number of panels'}
                   </label>
                   <span className="font-mono text-sm font-semibold text-ink">
                     {num(sized.wp)} Wp
                   </span>
                 </div>
                 <div className="flex items-center justify-between gap-3 rounded-lg border border-ink/10 px-3 py-2">
-                  <span className="text-sm font-medium text-slatey-600">{MODULE_WP} Wp each</span>
+                  <span className="text-sm font-medium text-slatey-600">{MODULE_WP} Wp {th ? 'ต่อแผง' : 'each'}</span>
                   <div className="flex items-center gap-1">
                     <button
                       type="button"
@@ -148,10 +153,10 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
 
               <div>
                 <label className="mb-2 block font-display text-sm font-semibold text-ink">
-                  Roof / railing orientation
+                  {th ? 'ทิศทางหลังคา / ราวระเบียง' : 'Roof / railing orientation'}
                 </label>
                 <div className="grid grid-cols-3 gap-2">
-                  {orientations.map((o) => (
+                  {orientations.map((o, i) => (
                     <button
                       key={o.id}
                       onClick={() => setOrientation(o.id)}
@@ -161,7 +166,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
                           : 'border-ink/10 text-slatey-700 hover:border-ink/25'
                       }`}
                     >
-                      {o.label}
+                      {th ? orientationsTh[i] : o.label}
                     </button>
                   ))}
                 </div>
@@ -170,7 +175,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
               <div>
                 <div className="mb-1 flex items-center justify-between">
                   <label className="font-display text-sm font-semibold text-ink">
-                    Household use
+                    {th ? 'การใช้ไฟในบ้าน' : 'Household use'}
                   </label>
                   <span className="font-mono text-sm font-semibold text-ink">
                     {num(household)} kWh/yr
@@ -190,7 +195,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
               <div>
                 <div className="mb-1 flex items-center justify-between">
                   <label className="font-display text-sm font-semibold text-ink">
-                    Electricity price
+                    {th ? 'ราคาค่าไฟฟ้า' : 'Electricity price'}
                   </label>
                   <span className="font-mono text-sm font-semibold text-ink">฿{rate}/kWh</span>
                 </div>
@@ -207,11 +212,11 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
 
               <div>
                 <label className="mb-2 block font-display text-sm font-semibold text-ink">
-                  Surplus export credit
+                  {th ? 'เครดิตไฟฟ้าส่วนเกิน' : 'Surplus export credit'}
                 </label>
                 <div className="grid grid-cols-2 gap-2">
                   {[
-                    { v: false, label: 'None (plug-in kit)' },
+                    { v: false, label: th ? 'ไม่มี (ชุดปลั๊กอิน)' : 'None (plug-in kit)' },
                     { v: true, label: `PEA ฿${EXPORT_RATE.toFixed(2)}/unit` },
                   ].map((o) => (
                     <button
@@ -229,8 +234,8 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
                 </div>
                 <p className="mt-1.5 text-xs text-slatey-600">
                   {exportOn
-                    ? 'Surplus sells to the grid at PEA net-billing rates — requires MEA/PEA registration.'
-                    : 'Surplus earns nothing — typical for unregistered plug-in kits.'}
+                    ? (th ? 'ไฟส่วนเกินขายให้กริดในอัตรา PEA net-billing — ต้องลงทะเบียนกับ MEA/PEA' : 'Surplus sells to the grid at PEA net-billing rates — requires MEA/PEA registration.')
+                    : (th ? 'ไฟส่วนเกินไม่ได้รับค่าตอบแทน — ปกติสำหรับชุดปลั๊กอินที่ไม่ได้ลงทะเบียน' : 'Surplus earns nothing — typical for unregistered plug-in kits.')}
                 </p>
               </div>
             </div>
@@ -241,17 +246,17 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
               <div className="flex items-center justify-between gap-3 rounded-xl bg-ink px-5 py-3.5">
                 <div>
                   <p className="font-mono text-[11px] uppercase tracking-wider text-white/90">
-                    System cost
+                    {th ? 'ราคาระบบ' : 'System cost'}
                   </p>
                   <p className="font-display text-2xl font-extrabold tabular-nums text-white">
                     {baht(sized.total)}
                   </p>
                 </div>
                 <p className="text-right text-xs leading-relaxed text-white/85">
-                  {modules} × {MODULE_WP} Wp panels
-                  {(sized.storage?.wh ?? 0) > 0 ? ' + battery' : ''}
+                  {modules} × {MODULE_WP} Wp {th ? 'แผง' : 'panels'}
+                  {(sized.storage?.wh ?? 0) > 0 ? (th ? ' + แบตเตอรี่' : ' + battery') : ''}
                   <br />
-                  incl. inverter &amp; mount
+                  {th ? 'รวม อินเวอร์เตอร์ & ขาตั้ง' : 'incl. inverter & mount'}
                 </p>
               </div>
 
@@ -281,7 +286,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
             <div className="border-t border-ink/[0.07] pt-5 md:col-span-2">
               {sent ? (
                 <p className="flex items-center gap-2 font-display text-sm font-semibold text-[#1A8F66]">
-                  <Check size={18} strokeWidth={3} /> Thanks! Your quote is on its way to {email}.
+                  <Check size={18} strokeWidth={3} /> {th ? `ขอบคุณ! ใบเสนอราคากำลังส่งไปที่ ${email}` : `Thanks! Your quote is on its way to ${email}.`}
                 </p>
               ) : (
                 <form onSubmit={submitQuote} className="flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -297,24 +302,32 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
                     type="submit"
                     className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-lime px-6 py-3 font-display text-sm font-bold text-white transition hover:bg-lime-dark"
                   >
-                    Email me my quote <ArrowRight size={16} />
+                    {th ? 'ส่งใบเสนอราคาให้ฉัน' : 'Email me my quote'} <ArrowRight size={16} />
                   </button>
                 </form>
               )}
               <p className="mt-2 text-sm text-slatey-700">
-                We&apos;ll send your estimate and follow up with a tailored quote.
+                {th ? 'เราจะส่งการประมาณการและติดตามด้วยใบเสนอราคาที่เหมาะกับคุณ' : "We'll send your estimate and follow up with a tailored quote."}
               </p>
             </div>
           </div>
         </Reveal>
 
       <p className="mx-auto mt-4 max-w-6xl text-center text-xs text-slatey-600">
-        Estimates only. Payback uses your <strong>kit price (self-installed)</strong> —{' '}
-        {baht(sized.total)} for {modules} panel{modules > 1 ? 's' : ''}. Assumes ~
-        {Math.round(selfUse * 100)}% of generation is used at home
-        {(sized.storage?.wh ?? 0) > 0 ? ' (raised by your household use and configured battery)' : ' (higher household use and a battery raise this)'},
-        surplus {exportOn ? `exported at ฿${EXPORT_RATE.toFixed(2)}/kWh (PEA net-billing)` : 'unpaid'},
-        Thai grid CO₂ {CO2_PER_KWH} kg/kWh. Actual yield depends on location, shading, tilt and weather.
+        {th ? (
+          <>ตัวเลขโดยประมาณเท่านั้น คืนทุนใช้ <strong>ราคาชุด (ติดตั้งเอง)</strong> —{' '}
+          {baht(sized.total)} สำหรับ {modules} แผง สมมติว่า ~{Math.round(selfUse * 100)}% ของพลังงานที่ผลิตใช้ที่บ้าน
+          {(sized.storage?.wh ?? 0) > 0 ? ' (เพิ่มขึ้นด้วยการใช้ไฟในบ้านและแบตเตอรี่)' : ' (การใช้ไฟสูงขึ้นและแบตเตอรี่จะเพิ่มตัวเลขนี้)'},
+          ไฟส่วนเกิน{exportOn ? ` ส่งออกในอัตรา ฿${EXPORT_RATE.toFixed(2)}/kWh (PEA net-billing)` : 'ไม่ได้รับค่าตอบแทน'},
+          CO₂ กริดไทย {CO2_PER_KWH} kg/kWh ผลผลิตจริงขึ้นอยู่กับสถานที่ ร่มเงา มุมเอียง และสภาพอากาศ</>
+        ) : (
+          <>Estimates only. Payback uses your <strong>kit price (self-installed)</strong> —{' '}
+          {baht(sized.total)} for {modules} panel{modules > 1 ? 's' : ''}. Assumes ~
+          {Math.round(selfUse * 100)}% of generation is used at home
+          {(sized.storage?.wh ?? 0) > 0 ? ' (raised by your household use and configured battery)' : ' (higher household use and a battery raise this)'},
+          surplus {exportOn ? `exported at ฿${EXPORT_RATE.toFixed(2)}/kWh (PEA net-billing)` : 'unpaid'},
+          Thai grid CO₂ {CO2_PER_KWH} kg/kWh. Actual yield depends on location, shading, tilt and weather.</>
+        )}
       </p>
     </>
   );
