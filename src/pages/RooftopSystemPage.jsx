@@ -15,9 +15,7 @@ import { usePageMeta } from '../hooks/usePageMeta';
 export default function RooftopSystemPage() {
   usePageMeta('/rooftop-system');
   const videoRef = useRef(null);
-  const brandVideoRef = useRef(null);
   const [ready, setReady] = useState(false);
-  const [brandReady, setBrandReady] = useState(false);
   // Height of the sticky site header, so the tagline can freeze just below it.
   const [headerH, setHeaderH] = useState(0);
 
@@ -28,12 +26,6 @@ export default function RooftopSystemPage() {
       v.muted = true;
       v.play?.().catch(() => {});
       if (v.readyState >= 2) setReady(true);
-    }
-    const b = brandVideoRef.current;
-    if (b) {
-      b.muted = true;
-      b.play?.().catch(() => {});
-      if (b.readyState >= 2) setBrandReady(true);
     }
   }, []);
 
@@ -56,27 +48,6 @@ export default function RooftopSystemPage() {
     <div id="top" className="min-h-screen bg-surface">
       <Header />
       <main>
-        {/* Brand video — full-bleed, above the hero */}
-        <section className="relative w-full">
-          <div className="relative aspect-[4/5] w-full overflow-hidden bg-ink sm:aspect-video">
-            <video
-              ref={brandVideoRef}
-              className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
-                brandReady ? 'opacity-100' : 'opacity-0'
-              }`}
-              src={asset('/solvio-brand.mp4')}
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="auto"
-              onLoadedData={() => setBrandReady(true)}
-              onCanPlay={() => setBrandReady(true)}
-            />
-            <MediaLoader show={!brandReady} label="Loading video" />
-          </div>
-        </section>
-
         {/* Full-bleed hero video with overlaid headline */}
         <section className="relative w-full">
           <div className="relative aspect-video w-full overflow-hidden bg-ink">
