@@ -340,7 +340,7 @@ export default function ProjectsPage() {
             </div>
           </div>
           {/* Stats strip */}
-          <div className="bg-ink">
+          <div style={{ backgroundColor: '#040f08' }}>
             <div className="container-x">
               <dl className="grid grid-cols-2 gap-x-6 gap-y-8 border-t border-white/10 py-10 lg:grid-cols-4">
                 {STATS.map((s) => (
