@@ -3,6 +3,13 @@ import { Link } from 'react-router-dom';
 import { Plus } from 'lucide-react';
 import { categories } from '../../data/landing';
 import Reveal from '../Reveal';
+import { useLanguage } from '../../context/LanguageContext';
+
+const thCategories = [
+  { sub: 'สำหรับเจ้าของบ้าน', title: 'โซลาร์หลังคา' },
+  { sub: undefined, title: 'โซลาร์ระเบียง' },
+  { sub: undefined, title: 'โซลาร์พกพา' },
+];
 
 function CardInner({ c, dimmed }) {
   return (
@@ -42,6 +49,7 @@ function CardInner({ c, dimmed }) {
 
 export default function CategoryGrid() {
   const [hoveredIdx, setHoveredIdx] = useState(null);
+  const { lang } = useLanguage();
 
   return (
     // Mobile top padding lives in LandingPage's spacer (the hero's sticky
@@ -50,12 +58,14 @@ export default function CategoryGrid() {
       <div className="container-x">
       <Reveal>
         <h2 className="text-2xl font-semibold text-ink sm:text-3xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
-          From Rooftop to Backpack
+          {lang === 'th' ? 'จากหลังคาถึงเป้สะพาย' : 'From Rooftop to Backpack'}
         </h2>
       </Reveal>
 
       <div className="mt-8 grid gap-5 md:grid-cols-3">
-        {categories.map((c, i) => {
+        {categories.map((orig, i) => {
+          const overlay = lang === 'th' ? thCategories[i] : null;
+          const c = overlay ? { ...orig, title: overlay.title, sub: overlay.sub } : orig;
           const internal = c.to?.startsWith('/');
           const cls =
             'group relative block aspect-[5/4] overflow-hidden rounded-xl2 sm:aspect-[16/10] md:aspect-[3/4]';

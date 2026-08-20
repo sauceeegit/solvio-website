@@ -7,14 +7,24 @@ import Logo from '../Logo';
 import { useBgreenie } from '../../context/BgreenieModal';
 import { useLanguage } from '../../context/LanguageContext';
 
-const links = [
-  { label: 'Rooftop Solar', to: '/rooftop-system', sub: 'For Homeowner' },
-  { label: 'Balcony Solar', to: '/balcony-system', sub: 'For Tenant' },
-  { label: 'Portable Solar', to: '/portable-system' },
-  { label: 'Solar Panel', to: '/solar-panel' },
-  { label: 'Projects', to: '/projects' },
-  { label: 'FAQs', to: '/faqs' },
-];
+const links = {
+  en: [
+    { label: 'Rooftop Solar', to: '/rooftop-system', sub: 'For Homeowner' },
+    { label: 'Balcony Solar', to: '/balcony-system', sub: 'For Tenant' },
+    { label: 'Portable Solar', to: '/portable-system' },
+    { label: 'Solar Panel', to: '/solar-panel' },
+    { label: 'Projects', to: '/projects' },
+    { label: 'FAQs', to: '/faqs' },
+  ],
+  th: [
+    { label: 'โซลาร์หลังคา', to: '/rooftop-system', sub: 'สำหรับเจ้าของบ้าน' },
+    { label: 'โซลาร์ระเบียง', to: '/balcony-system', sub: 'สำหรับผู้เช่า' },
+    { label: 'โซลาร์พกพา', to: '/portable-system' },
+    { label: 'แผงโซลาร์', to: '/solar-panel' },
+    { label: 'ผลงาน', to: '/projects' },
+    { label: 'คำถามที่พบบ่อย', to: '/faqs' },
+  ],
+};
 
 function StarBadge() {
   return (
@@ -61,7 +71,7 @@ export default function LandingNav() {
         <Logo href="/" size="h-7" />
 
         <ul className="hidden flex-1 items-center justify-center gap-0.5 lg:flex">
-          {links.map((l) => (
+          {links[lang].map((l) => (
             <li key={l.label}>
               <NavLink
                 to={l.to}
@@ -149,7 +159,7 @@ export default function LandingNav() {
               </motion.button>
             </div>
             <ul className="container-x mt-4 flex flex-col">
-              {links.map((l, i) => (
+              {links[lang].map((l, i) => (
                 <motion.li
                   key={l.label}
                   initial={{ opacity: 0, x: -24 }}
@@ -175,7 +185,7 @@ export default function LandingNav() {
               <motion.li
                 initial={{ opacity: 0, x: -24 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: 0.07 + 0.06 * links.length, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.4, delay: 0.07 + 0.06 * links[lang].length, ease: [0.16, 1, 0.3, 1] }}
               >
                 <button
                   type="button"

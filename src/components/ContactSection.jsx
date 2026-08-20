@@ -2,6 +2,22 @@ import { useState } from 'react';
 import { Mail, Phone, MapPin, MessageCircle, Send, Check } from 'lucide-react';
 import Reveal from './Reveal';
 import { asset } from '../lib/format';
+import { useLanguage } from '../context/LanguageContext';
+
+const contactCopy = {
+  en: {
+    eyebrow: 'Get in touch',
+    heading: <>Talk to a Solvio<br />solar advisor</>,
+    tagline: "Tell us about your home or business and what you're looking for. We'll get back to you with honest, no-pressure advice.",
+    whatsapp: 'Chat on WhatsApp',
+  },
+  th: {
+    eyebrow: 'ติดต่อเรา',
+    heading: <>พูดคุยกับที่ปรึกษา<br />โซลาร์ของ Solvio</>,
+    tagline: 'บอกเราเกี่ยวกับบ้านหรือธุรกิจของคุณและสิ่งที่คุณต้องการ เราจะติดต่อกลับด้วยคำแนะนำที่ซื่อสัตย์โดยไม่มีแรงกดดัน',
+    whatsapp: 'แชทบน WhatsApp',
+  },
+};
 
 // Where every enquiry is sent.
 const SALES_EMAIL = 'sales@solvio.solar';
@@ -68,6 +84,8 @@ export default function ContactSection() {
   const [error, setError] = useState('');
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
+  const { lang } = useLanguage();
+  const ct = contactCopy[lang] || contactCopy.en;
 
   const toggleInterest = (v) =>
     setInterests((prev) => (prev.includes(v) ? prev.filter((x) => x !== v) : [...prev, v]));
@@ -143,12 +161,12 @@ export default function ContactSection() {
               <div className="relative z-10 flex w-full flex-col justify-between p-8 lg:w-[52%] lg:p-10">
                 {/* top */}
                 <div>
-                  <p className="eyebrow font-bold">Get in touch</p>
+                  <p className="eyebrow font-bold">{ct.eyebrow}</p>
                   <h2 className="mt-2 text-2xl font-bold leading-tight tracking-tight text-price sm:text-3xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
-                    Talk to a Solvio<br />solar advisor
+                    {ct.heading}
                   </h2>
                   <p className="mt-3 text-[14px] leading-relaxed text-ink/80">
-                    Tell us about your home or business and what you&apos;re looking for. We&apos;ll get back to you with honest, no-pressure advice.
+                    {ct.tagline}
                   </p>
                 </div>
 
@@ -175,7 +193,7 @@ export default function ContactSection() {
                       <MessageCircle size={17} />
                     </span>
                     <a href={WHATSAPP} target="_blank" rel="noreferrer" className="font-semibold text-ink/85 hover:text-lime-dark">
-                      Chat on WhatsApp
+                      {ct.whatsapp}
                     </a>
                   </li>
                   <li className="flex items-center gap-3">
