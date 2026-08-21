@@ -3,8 +3,10 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { testimonials, product } from '../data/product';
 import Stars from './Stars';
 import Reveal from './Reveal';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Testimonials() {
+  const { lang } = useLanguage();
   const scroller = useRef(null);
 
   const scrollBy = (dir) => {
@@ -22,9 +24,9 @@ export default function Testimonials() {
         <Reveal>
           <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
             <div>
-              <p className="eyebrow mb-2">Reviews</p>
+              <p className="eyebrow mb-2">{lang === 'th' ? 'รีวิว' : 'Reviews'}</p>
               <h2 className="font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
-                Loved on balconies<br className="hidden sm:block" /> everywhere.
+                {lang === 'th' ? <>เป็นที่รักบนระเบียง<br className="hidden sm:block" /> ทั่วทุกแห่ง</> : <>Loved on balconies<br className="hidden sm:block" /> everywhere.</>}
               </h2>
               <div className="mt-4 flex items-center gap-2.5">
                 <Stars value={product.rating} />
@@ -32,7 +34,7 @@ export default function Testimonials() {
                   {product.rating} / 5
                 </span>
                 <span className="text-sm text-ink/50">
-                  · {product.reviewCount.toLocaleString()} verified buyers
+                  · {product.reviewCount.toLocaleString()} {lang === 'th' ? 'ผู้ซื้อที่ยืนยันแล้ว' : 'verified buyers'}
                 </span>
               </div>
             </div>

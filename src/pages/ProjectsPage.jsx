@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 import { X, ChevronLeft, ChevronRight, MapPin, Zap, ArrowRight } from 'lucide-react';
 import MediaLoader from '../components/MediaLoader';
 import { rooftopVideo, rooftopVideoPoster } from '../data/landing';
@@ -13,6 +14,7 @@ import { usePageMeta } from '../hooks/usePageMeta';
 // Reference projects delivered with our manufacturing partner (Cando Solar).
 // Photos extracted from the partner project deck — see /public/projects.
 const CATEGORIES = ['All', 'Rooftop', 'Curved roof', 'Facade', 'BIPV', 'Infrastructure', 'Product range'];
+const CATEGORIES_TH = ['ทั้งหมด', 'หลังคา', 'หลังคาโค้ง', 'ผนังอาคาร', 'BIPV', 'โครงสร้างพื้นฐาน', 'ผลิตภัณฑ์'];
 
 const PROJECTS = [
   {
@@ -152,10 +154,10 @@ const PROJECTS = [
 ];
 
 const STATS = [
-  { value: '68 MW', label: 'Single-client installed capacity' },
-  { value: '50 MW+', label: 'Delivered in 2025' },
-  { value: '4–6 kg/m²', label: 'Firm-Light module weight' },
-  { value: '12+', label: 'Project types delivered' },
+  { value: '68 MW', label: 'Single-client installed capacity', labelTh: 'กำลังติดตั้งลูกค้ารายเดียว' },
+  { value: '50 MW+', label: 'Delivered in 2025', labelTh: 'ส่งมอบในปี 2568' },
+  { value: '4–6 kg/m²', label: 'Firm-Light module weight', labelTh: 'น้ำหนักโมดูล Firm-Light' },
+  { value: '12+', label: 'Project types delivered', labelTh: 'ประเภทโครงการที่ส่งมอบ' },
 ];
 
 // Full-screen image viewer with keyboard + arrow navigation.
@@ -288,6 +290,7 @@ function ProjectCard({ project, onOpen }) {
 
 export default function ProjectsPage() {
   usePageMeta('/projects');
+  const { lang } = useLanguage();
   const videoRef = useRef(null);
   const [videoReady, setVideoReady] = useState(false);
   const [cat, setCat] = useState('All');
@@ -328,15 +331,15 @@ export default function ProjectsPage() {
               <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/50 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-ink/80 via-ink/30 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 container-x pb-[clamp(1.25rem,4vw,3.5rem)]">
-                <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-white/70">Projects</p>
+                <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-white/70">{lang === 'th' ? 'ผลงาน' : 'Projects'}</p>
                 <h1 className="mt-2 font-display text-[clamp(1.5rem,3.5vw,3rem)] font-extrabold leading-[1.1] tracking-tight text-white max-w-2xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
-                  Solar that fits anything it touches.
+                  {lang === 'th' ? 'โซลาร์ที่เข้ากับทุกพื้นผิว' : 'Solar that fits anything it touches.'}
                 </h1>
                 <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/75 sm:text-base">
-                  Steel plants, curved granary roofs, hospital walkways, greenhouses and city streets — delivered with our manufacturing partner.
+                  {lang === 'th' ? 'โรงงานเหล็ก หลังคาโค้ง ทางเดินโรงพยาบาล เรือนกระจก และถนนในเมือง — ส่งมอบร่วมกับพันธมิตรผู้ผลิตของเรา' : 'Steel plants, curved granary roofs, hospital walkways, greenhouses and city streets — delivered with our manufacturing partner.'}
                 </p>
                 <a href="#contact" className="mt-5 inline-flex items-center gap-2 rounded-full bg-lime px-6 py-3 font-display text-sm font-bold text-white transition hover:bg-lime-dark">
-                  Discuss your project <ArrowRight size={16} />
+                  {lang === 'th' ? 'พูดคุยเกี่ยวกับโครงการของคุณ' : 'Discuss your project'} <ArrowRight size={16} />
                 </a>
               </div>
             </div>
@@ -347,7 +350,7 @@ export default function ProjectsPage() {
                 {STATS.map((s) => (
                   <div key={s.label}>
                     <dt className="font-display text-3xl font-extrabold text-lime sm:text-4xl">{s.value}</dt>
-                    <dd className="mt-1.5 text-sm leading-snug text-white/60">{s.label}</dd>
+                    <dd className="mt-1.5 text-sm leading-snug text-white/60">{lang === 'th' ? s.labelTh : s.label}</dd>
                   </div>
                 ))}
               </dl>
@@ -360,7 +363,7 @@ export default function ProjectsPage() {
           <div className="container-x">
             <Reveal>
               <div className="flex flex-wrap gap-2">
-                {CATEGORIES.map((c) => {
+                {CATEGORIES.map((c, ci) => {
                   const active = c === cat;
                   return (
                     <button
@@ -373,7 +376,7 @@ export default function ProjectsPage() {
                           : 'border-ink/12 bg-white text-ink/70 hover:border-ink/30'
                       }`}
                     >
-                      {c}
+                      {lang === 'th' ? CATEGORIES_TH[ci] : c}
                     </button>
                   );
                 })}
@@ -389,9 +392,9 @@ export default function ProjectsPage() {
             </div>
 
             <p className="mt-10 max-w-3xl text-xs leading-relaxed text-slatey-400">
-              Reference projects delivered by Solvio&rsquo;s manufacturing partner. Photos and
-              capacities are supplied by the manufacturer and shown to illustrate the technology and
-              the range of applications it suits.
+              {lang === 'th'
+                ? 'โครงการอ้างอิงที่ส่งมอบโดยพันธมิตรผู้ผลิตของ Solvio รูปภาพและกำลังการผลิตมาจากผู้ผลิตและแสดงเพื่อสาธิตเทคโนโลยีและขอบเขตการใช้งาน'
+                : "Reference projects delivered by Solvio's manufacturing partner. Photos and capacities are supplied by the manufacturer and shown to illustrate the technology and the range of applications it suits."}
             </p>
           </div>
         </section>

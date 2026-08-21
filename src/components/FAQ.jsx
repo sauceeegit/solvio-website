@@ -3,6 +3,7 @@ import { Plus } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { faqs } from '../data/product';
 import Reveal from './Reveal';
+import { useLanguage } from '../context/LanguageContext';
 
 function Item({ q, a, open, onToggle }) {
   return (
@@ -46,24 +47,25 @@ export default function FAQ({
   subtitle = 'Still unsure? Our solar advisors answer in plain language, Monday to Friday.',
   bg,
 }) {
+  const { lang } = useLanguage();
   const [open, setOpen] = useState(0);
 
   return (
     <section id="faq" className={`scroll-mt-20 py-20 ${bg ? '' : 'bg-white'}`} style={bg ? { background: bg } : undefined}>
       <div className="container-x grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <Reveal>
-          <p className="eyebrow">{eyebrow}</p>
+          <p className="eyebrow">{lang === 'th' ? (eyebrow === 'Questions' ? 'คำถาม' : eyebrow) : eyebrow}</p>
           <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-            {heading}
+            {lang === 'th' ? (heading === 'FAQ' ? 'คำถามที่พบบ่อย' : heading) : heading}
           </h2>
-          <p className="mt-3 text-ink/70">{subtitle}</p>
+          <p className="mt-3 text-ink/70">{lang === 'th' ? (subtitle === 'Still unsure? Our solar advisors answer in plain language, Monday to Friday.' ? 'ยังไม่แน่ใจ? ที่ปรึกษาโซลาร์ของเราพร้อมตอบทุกคำถาม จันทร์–ศุกร์' : subtitle) : subtitle}</p>
           <a
             href="https://wa.me/66843488428?text=Hi%20Solvio%20%E2%80%94%20I%27d%20like%20to%20talk%20to%20an%20advisor."
             target="_blank"
             rel="noreferrer"
             className="mt-5 inline-flex items-center rounded-full bg-lime px-5 py-2.5 font-display text-sm font-bold text-white transition hover:bg-lime-dark"
           >
-            Talk to an advisor
+            {lang === 'th' ? 'พูดคุยกับที่ปรึกษา' : 'Talk to an advisor'}
           </a>
         </Reveal>
 

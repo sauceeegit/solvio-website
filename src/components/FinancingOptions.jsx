@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 import {
   Home,
   Building2,
@@ -30,17 +31,23 @@ const payWays = [
   {
     icon: 'Wallet',
     title: 'Pay in full',
+    titleTh: 'ชำระเต็มจำนวน',
     body: 'One payment, lowest total cost. Your system starts earning from day one.',
+    bodyTh: 'ชำระครั้งเดียว ต้นทุนรวมต่ำสุด ระบบของคุณเริ่มสร้างรายได้ตั้งแต่วันแรก',
   },
   {
     icon: 'CalendarClock',
     title: 'Instalments with Solvio (100% approval rate)',
+    titleTh: 'ผ่อนชำระกับ Solvio (อนุมัติ 100%)',
     body: 'Split your project into monthly payments arranged directly with us.',
+    bodyTh: 'แบ่งชำระรายเดือนโดยตรงกับเรา',
   },
   {
     icon: 'Landmark',
     title: 'Bank financing',
+    titleTh: 'สินเชื่อธนาคาร',
     body: 'Use a green loan from a Thai bank. We prepare every document the bank asks for.',
+    bodyTh: 'ใช้สินเชื่อสีเขียวจากธนาคารไทย เราจัดเตรียมเอกสารทุกอย่างที่ธนาคารต้องการ',
   },
 ];
 
@@ -138,6 +145,7 @@ const icons = {
 };
 
 export default function FinancingOptions() {
+  const { lang } = useLanguage();
   const [segment, setSegment] = useState('home');
 
   return (
@@ -145,14 +153,14 @@ export default function FinancingOptions() {
       <div className="container-x">
         {/* Heading */}
         <Reveal>
-          <p className="eyebrow">Financing</p>
+          <p className="eyebrow">{lang === 'th' ? 'การเงิน' : 'Financing'}</p>
           <h2 className="mt-2 max-w-2xl font-display text-3xl font-extrabold tracking-tight text-price sm:text-4xl">
-            Own your roof&rsquo;s power without paying it all upfront
+            {lang === 'th' ? 'เป็นเจ้าของพลังงานบนหลังคาโดยไม่ต้องจ่ายทั้งหมดในครั้งเดียว' : "Own your roof’s power without paying it all upfront"}
           </h2>
           <p className="mt-3 max-w-xl text-slatey-700">
-            Thai banks offer green loans built for exactly this — and your monthly savings on
-            electricity can cover most of the repayment. Here are three ways to pay, and the
-            loans property owners use most.
+            {lang === 'th'
+              ? 'ธนาคารไทยมีสินเชื่อสีเขียวสำหรับกรณีนี้โดยเฉพาะ และเงินที่ประหยัดค่าไฟรายเดือนสามารถครอบคลุมค่าผ่อนชำระได้เป็นส่วนใหญ่ นี่คือสามวิธีการชำระเงินและสินเชื่อที่เจ้าของอสังหาริมทรัพย์ใช้บ่อยที่สุด'
+              : 'Thai banks offer green loans built for exactly this — and your monthly savings on electricity can cover most of the repayment. Here are three ways to pay, and the loans property owners use most.'}
           </p>
         </Reveal>
 
@@ -166,8 +174,8 @@ export default function FinancingOptions() {
                   <span className="grid h-14 w-14 place-items-center rounded-xl bg-price/10 text-price">
                     <Icon size={28} />
                   </span>
-                  <h3 className="mt-4 font-display text-lg font-bold text-price">{w.title}</h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-slatey-700">{w.body}</p>
+                  <h3 className="mt-4 font-display text-lg font-bold text-price">{lang === 'th' ? w.titleTh : w.title}</h3>
+                  <p className="mt-1.5 text-sm leading-relaxed text-slatey-700">{lang === 'th' ? w.bodyTh : w.body}</p>
                 </div>
               </Reveal>
             );
@@ -178,7 +186,7 @@ export default function FinancingOptions() {
         <Reveal className="mt-16">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <h3 className="font-display text-xl font-bold text-price sm:text-2xl">
-              Green loans owners use with Solvio
+              {lang === 'th' ? 'สินเชื่อสีเขียวที่ลูกค้า Solvio นิยมใช้' : 'Green loans owners use with Solvio'}
             </h3>
             <div
               role="tablist"
@@ -186,8 +194,8 @@ export default function FinancingOptions() {
               className="inline-flex rounded-full border border-ink/10 bg-light p-1"
             >
               {[
-                { id: 'home', label: 'Homeowners', icon: Home },
-                { id: 'business', label: 'Business owners', icon: Building2 },
+                { id: 'home', label: 'Homeowners', labelTh: 'เจ้าของบ้าน', icon: Home },
+                { id: 'business', label: 'Business owners', labelTh: 'เจ้าของกิจการ', icon: Building2 },
               ].map((t) => {
                 const active = segment === t.id;
                 const Icon = t.icon;
@@ -202,7 +210,7 @@ export default function FinancingOptions() {
                     }`}
                   >
                     <Icon size={15} />
-                    {t.label}
+                    {lang === 'th' ? t.labelTh : t.label}
                   </button>
                 );
               })}
@@ -269,11 +277,12 @@ export default function FinancingOptions() {
             <div className="flex flex-wrap items-center justify-between gap-6">
               <div className="max-w-md">
                 <h3 className="font-display text-xl font-bold text-white">
-                  We hand you a bank-ready pack
+                  {lang === 'th' ? 'เราจัดเตรียมเอกสารพร้อมยื่นธนาคารให้คุณ' : 'We hand you a bank-ready pack'}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-white/60">
-                  Every bank asks for the same core documents. Solvio prepares them all with
-                  your quote, so your loan application is ready the day you say yes.
+                  {lang === 'th'
+                    ? 'ธนาคารทุกแห่งต้องการเอกสารชุดเดิม Solvio จัดเตรียมทั้งหมดพร้อมใบเสนอราคา ให้คุณยื่นกู้ได้ทันทีที่ตัดสินใจ'
+                    : 'Every bank asks for the same core documents. Solvio prepares them all with your quote, so your loan application is ready the day you say yes.'}
                 </p>
               </div>
               <ul className="grid gap-2 sm:grid-cols-2">
@@ -296,10 +305,9 @@ export default function FinancingOptions() {
 
         {/* Disclaimer */}
         <p className="mt-6 max-w-3xl text-xs leading-relaxed text-slatey-600">
-          Rates, amounts, and terms shown are indicative, set by each bank, and change with
-          bank announcements and campaigns. Loan approval is at each bank&rsquo;s sole
-          discretion. Solvio is a solar installer, not a lender or financial advisor — please
-          confirm current terms with the bank before applying.
+          {lang === 'th'
+            ? 'อัตราดอกเบี้ย วงเงิน และเงื่อนไขที่แสดงเป็นเพียงค่าประมาณ กำหนดโดยแต่ละธนาคาร และอาจเปลี่ยนแปลงตามประกาศและแคมเปญของธนาคาร การอนุมัติสินเชื่อขึ้นอยู่กับดุลยพินิจของธนาคารแต่ละแห่ง Solvio เป็นผู้ติดตั้งระบบโซลาร์ ไม่ใช่ผู้ให้กู้หรือที่ปรึกษาทางการเงิน — กรุณาตรวจสอบเงื่อนไขปัจจุบันกับธนาคารก่อนยื่นกู้'
+            : 'Rates, amounts, and terms shown are indicative, set by each bank, and change with bank announcements and campaigns. Loan approval is at each bank’s sole discretion. Solvio is a solar installer, not a lender or financial advisor — please confirm current terms with the bank before applying.'}
         </p>
       </div>
     </section>

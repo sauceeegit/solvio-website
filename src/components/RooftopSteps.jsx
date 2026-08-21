@@ -3,6 +3,7 @@ import { ArrowRight, Check, MapPin, CalendarClock, X, ChevronRight, ChevronDown 
 import { AnimatePresence, motion } from 'framer-motion';
 import { asset } from '../lib/format';
 import Reveal from './Reveal';
+import { useLanguage } from '../context/LanguageContext';
 
 const MAP_LINK = 'https://maps.app.goo.gl/yhFAgAq24a4oU1cx8';
 const MAP_EMBED = 'https://maps.google.com/maps?q=7.8894748,98.3009435&z=16&output=embed';
@@ -12,13 +13,13 @@ const WA_BOOK = `https://wa.me/66843488428?text=${encodeURIComponent(
 
 // Boxes flow from light green (step 1) → brand orange (step 7).
 const STEPS = [
-  { n: 1, title: 'Request a free consultation', color: '#7AC74F', dark: true, type: 'contact' },
-  { n: 2, title: 'Site survey & custom design', color: '#96C63E', dark: true, desc: 'We inspect your roof and design a custom system.', img: '/rooftop-step2.webp' },
-  { n: 3, title: 'Choose payment or financing', color: '#B8C22C', dark: true, type: 'payment' },
-  { n: 4, title: 'Permits & grid application', color: '#DBB021', dark: true, desc: 'We handle ERC and PEA/MEA permits and paperwork.', img: '/rooftop-step4.webp' },
-  { n: 5, title: 'Professional installation', color: '#EE9518', desc: 'Certified techs install panels, inverter & wiring.', img: '/rooftop-step5.webp', note: 'Depends on size — most installs finish in 1–2 days on average.' },
-  { n: 6, title: 'Connection, testing & handover', color: '#F87F0C', desc: 'Meter change, testing, app setup, and full handover.', img: '/rooftop-step6.webp' },
-  { n: 7, title: 'Warranty & maintenance', color: '#FF6700', desc: 'Monitoring, cleaning, and responsive warranty care.', img: '/rooftop-step7.webp' },
+  { n: 1, title: 'Request a free consultation', titleTh: 'ขอคำปรึกษาฟรี', color: '#7AC74F', dark: true, type: 'contact' },
+  { n: 2, title: 'Site survey & custom design', titleTh: 'สำรวจพื้นที่และออกแบบระบบ', color: '#96C63E', dark: true, desc: 'We inspect your roof and design a custom system.', descTh: 'เราตรวจสอบหลังคาและออกแบบระบบเฉพาะสำหรับคุณ', img: '/rooftop-step2.webp' },
+  { n: 3, title: 'Choose payment or financing', titleTh: 'เลือกการชำระเงินหรือสินเชื่อ', color: '#B8C22C', dark: true, type: 'payment' },
+  { n: 4, title: 'Permits & grid application', titleTh: 'ขออนุญาตและยื่นเชื่อมระบบไฟฟ้า', color: '#DBB021', dark: true, desc: 'We handle ERC and PEA/MEA permits and paperwork.', descTh: 'เราดูแลเอกสาร ERC และใบอนุญาต PEA/MEA ทั้งหมด', img: '/rooftop-step4.webp' },
+  { n: 5, title: 'Professional installation', titleTh: 'ติดตั้งโดยมืออาชีพ', color: '#EE9518', desc: 'Certified techs install panels, inverter & wiring.', descTh: 'ช่างเทคนิคที่ผ่านการรับรองติดตั้งแผง อินเวอร์เตอร์ และระบบไฟ', img: '/rooftop-step5.webp', note: 'Depends on size — most installs finish in 1–2 days on average.', noteTh: 'ขึ้นอยู่กับขนาด — ส่วนใหญ่ติดตั้งเสร็จใน 1–2 วัน' },
+  { n: 6, title: 'Connection, testing & handover', titleTh: 'เชื่อมต่อ ทดสอบ และส่งมอบ', color: '#F87F0C', desc: 'Meter change, testing, app setup, and full handover.', descTh: 'เปลี่ยนมิเตอร์ ทดสอบระบบ ตั้งค่าแอป และส่งมอบครบถ้วน', img: '/rooftop-step6.webp' },
+  { n: 7, title: 'Warranty & maintenance', titleTh: 'การรับประกันและบำรุงรักษา', color: '#FF6700', desc: 'Monitoring, cleaning, and responsive warranty care.', descTh: 'ติดตามระบบ ทำความสะอาด และดูแลตามการรับประกัน', img: '/rooftop-step7.webp' },
 ];
 
 // Thai bank brand colours (text chips — real logos can be dropped in later).
@@ -38,6 +39,7 @@ function StepImage({ src, alt }) {
 }
 
 function ContactOptions({ onVisit }) {
+  const { lang } = useLanguage();
   const [address, setAddress] = useState('');
   const [cost, setCost] = useState('');
   const [email, setEmail] = useState('');
@@ -46,7 +48,7 @@ function ContactOptions({ onVisit }) {
     <div className="mt-3 space-y-2">
       {sent ? (
         <p className="flex items-center gap-1.5 rounded-lg border border-lime/40 bg-lime/10 px-3 py-2 text-xs font-semibold text-lime-dark">
-          <Check size={13} strokeWidth={3} /> Thanks — we&apos;ll send your preliminary design.
+          <Check size={13} strokeWidth={3} /> {lang === 'th' ? 'ขอบคุณ — เราจะส่งแบบเบื้องต้นให้คุณ' : "Thanks — we'll send your preliminary design."}
         </p>
       ) : (
         <form
@@ -61,7 +63,7 @@ function ContactOptions({ onVisit }) {
             required
             value={address}
             onChange={(e) => setAddress(e.target.value)}
-            placeholder="Your Google address"
+            placeholder={lang === 'th' ? 'ที่อยู่ Google ของคุณ' : 'Your Google address'}
             className="w-full min-w-0 rounded-lg border border-ink/15 bg-white px-3 py-2 text-xs text-ink placeholder:text-slatey-600 focus:border-lime focus:outline-none"
           />
           <input
@@ -69,7 +71,7 @@ function ContactOptions({ onVisit }) {
             inputMode="numeric"
             value={cost}
             onChange={(e) => setCost(e.target.value)}
-            placeholder="Monthly electricity cost (optional)"
+            placeholder={lang === 'th' ? 'ค่าไฟรายเดือน (ไม่บังคับ)' : 'Monthly electricity cost (optional)'}
             className="w-full min-w-0 rounded-lg border border-ink/15 bg-white px-3 py-2 text-xs text-ink placeholder:text-slatey-600 focus:border-lime focus:outline-none"
           />
           <input
@@ -77,43 +79,44 @@ function ContactOptions({ onVisit }) {
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Your email"
+            placeholder={lang === 'th' ? 'อีเมลของคุณ' : 'Your email'}
             className="w-full min-w-0 rounded-lg border border-ink/15 bg-white px-3 py-2 text-xs text-ink placeholder:text-slatey-600 focus:border-lime focus:outline-none"
           />
           <button type="submit" className="flex w-full items-center justify-center gap-1.5 rounded-lg bg-lime px-3 py-2 text-xs font-bold text-white transition hover:bg-lime-dark">
-            Send me a preliminary design <ArrowRight size={13} strokeWidth={2.5} />
+            {lang === 'th' ? 'ส่งแบบเบื้องต้นให้ฉัน' : 'Send me a preliminary design'} <ArrowRight size={13} strokeWidth={2.5} />
           </button>
           <p className="text-[10px] leading-snug text-slatey-600">
-            Drop your address and we&apos;ll send a preliminary design of your system.
+            {lang === 'th' ? 'ระบุที่อยู่ของคุณ แล้วเราจะส่งแบบเบื้องต้นของระบบให้' : "Drop your address and we'll send a preliminary design of your system."}
           </p>
         </form>
       )}
 
       <div className="flex items-center gap-2 py-0.5 text-[10px] font-semibold text-slatey-600">
-        <span className="h-px flex-1 bg-ink/10" /> OR <span className="h-px flex-1 bg-ink/10" />
+        <span className="h-px flex-1 bg-ink/10" /> {lang === 'th' ? 'หรือ' : 'OR'} <span className="h-px flex-1 bg-ink/10" />
       </div>
 
       <a href={WA_BOOK} target="_blank" rel="noreferrer" className="flex items-center gap-2 rounded-lg border border-ink/12 px-3 py-2 text-xs font-semibold text-ink transition hover:border-lime hover:text-lime-dark">
-        <CalendarClock size={14} className="shrink-0 text-lime-dark" /> Book a 15-min call
+        <CalendarClock size={14} className="shrink-0 text-lime-dark" /> {lang === 'th' ? 'นัดโทรคุย 15 นาที' : 'Book a 15-min call'}
       </a>
       <button type="button" onClick={onVisit} className="flex w-full items-center gap-2 rounded-lg border border-ink/12 px-3 py-2 text-left text-xs font-semibold text-ink transition hover:border-lime hover:text-lime-dark">
-        <MapPin size={14} className="shrink-0 text-lime-dark" /> Or visit us
+        <MapPin size={14} className="shrink-0 text-lime-dark" /> {lang === 'th' ? 'หรือมาเยี่ยมเรา' : 'Or visit us'}
       </button>
     </div>
   );
 }
 
 function PaymentOptions() {
+  const { lang } = useLanguage();
   return (
     <div className="mt-3 space-y-2">
       <div className="rounded-lg border border-ink/12 px-3 py-2 text-xs font-semibold text-ink">
-        Pay in full <span className="font-normal text-slatey-600">· cash discount</span>
+        {lang === 'th' ? 'ชำระเต็มจำนวน' : 'Pay in full'} <span className="font-normal text-slatey-600">· {lang === 'th' ? 'ส่วนลดพิเศษ' : 'cash discount'}</span>
       </div>
       <div className="rounded-lg border border-ink/12 px-3 py-2 text-xs font-semibold text-ink">
-        Installment plan <span className="font-normal text-slatey-600">· 0% interest</span>
+        {lang === 'th' ? 'ผ่อนชำระ' : 'Installment plan'} <span className="font-normal text-slatey-600">· {lang === 'th' ? 'ดอกเบี้ย 0%' : '0% interest'}</span>
       </div>
       <div className="rounded-lg border border-ink/12 px-3 py-2">
-        <p className="text-xs font-semibold text-ink">Bank loan — we help you apply</p>
+        <p className="text-xs font-semibold text-ink">{lang === 'th' ? 'สินเชื่อธนาคาร — เราช่วยยื่นเอกสาร' : 'Bank loan — we help you apply'}</p>
         <div className="mt-1.5 flex flex-wrap gap-1">
           {BANKS.map((b) => (
             <span key={b.name} className="rounded px-1.5 py-0.5 text-[10px] font-bold text-white" style={{ backgroundColor: b.color }}>
@@ -129,6 +132,7 @@ function PaymentOptions() {
 const MOBILE_SHOW = 2;
 
 export default function RooftopSteps() {
+  const { lang } = useLanguage();
   const [mapOpen, setMapOpen] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const expandRef = useRef(null);
@@ -149,9 +153,9 @@ export default function RooftopSteps() {
       <div className="container-x">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
-            <p className="eyebrow">How it works</p>
+            <p className="eyebrow">{lang === 'th' ? 'วิธีการทำงาน' : 'How it works'}</p>
             <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-              Your 7 steps to going solar
+              {lang === 'th' ? '7 ขั้นตอนสู่การใช้โซลาร์' : 'Your 7 steps to going solar'}
             </h2>
           </div>
         </Reveal>
@@ -174,17 +178,17 @@ export default function RooftopSteps() {
                   >
                     {s.n}
                   </span>
-                  <h3 className="font-display text-sm font-extrabold leading-snug text-price sm:mt-3 sm:min-h-[2.5rem]">{s.title}</h3>
+                  <h3 className="font-display text-sm font-extrabold leading-snug text-price sm:mt-3 sm:min-h-[2.5rem]">{lang === 'th' ? s.titleTh : s.title}</h3>
                 </div>
 
                 {/* Order per card: title → picture (or form/payment) → gray copy. */}
                 {s.type === 'contact' && <ContactOptions onVisit={() => setMapOpen(true)} />}
                 {s.type === 'payment' && <PaymentOptions />}
                 {s.img && <StepImage src={s.img} alt={s.title} />}
-                {s.desc && <p className="mt-2.5 text-xs leading-relaxed text-slatey-700">{s.desc}</p>}
+                {s.desc && <p className="mt-2.5 text-xs leading-relaxed text-slatey-700">{lang === 'th' ? (s.descTh ?? s.desc) : s.desc}</p>}
                 {s.note && (
                   <p className="mt-3 rounded-lg bg-[#FFF1E8] px-3 py-2 text-xs font-medium text-[#B84D00]">
-                    {s.note}
+                    {lang === 'th' ? (s.noteTh ?? s.note) : s.note}
                   </p>
                 )}
 
@@ -229,7 +233,7 @@ export default function RooftopSteps() {
                 strokeWidth={2.5}
                 className={`transition-transform duration-300 ${expanded ? 'rotate-180' : ''}`}
               />
-              {expanded ? 'Show fewer steps' : `Show all 7 steps`}
+              {expanded ? (lang === 'th' ? 'แสดงน้อยลง' : 'Show fewer steps') : (lang === 'th' ? 'แสดงทั้ง 7 ขั้นตอน' : 'Show all 7 steps')}
             </button>
           </div>
         </Reveal>
@@ -237,10 +241,10 @@ export default function RooftopSteps() {
         <Reveal delay={0.15}>
           <div className="mx-auto mt-12 flex max-w-3xl flex-col items-center justify-between gap-4 rounded-xl2 border border-black/10 bg-white px-6 py-5 text-center sm:flex-row sm:text-left">
             <p className="font-display font-semibold text-ink">
-              Ready to go solar? Get your free consultation from Solvio today.
+              {lang === 'th' ? 'พร้อมติดโซลาร์แล้วหรือยัง? รับคำปรึกษาฟรีจาก Solvio วันนี้' : 'Ready to go solar? Get your free consultation from Solvio today.'}
             </p>
             <a href="tel:+66843488428" className="inline-flex shrink-0 items-center gap-2 rounded-full bg-lime px-6 py-3 font-display text-sm font-bold text-white transition hover:bg-lime-dark">
-              Free consultation <ArrowRight size={16} />
+              {lang === 'th' ? 'ปรึกษาฟรี' : 'Free consultation'} <ArrowRight size={16} />
             </a>
           </div>
         </Reveal>
@@ -266,7 +270,7 @@ export default function RooftopSteps() {
             >
               <div className="flex items-center justify-between px-5 py-3">
                 <p className="inline-flex items-center gap-2 font-display text-sm font-bold text-ink">
-                  <MapPin size={16} className="text-lime-dark" /> Visit Solvio Solar
+                  <MapPin size={16} className="text-lime-dark" /> {lang === 'th' ? 'เยี่ยมชม Solvio Solar' : 'Visit Solvio Solar'}
                 </p>
                 <button type="button" onClick={() => setMapOpen(false)} aria-label="Close" className="grid h-8 w-8 place-items-center rounded-full text-ink/72 transition hover:bg-ink/[0.06]">
                   <X size={18} />
@@ -281,7 +285,7 @@ export default function RooftopSteps() {
               />
               <div className="px-5 py-3">
                 <a href={MAP_LINK} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 font-display text-sm font-bold text-lime-dark hover:underline">
-                  Open in Google Maps <ArrowRight size={15} />
+                  {lang === 'th' ? 'เปิดใน Google Maps' : 'Open in Google Maps'} <ArrowRight size={15} />
                 </a>
               </div>
             </motion.div>

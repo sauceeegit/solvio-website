@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 import { Plus } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Header from '../components/landing/Header';
@@ -12,10 +13,10 @@ import { usePageMeta } from '../hooks/usePageMeta';
 
 // One tab per product area — each opens the matching set of FAQs.
 const TABS = [
-  { id: 'general', label: 'General', items: landingFaqs },
-  { id: 'rooftop', label: 'Rooftop Solar', items: rooftopFaqs },
-  { id: 'balcony', label: 'Balcony Solar', items: balconyFaqs },
-  { id: 'panels', label: 'Solar Panels', items: panelFaqs },
+  { id: 'general', label: 'General', labelTh: 'ทั่วไป', items: landingFaqs },
+  { id: 'rooftop', label: 'Rooftop Solar', labelTh: 'โซลาร์หลังคา', items: rooftopFaqs },
+  { id: 'balcony', label: 'Balcony Solar', labelTh: 'โซลาร์ระเบียง', items: balconyFaqs },
+  { id: 'panels', label: 'Solar Panels', labelTh: 'แผงโซลาร์', items: panelFaqs },
 ];
 
 // Question background: closed = light blue, opened = white (matches FAQ.jsx).
@@ -56,6 +57,7 @@ function Item({ q, a, open, onToggle }) {
 
 export default function FaqsPage() {
   usePageMeta('/faqs');
+  const { lang } = useLanguage();
   const [tab, setTab] = useState('general');
   const [open, setOpen] = useState(0);
 
@@ -74,13 +76,14 @@ export default function FaqsPage() {
           <div className="container-x">
             <Reveal>
               <div className="mx-auto max-w-2xl text-center">
-                <p className="eyebrow">Help centre</p>
+                <p className="eyebrow">{lang === 'th' ? 'ศูนย์ช่วยเหลือ' : 'Help centre'}</p>
                 <h1 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-5xl">
-                  Frequently asked questions
+                  {lang === 'th' ? 'คำถามที่พบบ่อย' : 'Frequently asked questions'}
                 </h1>
                 <p className="mt-3 text-slatey-700">
-                  Everything about rooftop, balcony and portable solar — in one place. Pick a topic
-                  below.
+                  {lang === 'th'
+                    ? 'ทุกอย่างเกี่ยวกับโซลาร์หลังคา ระเบียง และพกพา — รวมไว้ในที่เดียว เลือกหัวข้อด้านล่าง'
+                    : 'Everything about rooftop, balcony and portable solar — in one place. Pick a topic below.'}
                 </p>
               </div>
             </Reveal>
@@ -106,7 +109,7 @@ export default function FaqsPage() {
                           : 'border-ink/12 text-ink/70 hover:border-ink/30'
                       }`}
                     >
-                      {t.label}
+                      {lang === 'th' ? t.labelTh : t.label}
                     </button>
                   );
                 })}

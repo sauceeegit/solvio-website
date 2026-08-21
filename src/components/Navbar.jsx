@@ -2,17 +2,19 @@ import { useEffect, useState } from 'react';
 import { Search, ShoppingCart, Menu, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Logo from './Logo';
+import { useLanguage } from '../context/LanguageContext';
 
 const links = [
-  { label: 'Solar systems', href: '#how' },
-  { label: 'Balcony', href: '#product' },
-  { label: 'Storage', href: '#related' },
-  { label: 'Savings', href: '#calculator' },
-  { label: 'Reviews', href: '#reviews' },
-  { label: 'FAQ', href: '#faq' },
+  { label: 'Solar systems', labelTh: 'ระบบโซลาร์', href: '#how' },
+  { label: 'Balcony', labelTh: 'ระเบียง', href: '#product' },
+  { label: 'Storage', labelTh: 'แบตเตอรี่', href: '#related' },
+  { label: 'Savings', labelTh: 'ประหยัดค่าไฟ', href: '#calculator' },
+  { label: 'Reviews', labelTh: 'รีวิว', href: '#reviews' },
+  { label: 'FAQ', labelTh: 'คำถามที่พบบ่อย', href: '#faq' },
 ];
 
 export default function Navbar({ cartCount = 0 }) {
+  const { lang } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -39,7 +41,7 @@ export default function Navbar({ cartCount = 0 }) {
                 href={l.href}
                 className="font-display text-lg font-semibold text-ink/70 transition hover:text-ink"
               >
-                {l.label}
+                {lang === 'th' ? l.labelTh : l.label}
               </a>
             </li>
           ))}
@@ -98,7 +100,7 @@ export default function Navbar({ cartCount = 0 }) {
                     onClick={() => setOpen(false)}
                     className="block border-b border-white/10 py-4 font-display text-2xl font-semibold text-white"
                   >
-                    {l.label}
+                    {lang === 'th' ? l.labelTh : l.label}
                   </a>
                 </motion.li>
               ))}
