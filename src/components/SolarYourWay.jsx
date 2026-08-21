@@ -76,7 +76,7 @@ const HOURS = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24];
 function EnergyChart() {
   return (
     <div className="mt-12 hidden overflow-hidden rounded-2xl border border-ink/[0.07] bg-white shadow-soft sm:block">
-      <img
+      <img loading="lazy"
         src={asset('/solar-energy-chart.png')}
         alt="Solar energy production vs household consumption over 24 hours"
         width={2000}

@@ -153,7 +153,7 @@ export default function ContactSection() {
           <Reveal className="h-full">
             <div className="relative flex h-full overflow-hidden rounded-3xl bg-white shadow-lift">
               {/* Photo — desktop only (hidden on mobile so text has full width) */}
-              <img
+              <img loading="lazy"
                 src={asset('/contact-advisor.webp')}
                 alt="Solvio solar advisor"
                 className="absolute inset-0 h-full w-full object-cover object-center max-lg:hidden"

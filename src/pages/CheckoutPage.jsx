@@ -97,7 +97,7 @@ function OrderSummary({ items, editable, onQtyChange }) {
         {items.map((item) => (
           <li key={item.id} className="flex gap-3 py-4">
             <div className="relative h-[60px] w-[60px] shrink-0 overflow-hidden rounded-xl border border-ink/[0.07] bg-[#f5f5f3]">
-              <img src={item.img} alt={item.name} className="h-full w-full object-contain p-1" />
+              <img loading="lazy" src={item.img} alt={item.name} className="h-full w-full object-contain p-1" />
               <span className="absolute -right-1.5 -top-1.5 grid h-5 w-5 place-items-center rounded-full bg-ink font-display text-[10px] font-bold text-white">
                 {item.qty}
               </span>
@@ -224,7 +224,7 @@ function StepCart({ items, onQtyChange, onNext }) {
                   {item.badge}
                 </span>
               )}
-              <img src={item.img} alt={item.name} className="mx-auto h-36 w-full object-contain" />
+              <img loading="lazy" src={item.img} alt={item.name} className="mx-auto h-36 w-full object-contain" />
             </div>
 
             {/* Info + stepper */}
@@ -405,7 +405,7 @@ function StepReview({ items, onBack, onPlace }) {
           {items.map((item) => (
             <li key={item.id} className="flex items-center gap-3 px-5 py-4">
               <div className="h-12 w-12 shrink-0 overflow-hidden rounded-xl border border-ink/[0.07] bg-[#f2f0eb]">
-                <img src={item.img} alt={item.name} className="h-full w-full object-cover" />
+                <img loading="lazy" src={item.img} alt={item.name} className="h-full w-full object-cover" />
               </div>
               <div className="flex-1">
                 <p className="font-display text-sm font-semibold text-ink">{item.name}</p>

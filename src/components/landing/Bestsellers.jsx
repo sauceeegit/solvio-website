@@ -72,14 +72,14 @@ export default function Bestsellers() {
                     className="relative aspect-[4/3] overflow-hidden"
                     style={{ backgroundColor: p.bg || '#ffffff' }}
                   >
-                    <img
+                    <img loading="lazy"
                       src={p.img}
                       alt={p.name}
                       className="absolute inset-0 h-full w-full p-6 object-contain"
                       style={{ display: (isHovered && p.hoverImg) ? 'none' : 'block' }}
                     />
                     {p.hoverImg && isHovered && (
-                      <img
+                      <img loading="lazy"
                         src={p.hoverImg}
                         alt={p.name}
                         className="absolute inset-0 z-10 h-full w-full object-contain"

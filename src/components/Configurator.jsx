@@ -55,7 +55,7 @@ function ModuleCard({ selected, onClick, panel }) {
     >
       {/* image */}
       <div className="relative aspect-[3/4] w-full overflow-hidden">
-        <img src={panel.img} alt={panel.label} className="h-full w-full object-cover" />
+        <img loading="lazy" src={panel.img} alt={panel.label} className="h-full w-full object-cover" />
         {/* selected tint */}
         {selected && <div className="absolute inset-0 bg-lime/10 pointer-events-none" />}
         {/* check */}
@@ -104,7 +104,7 @@ function StorageCard({ selected, onClick, opt }) {
           <Check size={12} strokeWidth={3} />
         </span>
         {opt.img ? (
-          <img src={opt.img} alt={opt.name} className="h-full w-full object-cover" />
+          <img loading="lazy" src={opt.img} alt={opt.name} className="h-full w-full object-cover" />
         ) : (
           <div className="flex h-full w-full items-center justify-center">
             <ImageIcon size={26} className={selected ? 'text-white/25' : 'text-ink/15'} />

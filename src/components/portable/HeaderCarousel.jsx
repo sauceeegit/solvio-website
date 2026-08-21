@@ -67,6 +67,7 @@ export default function HeaderCarousel({ slides, interval = 3375 }) {
                 key={s.mobile}
                 src={s.mobile}
                 alt="Solvio portable power stations"
+                loading={idx === 0 ? 'eager' : 'lazy'}
                 draggable={false}
                 className="h-full w-full shrink-0 snap-center object-cover"
                 style={s.mobilePos ? { objectPosition: s.mobilePos } : undefined}
@@ -109,6 +110,7 @@ export default function HeaderCarousel({ slides, interval = 3375 }) {
               key={s.desktop}
               src={s.desktop}
               alt="Solvio portable power stations"
+              loading={idx === 0 ? 'eager' : 'lazy'}
               className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[1100ms] ease-in-out ${
                 idx === i ? 'opacity-100' : 'opacity-0'
               }`}

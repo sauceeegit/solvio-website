@@ -31,6 +31,7 @@ export default function ProductGallery({ media }) {
             key={img.id}
             src={img.src}
             alt={img.alt}
+            loading={idx === 0 ? 'eager' : 'lazy'}
             className={`absolute inset-0 h-full w-full transition-opacity duration-700 ease-in-out ${img.imgClass ?? 'object-contain'} ${
               idx === active ? 'opacity-100' : 'opacity-0'
             }`}
@@ -88,7 +89,7 @@ export default function ProductGallery({ media }) {
                   : 'border-transparent opacity-60 hover:opacity-100 hover:border-ink/20'
               }`}
             >
-              <img src={img.src} alt={img.alt} className="h-full w-full object-contain bg-white" />
+              <img loading="lazy" src={img.src} alt={img.alt} className="h-full w-full object-contain bg-white" />
             </button>
           ))}
         </div>

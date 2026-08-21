@@ -26,7 +26,7 @@ export default function PlugPlayVideo() {
           className="group absolute inset-0 w-full h-full"
         >
           {/* poster image */}
-          <img
+          <img loading="lazy"
             src={POSTER}
             alt="Solvio balcony solar installation guide"
             className="absolute inset-0 h-full w-full object-cover object-top transition duration-700 group-hover:scale-[1.02]"

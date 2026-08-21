@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { X, ChevronLeft, ChevronRight, MapPin, Zap, ArrowRight } from 'lucide-react';
 import MediaLoader from '../components/MediaLoader';
-import { rooftopVideo } from '../data/landing';
+import { rooftopVideo, rooftopVideoPoster } from '../data/landing';
 import { AnimatePresence, motion } from 'framer-motion';
 import Header from '../components/landing/Header';
 import Footer from '../components/Footer';
@@ -204,6 +204,7 @@ function Lightbox({ project, index, onClose, onPrev, onNext }) {
 
       <div className="relative flex flex-1 items-center justify-center px-4 pb-6" onClick={(e) => e.stopPropagation()}>
         <img
+          loading="lazy"
           src={asset(`/projects/${project.images[index]}.webp`)}
           alt={`${project.title} — ${project.place}`}
           className="max-h-full max-w-full rounded-xl2 object-contain"
@@ -317,7 +318,8 @@ export default function ProjectsPage() {
               ref={videoRef}
               className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
               src={rooftopVideo}
-              autoPlay loop muted playsInline preload="auto"
+              poster={rooftopVideoPoster}
+              autoPlay loop muted playsInline preload="metadata"
               onLoadedData={() => setVideoReady(true)}
               onCanPlay={() => setVideoReady(true)}
             />

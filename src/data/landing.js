@@ -15,6 +15,7 @@ export const landingNav = [
 // Full-bleed looping videos (served from /public).
 export const solarPanelVideo = asset('/solar-panel-loop.mp4');
 export const rooftopVideo = asset('/rooftop-loop.mp4');
+export const rooftopVideoPoster = asset('/rooftop-loop-poster.webp');
 
 export const hero = {
   // Looping hero video (served from /public).

@@ -17,7 +17,7 @@ const SLIDES = [
     sub: 'No electrician needed',
   },
   {
-    src: asset('/balcony-power-plants.jpg'),
+    src: asset('/balcony-power-plants.webp'),
     alt: 'Balcony with Solvio solar panels overlooking the sea',
     caption: 'Power your home from your balcony',
     sub: 'Works in any apartment or condo',
@@ -94,7 +94,7 @@ export default function PhotoBanner() {
               onDragEnd={handleDragEnd}
               className="absolute inset-0 cursor-grab active:cursor-grabbing"
             >
-              <img
+              <img loading="lazy"
                 src={SLIDES[current].src}
                 alt={SLIDES[current].alt}
                 className="h-full w-full object-cover"
@@ -157,7 +157,7 @@ export default function PhotoBanner() {
               className="relative shrink-0 overflow-hidden rounded-xl transition-all duration-300"
               style={{ width: i === current ? 88 : 56, height: 56 }}
             >
-              <img
+              <img loading="lazy"
                 src={slide.src}
                 alt=""
                 className="h-full w-full object-cover transition-all duration-300"

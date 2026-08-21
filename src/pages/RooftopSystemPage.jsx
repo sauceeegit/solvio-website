@@ -51,7 +51,8 @@ export default function RooftopSystemPage() {
               ref={brandVideoRef}
               className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${brandReady ? 'opacity-100' : 'opacity-0'}`}
               src={asset('/solvio-brand.mp4')}
-              autoPlay loop muted playsInline preload="auto"
+              poster={asset('/solvio-brand-poster.webp')}
+              autoPlay loop muted playsInline preload="metadata"
               onLoadedData={() => setBrandReady(true)}
               onCanPlay={() => setBrandReady(true)}
             />

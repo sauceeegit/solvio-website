@@ -228,6 +228,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
               alt={`${product.name} details`}
               width={product.afterSpecsImg.w}
               height={product.afterSpecsImg.h}
+              loading="lazy"
               className="block w-full"
             />
           </section>
