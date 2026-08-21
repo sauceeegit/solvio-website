@@ -1,5 +1,6 @@
 import { asset } from '../lib/format';
 import Reveal from './Reveal';
+import { useLanguage } from '../context/LanguageContext';
 
 // Bottom feature bar icons (inline SVG, orange outline)
 function IconBox() {
@@ -191,7 +192,30 @@ const features = [
   { Icon: IconHeadset, title: 'Lifetime support', sub: "We're here to help" },
 ];
 
+const featuresTh = [
+  { title: 'ครบชุด', sub: 'รวมทุกชิ้นส่วน' },
+  { title: 'คุณภาพพรีเมียม', sub: 'ออกแบบให้คงทนหลายปี' },
+  { title: 'ติดตั้งง่าย', sub: 'ปลั๊ก ติดตั้ง และผลิตไฟ' },
+  { title: 'บริการตลอดชีพ', sub: 'เราพร้อมช่วยเสมอ' },
+];
+
+const topRowTh = [
+  { title: '4x แผงโซลาร์ 450 Wp', bullets: ['1760 x 1130 mm', 'Full Black – กระจก-กระจก', 'รับประกันประสิทธิภาพ 25 ปี'] },
+  { title: '1x ไมโครอินเวอร์เตอร์ 800 W', bullets: ['กำลังไฟสูงสุด: 800 W', 'รองรับ Wi-Fi', 'กันน้ำ IP67'] },
+  { title: '2x ชุดสาย Y-Cable', bullets: ['ต่อขนาน', 'เชื่อมสองแผงเข้าอินพุต DC เดียว'] },
+  { title: '4x ขาตั้งยึด', bullets: ['กรอบปรับมุมได้', 'ทนการกัดกร่อน', 'ใช้งานกลางแจ้ง'] },
+  { title: '1x คู่มือการติดตั้ง', bullets: ['คำแนะนำทีละขั้นตอน', 'ภาพประกอบชัดเจน', 'ติดตั้งง่าย'] },
+];
+
+const bottomRowTh = [
+  { title: '2x สายขยาย DC – 1 ม.', bullets: ['เชื่อมแผงกับอินเวอร์เตอร์/แบตเตอรี่', 'ทนรังสี UV เกรดกลางแจ้ง'] },
+  { title: '4x สายขยาย DC – 2 ม.', bullets: ['เชื่อมแผงกับอินเวอร์เตอร์/แบตเตอรี่', 'ทนรังสี UV เกรดกลางแจ้ง'] },
+  { title: '1x ขาตั้งอินเวอร์เตอร์ & ชุดอุปกรณ์', bullets: ['ยึดอินเวอร์เตอร์กับกรอบแผง', 'รวมเครื่องมือและน็อตทั้งหมด'] },
+];
+
 export default function IncludedItems() {
+  const { lang } = useLanguage();
+  const th = lang === 'th';
   return (
     <section style={{ background: '#FFF7E9' }} className="py-20">
       <div className="container-x">
@@ -213,32 +237,38 @@ export default function IncludedItems() {
               maxWidth: 560,
             }}
           >
-            What's included in your<br />Solvio complete kit.
+            {th ? <>สิ่งที่รวมอยู่ใน<br />ชุดครบ Solvio ของคุณ</> : <>What's included in your<br />Solvio complete kit.</>}
           </h2>
           <p
             className="mt-3"
             style={{ fontSize: 15, color: '#555', lineHeight: 1.5 }}
           >
-            Premium components.<br />Designed to work perfectly together.
+            {th ? <>ชิ้นส่วนพรีเมียม<br />ออกแบบมาให้ทำงานร่วมกันได้อย่างสมบูรณ์แบบ</> : <>Premium components.<br />Designed to work perfectly together.</>}
           </p>
         </Reveal>
 
         {/* Top row — 5 equal cards (2-up on mobile) */}
         <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-          {topRow.map((item, i) => (
-            <Reveal key={item.title} delay={i * 0.05} className={item.cls}>
-              <KitCard {...item} />
-            </Reveal>
-          ))}
+          {topRow.map((item, i) => {
+            const translated = th ? { ...item, title: topRowTh[i].title, bullets: topRowTh[i].bullets } : item;
+            return (
+              <Reveal key={item.title} delay={i * 0.05} className={item.cls}>
+                <KitCard {...translated} />
+              </Reveal>
+            );
+          })}
         </div>
 
         {/* Bottom row — 3 cards (2-up on mobile) */}
         <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3">
-          {bottomRow.map((item, i) => (
-            <Reveal key={item.title} delay={i * 0.05}>
-              <KitCard {...item} />
-            </Reveal>
-          ))}
+          {bottomRow.map((item, i) => {
+            const translated = th ? { ...item, title: bottomRowTh[i].title, bullets: bottomRowTh[i].bullets } : item;
+            return (
+              <Reveal key={item.title} delay={i * 0.05}>
+                <KitCard {...translated} />
+              </Reveal>
+            );
+          })}
         </div>
 
         {/* Feature bar */}
@@ -252,17 +282,20 @@ export default function IncludedItems() {
               boxShadow: '0 1px 6px rgba(9,50,27,0.06)',
             }}
           >
-            {features.map(({ Icon, title, sub }) => (
-              <div key={title} className="flex items-start gap-3">
-                <Icon />
-                <div>
-                  <p className="font-display font-bold" style={{ fontSize: 13, color: '#09321B' }}>
-                    {title}
-                  </p>
-                  <p style={{ fontSize: 12, color: '#888' }}>{sub}</p>
+            {features.map(({ Icon, title, sub }, i) => {
+              const f = th ? featuresTh[i] : { title, sub };
+              return (
+                <div key={title} className="flex items-start gap-3">
+                  <Icon />
+                  <div>
+                    <p className="font-display font-bold" style={{ fontSize: 13, color: '#09321B' }}>
+                      {f.title}
+                    </p>
+                    <p style={{ fontSize: 12, color: '#888' }}>{f.sub}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </Reveal>
       </div>

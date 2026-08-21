@@ -1,6 +1,15 @@
 import { Check, Plus, Image as ImageIcon } from 'lucide-react';
 import { locations, panelOptions, panelThb, storageOptions, cableOptions } from '../data/product';
 import { baht, bahtDelta, whFmt } from '../lib/format';
+import { useLanguage } from '../context/LanguageContext';
+
+const locationsTh = ['ระเบียง', 'สวน', 'หลังคาแบน', 'ผนังอาคาร'];
+const storageSpecsTh = {
+  none: ['ส่งพลังงานโซลาร์ตรงสู่กริด', 'ไมโครอินเวอร์เตอร์ 800 W มาตรฐาน', 'เพิ่มแบตเตอรี่ได้ในภายหลัง'],
+  venus2: ['4 ช่อง MPPT สูงสุด 2.4 kW', 'อินเวอร์เตอร์ 1500 W ในตัว', 'ควบคุมการส่งไฟเกิน'],
+  venus4: ['4 ช่อง MPPT สูงสุด 2.4 kW', 'อินเวอร์เตอร์ 1500 W ในตัว', 'ควบคุมการส่งไฟเกิน'],
+  venus6: ['4 ช่อง MPPT สูงสุด 2.4 kW', 'อินเวอร์เตอร์ 1500 W ในตัว', 'ควบคุมการส่งไฟเกิน'],
+};
 
 function SectionHead({ step, title, hint, hintMobileHide }) {
   return (
@@ -88,8 +97,9 @@ function ModuleCard({ selected, onClick, panel }) {
   );
 }
 
-function StorageCard({ selected, onClick, opt }) {
+function StorageCard({ selected, onClick, opt, lang }) {
   const hasBattery = opt.wh > 0;
+  const th = lang === 'th';
   return (
     <button
       onClick={onClick}
@@ -139,11 +149,11 @@ function StorageCard({ selected, onClick, opt }) {
             </span>
           ) : (
             <span className={`font-body text-sm font-medium ${selected ? 'text-white/70' : 'text-slatey-400'}`}>
-              No battery
+              {th ? 'ไม่มีแบตเตอรี่' : 'No battery'}
             </span>
           )}
           <span className="font-body text-sm font-semibold">
-            {opt.price === 0 ? 'Included' : bahtDelta(opt.price)}
+            {opt.price === 0 ? (th ? 'รวมอยู่แล้ว' : 'Included') : bahtDelta(opt.price)}
           </span>
         </div>
       </div>
@@ -172,21 +182,23 @@ function LocationButton({ selected, onClick, label }) {
 }
 
 export default function Configurator({ config, set }) {
+  const { lang } = useLanguage();
+  const th = lang === 'th';
   const panel = panelOptions.find((p) => p.id === config.panel) ?? panelOptions[0];
 
   return (
     <div className="space-y-7">
       <div>
-        <SectionHead step="Step 1 — Location" title="Where do you want to install your system?" hint="Mount included" />
+        <SectionHead step={th ? 'ขั้นที่ 1 — ตำแหน่ง' : 'Step 1 — Location'} title={th ? 'คุณต้องการติดตั้งระบบที่ไหน?' : 'Where do you want to install your system?'} hint={th ? 'รวมขาตั้ง' : 'Mount included'} />
         <div className="grid grid-cols-2 gap-2.5">
-          {locations.map((l) => (
-            <LocationButton key={l.id} selected={config.location === l.id} onClick={() => set('location', l.id)} label={l.label} />
+          {locations.map((l, i) => (
+            <LocationButton key={l.id} selected={config.location === l.id} onClick={() => set('location', l.id)} label={th ? locationsTh[i] : l.label} />
           ))}
         </div>
       </div>
 
       <div>
-        <SectionHead step="Step 2 — Module" title="What module size and performance do you want to install?" hint={`${panel.wp} Wp each`} hintMobileHide />
+        <SectionHead step={th ? 'ขั้นที่ 2 — แผง' : 'Step 2 — Module'} title={th ? 'คุณต้องการแผงขนาดและประสิทธิภาพแบบไหน?' : 'What module size and performance do you want to install?'} hint={`${panel.wp} Wp ${th ? 'ต่อแผง' : 'each'}`} hintMobileHide />
         <div className="grid grid-cols-2 gap-2.5">
           {panelOptions.map((p) => (
             <ModuleCard key={p.id} selected={config.panel === p.id} onClick={() => set('panel', p.id)} panel={p} />
@@ -194,8 +206,8 @@ export default function Configurator({ config, set }) {
         </div>
         <div className="mt-2.5 flex items-center justify-between gap-3 rounded-xl border border-ink/12 bg-white px-4 py-3">
           <div>
-            <p className="font-display text-sm font-bold text-ink">Number of modules</p>
-            <p className="font-body text-xs text-slatey-400">{baht(panelThb(panel.id))} each</p>
+            <p className="font-display text-sm font-bold text-ink">{th ? 'จำนวนแผง' : 'Number of modules'}</p>
+            <p className="font-body text-xs text-slatey-400">{baht(panelThb(panel.id))} {th ? 'ต่อแผง' : 'each'}</p>
           </div>
           <div className="flex items-center gap-1">
             <button
@@ -232,16 +244,17 @@ export default function Configurator({ config, set }) {
       </div>
 
       <div id="cfg-step-3" style={{ scrollMarginTop: 88 }}>
-        <SectionHead step="Step 3 — Storage" title="What storage option do you want to add?" hint="Optional" />
+        <SectionHead step={th ? 'ขั้นที่ 3 — แบตเตอรี่' : 'Step 3 — Storage'} title={th ? 'คุณต้องการเพิ่มแบตเตอรี่แบบไหน?' : 'What storage option do you want to add?'} hint={th ? 'ไม่บังคับ' : 'Optional'} />
         <div className="flex snap-x gap-2.5 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:grid sm:grid-cols-2 sm:overflow-visible sm:pb-0">
-          {storageOptions.map((s) => (
-            <StorageCard key={s.id} selected={config.storage === s.id} onClick={() => set('storage', s.id)} opt={s} />
-          ))}
+          {storageOptions.map((s) => {
+            const opt = th && storageSpecsTh[s.id] ? { ...s, specs: storageSpecsTh[s.id], name: s.id === 'none' ? 'ไม่มีแบตเตอรี่' : s.name } : s;
+            return <StorageCard key={s.id} selected={config.storage === s.id} onClick={() => set('storage', s.id)} opt={opt} lang={lang} />;
+          })}
         </div>
       </div>
 
       <div>
-        <SectionHead step="Step 4 — AC cable" title="Which AC connection cable do you need?" hint="To reach your socket" />
+        <SectionHead step={th ? 'ขั้นที่ 4 — สายไฟ AC' : 'Step 4 — AC cable'} title={th ? 'คุณต้องการสายเชื่อม AC แบบไหน?' : 'Which AC connection cable do you need?'} hint={th ? 'เพื่อเข้าถึงเต้าเสียบ' : 'To reach your socket'} />
         <div className="space-y-2.5">
           <div className="grid grid-cols-2 gap-2.5">
             {cableOptions.filter((c) => c.id !== 'none').map((c) => (

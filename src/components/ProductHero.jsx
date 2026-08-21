@@ -5,10 +5,25 @@ import Configurator from './Configurator';
 import PriceBox from './PriceBox';
 import Stars from './Stars';
 import { product } from '../data/product';
+import { useLanguage } from '../context/LanguageContext';
+
+const productTh = {
+  eyebrow: 'Solvio · โซลาร์ระเบียง',
+  tagline: 'โซลาร์ปลั๊กแอนด์เพลย์ระเบียง — เปลี่ยนราวระเบียงให้เป็นโรงไฟฟ้า',
+  wpBadge: 'ต่อแผง · รวมสูงสุด 1,800 Wp',
+  highlights: [
+    'ติดตั้งได้ในไม่ถึง 30 นาที ไม่ต้องใช้เครื่องมือมาก',
+    'เหมาะกับราวระเบียงและตะแกรงส่วนใหญ่',
+    'แผงกระจก-กระจกกันน้ำ (IP68)',
+  ],
+  reviews: 'รีวิว',
+};
 
 const EASE = [0.16, 1, 0.3, 1];
 
 export default function ProductHero({ cfg, onAddToCart, added }) {
+  const { lang } = useLanguage();
+  const th = lang === 'th';
   // Mobile: the 3D model stays pinned while the shopper scrolls Steps 1–2;
   // Gallery itself releases it smoothly once Step 3 (#cfg-step-3) touches its
   // bottom edge (scroll-tracked sticky top — no snap-away).
@@ -22,7 +37,7 @@ export default function ProductHero({ cfg, onAddToCart, added }) {
         {/* Right — details */}
         <div>
           <motion.p className="eyebrow mb-2" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1, ease: EASE }}>
-            Solvio · Balcony solar
+            {th ? productTh.eyebrow : 'Solvio · Balcony solar'}
           </motion.p>
           <motion.h1
             className="font-display text-3xl font-extrabold leading-tight tracking-tight text-ink sm:text-4xl"
@@ -36,22 +51,22 @@ export default function ProductHero({ cfg, onAddToCart, added }) {
             <span className="rounded-full bg-lime px-3.5 py-1 font-display text-sm font-extrabold text-white tracking-tight">
               450 Wp
             </span>
-            <span className="font-body text-sm font-medium text-slatey-600">per module · up to 1,800 Wp total</span>
+            <span className="font-body text-sm font-medium text-slatey-600">{th ? productTh.wpBadge : 'per module · up to 1,800 Wp total'}</span>
           </motion.div>
           <motion.p className="mt-2.5 max-w-md font-body text-[15px] font-medium text-slatey-700" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.4, ease: EASE }}>
-            {product.tagline}
+            {th ? productTh.tagline : product.tagline}
           </motion.p>
 
           <motion.div className="mt-3 flex items-center gap-2.5" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 0.45, ease: EASE }}>
             <Stars value={product.rating} />
             <span className="font-display text-sm font-semibold text-ink">{product.rating}</span>
             <a href="#reviews" className="font-body text-sm font-medium text-slatey-700 underline-offset-2 hover:underline">
-              {product.reviewCount.toLocaleString()} reviews
+              {product.reviewCount.toLocaleString()} {th ? productTh.reviews : 'reviews'}
             </a>
           </motion.div>
 
           <motion.ul className="mt-5 grid gap-2" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.5, ease: EASE }}>
-            {product.highlights.map((h) => (
+            {(th ? productTh.highlights : product.highlights).map((h) => (
               <li key={h} className="flex items-center gap-2.5 font-body text-[15px] font-medium text-ink/80">
                 <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-lime">
                   <Check size={13} strokeWidth={3} className="text-white" />

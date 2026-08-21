@@ -66,11 +66,14 @@ const PAYMENT_ICONS = [
   { key: 'klarna',   label: 'Klarna',    Icon: Klarna },
 ];
 
+import { useLanguage } from '../context/LanguageContext';
+
 export default function PaymentRow() {
+  const { lang } = useLanguage();
   return (
     <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2 py-6 px-4" style={{ backgroundColor: '#f2f0eb' }}>
       <span className="mr-2 font-display text-sm font-bold tracking-wide text-lime">
-        Secure checkout
+        {lang === 'th' ? 'ชำระเงินปลอดภัย' : 'Secure checkout'}
       </span>
       {PAYMENT_ICONS.map(({ key, label, Icon }) => (
         <span

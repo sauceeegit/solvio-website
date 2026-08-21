@@ -1,5 +1,6 @@
 import Reveal from './Reveal';
 import { asset } from '../lib/format';
+import { useLanguage } from '../context/LanguageContext';
 
 /* Support agent on a headset — infographic for the "Lifetime support" tile */
 function SupportAgent({ className = '' }) {
@@ -83,6 +84,8 @@ function Donut() {
 }
 
 export default function Highlights() {
+  const { lang } = useLanguage();
+  const th = lang === 'th';
   return (
     <section className="bg-white py-20">
       <div className="container-x">
@@ -91,11 +94,11 @@ export default function Highlights() {
             {/* A — annual yield gauge (dark) */}
             <div className="flex h-full min-h-[260px] flex-col items-center justify-center rounded-xl2 p-6 text-center text-white max-sm:col-span-2 lg:col-span-2 lg:col-start-1 lg:row-start-1" style={{ backgroundColor: '#1d3d2e' }}>
               <Gauge />
-              <p className="mt-3 text-[11px] font-medium uppercase tracking-wide text-white/55">Up to</p>
+              <p className="mt-3 text-[11px] font-medium uppercase tracking-wide text-white/55">{th ? 'สูงสุด' : 'Up to'}</p>
               <p className="font-display text-3xl font-extrabold text-lime">
                 1,720 kWh<span className="align-super text-base">*</span>
               </p>
-              <p className="text-xs text-white/70">generated per year</p>
+              <p className="text-xs text-white/70">{th ? 'ผลิตได้ต่อปี' : 'generated per year'}</p>
             </div>
 
             {/* B — savings (orange overlay on placeholder) */}
@@ -106,9 +109,9 @@ export default function Highlights() {
                 className="absolute inset-0 h-full w-full object-cover"
               />
               <div className="absolute bottom-0 left-0 max-w-[90%] rounded-tr-xl2 bg-lime p-5 text-white">
-                <p className="text-[11px] font-medium uppercase tracking-wide text-white/85">More than</p>
+                <p className="text-[11px] font-medium uppercase tracking-wide text-white/85">{th ? 'มากกว่า' : 'More than'}</p>
                 <p className="font-display text-3xl font-extrabold leading-none">฿79k</p>
-                <p className="mt-1.5 text-xs font-semibold">saved in 10 years, per 4-panel kit</p>
+                <p className="mt-1.5 text-xs font-semibold">{th ? 'ประหยัดใน 10 ปี ต่อชุด 4 แผง' : 'saved in 10 years, per 4-panel kit'}</p>
               </div>
             </div>
 
@@ -124,9 +127,7 @@ export default function Highlights() {
                   Plug &amp; Play:
                 </p>
                 <p className="mt-1 text-center font-display text-[23px] font-extrabold leading-snug text-ink">
-                  Easy installation
-                  <br />
-                  without an electrician
+                  {th ? <>ติดตั้งง่าย<br />ไม่ต้องใช้ช่างไฟ</> : <>Easy installation<br />without an electrician</>}
                 </p>
               </div>
             </div>
@@ -149,17 +150,15 @@ export default function Highlights() {
                 </span>
               </div>
               <p className="mt-2 text-sm font-semibold leading-snug text-ink/70">
-                More yield
-                <br />
-                per module
+                {th ? <>ผลผลิตมากขึ้น<br />ต่อแผง</> : <>More yield<br />per module</>}
               </p>
             </div>
 
             {/* E2 — optional support (cream + placeholder) */}
             <div className="flex h-full min-h-[160px] flex-col rounded-xl2 p-4 lg:col-span-1 lg:col-start-6 lg:row-start-2" style={{ backgroundColor: '#d6d3ba' }}>
-              <p className="text-[10px] font-semibold uppercase tracking-wide text-ink/70">Optional</p>
+              <p className="text-[10px] font-semibold uppercase tracking-wide text-ink/70">{th ? 'เพิ่มเติม' : 'Optional'}</p>
               <SupportAgent className="mt-2 flex-1 rounded-lg" />
-              <p className="mt-2 font-display text-sm font-bold leading-snug text-ink">Lifetime support</p>
+              <p className="mt-2 font-display text-sm font-bold leading-snug text-ink">{th ? 'บริการตลอดชีพ' : 'Lifetime support'}</p>
             </div>
           </div>
         </Reveal>
