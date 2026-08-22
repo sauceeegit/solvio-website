@@ -1,5 +1,6 @@
 import Reveal from './Reveal';
 import { asset } from '../lib/format';
+import { useLanguage } from '../context/LanguageContext';
 
 const cards = [
   {
@@ -7,7 +8,9 @@ const cards = [
     img: asset('/sp-feature-house.webp'),
     imgAlt: 'Modern home with Solvio Black Feather solar panels on the roof',
     title: 'The Black Feather.\nMade for Real Homes.',
+    titleTh: 'Black Feather.\nออกแบบมาเพื่อบ้านจริงๆ',
     body: 'All-black, ultra-slim, built to complement your home — not just sit on top of it.',
+    bodyTh: 'สีดำล้วน บางพิเศษ สร้างมาเพื่อเสริมความสวยงามให้บ้านคุณ ไม่ใช่แค่วางทับ',
     imgPosition: 'object-top',
   },
   {
@@ -15,12 +18,16 @@ const cards = [
     img: asset('/sp-feature-2.webp'),
     imgAlt: 'Ultra-thin Solvio Dark Feather panel floating above a mountain landscape',
     title: "So light, your roof\nwon't feel it.",
+    titleTh: 'เบาจนหลังคา\nแทบไม่รู้สึก',
     body: 'Just 6 kg/m² and 4.5 mm thin — the slimmest glass-glass panel on the market.',
+    bodyTh: 'เพียง 6 kg/m² และบางแค่ 4.5 mm — แผงกระจก-กระจกที่บางที่สุดในตลาด',
     imgPosition: 'object-center',
   },
 ];
 
 export default function SolarPanelFeatures() {
+  const { lang } = useLanguage();
+  const th = lang === 'th';
   return (
     <section className="bg-white pt-14 pb-8 sm:pt-20 sm:pb-10">
       <div className="container-x">
@@ -47,10 +54,10 @@ export default function SolarPanelFeatures() {
                     className="text-[1.7rem] font-semibold leading-tight tracking-tight text-ink sm:text-3xl"
                     style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif', whiteSpace: 'pre-line' }}
                   >
-                    {c.title}
+                    {th ? c.titleTh : c.title}
                   </h2>
                   <p className="mt-2 text-[15px] leading-relaxed text-ink/70">
-                    {c.body}
+                    {th ? c.bodyTh : c.body}
                   </p>
                 </div>
               </div>

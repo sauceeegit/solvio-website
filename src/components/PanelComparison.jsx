@@ -1,5 +1,8 @@
 import { Check } from 'lucide-react';
 import Reveal from './Reveal';
+import { useLanguage } from '../context/LanguageContext';
+
+const ROW_LABELS_TH = ['เทคโนโลยีเซลล์', 'ประสิทธิภาพสูงสุด', 'ความหนาแน่นกำลังไฟ (W/m²)', 'สัมประสิทธิ์อุณหภูมิ (Pmax)', 'การเสื่อมประสิทธิภาพต่อปี', 'ความหนาของลามิเนต', 'น้ำหนัก'];
 
 // Panel technology comparison — Solvio's module vs. top-tier residential modules.
 // The first (Solvio) data column is highlighted; ★ marks category-leading specs.
@@ -25,15 +28,17 @@ const ROWS = [
 ];
 
 export default function PanelComparison() {
+  const { lang } = useLanguage();
+  const th = lang === 'th';
   return (
     <section className="py-16 sm:py-20" style={{ backgroundColor: '#040f08' }}>
       <div className="container-x">
         <Reveal>
           <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em]" style={{ color: '#fffbf5' }}>
-            Solvio EZ Solar · panel technology comparison
+            {th ? 'Solvio EZ Solar · เปรียบเทียบเทคโนโลยีแผง' : 'Solvio EZ Solar · panel technology comparison'}
           </p>
           <h2 className="mt-3 max-w-3xl font-display text-3xl font-black leading-tight tracking-tight text-white sm:text-4xl">
-            Firm-Light PLUS vs. Top-Tier Residential Modules
+            {th ? 'Firm-Light PLUS เทียบกับโมดูลที่อยู่อาศัยชั้นนำ' : 'Firm-Light PLUS vs. Top-Tier Residential Modules'}
           </h2>
         </Reveal>
 
@@ -62,7 +67,7 @@ export default function PanelComparison() {
                       className="sticky left-0 z-10 p-2.5 text-left font-display text-[13px] font-semibold sm:p-4 sm:text-[15px]"
                       style={{ backgroundColor: '#040f08', color: 'rgba(255,255,255,0.55)' }}
                     >
-                      {row.label}
+                      {th ? ROW_LABELS_TH[ri] : row.label}
                     </td>
                     {row.values.map((v, ci) => {
                       const isSolvio = ci === 0;
@@ -87,11 +92,12 @@ export default function PanelComparison() {
             </table>
           </div>
 
-          <p className="mt-3 text-xs sm:hidden" style={{ color: 'rgba(255,255,255,0.3)' }}>Swipe the table sideways to compare →</p>
+          <p className="mt-3 text-xs sm:hidden" style={{ color: 'rgba(255,255,255,0.3)' }}>{th ? 'เลื่อนตารางไปด้านข้างเพื่อเปรียบเทียบ →' : 'Swipe the table sideways to compare →'}</p>
           <p className="mt-4 max-w-3xl text-xs leading-relaxed" style={{ color: 'rgba(255,255,255,0.3)' }}>
-            <Check size={13} strokeWidth={3} className="mb-0.5 mr-1 inline text-lime" /> = category-leading in
-            this set. Efficiency and power-density figures reflect the 460 W top bin. Temp coefficient shown is
-            parity with the best n-type modules.
+            <Check size={13} strokeWidth={3} className="mb-0.5 mr-1 inline text-lime" />
+            {th
+              ? ' = ดีที่สุดในกลุ่มนี้ ตัวเลขประสิทธิภาพและความหนาแน่นกำลังไฟอ้างอิงจาก bin สูงสุด 460 W สัมประสิทธิ์อุณหภูมิเทียบเท่าโมดูล n-type ชั้นนำ'
+              : ' = category-leading in this set. Efficiency and power-density figures reflect the 460 W top bin. Temp coefficient shown is parity with the best n-type modules.'}
           </p>
         </Reveal>
       </div>

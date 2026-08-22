@@ -6,11 +6,14 @@ import PanelComparison from '../components/PanelComparison';
 import FAQ from '../components/FAQ';
 import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
-import { panelFaqs } from '../data/landing';
+import { panelFaqs, panelFaqsTh } from '../data/landing';
 import { usePageMeta } from '../hooks/usePageMeta';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function SolarPanelPage() {
   usePageMeta('/solar-panel');
+  const { lang } = useLanguage();
+  const th = lang === 'th';
 
   return (
     <div id="top" className="min-h-screen bg-surface">
@@ -22,10 +25,10 @@ export default function SolarPanelPage() {
         <SolarYourWay />
         <PanelComparison />
         <FAQ
-          items={panelFaqs}
-          eyebrow="Panel tech"
+          items={th ? panelFaqsTh : panelFaqs}
+          eyebrow={th ? 'เทคโนโลยีแผง' : 'Panel tech'}
           heading="FAQ"
-          subtitle="The engineering behind Solvio panels — cells, build, and how they hold up in Thai heat."
+          subtitle={th ? 'วิศวกรรมเบื้องหลังแผง Solvio — เซลล์ โครงสร้าง และความทนทานต่อความร้อนในประเทศไทย' : 'The engineering behind Solvio panels — cells, build, and how they hold up in Thai heat.'}
         />
         <ContactSection />
       </main>

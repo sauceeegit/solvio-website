@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Building2, Layers, Home } from 'lucide-react';
 import { asset } from '../lib/format';
 import Reveal from './Reveal';
+import { useLanguage } from '../context/LanguageContext';
 
 const TABS = ['Balcony & Facade'];
 
@@ -9,7 +10,9 @@ const ALL_CARDS = [
   {
     icon: Building2,
     title: 'Balcony Installation',
+    titleTh: 'ติดตั้งระเบียง',
     body: 'Perfect for apartments and urban living. Generate clean electricity without modifying your roof.',
+    bodyTh: 'เหมาะสำหรับอพาร์ทเมนท์และการอยู่อาศัยในเมือง ผลิตไฟสะอาดโดยไม่ต้องดัดแปลงหลังคา',
     img: asset('/sp-balcony.webp'),
     alt: 'Black solar panels on a modern apartment balcony railing',
     tabs: ['Balcony & Facade'],
@@ -17,7 +20,9 @@ const ALL_CARDS = [
   {
     icon: Layers,
     title: 'Facade Installation',
+    titleTh: 'ติดตั้งผนังอาคาร',
     body: 'Turn unused wall space into energy. The all-black design integrates beautifully into contemporary architecture.',
+    bodyTh: 'เปลี่ยนพื้นที่ผนังที่ว่างให้เป็นพลังงาน ดีไซน์สีดำล้วนผสานกับสถาปัตยกรรมสมัยใหม่ได้อย่างสวยงาม',
     img: asset('/sp-facade.webp'),
     alt: 'Solvio Black Feather panels on a building facade',
     tabs: ['Balcony & Facade'],
@@ -25,7 +30,9 @@ const ALL_CARDS = [
   {
     icon: Home,
     title: 'Lightweight Roof Installation',
+    titleTh: 'ติดตั้งหลังคาน้ำหนักเบา',
     body: 'When every kilogram matters. At only 6 kg/m², The Black Feather is engineered for lightweight structures.',
+    bodyTh: 'เมื่อทุกกิโลกรัมมีความสำคัญ ที่เพียง 6 kg/m² Black Feather ออกแบบมาสำหรับโครงสร้างน้ำหนักเบา',
     img: asset('/rooftop-solar.webp'),
     alt: 'Solvio Black Feather panels on a lightweight residential roof',
     tabs: ['Balcony & Facade', 'Lightweight Roof'],
@@ -88,6 +95,8 @@ function EnergyChart() {
 }
 
 export default function SolarYourWay() {
+  const { lang } = useLanguage();
+  const th = lang === 'th';
   const [tab, setTab] = useState(TABS[0]);
   const cards = ALL_CARDS.filter((c) => c.tabs.includes(tab));
 
@@ -98,11 +107,12 @@ export default function SolarYourWay() {
         <Reveal>
           <div className="text-center">
             <h2 className="font-display text-4xl font-extrabold tracking-tight text-price sm:text-5xl">
-              Solar. Your way.
+              {th ? 'โซลาร์ แบบของคุณ' : 'Solar. Your way.'}
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base text-ink/75">
-              Choose how you bring clean energy into your home. Whether on your balcony, facade
-              or lightweight roof, Solvio makes premium solar possible where conventional panels simply don&apos;t fit.
+              {th
+                ? 'เลือกวิธีนำพลังงานสะอาดเข้าบ้าน ไม่ว่าจะเป็นระเบียง ผนัง หรือหลังคาน้ำหนักเบา Solvio ทำให้โซลาร์พรีเมียมเป็นไปได้ในที่ที่แผงทั่วไปติดตั้งไม่ได้'
+                : 'Choose how you bring clean energy into your home. Whether on your balcony, facade or lightweight roof, Solvio makes premium solar possible where conventional panels simply don\'t fit.'}
             </p>
           </div>
         </Reveal>
@@ -122,8 +132,8 @@ export default function SolarYourWay() {
                     <c.icon size={20} className="text-white" strokeWidth={2} />
                   </div>
                   <div>
-                    <h3 className="font-display text-[1.05rem] font-extrabold text-ink">{c.title}</h3>
-                    <p className="mt-1 text-[13px] leading-relaxed text-ink/72">{c.body}</p>
+                    <h3 className="font-display text-[1.05rem] font-extrabold text-ink">{th ? c.titleTh : c.title}</h3>
+                    <p className="mt-1 text-[13px] leading-relaxed text-ink/72">{th ? c.bodyTh : c.body}</p>
                   </div>
                 </div>
                 <div className="aspect-[4/3] overflow-hidden rounded-xl bg-surface">
