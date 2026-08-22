@@ -4,8 +4,11 @@ import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { portablePanels } from '../../data/landing';
 import { baht } from '../../lib/format';
 import Reveal from '../Reveal';
+import { useLanguage } from '../../context/LanguageContext';
 
 export default function PortablePanels() {
+  const { lang } = useLanguage();
+  const th = lang === 'th';
   const trackRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -49,12 +52,12 @@ export default function PortablePanels() {
         <div className="flex items-end justify-between gap-4">
           <Reveal>
             <div className="max-w-2xl">
-              <p className="eyebrow">Portable Solar</p>
+              <p className="eyebrow">{th ? 'โซลาร์พกพา' : 'Portable Solar'}</p>
               <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-                Portable Panels
+                {th ? 'แผงโซลาร์พกพา' : 'Portable Panels'}
               </h2>
               <p className="mt-3 text-base text-ink/80">
-                Flexible solar panels for camping, van life, and off-grid adventures.
+                {th ? 'แผงโซลาร์พับได้ เหมาะสำหรับแคมปิ้ง แวนไลฟ์ และการผจญภัยนอกกริด' : 'Flexible solar panels for camping, van life, and off-grid adventures.'}
               </p>
             </div>
           </Reveal>
@@ -107,17 +110,17 @@ export default function PortablePanels() {
                 <div className="flex flex-1 flex-col gap-3 p-5">
                   <div>
                     <h3 className="font-display text-[1.35rem] font-extrabold text-ink">{p.name}</h3>
-                    <p className="mt-0.5 text-[15px] font-medium" style={{ color: '#477296' }}>{p.tagline ?? `${p.watt} foldable solar panel`}</p>
+                    <p className="mt-0.5 text-[15px] font-medium" style={{ color: '#477296' }}>{p.tagline ?? `${p.watt} ${th ? 'แผงโซลาร์พับได้' : 'foldable solar panel'}`}</p>
                   </div>
 
                   <div className="mt-auto flex items-end justify-between gap-3">
                     <div>
-                      <p className="font-mono text-[11px] uppercase tracking-wider text-slatey-600">From</p>
+                      <p className="font-mono text-[11px] uppercase tracking-wider text-slatey-600">{th ? 'เริ่มต้น' : 'From'}</p>
                       <p className="font-display text-2xl font-extrabold text-price tabular-nums">{baht(p.price)}</p>
                     </div>
                     <Link to={p.href ?? '/portable-system'}>
                       <span className="inline-flex items-center gap-1.5 rounded-full bg-lime px-4 py-2 font-display text-sm font-bold text-white transition group-hover:bg-lime-dark">
-                        See details <ArrowRight size={15} />
+                        {th ? 'ดูรายละเอียด' : 'See details'} <ArrowRight size={15} />
                       </span>
                     </Link>
                   </div>
