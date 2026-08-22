@@ -1,9 +1,17 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" translate="no">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
+      This site provides its own English/Thai copy (see LanguageContext). Without
+      notranslate, Chrome sees Thai text on a page and machine-translates it back
+      to English on top of our own translation — which turned the nav item
+      "ผลงาน" (Projects) into "performance" and re-translated text mid-scroll.
+      <html lang> is kept in sync with the chosen language in LanguageContext.
+    -->
+    <meta name="google" content="notranslate" />
     <meta name="description" content="Solvio makes solar simple for every Thai home — plug-and-play balcony kits, rooftop systems and portable power stations. Transparent Baht pricing, free sizing advice." />
     <link rel="canonical" href="https://solvio.solar/" />
     <!-- Open Graph (Facebook / Line / WhatsApp link previews) -->
