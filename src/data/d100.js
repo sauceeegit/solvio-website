@@ -137,12 +137,20 @@ function modelSpecifications(model, technical) {
 function modelCopy(model) {
   return {
     tagline: `${model.output} output with ${model.capacity} of LiFePO₄ battery storage.`,
+    taglineTh: `เอาต์พุต ${model.output} พร้อมแบต LiFePO₄ ขนาด ${model.capacity}`,
     description:
       `The ${model.name} pairs ${model.output} rated AC output with a ${model.capacity} LiFePO₄ battery. Select another model to compare its verified model-specific information.`,
+    descriptionTh:
+      `${model.name} มาพร้อมเอาต์พุต AC ${model.output} และแบตเตอรี่ LiFePO₄ ขนาด ${model.capacity} เลือกรุ่นอื่นเพื่อเปรียบเทียบข้อมูลจำเพาะเฉพาะรุ่น`,
     highlights: [
       `${model.capacity} LiFePO₄ battery capacity`,
       `${model.output} rated AC output`,
       'Model-specific charging, output and temperature specifications',
+    ],
+    highlightsTh: [
+      `ความจุแบตเตอรี่ LiFePO₄ ${model.capacity}`,
+      `เอาต์พุต AC ${model.output}`,
+      'ข้อมูลการชาร์จ เอาต์พุต และอุณหภูมิเฉพาะรุ่น',
     ],
   };
 }
@@ -157,18 +165,21 @@ export const portableProductModels = portableBatteries.map((model) => {
     ...copy,
     shortName,
     category: 'Portable Power',
+    categoryTh: 'พลังงานพกพา',
     pageTitle: `${model.name} Portable Power Station — Product Details | Solvio`,
     selectorHeading: 'Choose model',
+    selectorHeadingTh: 'เลือกรุ่น',
     metricLabel: 'Battery capacity',
+    metricLabelTh: 'ความจุแบตเตอรี่',
     metricValue: model.capacity,
     selectorLabel: `${model.output} — ${shortName}`,
     featureStrip: [
-      { icon: 'Battery', label: model.capacity, sub: 'Battery capacity' },
-      { icon: 'PlugZap', label: model.output, sub: 'Rated AC output' },
-      { icon: 'Battery', label: 'LiFePO₄', sub: 'Battery chemistry' },
-      { icon: 'Zap', label: model.specModel, sub: 'Specification model' },
-      { icon: 'Plug', label: 'AC + DC + USB', sub: 'Output options' },
-      { icon: 'Sun', label: 'Solar charging', sub: 'Model-specific input' },
+      { icon: 'Battery', label: model.capacity, sub: 'Battery capacity', subTh: 'ความจุแบตเตอรี่' },
+      { icon: 'PlugZap', label: model.output, sub: 'Rated AC output', subTh: 'เอาต์พุต AC' },
+      { icon: 'Battery', label: 'LiFePO₄', sub: 'Battery chemistry', subTh: 'เคมีแบตเตอรี่' },
+      { icon: 'Zap', label: model.specModel, sub: 'Specification model', subTh: 'รุ่นข้อมูลจำเพาะ' },
+      { icon: 'Plug', label: 'AC + DC + USB', sub: 'Output options', subTh: 'ตัวเลือกเอาต์พุต' },
+      { icon: 'Sun', label: 'Solar charging', sub: 'Model-specific input', subTh: 'อินพุตเฉพาะรุ่น' },
     ],
     media: mediaTemplate.map((item) => {
       const extra = item.id === 1 ? null
@@ -232,17 +243,25 @@ export const portableProductModels = portableBatteries.map((model) => {
     specifications: modelSpecifications(model, technical),
     specificationIntro:
       `Verified battery, charging, output and operating values supplied for specification model ${model.specModel}.`,
+    specificationIntroTh:
+      `ข้อมูลแบตเตอรี่ การชาร์จ เอาต์พุต และการทำงานที่ยืนยันแล้ว สำหรับรุ่น ${model.specModel}`,
     note:
       model.id === 'd2400'
         ? 'K2400 dimensions, weight, cycle life and operating temperatures were not visible in the supplied specification. Ask Solvio to confirm these values before purchase.'
         : model.id === 'd300'
           ? 'The supplied X300 label prints four dimension values. Confirm the final three-dimensional measurement with Solvio before purchase.'
           : 'Specifications are based on the supplied product labels. Confirm compatibility and the latest technical sheet with Solvio before purchase.',
+    noteTh:
+      model.id === 'd2400'
+        ? 'ขนาด น้ำหนัก อายุรอบชาร์จ และอุณหภูมิใช้งานของ K2400 ไม่ปรากฏในข้อมูลจำเพาะที่ได้รับ กรุณาติดต่อ Solvio เพื่อยืนยันก่อนซื้อ'
+        : model.id === 'd300'
+          ? 'ฉลาก X300 ที่ได้รับระบุขนาดสี่ค่า กรุณายืนยันขนาดสามมิติสุดท้ายกับ Solvio ก่อนซื้อ'
+          : 'ข้อมูลจำเพาะอ้างอิงจากฉลากสินค้าที่ได้รับ กรุณายืนยันความเข้ากันได้และแผ่นข้อมูลจำเพาะล่าสุดกับ Solvio ก่อนซื้อ',
     faqs: [
       {
         question: `What is the ${shortName}?`,
         answer:
-          `The ${model.name} is a ${model.output} portable power station with a ${model.capacity} LiFePO₄ battery. Always check a connected device’s required input and wattage before choosing a model.`,
+          `The ${model.name} is a ${model.output} portable power station with a ${model.capacity} LiFePO₄ battery. Always check a connected device's required input and wattage before choosing a model.`,
       },
       {
         question: `Where can I find the full ${shortName} specifications?`,
@@ -253,6 +272,23 @@ export const portableProductModels = portableBatteries.map((model) => {
         question: `Can I pair the ${shortName} with a portable solar panel?`,
         answer:
           `Ask Solvio to confirm the correct panel, cable and input limits for the ${shortName} before connecting a solar panel.`,
+      },
+    ],
+    faqsTh: [
+      {
+        question: `${shortName} คืออะไร?`,
+        answer:
+          `${model.name} คือสถานีพลังงานพกพา ${model.output} พร้อมแบตเตอรี่ LiFePO₄ ขนาด ${model.capacity} ควรตรวจสอบอินพุตและวัตต์ที่อุปกรณ์ต้องการก่อนเลือกรุ่นเสมอ`,
+      },
+      {
+        question: `ดูข้อมูลจำเพาะเต็มของ ${shortName} ได้ที่ไหน?`,
+        answer:
+          `ข้อมูลเฉพาะรุ่นที่ได้รับการยืนยันแสดงอยู่บนหน้านี้ ติดต่อ Solvio เพื่อขอแผ่นข้อมูลจำเพาะ ${shortName} ล่าสุดและยืนยันค่าที่ระบุว่ายังไม่มีข้อมูล`,
+      },
+      {
+        question: `จับคู่ ${shortName} กับแผงโซลาร์พกพาได้ไหม?`,
+        answer:
+          `ติดต่อ Solvio เพื่อยืนยันแผง สาย และข้อจำกัดอินพุตที่เหมาะสมสำหรับ ${shortName} ก่อนเชื่อมต่อแผงโซลาร์`,
       },
     ],
   };

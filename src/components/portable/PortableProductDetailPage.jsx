@@ -73,15 +73,15 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
               </div>
 
               <aside className="self-start lg:sticky lg:top-32">
-                <p className="eyebrow">{product.category}</p>
+                <p className="eyebrow">{th ? (product.categoryTh ?? product.category) : product.category}</p>
                 <h1 className="mt-3 font-display text-3xl font-black tracking-[-0.03em] text-ink sm:text-4xl">
                   {product.name}
                 </h1>
-                <p className="mt-1 font-display text-base font-semibold text-ink/70">{product.tagline}</p>
+                <p className="mt-1 font-display text-base font-semibold text-ink/70">{th ? (product.taglineTh ?? product.tagline) : product.tagline}</p>
 
                 <div className="mt-7">
                   <label htmlFor="model-selector" className="font-display text-sm font-extrabold uppercase tracking-[0.12em] text-ink">
-                    {product.selectorHeading}
+                    {th ? (product.selectorHeadingTh ?? product.selectorHeading) : product.selectorHeading}
                   </label>
                   <div className="relative mt-2">
                     <select
@@ -100,7 +100,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
 
                 <div className="mt-5 flex items-end justify-between gap-6 border-y border-ink/10 py-5">
                   <div>
-                    <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink/85">{product.metricLabel}</p>
+                    <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink/85">{th ? (product.metricLabelTh ?? product.metricLabel) : product.metricLabel}</p>
                     <p className="mt-1 font-display text-2xl font-extrabold text-ink">{product.metricValue}</p>
                   </div>
                   <div className="text-right">
@@ -109,10 +109,10 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
                   </div>
                 </div>
 
-                <p className="mt-6 text-base leading-relaxed text-ink/90">{product.description}</p>
+                <p className="mt-6 text-base leading-relaxed text-ink/90">{th ? (product.descriptionTh ?? product.description) : product.description}</p>
 
                 <ul className="mt-6 space-y-3">
-                  {product.highlights.map((item) => (
+                  {(th ? (product.highlightsTh ?? product.highlights) : product.highlights).map((item) => (
                     <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-ink/90">
                       <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-lime text-white">
                         <Check size={13} strokeWidth={3} />
@@ -145,15 +145,16 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
         <section id="details" className="border-y border-ink/[0.07] bg-white py-10 sm:py-14">
           <div className="container-x">
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-              {product.featureStrip.map(({ icon, label, sub }) => {
+              {product.featureStrip.map(({ icon, label, sub, subTh }) => {
                 const Icon = SPEC_ICONS[icon];
+                const subText = th ? (subTh ?? sub) : sub;
                 return (
                 <div key={sub} className="flex flex-col items-center gap-2 rounded-2xl border border-ink/[0.07] p-4 text-center">
                   <span className="grid h-16 w-16 place-items-center rounded-full bg-white text-ink shadow-soft">
                     <Icon size={30} strokeWidth={1.75} />
                   </span>
                   <p className="font-display text-sm font-extrabold text-ink leading-tight">{label}</p>
-                  <p className="text-[11px] text-ink/70 leading-tight">{sub}</p>
+                  <p className="text-[11px] text-ink/70 leading-tight">{subText}</p>
                 </div>
                 );
               })}
@@ -181,7 +182,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
               <h2 className="mt-3 font-display text-4xl font-black tracking-tight text-white sm:text-5xl">
                 {product.shortName} {th ? 'โดยสรุป' : 'at a glance'}
               </h2>
-              <p className="mt-3 text-sm" style={{ color: 'rgba(255,255,255,0.4)' }}>{product.specificationIntro}</p>
+              <p className="mt-3 text-sm" style={{ color: 'rgba(255,255,255,0.4)' }}>{th ? (product.specificationIntroTh ?? product.specificationIntro) : product.specificationIntro}</p>
             </div>
 
             <dl className="mx-auto mt-12 grid max-w-5xl grid-cols-2 gap-x-4 sm:gap-x-0">
@@ -219,7 +220,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
             )}
 
             <p className="mx-auto mt-8 max-w-2xl text-center text-xs leading-relaxed" style={{ color: 'rgba(255,255,255,0.3)' }}>
-              {product.note}
+              {th ? (product.noteTh ?? product.note) : product.note}
             </p>
           </div>
         </section>
@@ -246,7 +247,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
               </h2>
             </div>
             <div className="mt-10 space-y-2">
-              {product.faqs.map((item, i) => (
+              {(th ? (product.faqsTh ?? product.faqs) : product.faqs).map((item, i) => (
                 <PortableFAQItem key={`${product.id}-${item.question}`} q={item.question} a={item.answer} />
               ))}
             </div>

@@ -52,18 +52,29 @@ export const portablePanelModels = portablePanels.map((panel) => {
     name: productName,
     shortName,
     category: 'Portable Solar',
+    categoryTh: 'โซลาร์พกพา',
     pageTitle: `${productName} — Product Details | Solvio`,
     selectorHeading: 'Choose panel output',
+    selectorHeadingTh: 'เลือกกำลังไฟแผง',
     metricLabel: 'Rated output',
+    metricLabelTh: 'กำลังไฟที่กำหนด',
     metricValue: panel.watt,
     selectorLabel: `${panel.watt} — ${shortName}`,
     tagline: `${panel.watt} foldable solar panel for portable power setups.`,
+    taglineTh: `แผงโซลาร์พับได้ ${panel.watt} สำหรับชุดพลังงานพกพา`,
     description:
-      `The ${productName} is the ${panel.watt} option in Solvio’s portable panel range. Select another output to compare its model-specific information.`,
+      `The ${productName} is the ${panel.watt} option in Solvio's portable panel range. Select another output to compare its model-specific information.`,
+    descriptionTh:
+      `${productName} คือตัวเลือก ${panel.watt} ในไลน์แผงพกพาของ Solvio เลือกกำลังไฟอื่นเพื่อเปรียบเทียบข้อมูลเฉพาะรุ่น`,
     highlights: [
       `${panel.watt} selected panel output`,
       'Dedicated image set for this panel',
       'Model-specific specifications ready to be completed',
+    ],
+    highlightsTh: [
+      `กำลังไฟแผงที่เลือก ${panel.watt}`,
+      'ชุดภาพเฉพาะสำหรับแผงนี้',
+      'ข้อมูลจำเพาะเฉพาะรุ่นพร้อมแสดง',
     ],
     media: panelMediaTemplate.map((item) => {
       const isP6060120 = panel.id === 'p60' || panel.id === 'p120';
@@ -108,14 +119,18 @@ export const portablePanelModels = portablePanels.map((panel) => {
     afterSpecsImg: panelLongLastingImg,
     specifications: panelSpecifications(panel),
     specificationIntro:
-      `The listed output for the ${shortName} is shown below. Dimensions, weight, connector and protection details can be added to this panel’s record when confirmed.`,
+      `The listed output for the ${shortName} is shown below. Dimensions, weight, connector and protection details can be added to this panel's record when confirmed.`,
+    specificationIntroTh:
+      `กำลังไฟที่ระบุของ ${shortName} แสดงด้านล่าง ขนาด น้ำหนัก ขั้วต่อ และรายละเอียดการป้องกันจะเพิ่มเมื่อได้รับการยืนยัน`,
     note:
       `Need dimensions, weight, connector details or compatibility guidance? Ask Solvio for the latest ${shortName} technical sheet before choosing a setup.`,
+    noteTh:
+      `ต้องการขนาด น้ำหนัก รายละเอียดขั้วต่อ หรือคำแนะนำความเข้ากันได้? ติดต่อ Solvio เพื่อขอแผ่นข้อมูลจำเพาะ ${shortName} ล่าสุดก่อนเลือกชุด`,
     faqs: [
       {
         question: `What is the ${shortName}?`,
         answer:
-          `The ${productName} is the ${panel.watt} model in Solvio’s foldable portable-panel range. Its suitability depends on the connected device or power station.`,
+          `The ${productName} is the ${panel.watt} model in Solvio's foldable portable-panel range. Its suitability depends on the connected device or power station.`,
       },
       {
         question: `Where can I find the full ${shortName} specifications?`,
@@ -126,6 +141,23 @@ export const portablePanelModels = portablePanels.map((panel) => {
         question: `Which power station works with the ${shortName}?`,
         answer:
           `Ask Solvio to confirm the correct panel, cable, connector and input limits for your power station before connecting the panel.`,
+      },
+    ],
+    faqsTh: [
+      {
+        question: `${shortName} คืออะไร?`,
+        answer:
+          `${productName} คือรุ่น ${panel.watt} ในไลน์แผงพกพาพับได้ของ Solvio ความเหมาะสมขึ้นอยู่กับอุปกรณ์หรือสถานีพลังงานที่เชื่อมต่อ`,
+      },
+      {
+        question: `ดูข้อมูลจำเพาะเต็มของ ${shortName} ได้ที่ไหน?`,
+        answer:
+          `ติดต่อ Solvio เพื่อขอแผ่นข้อมูลจำเพาะ ${shortName} ล่าสุดที่อนุมัติแล้ว ขนาดและค่าทางเทคนิคเพิ่มเติมจะเพิ่มในหน้านี้เมื่อได้รับการยืนยัน`,
+      },
+      {
+        question: `สถานีพลังงานใดทำงานร่วมกับ ${shortName} ได้?`,
+        answer:
+          `ติดต่อ Solvio เพื่อยืนยันแผง สาย ขั้วต่อ และข้อจำกัดอินพุตที่เหมาะสมสำหรับสถานีพลังงานของคุณก่อนเชื่อมต่อแผง`,
       },
     ],
   };
