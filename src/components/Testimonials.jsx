@@ -5,8 +5,18 @@ import Stars from './Stars';
 import Reveal from './Reveal';
 import { useLanguage } from '../context/LanguageContext';
 
+const testimonialsTh = [
+  { text: 'ติดตั้งบนราวระเบียงชั้นสามได้คนเดียวใน 25 นาที แอปแสดงกระแสไฟก่อนที่จะเก็บบันไดด้วยซ้ำ' },
+  { text: 'เดือนแรกเต็มบันทึกได้ 168 kWh ค่าไฟลดลงเห็นชัด และแผงกระจก-กระจกดูพรีเมียมจริงๆ' },
+  { text: 'เราเช่าบ้านเลยต้องการแบบไม่เจาะ ตะขอยึดแน่นโดยไม่แตะตัวอาคาร เจ้าของบ้านไม่ว่าอะไรเลย' },
+  { text: 'ติดตั้งง่ายมาก ตัดดาวออกหนึ่งดวงเพราะอยากให้สายไฟ AC ยาวกว่านี้มาในกล่องตั้งแต่แรก' },
+  { text: 'จับคู่กับแบต Core 1600 ทำให้ตู้เย็นและเราเตอร์ทำงานต่อในยามเย็นด้วยแสงอาทิตย์จากเมื่อวาน' },
+  { text: 'ทีมซัพพอร์ตช่วยลงทะเบียนให้วันอาทิตย์ ปีแรกได้ 920 kWh คืนทุนเร็วกว่าที่สัญญาไว้' },
+];
+
 export default function Testimonials() {
   const { lang } = useLanguage();
+  const th = lang === 'th';
   const scroller = useRef(null);
 
   const scrollBy = (dir) => {
@@ -57,7 +67,7 @@ export default function Testimonials() {
                   {t.city}
                 </p>
                 <blockquote className="font-display text-[1.05rem] font-medium leading-snug text-ink">
-                  "{t.text}"
+                  "{th ? testimonialsTh[i].text : t.text}"
                 </blockquote>
               </div>
               <figcaption className="mt-8 flex items-center justify-between">

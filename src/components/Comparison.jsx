@@ -1,6 +1,10 @@
 import { Check, X } from 'lucide-react';
 import { comparison } from '../data/product';
 import Reveal from './Reveal';
+import { useLanguage } from '../context/LanguageContext';
+
+const rowLabelsTh = ['จำนวนแผง', 'กำลังไฟสูงสุด', 'พลังงานต่อปี*', 'เหมาะสำหรับ', 'ปลั๊กแอนด์เพลย์', 'เริ่มต้น'];
+const bestForTh = ['คู่รักและคนเดียว', 'ครอบครัวเล็ก', 'ใช้ไฟสูง'];
 
 function Cell({ value, highlight }) {
   if (value === true)
@@ -14,16 +18,23 @@ function Cell({ value, highlight }) {
 }
 
 export default function Comparison() {
+  const { lang } = useLanguage();
+  const th = lang === 'th';
   const { columns, rows, highlightIndex } = comparison;
+
+  const getRowValue = (row, ri, ci) => {
+    if (ri === 3 && typeof row.values[ci] === 'string') return th ? bestForTh[ci] : row.values[ci];
+    return row.values[ci];
+  };
 
   return (
     <section className="py-20" style={{ backgroundColor: '#040f08' }}>
       <div className="container-x">
         <Reveal>
           <div className="mx-auto max-w-xl text-center">
-            <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-lime">Compare the range</p>
+            <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-lime">{th ? 'เปรียบเทียบรุ่น' : 'Compare the range'}</p>
             <h2 className="mt-3 font-display text-3xl font-black tracking-tight text-white sm:text-4xl">
-              Pick the kit that fits your home
+              {th ? 'เลือกชุดที่เหมาะกับบ้านคุณ' : 'Pick the kit that fits your home'}
             </h2>
           </div>
         </Reveal>
@@ -34,7 +45,7 @@ export default function Comparison() {
               <thead>
                 <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
                   <th className="p-4 text-left font-mono text-[11px] uppercase tracking-wider max-sm:p-2" style={{ color: 'rgba(255,255,255,0.3)' }}>
-                    Feature
+                    {th ? 'คุณสมบัติ' : 'Feature'}
                   </th>
                   {columns.map((c, i) => (
                     <th
@@ -44,7 +55,7 @@ export default function Comparison() {
                     >
                       {i === highlightIndex && (
                         <span className="mb-1 block font-mono text-[10px] uppercase tracking-wider text-lime">
-                          You&apos;re viewing
+                          {th ? 'กำลังดู' : 'You’re viewing'}
                         </span>
                       )}
                       {c}
@@ -55,13 +66,13 @@ export default function Comparison() {
               <tbody>
                 {rows.map((row, ri) => (
                   <tr key={row.label} style={{ borderTop: '1px solid rgba(255,255,255,0.06)', backgroundColor: ri % 2 ? 'rgba(255,255,255,0.02)' : 'transparent' }}>
-                    <td className="p-4 text-left text-sm max-sm:p-2 max-sm:text-xs" style={{ color: 'rgba(255,255,255,0.45)' }}>{row.label}</td>
+                    <td className="p-4 text-left text-sm max-sm:p-2 max-sm:text-xs" style={{ color: 'rgba(255,255,255,0.45)' }}>{th ? rowLabelsTh[ri] : row.label}</td>
                     {row.values.map((v, ci) => (
                       <td
                         key={ci}
                         className={`p-4 max-sm:p-2 ${ci === highlightIndex ? 'bg-lime/[0.07]' : ''}`}
                       >
-                        <Cell value={v} highlight={ci === highlightIndex} />
+                        <Cell value={getRowValue(row, ri, ci)} highlight={ci === highlightIndex} />
                       </td>
                     ))}
                   </tr>
@@ -71,7 +82,7 @@ export default function Comparison() {
           </div>
         </Reveal>
         <p className="mt-4 text-center text-xs" style={{ color: 'rgba(255,255,255,0.25)' }}>
-          *Estimated annual yield for a south-facing installation in central Europe.
+          {th ? '*ประมาณการพลังงานต่อปีสำหรับการติดตั้งหันทิศใต้ในประเทศไทย' : '*Estimated annual yield for a south-facing installation in central Europe.'}
         </p>
       </div>
     </section>

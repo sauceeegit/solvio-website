@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { asset } from '../lib/format';
+import { useLanguage } from '../context/LanguageContext';
 
 const SLIDES = [
   {
@@ -9,36 +10,48 @@ const SLIDES = [
     alt: 'Couple on a balcony with Solvio solar panels on the railing at sunset',
     caption: 'Solar on every balcony',
     sub: 'Save over ฿79k in 10 years — with a 4-panel kit',
+    captionTh: 'โซลาร์ทุกระเบียง',
+    subTh: 'ประหยัดกว่า ฿79k ใน 10 ปี — ชุด 4 แผง',
   },
   {
     src: asset('/plugplay-photo.jpg'),
     alt: 'Easy plug & play installation — connecting a panel by hand',
     caption: 'Plug & Play in minutes',
     sub: 'No electrician needed',
+    captionTh: 'ปลั๊กแอนด์เพลย์ ใน​ไม่กี่นาที',
+    subTh: 'ไม่ต้องใช้ช่างไฟฟ้า',
   },
   {
     src: asset('/balcony-power-plants.webp'),
     alt: 'Balcony with Solvio solar panels overlooking the sea',
     caption: 'Power your home from your balcony',
     sub: 'Works in any apartment or condo',
+    captionTh: 'ผลิตไฟจากระเบียงบ้านคุณ',
+    subTh: 'ใช้ได้กับทุกอพาร์ทเมนท์และคอนโด',
   },
   {
     src: asset('/sp-balcony.webp'),
     alt: 'Solvio balcony solar installation',
     caption: 'Balcony Solar',
     sub: 'Plug & play · no drilling · moves with you',
+    captionTh: 'โซลาร์ระเบียง',
+    subTh: 'ปลั๊กแอนด์เพลย์ · ไม่ต้องเจาะ · พกพาได้',
   },
   {
     src: asset('/sp-facade.webp'),
     alt: 'Solvio facade solar installation',
     caption: 'Facade Solar',
     sub: 'Sleek all-black panels integrated into your facade',
+    captionTh: 'โซลาร์ผนังอาคาร',
+    subTh: 'แผงสีดำล้วนดีไซน์เรียบ ติดตั้งบนผนังอาคาร',
   },
 ];
 
 const INTERVAL = 4000;
 
 export default function PhotoBanner() {
+  const { lang } = useLanguage();
+  const th = lang === 'th';
   const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
   const [dir, setDir] = useState(1);
@@ -116,11 +129,11 @@ export default function PhotoBanner() {
                 transition={{ duration: 0.35, delay: 0.15 }}
               >
                 <p className="font-display text-2xl font-extrabold text-white drop-shadow-md sm:text-4xl">
-                  {SLIDES[current].caption}
+                  {th ? SLIDES[current].captionTh : SLIDES[current].caption}
                 </p>
                 {SLIDES[current].sub && (
                   <p className="mt-1.5 font-display text-sm font-semibold text-white/70 sm:text-base">
-                    {SLIDES[current].sub}
+                    {th ? SLIDES[current].subTh : SLIDES[current].sub}
                   </p>
                 )}
               </motion.div>
