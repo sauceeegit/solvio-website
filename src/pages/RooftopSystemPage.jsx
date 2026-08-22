@@ -10,7 +10,7 @@ import FinancingOptions from '../components/FinancingOptions';
 import FAQ from '../components/FAQ';
 import ContactSection from '../components/ContactSection';
 import { asset } from '../lib/format';
-import { rooftopVideo, rooftopFaqs } from '../data/landing';
+import { rooftopVideo, rooftopFaqs, rooftopFaqsTh } from '../data/landing';
 import { usePageMeta } from '../hooks/usePageMeta';
 
 export default function RooftopSystemPage() {
@@ -162,7 +162,7 @@ export default function RooftopSystemPage() {
         <RooftopSteps />
         <FinancingOptions />
         <FAQ
-          items={rooftopFaqs}
+          items={lang === 'th' ? rooftopFaqsTh : rooftopFaqs}
           eyebrow={lang === 'th' ? 'คำถามเกี่ยวกับหลังคา' : 'Rooftop FAQs'}
           heading={lang === 'th' ? 'คำถามที่พบบ่อย' : 'FAQ'}
           subtitle={lang === 'th' ? 'ความเหมาะสมของหลังคา ระยะเวลา ใบอนุญาต และการรับประกัน — คำถามที่เจ้าของบ้านไทยถามเรามากที่สุด' : 'Roof suitability, timelines, permits and warranties — the questions Thai homeowners ask us most.'}
