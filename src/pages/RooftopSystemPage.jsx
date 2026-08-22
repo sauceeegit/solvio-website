@@ -48,7 +48,7 @@ export default function RooftopSystemPage() {
       <main>
         {/* Brand video — full-bleed, above the hero */}
         <section className="relative w-full">
-          <div className="relative w-full overflow-hidden bg-ink" style={{ height: '82svh', minHeight: 480 }}>
+          <div className="relative w-full overflow-hidden bg-ink" style={{ height: '60svh', minHeight: 360 }}>
             <video
               ref={brandVideoRef}
               className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${brandReady ? 'opacity-100' : 'opacity-0'}`}
