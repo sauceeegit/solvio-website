@@ -145,6 +145,16 @@ is set, and `revealApp()` in main.jsx removes it once React has mounted (plus an
 safety timeout so content can never stay hidden). English visitors and crawlers
 never get the class, so they keep the instant prerendered HTML and full SEO value.
 
+⚠️ **Second trap: the browser's own translator.** Chrome saw Thai text and
+machine-translated the page *back* into English on top of our translation —
+producing a nav that read "Rooftop solar panels / performance / solar panels"
+("ผลงาน" → "performance"), and re-translating text as it scrolled into view.
+`index.html` now carries `translate="no"` on `<html>` plus
+`<meta name="google" content="notranslate">`. Keep both: the site ships its own
+EN/TH copy, so any machine translation on top of it is wrong by definition.
+Trade-off: visitors who read neither English nor Thai can no longer use the
+browser translator — remove the two markers if that ever matters more.
+
 **So:** any new "remember the user's choice and re-render" feature has the same
 trap. And when you add copy, add the Thai at the same time — mixed-language pages
 were the second reported bug.
