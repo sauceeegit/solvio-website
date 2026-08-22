@@ -7,16 +7,16 @@ import Footer from '../components/Footer';
 import ContactSection from '../components/ContactSection';
 import CalculatorSection from '../components/CalculatorSection';
 import Reveal from '../components/Reveal';
-import { landingFaqs, rooftopFaqs, panelFaqs } from '../data/landing';
-import { faqs as balconyFaqs } from '../data/product';
+import { landingFaqs, landingFaqsTh, rooftopFaqs, rooftopFaqsTh, panelFaqs, panelFaqsTh } from '../data/landing';
+import { faqs as balconyFaqs, faqsTh as balconyFaqsTh } from '../data/product';
 import { usePageMeta } from '../hooks/usePageMeta';
 
 // One tab per product area — each opens the matching set of FAQs.
 const TABS = [
-  { id: 'general', label: 'General', labelTh: 'ทั่วไป', items: landingFaqs },
-  { id: 'rooftop', label: 'Rooftop Solar', labelTh: 'โซลาร์หลังคา', items: rooftopFaqs },
-  { id: 'balcony', label: 'Balcony Solar', labelTh: 'โซลาร์ระเบียง', items: balconyFaqs },
-  { id: 'panels', label: 'Solar Panels', labelTh: 'แผงโซลาร์', items: panelFaqs },
+  { id: 'general', label: 'General', labelTh: 'ทั่วไป', items: landingFaqs, itemsTh: landingFaqsTh },
+  { id: 'rooftop', label: 'Rooftop Solar', labelTh: 'โซลาร์หลังคา', items: rooftopFaqs, itemsTh: rooftopFaqsTh },
+  { id: 'balcony', label: 'Balcony Solar', labelTh: 'โซลาร์ระเบียง', items: balconyFaqs, itemsTh: balconyFaqsTh },
+  { id: 'panels', label: 'Solar Panels', labelTh: 'แผงโซลาร์', items: panelFaqs, itemsTh: panelFaqsTh },
 ];
 
 // Question background: closed = light blue, opened = white (matches FAQ.jsx).
@@ -125,7 +125,7 @@ export default function FaqsPage() {
                 transition={{ duration: 0.25 }}
                 className="space-y-2.5 rounded-xl2 border border-ink/[0.07] bg-white p-3 shadow-soft"
               >
-                {active.items.map((f, i) => (
+                {(lang === 'th' ? active.itemsTh : active.items).map((f, i) => (
                   <Item key={f.q} q={f.q} a={f.a} open={open === i} onToggle={() => setOpen(open === i ? -1 : i)} />
                 ))}
               </motion.div>

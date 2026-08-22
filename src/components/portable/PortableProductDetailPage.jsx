@@ -8,6 +8,7 @@ import Footer from '../Footer';
 import ProductGallery from './ProductGallery';
 import { baht } from '../../lib/format';
 import { usePageMeta } from '../../hooks/usePageMeta';
+import { useLanguage } from '../../context/LanguageContext';
 
 const SPEC_ICONS = { Battery, Zap, ZapFast: Zap, Smartphone, Plug, PlugZap, Weight, Sun, Shield, Maximize2, Minimize2, Cable, Clock };
 
@@ -34,6 +35,8 @@ function PortableFAQItem({ q, a }) {
 
 export default function PortableProductDetailPage({ products, defaultProduct, metaPath }) {
   usePageMeta(metaPath);
+  const { lang } = useLanguage();
+  const th = lang === 'th';
   const [searchParams, setSearchParams] = useSearchParams();
   const [showAllSpecifications, setShowAllSpecifications] = useState(false);
   const requestedModel = searchParams.get('model');
@@ -61,7 +64,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
               to="/portable-system"
               className="inline-flex items-center gap-2 font-display text-sm font-bold text-ink/75 transition hover:text-lime"
             >
-              <ArrowLeft size={17} /> Back to portable power
+              <ArrowLeft size={17} /> {th ? 'กลับไปยังพลังงานพกพา' : 'Back to portable power'}
             </Link>
 
             <div className="mt-7 grid gap-10 lg:grid-cols-[minmax(0,1.25fr)_minmax(360px,0.75fr)] xl:gap-16">
@@ -101,7 +104,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
                     <p className="mt-1 font-display text-2xl font-extrabold text-ink">{product.metricValue}</p>
                   </div>
                   <div className="text-right">
-                    <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink/75">From</p>
+                    <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink/75">{th ? 'เริ่มต้น' : 'From'}</p>
                     <p className="mt-1 font-display text-2xl font-extrabold text-price">{baht(product.price)}</p>
                   </div>
                 </div>
@@ -126,10 +129,10 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
                     rel="noreferrer"
                     className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-lime bg-surface px-6 py-3.5 font-display text-sm font-semibold text-lime transition hover:bg-white active:scale-95"
                   >
-                    <MessageCircle size={18} /> Ask about {product.shortName}
+                    <MessageCircle size={18} /> {th ? `สอบถามเกี่ยวกับ ${product.shortName}` : `Ask about ${product.shortName}`}
                   </a>
                   <a href="#details" className="btn-primary">
-                    Explore details <ArrowRight size={18} />
+                    {th ? 'ดูรายละเอียด' : 'Explore details'} <ArrowRight size={18} />
                   </a>
                 </div>
               </aside>
@@ -174,9 +177,9 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
         <section className="py-16 sm:py-24" style={{ backgroundColor: '#040f08' }}>
           <div className="container-x">
             <div className="text-center">
-              <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em]" style={{ color: '#fffbf5' }}>Specifications</p>
+              <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em]" style={{ color: '#fffbf5' }}>{th ? 'ข้อมูลจำเพาะ' : 'Specifications'}</p>
               <h2 className="mt-3 font-display text-4xl font-black tracking-tight text-white sm:text-5xl">
-                {product.shortName} at a glance
+                {product.shortName} {th ? 'โดยสรุป' : 'at a glance'}
               </h2>
               <p className="mt-3 text-sm" style={{ color: 'rgba(255,255,255,0.4)' }}>{product.specificationIntro}</p>
             </div>
@@ -210,7 +213,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
                 onClick={() => setShowAllSpecifications((visible) => !visible)}
                 className="mx-auto mt-8 flex items-center gap-2 rounded-full border border-white/25 px-5 py-3 font-display text-sm font-bold text-white transition hover:border-white/50 sm:hidden"
               >
-                {showAllSpecifications ? 'Show fewer specifications' : 'Show all specifications'}
+                {th ? (showAllSpecifications ? 'แสดงน้อยลง' : 'แสดงข้อมูลจำเพาะทั้งหมด') : (showAllSpecifications ? 'Show fewer specifications' : 'Show all specifications')}
                 <ChevronDown className={`transition ${showAllSpecifications ? 'rotate-180' : ''}`} size={18} />
               </button>
             )}
@@ -237,9 +240,9 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
         <section className="bg-surface py-16 sm:py-24">
           <div className="container-x max-w-5xl">
             <div className="text-center">
-              <p className="eyebrow">Good to know</p>
+              <p className="eyebrow">{th ? 'ควรรู้' : 'Good to know'}</p>
               <h2 className="mt-3 font-display text-4xl font-black tracking-[-0.035em] text-ink sm:text-5xl">
-                FAQ
+                {th ? 'คำถามที่พบบ่อย' : 'FAQ'}
               </h2>
             </div>
             <div className="mt-10 space-y-2">
