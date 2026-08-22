@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import Reveal from '../Reveal';
+import { useLanguage } from '../../context/LanguageContext';
 
 const stats = [
-  { value: '5,000+', label: 'Happy Customers' },
-  { value: '18 MW+', label: 'Installed' },
-  { value: '98%', label: 'Customer Satisfaction' },
-  { value: '25 Yrs', label: 'Performance Warranty' },
+  { value: '5,000+', valueTh: '5,000+', label: 'Happy Customers', labelTh: 'ลูกค้าที่ไว้วางใจ' },
+  { value: '18 MW+', valueTh: '18 MW+', label: 'Installed', labelTh: 'ติดตั้งแล้ว' },
+  { value: '98%', valueTh: '98%', label: 'Customer Satisfaction', labelTh: 'ความพึงพอใจของลูกค้า' },
+  { value: '25 Yrs', valueTh: '25 ปี', label: 'Performance Warranty', labelTh: 'รับประกันประสิทธิภาพ' },
 ];
 
 // Parse "5,000+" → { num: 5000, suffix: '+', prefix: '', decimals: 0 }
@@ -60,6 +61,8 @@ function CountUp({ raw }) {
 }
 
 export default function SocialProof() {
+  const { lang } = useLanguage();
+  const th = lang === 'th';
   return (
     <section className="border-y border-ink/[0.07] bg-white pt-4 pb-4 sm:py-10 -mt-px">
       <div className="container-x">
@@ -68,9 +71,9 @@ export default function SocialProof() {
             {stats.map((s) => (
               <div key={s.label} className="text-center">
                 <p className="font-display text-xl font-extrabold sm:text-3xl" style={{ color: '#C29848' }}>
-                  <CountUp raw={s.value} />
+                  <CountUp raw={th ? s.valueTh : s.value} />
                 </p>
-                <p className="mt-1 text-[11px] font-medium leading-tight text-ink/70 sm:text-[13px] sm:leading-normal">{s.label}</p>
+                <p className="mt-1 text-[11px] font-medium leading-tight text-ink/70 sm:text-[13px] sm:leading-normal">{th ? s.labelTh : s.label}</p>
               </div>
             ))}
           </div>

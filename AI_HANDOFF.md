@@ -124,6 +124,31 @@ In `src/data/product.js`:
   JSON-LD, but the visible **body is still client-rendered** — non-JS crawlers see only the splash.
   Real SSG of the body is an open item.
 
+## 7b. Thai / English (i18n) — read before touching translations
+
+The site is bilingual via a **hand-rolled** context, not i18next:
+`src/context/LanguageContext.jsx` exposes `LanguageProvider` + `useLanguage()`
+(`{ lang, toggle }`). Components translate inline: `{lang === 'th' ? 'ไทย' : 'English'}`
+or paired data fields (`title` / `titleTh`). The choice persists in
+`localStorage['solvio-lang']` and is mirrored onto `<html lang>`.
+
+⚠️ **The prerender/i18n trap (caused a real bug — don't reintroduce it).**
+`scripts/prerender-snap.mjs` snapshots every route in headless Chrome, which has
+**no localStorage**, so *every prerendered page ships in English*. React then boots
+and re-renders in Thai, so a Thai visitor briefly saw the whole English page and
+watched it "flip" — made worse because react-snap also strips the `#solvio-splash`
+element that normally masks boot.
+
+The fix lives in `index.html` + `src/main.jsx`: an inline pre-paint script adds
+`html.lang-boot` when the saved language is Thai, CSS hides `#root` while that class
+is set, and `revealApp()` in main.jsx removes it once React has mounted (plus an 8s
+safety timeout so content can never stay hidden). English visitors and crawlers
+never get the class, so they keep the instant prerendered HTML and full SEO value.
+
+**So:** any new "remember the user's choice and re-render" feature has the same
+trap. And when you add copy, add the Thai at the same time — mixed-language pages
+were the second reported bug.
+
 ## 8. Gotchas
 
 - **Vite dev server can serve stale modules** after edits — restart `npm run dev` if a change doesn't

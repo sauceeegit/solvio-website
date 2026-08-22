@@ -89,6 +89,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
     <style>
       :root{color-scheme:dark}
+      /* Prerendered pages (react-snap) are always snapshotted in ENGLISH, because
+         the snapshot browser has no localStorage. A visitor who chose Thai would
+         therefore see the English snapshot until React boots and re-renders —
+         the "language flipping" bug. `html.lang-boot` hides that stale snapshot
+         until React has mounted; main.jsx clears the class. English visitors and
+         crawlers never get the class, so they keep the instant prerendered HTML. */
+      html.lang-boot #root{visibility:hidden}
       html,body,#root{min-height:100%}
       body{margin:0;background:#0C1E1A}
       #solvio-splash{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;overflow:hidden;color:#F4F0E4;background:radial-gradient(circle at 50% 43%,rgba(255,103,0,.24),rgba(255,103,0,.08) 18rem,transparent 34rem),linear-gradient(180deg,#0C1E1A,#0F2620);transition:opacity 480ms cubic-bezier(.4,0,.2,1),visibility 480ms cubic-bezier(.4,0,.2,1)}
@@ -114,6 +121,20 @@
       @keyframes solvio-charge{0%{transform:scaleX(.08);opacity:.45}62%{transform:scaleX(.86);opacity:1}100%{transform:scaleX(1);opacity:0}}
       @media (prefers-reduced-motion:reduce){#solvio-splash,#solvio-splash::before,#solvio-splash::after,#solvio-splash *,#solvio-splash *::before,#solvio-splash *::after{animation:none!important;transition:none!important}#solvio-splash::after,.solvio-splash__mark::before,.solvio-splash__mark::after,.solvio-splash__bolt-trace{display:none}.solvio-splash__charge::after{opacity:.85;transform:scaleX(1)}}
     </style>
+    <script>
+      // Set before paint: hides the English snapshot for visitors whose saved
+      // language is Thai (see html.lang-boot above). The timeout is a safety
+      // net so content can never stay hidden if the app fails to boot.
+      (function () {
+        try {
+          if (localStorage.getItem('solvio-lang') === 'th') {
+            var el = document.documentElement;
+            el.classList.add('lang-boot');
+            setTimeout(function () { el.classList.remove('lang-boot'); }, 8000);
+          }
+        } catch (e) {}
+      })();
+    </script>
     <title>Solvio | Rooftop, Balcony & Portable Solar in Thailand</title>
   <script>
     // Restore path from GitHub Pages 404 redirect

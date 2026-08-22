@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Sunrise, Sun, Moon } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
 
 const timeFmt = new Intl.DateTimeFormat('en-GB', {
   timeZone: 'Asia/Bangkok',
@@ -27,6 +28,7 @@ function periodIcon(now) {
 // centisecond, overlaid at the bottom of the hero video. Twice as large on
 // desktop. Updates via requestAnimationFrame so the milliseconds animate.
 export default function PhuketClock() {
+  const { lang } = useLanguage();
   const [now, setNow] = useState(() => new Date());
   const raf = useRef();
 
@@ -49,7 +51,7 @@ export default function PhuketClock() {
       <div className="flex items-center gap-2 rounded-full bg-ink/55 px-3 py-1.5 ring-1 ring-white/15 backdrop-blur-md">
         <Icon className="h-3 w-3 text-lime" strokeWidth={2} aria-label={label} />
         <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-white/70">
-          Thailand
+          {lang === 'th' ? 'ประเทศไทย' : 'Thailand'}
         </span>
         <span className="font-mono text-sm font-semibold tabular-nums text-white">
           {hms}

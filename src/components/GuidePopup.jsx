@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { X, ArrowRight, Check } from 'lucide-react';
 import { asset } from '../lib/format';
+import { useLanguage } from '../context/LanguageContext';
 
 const SEEN_KEY = 'solvio_guide_popup_seen';
 
@@ -9,6 +10,8 @@ const SEEN_KEY = 'solvio_guide_popup_seen';
 // browser after the visitor shows interest — ~45% scroll depth, or a 30s
 // fallback — instead of interrupting them right after landing.
 export default function GuidePopup() {
+  const { lang } = useLanguage();
+  const th = lang === 'th';
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState('');
   const [sent, setSent] = useState(false);
@@ -115,21 +118,23 @@ export default function GuidePopup() {
                     <Check size={18} strokeWidth={3} />
                   </span>
                   <div>
-                    <p className="font-display text-lg font-bold text-ink">You&apos;re in! 🎉</p>
+                    <p className="font-display text-lg font-bold text-ink">{th ? 'เรียบร้อย! 🎉' : "You're in! 🎉"}</p>
                     <p className="mt-1 text-sm text-slatey-700">
-                      The ultimate Solvio guide is on its way to <strong>{email}</strong>.
+                      {th ? <>คู่มือ Solvio ฉบับสมบูรณ์กำลังส่งไปที่ <strong>{email}</strong></>
+                          : <>The ultimate Solvio guide is on its way to <strong>{email}</strong>.</>}
                     </p>
                   </div>
                 </div>
               ) : (
                 <>
-                  <p className="eyebrow">Free guide</p>
+                  <p className="eyebrow">{th ? 'คู่มือฟรี' : 'Free guide'}</p>
                   <h2 className="mt-2 font-display text-xl font-extrabold leading-tight text-ink sm:text-2xl">
-                    Get your free copy
+                    {th ? 'รับคู่มือฟรีของคุณ' : 'Get your free copy'}
                   </h2>
                   <p className="mt-2 text-sm text-slatey-700">
-                    Everything about your solar balcony system — sizing, savings and setup. Pop in
-                    your email and we&apos;ll send it straight to your inbox.
+                    {th
+                      ? 'ทุกเรื่องเกี่ยวกับระบบโซลาร์ระเบียงของคุณ — การเลือกขนาด การประหยัด และการติดตั้ง กรอกอีเมลแล้วเราจะส่งให้ทันที'
+                      : "Everything about your solar balcony system — sizing, savings and setup. Pop in your email and we'll send it straight to your inbox."}
                   </p>
                   <form onSubmit={submit} className="mt-4 space-y-2.5">
                     <input
@@ -144,10 +149,10 @@ export default function GuidePopup() {
                       type="submit"
                       className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-lime px-6 py-3 font-display text-sm font-bold text-white transition hover:bg-lime-dark"
                     >
-                      Send me the guide <ArrowRight size={16} />
+                      {th ? 'ส่งคู่มือให้ฉัน' : 'Send me the guide'} <ArrowRight size={16} />
                     </button>
                   </form>
-                  <p className="mt-2.5 text-xs text-slatey-600">No spam — just the guide. Unsubscribe anytime.</p>
+                  <p className="mt-2.5 text-xs text-slatey-600">{th ? 'ไม่มีสแปม — ส่งเฉพาะคู่มือ ยกเลิกรับได้ทุกเมื่อ' : 'No spam — just the guide. Unsubscribe anytime.'}</p>
                 </>
               )}
             </div>

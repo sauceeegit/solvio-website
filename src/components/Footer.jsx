@@ -124,9 +124,9 @@ export default function Footer() {
             © {new Date().getFullYear()} Solvio Solar. {lang === 'th' ? 'สงวนลิขสิทธิ์' : 'All rights reserved.'}
           </p>
           <div className="flex gap-5 font-mono text-xs text-white/40">
-            <a href="#" className="hover:text-white">Imprint</a>
-            <a href="#" className="hover:text-white">Privacy</a>
-            <a href="#" className="hover:text-white">Terms</a>
+            <a href="#" className="hover:text-white">{lang === 'th' ? 'ข้อมูลบริษัท' : 'Imprint'}</a>
+            <a href="#" className="hover:text-white">{lang === 'th' ? 'ความเป็นส่วนตัว' : 'Privacy'}</a>
+            <a href="#" className="hover:text-white">{lang === 'th' ? 'เงื่อนไขการใช้งาน' : 'Terms'}</a>
           </div>
         </div>
       </div>

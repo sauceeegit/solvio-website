@@ -4,6 +4,13 @@ import { BrowserRouter } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
 
+// Reveal the app once React has rendered. index.html hides #root (html.lang-boot)
+// for visitors whose saved language is Thai, so they never see the English
+// react-snap snapshot flip to Thai mid-scroll.
+function revealApp() {
+  document.documentElement.classList.remove('lang-boot')
+}
+
 function dismissSplash() {
   const splash = document.getElementById('solvio-splash')
 
@@ -16,6 +23,7 @@ function dismissSplash() {
 
 function RootApp() {
   useEffect(() => {
+    revealApp()
     const frame = window.requestAnimationFrame(dismissSplash)
     return () => window.cancelAnimationFrame(frame)
   }, [])
