@@ -51,7 +51,7 @@ export default function RooftopSystemPage() {
           <div className="relative w-full overflow-hidden bg-ink" style={{ height: '60svh', minHeight: 360 }}>
             <video
               ref={brandVideoRef}
-              className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-700 ${brandReady ? 'opacity-100' : 'opacity-0'}`}
+              className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${brandReady ? 'opacity-100' : 'opacity-0'}`}
               src={asset('/solvio-brand.mp4')}
               poster={asset('/solvio-brand-poster.webp')}
               autoPlay loop muted playsInline preload="metadata"
