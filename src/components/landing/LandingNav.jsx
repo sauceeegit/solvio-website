@@ -116,13 +116,13 @@ export default function LandingNav() {
             onClick={openBgreenie}
             className={`hidden items-center whitespace-nowrap rounded-full border px-3 py-1.5 font-display text-[13px] font-medium transition lg:inline-flex xl:px-3.5 ${solid ? 'border-ink/40 text-ink/75 hover:border-lime hover:text-lime' : 'border-white/50 text-white/90 hover:border-white hover:text-white'}`}
           >
-            Bgreenie Membership
+            {lang === 'th' ? 'สมาชิก Bgreenie' : 'Bgreenie Membership'}
           </button>
           <Link
             to="/balcony-system"
             className="hidden items-center gap-1.5 whitespace-nowrap rounded-full bg-lime px-3.5 py-1.5 font-display text-[13px] font-bold text-white transition hover:bg-lime-dark sm:inline-flex"
           >
-            <ShoppingCart size={16} /> Shop now
+            <ShoppingCart size={16} /> {lang === 'th' ? 'ซื้อเลย' : 'Shop now'}
           </Link>
           <button
             onClick={() => setOpen(true)}
@@ -193,7 +193,7 @@ export default function LandingNav() {
                   className="block w-full border-b border-white/10 py-4 text-left font-display text-white transition-colors hover:text-lime"
                 >
                   <span className="relative text-2xl font-medium">
-                    Bgreenie Membership
+                    {lang === 'th' ? 'สมาชิก Bgreenie' : 'Bgreenie Membership'}
                     <StarBadge />
                   </span>
                 </button>
@@ -212,7 +212,7 @@ export default function LandingNav() {
                 onClick={() => setOpen(false)}
                 className="flex items-center justify-center gap-2 rounded-full bg-lime px-6 py-3.5 font-display text-base font-bold text-white transition hover:bg-lime-dark"
               >
-                <ShoppingCart size={18} /> Shop now
+                <ShoppingCart size={18} /> {lang === 'th' ? 'ซื้อเลย' : 'Shop now'}
               </Link>
             </motion.div>
           </motion.div>
