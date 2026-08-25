@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { testimonials, product } from '../data/product';
+import { testimonials } from '../data/product';
 import Stars from './Stars';
 import Reveal from './Reveal';
 import { useLanguage } from '../context/LanguageContext';
@@ -36,17 +36,8 @@ export default function Testimonials() {
             <div>
               <p className="eyebrow mb-2">{lang === 'th' ? 'รีวิว' : 'Reviews'}</p>
               <h2 className="font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
-                {lang === 'th' ? <>เป็นที่รักบนระเบียง<br className="hidden sm:block" /> ทั่วทุกแห่ง</> : <>Loved on balconies<br className="hidden sm:block" /> everywhere.</>}
+                {lang === 'th' ? 'เสียงตอบรับจากผู้ใช้โซลาร์ระเบียง' : <>Loved on balconies<br className="hidden sm:block" /> everywhere.</>}
               </h2>
-              <div className="mt-4 flex items-center gap-2.5">
-                <Stars value={product.rating} />
-                <span className="font-display text-sm font-semibold text-ink">
-                  {product.rating} / 5
-                </span>
-                <span className="text-sm text-ink/50">
-                  · {product.reviewCount.toLocaleString()} {lang === 'th' ? 'ผู้ซื้อที่ยืนยันแล้ว' : 'verified buyers'}
-                </span>
-              </div>
             </div>
           </div>
         </Reveal>

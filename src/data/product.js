@@ -8,8 +8,6 @@ export const product = {
   brand: 'Solvio',
   name: 'Balcony Solar',
   tagline: 'Plug-and-play balcony solar — turn your railing into a power plant.',
-  rating: 4.8,
-  reviewCount: 1294,
   // base price reflects the default config: 4 modules, balcony mount, no storage, no extra cable
   currency: '฿',
   // NOTE: the old `images` array (5 hotlinked Unsplash stock photos) was removed

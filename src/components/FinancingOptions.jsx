@@ -63,9 +63,13 @@ const loans = {
       logo: '/bank-bbl.webp',
       product: 'Bualuang Poonphol Green',
       rate: 'from MRR − 1%',
+      rateTh: 'เริ่มต้น MRR − 1%',
       amount: 'Up to ฿10M',
+      amountTh: 'สูงสุด ฿10 ล้าน',
       tenor: 'Up to 10 years',
+      tenorTh: 'ระยะเวลาสูงสุด 10 ปี',
       note: 'Home-equity loan for clean-energy upgrades. Works with a mortgage-free home, an existing Bangkok Bank mortgage, or a refinance with a top-up.',
+      noteTh: 'สินเชื่อบ้านแลกเงินสำหรับการอัปเกรดพลังงานสะอาด ใช้ได้ทั้งบ้านที่ปลอดภาระจำนอง บ้านที่มีสินเชื่อจำนองกับ Bangkok Bank อยู่แล้ว หรือการรีไฟแนนซ์พร้อมวงเงินเพิ่ม',
     },
     {
       bank: 'GSB (Government Savings Bank)',
@@ -74,9 +78,13 @@ const loans = {
       logo: '/bank-gsb.webp',
       product: 'GSB Go Green',
       rate: 'promo rates from 1.99%',
+      rateTh: 'อัตราโปรโมชั่นเริ่มต้น 1.99%',
       amount: 'Up to ฿5M secured · ฿500K unsecured',
+      amountTh: 'สูงสุด ฿5 ล้าน แบบมีหลักประกัน · ฿500K แบบไม่มีหลักประกัน',
       tenor: 'Up to 10 years',
+      tenorTh: 'ระยะเวลาสูงสุด 10 ปี',
       note: 'Personal loan made for solar rooftops and EV chargers. The unsecured option needs no property collateral at all.',
+      noteTh: 'สินเชื่อส่วนบุคคลที่ออกแบบมาสำหรับโซลาร์หลังคาและจุดชาร์จรถยนต์ไฟฟ้า (EV) ตัวเลือกแบบไม่มีหลักประกันไม่ต้องใช้ทรัพย์สินค้ำประกันเลย',
     },
     {
       bank: 'GH Bank (ธอส.)',
@@ -85,9 +93,13 @@ const loans = {
       logo: '/bank-ghb.webp',
       product: 'Solar Roof Loan',
       rate: 'fixed intro rates',
+      rateTh: 'อัตราดอกเบี้ยคงที่ช่วงแรก',
       amount: 'Per quotation',
+      amountTh: 'ตามใบเสนอราคา',
       tenor: 'Up to 10 years',
+      tenorTh: 'ระยะเวลาสูงสุด 10 ปี',
       note: 'For homeowners installing through a registered company using TIS/IEC-certified panels — which every Solvio installation is.',
+      noteTh: 'สำหรับเจ้าของบ้านที่ติดตั้งผ่านบริษัทจดทะเบียน โดยใช้แผงโซลาร์ที่ผ่านมาตรฐาน มอก./IEC ซึ่งทุกการติดตั้งของ Solvio เป็นเช่นนั้น',
     },
   ],
   business: [
@@ -98,9 +110,13 @@ const loans = {
       logo: '/bank-kbank.webp',
       product: 'K-Solar Rooftop Financing',
       rate: 'from MLR − 1%',
+      rateTh: 'เริ่มต้น MLR − 1%',
       amount: '100% of project value',
+      amountTh: '100% ของมูลค่าโครงการ',
       tenor: 'Up to 8 years',
+      tenorTh: 'ระยะเวลาสูงสุด 8 ปี',
       note: 'Long-term loan or leasing for businesses cutting energy costs with solar. Repayments are designed to be covered by your electricity savings.',
+      noteTh: 'สินเชื่อระยะยาวหรือลีสซิ่งสำหรับธุรกิจที่ต้องการลดต้นทุนพลังงานด้วยโซลาร์ ค่าผ่อนชำระได้รับการออกแบบให้ครอบคลุมด้วยเงินที่คุณประหยัดจากค่าไฟ',
     },
     {
       bank: 'Krungsri',
@@ -109,9 +125,13 @@ const loans = {
       logo: '/bank-krungsri.webp',
       product: 'SME Solar Rooftop',
       rate: 'special SME rates',
+      rateTh: 'อัตราพิเศษสำหรับ SME',
       amount: '100% of project value',
+      amountTh: '100% ของมูลค่าโครงการ',
       tenor: 'Up to 8 years',
+      tenorTh: 'ระยะเวลาสูงสุด 8 ปี',
       note: 'Solar loan for SMEs using Tier-1 equipment from vetted installers.',
+      noteTh: 'สินเชื่อโซลาร์สำหรับ SME ที่ใช้อุปกรณ์ Tier-1 จากผู้ติดตั้งที่ผ่านการคัดเลือก',
     },
     {
       bank: 'SME D Bank',
@@ -120,18 +140,22 @@ const loans = {
       logo: '/bank-sme.webp',
       product: 'Green business loans',
       rate: 'from 3% fixed (first 3 yrs)',
+      rateTh: 'เริ่มต้น 3% คงที่ (3 ปีแรก)',
       amount: 'Up to ฿10M+',
+      amountTh: 'สูงสุด ฿10 ล้าน+',
       tenor: 'Up to 10 years',
+      tenorTh: 'ระยะเวลาสูงสุด 10 ปี',
       note: 'Development-bank lending for green investments, with grace periods on principal in some programmes.',
+      noteTh: 'สินเชื่อจากธนาคารพัฒนาเพื่อการลงทุนด้านพลังงานสีเขียว บางโครงการมีระยะปลอดชำระเงินต้น',
     },
   ],
 };
 
 const bankReadyPack = [
-  { icon: 'FileText', label: 'Formal quotation (ใบเสนอราคา)' },
-  { icon: 'ClipboardList', label: 'Installation contract' },
-  { icon: 'BadgeCheck', label: 'TIS / IEC equipment certificates' },
-  { icon: 'Building2', label: 'Company registration documents' },
+  { icon: 'FileText', label: 'Formal quotation (ใบเสนอราคา)', labelTh: 'ใบเสนอราคาอย่างเป็นทางการ' },
+  { icon: 'ClipboardList', label: 'Installation contract', labelTh: 'สัญญาติดตั้ง' },
+  { icon: 'BadgeCheck', label: 'TIS / IEC equipment certificates', labelTh: 'ใบรับรองมาตรฐานอุปกรณ์ มอก./IEC' },
+  { icon: 'Building2', label: 'Company registration documents', labelTh: 'เอกสารการจดทะเบียนบริษัท' },
 ];
 
 const icons = {
@@ -190,7 +214,7 @@ export default function FinancingOptions() {
             </h3>
             <div
               role="tablist"
-              aria-label="Owner type"
+              aria-label={lang === 'th' ? 'ประเภทเจ้าของ' : 'Owner type'}
               className="inline-flex rounded-full border border-ink/10 bg-light p-1"
             >
               {[
@@ -232,7 +256,7 @@ export default function FinancingOptions() {
                   {l.logo ? (
                     <img
                       src={asset(l.logo)}
-                      alt={`${l.bank} logo`}
+                      alt={lang === 'th' ? `โลโก้ ${l.bank}` : `${l.bank} logo`}
                       loading="lazy"
                       className="h-16 w-16 shrink-0 rounded-lg object-cover"
                     />
@@ -247,25 +271,25 @@ export default function FinancingOptions() {
                   )}
                 </div>
 
-                <dl className="mt-4 space-y-2 border-t border-ink/[0.07] pt-4 text-sm">
+                <dl aria-describedby="financing-disclaimer" className="mt-4 space-y-2 border-t border-ink/[0.07] pt-4 text-sm">
                   <div className="flex items-center gap-2 text-ink/80">
                     <Percent size={14} className="shrink-0 text-lime" />
-                    <dt className="sr-only">Interest rate</dt>
-                    <dd className="font-semibold">{l.rate}</dd>
+                    <dt className="sr-only">{lang === 'th' ? 'อัตราดอกเบี้ย' : 'Interest rate'}</dt>
+                    <dd className="font-semibold">{lang === 'th' ? l.rateTh : l.rate}<sup aria-hidden="true">*</sup></dd>
                   </div>
                   <div className="flex items-center gap-2 text-ink/80">
                     <Wallet size={14} className="shrink-0 text-lime" />
-                    <dt className="sr-only">Loan amount</dt>
-                    <dd>{l.amount}</dd>
+                    <dt className="sr-only">{lang === 'th' ? 'วงเงินกู้' : 'Loan amount'}</dt>
+                    <dd>{lang === 'th' ? l.amountTh : l.amount}<sup aria-hidden="true">*</sup></dd>
                   </div>
                   <div className="flex items-center gap-2 text-ink/80">
                     <CalendarClock size={14} className="shrink-0 text-lime" />
-                    <dt className="sr-only">Repayment period</dt>
-                    <dd>{l.tenor}</dd>
+                    <dt className="sr-only">{lang === 'th' ? 'ระยะเวลาผ่อนชำระ' : 'Repayment period'}</dt>
+                    <dd>{lang === 'th' ? l.tenorTh : l.tenor}<sup aria-hidden="true">*</sup></dd>
                   </div>
                 </dl>
 
-                <p className="mt-4 flex-1 text-sm leading-relaxed text-slatey-700">{l.note}</p>
+                <p className="mt-4 flex-1 text-sm leading-relaxed text-slatey-700">{lang === 'th' ? l.noteTh : l.note}</p>
               </div>
             </Reveal>
           ))}
@@ -294,7 +318,7 @@ export default function FinancingOptions() {
                       className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-2 text-sm text-white/85"
                     >
                       <Icon size={15} className="shrink-0 text-lime" />
-                      {d.label}
+                      {lang === 'th' ? d.labelTh : d.label}
                     </li>
                   );
                 })}
@@ -304,7 +328,8 @@ export default function FinancingOptions() {
         </Reveal>
 
         {/* Disclaimer */}
-        <p className="mt-6 max-w-3xl text-xs leading-relaxed text-slatey-600">
+        <p id="financing-disclaimer" className="mt-6 max-w-3xl text-xs leading-relaxed text-slatey-600">
+          <span aria-hidden="true">* </span>
           {lang === 'th'
             ? 'อัตราดอกเบี้ย วงเงิน และเงื่อนไขที่แสดงเป็นเพียงค่าประมาณ กำหนดโดยแต่ละธนาคาร และอาจเปลี่ยนแปลงตามประกาศและแคมเปญของธนาคาร การอนุมัติสินเชื่อขึ้นอยู่กับดุลยพินิจของธนาคารแต่ละแห่ง Solvio เป็นผู้ติดตั้งระบบโซลาร์ ไม่ใช่ผู้ให้กู้หรือที่ปรึกษาทางการเงิน — กรุณาตรวจสอบเงื่อนไขปัจจุบันกับธนาคารก่อนยื่นกู้'
             : 'Rates, amounts, and terms shown are indicative, set by each bank, and change with bank announcements and campaigns. Loan approval is at each bank’s sole discretion. Solvio is a solar installer, not a lender or financial advisor — please confirm current terms with the bank before applying.'}

@@ -3,12 +3,12 @@ import { motion } from 'framer-motion';
 import Gallery from './Gallery';
 import Configurator from './Configurator';
 import PriceBox from './PriceBox';
-import Stars from './Stars';
 import { product } from '../data/product';
 import { useLanguage } from '../context/LanguageContext';
 
 const productTh = {
-  eyebrow: 'Solvio · โซลาร์ระเบียง',
+  eyebrow: 'Solvio',
+  name: 'โซลาร์ระเบียง',
   tagline: 'โซลาร์ปลั๊กแอนด์เพลย์ระเบียง — เปลี่ยนราวระเบียงให้เป็นโรงไฟฟ้า',
   wpBadge: 'ต่อแผง · รวมสูงสุด 1,800 Wp',
   highlights: [
@@ -16,7 +16,6 @@ const productTh = {
     'เหมาะกับราวระเบียงและตะแกรงส่วนใหญ่',
     'แผงกระจก-กระจกกันน้ำ (IP68)',
   ],
-  reviews: 'รีวิว',
 };
 
 const EASE = [0.16, 1, 0.3, 1];
@@ -45,8 +44,13 @@ export default function ProductHero({ cfg, onAddToCart, added }) {
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             transition={{ duration: 0.9, delay: 0.2, ease: EASE }}
           >
-            {product.name}
+            {th ? productTh.name : product.name}
           </motion.h1>
+          {th && (
+            <motion.p className="mt-1 font-display text-lg font-semibold text-ink/65" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.25, ease: EASE }}>
+              {product.name}
+            </motion.p>
+          )}
           <motion.div className="mt-2.5 flex items-center gap-2" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3, ease: EASE }}>
             <span className="rounded-full bg-lime px-3.5 py-1 font-display text-sm font-extrabold text-white tracking-tight">
               450 Wp
@@ -56,15 +60,6 @@ export default function ProductHero({ cfg, onAddToCart, added }) {
           <motion.p className="mt-2.5 max-w-md font-body text-[15px] font-medium text-slatey-700" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.4, ease: EASE }}>
             {th ? productTh.tagline : product.tagline}
           </motion.p>
-
-          <motion.div className="mt-3 flex items-center gap-2.5" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 0.45, ease: EASE }}>
-            <Stars value={product.rating} />
-            <span className="font-display text-sm font-semibold text-ink">{product.rating}</span>
-            <a href="#reviews" className="font-body text-sm font-medium text-slatey-700 underline-offset-2 hover:underline">
-              {product.reviewCount.toLocaleString()} {th ? productTh.reviews : 'reviews'}
-            </a>
-          </motion.div>
-
           <motion.ul className="mt-5 grid gap-2" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.5, ease: EASE }}>
             {(th ? productTh.highlights : product.highlights).map((h) => (
               <li key={h} className="flex items-center gap-2.5 font-body text-[15px] font-medium text-ink/80">

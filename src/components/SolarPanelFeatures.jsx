@@ -6,11 +6,11 @@ const cards = [
   {
     id: 'aesthetics',
     img: asset('/sp-feature-house.webp'),
-    imgAlt: 'Modern home with Solvio Black Feather solar panels on the roof',
-    title: 'The Black Feather.\nMade for Real Homes.',
-    titleTh: 'Black Feather.\nออกแบบมาเพื่อบ้านจริงๆ',
+    imgAlt: 'Modern home with Solvio Dark Feather solar panels on the roof',
+    title: 'The Dark Feather.\nMade for Real Homes.',
+    titleTh: 'Dark Feather.\nออกแบบมาเพื่อบ้านจริงๆ',
     body: 'All-black, ultra-slim, built to complement your home — not just sit on top of it.',
-    bodyTh: 'สีดำล้วน บางพิเศษ สร้างมาเพื่อเสริมความสวยงามให้บ้านคุณ ไม่ใช่แค่วางทับ',
+    bodyTh: 'สีดำล้วน บางพิเศษ สร้างมาเพื่อเสริมความสวยงามให้บ้านคุณ ไม่ใช่แค่วางบนหลังคาเท่านั้น',
     imgPosition: 'object-top',
   },
   {

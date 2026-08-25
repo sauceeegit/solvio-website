@@ -38,7 +38,7 @@ export default function PanelComparison() {
             {th ? 'Solvio EZ Solar · เปรียบเทียบเทคโนโลยีแผง' : 'Solvio EZ Solar · panel technology comparison'}
           </p>
           <h2 className="mt-3 max-w-3xl font-display text-3xl font-black leading-tight tracking-tight text-white sm:text-4xl">
-            {th ? 'Firm-Light PLUS เทียบกับโมดูลที่อยู่อาศัยชั้นนำ' : 'Firm-Light PLUS vs. Top-Tier Residential Modules'}
+            {th ? 'เปรียบเทียบ Firm-Light PLUS กับแผงโซลาร์ชั้นนำ สำหรับบ้านพักอาศัย' : 'Firm-Light PLUS vs. Top-Tier Residential Modules'}
           </h2>
         </Reveal>
 

@@ -81,11 +81,11 @@ export default function RooftopSystemPage() {
                 <div className="lg:-mt-3 lg:self-start">
                   <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-lime">{lang === 'th' ? 'โซลาร์หลังคา' : 'Rooftop Solar'}</p>
                   <h2 className="mt-3 font-display text-3xl font-medium leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-5xl">
-                    {lang === 'th' ? <>หลังคาใหญ่?<br />ลงทุนใหญ่.</> : <>Big Roof?<br />Build Big.</>}
+                    {lang === 'th' ? 'เปลี่ยนหลังคาใหญ่ให้เป็นเงิน' : <>Big Roof?<br />Build Big.</>}
                   </h2>
                   <p className="mt-5 max-w-md text-base leading-relaxed" style={{ color: 'rgba(255,255,255,0.55)' }}>
                     {lang === 'th'
-                      ? 'ทุกตารางเมตรของหลังคาที่ว่างอยู่คือเงินที่สูญเสียไป ถ้าคุณมีพื้นที่ เรามีระบบที่พอดีกับอาคาร โหลด และเป้าหมายของคุณ'
+                      ? 'หลังคาของคุณ ช่วยลดค่าไฟได้'
                       : "Every square metre of unused roof is money left on the table. If you've got the space, we've got the system to fill it — sized to your building, your load, and your ambitions."}
                   </p>
                   <ul className="mt-6 grid max-w-md grid-cols-2 gap-x-4 gap-y-3">
