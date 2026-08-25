@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Play } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const VIDEO_ID = 'HXFWIwgacsg';
 const POSTER = `https://img.youtube.com/vi/${VIDEO_ID}/maxresdefault.jpg`;
@@ -7,6 +8,8 @@ const POSTER = `https://img.youtube.com/vi/${VIDEO_ID}/maxresdefault.jpg`;
 // Full-width hero-height click-to-play section — used at the top of /solar-panel
 export default function PlugPlayVideo() {
   const [playing, setPlaying] = useState(false);
+  const { lang } = useLanguage();
+  const th = lang === 'th';
 
   return (
     <section className="relative w-full bg-ink overflow-hidden" style={{ height: '82svh', minHeight: 480 }}>
@@ -14,7 +17,7 @@ export default function PlugPlayVideo() {
         <iframe
           className="absolute inset-0 h-full w-full border-0"
           src={`https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&rel=0&modestbranding=1`}
-          title="Easy Plug & Play — Solvio balcony solar"
+          title={th ? 'ติดตั้งง่ายแบบปลั๊กแอนด์เพลย์ — โซลาร์ระเบียง Solvio' : 'Easy Plug & Play — Solvio balcony solar'}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
         />
@@ -22,13 +25,13 @@ export default function PlugPlayVideo() {
         <button
           type="button"
           onClick={() => setPlaying(true)}
-          aria-label="Play video"
+          aria-label={th ? 'เล่นวิดีโอ' : 'Play video'}
           className="group absolute inset-0 w-full h-full"
         >
           {/* poster image */}
           <img loading="lazy"
             src={POSTER}
-            alt="Solvio balcony solar installation guide"
+            alt={th ? 'คู่มือติดตั้งโซลาร์ระเบียง Solvio' : 'Solvio balcony solar installation guide'}
             className="absolute inset-0 h-full w-full object-cover object-top transition duration-700 group-hover:scale-[1.02]"
           />
           {/* dark overlay */}

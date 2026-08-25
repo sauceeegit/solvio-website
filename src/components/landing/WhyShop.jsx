@@ -25,7 +25,7 @@ const bgreenieTh = {
   cta: 'เรียนรู้เพิ่มเติม',
 };
 
-function SolvioCoin({ size = 82 }) {
+function SolvioCoin({ size = 82, ariaLabel = 'Solvio Rewards coin' }) {
   // Layout: face shifted left, bevel circle shifted right → exposes right-side rim
   const vW = 128, vH = 118;
   const fc = { x: 52, y: 58 };   // face center
@@ -58,7 +58,7 @@ function SolvioCoin({ size = 82 }) {
         height={Math.round(size * vH / vW)}
         overflow="visible"
         role="img"
-        aria-label="Solvio Rewards coin"
+        aria-label={ariaLabel}
       >
         <defs>
           {/* Face: key light upper-left → shadow lower-right, PBR-like falloff */}
@@ -364,7 +364,7 @@ export default function WhyShop() {
                     >
                       <img loading="lazy"
                         src={asset('/solvio-coin2.webp')}
-                        alt="Solvio Rewards coin"
+                        alt={lang === 'th' ? 'เหรียญ Solvio Rewards' : 'Solvio Rewards coin'}
                         width={1087}
                         height={1447}
                         style={{ width: '100%', height: 'auto', display: 'block' }}

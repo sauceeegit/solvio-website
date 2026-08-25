@@ -155,7 +155,7 @@ export default function ContactSection() {
               {/* Photo — desktop only (hidden on mobile so text has full width) */}
               <img loading="lazy"
                 src={asset('/contact-advisor.webp')}
-                alt="Solvio solar advisor"
+                alt={lang === 'th' ? 'ที่ปรึกษาด้านโซลาร์ของ Solvio' : 'Solvio solar advisor'}
                 className="absolute inset-0 h-full w-full object-cover object-center max-lg:hidden"
               />
               {/* white fade on left so text stays readable — desktop only */}
@@ -205,7 +205,7 @@ export default function ContactSection() {
                     <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full text-white" style={{ backgroundColor: '#1d3d2e' }}>
                       <MapPin size={17} />
                     </span>
-                    <span className="font-semibold text-ink/85">Patongo, Pa Tong,<br />Kathu District, Phuket 83150</span>
+                    <span className="font-semibold text-ink/85">{lang === 'th' ? 'Patongo, ตำบลป่าตอง อำเภอกะทู้ จังหวัดภูเก็ต 83150' : <>Patongo, Pa Tong,<br />Kathu District, Phuket 83150</>}</span>
                   </li>
                 </ul>
               </div>
@@ -253,7 +253,7 @@ export default function ContactSection() {
                         <select
                           value={dialCode}
                           onChange={(e) => setDialCode(e.target.value)}
-                          aria-label="Country code"
+                          aria-label={lang === 'th' ? 'รหัสประเทศ' : 'Country code'}
                           className="w-[5.5rem] shrink-0 rounded-xl border border-ink/12 bg-white px-2 py-3 font-body text-sm text-ink focus:border-lime focus:outline-none focus:ring-1 focus:ring-lime/40"
                         >
                           {DIAL_CODES.map((c) => (
@@ -292,7 +292,7 @@ export default function ContactSection() {
                         <select
                           value={imApp}
                           onChange={(e) => setImApp(e.target.value)}
-                          aria-label="Messaging app"
+                          aria-label={lang === 'th' ? 'แอปส่งข้อความ' : 'Messaging app'}
                           className="w-[6.5rem] shrink-0 rounded-xl border border-ink/12 bg-white px-2 py-3 font-body text-sm text-ink focus:border-lime focus:outline-none focus:ring-1 focus:ring-lime/40"
                         >
                           <option value="LINE">LINE</option>
@@ -407,10 +407,10 @@ export default function ContactSection() {
         target="_blank"
         rel="noreferrer"
         className="relative block overflow-hidden border-t border-ink/[0.06]"
-        aria-label="View Solvio on Google Maps"
+        aria-label={lang === 'th' ? 'ดู Solvio บน Google Maps' : 'View Solvio on Google Maps'}
       >
         <iframe
-          title="Solvio Solar location"
+          title={lang === 'th' ? 'ตำแหน่ง Solvio Solar' : 'Solvio Solar location'}
           src={MAP_EMBED}
           className="block h-64 w-full border-0 sm:h-80"
           style={{ filter: 'grayscale(100%) contrast(0.9) brightness(1.05)' }}

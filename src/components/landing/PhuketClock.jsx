@@ -45,11 +45,12 @@ export default function PhuketClock() {
   // milliseconds are timezone-independent — take the first 2 digits (centiseconds)
   const cs = String(Math.floor(now.getMilliseconds() / 10)).padStart(2, '0');
   const { Icon, label } = periodIcon(now);
+  const labelTh = label === 'Morning' ? 'ตอนเช้า' : label === 'Afternoon' ? 'ตอนบ่าย' : 'ตอนกลางคืน';
 
   return (
     <div className="pointer-events-none shrink-0">
       <div className="flex items-center gap-2 rounded-full bg-ink/55 px-3 py-1.5 ring-1 ring-white/15 backdrop-blur-md">
-        <Icon className="h-3 w-3 text-lime" strokeWidth={2} aria-label={label} />
+        <Icon className="h-3 w-3 text-lime" strokeWidth={2} aria-label={lang === 'th' ? labelTh : label} />
         <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-white/70">
           {lang === 'th' ? 'ประเทศไทย' : 'Thailand'}
         </span>

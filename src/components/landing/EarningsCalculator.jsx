@@ -88,7 +88,7 @@ function compute({ bill, coverage, rate, months, interest, battery, exportOn }) 
   };
 }
 
-function BreakEvenChart({ series, cost, payback }) {
+function BreakEvenChart({ series, cost, payback, th }) {
   const W = 600;
   const H = 220;
   const padL = 48;
@@ -124,7 +124,7 @@ function BreakEvenChart({ series, cost, payback }) {
   }
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img" aria-label="Cumulative savings versus system cost over 25 years">
+    <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img" aria-label={th ? 'เงินออมสะสมเทียบกับต้นทุนระบบตลอด 25 ปี' : 'Cumulative savings versus system cost over 25 years'}>
       {[0, maxY / 2, maxY].map((v, i) => (
         <g key={i}>
           <line x1={padL} y1={y(v)} x2={W - padR} y2={y(v)} stroke="#09321B" strokeOpacity="0.08" />
@@ -135,12 +135,12 @@ function BreakEvenChart({ series, cost, payback }) {
       ))}
       {[0, 5, 10, 15, 20, 25].map((yr) => (
         <text key={yr} x={x(yr)} y={H - 8} textAnchor="middle" fontSize="11" fill="#7E8C84" fontFamily="monospace">
-          {yr}y
+          {yr}{th ? 'ปี' : 'y'}
         </text>
       ))}
       <line x1={padL} y1={y(cost)} x2={W - padR} y2={y(cost)} stroke="#7E8C84" strokeWidth="1.5" strokeDasharray="5 4" />
       <text x={W - padR} y={y(cost) - 6} textAnchor="end" fontSize="11" fill="#5A6B62">
-        System cost {shortBaht(cost)}
+        {th ? 'ต้นทุนระบบ' : 'System cost'} {shortBaht(cost)}
       </text>
       {redPts && <polygon points={redPts} fill="#E24B4A" fillOpacity="0.16" />}
       {greenPts && <polygon points={greenPts} fill="#1D9E75" fillOpacity="0.16" />}
@@ -379,7 +379,7 @@ export default function EarningsCalculator({ exportDefault = true }) {
             {/* chart */}
             <div className="mt-6">
               <p className="mb-1 text-sm text-slatey-700">{th ? 'การออมสะสมเทียบกับต้นทุนระบบ' : 'Cumulative savings vs system cost'}</p>
-              <BreakEvenChart series={r.series} cost={r.cost} payback={r.payback} />
+              <BreakEvenChart series={r.series} cost={r.cost} payback={r.payback} th={th} />
               <p className="mt-1 text-sm text-slatey-700">
                 {r.payback <= 25
                   ? (th ? `คืนทุนที่ปีที่ ${r.payback.toFixed(1)} — จากนั้นอีก ${Math.max(0, 25 - Math.round(r.payback))}+ ปีของไฟฟ้าแทบฟรี` : `Break-even at year ${r.payback.toFixed(1)} — then ${Math.max(0, 25 - Math.round(r.payback))}+ years of near-free electricity.`)

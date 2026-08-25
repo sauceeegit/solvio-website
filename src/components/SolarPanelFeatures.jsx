@@ -7,6 +7,7 @@ const cards = [
     id: 'aesthetics',
     img: asset('/sp-feature-house.webp'),
     imgAlt: 'Modern home with Solvio Dark Feather solar panels on the roof',
+    imgAltTh: 'บ้านสมัยใหม่ติดแผงโซลาร์ Solvio Dark Feather บนหลังคา',
     title: 'The Dark Feather.\nMade for Real Homes.',
     titleTh: 'Dark Feather.\nออกแบบมาเพื่อบ้านจริงๆ',
     body: 'All-black, ultra-slim, built to complement your home — not just sit on top of it.',
@@ -17,6 +18,7 @@ const cards = [
     id: 'lightweight',
     img: asset('/sp-feature-2.webp'),
     imgAlt: 'Ultra-thin Solvio Dark Feather panel floating above a mountain landscape',
+    imgAltTh: 'แผง Solvio Dark Feather บางพิเศษเหนือทิวทัศน์ภูเขา',
     title: "So light, your roof\nwon't feel it.",
     titleTh: 'เบาจนหลังคา\nแทบไม่รู้สึก',
     body: 'Just 6 kg/m² and 4.5 mm thin — the slimmest glass-glass panel on the market.',
@@ -43,7 +45,7 @@ export default function SolarPanelFeatures() {
                   <img
                     loading="lazy"
                     src={c.img}
-                    alt={c.imgAlt}
+                    alt={th ? c.imgAltTh : c.imgAlt}
                     className={`absolute inset-0 h-full w-full object-cover ${c.imgPosition}`}
                   />
                 </div>

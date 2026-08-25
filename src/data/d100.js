@@ -2,13 +2,13 @@ import { asset } from '../lib/format';
 import { portableBatteries } from './landing';
 
 const mediaTemplate = [
-  { id: 1, label: 'Main product view', note: 'Recommended: clean front three-quarter product image' },
-  { id: 2, label: 'Front controls', note: 'Recommended: close-up of display and ports' },
-  { id: 3, label: 'Side view', note: 'Recommended: AC outlet and ventilation detail' },
-  { id: 4, label: 'In use', note: 'Recommended: lifestyle image showing real scale' },
-  { id: 5, label: 'Portable design', note: 'Recommended: carrying or travel scene' },
-  { id: 6, label: 'Connection detail', note: 'Recommended: connected devices or cable layout' },
-  { id: 7, label: 'Detail view', note: 'Recommended: additional product detail' },
+  { id: 1, label: 'Main product view', labelTh: 'มุมมองผลิตภัณฑ์หลัก' },
+  { id: 2, label: 'Front controls', labelTh: 'แผงควบคุมด้านหน้า' },
+  { id: 3, label: 'Side view', labelTh: 'มุมมองด้านข้าง' },
+  { id: 4, label: 'In use', labelTh: 'ขณะใช้งาน' },
+  { id: 5, label: 'Portable design', labelTh: 'ดีไซน์พกพา' },
+  { id: 6, label: 'Connection detail', labelTh: 'รายละเอียดการเชื่อมต่อ' },
+  { id: 7, label: 'Detail view', labelTh: 'มุมมองรายละเอียด' },
 ];
 
 const ZOOM = 'object-cover';
@@ -113,24 +113,41 @@ const technicalSpecifications = {
   },
 };
 
+function thaiTechnicalValue(value) {
+  return value
+    .replaceAll('Approx.', 'ประมาณ')
+    .replaceAll('Modified sine wave', 'คลื่นไซน์ดัดแปลง')
+    .replaceAll('Pure sine wave', 'คลื่นไซน์บริสุทธิ์')
+    .replaceAll('Not listed separately', 'ไม่ได้ระบุแยกต่างหาก')
+    .replaceAll('Not listed', 'ไม่ได้ระบุ')
+    .replaceAll('Not provided in supplied specification', 'ไม่ได้ระบุในข้อมูลจำเพาะที่ได้รับ')
+    .replaceAll('outlets', 'เต้ารับ')
+    .replaceAll('total', 'รวม')
+    .replaceAll('peak', 'สูงสุด')
+    .replaceAll('about', 'ประมาณ')
+    .replaceAll('capacity after', 'ความจุหลังจาก')
+    .replaceAll('cycles', 'รอบการชาร์จ')
+    .replaceAll('as printed; supplier confirmation required', 'ตามเอกสารที่พิมพ์ ต้องรอผู้ผลิตยืนยัน');
+}
+
 function modelSpecifications(model, technical) {
   return [
-    { icon: 'Battery', label: 'Specification model', value: model.specModel },
-    { icon: 'Battery', label: 'Battery type', value: 'LiFePO₄' },
-    { icon: 'Battery', label: 'Battery capacity', value: technical.battery },
-    { icon: 'Maximize2', label: 'Dimensions', value: technical.dimensions },
-    { icon: 'Weight', label: 'Weight', value: technical.weight },
-    { icon: 'PlugZap', label: 'AC inverter', value: technical.inverter },
-    { icon: 'Clock', label: 'Cycle life', value: technical.cycleLife },
-    { icon: 'Cable', label: 'Car charging', value: technical.carCharging },
-    { icon: 'Sun', label: 'Solar charging', value: technical.solarCharging },
-    { icon: 'PlugZap', label: 'AC output', value: technical.acOutput },
-    { icon: 'Plug', label: 'DC output', value: technical.dcOutput },
-    { icon: 'Plug', label: 'Cigarette-lighter output', value: technical.cigarette },
-    { icon: 'Zap', label: 'USB-A output', value: technical.usbA },
-    { icon: 'ZapFast', label: 'USB-C output', value: technical.usbC },
-    { icon: 'Minimize2', label: 'Discharging temperature', value: technical.dischargeTemp },
-    { icon: 'Minimize2', label: 'Charging temperature', value: technical.chargeTemp },
+    { icon: 'Battery', label: 'Specification model', labelTh: 'รุ่น', value: model.specModel },
+    { icon: 'Battery', label: 'Battery type', labelTh: 'ประเภทแบตเตอรี่', value: 'LiFePO₄' },
+    { icon: 'Battery', label: 'Battery capacity', labelTh: 'ความจุแบตเตอรี่', value: technical.battery },
+    { icon: 'Maximize2', label: 'Dimensions', labelTh: 'ขนาด', value: technical.dimensions, valueTh: thaiTechnicalValue(technical.dimensions) },
+    { icon: 'Weight', label: 'Weight', labelTh: 'น้ำหนัก', value: technical.weight, valueTh: thaiTechnicalValue(technical.weight) },
+    { icon: 'PlugZap', label: 'AC inverter', labelTh: 'อินเวอร์เตอร์ AC', value: technical.inverter, valueTh: thaiTechnicalValue(technical.inverter) },
+    { icon: 'Clock', label: 'Cycle life', labelTh: 'อายุการชาร์จ', value: technical.cycleLife, valueTh: thaiTechnicalValue(technical.cycleLife) },
+    { icon: 'Cable', label: 'Car charging', labelTh: 'ชาร์จจากรถยนต์', value: technical.carCharging, valueTh: thaiTechnicalValue(technical.carCharging) },
+    { icon: 'Sun', label: 'Solar charging', labelTh: 'ชาร์จโซลาร์', value: technical.solarCharging, valueTh: thaiTechnicalValue(technical.solarCharging) },
+    { icon: 'PlugZap', label: 'AC output', labelTh: 'เอาต์พุต AC', value: technical.acOutput, valueTh: thaiTechnicalValue(technical.acOutput) },
+    { icon: 'Plug', label: 'DC output', labelTh: 'เอาต์พุต DC', value: technical.dcOutput, valueTh: thaiTechnicalValue(technical.dcOutput) },
+    { icon: 'Plug', label: 'Cigarette-lighter output', labelTh: 'เอาต์พุตจุดบุหรี่', value: technical.cigarette, valueTh: thaiTechnicalValue(technical.cigarette) },
+    { icon: 'Zap', label: 'USB-A output', labelTh: 'เอาต์พุต USB-A', value: technical.usbA },
+    { icon: 'ZapFast', label: 'USB-C output', labelTh: 'เอาต์พุต USB-C', value: technical.usbC },
+    { icon: 'Minimize2', label: 'Discharging temperature', labelTh: 'อุณหภูมิการคายประจุ', value: technical.dischargeTemp, valueTh: thaiTechnicalValue(technical.dischargeTemp) },
+    { icon: 'Minimize2', label: 'Charging temperature', labelTh: 'อุณหภูมิการชาร์จ', value: technical.chargeTemp, valueTh: thaiTechnicalValue(technical.chargeTemp) },
   ];
 }
 
@@ -179,7 +196,7 @@ export const portableProductModels = portableBatteries.map((model) => {
       { icon: 'Battery', label: 'LiFePO₄', sub: 'Battery chemistry', subTh: 'เคมีแบตเตอรี่' },
       { icon: 'Zap', label: model.specModel, sub: 'Specification model', subTh: 'รุ่นข้อมูลจำเพาะ' },
       { icon: 'Plug', label: 'AC + DC + USB', sub: 'Output options', subTh: 'ตัวเลือกเอาต์พุต' },
-      { icon: 'Sun', label: 'Solar charging', sub: 'Model-specific input', subTh: 'อินพุตเฉพาะรุ่น' },
+      { icon: 'Sun', label: 'Solar charging', labelTh: 'ชาร์จโซลาร์', sub: 'Model-specific input', subTh: 'อินพุตเฉพาะรุ่น' },
     ],
     media: mediaTemplate.map((item) => {
       const extra = item.id === 1 ? null
@@ -194,7 +211,9 @@ export const portableProductModels = portableBatteries.map((model) => {
       return {
         ...item,
         label: `${shortName} — ${item.label}`,
+        labelTh: `${shortName} — ${item.labelTh}`,
         alt: `${model.name} ${item.label.toLowerCase()}`,
+        altTh: `${model.name} ${item.labelTh}`,
         src: item.id === 1 ? (model.img ?? null)
            : item.id === 2 ? (model.sideImg ?? null)
            : extra?.src ?? null,

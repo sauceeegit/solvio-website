@@ -145,7 +145,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
         <section id="details" className="border-y border-ink/[0.07] bg-white py-10 sm:py-14">
           <div className="container-x">
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-              {product.featureStrip.map(({ icon, label, sub, subTh }) => {
+              {product.featureStrip.map(({ icon, label, labelTh, sub, subTh }) => {
                 const Icon = SPEC_ICONS[icon];
                 const subText = th ? (subTh ?? sub) : sub;
                 return (
@@ -153,7 +153,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
                   <span className="grid h-16 w-16 place-items-center rounded-full bg-white text-ink shadow-soft">
                     <Icon size={30} strokeWidth={1.75} />
                   </span>
-                  <p className="font-display text-sm font-extrabold text-ink leading-tight">{label}</p>
+                  <p className="font-display text-sm font-extrabold text-ink leading-tight">{th ? (labelTh ?? label) : label}</p>
                   <p className="text-[11px] text-ink/70 leading-tight">{subText}</p>
                 </div>
                 );
@@ -167,7 +167,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
           <section className="w-full overflow-hidden bg-ink">
             <img
               src={product.heroImg.src}
-              alt={`${product.name} lifestyle`}
+              alt={th ? `${product.name} ขณะใช้งาน` : `${product.name} lifestyle`}
               width={product.heroImg.w}
               height={product.heroImg.h}
               className="block w-full"
@@ -195,13 +195,13 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
                     className="text-xs leading-snug sm:pb-4 sm:text-sm"
                     style={{ color: 'rgba(255,255,255,0.55)', borderBottom: '1px solid rgba(255,255,255,0.1)' }}
                   >
-                    {specification.label}:
+                    {th ? (specification.labelTh ?? specification.label) : specification.label}:
                   </dt>
                   <dd
                     className="break-words font-display text-xs font-bold leading-snug text-white sm:pb-4 sm:text-right sm:text-sm"
                     style={{ borderBottom: '2px solid rgba(255,255,255,0.25)' }}
                   >
-                    {specification.value}
+                    {th ? (specification.valueTh ?? specification.value) : specification.value}
                   </dd>
                 </div>
               ))}
@@ -229,7 +229,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
           <section className="w-full overflow-hidden bg-ink">
             <img
               src={product.afterSpecsImg.src}
-              alt={`${product.name} details`}
+              alt={th ? `รายละเอียด ${product.name}` : `${product.name} details`}
               width={product.afterSpecsImg.w}
               height={product.afterSpecsImg.h}
               loading="lazy"

@@ -8,6 +8,7 @@ const SLIDES = [
   {
     src: asset('/savings-bg.jpg'),
     alt: 'Couple on a balcony with Solvio solar panels on the railing at sunset',
+    altTh: 'คู่รักบนระเบียงยามพระอาทิตย์ตกพร้อมแผงโซลาร์ Solvio บนราวระเบียง',
     caption: 'Solar on every balcony',
     sub: 'Save over ฿79k in 10 years — with a 4-panel kit',
     captionTh: 'โซลาร์ทุกระเบียง',
@@ -16,6 +17,7 @@ const SLIDES = [
   {
     src: asset('/plugplay-photo.jpg'),
     alt: 'Easy plug & play installation — connecting a panel by hand',
+    altTh: 'ติดตั้งปลั๊กแอนด์เพลย์ง่าย ๆ — เชื่อมต่อแผงด้วยมือ',
     caption: 'Plug & Play in minutes',
     sub: 'No electrician needed',
     captionTh: 'ปลั๊กแอนด์เพลย์ ใน​ไม่กี่นาที',
@@ -24,6 +26,7 @@ const SLIDES = [
   {
     src: asset('/balcony-power-plants.webp'),
     alt: 'Balcony with Solvio solar panels overlooking the sea',
+    altTh: 'ระเบียงติดแผงโซลาร์ Solvio มองเห็นทะเล',
     caption: 'Power your home from your balcony',
     sub: 'Works in any apartment or condo',
     captionTh: 'ผลิตไฟจากระเบียงบ้านคุณ',
@@ -32,6 +35,7 @@ const SLIDES = [
   {
     src: asset('/sp-balcony.webp'),
     alt: 'Solvio balcony solar installation',
+    altTh: 'การติดตั้งโซลาร์ระเบียง Solvio',
     caption: 'Balcony Solar',
     sub: 'Plug & play · no drilling · moves with you',
     captionTh: 'โซลาร์ระเบียง',
@@ -40,6 +44,7 @@ const SLIDES = [
   {
     src: asset('/sp-facade.webp'),
     alt: 'Solvio facade solar installation',
+    altTh: 'การติดตั้งโซลาร์บนผนังอาคาร Solvio',
     caption: 'Facade Solar',
     sub: 'Sleek all-black panels integrated into your facade',
     captionTh: 'โซลาร์ผนังอาคาร',
@@ -109,7 +114,7 @@ export default function PhotoBanner() {
             >
               <img loading="lazy"
                 src={SLIDES[current].src}
-                alt={SLIDES[current].alt}
+                alt={th ? SLIDES[current].altTh : SLIDES[current].alt}
                 className="h-full w-full object-cover"
                 draggable={false}
               />
@@ -144,7 +149,7 @@ export default function PhotoBanner() {
           <button
             type="button"
             onClick={prev}
-            aria-label="Previous photo"
+            aria-label={th ? 'รูปก่อนหน้า' : 'Previous photo'}
             className="absolute left-3 top-1/2 z-10 -translate-y-1/2 grid h-10 w-10 place-items-center rounded-full bg-white/20 text-white backdrop-blur-sm transition hover:bg-white/40 sm:left-5 sm:h-12 sm:w-12"
           >
             <ChevronLeft size={20} />
@@ -152,7 +157,7 @@ export default function PhotoBanner() {
           <button
             type="button"
             onClick={next}
-            aria-label="Next photo"
+            aria-label={th ? 'รูปถัดไป' : 'Next photo'}
             className="absolute right-3 top-1/2 z-10 -translate-y-1/2 grid h-10 w-10 place-items-center rounded-full bg-white/20 text-white backdrop-blur-sm transition hover:bg-white/40 sm:right-5 sm:h-12 sm:w-12"
           >
             <ChevronRight size={20} />
@@ -166,7 +171,7 @@ export default function PhotoBanner() {
               key={slide.src}
               type="button"
               onClick={() => go(i, i > current ? 1 : -1)}
-              aria-label={`Go to slide ${i + 1}`}
+              aria-label={th ? `ไปยังสไลด์ ${i + 1}` : `Go to slide ${i + 1}`}
               className="relative shrink-0 overflow-hidden rounded-xl transition-all duration-300"
               style={{ width: i === current ? 88 : 56, height: 56 }}
             >

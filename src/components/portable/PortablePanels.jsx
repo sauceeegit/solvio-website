@@ -65,7 +65,7 @@ export default function PortablePanels() {
           <div className="hidden shrink-0 gap-2 sm:flex">
             <button
               onClick={() => scrollByCard(-1)}
-              aria-label="Previous"
+              aria-label={th ? 'ก่อนหน้า' : 'Previous'}
               className={`grid h-11 w-11 place-items-center rounded-full transition active:scale-95 ${
                 canScrollLeft
                   ? 'bg-lime text-white hover:bg-lime-dark'
@@ -76,7 +76,7 @@ export default function PortablePanels() {
             </button>
             <button
               onClick={() => scrollByCard(1)}
-              aria-label="Next"
+              aria-label={th ? 'ถัดไป' : 'Next'}
               className={`grid h-11 w-11 place-items-center rounded-full transition active:scale-95 ${
                 canScrollRight
                   ? 'bg-lime text-white hover:bg-lime-dark'

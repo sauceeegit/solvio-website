@@ -24,22 +24,22 @@ const p60ExtraImages = {
 };
 
 const panelMediaTemplate = [
-  { id: 1, label: 'Main panel view', note: 'Recommended: clean unfolded front view' },
-  { id: 2, label: 'Folded view', note: 'Recommended: folded panel showing carrying format' },
-  { id: 3, label: 'Connection detail', note: 'Recommended: cable and connector close-up' },
-  { id: 4, label: 'In use', note: 'Recommended: outdoor setup showing real scale' },
-  { id: 5, label: 'Portable design', note: 'Recommended: carrying or storage scene' },
-  { id: 6, label: 'Power setup', note: 'Recommended: panel connected to a compatible power station' },
+  { id: 1, label: 'Main panel view', labelTh: 'มุมมองแผงหลัก' },
+  { id: 2, label: 'Folded view', labelTh: 'มุมมองเมื่อพับ' },
+  { id: 3, label: 'Connection detail', labelTh: 'รายละเอียดการเชื่อมต่อ' },
+  { id: 4, label: 'In use', labelTh: 'ขณะใช้งาน' },
+  { id: 5, label: 'Portable design', labelTh: 'ดีไซน์พกพา' },
+  { id: 6, label: 'Power setup', labelTh: 'การติดตั้งระบบพลังงาน' },
 ];
 
 function panelSpecifications(panel) {
   return [
-    { icon: 'Zap',        label: 'Rated output',       value: panel.watt },
-    { icon: 'Maximize2',  label: 'Unfolded dimensions', value: 'To be added' },
-    { icon: 'Minimize2',  label: 'Folded dimensions',   value: 'To be added' },
-    { icon: 'Weight',     label: 'Weight',              value: 'To be added' },
-    { icon: 'Cable',      label: 'Connector',           value: 'To be added' },
-    { icon: 'Shield',     label: 'Protection class',    value: 'To be added' },
+    { icon: 'Zap',        label: 'Rated output',        labelTh: 'กำลังไฟพิกัด', value: panel.watt },
+    { icon: 'Maximize2',  label: 'Unfolded dimensions', labelTh: 'ขนาดเมื่อกาง', value: 'To be added', valueTh: 'รอยืนยันข้อมูล' },
+    { icon: 'Minimize2',  label: 'Folded dimensions',   labelTh: 'ขนาดเมื่อพับ', value: 'To be added', valueTh: 'รอยืนยันข้อมูล' },
+    { icon: 'Weight',     label: 'Weight',              labelTh: 'น้ำหนัก', value: 'To be added', valueTh: 'รอยืนยันข้อมูล' },
+    { icon: 'Cable',      label: 'Connector',           labelTh: 'ขั้วต่อ', value: 'To be added', valueTh: 'รอยืนยันข้อมูล' },
+    { icon: 'Shield',     label: 'Protection class',    labelTh: 'ระดับการป้องกัน', value: 'To be added', valueTh: 'รอยืนยันข้อมูล' },
   ];
 }
 
@@ -83,7 +83,9 @@ export const portablePanelModels = portablePanels.map((panel) => {
       return {
         ...item,
         label: `${shortName} — ${item.label}`,
+        labelTh: `${shortName} — ${item.labelTh}`,
         alt: `${productName} ${item.label.toLowerCase()}`,
+        altTh: `${productName} ${item.labelTh}`,
         src: item.id === 1 ? (panel.img ?? null)
            : isP6060120 ? (p60ExtraImages[item.id] ?? null)
            : isP200400 ? (p200ExtraImages[item.id] ?? null)

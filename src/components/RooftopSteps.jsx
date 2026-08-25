@@ -272,12 +272,12 @@ export default function RooftopSteps() {
                 <p className="inline-flex items-center gap-2 font-display text-sm font-bold text-ink">
                   <MapPin size={16} className="text-lime-dark" /> {lang === 'th' ? 'เยี่ยมชม Solvio Solar' : 'Visit Solvio Solar'}
                 </p>
-                <button type="button" onClick={() => setMapOpen(false)} aria-label="Close" className="grid h-8 w-8 place-items-center rounded-full text-ink/72 transition hover:bg-ink/[0.06]">
+                <button type="button" onClick={() => setMapOpen(false)} aria-label={lang === 'th' ? 'ปิด' : 'Close'} className="grid h-8 w-8 place-items-center rounded-full text-ink/72 transition hover:bg-ink/[0.06]">
                   <X size={18} />
                 </button>
               </div>
               <iframe
-                title="Solvio Solar location"
+                title={lang === 'th' ? 'ตำแหน่ง Solvio Solar' : 'Solvio Solar location'}
                 src={MAP_EMBED}
                 className="aspect-[4/3] w-full border-0"
                 loading="lazy"

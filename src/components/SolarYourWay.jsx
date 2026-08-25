@@ -15,6 +15,7 @@ const ALL_CARDS = [
     bodyTh: 'เหมาะสำหรับอพาร์ทเมนท์และการอยู่อาศัยในเมือง ผลิตไฟสะอาดโดยไม่ต้องดัดแปลงหลังคา',
     img: asset('/sp-balcony.webp'),
     alt: 'Black solar panels on a modern apartment balcony railing',
+    altTh: 'แผงโซลาร์สีดำบนราวระเบียงอพาร์ตเมนต์สมัยใหม่',
     tabs: ['Balcony & Facade'],
   },
   {
@@ -25,6 +26,7 @@ const ALL_CARDS = [
     bodyTh: 'เปลี่ยนพื้นที่ผนังที่ว่างให้เป็นพลังงาน ดีไซน์สีดำล้วนผสานกับสถาปัตยกรรมสมัยใหม่ได้อย่างสวยงาม',
     img: asset('/sp-facade.webp'),
     alt: 'Solvio Dark Feather panels on a building facade',
+    altTh: 'แผง Solvio Dark Feather บนผนังอาคาร',
     tabs: ['Balcony & Facade'],
   },
   {
@@ -35,6 +37,7 @@ const ALL_CARDS = [
     bodyTh: 'เมื่อทุกกิโลกรัมมีความสำคัญ ที่เพียง 6 kg/m² Dark Feather ออกแบบมาสำหรับโครงสร้างน้ำหนักเบา',
     img: asset('/rooftop-solar.webp'),
     alt: 'Solvio Dark Feather panels on a lightweight residential roof',
+    altTh: 'แผง Solvio Dark Feather บนหลังคาบ้านน้ำหนักเบา',
     tabs: ['Balcony & Facade', 'Lightweight Roof'],
   },
 ];
@@ -80,12 +83,12 @@ const SELF_FILL =
 
 const HOURS = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24];
 
-function EnergyChart() {
+function EnergyChart({ th }) {
   return (
     <div className="mt-12 hidden overflow-hidden rounded-2xl border border-ink/[0.07] bg-white shadow-soft sm:block">
       <img loading="lazy"
         src={asset('/solar-energy-chart.png')}
-        alt="Solar energy production vs household consumption over 24 hours"
+        alt={th ? 'การผลิตพลังงานโซลาร์เทียบกับการใช้ไฟในบ้านตลอด 24 ชั่วโมง' : 'Solar energy production vs household consumption over 24 hours'}
         width={2000}
         height={425}
         className="w-full"
@@ -139,7 +142,7 @@ export default function SolarYourWay() {
                 <div className="aspect-[4/3] overflow-hidden rounded-xl bg-surface">
                   <img
                     src={c.img}
-                    alt={c.alt}
+                    alt={th ? c.altTh : c.alt}
                     loading="lazy"
                     className="h-full w-full object-cover"
                   />
@@ -151,7 +154,7 @@ export default function SolarYourWay() {
 
         {/* Energy chart */}
         <Reveal delay={0.1}>
-          <EnergyChart />
+          <EnergyChart th={th} />
         </Reveal>
       </div>
     </section>

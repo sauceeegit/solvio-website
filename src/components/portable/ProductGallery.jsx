@@ -1,7 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
 
 export default function ProductGallery({ media }) {
+  const { lang } = useLanguage();
+  const th = lang === 'th';
   const images = media.filter((m) => m.src);
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -30,7 +33,7 @@ export default function ProductGallery({ media }) {
           <img
             key={img.id}
             src={img.src}
-            alt={img.alt}
+            alt={th ? (img.altTh ?? img.alt) : img.alt}
             loading={idx === 0 ? 'eager' : 'lazy'}
             className={`absolute inset-0 h-full w-full transition-opacity duration-700 ease-in-out ${img.imgClass ?? 'object-contain'} ${
               idx === active ? 'opacity-100' : 'opacity-0'
@@ -43,14 +46,14 @@ export default function ProductGallery({ media }) {
           <>
             <button
               onClick={() => goTo(active - 1)}
-              aria-label="Previous image"
+              aria-label={th ? 'รูปก่อนหน้า' : 'Previous image'}
               className="absolute left-3 top-1/2 -translate-y-1/2 grid h-9 w-9 place-items-center rounded-full bg-white/80 text-ink shadow-md backdrop-blur-sm transition hover:bg-white hover:scale-105 active:scale-95"
             >
               <ChevronLeft size={18} />
             </button>
             <button
               onClick={() => goTo(active + 1)}
-              aria-label="Next image"
+              aria-label={th ? 'รูปถัดไป' : 'Next image'}
               className="absolute right-3 top-1/2 -translate-y-1/2 grid h-9 w-9 place-items-center rounded-full bg-white/80 text-ink shadow-md backdrop-blur-sm transition hover:bg-white hover:scale-105 active:scale-95"
             >
               <ChevronRight size={18} />
@@ -65,7 +68,7 @@ export default function ProductGallery({ media }) {
               <button
                 key={idx}
                 onClick={() => goTo(idx)}
-                aria-label={`View image ${idx + 1}`}
+                aria-label={th ? `ดูรูปที่ ${idx + 1}` : `View image ${idx + 1}`}
                 className={`h-1.5 rounded-full transition-all duration-300 ${
                   idx === active ? 'w-5 bg-lime' : 'w-1.5 bg-ink/25 hover:bg-ink/50'
                 }`}
@@ -82,14 +85,14 @@ export default function ProductGallery({ media }) {
             <button
               key={img.id}
               onClick={() => goTo(idx)}
-              aria-label={`View image ${idx + 1}`}
+              aria-label={th ? `ดูรูปที่ ${idx + 1}` : `View image ${idx + 1}`}
               className={`relative h-16 w-16 shrink-0 overflow-hidden rounded-xl border-2 transition-all duration-200 ${
                 idx === active
                   ? 'border-lime shadow-md scale-105'
                   : 'border-transparent opacity-60 hover:opacity-100 hover:border-ink/20'
               }`}
             >
-              <img loading="lazy" src={img.src} alt={img.alt} className="h-full w-full object-contain bg-white" />
+              <img loading="lazy" src={img.src} alt={th ? (img.altTh ?? img.alt) : img.alt} className="h-full w-full object-contain bg-white" />
             </button>
           ))}
         </div>

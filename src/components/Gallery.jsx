@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import MediaLoader from './MediaLoader';
+import { useLanguage } from '../context/LanguageContext';
 
 export const MODEL_ORIGIN = 'https://sauceeegit.github.io';
 // GitHub Pages caches the model HTML for 10 min, so the iframe would keep
@@ -15,6 +16,8 @@ export const MODEL_URL = `${MODEL_ORIGIN}/solvio-panel-3d/?v=${MODEL_VERSION}&em
 // configurator drives it: location -> scene, module -> panel style, count ->
 // number of panels (see the postMessage API in the solvio-panel-3d project).
 export default function Gallery({ derived, mobileFreeze = false }) {
+  const { lang } = useLanguage();
+  const th = lang === 'th';
   const frameRef = useRef(null);
   const rootRef = useRef(null);
   const [loaded, setLoaded] = useState(false);
@@ -104,7 +107,7 @@ export default function Gallery({ derived, mobileFreeze = false }) {
         <iframe
           ref={frameRef}
           src={MODEL_URL}
-          title="Solvio balcony panel — interactive 3D model"
+          title={th ? 'แผงโซลาร์ระเบียง Solvio — โมเดล 3D แบบโต้ตอบ' : 'Solvio balcony panel — interactive 3D model'}
           className="block aspect-[10/9] w-full border-0 max-lg:aspect-[29/30]"
           onLoad={send}
           allow="fullscreen; xr-spatial-tracking; accelerometer; gyroscope"
@@ -113,7 +116,7 @@ export default function Gallery({ derived, mobileFreeze = false }) {
         <span className="pointer-events-none absolute left-4 top-4 rounded-full px-3 py-1 font-mono text-[11px] font-medium uppercase tracking-wider backdrop-blur" style={{ background: '#FFB330', color: '#111' }}>
           {wp.toLocaleString()} Wp · Plug &amp; Play
         </span>
-        <MediaLoader show={!loaded} label="Loading 3D model" />
+        <MediaLoader show={!loaded} label={th ? 'กำลังโหลดโมเดล 3D' : 'Loading 3D model'} />
       </div>
     </div>
   );

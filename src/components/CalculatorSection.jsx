@@ -39,7 +39,7 @@ export default function CalculatorSection({ derived }) {
             {/* Basic / Advanced toggle */}
             <div
               role="tablist"
-              aria-label="Calculator detail level"
+              aria-label={lang === 'th' ? 'ระดับรายละเอียดเครื่องคำนวณ' : 'Calculator detail level'}
               className="inline-flex shrink-0 rounded-full border border-ink/10 bg-white p-1"
             >
               {modes.map((t) => (

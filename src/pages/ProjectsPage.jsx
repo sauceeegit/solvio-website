@@ -16,6 +16,43 @@ import { usePageMeta } from '../hooks/usePageMeta';
 const CATEGORIES = ['All', 'Rooftop', 'Curved roof', 'Facade', 'BIPV', 'Infrastructure', 'Product range'];
 const CATEGORIES_TH = ['ทั้งหมด', 'หลังคา', 'หลังคาโค้ง', 'ผนังอาคาร', 'BIPV', 'โครงสร้างพื้นฐาน', 'ผลิตภัณฑ์'];
 
+const PROJECT_TITLE_TH = {
+  'Commercial & Industrial rooftops': 'หลังคาโรงงานและอาคารพาณิชย์',
+  'Curved granary rooftop': 'หลังคาโค้งโกดังข้าว',
+  'Curved coal shed rooftop': 'หลังคาโค้งโรงเก็บถ่านหิน',
+  'Opple factory rooftop': 'หลังคาโรงงาน Opple',
+  'Residential & transport PV': 'PV ที่พักอาศัยและการขนส่ง',
+  'Solar facade (BAPV)': 'ผนังอาคารโซลาร์ (BAPV)',
+  'BIPV greenhouse': 'เรือนกระจก BIPV',
+  'Hospital glass walkway': 'ทางเดินกระจกโรงพยาบาล',
+  'Solar street lighting': 'ไฟถนนโซลาร์',
+  'PV fence series': 'ซีรีส์รั้ว PV',
+  'PV sunshade & canopy': 'กันสาดและหลังคา PV',
+};
+const PROJECT_SCALE_TH = {
+  '68 MW installed': 'ติดตั้งแล้ว 68 MW',
+  'Patterned PV': 'PV ลวดลาย',
+  'Pattern series': 'ซีรีส์ลวดลาย',
+  'Vertical arrays': 'แถวแนวตั้ง',
+  'Dual-value output': 'ผลผลิตสองต่อ',
+  'Municipal scale': 'ระดับเทศบาล',
+  Customisable: 'ปรับแต่งได้',
+};
+const PROJECT_CATEGORY_TH = {
+  Rooftop: 'หลังคา',
+  'Curved roof': 'หลังคาโค้ง',
+  Facade: 'ผนังอาคาร',
+  Infrastructure: 'โครงสร้างพื้นฐาน',
+  'Product range': 'กลุ่มผลิตภัณฑ์',
+};
+
+const projectTitle = (project, th) => th ? (PROJECT_TITLE_TH[project.title] ?? project.title) : project.title;
+const projectScale = (project, th) => th ? (PROJECT_SCALE_TH[project.scale] ?? project.scale) : project.scale;
+const projectCategory = (project, th) => th ? (PROJECT_CATEGORY_TH[project.cat] ?? project.cat) : project.cat;
+const projectPlace = (project, th) => th && project.place === 'Agricultural PV' ? 'เกษตรกรรม PV'
+  : th && project.place === 'Product range' ? 'กลุ่มผลิตภัณฑ์'
+  : project.place;
+
 const PROJECTS = [
   {
     id: 'zenith',
@@ -185,7 +222,8 @@ const STATS = [
 ];
 
 // Full-screen image viewer with keyboard + arrow navigation.
-function Lightbox({ project, index, onClose, onPrev, onNext }) {
+function Lightbox({ project, index, onClose, onPrev, onNext, lang }) {
+  const th = lang === 'th';
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === 'Escape') onClose();
@@ -212,16 +250,16 @@ function Lightbox({ project, index, onClose, onPrev, onNext }) {
     >
       <div className="flex items-start justify-between gap-4 px-5 py-4 text-white">
         <div className="min-w-0">
-          <p className="font-display text-base font-bold">{project.title}</p>
+          <p className="font-display text-base font-bold">{projectTitle(project, th)}</p>
           <p className="truncate text-sm text-white/60">
-            {project.place} · {project.scale}
+            {projectPlace(project, th)} · {projectScale(project, th)}
             {many && ` · ${index + 1}/${project.images.length}`}
           </p>
         </div>
         <button
           type="button"
           onClick={onClose}
-          aria-label="Close"
+          aria-label={th ? 'ปิด' : 'Close'}
           className="grid h-10 w-10 shrink-0 place-items-center rounded-full text-white/80 transition hover:bg-white/10"
         >
           <X size={22} />
@@ -232,7 +270,7 @@ function Lightbox({ project, index, onClose, onPrev, onNext }) {
         <img
           loading="lazy"
           src={asset(`/projects/${project.images[index]}.webp`)}
-          alt={`${project.title} — ${project.place}`}
+          alt={`${projectTitle(project, th)} — ${projectPlace(project, th)}`}
           className="max-h-full max-w-full rounded-xl2 object-contain"
         />
         {many && (
@@ -240,7 +278,7 @@ function Lightbox({ project, index, onClose, onPrev, onNext }) {
             <button
               type="button"
               onClick={onPrev}
-              aria-label="Previous photo"
+              aria-label={th ? 'รูปก่อนหน้า' : 'Previous photo'}
               className="absolute left-2 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-white/15 text-white backdrop-blur transition hover:bg-white/30 sm:left-6"
             >
               <ChevronLeft size={22} />
@@ -248,7 +286,7 @@ function Lightbox({ project, index, onClose, onPrev, onNext }) {
             <button
               type="button"
               onClick={onNext}
-              aria-label="Next photo"
+              aria-label={th ? 'รูปถัดไป' : 'Next photo'}
               className="absolute right-2 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-white/15 text-white backdrop-blur transition hover:bg-white/30 sm:right-6"
             >
               <ChevronRight size={22} />
@@ -274,31 +312,31 @@ function ProjectCard({ project, onOpen, lang }) {
         <img
           loading="lazy"
           src={asset(`/projects/${project.images[0]}.webp`)}
-          alt={`${project.title} — ${project.place}`}
+          alt={`${projectTitle(project, th)} — ${projectPlace(project, th)}`}
           className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent" />
         <span className="absolute left-4 top-4 rounded-full bg-lime px-3 py-1 font-display text-[11px] font-bold uppercase tracking-wide text-white">
-          {project.cat}
+          {projectCategory(project, th)}
         </span>
         {project.images.length > 1 && (
           <span className="absolute right-4 top-4 rounded-full bg-ink/70 px-2.5 py-1 font-mono text-[11px] font-medium text-white backdrop-blur">
-            {project.images.length} photos
+            {project.images.length} {th ? 'รูป' : 'photos'}
           </span>
         )}
         <div className="absolute inset-x-0 bottom-0 p-4">
           <p className="font-display text-lg font-extrabold leading-tight text-white sm:text-xl">
-            {project.title}
+            {projectTitle(project, th)}
           </p>
           <p className="mt-0.5 flex items-center gap-1.5 text-[13px] font-medium text-white/80">
-            <MapPin size={13} className="shrink-0" /> {project.place}
+            <MapPin size={13} className="shrink-0" /> {projectPlace(project, th)}
           </p>
         </div>
       </div>
 
       <div className="flex flex-1 flex-col p-5">
         <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-lime/10 px-3 py-1 font-display text-xs font-bold text-lime-dark">
-          <Zap size={12} /> {project.scale}
+          <Zap size={12} /> {projectScale(project, th)}
         </span>
         <p className="mt-3 flex-1 text-sm leading-relaxed text-slatey-500">{th ? project.blurbTh : project.blurb}</p>
         <div className="mt-4 flex flex-wrap gap-1.5">
@@ -351,7 +389,7 @@ export default function ProjectsPage() {
               onLoadedData={() => setVideoReady(true)}
               onCanPlay={() => setVideoReady(true)}
             />
-            <MediaLoader show={!videoReady} label="Loading video" />
+            <MediaLoader show={!videoReady} label={lang === 'th' ? 'กำลังโหลดวิดีโอ' : 'Loading video'} />
             <div className="pointer-events-none absolute inset-0 z-10">
               <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/50 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-ink/80 via-ink/30 to-transparent" />
@@ -436,6 +474,7 @@ export default function ProjectsPage() {
             onClose={close}
             onPrev={() => step(-1)}
             onNext={() => step(1)}
+            lang={lang}
           />
         )}
       </AnimatePresence>

@@ -19,7 +19,7 @@ export default function SolarPanelPage() {
     <div id="top" className="min-h-screen bg-surface">
       <Header />
       <main>
-        <h1 className="sr-only">Dark Feather 450 Wp solar panel — glass-glass, IP68</h1>
+        <h1 className="sr-only">{th ? 'แผงโซลาร์ Dark Feather 450 Wp — กระจก-กระจก IP68' : 'Dark Feather 450 Wp solar panel — glass-glass, IP68'}</h1>
         <PlugPlayVideo />
         <SolarPanelFeatures />
         <SolarYourWay />

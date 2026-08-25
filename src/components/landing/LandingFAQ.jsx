@@ -29,7 +29,7 @@ export default function LandingFAQ() {
       <div className="container-x">
         <Reveal>
           <h2 className="text-2xl font-semibold tracking-tight text-price sm:text-3xl" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
-            FAQ
+            {lang === 'th' ? 'คำถามที่พบบ่อย' : 'FAQ'}
           </h2>
         </Reveal>
 

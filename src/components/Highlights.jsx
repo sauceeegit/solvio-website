@@ -3,14 +3,14 @@ import { asset } from '../lib/format';
 import { useLanguage } from '../context/LanguageContext';
 
 /* Support agent on a headset — infographic for the "Lifetime support" tile */
-function SupportAgent({ className = '' }) {
+function SupportAgent({ className = '', th = false }) {
   return (
     <div className={`flex items-center justify-center bg-[#d6d3ba] ${className}`}>
       <svg
         viewBox="0 0 100 100"
         className="h-full w-full p-2"
         role="img"
-        aria-label="Support agent wearing a headset"
+        aria-label={th ? 'เจ้าหน้าที่ฝ่ายสนับสนุนสวมหูฟัง' : 'Support agent wearing a headset'}
       >
         {/* figure silhouette */}
         <circle cx="50" cy="40" r="13" fill="#12281F" />
@@ -105,7 +105,7 @@ export default function Highlights() {
             <div className="relative h-full min-h-[260px] overflow-hidden rounded-xl2 max-sm:col-span-2 lg:col-span-2 lg:col-start-1 lg:row-start-2">
               <img loading="lazy"
                 src={asset('/savings-bg.jpg')}
-                alt="A couple on a balcony at sunset with Solvio panels on the railing"
+                alt={th ? 'คู่รักบนระเบียงยามพระอาทิตย์ตกพร้อมแผง Solvio บนราวระเบียง' : 'A couple on a balcony at sunset with Solvio panels on the railing'}
                 className="absolute inset-0 h-full w-full object-cover"
               />
               <div className="absolute bottom-0 left-0 max-w-[90%] rounded-tr-xl2 bg-lime p-5 text-white">
@@ -119,7 +119,7 @@ export default function Highlights() {
             <div className="group relative h-full min-h-[340px] overflow-hidden rounded-xl2 max-sm:col-span-2 lg:col-span-2 lg:col-start-3 lg:row-span-2 lg:row-start-1">
               <img loading="lazy"
                 src={asset('/plugplay-photo.jpg')}
-                alt="Easy installation — connecting a panel by hand in the garden"
+                alt={th ? 'ติดตั้งง่าย — เชื่อมต่อแผงด้วยมือในสวน' : 'Easy installation — connecting a panel by hand in the garden'}
                 className="absolute inset-0 h-full w-full object-cover"
               />
               <div className="absolute bottom-0 right-0 flex h-[40%] w-[74%] flex-col justify-center rounded-tl-xl2 p-6 transition-all duration-500 ease-out group-hover:h-full group-hover:w-full" style={{ backgroundColor: '#fdbd4f' }}>
@@ -157,7 +157,7 @@ export default function Highlights() {
             {/* E2 — optional support (cream + placeholder) */}
             <div className="flex h-full min-h-[160px] flex-col rounded-xl2 p-4 lg:col-span-1 lg:col-start-6 lg:row-start-2" style={{ backgroundColor: '#d6d3ba' }}>
               <p className="text-[10px] font-semibold uppercase tracking-wide text-ink/70">{th ? 'เพิ่มเติม' : 'Optional'}</p>
-              <SupportAgent className="mt-2 flex-1 rounded-lg" />
+              <SupportAgent className="mt-2 flex-1 rounded-lg" th={th} />
               <p className="mt-2 font-display text-sm font-bold leading-snug text-ink">{th ? 'บริการตลอดชีพ' : 'Lifetime support'}</p>
             </div>
           </div>

@@ -82,7 +82,7 @@ export default function Footer() {
                 <Mail size={15} className="text-lime" /> sales@solvio.solar
               </li>
               <li className="flex items-center gap-2">
-                <MapPin size={15} className="text-lime" /> Patongo, Pa Tong, Kathu District, Phuket 83150
+                <MapPin size={15} className="text-lime" /> {lang === 'th' ? 'Patongo, ตำบลป่าตอง อำเภอกะทู้ จังหวัดภูเก็ต 83150' : 'Patongo, Pa Tong, Kathu District, Phuket 83150'}
               </li>
             </ul>
           </div>

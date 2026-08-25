@@ -78,9 +78,9 @@ export default function PanelComparison() {
                           style={!isSolvio ? { color: 'rgba(255,255,255,0.45)' } : undefined}
                         >
                           <span className="inline-flex items-center justify-center gap-1.5">
-                            {v}
+                            {th && v === '30 mm framed' ? '30 mm มีกรอบ' : v}
                             {isSolvio && row.lead && (
-                              <Check size={16} strokeWidth={3} className="shrink-0 text-lime" aria-label="category-leading" />
+                              <Check size={16} strokeWidth={3} className="shrink-0 text-lime" aria-label={th ? 'ดีที่สุดในกลุ่ม' : 'category-leading'} />
                             )}
                           </span>
                         </td>
@@ -96,7 +96,7 @@ export default function PanelComparison() {
           <p className="mt-4 max-w-3xl text-xs leading-relaxed" style={{ color: 'rgba(255,255,255,0.3)' }}>
             <Check size={13} strokeWidth={3} className="mb-0.5 mr-1 inline text-lime" />
             {th
-              ? ' = ดีที่สุดในกลุ่มนี้ ตัวเลขประสิทธิภาพและความหนาแน่นกำลังไฟอ้างอิงจาก bin สูงสุด 460 W สัมประสิทธิ์อุณหภูมิเทียบเท่าโมดูล n-type ชั้นนำ'
+              ? ' = ดีที่สุดในกลุ่มนี้ ตัวเลขประสิทธิภาพและความหนาแน่นกำลังไฟอ้างอิงจากเกรดเซลล์ (bin) สูงสุด 460 W สัมประสิทธิ์อุณหภูมิเทียบเท่าโมดูล n-type ชั้นนำ'
               : ' = category-leading in this set. Efficiency and power-density figures reflect the 460 W top bin. Temp coefficient shown is parity with the best n-type modules.'}
           </p>
         </Reveal>

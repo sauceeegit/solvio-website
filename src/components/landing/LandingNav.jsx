@@ -127,7 +127,7 @@ export default function LandingNav() {
           <button
             onClick={() => setOpen(true)}
             className={`grid h-11 w-11 place-items-center rounded-full transition lg:hidden ${solid ? 'text-ink hover:bg-ink/[0.05]' : 'text-white hover:bg-white/10'}`}
-            aria-label="Open menu"
+            aria-label={lang === 'th' ? 'เปิดเมนู' : 'Open menu'}
           >
             <Menu size={30} strokeWidth={2.25} />
           </button>
@@ -150,7 +150,7 @@ export default function LandingNav() {
               <motion.button
                 onClick={() => setOpen(false)}
                 className="grid h-10 w-10 place-items-center rounded-full text-white/80 hover:bg-white/10"
-                aria-label="Close menu"
+                aria-label={lang === 'th' ? 'ปิดเมนู' : 'Close menu'}
                 initial={{ opacity: 0, rotate: -90 }}
                 animate={{ opacity: 1, rotate: 0 }}
                 transition={{ duration: 0.3, delay: 0.1 }}

@@ -97,7 +97,7 @@ export default function GuidePopup() {
             <button
               type="button"
               onClick={close}
-              aria-label="Close"
+              aria-label={th ? 'ปิด' : 'Close'}
               className="absolute right-3 top-3 z-10 grid h-9 w-9 place-items-center rounded-full bg-white/85 text-ink shadow-sm backdrop-blur transition hover:bg-white"
             >
               <X size={18} />
@@ -105,7 +105,7 @@ export default function GuidePopup() {
 
             <img loading="lazy"
               src={asset('/guide-popup.webp')}
-              alt="The ultimate Solvio balcony solar guide"
+              alt={th ? 'คู่มือโซลาร์ระเบียง Solvio ฉบับสมบูรณ์' : 'The ultimate Solvio balcony solar guide'}
               width={900}
               height={772}
               className="block w-full"

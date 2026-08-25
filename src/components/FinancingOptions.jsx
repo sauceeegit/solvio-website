@@ -58,6 +58,7 @@ const loans = {
   home: [
     {
       bank: 'Bangkok Bank',
+      bankTh: 'ธนาคารกรุงเทพ',
       mark: 'BBL',
       color: '#1E4598',
       logo: '/bank-bbl.webp',
@@ -73,6 +74,7 @@ const loans = {
     },
     {
       bank: 'GSB (Government Savings Bank)',
+      bankTh: 'ธนาคารออมสิน (GSB)',
       mark: 'GSB',
       color: '#EB1F8E',
       logo: '/bank-gsb.webp',
@@ -88,6 +90,7 @@ const loans = {
     },
     {
       bank: 'GH Bank (ธอส.)',
+      bankTh: 'ธนาคารอาคารสงเคราะห์ (ธอส.)',
       mark: 'GHB',
       color: '#F58220',
       logo: '/bank-ghb.webp',
@@ -105,6 +108,7 @@ const loans = {
   business: [
     {
       bank: 'Kasikornbank',
+      bankTh: 'ธนาคารกสิกรไทย',
       mark: 'KBank',
       color: '#138F2D',
       logo: '/bank-kbank.webp',
@@ -120,6 +124,7 @@ const loans = {
     },
     {
       bank: 'Krungsri',
+      bankTh: 'ธนาคารกรุงศรีอยุธยา (กรุงศรี)',
       mark: 'KS',
       color: '#7A5CA0',
       logo: '/bank-krungsri.webp',
@@ -135,6 +140,7 @@ const loans = {
     },
     {
       bank: 'SME D Bank',
+      bankTh: 'ธนาคาร SME D Bank',
       mark: 'SME',
       color: '#00539B',
       logo: '/bank-sme.webp',
@@ -249,14 +255,14 @@ export default function FinancingOptions() {
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
                     <p className="font-mono text-[11px] uppercase tracking-wider text-slatey-600">
-                      {l.bank}
+                      {lang === 'th' ? l.bankTh : l.bank}
                     </p>
                     <h4 className="mt-1 font-display text-lg font-bold text-price">{l.product}</h4>
                   </div>
                   {l.logo ? (
                     <img
                       src={asset(l.logo)}
-                      alt={lang === 'th' ? `โลโก้ ${l.bank}` : `${l.bank} logo`}
+                      alt={lang === 'th' ? `โลโก้ ${l.bankTh}` : `${l.bank} logo`}
                       loading="lazy"
                       className="h-16 w-16 shrink-0 rounded-lg object-cover"
                     />

@@ -55,7 +55,7 @@ export default function Testimonials() {
             >
               <div>
                 <p className="font-display text-[11px] font-semibold uppercase tracking-widest text-ink/40 mb-3">
-                  {t.city}
+                  {th ? t.cityTh : t.city}
                 </p>
                 <blockquote className="font-display text-[1.05rem] font-medium leading-snug text-ink">
                   "{th ? testimonialsTh[i].text : t.text}"
@@ -76,14 +76,14 @@ export default function Testimonials() {
           <button
             onClick={() => scrollBy(-1)}
             className="grid h-10 w-10 place-items-center rounded-full bg-white text-ink shadow-sm transition hover:bg-ink hover:text-white"
-            aria-label="Previous reviews"
+            aria-label={th ? 'รีวิวก่อนหน้า' : 'Previous reviews'}
           >
             <ChevronLeft size={18} />
           </button>
           <button
             onClick={() => scrollBy(1)}
             className="grid h-10 w-10 place-items-center rounded-full bg-white text-ink shadow-sm transition hover:bg-ink hover:text-white"
-            aria-label="Next reviews"
+            aria-label={th ? 'รีวิวถัดไป' : 'Next reviews'}
           >
             <ChevronRight size={18} />
           </button>

@@ -42,11 +42,11 @@ export default function FounderVideo() {
             type="button"
             onClick={openVideo}
             className="group relative block aspect-video w-full overflow-hidden rounded-xl2 bg-ink shadow-lift"
-            aria-label="Play founder interview"
+            aria-label={lang === 'th' ? 'เล่นบทสัมภาษณ์ผู้ก่อตั้ง' : 'Play founder interview'}
           >
             <img loading="lazy"
               src={founder.poster}
-              alt="Founder interview"
+              alt={lang === 'th' ? 'บทสัมภาษณ์ผู้ก่อตั้ง' : 'Founder interview'}
               className="absolute inset-0 h-full w-full object-cover object-top opacity-80 transition duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-ink/40" />
@@ -97,7 +97,7 @@ export default function FounderVideo() {
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                aria-label="Close video"
+                aria-label={lang === 'th' ? 'ปิดวิดีโอ' : 'Close video'}
                 className="absolute -top-11 right-0 grid h-9 w-9 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
               >
                 <X size={20} />
@@ -106,7 +106,7 @@ export default function FounderVideo() {
                 <iframe
                   className="h-full w-full"
                   src={`${founder.youtubeEmbed}?autoplay=1&rel=0`}
-                  title="Solvio founder interview"
+                  title={lang === 'th' ? 'บทสัมภาษณ์ผู้ก่อตั้ง Solvio' : 'Solvio founder interview'}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 />

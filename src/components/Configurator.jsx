@@ -27,7 +27,7 @@ function SectionHead({ step, title, hint, hintMobileHide }) {
   );
 }
 
-function CableButton({ selected, onClick, opt }) {
+function CableButton({ selected, onClick, opt, th }) {
   return (
     <button
       onClick={onClick}
@@ -37,7 +37,7 @@ function CableButton({ selected, onClick, opt }) {
           : 'border-ink/12 bg-white text-ink hover:border-ink/30'
       }`}
     >
-      <span className="font-display text-[15px] font-bold leading-tight">{opt.short}</span>
+      <span className="font-display text-[15px] font-bold leading-tight">{th ? (opt.shortTh ?? opt.short) : opt.short}</span>
       {opt.price !== 0 && (
         <span className={`mt-0.5 font-body text-xs font-medium leading-none ${selected ? 'text-white/85' : 'text-slatey-400'}`}>
           {bahtDelta(opt.price)}
@@ -52,7 +52,7 @@ function CableButton({ selected, onClick, opt }) {
   );
 }
 
-function ModuleCard({ selected, onClick, panel }) {
+function ModuleCard({ selected, onClick, panel, th }) {
   return (
     <button
       onClick={onClick}
@@ -64,7 +64,7 @@ function ModuleCard({ selected, onClick, panel }) {
     >
       {/* image */}
       <div className="relative aspect-[3/4] w-full overflow-hidden">
-        <img loading="lazy" src={panel.img} alt={panel.label} className="h-full w-full object-cover" />
+        <img loading="lazy" src={panel.img} alt={th ? `แผงโซลาร์ ${panel.label}` : panel.label} className="h-full w-full object-cover" />
         {/* selected tint */}
         {selected && <div className="absolute inset-0 bg-lime/10 pointer-events-none" />}
         {/* check */}
@@ -88,9 +88,9 @@ function ModuleCard({ selected, onClick, panel }) {
           <span className="font-display text-sm font-bold text-ink leading-tight">{panel.label}</span>
           <span className="shrink-0 font-display text-sm font-bold text-ink">{baht(panelThb(panel.id))}</span>
         </div>
-        <span className="font-body text-xs text-slatey-600">{panel.sub}</span>
+        <span className="font-body text-xs text-slatey-600">{th ? panel.subTh : panel.sub}</span>
         <span className="mt-2 border-t border-ink/[0.06] pt-2 font-body text-[11px] leading-relaxed text-slatey-600 max-sm:text-[10px]">
-          {panel.dims}<br />{panel.weight} · per panel
+          {panel.dims}<br />{panel.weight} · {th ? 'ต่อแผง' : 'per panel'}
         </span>
       </div>
     </button>
@@ -201,7 +201,7 @@ export default function Configurator({ config, set }) {
         <SectionHead step={th ? 'ขั้นที่ 2 — แผง' : 'Step 2 — Module'} title={th ? 'คุณต้องการแผงขนาดและประสิทธิภาพแบบไหน?' : 'What module size and performance do you want to install?'} hint={`${panel.wp} Wp ${th ? 'ต่อแผง' : 'each'}`} hintMobileHide />
         <div className="grid grid-cols-2 gap-2.5">
           {panelOptions.map((p) => (
-            <ModuleCard key={p.id} selected={config.panel === p.id} onClick={() => set('panel', p.id)} panel={p} />
+            <ModuleCard key={p.id} selected={config.panel === p.id} onClick={() => set('panel', p.id)} panel={p} th={th} />
           ))}
         </div>
         <div className="mt-2.5 flex items-center justify-between gap-3 rounded-xl border border-ink/12 bg-white px-4 py-3">
@@ -213,7 +213,7 @@ export default function Configurator({ config, set }) {
             <button
               type="button"
               onClick={() => set('modules', Math.max(1, config.modules - 1))}
-              aria-label="Remove a module"
+              aria-label={th ? 'ลดจำนวนแผงหนึ่งแผง' : 'Remove a module'}
               className="grid h-9 w-9 place-items-center rounded-lg border border-ink/12 text-ink transition hover:border-ink/30 disabled:opacity-40"
               disabled={config.modules <= 1}
             >
@@ -228,13 +228,13 @@ export default function Configurator({ config, set }) {
                 const v = parseInt(e.target.value, 10);
                 set('modules', Number.isFinite(v) && v >= 1 ? v : 1);
               }}
-              aria-label="Number of modules"
+              aria-label={th ? 'จำนวนแผง' : 'Number of modules'}
               className="h-9 w-16 rounded-lg border border-ink/12 bg-white text-center font-display text-base font-bold text-ink focus:border-lime focus:outline-none focus:ring-1 focus:ring-lime/40"
             />
             <button
               type="button"
               onClick={() => set('modules', config.modules + 1)}
-              aria-label="Add a module"
+              aria-label={th ? 'เพิ่มแผงหนึ่งแผง' : 'Add a module'}
               className="grid h-9 w-9 place-items-center rounded-lg border border-ink/12 text-ink transition hover:border-ink/30"
             >
               +
@@ -258,11 +258,11 @@ export default function Configurator({ config, set }) {
         <div className="space-y-2.5">
           <div className="grid grid-cols-2 gap-2.5">
             {cableOptions.filter((c) => c.id !== 'none').map((c) => (
-              <CableButton key={c.id} selected={config.cable === c.id} onClick={() => set('cable', c.id)} opt={c} />
+              <CableButton key={c.id} selected={config.cable === c.id} onClick={() => set('cable', c.id)} opt={c} th={th} />
             ))}
           </div>
           {cableOptions.filter((c) => c.id === 'none').map((c) => (
-            <CableButton key={c.id} selected={config.cable === c.id} onClick={() => set('cable', c.id)} opt={c} />
+            <CableButton key={c.id} selected={config.cable === c.id} onClick={() => set('cable', c.id)} opt={c} th={th} />
           ))}
         </div>
       </div>

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Plus } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { faqs } from '../data/product';
+import { faqs, faqsTh } from '../data/product';
 import Reveal from './Reveal';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -41,13 +41,14 @@ function Item({ q, a, open, onToggle }) {
 }
 
 export default function FAQ({
-  items = faqs,
+  items,
   eyebrow = 'Questions',
   heading = 'FAQ',
   subtitle = 'Still unsure? Our solar advisors answer in plain language, Monday to Friday.',
   bg,
 }) {
   const { lang } = useLanguage();
+  const resolvedItems = items ?? (lang === 'th' ? faqsTh : faqs);
   const [open, setOpen] = useState(0);
 
   return (
@@ -71,7 +72,7 @@ export default function FAQ({
 
         <Reveal delay={0.1}>
           <div className="space-y-2">
-            {items.map((f, i) => (
+            {resolvedItems.map((f, i) => (
               <Item
                 key={f.q}
                 q={f.q}

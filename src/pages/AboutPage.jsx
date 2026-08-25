@@ -39,8 +39,8 @@ const values = [
 ];
 
 const stats = [
-  { value: '25+ yrs', label: 'Panel performance warranty', labelTh: 'การรับประกันประสิทธิภาพแผง' },
-  { value: '1–3 days', label: 'Typical rooftop install', labelTh: 'ระยะเวลาติดตั้งหลังคาทั่วไป' },
+  { value: '25+ yrs', valueTh: '25+ ปี', label: 'Panel performance warranty', labelTh: 'การรับประกันประสิทธิภาพแผง' },
+  { value: '1–3 days', valueTh: '1–3 วัน', label: 'Typical rooftop install', labelTh: 'ระยะเวลาติดตั้งหลังคาทั่วไป' },
   { value: '100%', label: 'Permitting handled for you', labelTh: 'ดูแลใบอนุญาตครบทุกขั้นตอน' },
   { value: 'Phuket', label: 'Proudly based in Thailand', labelTh: 'ตั้งอยู่ในประเทศไทย' },
 ];
@@ -78,7 +78,7 @@ export default function AboutPage() {
               <div className="overflow-hidden rounded-xl2 shadow-lift">
                 <img
                   src={asset('/rooftop-cta.webp')}
-                  alt="Solvio technicians installing a rooftop solar array in Thailand"
+                  alt={lang === 'th' ? 'ช่างเทคนิค Solvio ติดตั้งโซลาร์หลังคาในประเทศไทย' : 'Solvio technicians installing a rooftop solar array in Thailand'}
                   width={1448}
                   height={1086}
                   className="block w-full"
@@ -188,7 +188,7 @@ export default function AboutPage() {
           <div className="container-x grid grid-cols-2 gap-8 text-center lg:grid-cols-4">
             {stats.map((s) => (
               <div key={s.label}>
-                <p className="font-display text-3xl font-extrabold text-lime sm:text-4xl">{s.value}</p>
+                <p className="font-display text-3xl font-extrabold text-lime sm:text-4xl">{lang === 'th' ? (s.valueTh ?? s.value) : s.value}</p>
                 <p className="mt-1.5 text-sm text-white/60">{lang === 'th' ? s.labelTh : s.label}</p>
               </div>
             ))}

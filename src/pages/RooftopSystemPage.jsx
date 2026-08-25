@@ -58,7 +58,7 @@ export default function RooftopSystemPage() {
               onLoadedData={() => setBrandReady(true)}
               onCanPlay={() => setBrandReady(true)}
             />
-            <MediaLoader show={!brandReady} label="Loading video" />
+            <MediaLoader show={!brandReady} label={lang === 'th' ? 'กำลังโหลดวิดีโอ' : 'Loading video'} />
           </div>
         </section>
 
@@ -71,7 +71,7 @@ export default function RooftopSystemPage() {
                 <div className="overflow-hidden rounded-xl2">
                   <img loading="lazy"
                     src={asset('/rooftop-feature.webp')}
-                    alt="Aerial before and after — a villa roof fitted with a full Solvio solar array"
+                    alt={lang === 'th' ? 'ภาพมุมสูงก่อนและหลัง — หลังคาวิลลาติดตั้งระบบโซลาร์ Solvio เต็มรูปแบบ' : 'Aerial before and after — a villa roof fitted with a full Solvio solar array'}
                     width={1448}
                     height={1086}
                     className="block w-full"
@@ -110,7 +110,7 @@ export default function RooftopSystemPage() {
                 <div className="overflow-hidden rounded-xl2 lg:order-2">
                   <img loading="lazy"
                     src={asset('/rooftop-cta.webp')}
-                    alt="Solvio technicians installing a rooftop solar array on a resort at sunset"
+                    alt={lang === 'th' ? 'ช่างเทคนิค Solvio ติดตั้งโซลาร์หลังคาบนรีสอร์ทยามพระอาทิตย์ตก' : 'Solvio technicians installing a rooftop solar array on a resort at sunset'}
                     width={1448}
                     height={1086}
                     className="block w-full"

@@ -92,7 +92,7 @@ export default function FaqsPage() {
             <Reveal delay={0.05}>
               <div
                 role="tablist"
-                aria-label="FAQ topics"
+                aria-label={lang === 'th' ? 'หัวข้อคำถามที่พบบ่อย' : 'FAQ topics'}
                 className="mx-auto mt-8 flex max-w-3xl flex-wrap justify-center gap-2"
               >
                 {TABS.map((t) => {

@@ -50,7 +50,7 @@ export default function SunshineSection() {
           <Reveal>
             <img
               src={asset('/solvio-savings.webp')}
-              alt="Solvio balcony solar system installed on a modern home"
+              alt={lang === 'th' ? 'ระบบโซลาร์ระเบียง Solvio ติดตั้งบนบ้านสมัยใหม่' : 'Solvio balcony solar system installed on a modern home'}
               className="mx-auto w-full max-h-[580px] rounded-2xl object-contain"
               loading="lazy"
             />

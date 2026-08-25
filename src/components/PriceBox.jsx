@@ -35,7 +35,7 @@ export default function PriceBox({ derived, onAddToCart, added: addedProp }) {
       <div className="flex items-start justify-between gap-4">
         <div>
           <h2 className="font-display text-xl font-extrabold text-ink">{product.name}</h2>
-          <p className="mt-0.5 text-sm text-ink/60">{product.tagline}</p>
+          <p className="mt-0.5 text-sm text-ink/60">{th ? product.taglineTh : product.tagline}</p>
         </div>
       </div>
 

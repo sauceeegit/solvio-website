@@ -1,10 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
+import { useLanguage } from '../../context/LanguageContext';
 
 // Header banners for the portable page.
 // - Mobile (< 640px): a hand-swipeable, snap-scrolling track of portrait banners.
 // - Desktop (≥ 640px): an auto-advancing, infinitely looping crossfade.
 // Slides can be { desktop, mobile } image slides or { video } video slides.
 export default function HeaderCarousel({ slides, interval = 3375 }) {
+  const { lang } = useLanguage();
+  const th = lang === 'th';
   const [i, setI] = useState(0); // desktop crossfade index
   const [active, setActive] = useState(0); // mobile scroll index (for the dots)
   const trackRef = useRef(null);
@@ -66,7 +69,7 @@ export default function HeaderCarousel({ slides, interval = 3375 }) {
               <img
                 key={s.mobile}
                 src={s.mobile}
-                alt="Solvio portable power stations"
+                alt={th ? 'แบตเตอรี่พกพา Solvio' : 'Solvio portable power stations'}
                 loading={idx === 0 ? 'eager' : 'lazy'}
                 draggable={false}
                 className="h-full w-full shrink-0 snap-center object-cover"
@@ -81,7 +84,7 @@ export default function HeaderCarousel({ slides, interval = 3375 }) {
             <button
               key={idx}
               onClick={() => scrollToSlide(idx)}
-              aria-label={`Show banner ${idx + 1}`}
+              aria-label={th ? `แสดงแบนเนอร์ ${idx + 1}` : `Show banner ${idx + 1}`}
               className={`pointer-events-auto h-2 rounded-full transition-all ${
                 idx === active ? 'w-6 bg-white' : 'w-2 bg-white/50 hover:bg-white/70'
               }`}
@@ -109,7 +112,7 @@ export default function HeaderCarousel({ slides, interval = 3375 }) {
             <img
               key={s.desktop}
               src={s.desktop}
-              alt="Solvio portable power stations"
+              alt={th ? 'แบตเตอรี่พกพา Solvio' : 'Solvio portable power stations'}
               loading={idx === 0 ? 'eager' : 'lazy'}
               className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[1100ms] ease-in-out ${
                 idx === i ? 'opacity-100' : 'opacity-0'
@@ -123,7 +126,7 @@ export default function HeaderCarousel({ slides, interval = 3375 }) {
             <button
               key={idx}
               onClick={() => setI(idx)}
-              aria-label={`Show banner ${idx + 1}`}
+              aria-label={th ? `แสดงแบนเนอร์ ${idx + 1}` : `Show banner ${idx + 1}`}
               className={`h-2 rounded-full transition-all ${
                 idx === i ? 'w-6 bg-ink/80' : 'w-2 bg-ink/30 hover:bg-ink/50'
               }`}

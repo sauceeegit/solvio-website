@@ -119,7 +119,7 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
                     <button
                       type="button"
                       onClick={() => setModules(Math.max(1, modules - 1))}
-                      aria-label="Remove a panel"
+                      aria-label={th ? 'ลดจำนวนแผงหนึ่งแผง' : 'Remove a panel'}
                       className="grid h-8 w-8 place-items-center rounded-lg border border-ink/12 text-ink transition hover:border-ink/30 disabled:opacity-40"
                       disabled={modules <= 1}
                     >
@@ -135,13 +135,13 @@ export default function SavingsCalculator({ derived = DEFAULT_DERIVED }) {
                         const v = parseInt(e.target.value, 10);
                         setModules(Number.isFinite(v) ? Math.min(12, Math.max(1, v)) : 1);
                       }}
-                      aria-label="Number of panels"
+                      aria-label={th ? 'จำนวนแผง' : 'Number of panels'}
                       className="h-8 w-14 rounded-lg border border-ink/12 bg-white text-center font-display text-sm font-bold text-ink focus:border-lime focus:outline-none focus:ring-1 focus:ring-lime/40"
                     />
                     <button
                       type="button"
                       onClick={() => setModules(Math.min(12, modules + 1))}
-                      aria-label="Add a panel"
+                      aria-label={th ? 'เพิ่มแผงหนึ่งแผง' : 'Add a panel'}
                       className="grid h-8 w-8 place-items-center rounded-lg border border-ink/12 text-ink transition hover:border-ink/30 disabled:opacity-40"
                       disabled={modules >= 12}
                     >

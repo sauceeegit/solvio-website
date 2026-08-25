@@ -62,7 +62,7 @@ export default function Navbar({ cartCount = 0 }) {
           <button
             onClick={() => setOpen(true)}
             className="grid h-10 w-10 place-items-center rounded-full text-ink/70 transition hover:bg-ink/[0.05] lg:hidden"
-            aria-label="Open menu"
+            aria-label={lang === 'th' ? 'เปิดเมนู' : 'Open menu'}
           >
             <Menu size={20} />
           </button>
@@ -82,7 +82,7 @@ export default function Navbar({ cartCount = 0 }) {
               <button
                 onClick={() => setOpen(false)}
                 className="grid h-10 w-10 place-items-center rounded-full text-white/80 hover:bg-white/10"
-                aria-label="Close menu"
+                aria-label={lang === 'th' ? 'ปิดเมนู' : 'Close menu'}
               >
                 <X size={22} />
               </button>

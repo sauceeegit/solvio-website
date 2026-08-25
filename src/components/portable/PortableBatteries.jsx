@@ -67,7 +67,7 @@ export default function PortableBatteries() {
           <div className="hidden shrink-0 gap-2 sm:flex">
             <button
               onClick={() => scrollByCard(-1)}
-              aria-label="Previous"
+              aria-label={th ? 'ก่อนหน้า' : 'Previous'}
               className={`grid h-11 w-11 place-items-center rounded-full transition active:scale-95 ${
                 canScrollLeft
                   ? 'bg-lime text-white hover:bg-lime-dark'
@@ -78,7 +78,7 @@ export default function PortableBatteries() {
             </button>
             <button
               onClick={() => scrollByCard(1)}
-              aria-label="Next"
+              aria-label={th ? 'ถัดไป' : 'Next'}
               className={`grid h-11 w-11 place-items-center rounded-full transition active:scale-95 ${
                 canScrollRight
                   ? 'bg-lime text-white hover:bg-lime-dark'
@@ -112,7 +112,7 @@ export default function PortableBatteries() {
                   {p.sideImg && (
                     <img loading="lazy"
                       src={p.sideImg}
-                      alt={`${p.name} — side view`}
+                      alt={th ? `${p.name} — มุมมองด้านข้าง` : `${p.name} — side view`}
                       className={`absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100 ${p.imgScale || ''}`}
                     />
                   )}
