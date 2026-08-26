@@ -6,8 +6,16 @@ import puppeteer from 'puppeteer';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const baseUrl = process.env.QA_BASE_URL || 'http://127.0.0.1:4173';
-const outputPath = path.join(root, 'qa.json');
-const screenshotDir = path.join(root, 'qa-screenshots');
+if (!process.env.QA_ARTIFACT_DIR) {
+  throw new Error('QA_ARTIFACT_DIR is required and must point outside the source repository');
+}
+const artifactDir = path.resolve(process.env.QA_ARTIFACT_DIR);
+const relativeArtifactDir = path.relative(root, artifactDir);
+if (!relativeArtifactDir.startsWith('..') || path.isAbsolute(relativeArtifactDir)) {
+  throw new Error(`QA_ARTIFACT_DIR must be outside the source repository: ${artifactDir}`);
+}
+const outputPath = path.join(artifactDir, 'qa.json');
+const screenshotDir = path.join(artifactDir, 'qa-screenshots');
 const chrome = process.env.CHROME_BIN || '/opt/data/toolchain/chromium/chrome-headless-shell/chrome-headless-shell';
 const routes = [
   '/', '/balcony-system', '/rooftop-system', '/portable-system',
