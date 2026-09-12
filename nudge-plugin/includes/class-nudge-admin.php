@@ -25,9 +25,13 @@ class Nudge_Admin {
         wp_enqueue_style(  'nudge-admin', NUDGE_URL . 'assets/nudge-admin.css', [], NUDGE_VERSION );
         wp_enqueue_script( 'nudge-admin', NUDGE_URL . 'assets/nudge-admin.js',  [], NUDGE_VERSION, true );
         wp_localize_script( 'nudge-admin', 'NudgeData', [
-            'nonce'   => wp_create_nonce( 'wp_rest' ),
-            'restUrl' => esc_url_raw( rest_url( 'nudge/v1' ) ),
-            'hasKey'  => ! empty( get_option( 'nudge_claude_api_key', '' ) ),
+            'nonce'     => wp_create_nonce( 'wp_rest' ),
+            'restUrl'   => esc_url_raw( rest_url( 'nudge/v1' ) ),
+            'hasKey'    => ! empty( get_option( 'nudge_claude_api_key', '' ) ),
+            'brand'     => Nudge_Brand::get(),
+            'shopName'  => get_bloginfo( 'name' ),
+            'shopUrl'   => get_home_url(),
+            'templates' => Nudge_Template_Renderer::template_ids(),
         ] );
     }
 
@@ -35,7 +39,7 @@ class Nudge_Admin {
         ?>
         <div id="nudge-app" class="nudge-wrap">
 
-            <!-- Compose -->
+            <!-- ── Compose ───────────────────────────────────────── -->
             <div id="nudge-compose">
                 <div class="nudge-hero">
                     <h1 class="nudge-headline">Tell Nudge what you want.</h1>
@@ -45,10 +49,10 @@ class Nudge_Admin {
 
                 <div class="nudge-chips-label">Try an example</div>
                 <div class="nudge-chips">
-                    <button class="nudge-chip" data-prompt="Win back customers who haven't ordered in 3 months. Casual and warm tone.">Win-back for lapsed customers</button>
-                    <button class="nudge-chip" data-prompt="Thank everyone who placed an order this week. Personal and heartfelt.">Thank this week's buyers</button>
-                    <button class="nudge-chip" data-prompt="Announce a 20% off weekend flash sale. Urgent and exciting tone.">20% off flash sale</button>
-                    <button class="nudge-chip" data-prompt="Welcome email for first-time buyers. Friendly introduction to the shop.">Welcome first-time buyers</button>
+                    <button class="nudge-chip" data-prompt="Win back customers who haven't ordered in 3 months. Casual and warm tone.">+ Win-back for lapsed customers</button>
+                    <button class="nudge-chip" data-prompt="Thank everyone who placed an order this week. Personal and heartfelt.">+ Thank this week's buyers</button>
+                    <button class="nudge-chip" data-prompt="Announce a 20% off weekend flash sale. Urgent and exciting tone.">+ 20% off flash sale</button>
+                    <button class="nudge-chip" data-prompt="Welcome email for first-time buyers. Friendly introduction to the shop.">+ Welcome first-time buyers</button>
                 </div>
 
                 <textarea id="nudge-prompt" placeholder="e.g. Win back customers who haven't ordered in 3 months. Casual tone."></textarea>
@@ -62,21 +66,30 @@ class Nudge_Admin {
                 <p id="nudge-error" class="nudge-error" hidden></p>
             </div>
 
-            <!-- Preview -->
+            <!-- ── Preview / Ready to Send ───────────────────────── -->
             <div id="nudge-preview" hidden>
-                <div class="nudge-section-title">Preview &amp; Send</div>
+
+                <div class="nudge-ready-header">
+                    <div class="nudge-ready-title">READY TO SEND</div>
+                    <div class="nudge-audience-row">
+                        <span class="nudge-badge nudge-badge-count"><span id="nudge-count">0</span> customers</span>
+                        <span class="nudge-badge nudge-badge-segment" id="nudge-segment"></span>
+                    </div>
+                </div>
+
                 <div class="nudge-field-row">
                     <div class="nudge-field nudge-field-subject">
                         <label class="nudge-label" for="nudge-subject">Subject line</label>
                         <input type="text" id="nudge-subject" class="nudge-input" />
                     </div>
-                    <div class="nudge-field">
-                        <span class="nudge-label">Recipients</span>
-                        <div class="nudge-recipients">
-                            <strong id="nudge-count">0</strong> customers
-                            <span class="nudge-segment-tag" id="nudge-segment"></span>
-                        </div>
-                    </div>
+                </div>
+
+                <div class="nudge-tpl-bar-label nudge-label">Design</div>
+                <div class="nudge-tpl-bar" id="nudge-tpl-bar">
+                    <button class="nudge-tpl-btn active" data-template="minimal">Minimal</button>
+                    <button class="nudge-tpl-btn" data-template="editorial">Editorial</button>
+                    <button class="nudge-tpl-btn" data-template="bold">Bold</button>
+                    <button class="nudge-tpl-btn" data-template="product">Product</button>
                 </div>
 
                 <div class="nudge-email-frame">
@@ -84,22 +97,43 @@ class Nudge_Admin {
                         <span class="nudge-dot r"></span>
                         <span class="nudge-dot y"></span>
                         <span class="nudge-dot g"></span>
-                        <span class="nudge-frame-label">Email preview</span>
+                        <span class="nudge-frame-label">Email preview — click text to edit</span>
                     </div>
-                    <iframe id="nudge-iframe" sandbox="allow-same-origin" title="Email preview"></iframe>
+                    <div id="nudge-email-preview" class="nudge-preview-body"></div>
+                </div>
+
+                <div class="nudge-refine-section">
+                    <div class="nudge-refine-title">Tell Nudge what to change</div>
+                    <div class="nudge-chips nudge-refine-chips">
+                        <button class="nudge-chip" data-refine="Make it shorter">+ Make it shorter</button>
+                        <button class="nudge-chip" data-refine="Make it more playful">+ More playful</button>
+                        <button class="nudge-chip" data-refine="Make it more premium">+ More premium</button>
+                        <button class="nudge-chip" data-refine="Make it less salesy">+ Less salesy</button>
+                        <button class="nudge-chip" data-refine="Change or add a discount offer">+ Change offer</button>
+                        <button class="nudge-chip" data-refine="Rewrite the subject line to be more compelling">+ Rewrite subject</button>
+                    </div>
+                    <div class="nudge-refine-row">
+                        <textarea id="nudge-refine-input" placeholder="Or describe what to change&hellip;"></textarea>
+                        <button id="nudge-refine-btn" class="nudge-btn-secondary">Refine &rarr;</button>
+                    </div>
+                    <span id="nudge-refine-loading" hidden>
+                        <span class="nudge-spinner"></span> Rewriting&hellip;
+                    </span>
+                    <p id="nudge-refine-error" class="nudge-error" hidden></p>
                 </div>
 
                 <div class="nudge-send-row">
-                    <button id="nudge-send" class="nudge-btn-secondary">
+                    <button id="nudge-send" class="nudge-btn-primary">
                         Send to <span id="nudge-send-count">0</span> customers &uarr;
                     </button>
-                    <button id="nudge-reset" class="nudge-btn-text">Start over &rarr;</button>
+                    <button id="nudge-reset" class="nudge-btn-text">Start over</button>
                     <span id="nudge-send-spinner" class="nudge-spinner" hidden></span>
                 </div>
                 <p id="nudge-send-error" class="nudge-error" hidden></p>
+
             </div>
 
-            <!-- Success -->
+            <!-- ── Success ───────────────────────────────────────── -->
             <div id="nudge-success" hidden>
                 <div class="nudge-success-big">Sent &#10003;</div>
                 <p id="nudge-success-msg" class="nudge-success-sub"></p>

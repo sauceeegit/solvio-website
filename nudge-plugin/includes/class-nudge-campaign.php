@@ -8,13 +8,15 @@ class Nudge_Campaign {
         $wpdb->insert(
             $wpdb->prefix . 'nudge_campaigns',
             [
-                'prompt'    => $data['prompt'],
-                'subject'   => $data['subject'],
-                'body_html' => $data['body_html'],
-                'audience'  => wp_json_encode( $data['audience'] ?? [] ),
-                'status'    => 'draft',
+                'prompt'       => $data['prompt'],
+                'subject'      => $data['subject'],
+                'body_html'    => $data['body_html'],
+                'content_json' => isset( $data['content_json'] ) ? wp_json_encode( $data['content_json'] ) : null,
+                'template_id'  => $data['template_id'] ?? 'minimal',
+                'audience'     => wp_json_encode( $data['audience'] ?? [] ),
+                'status'       => 'draft',
             ],
-            [ '%s', '%s', '%s', '%s', '%s' ]
+            [ '%s', '%s', '%s', '%s', '%s', '%s', '%s' ]
         );
         return (int) $wpdb->insert_id;
     }
@@ -29,8 +31,25 @@ class Nudge_Campaign {
             ARRAY_A
         );
         if ( ! $row ) return null;
-        $row['audience'] = json_decode( $row['audience'], true ) ?? [];
+        $row['audience']     = json_decode( $row['audience'], true ) ?? [];
+        $row['content_json'] = $row['content_json'] ? json_decode( $row['content_json'], true ) : null;
         return $row;
+    }
+
+    public static function update_content( int $id, array $content_json, string $body_html, string $template_id ): void {
+        global $wpdb;
+        $wpdb->update(
+            $wpdb->prefix . 'nudge_campaigns',
+            [
+                'content_json' => wp_json_encode( $content_json ),
+                'body_html'    => $body_html,
+                'template_id'  => $template_id,
+                'subject'      => $content_json['subject'] ?? '',
+            ],
+            [ 'id' => $id ],
+            [ '%s', '%s', '%s', '%s' ],
+            [ '%d' ]
+        );
     }
 
     public static function update_status( int $id, string $status ): void {
@@ -92,7 +111,7 @@ class Nudge_Campaign {
         global $wpdb;
         return $wpdb->get_results(
             $wpdb->prepare(
-                "SELECT c.*,
+                "SELECT c.id, c.prompt, c.subject, c.template_id, c.status, c.created_at, c.sent_at,
                     (SELECT COUNT(*) FROM {$wpdb->prefix}nudge_campaign_recipients r
                      WHERE r.campaign_id = c.id) AS total,
                     (SELECT COUNT(*) FROM {$wpdb->prefix}nudge_campaign_recipients r

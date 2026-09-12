@@ -44,6 +44,8 @@ add_action( 'plugins_loaded', function () {
     require_once NUDGE_DIR . 'includes/class-nudge-suppression.php';
     require_once NUDGE_DIR . 'includes/class-nudge-campaign.php';
     require_once NUDGE_DIR . 'includes/class-nudge-audience.php';
+    require_once NUDGE_DIR . 'includes/class-nudge-brand.php';
+    require_once NUDGE_DIR . 'includes/class-nudge-template-renderer.php';
     require_once NUDGE_DIR . 'includes/class-nudge-generator.php';
     require_once NUDGE_DIR . 'includes/class-nudge-mailer.php';
     require_once NUDGE_DIR . 'includes/class-nudge-scheduler.php';

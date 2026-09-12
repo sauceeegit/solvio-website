@@ -29,6 +29,8 @@ class Nudge_Install {
                 prompt      TEXT            NOT NULL,
                 subject     VARCHAR(250)    NOT NULL,
                 body_html   LONGTEXT        NOT NULL,
+                content_json LONGTEXT       NULL,
+                template_id VARCHAR(50)     NOT NULL DEFAULT 'minimal',
                 audience    TEXT            NOT NULL,
                 status      VARCHAR(20)     NOT NULL DEFAULT 'draft',
                 created_at  DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,

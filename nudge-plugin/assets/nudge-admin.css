@@ -1,16 +1,14 @@
 /* ── Nudge admin — WP-compatible light styles ─────────────────── */
 
 .nudge-wrap {
-    max-width: 820px;
+    max-width: 840px;
     margin: 24px 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     color: #1a1a1a;
 }
 
 /* ── Hero / compose ────────────────────────────────────────────── */
-.nudge-hero {
-    margin-bottom: 28px;
-}
+.nudge-hero { margin-bottom: 28px; }
 
 .nudge-headline {
     font-size: 26px;
@@ -104,9 +102,7 @@
     margin-bottom: 16px;
 }
 
-#nudge-prompt::placeholder {
-    color: #aaa;
-}
+#nudge-prompt::placeholder { color: #aaa; }
 
 /* ── Actions ───────────────────────────────────────────────────── */
 .nudge-actions {
@@ -133,21 +129,9 @@
     text-decoration: none;
 }
 
-.nudge-btn-primary:hover {
-    background: #333;
-    transform: translateY(-1px);
-    color: #fff;
-}
-
-.nudge-btn-primary:active {
-    transform: scale(0.98);
-}
-
-.nudge-btn-primary:disabled {
-    opacity: 0.55;
-    cursor: not-allowed;
-    transform: none;
-}
+.nudge-btn-primary:hover { background: #333; transform: translateY(-1px); color: #fff; }
+.nudge-btn-primary:active { transform: scale(0.98); }
+.nudge-btn-primary:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
 
 .nudge-btn-secondary {
     display: inline-flex;
@@ -165,15 +149,8 @@
     transition: background 0.12s, color 0.12s;
 }
 
-.nudge-btn-secondary:hover {
-    background: #111;
-    color: #fff;
-}
-
-.nudge-btn-secondary:disabled {
-    opacity: 0.55;
-    cursor: not-allowed;
-}
+.nudge-btn-secondary:hover { background: #111; color: #fff; }
+.nudge-btn-secondary:disabled { opacity: 0.55; cursor: not-allowed; }
 
 .nudge-btn-text {
     background: none;
@@ -187,9 +164,7 @@
     text-underline-offset: 3px;
 }
 
-.nudge-btn-text:hover {
-    color: #111;
-}
+.nudge-btn-text:hover { color: #111; }
 
 /* ── Spinner ───────────────────────────────────────────────────── */
 .nudge-spinner {
@@ -203,9 +178,7 @@
     vertical-align: middle;
 }
 
-@keyframes nudge-spin {
-    to { transform: rotate(360deg); }
-}
+@keyframes nudge-spin { to { transform: rotate(360deg); } }
 
 #nudge-loading {
     display: inline-flex;
@@ -226,7 +199,58 @@
     padding: 8px 12px;
 }
 
-/* ── Preview panel ─────────────────────────────────────────────── */
+/* ── Ready-to-send header ──────────────────────────────────────── */
+.nudge-ready-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 22px;
+    flex-wrap: wrap;
+}
+
+.nudge-ready-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #117238;
+    text-transform: uppercase;
+    background: #f0faf4;
+    border: 1px solid #b6e4c9;
+    border-radius: 4px;
+    padding: 5px 12px;
+}
+
+.nudge-audience-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.nudge-badge {
+    display: inline-flex;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 4px 11px;
+    border-radius: 20px;
+    line-height: 1.4;
+}
+
+.nudge-badge-count {
+    background: #f0f4ff;
+    color: #2348c4;
+    border: 1px solid #c7d5f5;
+}
+
+.nudge-badge-segment {
+    background: #f5f5f5;
+    color: #555;
+    border: 1px solid #ddd;
+    font-weight: 500;
+}
+
+/* ── Field row ─────────────────────────────────────────────────── */
 .nudge-section-title {
     font-size: 18px;
     font-weight: 700;
@@ -242,14 +266,8 @@
     flex-wrap: wrap;
 }
 
-.nudge-field {
-    flex: 1;
-    min-width: 200px;
-}
-
-.nudge-field-subject {
-    flex: 2;
-}
+.nudge-field { flex: 1; min-width: 200px; }
+.nudge-field-subject { flex: 2; }
 
 .nudge-label {
     display: block;
@@ -261,25 +279,44 @@
     margin-bottom: 6px;
 }
 
-.nudge-recipients {
-    font-size: 15px;
-    color: #111;
+/* ── Template bar ──────────────────────────────────────────────── */
+.nudge-tpl-bar-label { margin-bottom: 8px; }
+
+.nudge-tpl-bar {
     display: flex;
-    align-items: center;
-    gap: 10px;
-    padding-top: 6px;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
 }
 
-.nudge-segment-tag {
-    font-size: 12px;
-    background: #f0f0f0;
-    color: #555;
-    padding: 3px 9px;
-    border-radius: 12px;
+.nudge-tpl-btn {
+    padding: 7px 18px;
+    font-family: inherit;
+    font-size: 13px;
     font-weight: 500;
+    background: #f7f7f7;
+    border: 1.5px solid #ddd;
+    border-radius: 6px;
+    color: #555;
+    cursor: pointer;
+    transition: background 0.12s, border-color 0.12s, color 0.12s;
+    line-height: 1.4;
 }
 
-/* ── Email iframe preview ──────────────────────────────────────── */
+.nudge-tpl-btn:hover {
+    background: #f0f0f0;
+    border-color: #999;
+    color: #111;
+}
+
+.nudge-tpl-btn.active {
+    background: #111;
+    border-color: #111;
+    color: #fff;
+    font-weight: 600;
+}
+
+/* ── Email preview panel ───────────────────────────────────────── */
 .nudge-email-frame {
     border: 1px solid #e0e0e0;
     border-radius: 8px;
@@ -297,12 +334,7 @@
     gap: 6px;
 }
 
-.nudge-dot {
-    display: inline-block;
-    width: 11px;
-    height: 11px;
-    border-radius: 50%;
-}
+.nudge-dot { display: inline-block; width: 11px; height: 11px; border-radius: 50%; }
 .nudge-dot.r { background: #ff5f57; }
 .nudge-dot.y { background: #febc2e; }
 .nudge-dot.g { background: #28c840; }
@@ -313,11 +345,75 @@
     margin-left: 6px;
 }
 
-#nudge-iframe {
-    width: 100%;
-    height: 480px;
-    border: none;
-    display: block;
+.nudge-preview-body {
+    max-height: 520px;
+    overflow-y: auto;
+}
+
+/* Highlight contenteditable regions on hover */
+.nudge-preview-body [contenteditable="true"]:hover {
+    outline: 1.5px dashed #7c3aed;
+    border-radius: 2px;
+}
+
+.nudge-preview-body [contenteditable="true"]:focus {
+    outline: 2px solid #7c3aed;
+    border-radius: 2px;
+}
+
+/* ── Refine section ────────────────────────────────────────────── */
+.nudge-refine-section {
+    background: #fafafa;
+    border: 1px solid #ebebeb;
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin-bottom: 20px;
+}
+
+.nudge-refine-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 12px;
+}
+
+.nudge-refine-row {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    margin-top: 12px;
+}
+
+#nudge-refine-input {
+    flex: 1;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #fff;
+    color: #111;
+    resize: vertical;
+    min-height: 48px;
+    max-height: 120px;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+#nudge-refine-input:focus {
+    border-color: #7c3aed;
+    box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.15);
+}
+
+#nudge-refine-loading {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #666;
+    margin-top: 10px;
 }
 
 /* ── Send row ──────────────────────────────────────────────────── */
@@ -329,10 +425,7 @@
 }
 
 /* ── Success ───────────────────────────────────────────────────── */
-#nudge-success {
-    text-align: center;
-    padding: 48px 0;
-}
+#nudge-success { text-align: center; padding: 48px 0; }
 
 .nudge-success-big {
     font-size: 52px;
@@ -348,7 +441,7 @@
     margin-bottom: 28px;
 }
 
-/* ── History / settings subpanels ──────────────────────────────── */
+/* ── History table ─────────────────────────────────────────────── */
 .nudge-history-table {
     width: 100%;
     border-collapse: collapse;
@@ -379,8 +472,10 @@
 
 /* ── Responsive ────────────────────────────────────────────────── */
 @media ( max-width: 600px ) {
-    .nudge-field-row { flex-direction: column; gap: 12px; }
-    .nudge-send-row  { flex-direction: column; align-items: flex-start; gap: 10px; }
-    #nudge-iframe    { height: 320px; }
-    .nudge-success-big { font-size: 38px; }
+    .nudge-field-row    { flex-direction: column; gap: 12px; }
+    .nudge-send-row     { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .nudge-refine-row   { flex-direction: column; }
+    .nudge-ready-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .nudge-success-big  { font-size: 38px; }
+    .nudge-preview-body { max-height: 360px; }
 }
