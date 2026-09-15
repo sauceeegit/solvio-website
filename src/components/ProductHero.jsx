@@ -20,7 +20,7 @@ const productTh = {
 
 const EASE = [0.16, 1, 0.3, 1];
 
-export default function ProductHero({ cfg, onAddToCart, added }) {
+export default function ProductHero({ cfg, onAddToCart, consent, onConsent }) {
   const { lang } = useLanguage();
   const th = lang === 'th';
   // Mobile: the 3D model stays pinned while the shopper scrolls Steps 1–2;
@@ -73,7 +73,7 @@ export default function ProductHero({ cfg, onAddToCart, added }) {
 
           <motion.div className="mt-6 space-y-6" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.65, ease: EASE }}>
             <Configurator config={cfg.config} set={cfg.set} />
-            <PriceBox derived={cfg} onAddToCart={onAddToCart} added={added} />
+            <PriceBox derived={cfg} onAddToCart={onAddToCart} consent={consent} onConsent={onConsent} />
           </motion.div>
         </div>
       </div>

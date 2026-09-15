@@ -1,84 +1,22 @@
 import { useState } from 'react';
-import { Check, ShieldCheck, RotateCcw, Bookmark } from 'lucide-react';
+import { Bookmark } from 'lucide-react';
 import { baht } from '../lib/format';
 import { product } from '../data/product';
 import SaveConfigModal from './SaveConfigModal';
+import RefundPolicyConsent from './RefundPolicyConsent';
 import { useLanguage } from '../context/LanguageContext';
-
-const guarantees = {
-  en: [
-    { icon: ShieldCheck, text: '10-year product warranty' },
-    { icon: RotateCcw, text: '30-day hassle-free returns' },
-  ],
-  th: [
-    { icon: ShieldCheck, text: 'รับประกันสินค้า 10 ปี' },
-    { icon: RotateCcw, text: 'คืนสินค้าง่าย 30 วัน' },
-  ],
-};
-
-export default function PriceBox({ derived, onAddToCart, added: addedProp }) {
-  const [added, setAdded] = useState(false);
+import { checkoutCopy } from '../data/checkout';
+export default function PriceBox({ derived, onAddToCart, consent, onConsent }) {
   const [saveOpen, setSaveOpen] = useState(false);
-  const isAdded = addedProp ?? added;
   const { lang } = useLanguage();
-  const th = lang === 'th';
-  const gList = guarantees[lang] || guarantees.en;
-
-  function handleAdd() {
-    setAdded(true);
-    onAddToCart?.();
-    setTimeout(() => setAdded(false), 2000);
-  }
-
-  return (
-    <div className="rounded-xl2 border border-ink/[0.07] bg-white p-6 shadow-soft">
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <h2 className="font-display text-xl font-extrabold text-ink">{product.name}</h2>
-          <p className="mt-0.5 text-sm text-ink/60">{th ? product.taglineTh : product.tagline}</p>
-        </div>
-      </div>
-
-      <div className="mt-4">
-        <p className="font-mono text-xs uppercase tracking-wider text-slatey-400">{th ? 'รวม' : 'Total'}</p>
-        <p className="mt-0.5 font-display text-3xl font-extrabold text-ink">{baht(derived?.total ?? 0)}</p>
-      </div>
-
-      <button
-        onClick={handleAdd}
-        className={`mt-4 flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 font-display text-base font-bold transition active:scale-[0.99] ${
-          isAdded ? 'bg-ink text-lime' : 'bg-lime text-white hover:bg-lime-dark'
-        }`}
-      >
-        {isAdded ? (
-          <><Check size={20} strokeWidth={3} /> {th ? 'เพิ่มแล้ว' : 'Added to cart'}</>
-        ) : (
-          th ? 'เพิ่มในตะกร้า' : 'Add to cart'
-        )}
-      </button>
-
-      <button
-        onClick={() => setSaveOpen(true)}
-        className="mt-2.5 flex w-full items-center justify-center gap-2 rounded-full border border-ink/15 px-6 py-3.5 font-display text-base font-bold text-ink transition hover:border-ink/30 hover:bg-ink/[0.03] active:scale-[0.99]"
-      >
-        <Bookmark size={18} /> {th ? 'บันทึกการตั้งค่า' : 'Save Configuration'}
-      </button>
-
-      <SaveConfigModal open={saveOpen} onClose={() => setSaveOpen(false)} derived={derived} />
-
-      <div className="mt-4 flex items-start gap-2 rounded-xl bg-lime/10 p-3.5 text-sm text-ink">
-        <ShieldCheck size={16} className="mt-0.5 shrink-0 text-lime-dark" />
-        <p className="max-sm:text-[13px] max-sm:leading-snug">{th ? 'สั่งวันนี้ รับการสนับสนุนติดตั้งฟรีทางวิดีโอคอล' : 'Order today and get free installation support via video call.'}</p>
-      </div>
-
-      <ul className="mt-5 flex flex-col gap-3">
-        {gList.map(({ icon: Icon, text }) => (
-          <li key={text} className="flex items-center gap-2.5 text-sm text-ink/70">
-            <Icon size={15} className="shrink-0 text-lime" />
-            {text}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+  const t = checkoutCopy[lang];
+  return <div className="rounded-xl2 border border-ink/[0.07] bg-white p-6 shadow-soft" data-balcony-purchase>
+    <h2 className="font-display text-xl font-extrabold">{product.name}</h2>
+    <p className="mt-4 text-sm">{t.subtotal}</p><p className="text-3xl font-bold">{baht(derived?.total ?? 0)}</p>
+    <p className="mt-4 text-sm">{t.gate}</p><p className="mt-3 text-sm">{t.goods}</p>
+    <RefundPolicyConsent checked={consent} onChange={onConsent} />
+    <button data-checkout-cta disabled={!consent} onClick={onAddToCart} className="btn-primary w-full disabled:opacity-50">{lang === 'th' ? 'ไปยังคำขอสั่งซื้อ' : 'Continue to checkout'}</button>
+    <button onClick={() => setSaveOpen(true)} className="mt-3 flex w-full items-center justify-center gap-2 rounded-full border border-ink/15 px-6 py-3.5 font-bold"><Bookmark size={18} />{lang === 'th' ? 'บันทึกการตั้งค่า' : 'Save Configuration'}</button>
+    <SaveConfigModal open={saveOpen} onClose={() => setSaveOpen(false)} derived={derived} />
+  </div>;
 }

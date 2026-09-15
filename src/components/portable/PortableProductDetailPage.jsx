@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { checkoutUrl } from '../../lib/checkout';
+import { checkoutCopy } from '../../data/checkout';
 import { ArrowLeft, ArrowRight, Check, ChevronDown, MessageCircle, Plus, Zap, Plug, Smartphone, Weight, Sun, Shield, Battery, PlugZap, Maximize2, Minimize2, Cable, Clock } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link, useSearchParams } from 'react-router-dom';
@@ -122,6 +124,8 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
                   ))}
                 </ul>
 
+                <p className="mt-6 text-sm">{checkoutCopy[lang].gate}</p>
+                <Link className="btn-primary mt-4 w-full" to={checkoutUrl('portable', {model: product.id})}>{th ? 'คำขอสั่งซื้อ — โอนเงิน' : 'Order request — bank transfer'}</Link>
                 <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
                   <a
                     href={`https://wa.me/66843488428?text=${whatsappMessage}`}
@@ -247,7 +251,7 @@ export default function PortableProductDetailPage({ products, defaultProduct, me
               </h2>
             </div>
             <div className="mt-10 space-y-2">
-              {(th ? (product.faqsTh ?? product.faqs) : product.faqs).map((item, i) => (
+              {(th ? (product.faqsTh ?? product.faqs) : product.faqs).map((item) => (
                 <PortableFAQItem key={`${product.id}-${item.question}`} q={item.question} a={item.answer} />
               ))}
             </div>

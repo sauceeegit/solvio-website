@@ -1,3 +1,4 @@
+import { asset } from '../lib/format';
 import { icons } from '../lib/icons';
 import { benefits } from '../data/product';
 import Reveal from './Reveal';
@@ -20,14 +21,19 @@ export default function BenefitsStrip() {
       <div className="container-x grid grid-cols-2 gap-x-6 gap-y-7 py-10 md:grid-cols-3 lg:grid-cols-6">
         {benefits.map((b, i) => {
           const Icon = icons[b.icon] ?? icons.Check;
-          const label = th ? benefitsTh[i] : b;
+          const overrides = {
+            0: {title: th ? 'นโยบายคืนสินค้าและคืนเงิน' : 'Return & Refund Policy', sub: th ? 'ให้ยึดภาษาไทยเป็นหลัก' : 'Thai policy prevails'},
+            1: {title: th ? 'การจัดส่ง' : 'Delivery', sub: th ? 'ทีมงานยืนยันก่อนชำระเงิน' : 'Team confirms before payment'},
+            4: {title: th ? 'โอนเงินเท่านั้น' : 'Bank transfer only', sub: th ? 'รอยืนยันยอดสุทธิก่อนโอน' : 'Wait for confirmed final total'},
+          };
+          const label = overrides[i] ?? (th ? benefitsTh[i] : b);
           return (
             <Reveal key={b.title} delay={i * 0.07}>
               <div className="flex flex-col items-center gap-2 text-center">
                 <span className="grid h-14 w-14 place-items-center rounded-full border-2 border-lime bg-white text-lime">
                   <Icon size={26} />
                 </span>
-                <p className="font-display text-sm font-bold text-ink">{label.title}</p>
+                <p className="font-display text-sm font-bold text-ink">{i === 0 ? <a className="underline" href={asset(`/policies/Solvio-Return-and-Refund-Policy-${th ? 'TH' : 'EN'}.pdf`)} target="_blank" rel="noreferrer">{label.title}</a> : label.title}</p>
                 <p className="text-xs leading-snug text-slatey-700">{label.sub}</p>
               </div>
             </Reveal>

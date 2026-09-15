@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { checkoutUrl } from '../lib/checkout';
 import Header from '../components/landing/Header';
 import Breadcrumb from '../components/Breadcrumb';
 import ProductHero from '../components/ProductHero';
@@ -20,13 +22,16 @@ import { usePageMeta } from '../hooks/usePageMeta';
 export default function ProductPage() {
   usePageMeta('/balcony-system');
   const cfg = useConfigurator();
-  const [cartCount, setCartCount] = useState(0);
-  const [added, setAdded] = useState(false);
-
+  const navigate = useNavigate();
+  const [acceptedConfig, setAcceptedConfig] = useState('');
+  const [purchaseError, setPurchaseError] = useState('');
+  const configKey = JSON.stringify(cfg.config);
+  const consent = acceptedConfig === configKey;
+  const onConsent = value => setAcceptedConfig(value ? configKey : '');
   const addToCart = () => {
-    setCartCount((c) => c + 1);
-    setAdded(true);
-    setTimeout(() => setAdded(false), 1800);
+    if (!consent) return;
+    try { navigate(checkoutUrl('balcony', cfg.config)); }
+    catch { setPurchaseError('Technical limit: 1–100 modules per set / ข้อจำกัดแบบฟอร์ม 1–100 แผงต่อชุด'); }
   };
 
   return (
@@ -34,7 +39,8 @@ export default function ProductPage() {
       <Header />
       <Breadcrumb />
       <main>
-        <ProductHero cfg={cfg} onAddToCart={addToCart} added={added} />
+        <ProductHero cfg={{...cfg, set: (key, value) => { setAcceptedConfig(''); setPurchaseError(''); cfg.set(key, value); }}} onAddToCart={addToCart} consent={consent} onConsent={onConsent} />
+        {purchaseError && <p role="alert" className="container-x text-red-800">{purchaseError}</p>}
         <BenefitsStrip />
         <PaymentRow />
         <Highlights />
@@ -47,9 +53,9 @@ export default function ProductPage() {
         <ContactSection />
       </main>
       <Footer />
-      <StickyCartBar derived={cfg} onAddToCart={addToCart} added={added} />
+      <StickyCartBar derived={cfg} onAddToCart={addToCart} consent={consent} onConsent={onConsent} />
       {/* spacer so the sticky mobile bar never covers the footer end on mobile */}
-      <div className="h-20 lg:hidden" />
+      <div className="h-64 lg:hidden" />
     </div>
   );
 }
