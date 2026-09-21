@@ -13,6 +13,7 @@ const links = {
     { label: 'Balcony Solar', to: '/balcony-system', sub: 'For Tenant' },
     { label: 'Portable Solar', to: '/portable-system' },
     { label: 'Solar Panel', to: '/solar-panel' },
+    { label: 'Inverters', to: '/inverters' },
     { label: 'Projects', to: '/projects' },
     { label: 'FAQs', to: '/faqs' },
   ],
@@ -21,6 +22,7 @@ const links = {
     { label: 'โซลาร์ระเบียง', to: '/balcony-system', sub: 'สำหรับผู้เช่า' },
     { label: 'โซลาร์พกพา', to: '/portable-system' },
     { label: 'แผงโซลาร์', to: '/solar-panel' },
+    { label: 'อินเวอร์เตอร์', to: '/inverters' },
     { label: 'ผลงาน', to: '/projects' },
     { label: 'คำถามที่พบบ่อย', to: '/faqs' },
   ],
@@ -70,7 +72,7 @@ export default function LandingNav() {
       <nav className="container-x flex h-16 items-center">
         <Logo href="/" size="h-7" />
 
-        <ul className="hidden flex-1 items-center justify-center gap-0.5 lg:flex">
+        <ul className="hidden flex-1 items-center justify-center gap-0.5 xl:flex">
           {links[lang].map((l) => (
             <li key={l.label}>
               <NavLink
@@ -114,7 +116,7 @@ export default function LandingNav() {
           <button
             type="button"
             onClick={openBgreenie}
-            className={`hidden items-center whitespace-nowrap rounded-full border px-3 py-1.5 font-display text-[13px] font-medium transition lg:inline-flex xl:px-3.5 ${solid ? 'border-ink/40 text-ink/75 hover:border-lime hover:text-lime' : 'border-white/50 text-white/90 hover:border-white hover:text-white'}`}
+            className={`hidden items-center whitespace-nowrap rounded-full border px-3 py-1.5 font-display text-[13px] font-medium transition xl:inline-flex xl:px-3.5 ${solid ? 'border-ink/40 text-ink/75 hover:border-lime hover:text-lime' : 'border-white/50 text-white/90 hover:border-white hover:text-white'}`}
           >
             {lang === 'th' ? 'สมาชิก Bgreenie' : 'Bgreenie Membership'}
           </button>
@@ -126,7 +128,7 @@ export default function LandingNav() {
           </Link>
           <button
             onClick={() => setOpen(true)}
-            className={`grid h-11 w-11 place-items-center rounded-full transition lg:hidden ${solid ? 'text-ink hover:bg-ink/[0.05]' : 'text-white hover:bg-white/10'}`}
+            className={`grid h-11 w-11 place-items-center rounded-full transition xl:hidden ${solid ? 'text-ink hover:bg-ink/[0.05]' : 'text-white hover:bg-white/10'}`}
             aria-label={lang === 'th' ? 'เปิดเมนู' : 'Open menu'}
           >
             <Menu size={30} strokeWidth={2.25} />
@@ -138,7 +140,7 @@ export default function LandingNav() {
         <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-[70] md:hidden"
+            className="fixed inset-0 z-[70] xl:hidden"
             style={{ backgroundColor: '#09321B' }}
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}

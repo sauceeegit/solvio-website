@@ -1,0 +1,79 @@
+/* Scoped to .inverters-page — nothing here may leak into other routes. */
+
+/* Bounded image stage: the official Solis artwork varies wildly in intrinsic
+   aspect (tall wall-mount units vs wide loggers), so the card fixes the stage
+   height and the image contains itself inside it — never cropped, never stretched.
+   The stage is position:relative with a fixed height and the image is absolutely
+   filled into it, so the image's intrinsic pixel height can never grow the stage
+   (a tall 299 px asset in a 260 px box used to spill). Padding lives on the image
+   so object-fit: contain shrinks inside the inset. */
+.inverters-page .inv-stage {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.inverters-page .inv-stage img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  object-fit: contain;
+}
+
+@media (min-width: 1024px) {
+  .inverters-page .inv-stage {
+    height: 260px;
+  }
+}
+
+/* Long exact model names and datasheet values must wrap, never clip or push the
+   grid track wider than its column. */
+.inverters-page .inv-card,
+.inverters-page .inv-col {
+  min-width: 0;
+}
+
+.inverters-page .inv-card h3,
+.inverters-page .inv-card dd,
+.inverters-page .inv-card dt,
+.inverters-page .inv-card .inv-cta {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Mobile category rail: horizontal snap-scroller, scrollbar hidden. */
+.inverters-page .inv-rail {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+}
+
+.inverters-page .inv-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.inverters-page .inv-rail > * {
+  scroll-snap-align: start;
+}
+
+/* Native details/summary — remove the default marker, keep the row clickable
+   and focusable. */
+.inverters-page .inv-specs > summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.inverters-page .inv-specs > summary::-webkit-details-marker {
+  display: none;
+}
+
+.inverters-page .inv-specs[open] .inv-chevron {
+  transform: rotate(180deg);
+}
+
+.inverters-page .inv-chevron {
+  transition: transform 0.2s ease;
+}

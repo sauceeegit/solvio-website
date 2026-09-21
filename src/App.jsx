@@ -8,6 +8,7 @@ import PortablePage from './pages/PortablePage';
 import D100ProductPage from './pages/D100ProductPage';
 import PortablePanelProductPage from './pages/PortablePanelProductPage';
 import SolarPanelPage from './pages/SolarPanelPage';
+import InvertersPage from './pages/InvertersPage';
 import RooftopSystemPage from './pages/RooftopSystemPage';
 import AboutPage from './pages/AboutPage';
 import FaqsPage from './pages/FaqsPage';
@@ -26,6 +27,7 @@ export default function App() {
         <Route path="/portable-system/d100" element={<D100ProductPage />} />
         <Route path="/portable-system/panel" element={<PortablePanelProductPage />} />
         <Route path="/solar-panel" element={<SolarPanelPage />} />
+        <Route path="/inverters" element={<InvertersPage />} />
         <Route path="/rooftop-system" element={<RooftopSystemPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/projects" element={<ProjectsPage />} />

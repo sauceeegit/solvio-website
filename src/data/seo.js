@@ -42,6 +42,11 @@ export const routeMeta = {
     description:
       'Meet the Solvio Dark Feather solar module: 450 Wp, weatherproof glass-glass build and sleek all-black design for balconies and rooftops.',
   },
+  '/inverters': {
+    title: 'Solis Inverters Thailand — Hybrid, Grid-Tied & Monitoring | Solvio',
+    description:
+      'Solvio inverter catalogue: 12 Solis inverter variants from 2.5 kW single-phase grid-tied to 350 kW utility-scale, including hybrid battery models, plus 2 data loggers and the SolisCloud monitoring platform. Datasheet specs, quote on request.',
+  },
   '/rooftop-system': {
     title: 'Rooftop Solar Installation Phuket — Free Estimate | Solvio',
     description:

@@ -12,6 +12,7 @@ const cols = {
         { label: 'Rooftop Solar', to: '/rooftop-system' },
         { label: 'Portable Solar', to: '/portable-system' },
         { label: 'Solar panels', to: '/solar-panel' },
+        { label: 'Inverters', to: '/inverters' },
       ],
     },
     {
@@ -42,6 +43,7 @@ const cols = {
         { label: 'โซลาร์หลังคา', to: '/rooftop-system' },
         { label: 'โซลาร์พกพา', to: '/portable-system' },
         { label: 'แผงโซลาร์', to: '/solar-panel' },
+        { label: 'อินเวอร์เตอร์', to: '/inverters' },
       ],
     },
     {
