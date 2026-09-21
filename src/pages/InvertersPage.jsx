@@ -1,3 +1,5 @@
+import { useCallback, useEffect, useState } from 'react';
+import { ChevronDown } from 'lucide-react';
 import Header from '../components/landing/Header';
 import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
@@ -9,19 +11,19 @@ import { useLanguage } from '../context/LanguageContext';
 
 const copy = {
   en: {
-    eyebrow: 'Solis inverters',
-    h1: 'Solis inverter catalogue',
+    eyebrow: 'Solvio energy solutions',
+    h1: 'Inverter solutions for your project',
     intro:
-      '12 Solis inverter variants — from a 2.5 kW single-phase rooftop string inverter up to a 350 kW utility-scale unit — plus the SolisCloud monitoring platform and 2 data loggers. Specifications are taken from the manufacturer datasheet for each exact model. Tell us your site and we will size the right one with you.',
+      'From home rooftops to commercial buildings and larger solar projects, Solvio offers a wide range of inverter, energy storage and monitoring solutions. Explore on-grid and hybrid options, then talk to us about the right fit for your site and energy needs.',
     cta: 'Get a quote',
     browse: 'Browse categories',
     note: 'No pricing is shown here: inverter pricing depends on the full system design. Every enquiry is quoted individually.',
   },
   th: {
-    eyebrow: 'อินเวอร์เตอร์ Solis',
-    h1: 'แคตตาล็อกอินเวอร์เตอร์ Solis',
+    eyebrow: 'โซลูชันพลังงานจาก Solvio',
+    h1: 'โซลูชันอินเวอร์เตอร์สำหรับโครงการของคุณ',
     intro:
-      'อินเวอร์เตอร์ Solis 12 รุ่นย่อย ตั้งแต่ออนกริด 1 เฟส ขนาด 2.5 กิโลวัตต์ ไปจนถึงรุ่นระดับยูทิลิตี้ 350 กิโลวัตต์ พร้อมแพลตฟอร์มติดตามระบบ SolisCloud และดาต้าล็อกเกอร์อีก 2 รุ่น ข้อมูลจำเพาะอ้างอิงจากเอกสารของผู้ผลิตตามรุ่นนั้น ๆ แจ้งรายละเอียดหน้างานมาได้เลย เราช่วยเลือกขนาดที่เหมาะสมให้',
+      'ตั้งแต่หลังคาบ้านไปจนถึงอาคารเชิงพาณิชย์และโครงการโซลาร์ขนาดใหญ่ Solvio มีโซลูชันอินเวอร์เตอร์ ระบบกักเก็บพลังงาน และการติดตามระบบให้เลือกหลากหลาย ดูตัวเลือกทั้งแบบออนกริดและไฮบริด แล้วปรึกษาเราเพื่อเลือกสิ่งที่เหมาะกับหน้างานและความต้องการพลังงานของคุณ',
     cta: 'ขอใบเสนอราคา',
     browse: 'เลือกดูตามหมวดหมู่',
     note: 'หน้านี้ไม่แสดงราคา เนื่องจากราคาอินเวอร์เตอร์ขึ้นอยู่กับการออกแบบระบบทั้งหมด เราจึงเสนอราคาเป็นรายกรณี',
@@ -33,6 +35,37 @@ export default function InvertersPage() {
   const { lang } = useLanguage();
   const th = lang === 'th';
   const t = copy[lang];
+
+  // Mobile-only (<1024px) accordion. The first category is always open and has
+  // no toggle; the rest start collapsed. State lives here and is expressed as a
+  // data attribute so CSS can force every body visible again on desktop —
+  // cards are never unmounted, so no state or image fetch is ever destroyed.
+  const [openCats, setOpenCats] = useState(() => ({}));
+  const firstKey = inverterCategories[0].key;
+
+  const revealCat = useCallback(
+    (key) => setOpenCats((prev) => (prev[key] ? prev : { ...prev, [key]: true })),
+    [],
+  );
+
+  // Direct hash navigation (and in-page anchors) must reveal the target too.
+  useEffect(() => {
+    const syncFromHash = () => {
+      const raw = window.location.hash.replace('#', '');
+      if (!raw) return;
+      // A malformed percent-escape (e.g. #%E0) would throw out of the listener.
+      let key = raw;
+      try {
+        key = decodeURIComponent(raw);
+      } catch {
+        return;
+      }
+      if (inverterCategories.some((c) => c.key === key)) revealCat(key);
+    };
+    syncFromHash();
+    window.addEventListener('hashchange', syncFromHash);
+    return () => window.removeEventListener('hashchange', syncFromHash);
+  }, [revealCat]);
 
   return (
     <div id="top" className="inverters-page min-h-screen bg-surface">
@@ -64,6 +97,17 @@ export default function InvertersPage() {
               <li key={c.key}>
                 <a
                   href={`#${c.key}`}
+                  data-rail-link={c.key}
+                  onClick={(e) => {
+                    // Expand first, then scroll — otherwise the anchor jumps to
+                    // a still-collapsed section and lands at the wrong offset.
+                    e.preventDefault();
+                    revealCat(c.key);
+                    window.history.replaceState(null, '', `#${c.key}`);
+                    requestAnimationFrame(() => {
+                      document.getElementById(c.key)?.scrollIntoView({ block: 'start' });
+                    });
+                  }}
                   className="inline-block whitespace-nowrap rounded-full border border-ink/15 px-3.5 py-1.5 font-display text-[12.5px] font-semibold text-ink/75 transition hover:border-lime hover:text-lime"
                 >
                   {th ? c.th : c.en}
@@ -104,21 +148,57 @@ export default function InvertersPage() {
           </aside>
 
           <div className="inv-col min-w-0 space-y-14">
-            {inverterCategories.map((c) => (
-              <section key={c.key} id={c.key} className="scroll-mt-[168px] lg:scroll-mt-28">
-                <h2 className="font-display text-2xl font-bold text-ink">{th ? c.th : c.en}</h2>
-                <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink/60">
-                  {th ? c.guide_th : c.guide_en}
-                </p>
-                <div className="mt-6 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-                  {inverters
-                    .filter((p) => p.cat === c.key)
-                    .map((item) => (
-                      <InverterCard key={item.id} item={item} th={th} />
-                    ))}
-                </div>
-              </section>
-            ))}
+            {inverterCategories.map((c) => {
+              const always = c.key === firstKey;
+              const open = always || !!openCats[c.key];
+              const label = th ? c.th : c.en;
+              return (
+                <section
+                  key={c.key}
+                  id={c.key}
+                  data-category={c.key}
+                  data-open={open ? 'true' : 'false'}
+                  className="inv-cat scroll-mt-[168px] lg:scroll-mt-28"
+                >
+                  {always ? (
+                    <h2 className="font-display text-2xl font-bold text-ink">{label}</h2>
+                  ) : (
+                    <h2 className="font-display text-2xl font-bold text-ink">
+                      {/* Desktop: a plain label — the body is always visible there,
+                          so there must be no focusable disclosure control claiming
+                          aria-expanded=false. Mobile: the real toggle button. */}
+                      <span className="hidden lg:block">{label}</span>
+                      <button
+                        type="button"
+                        data-cat-toggle={c.key}
+                        aria-expanded={open}
+                        aria-controls={`${c.key}-body`}
+                        onClick={() => setOpenCats((prev) => ({ ...prev, [c.key]: !prev[c.key] }))}
+                        className="inv-cat-toggle flex w-full items-center justify-between gap-4 rounded-lg text-left font-display text-2xl font-bold text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-lime lg:hidden"
+                      >
+                        <span>{label}</span>
+                        <ChevronDown
+                          aria-hidden="true"
+                          className="inv-cat-chevron h-5 w-5 shrink-0 text-ink/50"
+                        />
+                      </button>
+                    </h2>
+                  )}
+                  <div id={`${c.key}-body`} data-cat-body={c.key} className="inv-cat-body">
+                    <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink/60">
+                      {th ? c.guide_th : c.guide_en}
+                    </p>
+                    <div className="mt-6 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+                      {inverters
+                        .filter((p) => p.cat === c.key)
+                        .map((item) => (
+                          <InverterCard key={item.id} item={item} th={th} />
+                        ))}
+                    </div>
+                  </div>
+                </section>
+              );
+            })}
           </div>
         </div>
 

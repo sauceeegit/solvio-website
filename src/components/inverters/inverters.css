@@ -59,6 +59,25 @@
   scroll-snap-align: start;
 }
 
+/* Mobile category accordion (<1024px, the same breakpoint as the desktop rail).
+   Collapsed categories hide their whole body — guide copy and card grid — with
+   display:none rather than unmounting, so card state and image fetches survive.
+   Above 1024px the media query simply never applies, so every body is visible
+   regardless of the mobile open/closed state and the toggle is inert. */
+@media (max-width: 1023.98px) {
+  .inverters-page .inv-cat[data-open='false'] > .inv-cat-body {
+    display: none;
+  }
+
+  .inverters-page .inv-cat[data-open='true'] > h2 > .inv-cat-toggle .inv-cat-chevron {
+    transform: rotate(180deg);
+  }
+}
+
+.inverters-page .inv-cat-chevron {
+  transition: transform 0.2s ease;
+}
+
 /* Native details/summary — remove the default marker, keep the row clickable
    and focusable. */
 .inverters-page .inv-specs > summary {
